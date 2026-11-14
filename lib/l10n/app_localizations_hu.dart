@@ -7225,6 +7225,68 @@ class AppLocalizationsHu extends AppLocalizations {
       'Regionális hálózati definíciók kezelése és letöltése';
 
   @override
+  String get replay_title => 'Nap visszajátszása';
+
+  @override
+  String get replay_entryHint => 'Merre járt a csapat egy adott napon';
+
+  @override
+  String get replay_badge => 'Előzmények';
+
+  @override
+  String get replay_day => 'Nap';
+
+  @override
+  String get replay_team => 'Csapat';
+
+  @override
+  String get replay_everyone => 'Mindenki';
+
+  @override
+  String get replay_emptyTeam =>
+      'Ezen a napon nincs csapatpozíció. A csapattagok akkor jelennek meg, ha követett pozíciót osztanak meg egy csatornán. A csomópontok hirdetéseihez válaszd a Mindenki lehetőséget.';
+
+  @override
+  String get replay_emptyEveryone =>
+      'Ezen a napon nincs rögzített pozíció. A telefon mostantól rögzíti a csomópontok által hirdetett pozíciókat, amíg az alkalmazás nyitva van.';
+
+  @override
+  String replay_mapSummary(String time, int count) {
+    return 'Térkép $time-kor: $count látható';
+  }
+
+  @override
+  String get replay_play => 'Lejátszás';
+
+  @override
+  String get replay_pause => 'Szünet';
+
+  @override
+  String get replay_speed => 'Sebesség';
+
+  @override
+  String replay_speedValue(int minutes) {
+    return '$minutes perc másodpercenként';
+  }
+
+  @override
+  String replay_showNode(String name) {
+    return '$name megjelenítése vagy elrejtése';
+  }
+
+  @override
+  String get replay_notYet => 'Ekkor még nem látszott';
+
+  @override
+  String replay_lastSeen(String time, String lat, String lon) {
+    return 'Utoljára $time-kor itt: $lat, $lon';
+  }
+
+  @override
+  String get replay_explainer =>
+      'A csapatpozíciók a csatornákon megosztott követett pozíciókból származnak. A Mindenki hozzáadja a csomópontok által hirdetett pozíciókat, amelyeket a telefon nyitott alkalmazás mellett rögzít és 30 napig őriz. Semmit nem küld el.';
+
+  @override
   String get mapHub_badgeRegions => 'RÉGIÓK';
 
   @override

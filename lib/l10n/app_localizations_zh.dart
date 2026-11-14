@@ -6734,6 +6734,66 @@ class AppLocalizationsZh extends AppLocalizations {
   String get mapHub_regionsHint => '管理和获取区域网络定义';
 
   @override
+  String get replay_title => '回放一天';
+
+  @override
+  String get replay_entryHint => '回放团队在某天的位置';
+
+  @override
+  String get replay_badge => '历史';
+
+  @override
+  String get replay_day => '日期';
+
+  @override
+  String get replay_team => '团队';
+
+  @override
+  String get replay_everyone => '所有人';
+
+  @override
+  String get replay_emptyTeam => '这一天没有团队位置。队员在频道中共享跟踪位置后才会显示。选择“所有人”可查看节点广播。';
+
+  @override
+  String get replay_emptyEveryone => '这一天没有记录位置。从现在起，应用打开期间本机会记录节点广播的位置。';
+
+  @override
+  String replay_mapSummary(String time, int count) {
+    return '$time 的地图：显示 $count 个';
+  }
+
+  @override
+  String get replay_play => '播放';
+
+  @override
+  String get replay_pause => '暂停';
+
+  @override
+  String get replay_speed => '速度';
+
+  @override
+  String replay_speedValue(int minutes) {
+    return '每秒 $minutes 分钟';
+  }
+
+  @override
+  String replay_showNode(String name) {
+    return '显示或隐藏 $name';
+  }
+
+  @override
+  String get replay_notYet => '此时尚未出现';
+
+  @override
+  String replay_lastSeen(String time, String lat, String lon) {
+    return '最后出现于 $time，位置 $lat, $lon';
+  }
+
+  @override
+  String get replay_explainer =>
+      '团队位置来自队员在频道中共享的跟踪位置。“所有人”还会加入节点广播的位置，本机在应用打开期间记录并保留 30 天。不会发送任何内容。';
+
+  @override
   String get mapHub_badgeRegions => '区域';
 
   @override

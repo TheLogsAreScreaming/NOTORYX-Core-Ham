@@ -6877,6 +6877,68 @@ class AppLocalizationsJa extends AppLocalizations {
   String get mapHub_regionsHint => '地域のメッシュ定義を管理・取得';
 
   @override
+  String get replay_title => '1日を再生';
+
+  @override
+  String get replay_entryHint => '選んだ日にチームが移動した場所を再生';
+
+  @override
+  String get replay_badge => '履歴';
+
+  @override
+  String get replay_day => '日付';
+
+  @override
+  String get replay_team => 'チーム';
+
+  @override
+  String get replay_everyone => '全員';
+
+  @override
+  String get replay_emptyTeam =>
+      'この日のチーム位置はありません。メンバーがチャンネルで追跡位置を共有すると表示されます。ノードのアドバートは「全員」で確認できます。';
+
+  @override
+  String get replay_emptyEveryone =>
+      'この日の位置記録はありません。今後、アプリを開いている間にノードがアドバートする位置を記録します。';
+
+  @override
+  String replay_mapSummary(String time, int count) {
+    return '$time の地図: $count 件表示';
+  }
+
+  @override
+  String get replay_play => '再生';
+
+  @override
+  String get replay_pause => '一時停止';
+
+  @override
+  String get replay_speed => '速度';
+
+  @override
+  String replay_speedValue(int minutes) {
+    return '1秒あたり$minutes分';
+  }
+
+  @override
+  String replay_showNode(String name) {
+    return '$name を表示/非表示';
+  }
+
+  @override
+  String get replay_notYet => 'この時刻にはまだ未確認';
+
+  @override
+  String replay_lastSeen(String time, String lat, String lon) {
+    return '最終確認 $time、$lat, $lon';
+  }
+
+  @override
+  String get replay_explainer =>
+      'チーム位置はメンバーがチャンネルで共有する追跡位置から取得します。「全員」ではノードがアドバートする位置も表示します。これはアプリを開いている間に記録され、30日間保存されます。何も送信しません。';
+
+  @override
   String get mapHub_badgeRegions => '地域';
 
   @override

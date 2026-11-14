@@ -7176,6 +7176,68 @@ class AppLocalizationsSv extends AppLocalizations {
       'Hantera och hämta regionala meshdefinitioner';
 
   @override
+  String get replay_title => 'Spela upp en dag';
+
+  @override
+  String get replay_entryHint => 'Se var laget var en vald dag';
+
+  @override
+  String get replay_badge => 'Historik';
+
+  @override
+  String get replay_day => 'Dag';
+
+  @override
+  String get replay_team => 'Lag';
+
+  @override
+  String get replay_everyone => 'Alla';
+
+  @override
+  String get replay_emptyTeam =>
+      'Inga lagpositioner den här dagen. Lagkamrater syns när de delar spårade positioner i en kanal. Välj Alla för nodernas annonser.';
+
+  @override
+  String get replay_emptyEveryone =>
+      'Inga positioner sparade den här dagen. Telefonen sparar från och med nu positioner som noder annonserar medan appen är öppen.';
+
+  @override
+  String replay_mapSummary(String time, int count) {
+    return 'Karta kl. $time: $count visas';
+  }
+
+  @override
+  String get replay_play => 'Spela';
+
+  @override
+  String get replay_pause => 'Pausa';
+
+  @override
+  String get replay_speed => 'Hastighet';
+
+  @override
+  String replay_speedValue(int minutes) {
+    return '$minutes min per sekund';
+  }
+
+  @override
+  String replay_showNode(String name) {
+    return 'Visa eller dölj $name';
+  }
+
+  @override
+  String get replay_notYet => 'Inte sedd ännu vid den här tiden';
+
+  @override
+  String replay_lastSeen(String time, String lat, String lon) {
+    return 'Senast sedd $time vid $lat, $lon';
+  }
+
+  @override
+  String get replay_explainer =>
+      'Lagpositioner kommer från spårade positioner som lagkamrater delar i kanaler. Alla lägger till positioner som noder annonserar, vilka telefonen sparar medan appen är öppen och behåller i 30 dagar. Inget skickas.';
+
+  @override
   String get mapHub_badgeRegions => 'REGIONER';
 
   @override

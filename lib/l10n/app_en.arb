@@ -4216,6 +4216,60 @@
   "mapHub_badgeOffline": "OFFLINE",
   "mapHub_regions": "Region profiles",
   "mapHub_regionsHint": "Manage and fetch regional mesh definitions",
+  "replay_title": "Replay a day",
+  "replay_entryHint": "Play back where the team went on a chosen day",
+  "replay_badge": "History",
+  "replay_day": "Day",
+  "replay_team": "Team",
+  "replay_everyone": "Everyone",
+  "replay_emptyTeam": "No team positions on this day. Teammates show up when they share tracked positions on a channel. Try Everyone for node adverts.",
+  "replay_emptyEveryone": "No positions recorded on this day. This phone records the positions nodes advertise from now on, while the app is open.",
+  "replay_mapSummary": "Map at {time}: {count} shown",
+  "@replay_mapSummary": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "replay_play": "Play",
+  "replay_pause": "Pause",
+  "replay_speed": "Speed",
+  "replay_speedValue": "{minutes} min per second",
+  "@replay_speedValue": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "replay_showNode": "Show or hide {name}",
+  "@replay_showNode": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "replay_notYet": "Not seen yet at this time",
+  "replay_lastSeen": "Last seen {time} at {lat}, {lon}",
+  "@replay_lastSeen": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      },
+      "lat": {
+        "type": "String"
+      },
+      "lon": {
+        "type": "String"
+      }
+    }
+  },
+  "replay_explainer": "Team positions come from the tracked positions teammates share on channels. Everyone adds the positions nodes advertise, which this phone records while the app is open and keeps for 30 days. Nothing is sent.",
   "mapHub_badgeRegions": "REGIONS",
   "routes_title": "Route Intelligence",
   "routes_headline": "See how traffic moves through the mesh.",

@@ -6890,6 +6890,68 @@ class AppLocalizationsKo extends AppLocalizations {
   String get mapHub_regionsHint => '지역 메시 정의 관리 및 가져오기';
 
   @override
+  String get replay_title => '하루 다시 보기';
+
+  @override
+  String get replay_entryHint => '선택한 날 팀이 이동한 곳 재생';
+
+  @override
+  String get replay_badge => '기록';
+
+  @override
+  String get replay_day => '날짜';
+
+  @override
+  String get replay_team => '팀';
+
+  @override
+  String get replay_everyone => '모두';
+
+  @override
+  String get replay_emptyTeam =>
+      '이날 팀 위치가 없습니다. 팀원이 채널에 추적 위치를 공유하면 표시됩니다. 노드 광고는 모두를 선택하세요.';
+
+  @override
+  String get replay_emptyEveryone =>
+      '이날 기록된 위치가 없습니다. 지금부터 앱이 열려 있는 동안 노드가 광고하는 위치를 기록합니다.';
+
+  @override
+  String replay_mapSummary(String time, int count) {
+    return '$time 지도: $count개 표시';
+  }
+
+  @override
+  String get replay_play => '재생';
+
+  @override
+  String get replay_pause => '일시정지';
+
+  @override
+  String get replay_speed => '속도';
+
+  @override
+  String replay_speedValue(int minutes) {
+    return '초당 $minutes분';
+  }
+
+  @override
+  String replay_showNode(String name) {
+    return '$name 표시 또는 숨기기';
+  }
+
+  @override
+  String get replay_notYet => '이 시간에는 아직 보이지 않음';
+
+  @override
+  String replay_lastSeen(String time, String lat, String lon) {
+    return '마지막 확인 $time, $lat, $lon';
+  }
+
+  @override
+  String get replay_explainer =>
+      '팀 위치는 팀원이 채널에 공유하는 추적 위치에서 가져옵니다. 모두를 선택하면 노드가 광고하는 위치도 표시되며, 앱이 열려 있는 동안 기록되어 30일간 보관됩니다. 아무것도 전송하지 않습니다.';
+
+  @override
   String get mapHub_badgeRegions => '지역';
 
   @override

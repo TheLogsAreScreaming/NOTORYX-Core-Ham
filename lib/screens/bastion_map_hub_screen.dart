@@ -5,6 +5,7 @@ import '../widgets/tactical_glass_panel.dart';
 import 'package:flutter/material.dart';
 
 import '../l10n/l10n.dart';
+import 'day_replay_screen.dart';
 import 'map_screen.dart';
 import 'map_cache_screen.dart';
 import 'region_management_screen.dart';
@@ -83,6 +84,16 @@ class BastionMapHubScreen extends StatelessWidget {
               onTap: () => Navigator.of(
                 context,
               ).push(MaterialPageRoute(builder: (_) => const MapScreen())),
+            ),
+            const SizedBox(height: 12),
+            _MapAction(
+              icon: Icons.history_rounded,
+              title: context.l10n.replay_title,
+              subtitle: context.l10n.replay_entryHint,
+              badge: context.l10n.replay_badge,
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const DayReplayScreen()),
+              ),
             ),
             const SizedBox(height: 12),
             _MapAction(

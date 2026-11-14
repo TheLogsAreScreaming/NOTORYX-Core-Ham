@@ -7234,6 +7234,68 @@ class AppLocalizationsBg extends AppLocalizations {
       'Управление и изтегляне на регионални дефиниции на мрежата';
 
   @override
+  String get replay_title => 'Преглед на ден';
+
+  @override
+  String get replay_entryHint => 'Къде е бил екипът в избран ден';
+
+  @override
+  String get replay_badge => 'История';
+
+  @override
+  String get replay_day => 'Ден';
+
+  @override
+  String get replay_team => 'Екип';
+
+  @override
+  String get replay_everyone => 'Всички';
+
+  @override
+  String get replay_emptyTeam =>
+      'Няма позиции на екипа за този ден. Съотборниците се появяват, когато споделят проследявани позиции в канал. Опитайте Всички за обявите на възлите.';
+
+  @override
+  String get replay_emptyEveryone =>
+      'Няма записани позиции за този ден. Отсега нататък телефонът записва позициите от обявите на възлите, докато приложението е отворено.';
+
+  @override
+  String replay_mapSummary(String time, int count) {
+    return 'Карта в $time: показани $count';
+  }
+
+  @override
+  String get replay_play => 'Пусни';
+
+  @override
+  String get replay_pause => 'Пауза';
+
+  @override
+  String get replay_speed => 'Скорост';
+
+  @override
+  String replay_speedValue(int minutes) {
+    return '$minutes мин в секунда';
+  }
+
+  @override
+  String replay_showNode(String name) {
+    return 'Покажи или скрий $name';
+  }
+
+  @override
+  String get replay_notYet => 'Още не е видян по това време';
+
+  @override
+  String replay_lastSeen(String time, String lat, String lon) {
+    return 'Последно видян в $time на $lat, $lon';
+  }
+
+  @override
+  String get replay_explainer =>
+      'Позициите на екипа идват от проследяваните позиции, споделени в канали. Всички добавя позициите от обявите на възлите, които телефонът записва при отворено приложение и пази 30 дни. Нищо не се изпраща.';
+
+  @override
   String get mapHub_badgeRegions => 'РЕГИОНИ';
 
   @override

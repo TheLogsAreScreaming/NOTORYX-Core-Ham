@@ -9,6 +9,7 @@ import 'package:meshcore_open/models/field_ops.dart';
 /// Key prefixes of the Bastion screens' strings.
 const _bastionPrefixes = [
   'bastion_',
+  'replay_',
   'journal_',
   'bastionHome_',
   'bastionTools_',

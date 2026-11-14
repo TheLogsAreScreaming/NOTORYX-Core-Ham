@@ -7205,6 +7205,68 @@ class AppLocalizationsNl extends AppLocalizations {
       'Regionale meshdefinities beheren en ophalen';
 
   @override
+  String get replay_title => 'Een dag afspelen';
+
+  @override
+  String get replay_entryHint => 'Bekijk waar het team op een dag was';
+
+  @override
+  String get replay_badge => 'Geschiedenis';
+
+  @override
+  String get replay_day => 'Dag';
+
+  @override
+  String get replay_team => 'Team';
+
+  @override
+  String get replay_everyone => 'Iedereen';
+
+  @override
+  String get replay_emptyTeam =>
+      'Geen teamposities op deze dag. Teamleden verschijnen als ze gevolgde posities in een kanaal delen. Kies Iedereen voor node-adverts.';
+
+  @override
+  String get replay_emptyEveryone =>
+      'Geen posities vastgelegd op deze dag. Deze telefoon legt vanaf nu de door nodes geadverteerde posities vast zolang de app open is.';
+
+  @override
+  String replay_mapSummary(String time, int count) {
+    return 'Kaart om $time: $count getoond';
+  }
+
+  @override
+  String get replay_play => 'Afspelen';
+
+  @override
+  String get replay_pause => 'Pauzeren';
+
+  @override
+  String get replay_speed => 'Snelheid';
+
+  @override
+  String replay_speedValue(int minutes) {
+    return '$minutes min per seconde';
+  }
+
+  @override
+  String replay_showNode(String name) {
+    return '$name tonen of verbergen';
+  }
+
+  @override
+  String get replay_notYet => 'Op dit tijdstip nog niet gezien';
+
+  @override
+  String replay_lastSeen(String time, String lat, String lon) {
+    return 'Laatst gezien om $time op $lat, $lon';
+  }
+
+  @override
+  String get replay_explainer =>
+      'Teamposities komen uit gevolgde posities die teamleden in kanalen delen. Iedereen voegt de door nodes geadverteerde posities toe, die deze telefoon vastlegt terwijl de app open is en 30 dagen bewaart. Er wordt niets verzonden.';
+
+  @override
   String get mapHub_badgeRegions => 'REGIO\'S';
 
   @override

@@ -7270,6 +7270,68 @@ class AppLocalizationsPl extends AppLocalizations {
       'Zarządzaj regionalnymi definicjami sieci mesh i pobieraj je';
 
   @override
+  String get replay_title => 'Odtwórz dzień';
+
+  @override
+  String get replay_entryHint => 'Gdzie był zespół w wybranym dniu';
+
+  @override
+  String get replay_badge => 'Historia';
+
+  @override
+  String get replay_day => 'Dzień';
+
+  @override
+  String get replay_team => 'Zespół';
+
+  @override
+  String get replay_everyone => 'Wszyscy';
+
+  @override
+  String get replay_emptyTeam =>
+      'Brak pozycji zespołu tego dnia. Członkowie pojawiają się, gdy udostępniają śledzone pozycje na kanale. Wybierz Wszyscy, aby zobaczyć ogłoszenia węzłów.';
+
+  @override
+  String get replay_emptyEveryone =>
+      'Brak zapisanych pozycji tego dnia. Od teraz telefon zapisuje pozycje ogłaszane przez węzły, gdy aplikacja jest otwarta.';
+
+  @override
+  String replay_mapSummary(String time, int count) {
+    return 'Mapa o $time: pokazano $count';
+  }
+
+  @override
+  String get replay_play => 'Odtwórz';
+
+  @override
+  String get replay_pause => 'Pauza';
+
+  @override
+  String get replay_speed => 'Prędkość';
+
+  @override
+  String replay_speedValue(int minutes) {
+    return '$minutes min na sekundę';
+  }
+
+  @override
+  String replay_showNode(String name) {
+    return 'Pokaż lub ukryj $name';
+  }
+
+  @override
+  String get replay_notYet => 'O tej porze jeszcze niewidoczny';
+
+  @override
+  String replay_lastSeen(String time, String lat, String lon) {
+    return 'Ostatnio o $time w $lat, $lon';
+  }
+
+  @override
+  String get replay_explainer =>
+      'Pozycje zespołu pochodzą ze śledzonych pozycji udostępnianych na kanałach. Wszyscy dodaje pozycje ogłaszane przez węzły, które telefon zapisuje przy otwartej aplikacji i przechowuje 30 dni. Nic nie jest wysyłane.';
+
+  @override
   String get mapHub_badgeRegions => 'REGIONY';
 
   @override

@@ -7245,6 +7245,69 @@ class AppLocalizationsDe extends AppLocalizations {
       'Regionale Mesh-Definitionen verwalten und abrufen';
 
   @override
+  String get replay_title => 'Tag abspielen';
+
+  @override
+  String get replay_entryHint =>
+      'Zeigt, wo das Team an einem Tag unterwegs war';
+
+  @override
+  String get replay_badge => 'Verlauf';
+
+  @override
+  String get replay_day => 'Tag';
+
+  @override
+  String get replay_team => 'Team';
+
+  @override
+  String get replay_everyone => 'Alle';
+
+  @override
+  String get replay_emptyTeam =>
+      'An diesem Tag keine Teampositionen. Teammitglieder erscheinen, wenn sie verfolgte Positionen in einem Kanal teilen. Probiere Alle für Knoten-Adverts.';
+
+  @override
+  String get replay_emptyEveryone =>
+      'An diesem Tag keine Positionen aufgezeichnet. Dieses Telefon zeichnet ab jetzt die von Knoten gesendeten Positionen auf, solange die App offen ist.';
+
+  @override
+  String replay_mapSummary(String time, int count) {
+    return 'Karte um $time: $count angezeigt';
+  }
+
+  @override
+  String get replay_play => 'Abspielen';
+
+  @override
+  String get replay_pause => 'Pause';
+
+  @override
+  String get replay_speed => 'Geschwindigkeit';
+
+  @override
+  String replay_speedValue(int minutes) {
+    return '$minutes Min. pro Sekunde';
+  }
+
+  @override
+  String replay_showNode(String name) {
+    return '$name ein- oder ausblenden';
+  }
+
+  @override
+  String get replay_notYet => 'Zu dieser Zeit noch nicht gesehen';
+
+  @override
+  String replay_lastSeen(String time, String lat, String lon) {
+    return 'Zuletzt gesehen $time bei $lat, $lon';
+  }
+
+  @override
+  String get replay_explainer =>
+      'Teampositionen stammen aus verfolgten Positionen, die Teammitglieder in Kanälen teilen. Alle ergänzt die von Knoten gesendeten Positionen, die dieses Telefon bei offener App aufzeichnet und 30 Tage behält. Es wird nichts gesendet.';
+
+  @override
   String get mapHub_badgeRegions => 'REGIONEN';
 
   @override
