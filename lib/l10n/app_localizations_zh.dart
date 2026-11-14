@@ -6735,6 +6735,68 @@ class AppLocalizationsZh extends AppLocalizations {
   String get repeaterTools_empty => '尚未发现中继器。请先连接电台并探索网状网络。';
 
   @override
+  String get rptTest_title => '附近中继测试';
+
+  @override
+  String get rptTest_subtitle => '一键查看哪些中继能直接听到你';
+
+  @override
+  String get rptTest_start => '立即测试';
+
+  @override
+  String get rptTest_listening => '正在等待应答…';
+
+  @override
+  String rptTest_wait(int seconds) {
+    return '$seconds 秒后可再次测试';
+  }
+
+  @override
+  String rptTest_found(int count) {
+    return '应答的中继：$count';
+  }
+
+  @override
+  String get rptTest_none => '直接范围内没有中继应答。请到更高处尝试，或一分钟后再试。旧固件的中继不会应答此测试。';
+
+  @override
+  String get rptTest_strong => '强';
+
+  @override
+  String get rptTest_usable => '可用';
+
+  @override
+  String get rptTest_weak => '弱';
+
+  @override
+  String rptTest_unknown(String prefix) {
+    return '中继 $prefix';
+  }
+
+  @override
+  String rptTest_line(String there, String here, String rssi) {
+    return '对方收到 $there dB · 你收到 $here dB, $rssi dBm';
+  }
+
+  @override
+  String rptTest_rowLabel(
+    String name,
+    String quality,
+    String there,
+    String here,
+    String rssi,
+  ) {
+    return '$name，$quality。对方以 $there 分贝收到你。你以 $here 分贝收到对方，$rssi dBm。';
+  }
+
+  @override
+  String get rptTest_notConnected => '请先连接电台再测试。';
+
+  @override
+  String get rptTest_explainer =>
+      '发送一次不经转发的发现请求，只有能直接听到你电台的中继才会应答。第一个数值是中继收到你的信号，第二个是你收到中继的信号。中继会限制应答频率，所以两次测试间隔30秒。';
+
+  @override
   String get notification_fieldAlertTitle => 'NOTORYX 野外警报';
 
   @override

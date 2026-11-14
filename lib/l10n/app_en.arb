@@ -4171,6 +4171,74 @@
   "repeaterTools_cli": "CLI + settings",
   "repeaterTools_cliBody": "Authenticated administrators can reach the existing repeater CLI and configuration tools.",
   "repeaterTools_empty": "No repeaters discovered yet. Connect a radio and discover the mesh first.",
+  "rptTest_title": "Nearby repeater test",
+  "rptTest_subtitle": "One tap: which repeaters hear you directly",
+  "rptTest_start": "Test now",
+  "rptTest_listening": "Listening for answers…",
+  "rptTest_wait": "Next test in {seconds} s",
+  "@rptTest_wait": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "rptTest_found": "Repeaters that answered: {count}",
+  "@rptTest_found": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "rptTest_none": "No repeater in direct range answered. Try from higher ground, or again in a minute. Repeaters on older firmware don't answer this test.",
+  "rptTest_strong": "Strong",
+  "rptTest_usable": "Usable",
+  "rptTest_weak": "Weak",
+  "rptTest_unknown": "Repeater {prefix}",
+  "@rptTest_unknown": {
+    "placeholders": {
+      "prefix": {
+        "type": "String"
+      }
+    }
+  },
+  "rptTest_line": "Heard you at {there} dB · you heard it at {here} dB, {rssi} dBm",
+  "@rptTest_line": {
+    "placeholders": {
+      "there": {
+        "type": "String"
+      },
+      "here": {
+        "type": "String"
+      },
+      "rssi": {
+        "type": "String"
+      }
+    }
+  },
+  "rptTest_rowLabel": "{name}, {quality}. It heard you at {there} decibels. You heard it at {here} decibels, {rssi} dBm.",
+  "@rptTest_rowLabel": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "quality": {
+        "type": "String"
+      },
+      "there": {
+        "type": "String"
+      },
+      "here": {
+        "type": "String"
+      },
+      "rssi": {
+        "type": "String"
+      }
+    }
+  },
+  "rptTest_notConnected": "Connect your radio to run the test.",
+  "rptTest_explainer": "Sends one discover request with no hops, so only repeaters that hear your radio directly answer. The first number is how well each repeater heard you, the second how well you heard it. Tests are 30 seconds apart because repeaters limit how often they answer.",
   "notification_fieldAlertTitle": "NOTORYX Field Alert",
   "notification_checkInReminderTitle": "NOTORYX Core Ham check-in reminder",
   "notification_checkInReminderBody": "No check-in for {minutes} minutes on {trip}. Open NOTORYX Core Ham to check in.",

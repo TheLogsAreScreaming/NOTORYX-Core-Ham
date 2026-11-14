@@ -12,6 +12,7 @@ import '../widgets/instrument.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/node_sheet.dart';
 import 'antenna_hunt_screen.dart';
+import 'nearby_repeater_test_screen.dart';
 import 'prefix_tool_screen.dart';
 import 'region_setup_screen.dart';
 import 'repeater_ping_screen.dart';
@@ -168,10 +169,16 @@ class _BastionRepeaterToolsScreenState
             InstrumentLabel(l10n.repeaterTools_toolsTitle),
             for (final (icon, title, subtitle, page) in [
               (
+                Icons.cell_tower_rounded,
+                l10n.rptTest_title,
+                l10n.rptTest_subtitle,
+                const NearbyRepeaterTestScreen() as Widget,
+              ),
+              (
                 Icons.network_ping,
                 l10n.ping_title,
                 l10n.ping_toolSubtitle,
-                const RepeaterPingScreen() as Widget,
+                const RepeaterPingScreen(),
               ),
               (
                 Icons.track_changes,

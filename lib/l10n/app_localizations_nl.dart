@@ -7206,6 +7206,69 @@ class AppLocalizationsNl extends AppLocalizations {
       'Nog geen repeaters gevonden. Verbind een radio en verken eerst het mesh.';
 
   @override
+  String get rptTest_title => 'Test repeaters in de buurt';
+
+  @override
+  String get rptTest_subtitle => 'Eén tik: welke repeaters je direct horen';
+
+  @override
+  String get rptTest_start => 'Nu testen';
+
+  @override
+  String get rptTest_listening => 'Luisteren naar antwoorden…';
+
+  @override
+  String rptTest_wait(int seconds) {
+    return 'Volgende test over $seconds s';
+  }
+
+  @override
+  String rptTest_found(int count) {
+    return 'Repeaters die antwoordden: $count';
+  }
+
+  @override
+  String get rptTest_none =>
+      'Geen repeater binnen direct bereik antwoordde. Probeer het vanaf een hogere plek of over een minuut opnieuw. Repeaters met oudere firmware antwoorden niet op deze test.';
+
+  @override
+  String get rptTest_strong => 'Sterk';
+
+  @override
+  String get rptTest_usable => 'Bruikbaar';
+
+  @override
+  String get rptTest_weak => 'Zwak';
+
+  @override
+  String rptTest_unknown(String prefix) {
+    return 'Repeater $prefix';
+  }
+
+  @override
+  String rptTest_line(String there, String here, String rssi) {
+    return 'Hoorde jou op $there dB · jij hoorde hem op $here dB, $rssi dBm';
+  }
+
+  @override
+  String rptTest_rowLabel(
+    String name,
+    String quality,
+    String there,
+    String here,
+    String rssi,
+  ) {
+    return '$name, $quality. Hoorde jou op $there decibel. Jij hoorde hem op $here decibel, $rssi dBm.';
+  }
+
+  @override
+  String get rptTest_notConnected => 'Verbind je radio om de test te doen.';
+
+  @override
+  String get rptTest_explainer =>
+      'Stuurt één ontdekkingsverzoek zonder hops, dus alleen repeaters die je radio direct horen antwoorden. Het eerste getal is hoe goed de repeater jou hoorde, het tweede hoe goed jij hem hoorde. Tests liggen 30 seconden uit elkaar omdat repeaters beperken hoe vaak ze antwoorden.';
+
+  @override
   String get notification_fieldAlertTitle => 'NOTORYX-veldwaarschuwing';
 
   @override

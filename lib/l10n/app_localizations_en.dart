@@ -7131,6 +7131,69 @@ class AppLocalizationsEn extends AppLocalizations {
       'No repeaters discovered yet. Connect a radio and discover the mesh first.';
 
   @override
+  String get rptTest_title => 'Nearby repeater test';
+
+  @override
+  String get rptTest_subtitle => 'One tap: which repeaters hear you directly';
+
+  @override
+  String get rptTest_start => 'Test now';
+
+  @override
+  String get rptTest_listening => 'Listening for answers…';
+
+  @override
+  String rptTest_wait(int seconds) {
+    return 'Next test in $seconds s';
+  }
+
+  @override
+  String rptTest_found(int count) {
+    return 'Repeaters that answered: $count';
+  }
+
+  @override
+  String get rptTest_none =>
+      'No repeater in direct range answered. Try from higher ground, or again in a minute. Repeaters on older firmware don\'t answer this test.';
+
+  @override
+  String get rptTest_strong => 'Strong';
+
+  @override
+  String get rptTest_usable => 'Usable';
+
+  @override
+  String get rptTest_weak => 'Weak';
+
+  @override
+  String rptTest_unknown(String prefix) {
+    return 'Repeater $prefix';
+  }
+
+  @override
+  String rptTest_line(String there, String here, String rssi) {
+    return 'Heard you at $there dB · you heard it at $here dB, $rssi dBm';
+  }
+
+  @override
+  String rptTest_rowLabel(
+    String name,
+    String quality,
+    String there,
+    String here,
+    String rssi,
+  ) {
+    return '$name, $quality. It heard you at $there decibels. You heard it at $here decibels, $rssi dBm.';
+  }
+
+  @override
+  String get rptTest_notConnected => 'Connect your radio to run the test.';
+
+  @override
+  String get rptTest_explainer =>
+      'Sends one discover request with no hops, so only repeaters that hear your radio directly answer. The first number is how well each repeater heard you, the second how well you heard it. Tests are 30 seconds apart because repeaters limit how often they answer.';
+
+  @override
   String get notification_fieldAlertTitle => 'NOTORYX Field Alert';
 
   @override

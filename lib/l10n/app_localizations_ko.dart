@@ -6892,6 +6892,69 @@ class AppLocalizationsKo extends AppLocalizations {
   String get repeaterTools_empty => '아직 발견된 리피터가 없습니다. 무전기를 연결하고 먼저 메시를 탐색하세요.';
 
   @override
+  String get rptTest_title => '주변 리피터 테스트';
+
+  @override
+  String get rptTest_subtitle => '한 번 탭: 나를 직접 듣는 리피터 확인';
+
+  @override
+  String get rptTest_start => '지금 테스트';
+
+  @override
+  String get rptTest_listening => '응답을 기다리는 중…';
+
+  @override
+  String rptTest_wait(int seconds) {
+    return '$seconds초 후 다음 테스트';
+  }
+
+  @override
+  String rptTest_found(int count) {
+    return '응답한 리피터: $count';
+  }
+
+  @override
+  String get rptTest_none =>
+      '직접 범위 안의 리피터가 응답하지 않았습니다. 더 높은 곳에서 또는 1분 후 다시 시도하세요. 오래된 펌웨어의 리피터는 이 테스트에 응답하지 않습니다.';
+
+  @override
+  String get rptTest_strong => '강함';
+
+  @override
+  String get rptTest_usable => '사용 가능';
+
+  @override
+  String get rptTest_weak => '약함';
+
+  @override
+  String rptTest_unknown(String prefix) {
+    return '리피터 $prefix';
+  }
+
+  @override
+  String rptTest_line(String there, String here, String rssi) {
+    return '상대 수신 $there dB · 내 수신 $here dB, $rssi dBm';
+  }
+
+  @override
+  String rptTest_rowLabel(
+    String name,
+    String quality,
+    String there,
+    String here,
+    String rssi,
+  ) {
+    return '$name, $quality. 상대가 $there 데시벨로 수신. 내가 $here 데시벨로 수신, $rssi dBm.';
+  }
+
+  @override
+  String get rptTest_notConnected => '테스트하려면 무전기를 연결하세요.';
+
+  @override
+  String get rptTest_explainer =>
+      '홉 없는 탐색 요청을 한 번 보내므로 내 무전기를 직접 듣는 리피터만 응답합니다. 첫 번째 숫자는 리피터가 나를 들은 세기, 두 번째는 내가 리피터를 들은 세기입니다. 리피터가 응답 횟수를 제한하므로 테스트 간격은 30초입니다.';
+
+  @override
   String get notification_fieldAlertTitle => 'NOTORYX 현장 알림';
 
   @override

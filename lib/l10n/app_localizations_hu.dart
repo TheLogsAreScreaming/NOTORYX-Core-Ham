@@ -7227,6 +7227,70 @@ class AppLocalizationsHu extends AppLocalizations {
       'Még nincs felderített ismétlő. Csatlakoztasson egy rádiót, és előbb derítse fel a hálózatot.';
 
   @override
+  String get rptTest_title => 'Közeli átjátszók tesztje';
+
+  @override
+  String get rptTest_subtitle =>
+      'Egy koppintás: mely átjátszók hallanak közvetlenül';
+
+  @override
+  String get rptTest_start => 'Teszt most';
+
+  @override
+  String get rptTest_listening => 'Válaszokra vár…';
+
+  @override
+  String rptTest_wait(int seconds) {
+    return 'Következő teszt $seconds mp múlva';
+  }
+
+  @override
+  String rptTest_found(int count) {
+    return 'Válaszoló átjátszók: $count';
+  }
+
+  @override
+  String get rptTest_none =>
+      'Egyetlen közvetlen hatótávú átjátszó sem válaszolt. Próbáld magasabb helyről, vagy egy perc múlva újra. A régebbi firmware-ű átjátszók nem válaszolnak erre a tesztre.';
+
+  @override
+  String get rptTest_strong => 'Erős';
+
+  @override
+  String get rptTest_usable => 'Használható';
+
+  @override
+  String get rptTest_weak => 'Gyenge';
+
+  @override
+  String rptTest_unknown(String prefix) {
+    return 'Átjátszó $prefix';
+  }
+
+  @override
+  String rptTest_line(String there, String here, String rssi) {
+    return 'Téged $there dB-lel hallott · te $here dB-lel, $rssi dBm';
+  }
+
+  @override
+  String rptTest_rowLabel(
+    String name,
+    String quality,
+    String there,
+    String here,
+    String rssi,
+  ) {
+    return '$name, $quality. Téged $there decibellel hallott. Te $here decibellel hallottad, $rssi dBm.';
+  }
+
+  @override
+  String get rptTest_notConnected => 'Csatlakoztasd a rádiót a teszthez.';
+
+  @override
+  String get rptTest_explainer =>
+      'Egy ugrás nélküli felderítő kérést küld, így csak azok az átjátszók válaszolnak, amelyek közvetlenül hallják a rádiódat. Az első szám azt mutatja, mennyire hallott téged az átjátszó, a második, hogy te mennyire hallottad. A tesztek között 30 másodperc van, mert az átjátszók korlátozzák a válaszaikat.';
+
+  @override
   String get notification_fieldAlertTitle => 'NOTORYX terepi riasztás';
 
   @override

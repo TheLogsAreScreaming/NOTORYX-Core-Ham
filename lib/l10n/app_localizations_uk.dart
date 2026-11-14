@@ -7270,6 +7270,71 @@ class AppLocalizationsUk extends AppLocalizations {
       'Ретранслятори ще не виявлено. Під\'єднайте радіостанцію й спершу дослідіть мережу.';
 
   @override
+  String get rptTest_title => 'Перевірка найближчих ретрансляторів';
+
+  @override
+  String get rptTest_subtitle =>
+      'Один дотик: які ретранслятори чують вас напряму';
+
+  @override
+  String get rptTest_start => 'Перевірити';
+
+  @override
+  String get rptTest_listening => 'Очікування відповідей…';
+
+  @override
+  String rptTest_wait(int seconds) {
+    return 'Наступна перевірка через $seconds с';
+  }
+
+  @override
+  String rptTest_found(int count) {
+    return 'Відповіли ретрансляторів: $count';
+  }
+
+  @override
+  String get rptTest_none =>
+      'Жоден ретранслятор у прямій досяжності не відповів. Спробуйте з вищого місця або через хвилину. Ретранслятори зі старою прошивкою не відповідають на цю перевірку.';
+
+  @override
+  String get rptTest_strong => 'Сильний';
+
+  @override
+  String get rptTest_usable => 'Робочий';
+
+  @override
+  String get rptTest_weak => 'Слабкий';
+
+  @override
+  String rptTest_unknown(String prefix) {
+    return 'Ретранслятор $prefix';
+  }
+
+  @override
+  String rptTest_line(String there, String here, String rssi) {
+    return 'Чує вас: $there дБ · ви чуєте: $here дБ, $rssi дБм';
+  }
+
+  @override
+  String rptTest_rowLabel(
+    String name,
+    String quality,
+    String there,
+    String here,
+    String rssi,
+  ) {
+    return '$name, $quality. Чує вас: $there децибел. Ви чуєте його: $here децибел, $rssi дБм.';
+  }
+
+  @override
+  String get rptTest_notConnected =>
+      'Підключіть радіо, щоб виконати перевірку.';
+
+  @override
+  String get rptTest_explainer =>
+      'Надсилає один запит виявлення без стрибків, тому відповідають лише ретранслятори, що чують ваше радіо напряму. Перше число — як ретранслятор чує вас, друге — як ви чуєте його. Між перевірками 30 секунд, бо ретранслятори обмежують частоту відповідей.';
+
+  @override
   String get notification_fieldAlertTitle => 'Польове сповіщення NOTORYX';
 
   @override

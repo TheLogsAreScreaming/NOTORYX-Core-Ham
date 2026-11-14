@@ -7274,6 +7274,70 @@ class AppLocalizationsPl extends AppLocalizations {
       'Nie wykryto jeszcze przekaźników. Połącz radio i najpierw zbadaj sieć mesh.';
 
   @override
+  String get rptTest_title => 'Test pobliskich przemienników';
+
+  @override
+  String get rptTest_subtitle =>
+      'Jedno dotknięcie: które przemienniki słyszą cię bezpośrednio';
+
+  @override
+  String get rptTest_start => 'Testuj teraz';
+
+  @override
+  String get rptTest_listening => 'Nasłuchiwanie odpowiedzi…';
+
+  @override
+  String rptTest_wait(int seconds) {
+    return 'Następny test za $seconds s';
+  }
+
+  @override
+  String rptTest_found(int count) {
+    return 'Przemienniki, które odpowiedziały: $count';
+  }
+
+  @override
+  String get rptTest_none =>
+      'Żaden przemiennik w bezpośrednim zasięgu nie odpowiedział. Spróbuj z wyższego miejsca lub ponownie za minutę. Przemienniki ze starszym oprogramowaniem nie odpowiadają na ten test.';
+
+  @override
+  String get rptTest_strong => 'Silny';
+
+  @override
+  String get rptTest_usable => 'Użyteczny';
+
+  @override
+  String get rptTest_weak => 'Słaby';
+
+  @override
+  String rptTest_unknown(String prefix) {
+    return 'Przemiennik $prefix';
+  }
+
+  @override
+  String rptTest_line(String there, String here, String rssi) {
+    return 'Słyszał cię z $there dB · ty jego z $here dB, $rssi dBm';
+  }
+
+  @override
+  String rptTest_rowLabel(
+    String name,
+    String quality,
+    String there,
+    String here,
+    String rssi,
+  ) {
+    return '$name, $quality. Słyszał cię z $there decybeli. Ty jego z $here decybeli, $rssi dBm.';
+  }
+
+  @override
+  String get rptTest_notConnected => 'Połącz radio, aby wykonać test.';
+
+  @override
+  String get rptTest_explainer =>
+      'Wysyła jedno zapytanie wykrywania bez przeskoków, więc odpowiadają tylko przemienniki, które słyszą twoje radio bezpośrednio. Pierwsza liczba mówi, jak dobrze przemiennik słyszał ciebie, druga – jak dobrze ty jego. Testy są co 30 sekund, bo przemienniki ograniczają liczbę odpowiedzi.';
+
+  @override
   String get notification_fieldAlertTitle => 'Alert terenowy NOTORYX';
 
   @override
