@@ -1957,6 +1957,130 @@ class AppLocalizationsKo extends AppLocalizations {
   String get routing_noPathYet => '아직 경로가 없습니다. 다음 메시지가 도착할 때까지 계속 탐색합니다.';
 
   @override
+  String get routePick_open => '경로 보기 및 선택';
+
+  @override
+  String get routePick_openHint => '각 홉의 링크 품질을 보고 더 안정적인 경로 선택';
+
+  @override
+  String routePick_title(String name) {
+    return '$name까지의 경로';
+  }
+
+  @override
+  String get routePick_current => '현재 경로';
+
+  @override
+  String get routePick_flooding => '고정 경로 없음: 경로를 학습할 때까지 메시지가 메시 전체로 플러딩됩니다.';
+
+  @override
+  String get routePick_direct => '직접';
+
+  @override
+  String routePick_hopUnknown(String id) {
+    return '리피터 $id';
+  }
+
+  @override
+  String get routePick_notMeasured => '아직 측정 안 됨';
+
+  @override
+  String get routePick_measure => '이 경로 측정';
+
+  @override
+  String get routePick_measuring => '추적 중…';
+
+  @override
+  String get routePick_measured => '방금 측정했습니다.';
+
+  @override
+  String get routePick_noAnswer => '추적 응답이 없습니다. 경로의 리피터가 범위 밖일 수 있습니다.';
+
+  @override
+  String get routePick_floodDone => '경로를 지웠습니다. 다음 메시지가 플러딩으로 새 경로를 찾습니다.';
+
+  @override
+  String get routePick_suggested => '추천';
+
+  @override
+  String routePick_suggestBody(String route, int score) {
+    return '더 안정적인 경로: $route (점수 $score)';
+  }
+
+  @override
+  String get routePick_use => '사용';
+
+  @override
+  String routePick_useLabel(String route) {
+    return '경로 $route 사용';
+  }
+
+  @override
+  String get routePick_options => '선택 가능한 경로';
+
+  @override
+  String get routePick_optionsHint =>
+      '이 연락처에 대해 들린 모든 경로를 링크 신호, 전달 기록, 길이, 최신성으로 0–100점 평가.';
+
+  @override
+  String get routePick_none => '아직 경로가 없습니다. 메시지를 보내 경로를 찾으세요.';
+
+  @override
+  String get routePick_other => '기타 선택';
+
+  @override
+  String get routePick_build => '경로 만들기';
+
+  @override
+  String get routePick_flood => '메시가 경로를 찾도록 하기';
+
+  @override
+  String get routePick_explainer =>
+      '측정은 경로를 따라 왕복 추적을 보내 리피터 간 각 링크를 양방향으로 측정합니다. 연락처까지의 마지막 링크는 추적할 수 없습니다. 결과는 30일간 보관되며 같은 링크를 쓰는 모든 경로에 반영됩니다.';
+
+  @override
+  String routePick_score(int score) {
+    return '점수 $score/100';
+  }
+
+  @override
+  String routePick_hopLabel(
+    int number,
+    String name,
+    String quality,
+    String out,
+    String back,
+  ) {
+    return '홉 $number: $name. 링크 $quality, 가는 쪽 $out 데시벨, 오는 쪽 $back 데시벨.';
+  }
+
+  @override
+  String get routePick_lastLink => '연락처까지 마지막 링크: 추적으로 측정 불가';
+
+  @override
+  String routePick_linkLine(String out, String back) {
+    return '가는 쪽 $out dB · 오는 쪽 $back dB';
+  }
+
+  @override
+  String routePick_optionLine(int score, int hops) {
+    return '점수 $score · 홉: $hops';
+  }
+
+  @override
+  String routePick_record(int ok, int tries) {
+    return '$tries개 중 $ok개 전달';
+  }
+
+  @override
+  String routePick_weakest(String snr) {
+    return '가장 약한 링크 $snr dB';
+  }
+
+  @override
+  String get routePick_inUse => '사용 중';
+
+  @override
   String get routing_floodBroadcast => '모든 중계기를 통해 방송';
 
   @override

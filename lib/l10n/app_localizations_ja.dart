@@ -1955,6 +1955,130 @@ class AppLocalizationsJa extends AppLocalizations {
   String get routing_noPathYet => 'まだ経路はありません。次のメッセージは経路が見つかるまでフラッドされます。';
 
   @override
+  String get routePick_open => '経路ビューと選択';
+
+  @override
+  String get routePick_openHint => '各ホップのリンク品質を表示し、より確実な経路を選択';
+
+  @override
+  String routePick_title(String name) {
+    return '$name への経路';
+  }
+
+  @override
+  String get routePick_current => '現在の経路';
+
+  @override
+  String get routePick_flooding => '固定経路なし: 経路を学習するまでメッセージはメッシュ全体にフラッドされます。';
+
+  @override
+  String get routePick_direct => '直接';
+
+  @override
+  String routePick_hopUnknown(String id) {
+    return 'リピーター $id';
+  }
+
+  @override
+  String get routePick_notMeasured => '未測定';
+
+  @override
+  String get routePick_measure => 'この経路を測定';
+
+  @override
+  String get routePick_measuring => 'トレース中…';
+
+  @override
+  String get routePick_measured => '測定しました。';
+
+  @override
+  String get routePick_noAnswer => 'トレースに応答がありません。経路上のリピーターが圏外かもしれません。';
+
+  @override
+  String get routePick_floodDone => '経路を消去しました。次のメッセージはフラッドして新しい経路を探します。';
+
+  @override
+  String get routePick_suggested => 'おすすめ';
+
+  @override
+  String routePick_suggestBody(String route, int score) {
+    return 'より確実な経路: $route（スコア $score）';
+  }
+
+  @override
+  String get routePick_use => '使用';
+
+  @override
+  String routePick_useLabel(String route) {
+    return '経路 $route を使用';
+  }
+
+  @override
+  String get routePick_options => '選べる経路';
+
+  @override
+  String get routePick_optionsHint =>
+      'この連絡先で聞こえたすべての経路を、リンク信号・配信実績・長さ・新しさから0〜100で採点。';
+
+  @override
+  String get routePick_none => 'まだ経路がありません。メッセージを送って探してください。';
+
+  @override
+  String get routePick_other => 'その他';
+
+  @override
+  String get routePick_build => '経路を作成';
+
+  @override
+  String get routePick_flood => 'メッシュに経路を探させる';
+
+  @override
+  String get routePick_explainer =>
+      '測定では経路に沿って往復のトレースを送り、リピーター間の各リンクを双方向で測ります。連絡先までの最後のリンクはトレースできません。結果は30日間保存され、同じリンクを使うすべての経路に反映されます。';
+
+  @override
+  String routePick_score(int score) {
+    return 'スコア $score/100';
+  }
+
+  @override
+  String routePick_hopLabel(
+    int number,
+    String name,
+    String quality,
+    String out,
+    String back,
+  ) {
+    return 'ホップ $number: $name。リンク $quality、往路 $out デシベル、復路 $back デシベル。';
+  }
+
+  @override
+  String get routePick_lastLink => '連絡先への最後のリンク: トレースでは測定不可';
+
+  @override
+  String routePick_linkLine(String out, String back) {
+    return '往路 $out dB · 復路 $back dB';
+  }
+
+  @override
+  String routePick_optionLine(int score, int hops) {
+    return 'スコア $score · ホップ数: $hops';
+  }
+
+  @override
+  String routePick_record(int ok, int tries) {
+    return '$tries 件中 $ok 件配信';
+  }
+
+  @override
+  String routePick_weakest(String snr) {
+    return '最弱リンク $snr dB';
+  }
+
+  @override
+  String get routePick_inUse => '使用中';
+
+  @override
   String get routing_floodBroadcast => 'すべてのリピータにブロードキャスト';
 
   @override

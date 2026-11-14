@@ -9,6 +9,7 @@ import '../l10n/l10n.dart';
 import '../models/contact.dart';
 import '../models/path_history.dart';
 import '../screens/path_trace_map.dart';
+import '../screens/route_picker_screen.dart';
 import '../services/path_history_service.dart';
 import 'path_editor_sheet.dart';
 
@@ -729,7 +730,21 @@ class _RoutingSheetBodyState extends State<_RoutingSheetBody> {
             ),
             const SizedBox(height: 16),
             _currentRouteCard(context, connector, contact, mode, floodStats),
-            const SizedBox(height: 16),
+            const SizedBox(height: 8),
+            ListTile(
+              key: const ValueKey('open-route-picker'),
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.alt_route),
+              title: Text(l10n.routePick_open),
+              subtitle: Text(l10n.routePick_openHint),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => RoutePickerScreen(contact: contact),
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
             Text(l10n.routing_knownPaths, style: theme.textTheme.titleSmall),
             Text(
               l10n.routing_knownPathsHint,

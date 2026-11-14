@@ -2060,6 +2060,135 @@ class AppLocalizationsPl extends AppLocalizations {
       'Na razie nie ma żadnej ścieżki. Komunikacja trwa do momentu, gdy zostanie odkryta trasa.';
 
   @override
+  String get routePick_open => 'Widok i wybór trasy';
+
+  @override
+  String get routePick_openHint =>
+      'Jakość łącza na każdym przeskoku i wybór pewniejszej trasy';
+
+  @override
+  String routePick_title(String name) {
+    return 'Trasa do $name';
+  }
+
+  @override
+  String get routePick_current => 'Bieżąca trasa';
+
+  @override
+  String get routePick_flooding =>
+      'Brak stałej trasy: wiadomości zalewają sieć, dopóki trasa nie zostanie poznana.';
+
+  @override
+  String get routePick_direct => 'Bezpośrednio';
+
+  @override
+  String routePick_hopUnknown(String id) {
+    return 'Przemiennik $id';
+  }
+
+  @override
+  String get routePick_notMeasured => 'Jeszcze nie zmierzono';
+
+  @override
+  String get routePick_measure => 'Zmierz tę trasę';
+
+  @override
+  String get routePick_measuring => 'Śledzenie…';
+
+  @override
+  String get routePick_measured => 'Właśnie zmierzono.';
+
+  @override
+  String get routePick_noAnswer =>
+      'Brak odpowiedzi na śledzenie. Przemiennik na trasie może być poza zasięgiem.';
+
+  @override
+  String get routePick_floodDone =>
+      'Trasa wyczyszczona. Następna wiadomość zaleje sieć, aby znaleźć nową.';
+
+  @override
+  String get routePick_suggested => 'Sugerowana';
+
+  @override
+  String routePick_suggestBody(String route, int score) {
+    return 'Pewniejsza trasa: $route (wynik $score).';
+  }
+
+  @override
+  String get routePick_use => 'Użyj';
+
+  @override
+  String routePick_useLabel(String route) {
+    return 'Użyj trasy $route';
+  }
+
+  @override
+  String get routePick_options => 'Trasy do wyboru';
+
+  @override
+  String get routePick_optionsHint =>
+      'Każda usłyszana trasa do tego kontaktu, oceniona 0–100 według sygnału łączy, dostarczeń, długości i świeżości.';
+
+  @override
+  String get routePick_none => 'Brak tras. Wyślij wiadomość, aby jakąś odkryć.';
+
+  @override
+  String get routePick_other => 'Inne możliwości';
+
+  @override
+  String get routePick_build => 'Utwórz trasę';
+
+  @override
+  String get routePick_flood => 'Niech sieć znajdzie trasę';
+
+  @override
+  String get routePick_explainer =>
+      'Pomiar wysyła śledzenie wzdłuż trasy i z powrotem, więc każde łącze między przemiennikami jest mierzone w obie strony. Ostatniego łącza do kontaktu nie da się prześledzić. Odczyty są przechowywane 30 dni i liczą się dla każdej trasy z tym samym łączem.';
+
+  @override
+  String routePick_score(int score) {
+    return 'Wynik $score na 100';
+  }
+
+  @override
+  String routePick_hopLabel(
+    int number,
+    String name,
+    String quality,
+    String out,
+    String back,
+  ) {
+    return 'Przeskok $number: $name. Łącze $quality, tam $out decybeli, z powrotem $back decybeli.';
+  }
+
+  @override
+  String get routePick_lastLink =>
+      'Ostatnie łącze do kontaktu: niemierzalne śledzeniem';
+
+  @override
+  String routePick_linkLine(String out, String back) {
+    return 'Tam $out dB · z powrotem $back dB';
+  }
+
+  @override
+  String routePick_optionLine(int score, int hops) {
+    return 'Wynik $score · przeskoki: $hops';
+  }
+
+  @override
+  String routePick_record(int ok, int tries) {
+    return 'dostarczono $ok z $tries';
+  }
+
+  @override
+  String routePick_weakest(String snr) {
+    return 'najsłabsze łącze $snr dB';
+  }
+
+  @override
+  String get routePick_inUse => 'W użyciu';
+
+  @override
   String get routing_floodBroadcast =>
       'Transmisja za pośrednictwem każdego urządzenia powielającego';
 

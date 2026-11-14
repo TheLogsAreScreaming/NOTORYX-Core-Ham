@@ -2025,6 +2025,136 @@ class AppLocalizationsSv extends AppLocalizations {
       'Ingen rutt ännu. Nästa meddelande floodas tills en rutt hittas.';
 
   @override
+  String get routePick_open => 'Ruttvy och ruttval';
+
+  @override
+  String get routePick_openHint =>
+      'Länkkvalitet per hopp och val av en pålitligare rutt';
+
+  @override
+  String routePick_title(String name) {
+    return 'Rutt till $name';
+  }
+
+  @override
+  String get routePick_current => 'Nuvarande rutt';
+
+  @override
+  String get routePick_flooding =>
+      'Ingen fast rutt: meddelanden översvämmar meshen tills en rutt lärts in.';
+
+  @override
+  String get routePick_direct => 'Direkt';
+
+  @override
+  String routePick_hopUnknown(String id) {
+    return 'Repeater $id';
+  }
+
+  @override
+  String get routePick_notMeasured => 'Inte mätt än';
+
+  @override
+  String get routePick_measure => 'Mät den här rutten';
+
+  @override
+  String get routePick_measuring => 'Spårar…';
+
+  @override
+  String get routePick_measured => 'Uppmätt nyss.';
+
+  @override
+  String get routePick_noAnswer =>
+      'Inget svar på spårningen. En repeater på rutten kan vara utom räckhåll.';
+
+  @override
+  String get routePick_floodDone =>
+      'Rutten rensad. Nästa meddelande översvämmar för att hitta en ny.';
+
+  @override
+  String get routePick_suggested => 'Föreslagen';
+
+  @override
+  String routePick_suggestBody(String route, int score) {
+    return 'En pålitligare rutt: $route (poäng $score).';
+  }
+
+  @override
+  String get routePick_use => 'Använd';
+
+  @override
+  String routePick_useLabel(String route) {
+    return 'Använd rutten $route';
+  }
+
+  @override
+  String get routePick_options => 'Rutter att välja bland';
+
+  @override
+  String get routePick_optionsHint =>
+      'Varje hörd rutt till kontakten, poängsatt 0–100 efter länksignal, leveranser, längd och hur ny den är.';
+
+  @override
+  String get routePick_none =>
+      'Inga rutter ännu. Skicka ett meddelande för att hitta en.';
+
+  @override
+  String get routePick_other => 'Andra val';
+
+  @override
+  String get routePick_build => 'Bygg en rutt';
+
+  @override
+  String get routePick_flood => 'Låt meshen hitta en rutt';
+
+  @override
+  String get routePick_explainer =>
+      'Mätningen skickar en spårning längs rutten och tillbaka, så varje länk mellan repeatrar mäts åt båda hållen. Sista länken till kontakten kan inte spåras. Mätvärden sparas i 30 dagar och gäller för varje rutt som använder samma länk.';
+
+  @override
+  String routePick_score(int score) {
+    return 'Poäng $score av 100';
+  }
+
+  @override
+  String routePick_hopLabel(
+    int number,
+    String name,
+    String quality,
+    String out,
+    String back,
+  ) {
+    return 'Hopp $number: $name. Länk $quality, ut $out decibel, tillbaka $back decibel.';
+  }
+
+  @override
+  String get routePick_lastLink =>
+      'Sista länken till kontakten: kan inte mätas med spårning';
+
+  @override
+  String routePick_linkLine(String out, String back) {
+    return 'Ut $out dB · tillbaka $back dB';
+  }
+
+  @override
+  String routePick_optionLine(int score, int hops) {
+    return 'Poäng $score · hopp: $hops';
+  }
+
+  @override
+  String routePick_record(int ok, int tries) {
+    return 'levererade $ok av $tries';
+  }
+
+  @override
+  String routePick_weakest(String snr) {
+    return 'svagaste länk $snr dB';
+  }
+
+  @override
+  String get routePick_inUse => 'Används';
+
+  @override
   String get routing_floodBroadcast => 'Sänd via varje repeater';
 
   @override

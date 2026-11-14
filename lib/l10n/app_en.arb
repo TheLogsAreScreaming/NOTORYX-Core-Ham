@@ -1056,6 +1056,132 @@
   "routing_currentRoute": "Current route",
   "routing_directNoHops": "Direct — no repeater hops",
   "routing_noPathYet": "No path yet. The next message floods until a route is discovered.",
+  "routePick_open": "Route view and picker",
+  "routePick_openHint": "Chart each hop's link quality and pick a more reliable route",
+  "routePick_title": "Route to {name}",
+  "@routePick_title": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "routePick_current": "Current route",
+  "routePick_flooding": "No fixed route: messages flood the mesh until a route is learned.",
+  "routePick_direct": "Direct",
+  "routePick_hopUnknown": "Repeater {id}",
+  "@routePick_hopUnknown": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "routePick_notMeasured": "Not measured yet",
+  "routePick_measure": "Measure this route",
+  "routePick_measuring": "Tracing…",
+  "routePick_measured": "Measured just now.",
+  "routePick_noAnswer": "No answer to the trace. A repeater on the route may be out of range.",
+  "routePick_floodDone": "Route cleared. The next message floods to find a new one.",
+  "routePick_suggested": "Suggested",
+  "routePick_suggestBody": "A more reliable route: {route} (score {score}).",
+  "@routePick_suggestBody": {
+    "placeholders": {
+      "route": {
+        "type": "String"
+      },
+      "score": {
+        "type": "int"
+      }
+    }
+  },
+  "routePick_use": "Use",
+  "routePick_useLabel": "Use route {route}",
+  "@routePick_useLabel": {
+    "placeholders": {
+      "route": {
+        "type": "String"
+      }
+    }
+  },
+  "routePick_options": "Routes to choose from",
+  "routePick_optionsHint": "Every route heard for this contact, scored 0–100 from link signal, delivery record, length and how recent it is.",
+  "routePick_none": "No routes heard yet. Send a message to discover one.",
+  "routePick_other": "Other choices",
+  "routePick_build": "Build a route",
+  "routePick_flood": "Let the mesh find a route",
+  "routePick_explainer": "Measuring sends a trace out along the route and back, so every link between repeaters is measured both ways. The last link to the contact can't be traced. Readings are kept for 30 days and count for every route that uses the same link.",
+  "routePick_score": "Score {score} of 100",
+  "@routePick_score": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
+  },
+  "routePick_hopLabel": "Hop {number}: {name}. Link {quality}, {out} decibels out, {back} decibels back.",
+  "@routePick_hopLabel": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      },
+      "name": {
+        "type": "String"
+      },
+      "quality": {
+        "type": "String"
+      },
+      "out": {
+        "type": "String"
+      },
+      "back": {
+        "type": "String"
+      }
+    }
+  },
+  "routePick_lastLink": "Last link to the contact: not measurable by trace",
+  "routePick_linkLine": "Out {out} dB · back {back} dB",
+  "@routePick_linkLine": {
+    "placeholders": {
+      "out": {
+        "type": "String"
+      },
+      "back": {
+        "type": "String"
+      }
+    }
+  },
+  "routePick_optionLine": "Score {score} · hops: {hops}",
+  "@routePick_optionLine": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      },
+      "hops": {
+        "type": "int"
+      }
+    }
+  },
+  "routePick_record": "delivered {ok} of {tries}",
+  "@routePick_record": {
+    "placeholders": {
+      "ok": {
+        "type": "int"
+      },
+      "tries": {
+        "type": "int"
+      }
+    }
+  },
+  "routePick_weakest": "weakest link {snr} dB",
+  "@routePick_weakest": {
+    "placeholders": {
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "routePick_inUse": "In use",
   "routing_floodBroadcast": "Broadcast through every repeater",
   "routing_editPath": "Edit path",
   "routing_forgetPath": "Forget path",
