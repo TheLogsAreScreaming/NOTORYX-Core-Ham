@@ -1927,6 +1927,130 @@ class AppLocalizationsZh extends AppLocalizations {
   String get routing_noPathYet => '目前还没有找到路径。直到找到路径，才会收到后续消息。';
 
   @override
+  String get routePick_open => '路由视图与选择';
+
+  @override
+  String get routePick_openHint => '查看每一跳的链路质量并选择更可靠的路由';
+
+  @override
+  String routePick_title(String name) {
+    return '到 $name 的路由';
+  }
+
+  @override
+  String get routePick_current => '当前路由';
+
+  @override
+  String get routePick_flooding => '没有固定路由：在学到路由前，消息会泛洪整个网络。';
+
+  @override
+  String get routePick_direct => '直连';
+
+  @override
+  String routePick_hopUnknown(String id) {
+    return '中继 $id';
+  }
+
+  @override
+  String get routePick_notMeasured => '尚未测量';
+
+  @override
+  String get routePick_measure => '测量此路由';
+
+  @override
+  String get routePick_measuring => '追踪中…';
+
+  @override
+  String get routePick_measured => '刚刚测量完成。';
+
+  @override
+  String get routePick_noAnswer => '追踪无应答。路由上的某个中继可能超出范围。';
+
+  @override
+  String get routePick_floodDone => '路由已清除。下一条消息将泛洪以寻找新路由。';
+
+  @override
+  String get routePick_suggested => '推荐';
+
+  @override
+  String routePick_suggestBody(String route, int score) {
+    return '更可靠的路由：$route（得分 $score）。';
+  }
+
+  @override
+  String get routePick_use => '使用';
+
+  @override
+  String routePick_useLabel(String route) {
+    return '使用路由 $route';
+  }
+
+  @override
+  String get routePick_options => '可选路由';
+
+  @override
+  String get routePick_optionsHint =>
+      '该联系人的所有已知路由，按链路信号、送达记录、长度和新近程度评为 0–100 分。';
+
+  @override
+  String get routePick_none => '尚无路由。发送消息以发现路由。';
+
+  @override
+  String get routePick_other => '其他选择';
+
+  @override
+  String get routePick_build => '自建路由';
+
+  @override
+  String get routePick_flood => '让网络自行寻找路由';
+
+  @override
+  String get routePick_explainer =>
+      '测量会沿路由往返发送一次追踪，因此中继之间的每条链路都会双向测量。到联系人的最后一段无法追踪。读数保留 30 天，并用于所有使用同一链路的路由。';
+
+  @override
+  String routePick_score(int score) {
+    return '得分 $score/100';
+  }
+
+  @override
+  String routePick_hopLabel(
+    int number,
+    String name,
+    String quality,
+    String out,
+    String back,
+  ) {
+    return '第 $number 跳：$name。链路$quality，去程 $out 分贝，回程 $back 分贝。';
+  }
+
+  @override
+  String get routePick_lastLink => '到联系人的最后一段：无法通过追踪测量';
+
+  @override
+  String routePick_linkLine(String out, String back) {
+    return '去程 $out dB · 回程 $back dB';
+  }
+
+  @override
+  String routePick_optionLine(int score, int hops) {
+    return '得分 $score · 跳数：$hops';
+  }
+
+  @override
+  String routePick_record(int ok, int tries) {
+    return '送达 $ok/$tries';
+  }
+
+  @override
+  String routePick_weakest(String snr) {
+    return '最弱链路 $snr dB';
+  }
+
+  @override
+  String get routePick_inUse => '使用中';
+
+  @override
   String get routing_floodBroadcast => '通过所有中继器进行广播';
 
   @override

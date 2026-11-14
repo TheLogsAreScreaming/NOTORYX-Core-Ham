@@ -2043,6 +2043,136 @@ class AppLocalizationsPt extends AppLocalizations {
       'Ainda não há um caminho definido. A mensagem continua a ser enviada até que uma rota seja encontrada.';
 
   @override
+  String get routePick_open => 'Vista e escolha de rota';
+
+  @override
+  String get routePick_openHint =>
+      'Ver a qualidade de cada salto e escolher uma rota mais fiável';
+
+  @override
+  String routePick_title(String name) {
+    return 'Rota para $name';
+  }
+
+  @override
+  String get routePick_current => 'Rota atual';
+
+  @override
+  String get routePick_flooding =>
+      'Sem rota fixa: as mensagens inundam a malha até se aprender uma rota.';
+
+  @override
+  String get routePick_direct => 'Direta';
+
+  @override
+  String routePick_hopUnknown(String id) {
+    return 'Repetidor $id';
+  }
+
+  @override
+  String get routePick_notMeasured => 'Ainda não medido';
+
+  @override
+  String get routePick_measure => 'Medir esta rota';
+
+  @override
+  String get routePick_measuring => 'A rastrear…';
+
+  @override
+  String get routePick_measured => 'Medido agora mesmo.';
+
+  @override
+  String get routePick_noAnswer =>
+      'Sem resposta ao rastreio. Um repetidor da rota pode estar fora de alcance.';
+
+  @override
+  String get routePick_floodDone =>
+      'Rota apagada. A próxima mensagem inunda para encontrar outra.';
+
+  @override
+  String get routePick_suggested => 'Sugerida';
+
+  @override
+  String routePick_suggestBody(String route, int score) {
+    return 'Uma rota mais fiável: $route (pontuação $score).';
+  }
+
+  @override
+  String get routePick_use => 'Usar';
+
+  @override
+  String routePick_useLabel(String route) {
+    return 'Usar a rota $route';
+  }
+
+  @override
+  String get routePick_options => 'Rotas para escolher';
+
+  @override
+  String get routePick_optionsHint =>
+      'Cada rota ouvida para este contacto, pontuada de 0 a 100 pelo sinal das ligações, histórico de entrega, comprimento e atualidade.';
+
+  @override
+  String get routePick_none =>
+      'Ainda sem rotas. Envie uma mensagem para descobrir uma.';
+
+  @override
+  String get routePick_other => 'Outras opções';
+
+  @override
+  String get routePick_build => 'Construir uma rota';
+
+  @override
+  String get routePick_flood => 'Deixar a malha encontrar uma rota';
+
+  @override
+  String get routePick_explainer =>
+      'Medir envia um rastreio ao longo da rota e de volta, por isso cada ligação entre repetidores é medida nos dois sentidos. A última ligação até ao contacto não pode ser rastreada. As leituras ficam 30 dias e contam para todas as rotas com a mesma ligação.';
+
+  @override
+  String routePick_score(int score) {
+    return 'Pontuação $score de 100';
+  }
+
+  @override
+  String routePick_hopLabel(
+    int number,
+    String name,
+    String quality,
+    String out,
+    String back,
+  ) {
+    return 'Salto $number: $name. Ligação $quality, ida $out decibéis, volta $back decibéis.';
+  }
+
+  @override
+  String get routePick_lastLink =>
+      'Última ligação ao contacto: não mensurável por rastreio';
+
+  @override
+  String routePick_linkLine(String out, String back) {
+    return 'Ida $out dB · volta $back dB';
+  }
+
+  @override
+  String routePick_optionLine(int score, int hops) {
+    return 'Pontuação $score · saltos: $hops';
+  }
+
+  @override
+  String routePick_record(int ok, int tries) {
+    return 'entregues $ok de $tries';
+  }
+
+  @override
+  String routePick_weakest(String snr) {
+    return 'ligação mais fraca $snr dB';
+  }
+
+  @override
+  String get routePick_inUse => 'Em uso';
+
+  @override
   String get routing_floodBroadcast =>
       'Transmissão através de todos os repetidores';
 

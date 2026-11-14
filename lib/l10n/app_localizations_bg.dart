@@ -2055,6 +2055,136 @@ class AppLocalizationsBg extends AppLocalizations {
       'Все още няма път. Съобщението продължава да се изпраща, докато не бъде открит маршрут.';
 
   @override
+  String get routePick_open => 'Изглед и избор на маршрут';
+
+  @override
+  String get routePick_openHint =>
+      'Качество на връзката при всеки скок и избор на по-надежден маршрут';
+
+  @override
+  String routePick_title(String name) {
+    return 'Маршрут до $name';
+  }
+
+  @override
+  String get routePick_current => 'Текущ маршрут';
+
+  @override
+  String get routePick_flooding =>
+      'Няма фиксиран маршрут: съобщенията заливат мрежата, докато се научи маршрут.';
+
+  @override
+  String get routePick_direct => 'Директно';
+
+  @override
+  String routePick_hopUnknown(String id) {
+    return 'Ретранслатор $id';
+  }
+
+  @override
+  String get routePick_notMeasured => 'Още не е измерено';
+
+  @override
+  String get routePick_measure => 'Измери маршрута';
+
+  @override
+  String get routePick_measuring => 'Трасиране…';
+
+  @override
+  String get routePick_measured => 'Току-що измерено.';
+
+  @override
+  String get routePick_noAnswer =>
+      'Няма отговор на трасирането. Ретранслатор по маршрута може да е извън обхват.';
+
+  @override
+  String get routePick_floodDone =>
+      'Маршрутът е изчистен. Следващото съобщение ще залее мрежата, за да намери нов.';
+
+  @override
+  String get routePick_suggested => 'Препоръчан';
+
+  @override
+  String routePick_suggestBody(String route, int score) {
+    return 'По-надежден маршрут: $route (оценка $score).';
+  }
+
+  @override
+  String get routePick_use => 'Използвай';
+
+  @override
+  String routePick_useLabel(String route) {
+    return 'Използвай маршрут $route';
+  }
+
+  @override
+  String get routePick_options => 'Маршрути за избор';
+
+  @override
+  String get routePick_optionsHint =>
+      'Всеки чут маршрут за този контакт, с оценка 0–100 по сигнал на връзките, доставка, дължина и актуалност.';
+
+  @override
+  String get routePick_none =>
+      'Още няма маршрути. Изпратете съобщение, за да откриете.';
+
+  @override
+  String get routePick_other => 'Други възможности';
+
+  @override
+  String get routePick_build => 'Състави маршрут';
+
+  @override
+  String get routePick_flood => 'Нека мрежата намери маршрут';
+
+  @override
+  String get routePick_explainer =>
+      'Измерването изпраща трасиране по маршрута и обратно, така всяка връзка между ретранслатори се измерва в двете посоки. Последната връзка до контакта не може да се трасира. Данните се пазят 30 дни и важат за всеки маршрут със същата връзка.';
+
+  @override
+  String routePick_score(int score) {
+    return 'Оценка $score от 100';
+  }
+
+  @override
+  String routePick_hopLabel(
+    int number,
+    String name,
+    String quality,
+    String out,
+    String back,
+  ) {
+    return 'Скок $number: $name. Връзка $quality, натам $out децибела, обратно $back децибела.';
+  }
+
+  @override
+  String get routePick_lastLink =>
+      'Последна връзка до контакта: не се измерва с трасиране';
+
+  @override
+  String routePick_linkLine(String out, String back) {
+    return 'Натам $out dB · обратно $back dB';
+  }
+
+  @override
+  String routePick_optionLine(int score, int hops) {
+    return 'Оценка $score · скокове: $hops';
+  }
+
+  @override
+  String routePick_record(int ok, int tries) {
+    return 'доставени $ok от $tries';
+  }
+
+  @override
+  String routePick_weakest(String snr) {
+    return 'най-слаба връзка $snr dB';
+  }
+
+  @override
+  String get routePick_inUse => 'Използва се';
+
+  @override
   String get routing_floodBroadcast => 'Предаване през всички повторители';
 
   @override

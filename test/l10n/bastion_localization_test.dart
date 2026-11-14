@@ -25,6 +25,7 @@ const _bastionPrefixes = [
   'coverage_',
   'fieldStats_',
   'mapHub_',
+  'routePick_',
   'routes_',
   'repeaterTools_',
   'messageSearch_',

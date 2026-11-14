@@ -2042,6 +2042,136 @@ class AppLocalizationsHu extends AppLocalizations {
       'Még nincs út. A következő üzenet elárasztja az útvonalat.';
 
   @override
+  String get routePick_open => 'Útvonal nézet és választó';
+
+  @override
+  String get routePick_openHint =>
+      'Az ugrások kapcsolatminősége és megbízhatóbb útvonal választása';
+
+  @override
+  String routePick_title(String name) {
+    return 'Útvonal: $name';
+  }
+
+  @override
+  String get routePick_current => 'Jelenlegi útvonal';
+
+  @override
+  String get routePick_flooding =>
+      'Nincs rögzített útvonal: az üzenetek elárasztják a hálót, amíg útvonal nem lesz.';
+
+  @override
+  String get routePick_direct => 'Közvetlen';
+
+  @override
+  String routePick_hopUnknown(String id) {
+    return 'Átjátszó $id';
+  }
+
+  @override
+  String get routePick_notMeasured => 'Még nincs mérve';
+
+  @override
+  String get routePick_measure => 'Útvonal mérése';
+
+  @override
+  String get routePick_measuring => 'Nyomkövetés…';
+
+  @override
+  String get routePick_measured => 'Épp most mérve.';
+
+  @override
+  String get routePick_noAnswer =>
+      'Nincs válasz. Egy átjátszó az útvonalon hatótávon kívül lehet.';
+
+  @override
+  String get routePick_floodDone =>
+      'Útvonal törölve. A következő üzenet elárasztással keres újat.';
+
+  @override
+  String get routePick_suggested => 'Javasolt';
+
+  @override
+  String routePick_suggestBody(String route, int score) {
+    return 'Megbízhatóbb útvonal: $route (pontszám $score).';
+  }
+
+  @override
+  String get routePick_use => 'Használat';
+
+  @override
+  String routePick_useLabel(String route) {
+    return '$route útvonal használata';
+  }
+
+  @override
+  String get routePick_options => 'Választható útvonalak';
+
+  @override
+  String get routePick_optionsHint =>
+      'Minden útvonal ehhez a kapcsolathoz, 0–100 pontozva a jel, a kézbesítés, a hossz és a frissesség alapján.';
+
+  @override
+  String get routePick_none =>
+      'Még nincs útvonal. Küldj üzenetet, hogy találj egyet.';
+
+  @override
+  String get routePick_other => 'Egyéb lehetőségek';
+
+  @override
+  String get routePick_build => 'Útvonal összeállítása';
+
+  @override
+  String get routePick_flood => 'A háló keressen útvonalat';
+
+  @override
+  String get routePick_explainer =>
+      'A mérés oda-vissza nyomkövetést küld az útvonalon, így minden átjátszók közti kapcsolat mindkét irányban mérve lesz. A kapcsolathoz vezető utolsó szakasz nem követhető. Az adatok 30 napig maradnak, és minden ugyanazt a kapcsolatot használó útvonalra érvényesek.';
+
+  @override
+  String routePick_score(int score) {
+    return 'Pontszám: $score/100';
+  }
+
+  @override
+  String routePick_hopLabel(
+    int number,
+    String name,
+    String quality,
+    String out,
+    String back,
+  ) {
+    return '$number. ugrás: $name. Kapcsolat: $quality, oda $out decibel, vissza $back decibel.';
+  }
+
+  @override
+  String get routePick_lastLink =>
+      'Utolsó szakasz a kapcsolatig: nyomkövetéssel nem mérhető';
+
+  @override
+  String routePick_linkLine(String out, String back) {
+    return 'Oda $out dB · vissza $back dB';
+  }
+
+  @override
+  String routePick_optionLine(int score, int hops) {
+    return 'Pontszám $score · ugrások: $hops';
+  }
+
+  @override
+  String routePick_record(int ok, int tries) {
+    return 'kézbesítve $ok/$tries';
+  }
+
+  @override
+  String routePick_weakest(String snr) {
+    return 'leggyengébb szakasz $snr dB';
+  }
+
+  @override
+  String get routePick_inUse => 'Használatban';
+
+  @override
   String get routing_floodBroadcast => 'Minden átjátszón keresztül sugározd';
 
   @override

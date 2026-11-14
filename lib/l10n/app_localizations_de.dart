@@ -2054,6 +2054,136 @@ class AppLocalizationsDe extends AppLocalizations {
       'Noch kein Pfad gefunden. Die nächste Nachricht wird geflutet, bis eine Route entdeckt ist.';
 
   @override
+  String get routePick_open => 'Routenansicht und -auswahl';
+
+  @override
+  String get routePick_openHint =>
+      'Linkqualität jedes Hops anzeigen und eine zuverlässigere Route wählen';
+
+  @override
+  String routePick_title(String name) {
+    return 'Route zu $name';
+  }
+
+  @override
+  String get routePick_current => 'Aktuelle Route';
+
+  @override
+  String get routePick_flooding =>
+      'Keine feste Route: Nachrichten fluten das Mesh, bis eine Route gelernt ist.';
+
+  @override
+  String get routePick_direct => 'Direkt';
+
+  @override
+  String routePick_hopUnknown(String id) {
+    return 'Repeater $id';
+  }
+
+  @override
+  String get routePick_notMeasured => 'Noch nicht gemessen';
+
+  @override
+  String get routePick_measure => 'Diese Route messen';
+
+  @override
+  String get routePick_measuring => 'Trace läuft…';
+
+  @override
+  String get routePick_measured => 'Gerade gemessen.';
+
+  @override
+  String get routePick_noAnswer =>
+      'Keine Antwort auf den Trace. Ein Repeater auf der Route ist eventuell außer Reichweite.';
+
+  @override
+  String get routePick_floodDone =>
+      'Route gelöscht. Die nächste Nachricht flutet, um eine neue zu finden.';
+
+  @override
+  String get routePick_suggested => 'Empfohlen';
+
+  @override
+  String routePick_suggestBody(String route, int score) {
+    return 'Eine zuverlässigere Route: $route (Wert $score).';
+  }
+
+  @override
+  String get routePick_use => 'Verwenden';
+
+  @override
+  String routePick_useLabel(String route) {
+    return 'Route $route verwenden';
+  }
+
+  @override
+  String get routePick_options => 'Wählbare Routen';
+
+  @override
+  String get routePick_optionsHint =>
+      'Jede für diesen Kontakt gehörte Route, bewertet von 0–100 nach Linksignal, Zustellbilanz, Länge und Aktualität.';
+
+  @override
+  String get routePick_none =>
+      'Noch keine Routen gehört. Sende eine Nachricht, um eine zu finden.';
+
+  @override
+  String get routePick_other => 'Weitere Möglichkeiten';
+
+  @override
+  String get routePick_build => 'Route zusammenstellen';
+
+  @override
+  String get routePick_flood => 'Das Mesh eine Route finden lassen';
+
+  @override
+  String get routePick_explainer =>
+      'Beim Messen geht ein Trace die Route entlang und zurück, so wird jede Verbindung zwischen Repeatern in beide Richtungen gemessen. Die letzte Verbindung zum Kontakt kann nicht getraced werden. Messwerte bleiben 30 Tage und zählen für jede Route mit derselben Verbindung.';
+
+  @override
+  String routePick_score(int score) {
+    return 'Wert $score von 100';
+  }
+
+  @override
+  String routePick_hopLabel(
+    int number,
+    String name,
+    String quality,
+    String out,
+    String back,
+  ) {
+    return 'Hop $number: $name. Verbindung $quality, hin $out Dezibel, zurück $back Dezibel.';
+  }
+
+  @override
+  String get routePick_lastLink =>
+      'Letzte Verbindung zum Kontakt: per Trace nicht messbar';
+
+  @override
+  String routePick_linkLine(String out, String back) {
+    return 'Hin $out dB · zurück $back dB';
+  }
+
+  @override
+  String routePick_optionLine(int score, int hops) {
+    return 'Wert $score · Hops: $hops';
+  }
+
+  @override
+  String routePick_record(int ok, int tries) {
+    return '$ok von $tries zugestellt';
+  }
+
+  @override
+  String routePick_weakest(String snr) {
+    return 'schwächste Verbindung $snr dB';
+  }
+
+  @override
+  String get routePick_inUse => 'In Verwendung';
+
+  @override
   String get routing_floodBroadcast => 'Über alle Repeater senden';
 
   @override

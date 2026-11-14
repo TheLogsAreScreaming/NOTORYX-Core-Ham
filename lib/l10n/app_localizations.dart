@@ -3694,6 +3694,204 @@ abstract class AppLocalizations {
   /// **'No path yet. The next message floods until a route is discovered.'**
   String get routing_noPathYet;
 
+  /// No description provided for @routePick_open.
+  ///
+  /// In en, this message translates to:
+  /// **'Route view and picker'**
+  String get routePick_open;
+
+  /// No description provided for @routePick_openHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Chart each hop\'s link quality and pick a more reliable route'**
+  String get routePick_openHint;
+
+  /// No description provided for @routePick_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Route to {name}'**
+  String routePick_title(String name);
+
+  /// No description provided for @routePick_current.
+  ///
+  /// In en, this message translates to:
+  /// **'Current route'**
+  String get routePick_current;
+
+  /// No description provided for @routePick_flooding.
+  ///
+  /// In en, this message translates to:
+  /// **'No fixed route: messages flood the mesh until a route is learned.'**
+  String get routePick_flooding;
+
+  /// No description provided for @routePick_direct.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct'**
+  String get routePick_direct;
+
+  /// No description provided for @routePick_hopUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeater {id}'**
+  String routePick_hopUnknown(String id);
+
+  /// No description provided for @routePick_notMeasured.
+  ///
+  /// In en, this message translates to:
+  /// **'Not measured yet'**
+  String get routePick_notMeasured;
+
+  /// No description provided for @routePick_measure.
+  ///
+  /// In en, this message translates to:
+  /// **'Measure this route'**
+  String get routePick_measure;
+
+  /// No description provided for @routePick_measuring.
+  ///
+  /// In en, this message translates to:
+  /// **'Tracing…'**
+  String get routePick_measuring;
+
+  /// No description provided for @routePick_measured.
+  ///
+  /// In en, this message translates to:
+  /// **'Measured just now.'**
+  String get routePick_measured;
+
+  /// No description provided for @routePick_noAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'No answer to the trace. A repeater on the route may be out of range.'**
+  String get routePick_noAnswer;
+
+  /// No description provided for @routePick_floodDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Route cleared. The next message floods to find a new one.'**
+  String get routePick_floodDone;
+
+  /// No description provided for @routePick_suggested.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggested'**
+  String get routePick_suggested;
+
+  /// No description provided for @routePick_suggestBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A more reliable route: {route} (score {score}).'**
+  String routePick_suggestBody(String route, int score);
+
+  /// No description provided for @routePick_use.
+  ///
+  /// In en, this message translates to:
+  /// **'Use'**
+  String get routePick_use;
+
+  /// No description provided for @routePick_useLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Use route {route}'**
+  String routePick_useLabel(String route);
+
+  /// No description provided for @routePick_options.
+  ///
+  /// In en, this message translates to:
+  /// **'Routes to choose from'**
+  String get routePick_options;
+
+  /// No description provided for @routePick_optionsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Every route heard for this contact, scored 0–100 from link signal, delivery record, length and how recent it is.'**
+  String get routePick_optionsHint;
+
+  /// No description provided for @routePick_none.
+  ///
+  /// In en, this message translates to:
+  /// **'No routes heard yet. Send a message to discover one.'**
+  String get routePick_none;
+
+  /// No description provided for @routePick_other.
+  ///
+  /// In en, this message translates to:
+  /// **'Other choices'**
+  String get routePick_other;
+
+  /// No description provided for @routePick_build.
+  ///
+  /// In en, this message translates to:
+  /// **'Build a route'**
+  String get routePick_build;
+
+  /// No description provided for @routePick_flood.
+  ///
+  /// In en, this message translates to:
+  /// **'Let the mesh find a route'**
+  String get routePick_flood;
+
+  /// No description provided for @routePick_explainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Measuring sends a trace out along the route and back, so every link between repeaters is measured both ways. The last link to the contact can\'t be traced. Readings are kept for 30 days and count for every route that uses the same link.'**
+  String get routePick_explainer;
+
+  /// No description provided for @routePick_score.
+  ///
+  /// In en, this message translates to:
+  /// **'Score {score} of 100'**
+  String routePick_score(int score);
+
+  /// No description provided for @routePick_hopLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Hop {number}: {name}. Link {quality}, {out} decibels out, {back} decibels back.'**
+  String routePick_hopLabel(
+    int number,
+    String name,
+    String quality,
+    String out,
+    String back,
+  );
+
+  /// No description provided for @routePick_lastLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Last link to the contact: not measurable by trace'**
+  String get routePick_lastLink;
+
+  /// No description provided for @routePick_linkLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Out {out} dB · back {back} dB'**
+  String routePick_linkLine(String out, String back);
+
+  /// No description provided for @routePick_optionLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Score {score} · hops: {hops}'**
+  String routePick_optionLine(int score, int hops);
+
+  /// No description provided for @routePick_record.
+  ///
+  /// In en, this message translates to:
+  /// **'delivered {ok} of {tries}'**
+  String routePick_record(int ok, int tries);
+
+  /// No description provided for @routePick_weakest.
+  ///
+  /// In en, this message translates to:
+  /// **'weakest link {snr} dB'**
+  String routePick_weakest(String snr);
+
+  /// No description provided for @routePick_inUse.
+  ///
+  /// In en, this message translates to:
+  /// **'In use'**
+  String get routePick_inUse;
+
   /// No description provided for @routing_floodBroadcast.
   ///
   /// In en, this message translates to:

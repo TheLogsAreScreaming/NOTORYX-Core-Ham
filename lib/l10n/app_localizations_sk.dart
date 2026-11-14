@@ -2034,6 +2034,136 @@ class AppLocalizationsSk extends AppLocalizations {
       'Zatiaľ neexistuje žiadna cesta. Nasledujúce správy budú pokračovať, kým sa nenájde trasa.';
 
   @override
+  String get routePick_open => 'Zobrazenie a výber trasy';
+
+  @override
+  String get routePick_openHint =>
+      'Kvalita spojenia na každom skoku a výber spoľahlivejšej trasy';
+
+  @override
+  String routePick_title(String name) {
+    return 'Trasa k $name';
+  }
+
+  @override
+  String get routePick_current => 'Aktuálna trasa';
+
+  @override
+  String get routePick_flooding =>
+      'Bez pevnej trasy: správy zaplavujú sieť, kým sa trasa nenaučí.';
+
+  @override
+  String get routePick_direct => 'Priamo';
+
+  @override
+  String routePick_hopUnknown(String id) {
+    return 'Opakovač $id';
+  }
+
+  @override
+  String get routePick_notMeasured => 'Zatiaľ nemerané';
+
+  @override
+  String get routePick_measure => 'Zmerať túto trasu';
+
+  @override
+  String get routePick_measuring => 'Trasovanie…';
+
+  @override
+  String get routePick_measured => 'Práve zmerané.';
+
+  @override
+  String get routePick_noAnswer =>
+      'Žiadna odpoveď na trasovanie. Opakovač na trase môže byť mimo dosahu.';
+
+  @override
+  String get routePick_floodDone =>
+      'Trasa vymazaná. Ďalšia správa zaplaví sieť a nájde novú.';
+
+  @override
+  String get routePick_suggested => 'Odporúčaná';
+
+  @override
+  String routePick_suggestBody(String route, int score) {
+    return 'Spoľahlivejšia trasa: $route (skóre $score).';
+  }
+
+  @override
+  String get routePick_use => 'Použiť';
+
+  @override
+  String routePick_useLabel(String route) {
+    return 'Použiť trasu $route';
+  }
+
+  @override
+  String get routePick_options => 'Trasy na výber';
+
+  @override
+  String get routePick_optionsHint =>
+      'Každá počutá trasa k tomuto kontaktu, hodnotená 0–100 podľa signálu spojení, doručení, dĺžky a aktuálnosti.';
+
+  @override
+  String get routePick_none =>
+      'Zatiaľ žiadne trasy. Pošlite správu a nájdite jednu.';
+
+  @override
+  String get routePick_other => 'Ďalšie možnosti';
+
+  @override
+  String get routePick_build => 'Zostaviť trasu';
+
+  @override
+  String get routePick_flood => 'Nechať sieť nájsť trasu';
+
+  @override
+  String get routePick_explainer =>
+      'Meranie pošle trasovanie po trase a späť, takže každé spojenie medzi opakovačmi sa zmeria oboma smermi. Posledné spojenie ku kontaktu sa trasovať nedá. Údaje sa uchovávajú 30 dní a platia pre každú trasu s rovnakým spojením.';
+
+  @override
+  String routePick_score(int score) {
+    return 'Skóre $score zo 100';
+  }
+
+  @override
+  String routePick_hopLabel(
+    int number,
+    String name,
+    String quality,
+    String out,
+    String back,
+  ) {
+    return 'Skok $number: $name. Spojenie $quality, tam $out decibelov, späť $back decibelov.';
+  }
+
+  @override
+  String get routePick_lastLink =>
+      'Posledné spojenie ku kontaktu: trasovaním nemerateľné';
+
+  @override
+  String routePick_linkLine(String out, String back) {
+    return 'Tam $out dB · späť $back dB';
+  }
+
+  @override
+  String routePick_optionLine(int score, int hops) {
+    return 'Skóre $score · skoky: $hops';
+  }
+
+  @override
+  String routePick_record(int ok, int tries) {
+    return 'doručené $ok z $tries';
+  }
+
+  @override
+  String routePick_weakest(String snr) {
+    return 'najslabšie spojenie $snr dB';
+  }
+
+  @override
+  String get routePick_inUse => 'Používa sa';
+
+  @override
   String get routing_floodBroadcast =>
       'Prenos prostredníctvom každého opakovača';
 
