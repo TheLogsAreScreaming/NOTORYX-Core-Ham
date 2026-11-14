@@ -8098,6 +8098,72 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String get signedCov_section => '署名付きレポート';
+
+  @override
+  String get signedCov_share => '署名付きレポートを共有';
+
+  @override
+  String get signedCov_shareHint =>
+      '各六角形はこの電話のカバレッジ鍵で署名されるため、改ざんや捏造を見分けられます。共有しない限り電話の外には出ません。';
+
+  @override
+  String get signedCov_check => 'レポートを確認';
+
+  @override
+  String get signedCov_checkHint => '署名付きレポートを貼り付けて、本物の観測を確認';
+
+  @override
+  String get signedCov_paste => '署名付きレポート (JSON)';
+
+  @override
+  String get signedCov_verify => '確認';
+
+  @override
+  String signedCov_yourKey(String fingerprint) {
+    return 'あなたのカバレッジ鍵: $fingerprint';
+  }
+
+  @override
+  String signedCov_result(int accepted, int rejected) {
+    return '$accepted 件の観測を確認、$rejected 件を拒否';
+  }
+
+  @override
+  String signedCov_signer(String fingerprint) {
+    return '署名鍵 $fingerprint';
+  }
+
+  @override
+  String get signedCov_unreadable => 'これは署名付きカバレッジレポートではありません。';
+
+  @override
+  String signedCov_rBadSignature(int count) {
+    return '署名なしまたは不正: $count 件';
+  }
+
+  @override
+  String signedCov_rMalformed(int count) {
+    return '破損: $count 件';
+  }
+
+  @override
+  String signedCov_rImpossible(int count) {
+    return 'ありえない信号値: $count 件';
+  }
+
+  @override
+  String signedCov_rFuture(int count) {
+    return '未来の日付: $count 件';
+  }
+
+  @override
+  String get signedCov_empty => '共有できるカバレッジのサンプルはまだありません。';
+
+  @override
+  String get signedCov_shareFailed => 'レポートを共有できませんでした。';
+
+  @override
   String get coverageHex_title => 'カバレッジ六角形';
 
   @override

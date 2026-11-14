@@ -8499,6 +8499,73 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
+  String get signedCov_section => 'Подписани отчети';
+
+  @override
+  String get signedCov_share => 'Сподели подписан отчет';
+
+  @override
+  String get signedCov_shareHint =>
+      'Всеки шестоъгълник е подписан с ключа за покритие на телефона, така че променените или измислените се разпознават. Нищо не напуска телефона, освен ако не го споделиш.';
+
+  @override
+  String get signedCov_check => 'Провери отчет';
+
+  @override
+  String get signedCov_checkHint =>
+      'Постави подписан отчет, за да видиш кои наблюдения са истински';
+
+  @override
+  String get signedCov_paste => 'Подписан отчет (JSON)';
+
+  @override
+  String get signedCov_verify => 'Провери';
+
+  @override
+  String signedCov_yourKey(String fingerprint) {
+    return 'Твоят ключ за покритие: $fingerprint';
+  }
+
+  @override
+  String signedCov_result(int accepted, int rejected) {
+    return '$accepted потвърдени наблюдения, $rejected отхвърлени';
+  }
+
+  @override
+  String signedCov_signer(String fingerprint) {
+    return 'Подписано с ключ $fingerprint';
+  }
+
+  @override
+  String get signedCov_unreadable => 'Това не е подписан отчет за покритие.';
+
+  @override
+  String signedCov_rBadSignature(int count) {
+    return '$count с липсващ или грешен подпис';
+  }
+
+  @override
+  String signedCov_rMalformed(int count) {
+    return '$count повредени';
+  }
+
+  @override
+  String signedCov_rImpossible(int count) {
+    return '$count с невъзможни стойности на сигнала';
+  }
+
+  @override
+  String signedCov_rFuture(int count) {
+    return '$count с бъдеща дата';
+  }
+
+  @override
+  String get signedCov_empty => 'Още няма проби за покритие за споделяне.';
+
+  @override
+  String get signedCov_shareFailed => 'Отчетът не можа да бъде споделен.';
+
+  @override
   String get coverageHex_title => 'Шестоъгълници на покритието';
 
   @override

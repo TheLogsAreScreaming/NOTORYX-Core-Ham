@@ -14209,6 +14209,108 @@ abstract class AppLocalizations {
   /// **'Repeater {id}'**
   String routes_repeaterWithId(String id);
 
+  /// No description provided for @signedCov_section.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed reports'**
+  String get signedCov_section;
+
+  /// No description provided for @signedCov_share.
+  ///
+  /// In en, this message translates to:
+  /// **'Share signed report'**
+  String get signedCov_share;
+
+  /// No description provided for @signedCov_shareHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Every hexagon is signed with this phone\'s coverage key, so edited or invented ones can be spotted. Nothing leaves the phone unless you share it.'**
+  String get signedCov_shareHint;
+
+  /// No description provided for @signedCov_check.
+  ///
+  /// In en, this message translates to:
+  /// **'Check a report'**
+  String get signedCov_check;
+
+  /// No description provided for @signedCov_checkHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Paste a signed report to see which observations are genuine'**
+  String get signedCov_checkHint;
+
+  /// No description provided for @signedCov_paste.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed report (JSON)'**
+  String get signedCov_paste;
+
+  /// No description provided for @signedCov_verify.
+  ///
+  /// In en, this message translates to:
+  /// **'Check'**
+  String get signedCov_verify;
+
+  /// No description provided for @signedCov_yourKey.
+  ///
+  /// In en, this message translates to:
+  /// **'Your coverage key: {fingerprint}'**
+  String signedCov_yourKey(String fingerprint);
+
+  /// No description provided for @signedCov_result.
+  ///
+  /// In en, this message translates to:
+  /// **'{accepted} observations verified, {rejected} rejected'**
+  String signedCov_result(int accepted, int rejected);
+
+  /// No description provided for @signedCov_signer.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed by key {fingerprint}'**
+  String signedCov_signer(String fingerprint);
+
+  /// No description provided for @signedCov_unreadable.
+  ///
+  /// In en, this message translates to:
+  /// **'This isn\'t a signed coverage report.'**
+  String get signedCov_unreadable;
+
+  /// No description provided for @signedCov_rBadSignature.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} with a missing or wrong signature'**
+  String signedCov_rBadSignature(int count);
+
+  /// No description provided for @signedCov_rMalformed.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} damaged'**
+  String signedCov_rMalformed(int count);
+
+  /// No description provided for @signedCov_rImpossible.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} with impossible signal values'**
+  String signedCov_rImpossible(int count);
+
+  /// No description provided for @signedCov_rFuture.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} dated in the future'**
+  String signedCov_rFuture(int count);
+
+  /// No description provided for @signedCov_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No coverage samples to share yet.'**
+  String get signedCov_empty;
+
+  /// No description provided for @signedCov_shareFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not share the report.'**
+  String get signedCov_shareFailed;
+
   /// No description provided for @coverageHex_title.
   ///
   /// In en, this message translates to:

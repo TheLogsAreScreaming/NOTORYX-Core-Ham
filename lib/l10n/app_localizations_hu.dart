@@ -8501,6 +8501,73 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
+  String get signedCov_section => 'Aláírt jelentések';
+
+  @override
+  String get signedCov_share => 'Aláírt jelentés megosztása';
+
+  @override
+  String get signedCov_shareHint =>
+      'Minden hatszöget a telefon lefedettségi kulcsa ír alá, így a módosított vagy kitalált adatok kiszűrhetők. Semmi sem hagyja el a telefont, hacsak meg nem osztod.';
+
+  @override
+  String get signedCov_check => 'Jelentés ellenőrzése';
+
+  @override
+  String get signedCov_checkHint =>
+      'Illessz be egy aláírt jelentést, és nézd meg, mely megfigyelések valódiak';
+
+  @override
+  String get signedCov_paste => 'Aláírt jelentés (JSON)';
+
+  @override
+  String get signedCov_verify => 'Ellenőrzés';
+
+  @override
+  String signedCov_yourKey(String fingerprint) {
+    return 'Lefedettségi kulcsod: $fingerprint';
+  }
+
+  @override
+  String signedCov_result(int accepted, int rejected) {
+    return '$accepted megfigyelés igazolva, $rejected elutasítva';
+  }
+
+  @override
+  String signedCov_signer(String fingerprint) {
+    return 'Aláíró kulcs: $fingerprint';
+  }
+
+  @override
+  String get signedCov_unreadable => 'Ez nem aláírt lefedettségi jelentés.';
+
+  @override
+  String signedCov_rBadSignature(int count) {
+    return '$count hiányzó vagy hibás aláírással';
+  }
+
+  @override
+  String signedCov_rMalformed(int count) {
+    return '$count sérült';
+  }
+
+  @override
+  String signedCov_rImpossible(int count) {
+    return '$count lehetetlen jelértékekkel';
+  }
+
+  @override
+  String signedCov_rFuture(int count) {
+    return '$count jövőbeli dátummal';
+  }
+
+  @override
+  String get signedCov_empty => 'Még nincs megosztható lefedettségi minta.';
+
+  @override
+  String get signedCov_shareFailed => 'A jelentést nem sikerült megosztani.';
+
+  @override
   String get coverageHex_title => 'Lefedettségi hatszögek';
 
   @override

@@ -8473,6 +8473,73 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
+  String get signedCov_section => 'Ondertekende rapporten';
+
+  @override
+  String get signedCov_share => 'Ondertekend rapport delen';
+
+  @override
+  String get signedCov_shareHint =>
+      'Elke zeshoek wordt ondertekend met de dekkingssleutel van deze telefoon, zodat gewijzigde of verzonnen exemplaren opvallen. Niets verlaat de telefoon tenzij je het deelt.';
+
+  @override
+  String get signedCov_check => 'Rapport controleren';
+
+  @override
+  String get signedCov_checkHint =>
+      'Plak een ondertekend rapport om te zien welke waarnemingen echt zijn';
+
+  @override
+  String get signedCov_paste => 'Ondertekend rapport (JSON)';
+
+  @override
+  String get signedCov_verify => 'Controleren';
+
+  @override
+  String signedCov_yourKey(String fingerprint) {
+    return 'Jouw dekkingssleutel: $fingerprint';
+  }
+
+  @override
+  String signedCov_result(int accepted, int rejected) {
+    return '$accepted waarnemingen bevestigd, $rejected afgewezen';
+  }
+
+  @override
+  String signedCov_signer(String fingerprint) {
+    return 'Ondertekend met sleutel $fingerprint';
+  }
+
+  @override
+  String get signedCov_unreadable => 'Dit is geen ondertekend dekkingsrapport.';
+
+  @override
+  String signedCov_rBadSignature(int count) {
+    return '$count met ontbrekende of foute handtekening';
+  }
+
+  @override
+  String signedCov_rMalformed(int count) {
+    return '$count beschadigd';
+  }
+
+  @override
+  String signedCov_rImpossible(int count) {
+    return '$count met onmogelijke signaalwaarden';
+  }
+
+  @override
+  String signedCov_rFuture(int count) {
+    return '$count gedateerd in de toekomst';
+  }
+
+  @override
+  String get signedCov_empty => 'Nog geen dekkingsmetingen om te delen.';
+
+  @override
+  String get signedCov_shareFailed => 'Kon het rapport niet delen.';
+
+  @override
   String get coverageHex_title => 'Dekkingszeshoeken';
 
   @override

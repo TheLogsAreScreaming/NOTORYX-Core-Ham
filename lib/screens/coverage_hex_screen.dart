@@ -1,13 +1,16 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../l10n/app_localizations.dart';
 import '../l10n/l10n.dart';
 import '../models/coverage_hex.dart';
+import '../models/signed_coverage.dart';
 import '../services/coverage_hex_service.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/mesh_ui.dart';
@@ -186,6 +189,7 @@ class CoverageHexScreen extends StatelessWidget {
                 label: Text(t.coverageHex_uploadNow),
               ),
             ],
+            SignedCoverageSection(service: service),
           ],
         ),
       ),
@@ -426,3 +430,198 @@ class _TargetDialogState extends State<_TargetDialog> {
     );
   }
 }
+
+/// Share this phone's coverage as a signed report, or check one someone
+/// else shared. Everything stays local until the user shares it.
+class SignedCoverageSection extends StatefulWidget {
+  const SignedCoverageSection({super.key, required this.service});
+
+  final CoverageHexService service;
+
+  @override
+  State<SignedCoverageSection> createState() => _SignedCoverageSectionState();
+}
+
+class _SignedCoverageSectionState extends State<SignedCoverageSection> {
+  String? _key;
+
+  @override
+  void initState() {
+    super.initState();
+    unawaited(
+      widget.service.signerKey().then((k) {
+        if (mounted) setState(() => _key = k);
+      }),
+    );
+  }
+
+  Future<void> _share() async {
+    final t = context.l10n;
+    final messenger = ScaffoldMessenger.of(context);
+    if (widget.service.sampleCount == 0) {
+      messenger.showSnackBar(SnackBar(content: Text(t.signedCov_empty)));
+      return;
+    }
+    try {
+      final report = await widget.service.signedReport();
+      await SharePlus.instance.share(
+        ShareParams(
+          files: [
+            XFile.fromData(
+              utf8.encode(report),
+              mimeType: 'application/json',
+              name: 'coverage-report.json',
+            ),
+          ],
+        ),
+      );
+    } catch (_) {
+      messenger.showSnackBar(SnackBar(content: Text(t.signedCov_shareFailed)));
+    }
+  }
+
+  Future<void> _check() async {
+    await showDialog<void>(
+      context: context,
+      builder: (_) => const SignedCoverageCheckDialog(),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.l10n;
+    final key = _key;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        SectionHeader(
+          t.signedCov_section,
+          padding: const EdgeInsets.fromLTRB(
+            MeshSpace.xs,
+            MeshSpace.xl,
+            MeshSpace.xs,
+            MeshSpace.sm,
+          ),
+        ),
+        MeshGroup(
+          children: [
+            MeshNavRow(
+              icon: Icons.verified_outlined,
+              title: t.signedCov_share,
+              subtitle: t.signedCov_shareHint,
+              onTap: () => unawaited(_share()),
+            ),
+            MeshNavRow(
+              icon: Icons.fact_check_outlined,
+              title: t.signedCov_check,
+              subtitle: t.signedCov_checkHint,
+              onTap: () => unawaited(_check()),
+            ),
+          ],
+        ),
+        if (key != null)
+          Padding(
+            padding: const EdgeInsets.all(MeshSpace.sm),
+            child: SelectableText(
+              t.signedCov_yourKey(keyFingerprint(key)),
+              style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+/// Paste a signed report and see what verifies.
+class SignedCoverageCheckDialog extends StatefulWidget {
+  const SignedCoverageCheckDialog({super.key});
+
+  @override
+  State<SignedCoverageCheckDialog> createState() =>
+      _SignedCoverageCheckDialogState();
+}
+
+class _SignedCoverageCheckDialogState extends State<SignedCoverageCheckDialog> {
+  final _text = TextEditingController();
+  CoverageVerdict? _verdict;
+  bool _checking = false;
+
+  @override
+  void dispose() {
+    _text.dispose();
+    super.dispose();
+  }
+
+  Future<void> _verify() async {
+    setState(() => _checking = true);
+    final verdict = await verifyCoverageReport(_text.text.trim());
+    if (!mounted) return;
+    setState(() {
+      _verdict = verdict;
+      _checking = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.l10n;
+    final v = _verdict;
+    return AlertDialog(
+      title: Text(t.signedCov_check),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextField(
+              controller: _text,
+              minLines: 3,
+              maxLines: 8,
+              decoration: InputDecoration(labelText: t.signedCov_paste),
+            ),
+            const SizedBox(height: MeshSpace.md),
+            if (v != null)
+              Semantics(
+                liveRegion: true,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (v.unreadable)
+                      Text(t.signedCov_unreadable)
+                    else ...[
+                      Text(
+                        t.signedCov_result(v.accepted.length, v.rejectedCount),
+                        style: const TextStyle(fontWeight: FontWeight.w600),
+                      ),
+                      if (v.signer != null)
+                        Text(t.signedCov_signer(keyFingerprint(v.signer!))),
+                      for (final e in v.rejected.entries)
+                        Text('• ${_rejectionText(t, e.key, e.value)}'),
+                    ],
+                  ],
+                ),
+              ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(t.common_close),
+        ),
+        FilledButton(
+          onPressed: _checking ? null : () => unawaited(_verify()),
+          child: Text(t.signedCov_verify),
+        ),
+      ],
+    );
+  }
+}
+
+String _rejectionText(AppLocalizations t, CoverageRejection r, int n) =>
+    switch (r) {
+      CoverageRejection.badSignature => t.signedCov_rBadSignature(n),
+      CoverageRejection.malformed => t.signedCov_rMalformed(n),
+      CoverageRejection.impossible => t.signedCov_rImpossible(n),
+      CoverageRejection.future => t.signedCov_rFuture(n),
+    };

@@ -8112,6 +8112,72 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
+  String get signedCov_section => '서명된 보고서';
+
+  @override
+  String get signedCov_share => '서명된 보고서 공유';
+
+  @override
+  String get signedCov_shareHint =>
+      '모든 육각형은 이 휴대폰의 커버리지 키로 서명되어 수정되거나 꾸며낸 것을 가려낼 수 있습니다. 공유하지 않으면 휴대폰 밖으로 나가지 않습니다.';
+
+  @override
+  String get signedCov_check => '보고서 확인';
+
+  @override
+  String get signedCov_checkHint => '서명된 보고서를 붙여 넣어 어떤 관측이 진짜인지 확인';
+
+  @override
+  String get signedCov_paste => '서명된 보고서(JSON)';
+
+  @override
+  String get signedCov_verify => '확인';
+
+  @override
+  String signedCov_yourKey(String fingerprint) {
+    return '내 커버리지 키: $fingerprint';
+  }
+
+  @override
+  String signedCov_result(int accepted, int rejected) {
+    return '관측 $accepted개 확인, $rejected개 거부';
+  }
+
+  @override
+  String signedCov_signer(String fingerprint) {
+    return '서명 키 $fingerprint';
+  }
+
+  @override
+  String get signedCov_unreadable => '서명된 커버리지 보고서가 아닙니다.';
+
+  @override
+  String signedCov_rBadSignature(int count) {
+    return '서명이 없거나 잘못됨: $count개';
+  }
+
+  @override
+  String signedCov_rMalformed(int count) {
+    return '손상됨: $count개';
+  }
+
+  @override
+  String signedCov_rImpossible(int count) {
+    return '불가능한 신호 값: $count개';
+  }
+
+  @override
+  String signedCov_rFuture(int count) {
+    return '미래 날짜: $count개';
+  }
+
+  @override
+  String get signedCov_empty => '아직 공유할 커버리지 샘플이 없습니다.';
+
+  @override
+  String get signedCov_shareFailed => '보고서를 공유할 수 없습니다.';
+
+  @override
   String get coverageHex_title => '커버리지 육각형';
 
   @override

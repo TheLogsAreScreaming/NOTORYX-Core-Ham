@@ -8539,6 +8539,73 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
+  String get signedCov_section => 'Підписані звіти';
+
+  @override
+  String get signedCov_share => 'Поділитися підписаним звітом';
+
+  @override
+  String get signedCov_shareHint =>
+      'Кожен шестикутник підписано ключем покриття цього телефона, тож змінені чи вигадані можна виявити. Нічого не залишає телефон, доки ви не поділитеся.';
+
+  @override
+  String get signedCov_check => 'Перевірити звіт';
+
+  @override
+  String get signedCov_checkHint =>
+      'Вставте підписаний звіт, щоб побачити справжні спостереження';
+
+  @override
+  String get signedCov_paste => 'Підписаний звіт (JSON)';
+
+  @override
+  String get signedCov_verify => 'Перевірити';
+
+  @override
+  String signedCov_yourKey(String fingerprint) {
+    return 'Ваш ключ покриття: $fingerprint';
+  }
+
+  @override
+  String signedCov_result(int accepted, int rejected) {
+    return 'Підтверджено спостережень: $accepted, відхилено: $rejected';
+  }
+
+  @override
+  String signedCov_signer(String fingerprint) {
+    return 'Підписано ключем $fingerprint';
+  }
+
+  @override
+  String get signedCov_unreadable => 'Це не підписаний звіт про покриття.';
+
+  @override
+  String signedCov_rBadSignature(int count) {
+    return '$count без підпису або з хибним підписом';
+  }
+
+  @override
+  String signedCov_rMalformed(int count) {
+    return '$count пошкоджених';
+  }
+
+  @override
+  String signedCov_rImpossible(int count) {
+    return '$count з неможливими значеннями сигналу';
+  }
+
+  @override
+  String signedCov_rFuture(int count) {
+    return '$count датовано майбутнім';
+  }
+
+  @override
+  String get signedCov_empty => 'Поки немає зразків покриття для поширення.';
+
+  @override
+  String get signedCov_shareFailed => 'Не вдалося поділитися звітом.';
+
+  @override
   String get coverageHex_title => 'Шестикутники покриття';
 
   @override

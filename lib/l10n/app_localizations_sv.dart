@@ -8439,6 +8439,74 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
+  String get signedCov_section => 'Signerade rapporter';
+
+  @override
+  String get signedCov_share => 'Dela signerad rapport';
+
+  @override
+  String get signedCov_shareHint =>
+      'Varje hexagon signeras med telefonens täckningsnyckel, så ändrade eller påhittade upptäcks. Inget lämnar telefonen om du inte delar det.';
+
+  @override
+  String get signedCov_check => 'Kontrollera en rapport';
+
+  @override
+  String get signedCov_checkHint =>
+      'Klistra in en signerad rapport för att se vilka observationer som är äkta';
+
+  @override
+  String get signedCov_paste => 'Signerad rapport (JSON)';
+
+  @override
+  String get signedCov_verify => 'Kontrollera';
+
+  @override
+  String signedCov_yourKey(String fingerprint) {
+    return 'Din täckningsnyckel: $fingerprint';
+  }
+
+  @override
+  String signedCov_result(int accepted, int rejected) {
+    return '$accepted observationer verifierade, $rejected avvisade';
+  }
+
+  @override
+  String signedCov_signer(String fingerprint) {
+    return 'Signerad med nyckel $fingerprint';
+  }
+
+  @override
+  String get signedCov_unreadable =>
+      'Det här är ingen signerad täckningsrapport.';
+
+  @override
+  String signedCov_rBadSignature(int count) {
+    return '$count utan eller med fel signatur';
+  }
+
+  @override
+  String signedCov_rMalformed(int count) {
+    return '$count skadade';
+  }
+
+  @override
+  String signedCov_rImpossible(int count) {
+    return '$count med omöjliga signalvärden';
+  }
+
+  @override
+  String signedCov_rFuture(int count) {
+    return '$count daterade i framtiden';
+  }
+
+  @override
+  String get signedCov_empty => 'Inga täckningsprover att dela än.';
+
+  @override
+  String get signedCov_shareFailed => 'Kunde inte dela rapporten.';
+
+  @override
   String get coverageHex_title => 'Täckningshexagoner';
 
   @override
