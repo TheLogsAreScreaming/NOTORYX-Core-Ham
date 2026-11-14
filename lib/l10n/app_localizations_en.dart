@@ -9042,6 +9042,65 @@ class AppLocalizationsEn extends AppLocalizations {
       'Sent to a region this app doesn’t know';
 
   @override
+  String get timeline_title => 'Timeline';
+
+  @override
+  String get timeline_toolSubtitle =>
+      'Messages, new nodes, signal changes and places in one feed';
+
+  @override
+  String get timeline_refresh => 'Reload';
+
+  @override
+  String get timeline_search => 'Search the timeline';
+
+  @override
+  String get timeline_kindMessages => 'Messages';
+
+  @override
+  String get timeline_kindNodes => 'New nodes';
+
+  @override
+  String get timeline_kindSignal => 'Signal';
+
+  @override
+  String get timeline_kindPlaces => 'Places';
+
+  @override
+  String timeline_messageFrom(String sender, String where) {
+    return '$sender in $where';
+  }
+
+  @override
+  String timeline_nodeJoined(String name) {
+    return 'First heard: $name';
+  }
+
+  @override
+  String timeline_signalUp(String name, String from, String to) {
+    return '$name: signal up from $from to $to dB';
+  }
+
+  @override
+  String timeline_signalDown(String name, String from, String to) {
+    return '$name: signal down from $from to $to dB';
+  }
+
+  @override
+  String timeline_placeSaved(String name) {
+    return 'Place saved: $name';
+  }
+
+  @override
+  String timeline_placeShared(String sender, String where) {
+    return '$sender shared a place in $where';
+  }
+
+  @override
+  String get timeline_empty =>
+      'Nothing yet. Messages, newly heard nodes, signal changes and places show up here.';
+
+  @override
   String get wardrive_title => 'Wardrive';
 
   @override

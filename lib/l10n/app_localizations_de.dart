@@ -9177,6 +9177,65 @@ class AppLocalizationsDe extends AppLocalizations {
       'An eine Region gesendet, die die App nicht kennt';
 
   @override
+  String get timeline_title => 'Zeitleiste';
+
+  @override
+  String get timeline_toolSubtitle =>
+      'Nachrichten, neue Knoten, Signaländerungen und Orte in einem Verlauf';
+
+  @override
+  String get timeline_refresh => 'Neu laden';
+
+  @override
+  String get timeline_search => 'Zeitleiste durchsuchen';
+
+  @override
+  String get timeline_kindMessages => 'Nachrichten';
+
+  @override
+  String get timeline_kindNodes => 'Neue Knoten';
+
+  @override
+  String get timeline_kindSignal => 'Signal';
+
+  @override
+  String get timeline_kindPlaces => 'Orte';
+
+  @override
+  String timeline_messageFrom(String sender, String where) {
+    return '$sender in $where';
+  }
+
+  @override
+  String timeline_nodeJoined(String name) {
+    return 'Zum ersten Mal gehört: $name';
+  }
+
+  @override
+  String timeline_signalUp(String name, String from, String to) {
+    return '$name: Signal stieg von $from auf $to dB';
+  }
+
+  @override
+  String timeline_signalDown(String name, String from, String to) {
+    return '$name: Signal fiel von $from auf $to dB';
+  }
+
+  @override
+  String timeline_placeSaved(String name) {
+    return 'Ort gespeichert: $name';
+  }
+
+  @override
+  String timeline_placeShared(String sender, String where) {
+    return '$sender hat einen Ort in $where geteilt';
+  }
+
+  @override
+  String get timeline_empty =>
+      'Noch nichts. Hier erscheinen Nachrichten, neu gehörte Knoten, Signaländerungen und Orte.';
+
+  @override
   String get wardrive_title => 'Wardrive';
 
   @override

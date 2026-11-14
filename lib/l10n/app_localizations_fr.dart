@@ -9200,6 +9200,65 @@ class AppLocalizationsFr extends AppLocalizations {
       'Envoyé à une région inconnue de l’app';
 
   @override
+  String get timeline_title => 'Chronologie';
+
+  @override
+  String get timeline_toolSubtitle =>
+      'Messages, nouveaux nœuds, changements de signal et lieux dans un seul fil';
+
+  @override
+  String get timeline_refresh => 'Recharger';
+
+  @override
+  String get timeline_search => 'Rechercher dans la chronologie';
+
+  @override
+  String get timeline_kindMessages => 'Messages';
+
+  @override
+  String get timeline_kindNodes => 'Nouveaux nœuds';
+
+  @override
+  String get timeline_kindSignal => 'Signal';
+
+  @override
+  String get timeline_kindPlaces => 'Lieux';
+
+  @override
+  String timeline_messageFrom(String sender, String where) {
+    return '$sender dans $where';
+  }
+
+  @override
+  String timeline_nodeJoined(String name) {
+    return 'Entendu pour la première fois : $name';
+  }
+
+  @override
+  String timeline_signalUp(String name, String from, String to) {
+    return '$name : signal en hausse de $from à $to dB';
+  }
+
+  @override
+  String timeline_signalDown(String name, String from, String to) {
+    return '$name : signal en baisse de $from à $to dB';
+  }
+
+  @override
+  String timeline_placeSaved(String name) {
+    return 'Lieu enregistré : $name';
+  }
+
+  @override
+  String timeline_placeShared(String sender, String where) {
+    return '$sender a partagé un lieu dans $where';
+  }
+
+  @override
+  String get timeline_empty =>
+      'Rien pour l\'instant. Messages, nouveaux nœuds, changements de signal et lieux s\'affichent ici.';
+
+  @override
   String get wardrive_title => 'Wardrive';
 
   @override

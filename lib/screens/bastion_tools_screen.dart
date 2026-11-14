@@ -36,6 +36,7 @@ import 'coverage_hex_screen.dart';
 import 'prefix_tool_screen.dart';
 import 'repeater_ping_screen.dart';
 import 'settings_screen.dart';
+import 'timeline_screen.dart';
 import 'track_log_screen.dart';
 import 'wardrive_screen.dart';
 import '../utils/platform_info.dart';
@@ -152,6 +153,12 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
             title: l10n.bastion_fieldStats,
             subtitle: l10n.bastionTools_statsHint,
             builder: (_) => const BastionFieldStatsScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.view_timeline_outlined,
+            title: l10n.timeline_title,
+            subtitle: l10n.timeline_toolSubtitle,
+            builder: (_) => const TimelineScreen(),
           ),
           _ToolAction(
             icon: Icons.timeline,

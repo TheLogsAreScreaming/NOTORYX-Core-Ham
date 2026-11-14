@@ -8535,6 +8535,63 @@ class AppLocalizationsZh extends AppLocalizations {
   String get channels_regionUnknownSemantics => '发送到应用未知的区域';
 
   @override
+  String get timeline_title => '时间线';
+
+  @override
+  String get timeline_toolSubtitle => '消息、新节点、信号变化和地点汇于一处';
+
+  @override
+  String get timeline_refresh => '重新加载';
+
+  @override
+  String get timeline_search => '搜索时间线';
+
+  @override
+  String get timeline_kindMessages => '消息';
+
+  @override
+  String get timeline_kindNodes => '新节点';
+
+  @override
+  String get timeline_kindSignal => '信号';
+
+  @override
+  String get timeline_kindPlaces => '地点';
+
+  @override
+  String timeline_messageFrom(String sender, String where) {
+    return '$sender 在 $where';
+  }
+
+  @override
+  String timeline_nodeJoined(String name) {
+    return '首次听到：$name';
+  }
+
+  @override
+  String timeline_signalUp(String name, String from, String to) {
+    return '$name：信号从 $from 升至 $to dB';
+  }
+
+  @override
+  String timeline_signalDown(String name, String from, String to) {
+    return '$name：信号从 $from 降至 $to dB';
+  }
+
+  @override
+  String timeline_placeSaved(String name) {
+    return '已保存地点：$name';
+  }
+
+  @override
+  String timeline_placeShared(String sender, String where) {
+    return '$sender 在 $where 分享了一个地点';
+  }
+
+  @override
+  String get timeline_empty => '暂无内容。消息、新听到的节点、信号变化和地点会显示在这里。';
+
+  @override
   String get wardrive_title => '覆盖测绘';
 
   @override

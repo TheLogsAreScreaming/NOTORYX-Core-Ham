@@ -16,6 +16,7 @@ const _bastionPrefixes = [
   'bastionSetup_',
   'bastionDiag_',
   'sos_',
+  'timeline_',
   'checkIn_',
   'tripBrief_',
   'fieldOps_',

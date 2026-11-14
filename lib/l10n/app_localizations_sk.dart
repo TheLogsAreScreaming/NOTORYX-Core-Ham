@@ -9142,6 +9142,65 @@ class AppLocalizationsSk extends AppLocalizations {
       'Odoslané do regiónu, ktorý aplikácia nepozná';
 
   @override
+  String get timeline_title => 'Časová os';
+
+  @override
+  String get timeline_toolSubtitle =>
+      'Správy, nové uzly, zmeny signálu a miesta v jednom prehľade';
+
+  @override
+  String get timeline_refresh => 'Znova načítať';
+
+  @override
+  String get timeline_search => 'Hľadať na časovej osi';
+
+  @override
+  String get timeline_kindMessages => 'Správy';
+
+  @override
+  String get timeline_kindNodes => 'Nové uzly';
+
+  @override
+  String get timeline_kindSignal => 'Signál';
+
+  @override
+  String get timeline_kindPlaces => 'Miesta';
+
+  @override
+  String timeline_messageFrom(String sender, String where) {
+    return '$sender v $where';
+  }
+
+  @override
+  String timeline_nodeJoined(String name) {
+    return 'Prvýkrát počuť: $name';
+  }
+
+  @override
+  String timeline_signalUp(String name, String from, String to) {
+    return '$name: signál stúpol z $from na $to dB';
+  }
+
+  @override
+  String timeline_signalDown(String name, String from, String to) {
+    return '$name: signál klesol z $from na $to dB';
+  }
+
+  @override
+  String timeline_placeSaved(String name) {
+    return 'Miesto uložené: $name';
+  }
+
+  @override
+  String timeline_placeShared(String sender, String where) {
+    return '$sender zdieľal miesto v $where';
+  }
+
+  @override
+  String get timeline_empty =>
+      'Zatiaľ nič. Tu sa zobrazia správy, novo počuté uzly, zmeny signálu a miesta.';
+
+  @override
   String get wardrive_title => 'Wardrive';
 
   @override

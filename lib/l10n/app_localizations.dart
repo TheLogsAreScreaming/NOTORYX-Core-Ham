@@ -15325,6 +15325,96 @@ abstract class AppLocalizations {
   /// **'Sent to a region this app doesn’t know'**
   String get channels_regionUnknownSemantics;
 
+  /// No description provided for @timeline_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Timeline'**
+  String get timeline_title;
+
+  /// No description provided for @timeline_toolSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages, new nodes, signal changes and places in one feed'**
+  String get timeline_toolSubtitle;
+
+  /// No description provided for @timeline_refresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Reload'**
+  String get timeline_refresh;
+
+  /// No description provided for @timeline_search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search the timeline'**
+  String get timeline_search;
+
+  /// No description provided for @timeline_kindMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages'**
+  String get timeline_kindMessages;
+
+  /// No description provided for @timeline_kindNodes.
+  ///
+  /// In en, this message translates to:
+  /// **'New nodes'**
+  String get timeline_kindNodes;
+
+  /// No description provided for @timeline_kindSignal.
+  ///
+  /// In en, this message translates to:
+  /// **'Signal'**
+  String get timeline_kindSignal;
+
+  /// No description provided for @timeline_kindPlaces.
+  ///
+  /// In en, this message translates to:
+  /// **'Places'**
+  String get timeline_kindPlaces;
+
+  /// No description provided for @timeline_messageFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'{sender} in {where}'**
+  String timeline_messageFrom(String sender, String where);
+
+  /// No description provided for @timeline_nodeJoined.
+  ///
+  /// In en, this message translates to:
+  /// **'First heard: {name}'**
+  String timeline_nodeJoined(String name);
+
+  /// No description provided for @timeline_signalUp.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}: signal up from {from} to {to} dB'**
+  String timeline_signalUp(String name, String from, String to);
+
+  /// No description provided for @timeline_signalDown.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}: signal down from {from} to {to} dB'**
+  String timeline_signalDown(String name, String from, String to);
+
+  /// No description provided for @timeline_placeSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Place saved: {name}'**
+  String timeline_placeSaved(String name);
+
+  /// No description provided for @timeline_placeShared.
+  ///
+  /// In en, this message translates to:
+  /// **'{sender} shared a place in {where}'**
+  String timeline_placeShared(String sender, String where);
+
+  /// No description provided for @timeline_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing yet. Messages, newly heard nodes, signal changes and places show up here.'**
+  String get timeline_empty;
+
   /// No description provided for @wardrive_title.
   ///
   /// In en, this message translates to:
