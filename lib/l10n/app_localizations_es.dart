@@ -11847,4 +11847,138 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ham_exportAutomatedCsv => 'Export automated transmissions (CSV)';
+
+  @override
+  String get checklist_title => 'Listas de verificación';
+
+  @override
+  String get checklist_toolSubtitle =>
+      'Listas reutilizables para salidas y despliegues, sin conexión';
+
+  @override
+  String get checklist_empty =>
+      'No hay listas. Añade una con el botón de abajo.';
+
+  @override
+  String get checklist_add => 'Nueva lista';
+
+  @override
+  String get checklist_edit => 'Editar lista';
+
+  @override
+  String get checklist_name => 'Nombre';
+
+  @override
+  String get checklist_items => 'Elementos, uno por línea';
+
+  @override
+  String checklist_itemCount(int count) {
+    return 'Elementos: $count';
+  }
+
+  @override
+  String get checklist_history => 'Revisiones completadas';
+
+  @override
+  String get checklist_noRuns => 'Aún no hay revisiones completadas.';
+
+  @override
+  String get checklist_inProgress => 'En curso';
+
+  @override
+  String checklist_progress(int done, int total) {
+    return '$done de $total hechos';
+  }
+
+  @override
+  String checklist_startedAt(String time) {
+    return 'Iniciada $time';
+  }
+
+  @override
+  String checklist_finishedAt(String time) {
+    return 'Terminada $time';
+  }
+
+  @override
+  String get checklist_note => 'Nota';
+
+  @override
+  String get checklist_finish => 'Terminar y guardar';
+
+  @override
+  String get checklist_unfinished =>
+      'Faltan elementos por marcar. ¿Guardar el registro igualmente?';
+
+  @override
+  String get checklist_saveAnyway => 'Guardar igualmente';
+
+  @override
+  String get checklist_export => 'Exportar o eliminar';
+
+  @override
+  String get checklist_exportText => 'Compartir como texto';
+
+  @override
+  String get checklist_exportJson => 'Compartir como JSON';
+
+  @override
+  String get checklist_exportFailed => 'No se pudo compartir el registro.';
+
+  @override
+  String get checklist_deleteRun => 'Eliminar registro';
+
+  @override
+  String get checklist_deleteRunConfirm =>
+      '¿Eliminar este registro? No se puede deshacer.';
+
+  @override
+  String checklist_deleteConfirm(String name) {
+    return '¿Eliminar $name? Sus registros completados se conservan.';
+  }
+
+  @override
+  String get checklist_preTrip => 'Antes de salir';
+
+  @override
+  String get checklist_preTrip1 =>
+      'Radio cargada y batería de repuesto en la mochila';
+
+  @override
+  String get checklist_preTrip2 =>
+      'Radio vinculada al teléfono y mensaje de prueba enviado';
+
+  @override
+  String get checklist_preTrip3 => 'Mapas sin conexión de la zona guardados';
+
+  @override
+  String get checklist_preTrip4 => 'Ruta y hora de regreso dejadas a alguien';
+
+  @override
+  String get checklist_preTrip5 =>
+      'Canal del grupo y contactos del equipo revisados';
+
+  @override
+  String get checklist_preTrip6 => 'SOS y registro probados una vez';
+
+  @override
+  String get checklist_deploy => 'Instalar un nodo';
+
+  @override
+  String get checklist_deploy1 => 'Lugar y permiso confirmados';
+
+  @override
+  String get checklist_deploy2 => 'Antena montada y conectores sellados';
+
+  @override
+  String get checklist_deploy3 => 'Alimentación y solar revisadas';
+
+  @override
+  String get checklist_deploy4 => 'Ajustes de radio y región confirmados';
+
+  @override
+  String get checklist_deploy5 => 'Mensaje de prueba oído a través del nodo';
+
+  @override
+  String get checklist_deploy6 => 'Ubicación, fotos y notas registradas';
 }

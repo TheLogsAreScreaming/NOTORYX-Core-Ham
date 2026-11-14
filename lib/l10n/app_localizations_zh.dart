@@ -11076,4 +11076,131 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get ham_exportAutomatedCsv => 'Export automated transmissions (CSV)';
+
+  @override
+  String get checklist_title => '检查清单';
+
+  @override
+  String get checklist_toolSubtitle => '可重复使用的出行前和部署清单，离线可用';
+
+  @override
+  String get checklist_empty => '没有清单。用下方按钮添加。';
+
+  @override
+  String get checklist_add => '新建清单';
+
+  @override
+  String get checklist_edit => '编辑清单';
+
+  @override
+  String get checklist_name => '名称';
+
+  @override
+  String get checklist_items => '条目，每行一个';
+
+  @override
+  String checklist_itemCount(int count) {
+    return '条目：$count';
+  }
+
+  @override
+  String get checklist_history => '已完成记录';
+
+  @override
+  String get checklist_noRuns => '还没有已完成的记录。';
+
+  @override
+  String get checklist_inProgress => '进行中';
+
+  @override
+  String checklist_progress(int done, int total) {
+    return '已完成 $done/$total';
+  }
+
+  @override
+  String checklist_startedAt(String time) {
+    return '开始于 $time';
+  }
+
+  @override
+  String checklist_finishedAt(String time) {
+    return '完成于 $time';
+  }
+
+  @override
+  String get checklist_note => '备注';
+
+  @override
+  String get checklist_finish => '完成并保存';
+
+  @override
+  String get checklist_unfinished => '有未勾选的条目。仍要保存吗？';
+
+  @override
+  String get checklist_saveAnyway => '仍然保存';
+
+  @override
+  String get checklist_export => '导出或删除';
+
+  @override
+  String get checklist_exportText => '以文本分享';
+
+  @override
+  String get checklist_exportJson => '以 JSON 分享';
+
+  @override
+  String get checklist_exportFailed => '无法分享记录。';
+
+  @override
+  String get checklist_deleteRun => '删除记录';
+
+  @override
+  String get checklist_deleteRunConfirm => '删除此记录？此操作无法撤销。';
+
+  @override
+  String checklist_deleteConfirm(String name) {
+    return '删除 $name？已完成的记录会保留。';
+  }
+
+  @override
+  String get checklist_preTrip => '出行前';
+
+  @override
+  String get checklist_preTrip1 => '电台已充电，备用电池已带';
+
+  @override
+  String get checklist_preTrip2 => '电台已与手机配对并发送测试消息';
+
+  @override
+  String get checklist_preTrip3 => '已保存该区域的离线地图';
+
+  @override
+  String get checklist_preTrip4 => '已把路线和返回时间告诉家人';
+
+  @override
+  String get checklist_preTrip5 => '已检查团队频道和联系人';
+
+  @override
+  String get checklist_preTrip6 => '已试用一次 SOS 和报到';
+
+  @override
+  String get checklist_deploy => '架设节点';
+
+  @override
+  String get checklist_deploy1 => '已确认地点和许可';
+
+  @override
+  String get checklist_deploy2 => '天线已安装，接头已密封';
+
+  @override
+  String get checklist_deploy3 => '已检查电源和太阳能';
+
+  @override
+  String get checklist_deploy4 => '已确认电台设置和地区';
+
+  @override
+  String get checklist_deploy5 => '已通过节点收到测试消息';
+
+  @override
+  String get checklist_deploy6 => '已记录位置、照片和备注';
 }

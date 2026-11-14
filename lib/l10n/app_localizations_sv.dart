@@ -11754,4 +11754,135 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get ham_exportAutomatedCsv => 'Export automated transmissions (CSV)';
+
+  @override
+  String get checklist_title => 'Checklistor';
+
+  @override
+  String get checklist_toolSubtitle =>
+      'Återanvändbara listor före tur och vid utplacering, fungerar offline';
+
+  @override
+  String get checklist_empty => 'Inga listor. Lägg till med knappen nedan.';
+
+  @override
+  String get checklist_add => 'Ny checklista';
+
+  @override
+  String get checklist_edit => 'Redigera checklista';
+
+  @override
+  String get checklist_name => 'Namn';
+
+  @override
+  String get checklist_items => 'Punkter, en per rad';
+
+  @override
+  String checklist_itemCount(int count) {
+    return 'Punkter: $count';
+  }
+
+  @override
+  String get checklist_history => 'Avslutade genomgångar';
+
+  @override
+  String get checklist_noRuns => 'Inga avslutade genomgångar än.';
+
+  @override
+  String get checklist_inProgress => 'Pågår';
+
+  @override
+  String checklist_progress(int done, int total) {
+    return '$done av $total klara';
+  }
+
+  @override
+  String checklist_startedAt(String time) {
+    return 'Startad $time';
+  }
+
+  @override
+  String checklist_finishedAt(String time) {
+    return 'Klar $time';
+  }
+
+  @override
+  String get checklist_note => 'Anteckning';
+
+  @override
+  String get checklist_finish => 'Avsluta och spara';
+
+  @override
+  String get checklist_unfinished =>
+      'Alla punkter är inte bockade. Spara ändå?';
+
+  @override
+  String get checklist_saveAnyway => 'Spara ändå';
+
+  @override
+  String get checklist_export => 'Exportera eller ta bort';
+
+  @override
+  String get checklist_exportText => 'Dela som text';
+
+  @override
+  String get checklist_exportJson => 'Dela som JSON';
+
+  @override
+  String get checklist_exportFailed => 'Kunde inte dela posten.';
+
+  @override
+  String get checklist_deleteRun => 'Ta bort posten';
+
+  @override
+  String get checklist_deleteRunConfirm =>
+      'Ta bort posten? Det går inte att ångra.';
+
+  @override
+  String checklist_deleteConfirm(String name) {
+    return 'Ta bort $name? Avslutade poster sparas.';
+  }
+
+  @override
+  String get checklist_preTrip => 'Före turen';
+
+  @override
+  String get checklist_preTrip1 => 'Radion laddad och extrabatteri packat';
+
+  @override
+  String get checklist_preTrip2 =>
+      'Radion parkopplad med telefonen och testmeddelande skickat';
+
+  @override
+  String get checklist_preTrip3 => 'Offlinekartor för området sparade';
+
+  @override
+  String get checklist_preTrip4 => 'Rutt och hemkomsttid lämnade hos någon';
+
+  @override
+  String get checklist_preTrip5 => 'Gruppkanal och lagkontakter kontrollerade';
+
+  @override
+  String get checklist_preTrip6 => 'SOS och incheckning provade en gång';
+
+  @override
+  String get checklist_deploy => 'Sätta upp en nod';
+
+  @override
+  String get checklist_deploy1 => 'Plats och tillstånd bekräftade';
+
+  @override
+  String get checklist_deploy2 => 'Antenn monterad och kontakter tätade';
+
+  @override
+  String get checklist_deploy3 => 'Ström och solpanel kontrollerade';
+
+  @override
+  String get checklist_deploy4 => 'Radioinställningar och region bekräftade';
+
+  @override
+  String get checklist_deploy5 => 'Testmeddelande hört via noden';
+
+  @override
+  String get checklist_deploy6 => 'Plats, foton och anteckningar sparade';
 }

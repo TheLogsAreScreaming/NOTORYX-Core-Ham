@@ -11706,4 +11706,136 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get ham_exportAutomatedCsv => 'Export automated transmissions (CSV)';
+
+  @override
+  String get checklist_title => 'Checklists';
+
+  @override
+  String get checklist_toolSubtitle =>
+      'Reusable pre-trip and deployment checklists that work offline';
+
+  @override
+  String get checklist_empty => 'No checklists. Add one with the button below.';
+
+  @override
+  String get checklist_add => 'New checklist';
+
+  @override
+  String get checklist_edit => 'Edit checklist';
+
+  @override
+  String get checklist_name => 'Name';
+
+  @override
+  String get checklist_items => 'Items, one per line';
+
+  @override
+  String checklist_itemCount(int count) {
+    return 'Items: $count';
+  }
+
+  @override
+  String get checklist_history => 'Completed runs';
+
+  @override
+  String get checklist_noRuns => 'No completed runs yet.';
+
+  @override
+  String get checklist_inProgress => 'In progress';
+
+  @override
+  String checklist_progress(int done, int total) {
+    return '$done of $total done';
+  }
+
+  @override
+  String checklist_startedAt(String time) {
+    return 'Started $time';
+  }
+
+  @override
+  String checklist_finishedAt(String time) {
+    return 'Finished $time';
+  }
+
+  @override
+  String get checklist_note => 'Note';
+
+  @override
+  String get checklist_finish => 'Finish and save';
+
+  @override
+  String get checklist_unfinished =>
+      'Some items aren\'t ticked. Save the record anyway?';
+
+  @override
+  String get checklist_saveAnyway => 'Save anyway';
+
+  @override
+  String get checklist_export => 'Export or delete';
+
+  @override
+  String get checklist_exportText => 'Share as text';
+
+  @override
+  String get checklist_exportJson => 'Share as JSON';
+
+  @override
+  String get checklist_exportFailed => 'Could not share the record.';
+
+  @override
+  String get checklist_deleteRun => 'Delete record';
+
+  @override
+  String get checklist_deleteRunConfirm =>
+      'Delete this record? It can\'t be undone.';
+
+  @override
+  String checklist_deleteConfirm(String name) {
+    return 'Delete $name? Its completed records are kept.';
+  }
+
+  @override
+  String get checklist_preTrip => 'Before a trip';
+
+  @override
+  String get checklist_preTrip1 => 'Radio charged and a spare battery packed';
+
+  @override
+  String get checklist_preTrip2 =>
+      'Radio paired with the phone and a test message sent';
+
+  @override
+  String get checklist_preTrip3 => 'Offline maps saved for the area';
+
+  @override
+  String get checklist_preTrip4 =>
+      'Route and return time left with someone at home';
+
+  @override
+  String get checklist_preTrip5 => 'Group channel and team contacts checked';
+
+  @override
+  String get checklist_preTrip6 => 'SOS and check-in tried once';
+
+  @override
+  String get checklist_deploy => 'Putting up a node';
+
+  @override
+  String get checklist_deploy1 => 'Site and permission confirmed';
+
+  @override
+  String get checklist_deploy2 => 'Antenna mounted and connectors sealed';
+
+  @override
+  String get checklist_deploy3 => 'Power and solar checked';
+
+  @override
+  String get checklist_deploy4 => 'Radio settings and region confirmed';
+
+  @override
+  String get checklist_deploy5 => 'Test message heard through the node';
+
+  @override
+  String get checklist_deploy6 => 'Location, photos and notes recorded';
 }

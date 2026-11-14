@@ -11296,4 +11296,131 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get ham_exportAutomatedCsv => 'Export automated transmissions (CSV)';
+
+  @override
+  String get checklist_title => 'チェックリスト';
+
+  @override
+  String get checklist_toolSubtitle => '出発前・設置用の再利用できるチェックリスト（オフライン対応）';
+
+  @override
+  String get checklist_empty => 'チェックリストはありません。下のボタンで追加できます。';
+
+  @override
+  String get checklist_add => '新しいチェックリスト';
+
+  @override
+  String get checklist_edit => 'チェックリストを編集';
+
+  @override
+  String get checklist_name => '名前';
+
+  @override
+  String get checklist_items => '項目（1 行に 1 つ）';
+
+  @override
+  String checklist_itemCount(int count) {
+    return '項目数: $count';
+  }
+
+  @override
+  String get checklist_history => '完了した記録';
+
+  @override
+  String get checklist_noRuns => '完了した記録はまだありません。';
+
+  @override
+  String get checklist_inProgress => '進行中';
+
+  @override
+  String checklist_progress(int done, int total) {
+    return '$total 件中 $done 件完了';
+  }
+
+  @override
+  String checklist_startedAt(String time) {
+    return '開始 $time';
+  }
+
+  @override
+  String checklist_finishedAt(String time) {
+    return '完了 $time';
+  }
+
+  @override
+  String get checklist_note => 'メモ';
+
+  @override
+  String get checklist_finish => '完了して保存';
+
+  @override
+  String get checklist_unfinished => 'チェックされていない項目があります。それでも保存しますか？';
+
+  @override
+  String get checklist_saveAnyway => '保存する';
+
+  @override
+  String get checklist_export => '書き出しまたは削除';
+
+  @override
+  String get checklist_exportText => 'テキストで共有';
+
+  @override
+  String get checklist_exportJson => 'JSON で共有';
+
+  @override
+  String get checklist_exportFailed => '記録を共有できませんでした。';
+
+  @override
+  String get checklist_deleteRun => '記録を削除';
+
+  @override
+  String get checklist_deleteRunConfirm => 'この記録を削除しますか？元に戻せません。';
+
+  @override
+  String checklist_deleteConfirm(String name) {
+    return '$name を削除しますか？完了した記録は残ります。';
+  }
+
+  @override
+  String get checklist_preTrip => '出発前';
+
+  @override
+  String get checklist_preTrip1 => '無線機を充電し、予備バッテリーを持った';
+
+  @override
+  String get checklist_preTrip2 => '無線機を電話とペアリングし、テスト送信した';
+
+  @override
+  String get checklist_preTrip3 => 'エリアのオフライン地図を保存した';
+
+  @override
+  String get checklist_preTrip4 => 'ルートと帰着予定を誰かに伝えた';
+
+  @override
+  String get checklist_preTrip5 => 'グループのチャンネルとチームの連絡先を確認した';
+
+  @override
+  String get checklist_preTrip6 => 'SOS とチェックインを一度試した';
+
+  @override
+  String get checklist_deploy => 'ノードの設置';
+
+  @override
+  String get checklist_deploy1 => '場所と許可を確認した';
+
+  @override
+  String get checklist_deploy2 => 'アンテナを取り付け、コネクタを防水した';
+
+  @override
+  String get checklist_deploy3 => '電源とソーラーを確認した';
+
+  @override
+  String get checklist_deploy4 => '無線設定と地域を確認した';
+
+  @override
+  String get checklist_deploy5 => 'テスト送信がノード経由で届いた';
+
+  @override
+  String get checklist_deploy6 => '位置・写真・メモを記録した';
 }

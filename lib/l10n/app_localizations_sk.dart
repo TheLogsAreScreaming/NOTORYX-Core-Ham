@@ -11823,4 +11823,136 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get ham_exportAutomatedCsv => 'Export automated transmissions (CSV)';
+
+  @override
+  String get checklist_title => 'Kontrolné zoznamy';
+
+  @override
+  String get checklist_toolSubtitle =>
+      'Opakovane použiteľné zoznamy pred túrou a na nasadenie, fungujú offline';
+
+  @override
+  String get checklist_empty => 'Žiadne zoznamy. Pridaj tlačidlom nižšie.';
+
+  @override
+  String get checklist_add => 'Nový zoznam';
+
+  @override
+  String get checklist_edit => 'Upraviť zoznam';
+
+  @override
+  String get checklist_name => 'Názov';
+
+  @override
+  String get checklist_items => 'Položky, jedna na riadok';
+
+  @override
+  String checklist_itemCount(int count) {
+    return 'Položky: $count';
+  }
+
+  @override
+  String get checklist_history => 'Dokončené kontroly';
+
+  @override
+  String get checklist_noRuns => 'Zatiaľ žiadne dokončené kontroly.';
+
+  @override
+  String get checklist_inProgress => 'Prebieha';
+
+  @override
+  String checklist_progress(int done, int total) {
+    return 'Hotovo $done z $total';
+  }
+
+  @override
+  String checklist_startedAt(String time) {
+    return 'Začaté $time';
+  }
+
+  @override
+  String checklist_finishedAt(String time) {
+    return 'Dokončené $time';
+  }
+
+  @override
+  String get checklist_note => 'Poznámka';
+
+  @override
+  String get checklist_finish => 'Dokončiť a uložiť';
+
+  @override
+  String get checklist_unfinished =>
+      'Niektoré položky nie sú odškrtnuté. Uložiť aj tak?';
+
+  @override
+  String get checklist_saveAnyway => 'Uložiť aj tak';
+
+  @override
+  String get checklist_export => 'Exportovať alebo odstrániť';
+
+  @override
+  String get checklist_exportText => 'Zdieľať ako text';
+
+  @override
+  String get checklist_exportJson => 'Zdieľať ako JSON';
+
+  @override
+  String get checklist_exportFailed => 'Záznam sa nepodarilo zdieľať.';
+
+  @override
+  String get checklist_deleteRun => 'Odstrániť záznam';
+
+  @override
+  String get checklist_deleteRunConfirm =>
+      'Odstrániť tento záznam? Nedá sa to vrátiť.';
+
+  @override
+  String checklist_deleteConfirm(String name) {
+    return 'Odstrániť $name? Dokončené záznamy zostanú.';
+  }
+
+  @override
+  String get checklist_preTrip => 'Pred túrou';
+
+  @override
+  String get checklist_preTrip1 => 'Rádio nabité, náhradná batéria zbalená';
+
+  @override
+  String get checklist_preTrip2 =>
+      'Rádio spárované s telefónom, testovacia správa odoslaná';
+
+  @override
+  String get checklist_preTrip3 => 'Offline mapy oblasti uložené';
+
+  @override
+  String get checklist_preTrip4 => 'Trasa a čas návratu nechané niekomu doma';
+
+  @override
+  String get checklist_preTrip5 =>
+      'Skupinový kanál a kontakty tímu skontrolované';
+
+  @override
+  String get checklist_preTrip6 => 'SOS a prihlásenie raz vyskúšané';
+
+  @override
+  String get checklist_deploy => 'Inštalácia uzla';
+
+  @override
+  String get checklist_deploy1 => 'Miesto a povolenie potvrdené';
+
+  @override
+  String get checklist_deploy2 => 'Anténa namontovaná, konektory utesnené';
+
+  @override
+  String get checklist_deploy3 => 'Napájanie a solár skontrolované';
+
+  @override
+  String get checklist_deploy4 => 'Nastavenia rádia a región potvrdené';
+
+  @override
+  String get checklist_deploy5 => 'Testovacia správa prešla cez uzol';
+
+  @override
+  String get checklist_deploy6 => 'Poloha, fotky a poznámky zaznamenané';
 }

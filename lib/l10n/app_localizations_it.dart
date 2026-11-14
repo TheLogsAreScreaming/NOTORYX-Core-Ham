@@ -11855,4 +11855,139 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get ham_exportAutomatedCsv => 'Export automated transmissions (CSV)';
+
+  @override
+  String get checklist_title => 'Liste di controllo';
+
+  @override
+  String get checklist_toolSubtitle =>
+      'Liste riutilizzabili per uscite e installazioni, anche offline';
+
+  @override
+  String get checklist_empty =>
+      'Nessuna lista. Aggiungine una con il pulsante sotto.';
+
+  @override
+  String get checklist_add => 'Nuova lista';
+
+  @override
+  String get checklist_edit => 'Modifica lista';
+
+  @override
+  String get checklist_name => 'Nome';
+
+  @override
+  String get checklist_items => 'Voci, una per riga';
+
+  @override
+  String checklist_itemCount(int count) {
+    return 'Voci: $count';
+  }
+
+  @override
+  String get checklist_history => 'Controlli completati';
+
+  @override
+  String get checklist_noRuns => 'Ancora nessun controllo completato.';
+
+  @override
+  String get checklist_inProgress => 'In corso';
+
+  @override
+  String checklist_progress(int done, int total) {
+    return '$done di $total fatti';
+  }
+
+  @override
+  String checklist_startedAt(String time) {
+    return 'Iniziata $time';
+  }
+
+  @override
+  String checklist_finishedAt(String time) {
+    return 'Terminata $time';
+  }
+
+  @override
+  String get checklist_note => 'Nota';
+
+  @override
+  String get checklist_finish => 'Termina e salva';
+
+  @override
+  String get checklist_unfinished =>
+      'Alcune voci non sono spuntate. Salvare comunque?';
+
+  @override
+  String get checklist_saveAnyway => 'Salva comunque';
+
+  @override
+  String get checklist_export => 'Esporta o elimina';
+
+  @override
+  String get checklist_exportText => 'Condividi come testo';
+
+  @override
+  String get checklist_exportJson => 'Condividi come JSON';
+
+  @override
+  String get checklist_exportFailed => 'Impossibile condividere il registro.';
+
+  @override
+  String get checklist_deleteRun => 'Elimina registro';
+
+  @override
+  String get checklist_deleteRunConfirm =>
+      'Eliminare questo registro? Non si può annullare.';
+
+  @override
+  String checklist_deleteConfirm(String name) {
+    return 'Eliminare $name? I registri completati restano.';
+  }
+
+  @override
+  String get checklist_preTrip => 'Prima di un\'uscita';
+
+  @override
+  String get checklist_preTrip1 =>
+      'Radio carica e batteria di scorta nello zaino';
+
+  @override
+  String get checklist_preTrip2 =>
+      'Radio associata al telefono e messaggio di prova inviato';
+
+  @override
+  String get checklist_preTrip3 => 'Mappe offline della zona salvate';
+
+  @override
+  String get checklist_preTrip4 =>
+      'Percorso e ora di rientro lasciati a qualcuno';
+
+  @override
+  String get checklist_preTrip5 =>
+      'Canale del gruppo e contatti del team controllati';
+
+  @override
+  String get checklist_preTrip6 => 'SOS e check-in provati una volta';
+
+  @override
+  String get checklist_deploy => 'Installare un nodo';
+
+  @override
+  String get checklist_deploy1 => 'Sito e permesso confermati';
+
+  @override
+  String get checklist_deploy2 => 'Antenna montata e connettori sigillati';
+
+  @override
+  String get checklist_deploy3 => 'Alimentazione e solare controllati';
+
+  @override
+  String get checklist_deploy4 => 'Impostazioni radio e regione confermate';
+
+  @override
+  String get checklist_deploy5 => 'Messaggio di prova sentito tramite il nodo';
+
+  @override
+  String get checklist_deploy6 => 'Posizione, foto e note registrate';
 }

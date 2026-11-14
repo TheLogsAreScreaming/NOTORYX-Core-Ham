@@ -11887,4 +11887,137 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get ham_exportAutomatedCsv => 'Export automated transmissions (CSV)';
+
+  @override
+  String get checklist_title => 'Чек-листы';
+
+  @override
+  String get checklist_toolSubtitle =>
+      'Многоразовые чек-листы перед выходом и для установки, работают офлайн';
+
+  @override
+  String get checklist_empty => 'Чек-листов нет. Добавьте кнопкой ниже.';
+
+  @override
+  String get checklist_add => 'Новый чек-лист';
+
+  @override
+  String get checklist_edit => 'Изменить чек-лист';
+
+  @override
+  String get checklist_name => 'Название';
+
+  @override
+  String get checklist_items => 'Пункты, по одному в строке';
+
+  @override
+  String checklist_itemCount(int count) {
+    return 'Пунктов: $count';
+  }
+
+  @override
+  String get checklist_history => 'Завершённые проверки';
+
+  @override
+  String get checklist_noRuns => 'Завершённых проверок пока нет.';
+
+  @override
+  String get checklist_inProgress => 'В процессе';
+
+  @override
+  String checklist_progress(int done, int total) {
+    return 'Готово $done из $total';
+  }
+
+  @override
+  String checklist_startedAt(String time) {
+    return 'Начато $time';
+  }
+
+  @override
+  String checklist_finishedAt(String time) {
+    return 'Завершено $time';
+  }
+
+  @override
+  String get checklist_note => 'Заметка';
+
+  @override
+  String get checklist_finish => 'Завершить и сохранить';
+
+  @override
+  String get checklist_unfinished =>
+      'Отмечены не все пункты. Всё равно сохранить?';
+
+  @override
+  String get checklist_saveAnyway => 'Всё равно сохранить';
+
+  @override
+  String get checklist_export => 'Экспорт или удаление';
+
+  @override
+  String get checklist_exportText => 'Поделиться текстом';
+
+  @override
+  String get checklist_exportJson => 'Поделиться в JSON';
+
+  @override
+  String get checklist_exportFailed => 'Не удалось поделиться записью.';
+
+  @override
+  String get checklist_deleteRun => 'Удалить запись';
+
+  @override
+  String get checklist_deleteRunConfirm =>
+      'Удалить эту запись? Отменить нельзя.';
+
+  @override
+  String checklist_deleteConfirm(String name) {
+    return 'Удалить $name? Завершённые записи сохранятся.';
+  }
+
+  @override
+  String get checklist_preTrip => 'Перед выходом';
+
+  @override
+  String get checklist_preTrip1 => 'Радио заряжено, запасной аккумулятор взят';
+
+  @override
+  String get checklist_preTrip2 =>
+      'Радио сопряжено с телефоном, тестовое сообщение отправлено';
+
+  @override
+  String get checklist_preTrip3 => 'Офлайн-карты района сохранены';
+
+  @override
+  String get checklist_preTrip4 =>
+      'Маршрут и время возвращения оставлены близким';
+
+  @override
+  String get checklist_preTrip5 => 'Канал группы и контакты команды проверены';
+
+  @override
+  String get checklist_preTrip6 => 'SOS и отметка опробованы';
+
+  @override
+  String get checklist_deploy => 'Установка узла';
+
+  @override
+  String get checklist_deploy1 => 'Место и разрешение подтверждены';
+
+  @override
+  String get checklist_deploy2 =>
+      'Антенна закреплена, разъёмы загерметизированы';
+
+  @override
+  String get checklist_deploy3 => 'Питание и солнечная панель проверены';
+
+  @override
+  String get checklist_deploy4 => 'Настройки радио и регион подтверждены';
+
+  @override
+  String get checklist_deploy5 => 'Тестовое сообщение прошло через узел';
+
+  @override
+  String get checklist_deploy6 => 'Место, фото и заметки записаны';
 }

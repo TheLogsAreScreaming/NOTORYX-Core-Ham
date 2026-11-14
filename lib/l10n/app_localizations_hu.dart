@@ -11829,4 +11829,136 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get ham_exportAutomatedCsv => 'Export automated transmissions (CSV)';
+
+  @override
+  String get checklist_title => 'Ellenőrzőlisták';
+
+  @override
+  String get checklist_toolSubtitle =>
+      'Újrahasznosítható túra- és telepítési listák, offline is';
+
+  @override
+  String get checklist_empty => 'Nincs lista. Adj hozzá egyet lent a gombbal.';
+
+  @override
+  String get checklist_add => 'Új lista';
+
+  @override
+  String get checklist_edit => 'Lista szerkesztése';
+
+  @override
+  String get checklist_name => 'Név';
+
+  @override
+  String get checklist_items => 'Tételek, soronként egy';
+
+  @override
+  String checklist_itemCount(int count) {
+    return 'Tételek: $count';
+  }
+
+  @override
+  String get checklist_history => 'Befejezett ellenőrzések';
+
+  @override
+  String get checklist_noRuns => 'Még nincs befejezett ellenőrzés.';
+
+  @override
+  String get checklist_inProgress => 'Folyamatban';
+
+  @override
+  String checklist_progress(int done, int total) {
+    return '$total-ből $done kész';
+  }
+
+  @override
+  String checklist_startedAt(String time) {
+    return 'Elkezdve: $time';
+  }
+
+  @override
+  String checklist_finishedAt(String time) {
+    return 'Befejezve: $time';
+  }
+
+  @override
+  String get checklist_note => 'Megjegyzés';
+
+  @override
+  String get checklist_finish => 'Befejezés és mentés';
+
+  @override
+  String get checklist_unfinished =>
+      'Néhány tétel nincs kipipálva. Mégis mented?';
+
+  @override
+  String get checklist_saveAnyway => 'Mentés mégis';
+
+  @override
+  String get checklist_export => 'Exportálás vagy törlés';
+
+  @override
+  String get checklist_exportText => 'Megosztás szövegként';
+
+  @override
+  String get checklist_exportJson => 'Megosztás JSON-ként';
+
+  @override
+  String get checklist_exportFailed => 'A bejegyzést nem sikerült megosztani.';
+
+  @override
+  String get checklist_deleteRun => 'Bejegyzés törlése';
+
+  @override
+  String get checklist_deleteRunConfirm =>
+      'Törlöd ezt a bejegyzést? Nem vonható vissza.';
+
+  @override
+  String checklist_deleteConfirm(String name) {
+    return 'Törlöd: $name? A befejezett bejegyzések megmaradnak.';
+  }
+
+  @override
+  String get checklist_preTrip => 'Túra előtt';
+
+  @override
+  String get checklist_preTrip1 => 'Rádió feltöltve, tartalék akku bepakolva';
+
+  @override
+  String get checklist_preTrip2 =>
+      'Rádió párosítva a telefonnal, tesztüzenet elküldve';
+
+  @override
+  String get checklist_preTrip3 => 'Offline térkép elmentve a területről';
+
+  @override
+  String get checklist_preTrip4 =>
+      'Útvonal és visszaérkezés ideje valakinél hagyva';
+
+  @override
+  String get checklist_preTrip5 => 'Csoportcsatorna és csapattagok ellenőrizve';
+
+  @override
+  String get checklist_preTrip6 => 'SOS és bejelentkezés egyszer kipróbálva';
+
+  @override
+  String get checklist_deploy => 'Csomópont telepítése';
+
+  @override
+  String get checklist_deploy1 => 'Helyszín és engedély megerősítve';
+
+  @override
+  String get checklist_deploy2 => 'Antenna felszerelve, csatlakozók tömítve';
+
+  @override
+  String get checklist_deploy3 => 'Táp és napelem ellenőrizve';
+
+  @override
+  String get checklist_deploy4 => 'Rádióbeállítások és régió megerősítve';
+
+  @override
+  String get checklist_deploy5 => 'Tesztüzenet hallható a csomóponton át';
+
+  @override
+  String get checklist_deploy6 => 'Hely, fotók és jegyzetek rögzítve';
 }

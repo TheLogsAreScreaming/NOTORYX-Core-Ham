@@ -11892,4 +11892,136 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get ham_exportAutomatedCsv => 'Export automated transmissions (CSV)';
+
+  @override
+  String get checklist_title => 'Listy kontrolne';
+
+  @override
+  String get checklist_toolSubtitle =>
+      'Listy wielokrotnego użytku na wyjście i instalację, działają offline';
+
+  @override
+  String get checklist_empty => 'Brak list. Dodaj przyciskiem poniżej.';
+
+  @override
+  String get checklist_add => 'Nowa lista';
+
+  @override
+  String get checklist_edit => 'Edytuj listę';
+
+  @override
+  String get checklist_name => 'Nazwa';
+
+  @override
+  String get checklist_items => 'Punkty, jeden w wierszu';
+
+  @override
+  String checklist_itemCount(int count) {
+    return 'Punkty: $count';
+  }
+
+  @override
+  String get checklist_history => 'Ukończone przebiegi';
+
+  @override
+  String get checklist_noRuns => 'Brak ukończonych przebiegów.';
+
+  @override
+  String get checklist_inProgress => 'W toku';
+
+  @override
+  String checklist_progress(int done, int total) {
+    return 'Zrobione $done z $total';
+  }
+
+  @override
+  String checklist_startedAt(String time) {
+    return 'Rozpoczęto $time';
+  }
+
+  @override
+  String checklist_finishedAt(String time) {
+    return 'Zakończono $time';
+  }
+
+  @override
+  String get checklist_note => 'Notatka';
+
+  @override
+  String get checklist_finish => 'Zakończ i zapisz';
+
+  @override
+  String get checklist_unfinished =>
+      'Nie wszystko jest zaznaczone. Zapisać mimo to?';
+
+  @override
+  String get checklist_saveAnyway => 'Zapisz mimo to';
+
+  @override
+  String get checklist_export => 'Eksportuj lub usuń';
+
+  @override
+  String get checklist_exportText => 'Udostępnij jako tekst';
+
+  @override
+  String get checklist_exportJson => 'Udostępnij jako JSON';
+
+  @override
+  String get checklist_exportFailed => 'Nie udało się udostępnić zapisu.';
+
+  @override
+  String get checklist_deleteRun => 'Usuń zapis';
+
+  @override
+  String get checklist_deleteRunConfirm =>
+      'Usunąć ten zapis? Nie można cofnąć.';
+
+  @override
+  String checklist_deleteConfirm(String name) {
+    return 'Usunąć $name? Ukończone zapisy zostaną.';
+  }
+
+  @override
+  String get checklist_preTrip => 'Przed wyjściem';
+
+  @override
+  String get checklist_preTrip1 =>
+      'Radio naładowane, zapasowa bateria spakowana';
+
+  @override
+  String get checklist_preTrip2 =>
+      'Radio sparowane z telefonem, wiadomość testowa wysłana';
+
+  @override
+  String get checklist_preTrip3 => 'Mapy offline obszaru zapisane';
+
+  @override
+  String get checklist_preTrip4 => 'Trasa i godzina powrotu zostawione komuś';
+
+  @override
+  String get checklist_preTrip5 => 'Kanał grupy i kontakty zespołu sprawdzone';
+
+  @override
+  String get checklist_preTrip6 => 'SOS i meldunek wypróbowane';
+
+  @override
+  String get checklist_deploy => 'Instalacja węzła';
+
+  @override
+  String get checklist_deploy1 => 'Miejsce i zgoda potwierdzone';
+
+  @override
+  String get checklist_deploy2 => 'Antena zamontowana, złącza uszczelnione';
+
+  @override
+  String get checklist_deploy3 => 'Zasilanie i panel słoneczny sprawdzone';
+
+  @override
+  String get checklist_deploy4 => 'Ustawienia radia i region potwierdzone';
+
+  @override
+  String get checklist_deploy5 => 'Wiadomość testowa usłyszana przez węzeł';
+
+  @override
+  String get checklist_deploy6 => 'Lokalizacja, zdjęcia i notatki zapisane';
 }

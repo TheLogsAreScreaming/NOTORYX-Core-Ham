@@ -11882,4 +11882,140 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get ham_exportAutomatedCsv => 'Export automated transmissions (CSV)';
+
+  @override
+  String get checklist_title => 'Listes de contrôle';
+
+  @override
+  String get checklist_toolSubtitle =>
+      'Listes réutilisables avant sortie et pour l\'installation, hors ligne';
+
+  @override
+  String get checklist_empty =>
+      'Aucune liste. Ajoutez-en une avec le bouton ci-dessous.';
+
+  @override
+  String get checklist_add => 'Nouvelle liste';
+
+  @override
+  String get checklist_edit => 'Modifier la liste';
+
+  @override
+  String get checklist_name => 'Nom';
+
+  @override
+  String get checklist_items => 'Éléments, un par ligne';
+
+  @override
+  String checklist_itemCount(int count) {
+    return 'Éléments : $count';
+  }
+
+  @override
+  String get checklist_history => 'Passages terminés';
+
+  @override
+  String get checklist_noRuns => 'Aucun passage terminé pour l\'instant.';
+
+  @override
+  String get checklist_inProgress => 'En cours';
+
+  @override
+  String checklist_progress(int done, int total) {
+    return '$done sur $total faits';
+  }
+
+  @override
+  String checklist_startedAt(String time) {
+    return 'Commencée $time';
+  }
+
+  @override
+  String checklist_finishedAt(String time) {
+    return 'Terminée $time';
+  }
+
+  @override
+  String get checklist_note => 'Note';
+
+  @override
+  String get checklist_finish => 'Terminer et enregistrer';
+
+  @override
+  String get checklist_unfinished =>
+      'Certains éléments ne sont pas cochés. Enregistrer quand même ?';
+
+  @override
+  String get checklist_saveAnyway => 'Enregistrer quand même';
+
+  @override
+  String get checklist_export => 'Exporter ou supprimer';
+
+  @override
+  String get checklist_exportText => 'Partager en texte';
+
+  @override
+  String get checklist_exportJson => 'Partager en JSON';
+
+  @override
+  String get checklist_exportFailed =>
+      'Impossible de partager l\'enregistrement.';
+
+  @override
+  String get checklist_deleteRun => 'Supprimer l\'enregistrement';
+
+  @override
+  String get checklist_deleteRunConfirm =>
+      'Supprimer cet enregistrement ? C\'est irréversible.';
+
+  @override
+  String checklist_deleteConfirm(String name) {
+    return 'Supprimer $name ? Ses enregistrements terminés sont conservés.';
+  }
+
+  @override
+  String get checklist_preTrip => 'Avant une sortie';
+
+  @override
+  String get checklist_preTrip1 =>
+      'Radio chargée et batterie de rechange emportée';
+
+  @override
+  String get checklist_preTrip2 =>
+      'Radio appairée au téléphone et message de test envoyé';
+
+  @override
+  String get checklist_preTrip3 => 'Cartes hors ligne de la zone enregistrées';
+
+  @override
+  String get checklist_preTrip4 =>
+      'Itinéraire et heure de retour laissés à un proche';
+
+  @override
+  String get checklist_preTrip5 =>
+      'Canal de groupe et contacts de l\'équipe vérifiés';
+
+  @override
+  String get checklist_preTrip6 => 'SOS et pointage essayés une fois';
+
+  @override
+  String get checklist_deploy => 'Installer un nœud';
+
+  @override
+  String get checklist_deploy1 => 'Site et autorisation confirmés';
+
+  @override
+  String get checklist_deploy2 => 'Antenne fixée et connecteurs étanches';
+
+  @override
+  String get checklist_deploy3 => 'Alimentation et solaire vérifiés';
+
+  @override
+  String get checklist_deploy4 => 'Réglages radio et région confirmés';
+
+  @override
+  String get checklist_deploy5 => 'Message de test entendu via le nœud';
+
+  @override
+  String get checklist_deploy6 => 'Position, photos et notes consignées';
 }
