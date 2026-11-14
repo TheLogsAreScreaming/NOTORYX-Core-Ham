@@ -187,7 +187,13 @@ class AutomationService extends ChangeNotifier {
   void _onDirect(Message m) {
     if (m.isCli || m.isOutgoing) return;
     unawaited(
-      onMessage(AutomationMessage(text: m.text, senderKey: m.senderKeyHex)),
+      onMessage(
+        AutomationMessage(
+          text: m.text,
+          senderKey: m.senderKeyHex,
+          senderName: connector.getContactByPubKeyHex(m.senderKeyHex)?.name,
+        ),
+      ),
     );
   }
 
@@ -199,6 +205,7 @@ class AutomationService extends ChangeNotifier {
         AutomationMessage(
           text: m.text,
           senderKey: key == null ? null : pubKeyToHex(key),
+          senderName: m.senderName,
           channelIndex: m.channelIndex,
         ),
       ),
@@ -230,7 +237,7 @@ class AutomationService extends ChangeNotifier {
       for (final action in rule.actions) {
         AutomationOutcome outcome;
         try {
-          outcome = await _act(rule, action);
+          outcome = await _act(rule, action, message);
         } catch (e) {
           appLogger.warn(
             'Automation "${rule.name}" ${action.type.name} failed: $e',
@@ -281,13 +288,28 @@ class AutomationService extends ChangeNotifier {
     return null;
   }
 
+  /// [template] with its placeholders filled. On-air text never gets
+  /// [message], so `{node}` and `{text}` come out empty there.
+  String _fill(
+    AutomationRule rule,
+    String template, [
+    AutomationMessage? message,
+  ]) => fillAutomationText(
+    template,
+    rule: rule.name,
+    now: _clock(),
+    battery: connector.isConnected ? connector.batteryPercent : null,
+    message: message,
+  ).trim();
+
   Future<AutomationOutcome> _act(
     AutomationRule rule,
     AutomationAction action,
+    AutomationMessage? message,
   ) async {
     switch (action.type) {
       case ActionType.alert:
-        await _notify(rule.name, action.text.trim());
+        await _notify(rule.name, _fill(rule, action.text, message));
         return AutomationOutcome.done;
       case ActionType.playSound:
         await _playSound();
@@ -319,8 +341,9 @@ class AutomationService extends ChangeNotifier {
   ) async {
     final hold = transmitHold();
     if (hold != null) return hold;
-    if (!isValidAutomationText(action.text)) return AutomationOutcome.failed;
-    final text = '$automationPrefix${action.text.trim()}';
+    final body = _fill(rule, action.text);
+    if (!isValidAutomationText(body)) return AutomationOutcome.failed;
+    final text = '$automationPrefix$body';
     final Future<void> Function() send;
     final String to;
     if (action.target == SendTarget.contact) {

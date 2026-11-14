@@ -12025,4 +12025,9 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get checklist_deploy6 => 'Hely, fotók és jegyzetek rögzítve';
+
+  @override
+  String automation_placeholders(String list) {
+    return 'Használható: $list';
+  }
 }

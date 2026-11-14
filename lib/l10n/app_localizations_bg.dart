@@ -12027,4 +12027,9 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get checklist_deploy6 =>
       'Местоположението, снимките и бележките са записани';
+
+  @override
+  String automation_placeholders(String list) {
+    return 'Можете да използвате $list';
+  }
 }

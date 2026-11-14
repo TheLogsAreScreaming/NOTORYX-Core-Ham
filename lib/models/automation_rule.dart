@@ -33,6 +33,37 @@ bool isValidWebhookUrl(String url) {
   return uri != null && uri.scheme == 'https' && uri.host.isNotEmpty;
 }
 
+/// Placeholders an alert can use.
+const String automationAlertPlaceholders =
+    '{rule} {time} {battery} {node} {text}';
+
+/// Placeholders an on-air message can use. `{node}` and `{text}` are left
+/// out on purpose: filling them would retransmit what another station
+/// sent, which makes the rule an automatic relay of other people's
+/// traffic (see docs/licensed-operator/AUTOMATION.md).
+const String automationSendPlaceholders = '{rule} {time} {battery}';
+
+/// Fills `{rule} {time} {battery} {node} {text}` in [template].
+///
+/// With no [message], `{node}` and `{text}` become empty. On-air messages
+/// are always filled without one.
+String fillAutomationText(
+  String template, {
+  required String rule,
+  required DateTime now,
+  int? battery,
+  AutomationMessage? message,
+}) => template
+    .replaceAll('{rule}', rule)
+    .replaceAll(
+      '{time}',
+      '${now.hour.toString().padLeft(2, '0')}:'
+          '${now.minute.toString().padLeft(2, '0')}',
+    )
+    .replaceAll('{battery}', battery == null ? '?' : '$battery%')
+    .replaceAll('{node}', message?.senderName ?? '')
+    .replaceAll('{text}', message?.text ?? '');
+
 /// Whether [text] was sent by an automation or the bot. Rules never react to
 /// those, so two stations' rules can't answer each other forever.
 bool isAutomatedText(String text) {
@@ -389,10 +420,14 @@ class AutomationMessage {
   const AutomationMessage({
     required this.text,
     this.senderKey,
+    this.senderName,
     this.channelIndex,
   });
 
   final String text;
+
+  /// The sender's name, when known. Only alerts on this device use it.
+  final String? senderName;
 
   /// The sender's public key (hex), when known.
   final String? senderKey;

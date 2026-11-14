@@ -12019,4 +12019,9 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get checklist_deploy6 => 'Poloha, fotky a poznámky zaznamenané';
+
+  @override
+  String automation_placeholders(String list) {
+    return 'Môžete použiť $list';
+  }
 }

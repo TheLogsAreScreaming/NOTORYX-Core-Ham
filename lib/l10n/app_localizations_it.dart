@@ -12054,4 +12054,9 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get checklist_deploy6 => 'Posizione, foto e note registrate';
+
+  @override
+  String automation_placeholders(String list) {
+    return 'Puoi usare $list';
+  }
 }

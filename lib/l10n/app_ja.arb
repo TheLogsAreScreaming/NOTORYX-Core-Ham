@@ -4768,5 +4768,6 @@
   "checklist_deploy3": "電源とソーラーを確認した",
   "checklist_deploy4": "無線設定と地域を確認した",
   "checklist_deploy5": "テスト送信がノード経由で届いた",
-  "checklist_deploy6": "位置・写真・メモを記録した"
+  "checklist_deploy6": "位置・写真・メモを記録した",
+  "automation_placeholders": "使用できる語: {list}"
 }

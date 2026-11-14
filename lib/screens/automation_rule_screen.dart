@@ -530,6 +530,10 @@ class _ActionCard extends StatelessWidget {
                 : null,
             onChanged: (v) => onChanged(a.copyWith(text: v)),
           ),
+          Text(
+            l10n.automation_placeholders(automationSendPlaceholders),
+            style: small,
+          ),
           Text(l10n.automation_sendHint, style: small),
         ],
         ActionType.alert => [
@@ -537,6 +541,10 @@ class _ActionCard extends StatelessWidget {
             label: l10n.automation_alertText,
             value: a.text,
             onChanged: (v) => onChanged(a.copyWith(text: v)),
+          ),
+          Text(
+            l10n.automation_placeholders(automationAlertPlaceholders),
+            style: small,
           ),
         ],
         ActionType.changeChannel => [

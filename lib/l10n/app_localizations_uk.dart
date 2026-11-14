@@ -12081,4 +12081,9 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get checklist_deploy6 => 'Місце, фото й нотатки записано';
+
+  @override
+  String automation_placeholders(String list) {
+    return 'Можна використовувати $list';
+  }
 }

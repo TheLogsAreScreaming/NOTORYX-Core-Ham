@@ -4768,5 +4768,6 @@
   "checklist_deploy3": "전원과 태양광 확인",
   "checklist_deploy4": "무선 설정과 지역 확인",
   "checklist_deploy5": "노드를 통해 테스트 메시지 수신",
-  "checklist_deploy6": "위치, 사진, 메모 기록"
+  "checklist_deploy6": "위치, 사진, 메모 기록",
+  "automation_placeholders": "사용 가능: {list}"
 }

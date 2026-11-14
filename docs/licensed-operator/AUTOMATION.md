@@ -35,6 +35,11 @@ Only **Send a message** puts anything on air. For that action the app:
   log under *Automated transmissions* (time, rule, destination, band,
   frequency, text, station call sign) and can be exported as CSV. Held sends
   appear in the Automation page's activity list with the reason.
+- **Never relays received traffic.** Message and alert texts can use
+  placeholders. Alerts on this device may use `{rule} {time} {battery} {node}
+  {text}`, but a message sent on air only fills `{rule} {time} {battery}`:
+  `{node}` and `{text}` come out empty there, so a rule can't retransmit what
+  another station sent.
 
 ## Webhooks
 

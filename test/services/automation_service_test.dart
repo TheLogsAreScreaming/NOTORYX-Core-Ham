@@ -170,6 +170,39 @@ void main() {
     expect(s.activity.first.outcome, AutomationOutcome.done);
   });
 
+  test(
+    'placeholders: alerts get all of them, on-air text never relays',
+    () async {
+      final s = service();
+      await s.save(
+        _rule(const [
+          AutomationAction(
+            type: ActionType.alert,
+            text: '{node} said {text} at {time}',
+          ),
+          AutomationAction(
+            type: ActionType.sendMessage,
+            target: SendTarget.channel,
+            channelIndex: 3,
+            text: '{rule} {battery} {time}{node}{text}',
+          ),
+        ]),
+      );
+      radio.direct.add(
+        Message(
+          senderKey: Uint8List.fromList(List.filled(32, 7)),
+          text: 'ping secret',
+          timestamp: now,
+          isOutgoing: false,
+        ),
+      );
+      await pumpEventQueue();
+      expect(alerts, ['Ping reply r: KD2ABC Hill said ping secret at 12:00']);
+      expect(radio.sentText, ['#3 [auto] Ping reply r 80% 12:00']);
+      expect(log.automated.single.text, '[auto] Ping reply r 80% 12:00');
+    },
+  );
+
   test('holds transmissions unless the station is ready', () async {
     final s = service();
     await s.save(

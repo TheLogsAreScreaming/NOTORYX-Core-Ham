@@ -4634,5 +4634,6 @@
   "checklist_deploy3": "Voeding en zonnepaneel gecontroleerd",
   "checklist_deploy4": "Radio-instellingen en regio bevestigd",
   "checklist_deploy5": "Testbericht via het knooppunt gehoord",
-  "checklist_deploy6": "Locatie, foto's en notities vastgelegd"
+  "checklist_deploy6": "Locatie, foto's en notities vastgelegd",
+  "automation_placeholders": "Je kunt {list} gebruiken"
 }

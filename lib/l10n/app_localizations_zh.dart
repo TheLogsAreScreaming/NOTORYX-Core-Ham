@@ -11265,4 +11265,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get checklist_deploy6 => '已记录位置、照片和备注';
+
+  @override
+  String automation_placeholders(String list) {
+    return '可使用 $list';
+  }
 }
