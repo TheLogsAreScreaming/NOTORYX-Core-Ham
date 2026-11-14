@@ -4634,5 +4634,6 @@
   "checklist_deploy3": "Napajanje in sončna celica preverjena",
   "checklist_deploy4": "Nastavitve radia in regija potrjene",
   "checklist_deploy5": "Testno sporočilo slišano prek vozlišča",
-  "checklist_deploy6": "Lokacija, fotografije in opombe zapisane"
+  "checklist_deploy6": "Lokacija, fotografije in opombe zapisane",
+  "automation_placeholders": "Uporabite lahko {list}"
 }

@@ -4672,5 +4672,6 @@
   "checklist_deploy3": "Zasilanie i panel słoneczny sprawdzone",
   "checklist_deploy4": "Ustawienia radia i region potwierdzone",
   "checklist_deploy5": "Wiadomość testowa usłyszana przez węzeł",
-  "checklist_deploy6": "Lokalizacja, zdjęcia i notatki zapisane"
+  "checklist_deploy6": "Lokalizacja, zdjęcia i notatki zapisane",
+  "automation_placeholders": "Możesz użyć {list}"
 }

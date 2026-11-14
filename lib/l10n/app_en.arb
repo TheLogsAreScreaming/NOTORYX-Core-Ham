@@ -7331,5 +7331,13 @@
   "checklist_deploy3": "Power and solar checked",
   "checklist_deploy4": "Radio settings and region confirmed",
   "checklist_deploy5": "Test message heard through the node",
-  "checklist_deploy6": "Location, photos and notes recorded"
+  "checklist_deploy6": "Location, photos and notes recorded",
+  "automation_placeholders": "You can use {list}",
+  "@automation_placeholders": {
+    "placeholders": {
+      "list": {
+        "type": "String"
+      }
+    }
+  }
 }

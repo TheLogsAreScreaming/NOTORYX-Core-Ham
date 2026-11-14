@@ -4639,5 +4639,6 @@
   "checklist_deploy3": "已检查电源和太阳能",
   "checklist_deploy4": "已确认电台设置和地区",
   "checklist_deploy5": "已通过节点收到测试消息",
-  "checklist_deploy6": "已记录位置、照片和备注"
+  "checklist_deploy6": "已记录位置、照片和备注",
+  "automation_placeholders": "可使用 {list}"
 }

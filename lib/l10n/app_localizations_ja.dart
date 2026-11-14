@@ -11486,4 +11486,9 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get checklist_deploy6 => '位置・写真・メモを記録した';
+
+  @override
+  String automation_placeholders(String list) {
+    return '使用できる語: $list';
+  }
 }

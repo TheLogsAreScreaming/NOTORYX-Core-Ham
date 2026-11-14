@@ -4768,5 +4768,6 @@
   "checklist_deploy3": "Alimentation et solaire vérifiés",
   "checklist_deploy4": "Réglages radio et région confirmés",
   "checklist_deploy5": "Message de test entendu via le nœud",
-  "checklist_deploy6": "Position, photos et notes consignées"
+  "checklist_deploy6": "Position, photos et notes consignées",
+  "automation_placeholders": "Vous pouvez utiliser {list}"
 }

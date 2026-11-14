@@ -4634,5 +4634,6 @@
   "checklist_deploy3": "Alimentação e solar verificados",
   "checklist_deploy4": "Definições de rádio e região confirmadas",
   "checklist_deploy5": "Mensagem de teste ouvida através do nó",
-  "checklist_deploy6": "Localização, fotos e notas registadas"
+  "checklist_deploy6": "Localização, fotos e notas registadas",
+  "automation_placeholders": "Pode usar {list}"
 }

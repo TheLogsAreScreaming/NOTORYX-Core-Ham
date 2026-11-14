@@ -12042,4 +12042,9 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get checklist_deploy6 => 'Lokacija, fotografije in opombe zapisane';
+
+  @override
+  String automation_placeholders(String list) {
+    return 'Uporabite lahko $list';
+  }
 }

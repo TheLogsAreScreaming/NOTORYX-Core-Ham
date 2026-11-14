@@ -403,4 +403,23 @@ void main() {
       expect(AutomationRule.fromJson({'name': 'x'}), isNull);
     });
   });
+
+  test('fillAutomationText fills every placeholder', () {
+    final now = DateTime(2026, 11, 13, 7, 5);
+    const msg = AutomationMessage(text: 'hi', senderName: 'KD2ABC');
+    expect(
+      fillAutomationText(
+        '{rule}|{time}|{battery}|{node}|{text}',
+        rule: 'R',
+        now: now,
+        battery: 42,
+        message: msg,
+      ),
+      'R|07:05|42%|KD2ABC|hi',
+    );
+    expect(
+      fillAutomationText('{battery}{node}{text}', rule: 'R', now: now),
+      '?',
+    );
+  });
 }

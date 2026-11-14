@@ -11995,4 +11995,9 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get checklist_deploy6 => 'Locatie, foto\'s en notities vastgelegd';
+
+  @override
+  String automation_placeholders(String list) {
+    return 'Je kunt $list gebruiken';
+  }
 }

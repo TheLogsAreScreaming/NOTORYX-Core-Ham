@@ -4768,5 +4768,6 @@
   "checklist_deploy3": "Stromversorgung und Solar geprüft",
   "checklist_deploy4": "Funkeinstellungen und Region bestätigt",
   "checklist_deploy5": "Testnachricht über den Knoten gehört",
-  "checklist_deploy6": "Standort, Fotos und Notizen festgehalten"
+  "checklist_deploy6": "Standort, Fotos und Notizen festgehalten",
+  "automation_placeholders": "Verwendbar: {list}"
 }

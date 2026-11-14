@@ -4672,5 +4672,6 @@
   "checklist_deploy3": "Táp és napelem ellenőrizve",
   "checklist_deploy4": "Rádióbeállítások és régió megerősítve",
   "checklist_deploy5": "Tesztüzenet hallható a csomóponton át",
-  "checklist_deploy6": "Hely, fotók és jegyzetek rögzítve"
+  "checklist_deploy6": "Hely, fotók és jegyzetek rögzítve",
+  "automation_placeholders": "Használható: {list}"
 }

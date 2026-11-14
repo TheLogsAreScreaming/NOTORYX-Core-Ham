@@ -19956,6 +19956,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Location, photos and notes recorded'**
   String get checklist_deploy6;
+
+  /// No description provided for @automation_placeholders.
+  ///
+  /// In en, this message translates to:
+  /// **'You can use {list}'**
+  String automation_placeholders(String list);
 }
 
 class _AppLocalizationsDelegate

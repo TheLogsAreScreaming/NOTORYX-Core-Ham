@@ -11948,4 +11948,9 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get checklist_deploy6 => 'Plats, foton och anteckningar sparade';
+
+  @override
+  String automation_placeholders(String list) {
+    return 'Du kan använda $list';
+  }
 }

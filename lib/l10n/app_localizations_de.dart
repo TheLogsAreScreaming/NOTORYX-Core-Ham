@@ -12049,4 +12049,9 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get checklist_deploy6 => 'Standort, Fotos und Notizen festgehalten';
+
+  @override
+  String automation_placeholders(String list) {
+    return 'Verwendbar: $list';
+  }
 }

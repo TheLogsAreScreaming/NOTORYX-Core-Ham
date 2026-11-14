@@ -11502,4 +11502,9 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get checklist_deploy6 => '위치, 사진, 메모 기록';
+
+  @override
+  String automation_placeholders(String list) {
+    return '사용 가능: $list';
+  }
 }

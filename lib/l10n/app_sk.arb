@@ -4634,5 +4634,6 @@
   "checklist_deploy3": "Napájanie a solár skontrolované",
   "checklist_deploy4": "Nastavenia rádia a región potvrdené",
   "checklist_deploy5": "Testovacia správa prešla cez uzol",
-  "checklist_deploy6": "Poloha, fotky a poznámky zaznamenané"
+  "checklist_deploy6": "Poloha, fotky a poznámky zaznamenané",
+  "automation_placeholders": "Môžete použiť {list}"
 }
