@@ -7177,6 +7177,69 @@ class AppLocalizationsSv extends AppLocalizations {
       'Inga repeatrar upptäckta än. Anslut en radio och upptäck meshnätet först.';
 
   @override
+  String get rptTest_title => 'Test av närliggande repeatrar';
+
+  @override
+  String get rptTest_subtitle => 'Ett tryck: vilka repeatrar hör dig direkt';
+
+  @override
+  String get rptTest_start => 'Testa nu';
+
+  @override
+  String get rptTest_listening => 'Lyssnar efter svar…';
+
+  @override
+  String rptTest_wait(int seconds) {
+    return 'Nästa test om $seconds s';
+  }
+
+  @override
+  String rptTest_found(int count) {
+    return 'Repeatrar som svarade: $count';
+  }
+
+  @override
+  String get rptTest_none =>
+      'Ingen repeater inom direkt räckvidd svarade. Försök från högre mark eller igen om en minut. Repeatrar med äldre firmware svarar inte på detta test.';
+
+  @override
+  String get rptTest_strong => 'Stark';
+
+  @override
+  String get rptTest_usable => 'Användbar';
+
+  @override
+  String get rptTest_weak => 'Svag';
+
+  @override
+  String rptTest_unknown(String prefix) {
+    return 'Repeater $prefix';
+  }
+
+  @override
+  String rptTest_line(String there, String here, String rssi) {
+    return 'Hörde dig på $there dB · du hörde den på $here dB, $rssi dBm';
+  }
+
+  @override
+  String rptTest_rowLabel(
+    String name,
+    String quality,
+    String there,
+    String here,
+    String rssi,
+  ) {
+    return '$name, $quality. Den hörde dig på $there decibel. Du hörde den på $here decibel, $rssi dBm.';
+  }
+
+  @override
+  String get rptTest_notConnected => 'Anslut din radio för att köra testet.';
+
+  @override
+  String get rptTest_explainer =>
+      'Skickar en upptäcktsförfrågan utan hopp, så bara repeatrar som hör din radio direkt svarar. Första talet visar hur väl repeatern hörde dig, det andra hur väl du hörde den. Det går 30 sekunder mellan testerna eftersom repeatrar begränsar hur ofta de svarar.';
+
+  @override
   String get notification_fieldAlertTitle => 'NOTORYX fältvarning';
 
   @override

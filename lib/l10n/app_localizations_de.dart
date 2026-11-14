@@ -7247,6 +7247,70 @@ class AppLocalizationsDe extends AppLocalizations {
       'Noch keine Repeater gefunden. Verbinde ein Funkgerät und erkunde zuerst das Mesh.';
 
   @override
+  String get rptTest_title => 'Test naher Repeater';
+
+  @override
+  String get rptTest_subtitle => 'Ein Tipp: welche Repeater dich direkt hören';
+
+  @override
+  String get rptTest_start => 'Jetzt testen';
+
+  @override
+  String get rptTest_listening => 'Warte auf Antworten…';
+
+  @override
+  String rptTest_wait(int seconds) {
+    return 'Nächster Test in $seconds s';
+  }
+
+  @override
+  String rptTest_found(int count) {
+    return 'Antwortende Repeater: $count';
+  }
+
+  @override
+  String get rptTest_none =>
+      'Kein Repeater in direkter Reichweite hat geantwortet. Versuche es von höher gelegener Stelle oder in einer Minute erneut. Repeater mit älterer Firmware antworten auf diesen Test nicht.';
+
+  @override
+  String get rptTest_strong => 'Stark';
+
+  @override
+  String get rptTest_usable => 'Brauchbar';
+
+  @override
+  String get rptTest_weak => 'Schwach';
+
+  @override
+  String rptTest_unknown(String prefix) {
+    return 'Repeater $prefix';
+  }
+
+  @override
+  String rptTest_line(String there, String here, String rssi) {
+    return 'Hörte dich mit $there dB · du hörtest ihn mit $here dB, $rssi dBm';
+  }
+
+  @override
+  String rptTest_rowLabel(
+    String name,
+    String quality,
+    String there,
+    String here,
+    String rssi,
+  ) {
+    return '$name, $quality. Er hörte dich mit $there Dezibel. Du hörtest ihn mit $here Dezibel, $rssi dBm.';
+  }
+
+  @override
+  String get rptTest_notConnected =>
+      'Verbinde dein Funkgerät, um den Test zu starten.';
+
+  @override
+  String get rptTest_explainer =>
+      'Sendet eine Discover-Anfrage ohne Hops, daher antworten nur Repeater, die dein Funkgerät direkt hören. Die erste Zahl zeigt, wie gut der Repeater dich hörte, die zweite, wie gut du ihn hörtest. Zwischen Tests liegen 30 Sekunden, weil Repeater nur begrenzt oft antworten.';
+
+  @override
   String get notification_fieldAlertTitle => 'NOTORYX-Feldwarnung';
 
   @override

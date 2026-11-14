@@ -33,6 +33,7 @@ const _bastionPrefixes = [
   'settings_batterySaver',
   'settings_readAloud',
   'chat_readAloud',
+  'rptTest_',
   'traceCard_',
 ];
 

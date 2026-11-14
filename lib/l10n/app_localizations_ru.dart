@@ -7272,6 +7272,71 @@ class AppLocalizationsRu extends AppLocalizations {
       'Ретрансляторы ещё не обнаружены. Подключите радиостанцию и сначала изучите сеть.';
 
   @override
+  String get rptTest_title => 'Проверка ближних ретрансляторов';
+
+  @override
+  String get rptTest_subtitle =>
+      'Одно касание: какие ретрансляторы слышат вас напрямую';
+
+  @override
+  String get rptTest_start => 'Проверить';
+
+  @override
+  String get rptTest_listening => 'Ожидание ответов…';
+
+  @override
+  String rptTest_wait(int seconds) {
+    return 'Следующая проверка через $seconds с';
+  }
+
+  @override
+  String rptTest_found(int count) {
+    return 'Ответили ретрансляторов: $count';
+  }
+
+  @override
+  String get rptTest_none =>
+      'Ни один ретранслятор в прямой досягаемости не ответил. Попробуйте с возвышенности или через минуту. Ретрансляторы со старой прошивкой не отвечают на эту проверку.';
+
+  @override
+  String get rptTest_strong => 'Сильный';
+
+  @override
+  String get rptTest_usable => 'Рабочий';
+
+  @override
+  String get rptTest_weak => 'Слабый';
+
+  @override
+  String rptTest_unknown(String prefix) {
+    return 'Ретранслятор $prefix';
+  }
+
+  @override
+  String rptTest_line(String there, String here, String rssi) {
+    return 'Слышит вас: $there дБ · вы слышите: $here дБ, $rssi дБм';
+  }
+
+  @override
+  String rptTest_rowLabel(
+    String name,
+    String quality,
+    String there,
+    String here,
+    String rssi,
+  ) {
+    return '$name, $quality. Слышит вас: $there децибел. Вы слышите его: $here децибел, $rssi дБм.';
+  }
+
+  @override
+  String get rptTest_notConnected =>
+      'Подключите радио, чтобы выполнить проверку.';
+
+  @override
+  String get rptTest_explainer =>
+      'Отправляет один запрос обнаружения без прыжков, поэтому отвечают только ретрансляторы, которые слышат ваше радио напрямую. Первое число — как ретранслятор слышит вас, второе — как вы слышите его. Между проверками 30 секунд, потому что ретрансляторы ограничивают частоту ответов.';
+
+  @override
   String get notification_fieldAlertTitle => 'Полевое оповещение NOTORYX';
 
   @override

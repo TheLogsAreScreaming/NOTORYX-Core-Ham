@@ -7225,6 +7225,70 @@ class AppLocalizationsSk extends AppLocalizations {
       'Zatiaľ neboli objavené žiadne opakovače. Pripojte rádio a najprv preskúmajte sieť.';
 
   @override
+  String get rptTest_title => 'Test blízkych opakovačov';
+
+  @override
+  String get rptTest_subtitle =>
+      'Jedno ťuknutie: ktoré opakovače vás počujú priamo';
+
+  @override
+  String get rptTest_start => 'Testovať teraz';
+
+  @override
+  String get rptTest_listening => 'Čakám na odpovede…';
+
+  @override
+  String rptTest_wait(int seconds) {
+    return 'Ďalší test o $seconds s';
+  }
+
+  @override
+  String rptTest_found(int count) {
+    return 'Opakovače, ktoré odpovedali: $count';
+  }
+
+  @override
+  String get rptTest_none =>
+      'Žiadny opakovač v priamom dosahu neodpovedal. Skúste z vyššieho miesta alebo znova o minútu. Opakovače so starším firmvérom na tento test neodpovedajú.';
+
+  @override
+  String get rptTest_strong => 'Silný';
+
+  @override
+  String get rptTest_usable => 'Použiteľný';
+
+  @override
+  String get rptTest_weak => 'Slabý';
+
+  @override
+  String rptTest_unknown(String prefix) {
+    return 'Opakovač $prefix';
+  }
+
+  @override
+  String rptTest_line(String there, String here, String rssi) {
+    return 'Počul vás pri $there dB · vy ho pri $here dB, $rssi dBm';
+  }
+
+  @override
+  String rptTest_rowLabel(
+    String name,
+    String quality,
+    String there,
+    String here,
+    String rssi,
+  ) {
+    return '$name, $quality. Počul vás pri $there decibeloch. Vy ho pri $here decibeloch, $rssi dBm.';
+  }
+
+  @override
+  String get rptTest_notConnected => 'Pripojte rádio, aby ste spustili test.';
+
+  @override
+  String get rptTest_explainer =>
+      'Odošle jednu požiadavku na objavenie bez skokov, takže odpovedajú len opakovače, ktoré počujú vaše rádio priamo. Prvé číslo ukazuje, ako dobre vás opakovač počul, druhé, ako dobre ste ho počuli vy. Medzi testami je 30 sekúnd, lebo opakovače obmedzujú počet odpovedí.';
+
+  @override
   String get notification_fieldAlertTitle => 'Terénne upozornenie NOTORYX';
 
   @override

@@ -12157,6 +12157,102 @@ abstract class AppLocalizations {
   /// **'No repeaters discovered yet. Connect a radio and discover the mesh first.'**
   String get repeaterTools_empty;
 
+  /// No description provided for @rptTest_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Nearby repeater test'**
+  String get rptTest_title;
+
+  /// No description provided for @rptTest_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'One tap: which repeaters hear you directly'**
+  String get rptTest_subtitle;
+
+  /// No description provided for @rptTest_start.
+  ///
+  /// In en, this message translates to:
+  /// **'Test now'**
+  String get rptTest_start;
+
+  /// No description provided for @rptTest_listening.
+  ///
+  /// In en, this message translates to:
+  /// **'Listening for answers…'**
+  String get rptTest_listening;
+
+  /// No description provided for @rptTest_wait.
+  ///
+  /// In en, this message translates to:
+  /// **'Next test in {seconds} s'**
+  String rptTest_wait(int seconds);
+
+  /// No description provided for @rptTest_found.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeaters that answered: {count}'**
+  String rptTest_found(int count);
+
+  /// No description provided for @rptTest_none.
+  ///
+  /// In en, this message translates to:
+  /// **'No repeater in direct range answered. Try from higher ground, or again in a minute. Repeaters on older firmware don\'t answer this test.'**
+  String get rptTest_none;
+
+  /// No description provided for @rptTest_strong.
+  ///
+  /// In en, this message translates to:
+  /// **'Strong'**
+  String get rptTest_strong;
+
+  /// No description provided for @rptTest_usable.
+  ///
+  /// In en, this message translates to:
+  /// **'Usable'**
+  String get rptTest_usable;
+
+  /// No description provided for @rptTest_weak.
+  ///
+  /// In en, this message translates to:
+  /// **'Weak'**
+  String get rptTest_weak;
+
+  /// No description provided for @rptTest_unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeater {prefix}'**
+  String rptTest_unknown(String prefix);
+
+  /// No description provided for @rptTest_line.
+  ///
+  /// In en, this message translates to:
+  /// **'Heard you at {there} dB · you heard it at {here} dB, {rssi} dBm'**
+  String rptTest_line(String there, String here, String rssi);
+
+  /// No description provided for @rptTest_rowLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}, {quality}. It heard you at {there} decibels. You heard it at {here} decibels, {rssi} dBm.'**
+  String rptTest_rowLabel(
+    String name,
+    String quality,
+    String there,
+    String here,
+    String rssi,
+  );
+
+  /// No description provided for @rptTest_notConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect your radio to run the test.'**
+  String get rptTest_notConnected;
+
+  /// No description provided for @rptTest_explainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Sends one discover request with no hops, so only repeaters that hear your radio directly answer. The first number is how well each repeater heard you, the second how well you heard it. Tests are 30 seconds apart because repeaters limit how often they answer.'**
+  String get rptTest_explainer;
+
   /// No description provided for @notification_fieldAlertTitle.
   ///
   /// In en, this message translates to:

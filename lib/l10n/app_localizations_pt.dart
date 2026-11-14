@@ -7231,6 +7231,70 @@ class AppLocalizationsPt extends AppLocalizations {
       'Ainda não foram descobertos repetidores. Ligue um rádio e descubra a malha primeiro.';
 
   @override
+  String get rptTest_title => 'Teste de repetidores próximos';
+
+  @override
+  String get rptTest_subtitle =>
+      'Um toque: que repetidores o ouvem diretamente';
+
+  @override
+  String get rptTest_start => 'Testar agora';
+
+  @override
+  String get rptTest_listening => 'À escuta de respostas…';
+
+  @override
+  String rptTest_wait(int seconds) {
+    return 'Próximo teste em $seconds s';
+  }
+
+  @override
+  String rptTest_found(int count) {
+    return 'Repetidores que responderam: $count';
+  }
+
+  @override
+  String get rptTest_none =>
+      'Nenhum repetidor ao alcance direto respondeu. Tente de um local mais alto ou novamente daqui a um minuto. Repetidores com firmware antigo não respondem a este teste.';
+
+  @override
+  String get rptTest_strong => 'Forte';
+
+  @override
+  String get rptTest_usable => 'Utilizável';
+
+  @override
+  String get rptTest_weak => 'Fraco';
+
+  @override
+  String rptTest_unknown(String prefix) {
+    return 'Repetidor $prefix';
+  }
+
+  @override
+  String rptTest_line(String there, String here, String rssi) {
+    return 'Ouviu-o a $there dB · ouviu-o a $here dB, $rssi dBm';
+  }
+
+  @override
+  String rptTest_rowLabel(
+    String name,
+    String quality,
+    String there,
+    String here,
+    String rssi,
+  ) {
+    return '$name, $quality. Ouviu-o a $there decibéis. Ouviu-o a $here decibéis, $rssi dBm.';
+  }
+
+  @override
+  String get rptTest_notConnected => 'Ligue o seu rádio para fazer o teste.';
+
+  @override
+  String get rptTest_explainer =>
+      'Envia um pedido de descoberta sem saltos, por isso só respondem os repetidores que ouvem o seu rádio diretamente. O primeiro número mostra como o repetidor o ouviu; o segundo, como o ouviu a ele. Os testes têm 30 segundos de intervalo porque os repetidores limitam as respostas.';
+
+  @override
   String get notification_fieldAlertTitle => 'Alerta de campo NOTORYX';
 
   @override

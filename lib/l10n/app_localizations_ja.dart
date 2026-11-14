@@ -6880,6 +6880,69 @@ class AppLocalizationsJa extends AppLocalizations {
       'リピーターはまだ検出されていません。無線機を接続して、まずメッシュを探索してください。';
 
   @override
+  String get rptTest_title => '近くのリピーターをテスト';
+
+  @override
+  String get rptTest_subtitle => 'ワンタップで直接届くリピーターを確認';
+
+  @override
+  String get rptTest_start => '今すぐテスト';
+
+  @override
+  String get rptTest_listening => '応答を待っています…';
+
+  @override
+  String rptTest_wait(int seconds) {
+    return '次のテストまで $seconds 秒';
+  }
+
+  @override
+  String rptTest_found(int count) {
+    return '応答したリピーター: $count';
+  }
+
+  @override
+  String get rptTest_none =>
+      '直接届く範囲のリピーターから応答がありません。高い場所から、または1分後に再試行してください。古いファームウェアのリピーターはこのテストに応答しません。';
+
+  @override
+  String get rptTest_strong => '強い';
+
+  @override
+  String get rptTest_usable => '使用可';
+
+  @override
+  String get rptTest_weak => '弱い';
+
+  @override
+  String rptTest_unknown(String prefix) {
+    return 'リピーター $prefix';
+  }
+
+  @override
+  String rptTest_line(String there, String here, String rssi) {
+    return '相手の受信 $there dB · 自分の受信 $here dB, $rssi dBm';
+  }
+
+  @override
+  String rptTest_rowLabel(
+    String name,
+    String quality,
+    String there,
+    String here,
+    String rssi,
+  ) {
+    return '$name、$quality。相手の受信 $there デシベル。自分の受信 $here デシベル、$rssi dBm。';
+  }
+
+  @override
+  String get rptTest_notConnected => 'テストするには無線機を接続してください。';
+
+  @override
+  String get rptTest_explainer =>
+      'ホップなしの探索要求を1回送るため、あなたの無線機を直接受信できるリピーターだけが応答します。最初の数値はリピーターがあなたを受信した強さ、2番目はあなたが受信した強さです。リピーターは応答回数を制限するため、テストは30秒間隔です。';
+
+  @override
   String get notification_fieldAlertTitle => 'NOTORYX フィールドアラート';
 
   @override
