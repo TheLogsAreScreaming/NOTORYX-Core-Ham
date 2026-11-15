@@ -12329,4 +12329,63 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get losFresnelBlocked =>
       'Рельеф перекрывает зону Френеля и луч. Поднимите антенну или передвиньте точку.';
+
+  @override
+  String get bg_title => 'Фон';
+
+  @override
+  String get bg_kindTheme => 'Свечение темы';
+
+  @override
+  String get bg_kindSolid => 'Цвет';
+
+  @override
+  String get bg_kindLinear => 'Градиент';
+
+  @override
+  String get bg_kindMesh => 'Мягкое смешение';
+
+  @override
+  String get bg_kindPhoto => 'Фото';
+
+  @override
+  String get bg_color1 => 'Первый цвет';
+
+  @override
+  String get bg_color2 => 'Второй цвет';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Цвет $index';
+  }
+
+  @override
+  String get bg_dim => 'Затемнение';
+
+  @override
+  String get bg_blur => 'Размытие';
+
+  @override
+  String get bg_choosePhoto => 'Выбрать фото';
+
+  @override
+  String get bg_reset => 'Вернуть фон темы';
+
+  @override
+  String get bg_hint =>
+      'Карточки лежат поверх как матовое стекло. Увеличьте затемнение, если текст плохо читается.';
+
+  @override
+  String get bg_previewTitle => 'Предпросмотр';
+
+  @override
+  String get bg_previewBody => 'Так выглядит текст на стеклянной карточке.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'Фото остаётся на этом телефоне и не входит в резервные копии.';
+
+  @override
+  String get bg_photoFailed =>
+      'Не удалось использовать это фото. Попробуйте другое.';
 }

@@ -11498,4 +11498,60 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get losFresnelBlocked => '地形侵入菲涅耳区并遮挡波束。请升高天线或移动位置。';
+
+  @override
+  String get bg_title => '背景';
+
+  @override
+  String get bg_kindTheme => '主题光晕';
+
+  @override
+  String get bg_kindSolid => '纯色';
+
+  @override
+  String get bg_kindLinear => '渐变';
+
+  @override
+  String get bg_kindMesh => '网格混色';
+
+  @override
+  String get bg_kindPhoto => '照片';
+
+  @override
+  String get bg_color1 => '第一种颜色';
+
+  @override
+  String get bg_color2 => '第二种颜色';
+
+  @override
+  String bg_colorN(int index) {
+    return '颜色 $index';
+  }
+
+  @override
+  String get bg_dim => '调暗';
+
+  @override
+  String get bg_blur => '模糊';
+
+  @override
+  String get bg_choosePhoto => '选择照片';
+
+  @override
+  String get bg_reset => '恢复主题背景';
+
+  @override
+  String get bg_hint => '卡片以磨砂玻璃形式叠在其上。如文字难以阅读，请调高“调暗”。';
+
+  @override
+  String get bg_previewTitle => '预览';
+
+  @override
+  String get bg_previewBody => '玻璃卡片上的文字看起来是这样。';
+
+  @override
+  String get bg_photoNotBackedUp => '照片仅保存在本手机上，不包含在备份中。';
+
+  @override
+  String get bg_photoFailed => '无法使用该照片，请换一张。';
 }

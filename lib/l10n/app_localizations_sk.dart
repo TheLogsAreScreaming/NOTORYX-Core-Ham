@@ -12263,4 +12263,62 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get losFresnelBlocked =>
       'Terén zasahuje do Fresnelovej zóny aj lúča. Zdvihnite anténu alebo posuňte bod.';
+
+  @override
+  String get bg_title => 'Pozadie';
+
+  @override
+  String get bg_kindTheme => 'Žiara témy';
+
+  @override
+  String get bg_kindSolid => 'Farba';
+
+  @override
+  String get bg_kindLinear => 'Prechod';
+
+  @override
+  String get bg_kindMesh => 'Jemné prelínanie';
+
+  @override
+  String get bg_kindPhoto => 'Fotka';
+
+  @override
+  String get bg_color1 => 'Prvá farba';
+
+  @override
+  String get bg_color2 => 'Druhá farba';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Farba $index';
+  }
+
+  @override
+  String get bg_dim => 'Stmavenie';
+
+  @override
+  String get bg_blur => 'Rozmazanie';
+
+  @override
+  String get bg_choosePhoto => 'Vybrať fotku';
+
+  @override
+  String get bg_reset => 'Späť na pozadie témy';
+
+  @override
+  String get bg_hint =>
+      'Karty ležia nad ním ako matné sklo. Ak sa text ťažko číta, zvýšte stmavenie.';
+
+  @override
+  String get bg_previewTitle => 'Ukážka';
+
+  @override
+  String get bg_previewBody => 'Takto vyzerá text na sklenenej karte.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'Fotka zostáva v tomto telefóne a nie je súčasťou záloh.';
+
+  @override
+  String get bg_photoFailed => 'Túto fotku sa nepodarilo použiť. Skúste inú.';
 }

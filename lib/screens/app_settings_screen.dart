@@ -18,6 +18,7 @@ import '../theme/mesh_theme.dart';
 import '../widgets/battery_optimization_tile.dart';
 import '../widgets/blocked_senders_sheet.dart';
 import '../widgets/theme_picker.dart';
+import 'backdrop_settings_screen.dart';
 import '../widgets/adaptive_app_bar_title.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/sync_progress_overlay.dart';
@@ -202,6 +203,8 @@ class AppSettingsScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               const ThemePicker(),
+              const SizedBox(height: 6),
+              const BackdropSettingsTile(),
             ],
           ),
         ),

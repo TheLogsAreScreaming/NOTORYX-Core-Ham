@@ -12286,4 +12286,63 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get losFresnelBlocked =>
       'Teren sega v Fresnelovo cono in žarek. Dvignite anteno ali premaknite točko.';
+
+  @override
+  String get bg_title => 'Ozadje';
+
+  @override
+  String get bg_kindTheme => 'Sij teme';
+
+  @override
+  String get bg_kindSolid => 'Barva';
+
+  @override
+  String get bg_kindLinear => 'Preliv';
+
+  @override
+  String get bg_kindMesh => 'Mehko prelivanje';
+
+  @override
+  String get bg_kindPhoto => 'Fotografija';
+
+  @override
+  String get bg_color1 => 'Prva barva';
+
+  @override
+  String get bg_color2 => 'Druga barva';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Barva $index';
+  }
+
+  @override
+  String get bg_dim => 'Zatemnitev';
+
+  @override
+  String get bg_blur => 'Zameglitev';
+
+  @override
+  String get bg_choosePhoto => 'Izberi fotografijo';
+
+  @override
+  String get bg_reset => 'Nazaj na ozadje teme';
+
+  @override
+  String get bg_hint =>
+      'Kartice ležijo nad njim kot motno steklo. Če je besedilo težko berljivo, povečajte zatemnitev.';
+
+  @override
+  String get bg_previewTitle => 'Predogled';
+
+  @override
+  String get bg_previewBody => 'Tako je videti besedilo na stekleni kartici.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'Fotografija ostane na tem telefonu in ni vključena v varnostne kopije.';
+
+  @override
+  String get bg_photoFailed =>
+      'Te fotografije ni bilo mogoče uporabiti. Poskusite drugo.';
 }

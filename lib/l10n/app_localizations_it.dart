@@ -12298,4 +12298,63 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get losFresnelBlocked =>
       'Il terreno entra nella zona di Fresnel e nel fascio. Alza un\'antenna o sposta un punto.';
+
+  @override
+  String get bg_title => 'Sfondo';
+
+  @override
+  String get bg_kindTheme => 'Bagliore del tema';
+
+  @override
+  String get bg_kindSolid => 'Colore';
+
+  @override
+  String get bg_kindLinear => 'Sfumatura';
+
+  @override
+  String get bg_kindMesh => 'Fusione morbida';
+
+  @override
+  String get bg_kindPhoto => 'Foto';
+
+  @override
+  String get bg_color1 => 'Primo colore';
+
+  @override
+  String get bg_color2 => 'Secondo colore';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Colore $index';
+  }
+
+  @override
+  String get bg_dim => 'Oscura';
+
+  @override
+  String get bg_blur => 'Sfocatura';
+
+  @override
+  String get bg_choosePhoto => 'Scegli foto';
+
+  @override
+  String get bg_reset => 'Torna allo sfondo del tema';
+
+  @override
+  String get bg_hint =>
+      'Le schede in vetro smerigliato stanno sopra. Aumenta Oscura se il testo è difficile da leggere.';
+
+  @override
+  String get bg_previewTitle => 'Anteprima';
+
+  @override
+  String get bg_previewBody => 'Ecco il testo su una scheda di vetro.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'La foto resta su questo telefono e non è inclusa nei backup.';
+
+  @override
+  String get bg_photoFailed =>
+      'Impossibile usare questa foto. Provane un\'altra.';
 }

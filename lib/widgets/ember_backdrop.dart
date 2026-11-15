@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../services/backdrop_store.dart';
 import '../theme/mesh_theme.dart';
+import 'custom_backdrop.dart';
 
 /// Which main screen the backdrop sits behind; each places its glows a
 /// little differently so moving between tabs doesn't look like a repeat.
@@ -33,20 +35,35 @@ class EmberBackdrop extends StatelessWidget {
       EmberScene.home => MeshPalette.secondary,
       EmberScene.more => MeshPalette.tertiary,
     };
+    final store = BackdropStore.instance;
     return Stack(
       fit: StackFit.expand,
       children: [
-        RepaintBoundary(
-          child: CustomPaint(
-            painter: EmberPainter(
-              scene: scene,
+        // A background the person chose replaces the theme's glow.
+        ListenableBuilder(
+          listenable: store,
+          builder: (context, themeGround) {
+            final style = store.style;
+            if (!style.isCustom) return themeGround!;
+            return CustomBackdrop(
+              style: style,
+              photo: store.photo,
               ground: MeshPalette.bg,
-              glow: MeshPalette.accent,
-              second: second,
-              contour: MeshPalette.ink,
-              dark: dark,
-              motif: MeshPalette.motif,
-              sparkle: MeshPalette.magenta,
+              reduceEffects: MediaQuery.disableAnimationsOf(context),
+            );
+          },
+          child: RepaintBoundary(
+            child: CustomPaint(
+              painter: EmberPainter(
+                scene: scene,
+                ground: MeshPalette.bg,
+                glow: MeshPalette.accent,
+                second: second,
+                contour: MeshPalette.ink,
+                dark: dark,
+                motif: MeshPalette.motif,
+                sparkle: MeshPalette.magenta,
+              ),
             ),
           ),
         ),

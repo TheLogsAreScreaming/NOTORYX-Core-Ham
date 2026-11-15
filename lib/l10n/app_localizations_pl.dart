@@ -12331,4 +12331,62 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get losFresnelBlocked =>
       'Teren wchodzi w strefę Fresnela i wiązkę. Podnieś antenę albo przesuń punkt.';
+
+  @override
+  String get bg_title => 'Tło';
+
+  @override
+  String get bg_kindTheme => 'Poświata motywu';
+
+  @override
+  String get bg_kindSolid => 'Kolor';
+
+  @override
+  String get bg_kindLinear => 'Gradient';
+
+  @override
+  String get bg_kindMesh => 'Miękkie przejście';
+
+  @override
+  String get bg_kindPhoto => 'Zdjęcie';
+
+  @override
+  String get bg_color1 => 'Pierwszy kolor';
+
+  @override
+  String get bg_color2 => 'Drugi kolor';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Kolor $index';
+  }
+
+  @override
+  String get bg_dim => 'Przyciemnienie';
+
+  @override
+  String get bg_blur => 'Rozmycie';
+
+  @override
+  String get bg_choosePhoto => 'Wybierz zdjęcie';
+
+  @override
+  String get bg_reset => 'Wróć do tła motywu';
+
+  @override
+  String get bg_hint =>
+      'Karty leżą na nim jak matowe szkło. Zwiększ przyciemnienie, jeśli tekst trudno czytać.';
+
+  @override
+  String get bg_previewTitle => 'Podgląd';
+
+  @override
+  String get bg_previewBody => 'Tak wygląda tekst na szklanej karcie.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'Zdjęcie zostaje na tym telefonie i nie trafia do kopii zapasowych.';
+
+  @override
+  String get bg_photoFailed => 'Nie można użyć tego zdjęcia. Spróbuj innego.';
 }
