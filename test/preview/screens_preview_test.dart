@@ -7,6 +7,7 @@
 // renders taller than a phone screen, for reviewing long screens whole.
 // PREVIEW_TEXT_SCALE=1.5 renders with the system text size turned up.
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'dart:ui' as ui;
 
@@ -84,6 +85,11 @@ import 'package:meshcore_open/models/radio_settings.dart';
 import 'package:meshcore_open/screens/licensed_operator_screen.dart';
 import 'package:meshcore_open/widgets/operator_setup_banner.dart';
 import 'package:meshcore_open/widgets/ui/mesh_states.dart';
+import 'package:meshcore_open/screens/backdrop_settings_screen.dart';
+import 'package:meshcore_open/screens/node_compass_screen.dart';
+import 'package:meshcore_open/services/device_compass.dart';
+import 'package:meshcore_open/services/node_look_store.dart';
+import 'package:meshcore_open/widgets/node_look_sheet.dart';
 
 // Anchored to today so time-filtered screens (path graph) have data in range.
 final _today = DateTime.now();
@@ -611,6 +617,17 @@ void main() {
         message: 'This removes #trailhead and its history from this phone.',
       ),
     ),
+    'node_compass': () =>
+        NodeCompassScreen(node: _contacts[1], compass: const _FakeCompass()),
+    'node_look': () => _OpensDialog(
+      (context) => showNodeLookSheet(
+        context,
+        nodeKey: _contacts[0].publicKeyHex,
+        name: _contacts[0].name,
+      ),
+      behind: const ContactsScreen(hideBackButton: true),
+    ),
+    'backdrop_settings': () => const BackdropSettingsScreen(),
     'confirm_action': () => _OpensDialog(
       (context) => confirmAction(
         context,
@@ -626,9 +643,16 @@ void main() {
   });
 
   setUp(() async {
-    SharedPreferences.setMockInitialValues({});
+    // Two nodes with a chosen colour, so the lists show node looks.
+    SharedPreferences.setMockInitialValues({
+      NodeLookStore.prefsKey: jsonEncode({
+        _contacts[0].publicKeyHex.toLowerCase(): {'c': 0xFF29B6F6},
+        _contacts[2].publicKeyHex.toLowerCase(): {'c': 0xFF7CB342},
+      }),
+    });
     PrefsManager.reset();
     await PrefsManager.initialize();
+    NodeLookStore.instance.reload();
     final tmp = Directory.systemTemp.createTempSync('preview').path;
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(
@@ -780,9 +804,12 @@ List<NetworkSighting> _sampleSightings() {
 
 /// A blank screen that opens [open] after its first frame, for dialog shots.
 class _OpensDialog extends StatefulWidget {
-  const _OpensDialog(this.open);
+  const _OpensDialog(this.open, {this.behind});
 
   final Future<Object?> Function(BuildContext context) open;
+
+  /// What shows behind the dialog or sheet; an empty screen by default.
+  final Widget? behind;
 
   @override
   State<_OpensDialog> createState() => _OpensDialogState();
@@ -798,5 +825,19 @@ class _OpensDialogState extends State<_OpensDialog> {
   }
 
   @override
-  Widget build(BuildContext context) => const Scaffold(body: SizedBox());
+  Widget build(BuildContext context) =>
+      widget.behind ?? const Scaffold(body: SizedBox());
+}
+
+/// A compass that always faces 40° magnetic, with 15° declination.
+class _FakeCompass extends DeviceCompass {
+  const _FakeCompass();
+
+  @override
+  Stream<CompassReading> readings() =>
+      Stream.value(const CompassReading(magneticHeading: 40, accuracy: 3));
+
+  @override
+  Future<double?> declination(double lat, double lon, {double alt = 0}) async =>
+      15;
 }

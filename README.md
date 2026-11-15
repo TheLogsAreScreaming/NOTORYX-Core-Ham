@@ -17,7 +17,7 @@ NOTORYX Core Ham is the amateur radio (FCC Part 97) edition of NOTORYX Core. Pai
   <img src="docs/screenshots/ham_presets.png" width="230" alt="Radio presets: US 33 cm and 70 cm only">
 </p>
 
-> **Status: in development.** The app and firmware pass automated tests and a mesh simulator, but have **not been tested on the air yet**. There are no public builds. Everything you send is readable by anyone: that's the law on amateur bands, not a bug.
+> **Status: test builds.** The latest is **[test 14](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/releases/tag/v0.1.0-test.14)** (`0.1.0-test.14`, 15 November 2026). The app and firmware pass automated tests and a mesh simulator, but have **not been tested on the air yet**. Use them only on a bench with dummy loads or minimum power until they have been. Everything you send is readable by anyone: that's the law on amateur bands, not a bug.
 
 ## What makes it a ham app
 
@@ -44,10 +44,14 @@ The NOTORYX Ham firmware isn't compatible with ordinary MeshCore on the air. Eve
 | RAK WisBlock / WisMesh (RAK4631) | Bluetooth or USB | ✓ |
 | RAK WisMesh 1W Booster (RAK3401 + 13302) | Bluetooth or USB | ✓ |
 | Seeed Studio SenseCAP T1000-E | Bluetooth or USB | — |
-| UnitEng Station G2 | USB | ✓ |
-| UnitEng Station G3 | USB | ✓ |
+| UnitEng Station G2 | Bluetooth or USB | ✓ |
+| UnitEng Station G3 | Bluetooth or USB | ✓ |
 
-Station G2 and G3 companions are USB only: the Bluetooth build doesn't fit on those boards (the same as stock MeshCore v1.18.0). The firmware's transmit power is the radio chip's setting; boards with an amplifier put out more, so use the least power that works.
+The Station G2 and G3 Bluetooth companion is in [firmware test 3](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/releases/tag/v1.18.0-ham-test.3).
+
+**Compiled but never flashed:** [firmware test 4](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/releases/tag/v1.18.0-ham-test.4) adds companion and repeater builds for 14 more boards: Heltec V3, Heltec Wireless Stick Lite V3, Seeed SenseCAP Solar Node, Seeed Wio Tracker L1, Seeed Xiao nRF52 kit, Seeed Xiao S3, LilyGO T-Beam (SX1262 or SX1276), LilyGO T-Beam S3, nRF52 Pro Micro DIY, LilyGO T-Echo, LilyGO T-LoRa V2.1-1.6, LilyGO T3-S3 (SX1262 or SX1276), LilyGO T-Deck and RAK WisMesh Tag. None has been run on its board yet, so they may not boot.
+
+Companion builds can be flashed from the browser with the **[web flasher](https://www.meshmayhem.org/hamwebflasher/)**. The firmware's transmit power is the radio chip's setting; boards with an amplifier put out more, so use the least power that works.
 
 ## Getting started
 
@@ -62,7 +66,13 @@ The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**.
 
 ## Downloads
 
-None yet. Builds will appear in **[NOTORYX-Core-Ham-Releases](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases)** once the firmware and app pass testing on real radios.
+Test builds are in **[NOTORYX-Core-Ham-Releases](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/releases)**:
+
+- **Android** (arm64 APK, signed). Each test build installs over the last one. Back up first.
+- **macOS** (Intel and Apple Silicon, macOS 14 or later). It isn't notarized, so Control-click the app and choose **Open** the first time.
+- **Firmware** for the boards above, and the [web flasher](https://www.meshmayhem.org/hamwebflasher/).
+
+There's also a [download page](https://www.meshmayhem.org/ham/). They're all test builds and haven't been tried on the air.
 
 ## Features
 
@@ -74,10 +84,14 @@ Everything from NOTORYX Core, working over plain-text ham frames:
 - **Check-ins:** I'm OK, At camp, Delayed and Heading back. You see who each one reached, and can resend to anyone it missed.
 - **Check-in reminders and overdue alerts:** a notification when you're due to check in, and a warning when a trip contact goes quiet for longer than you set.
 - **Trip planning:** pick up to six contacts. Trip briefs, a Field Log of everything sent and received, and optional automations.
+- **Trip readiness check** before you head out, and **offline checklists** (such as "Before a trip" and "Putting up a node") with shareable run records.
+- **SALUTE and 9-Line reports** from the SOS panel and the check-in card. They go as plain text with your call sign, only when you press Send.
+- The SOS panel says plainly that it only reaches your chosen contacts and radios in range, and doesn't contact 911 or emergency services.
 - **Android home-screen widget:** radio status, battery and unread count, with one-tap Check in and SOS.
 
 ### Messaging
 - Direct and channel messages with delivery status, reactions, GIFs and picture messages, up to 152 characters. Pictures are sent in 157-byte chunks to fit ham frames. Tapping a notification opens that chat.
+- **Replies** to a specific message, including from a notification, and **forwarding**: long-press, pick a destination and press Send. It goes out as `FWD de <your call> from <writer>: <text>`.
 - **Find channels:** a directory of public hashtag channels (local ones first), channels heard on air that you haven't joined, and **Active online**: the #channels an online analyzer has seen in use, with one-tap Join.
 - **Message search**, per-chat **drafts**, **read aloud** and on-device translation.
 - **Share your position or a contact** from the message box. Received contacts can be added in one tap.
@@ -91,12 +105,22 @@ Everything from NOTORYX Core, working over plain-text ham frames:
 - **Route Intelligence:** learned routes and the best repeaters your radio hears directly.
 - **Observer reach:** check which online observers heard a message you sent, how many hops it took and the best signal. Repeaters you don't have as contacts can be named online. Both use a CoreScope analyzer you choose in Settings.
 - **Coverage hexagons:** record where your radio got through and upload to your own HTTPS endpoints, with a privacy delay.
-- **Antenna coverage** over the terrain, line-of-sight checks and coverage capture sessions.
+- **Antenna coverage** over the terrain and coverage capture sessions, plus an **antenna coverage estimate**.
+- **Line of sight** with the **Fresnel zone**: the profile shades the first Fresnel zone with a dashed 60% line and says whether it's clear, partly clear or blocked. It uses your radio's frequency, or 906.875 MHz if the radio hasn't reported one.
+- **Compass to a node:** an arrow that points at any node with a position, corrected to true north, with distance and bearing. Open it with **Point me to it** from a node's long-press menu, its map card or its Details sheet. It needs a phone with a compass sensor.
+- **Maidenhead grid locators**, **waypoints** with GPX import and export, **offline trail routing** and **place search**.
+- **Route view and route picker:** chart each hop of the route to a contact, score the routes heard, and pick or build one.
+- **Day replay:** play back where nodes were on a chosen day, from adverts your radio already heard.
+- **Trace card:** share a path trace as an image or text, with an offline sketch of the route.
+- **Signed coverage reports:** share coverage as a signed report that others can check. The signature is only on the shared file or upload; nothing about it goes on air.
 
 ### Your radio
 - **Sensors on Home:** your radio's own readings (battery voltage, temperatures, GPS, light and whatever else it reports).
 - **Radio presets:** US 33 cm (906.875 MHz, the firmware default), 33 cm Long Range, 33 cm Fast, US 70 cm and off-grid 33/70 cm. Frequency fields only accept 420–450 and 902–928 MHz. Choosing a preset keeps your transmit power. Coordinated local settings can be offered by area; see [adding your area](#add-your-areas-mesh-settings).
 - **Send your advert** zero-hop (only radios that hear you directly) or flooded across the mesh.
+- **Nearby repeater test:** one tap sends a single zero-hop discover request and lists the repeaters that answer, strongest first.
+- **Mesh health** card, route health warnings and **network change alerts** with a troubleshooting guide.
+- **Node journal:** every node heard, with behaviour labels, a generated mark to tell nodes apart, and your own tags and notes. A **Timeline** puts messages, newly heard nodes, big signal swings and places in one feed.
 - Connections dashboard, live radio stats and a noise-floor chart, adjustable refresh rate and battery saver.
 - Command line and Wi-Fi setup for your own radio. With permission, you can also use a trusted contact's command line.
 
@@ -105,7 +129,10 @@ Everything from NOTORYX Core, working over plain-text ham frames:
 - Repeater and room-server tools: login, status, neighbors, telemetry, command line and **access control**.
 - **Repeater IDs** (who uses an ID, which are free) and **Region setup** (US and Canada region trees, or your own) for repeater owners.
 - **Bot Mode:** local auto-replies, keyword rules and commands like `!ping`, `!sun`, `!moon`, `!dice` and `!trace`, in direct messages and in the channels you choose.
-- **Field guide**, encrypted backup and app-icon shortcuts.
+- **Automation rules** (Tools → Automation): triggers such as battery, time, area or a node going offline that raise an alert, play a sound, change the working channel, call a webhook or send a message. Automatic sends are held until the station is set up with your call sign, prefixed `[auto]`, limited to 3 every 10 minutes and logged. Read [AUTOMATION.md](docs/licensed-operator/AUTOMATION.md) and agree any rule with your coordinator before using it on the air.
+- **Team config:** share radio settings and hashtag channels by QR code or file. No keys or power settings are included, and frequencies outside 70 cm and 33 cm are refused.
+- **Field guide**, app-icon shortcuts, and **backup and restore**, including message history.
+- **App lock** with fingerprint, face or screen lock (SOS stays on the lock screen). Contacts, channel keys, waypoints and drafts are stored encrypted on the phone, and message history can be too (off by default). That's storage only; nothing on the air is encrypted.
 
 ### MQTT bridge (optional)
 - **Think before bridging.** Linking a ham mesh to the internet raises third-party traffic questions (§97.115); the [coordination guide](docs/licensed-operator/COORDINATION.md) covers it. Only frames with a station ID are used, so encrypted Part 15 traffic from other observers is ignored.
@@ -115,18 +142,26 @@ Everything from NOTORYX Core, working over plain-text ham frames:
 - **LetsMesh-style sign-in** with a token signed by your radio, so its private key never leaves it. LetsMesh (US and EU) and MeshRank presets are included; they're community services, not part of NOTORYX.
 
 ### Look and feel
-- **Frosted ember:** the main screens sit on a warm glow, with see-through glass panels and a floating tab bar. With reduce motion turned on, the blur is off.
-- Four themes: **Blaze**, **Topo night**, **Red light** (keeps your night vision) and **Alpine day** (for bright sun).
+- **Frosted ember:** the main screens sit on a glow in your theme's colours, with see-through glass panels and a floating tab bar. With reduce motion turned on, the blur is off.
+- Eight themes: **Blaze** (the default), **Neon Anarchy**, **Tactical**, **Pink Overload**, **Bare Beauty**, **Okabe-Ito** (colour-vision friendly), **Night Ops** and **Seasonal**.
+- **Your own background:** **Settings → Background** puts a colour, gradient, mesh blend or your own photo behind the glass cards.
+- **A photo or colour per node:** from a node's sheet, give it a colour or photo. It shows in Nodes, the map and chats, stays on this phone and is never sent over the radio.
 - Available in 18 languages.
 
 <p align="center">
-  <img src="docs/screenshots/nodes.png" width="200" alt="Nodes: stations heard on the mesh, named with call signs">
+  <img src="docs/screenshots/nodes.png" width="200" alt="Nodes: stations heard on the mesh, named with call signs, two with a chosen colour">
   <img src="docs/screenshots/more.png" width="200" alt="More: every tool and setting, searchable">
   <img src="docs/screenshots/settings.png" width="200" alt="Settings with the Licensed operator card">
 </p>
 
 <p align="center">
-  <img src="docs/screenshots/home_alpine_day.png" width="200" alt="Alpine day theme">
+  <img src="docs/screenshots/node_compass.png" width="200" alt="Compass pointing to a node, with distance, bearing and a turn hint">
+  <img src="docs/screenshots/node_look.png" width="200" alt="Choosing a colour or photo for a node">
+  <img src="docs/screenshots/background.png" width="200" alt="Background settings: theme glow, colour, gradient, mesh blend or photo">
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/home_pink_overload.png" width="200" alt="Home in the Pink Overload theme">
   <img src="docs/screenshots/routes.png" width="200" alt="Route Intelligence">
   <img src="docs/screenshots/path_graph.png" width="200" alt="Path graph showing how messages reach you">
 </p>
@@ -191,7 +226,7 @@ flutter test
 - `lib/theme/`: themes and colors
 - `lib/utils/amateur_radio.dart`: ham frame handling, call-sign and band checks shared with the firmware
 - `docs/licensed-operator/`: the coordination guide and the Part 97 feasibility notes
-- `test/`: unit and widget tests; `test/preview/` renders screenshots (`PREVIEW_OUT=dir flutter test test/preview`, with `PREVIEW_THEME=alpine_day` or `red_light` for other themes)
+- `test/`: unit and widget tests; `test/preview/` renders screenshots with demo data (`PREVIEW_OUT=dir flutter test test/preview`; `PREVIEW_THEME=okabe_ito,night_ops` picks themes and `PREVIEW_ONLY=home,node_compass` picks screens)
 
 ## Contributing
 
