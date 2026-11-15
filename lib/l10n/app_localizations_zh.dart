@@ -4447,49 +4447,32 @@ class AppLocalizationsZh extends AppLocalizations {
   String get losLegendTerrain => '地形';
 
   @override
-  String get compass_openHint => '指引方向';
+  String get nodeLook_menu => '照片或颜色';
 
   @override
-  String get compass_onTarget => '正前方';
-
-  @override
-  String compass_turnRight(int degrees) {
-    return '向右转$degrees°';
+  String nodeLook_title(String name) {
+    return '$name 的外观';
   }
 
   @override
-  String compass_turnLeft(int degrees) {
-    return '向左转$degrees°';
+  String get nodeLook_hint => '仅保存在本手机上，绝不会通过网状网络发送。';
+
+  @override
+  String get nodeLook_choosePhoto => '选择照片';
+
+  @override
+  String get nodeLook_removePhoto => '移除照片';
+
+  @override
+  String get nodeLook_clear => '使用默认外观';
+
+  @override
+  String nodeLook_colorN(int index) {
+    return '颜色 $index';
   }
 
   @override
-  String compass_bearing(int degrees, String point) {
-    return '方位 $degrees° $point';
-  }
-
-  @override
-  String get compass_noSensor => '此设备没有指南针，箭头以北为上显示。';
-
-  @override
-  String get compass_calibrate => '指南针不准确。请将手机按8字形移动几次进行校准。';
-
-  @override
-  String get compass_magneticNote => '在获知您的位置前，以磁北为准。';
-
-  @override
-  String get compass_noPosition => '尚不知道您的位置。请允许手机定位或设置电台位置。';
-
-  @override
-  String get compass_noNodePosition => '该节点未共享位置，无法指向。';
-
-  @override
-  String get compass_usePhoneLocation => '使用手机定位';
-
-  @override
-  String get compass_sourcePhone => '您的位置来自手机GPS。';
-
-  @override
-  String get compass_sourceRadio => '您的位置来自电台。';
+  String get nodeLook_photoFailed => '无法使用该照片，请换一张。';
 
   @override
   String get losBlockedSpotsTitle => '被占用区域';
@@ -11571,4 +11554,49 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get bg_photoFailed => '无法使用该照片，请换一张。';
+
+  @override
+  String get compass_openHint => '指引方向';
+
+  @override
+  String get compass_onTarget => '正前方';
+
+  @override
+  String compass_turnRight(int degrees) {
+    return '向右转$degrees°';
+  }
+
+  @override
+  String compass_turnLeft(int degrees) {
+    return '向左转$degrees°';
+  }
+
+  @override
+  String compass_bearing(int degrees, String point) {
+    return '方位 $degrees° $point';
+  }
+
+  @override
+  String get compass_noSensor => '此设备没有指南针，箭头以北为上显示。';
+
+  @override
+  String get compass_calibrate => '指南针不准确。请将手机按8字形移动几次进行校准。';
+
+  @override
+  String get compass_magneticNote => '在获知您的位置前，以磁北为准。';
+
+  @override
+  String get compass_noPosition => '尚不知道您的位置。请允许手机定位或设置电台位置。';
+
+  @override
+  String get compass_noNodePosition => '该节点未共享位置，无法指向。';
+
+  @override
+  String get compass_usePhoneLocation => '使用手机定位';
+
+  @override
+  String get compass_sourcePhone => '您的位置来自手机GPS。';
+
+  @override
+  String get compass_sourceRadio => '您的位置来自电台。';
 }

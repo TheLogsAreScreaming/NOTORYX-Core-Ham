@@ -2737,43 +2737,28 @@
   "losLegendRadioHorizon": "Radio horizon",
   "losLegendLosBeam": "LOS beam",
   "losLegendTerrain": "Terrain",
-  "compass_openHint": "Point me to it",
-  "compass_onTarget": "Straight ahead",
-  "compass_turnRight": "Turn right {degrees}°",
-  "@compass_turnRight": {
+  "nodeLook_menu": "Photo or colour",
+  "nodeLook_title": "Look for {name}",
+  "@nodeLook_title": {
     "placeholders": {
-      "degrees": {
-        "type": "int"
-      }
-    }
-  },
-  "compass_turnLeft": "Turn left {degrees}°",
-  "@compass_turnLeft": {
-    "placeholders": {
-      "degrees": {
-        "type": "int"
-      }
-    }
-  },
-  "compass_bearing": "Bearing {degrees}° {point}",
-  "@compass_bearing": {
-    "placeholders": {
-      "degrees": {
-        "type": "int"
-      },
-      "point": {
+      "name": {
         "type": "String"
       }
     }
   },
-  "compass_noSensor": "No compass on this device, so the arrow is drawn with north at the top.",
-  "compass_calibrate": "The compass isn't sure. Move the phone in a figure-eight a few times to calibrate it.",
-  "compass_magneticNote": "Pointing by magnetic north until your position is known.",
-  "compass_noPosition": "Your own position isn't known yet. Allow phone location or set the radio's position.",
-  "compass_noNodePosition": "This node hasn't shared a position, so there's nothing to point at.",
-  "compass_usePhoneLocation": "Use phone location",
-  "compass_sourcePhone": "Your position comes from the phone's GPS.",
-  "compass_sourceRadio": "Your position comes from the radio.",
+  "nodeLook_hint": "Only on this phone. It's never sent over the mesh.",
+  "nodeLook_choosePhoto": "Choose photo",
+  "nodeLook_removePhoto": "Remove photo",
+  "nodeLook_clear": "Use the default look",
+  "nodeLook_colorN": "Colour {index}",
+  "@nodeLook_colorN": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "nodeLook_photoFailed": "Couldn't use that photo. Try a different one.",
   "losBlockedSpotsTitle": "Blocked spots",
   "losBlockedSpotsHint": "Tap a blocked spot to highlight it on the map.",
   "losBlockedSpotChip": "{distance} {distanceUnit} • {obstruction} {heightUnit}",
@@ -7599,5 +7584,42 @@
   "bg_previewTitle": "Preview",
   "bg_previewBody": "Text on a glass card looks like this.",
   "bg_photoNotBackedUp": "The photo stays on this phone and isn't included in backups.",
-  "bg_photoFailed": "Couldn't use that photo. Try a different one."
+  "bg_photoFailed": "Couldn't use that photo. Try a different one.",
+  "compass_openHint": "Point me to it",
+  "compass_onTarget": "Straight ahead",
+  "compass_turnRight": "Turn right {degrees}°",
+  "@compass_turnRight": {
+    "placeholders": {
+      "degrees": {
+        "type": "int"
+      }
+    }
+  },
+  "compass_turnLeft": "Turn left {degrees}°",
+  "@compass_turnLeft": {
+    "placeholders": {
+      "degrees": {
+        "type": "int"
+      }
+    }
+  },
+  "compass_bearing": "Bearing {degrees}° {point}",
+  "@compass_bearing": {
+    "placeholders": {
+      "degrees": {
+        "type": "int"
+      },
+      "point": {
+        "type": "String"
+      }
+    }
+  },
+  "compass_noSensor": "No compass on this device, so the arrow is drawn with north at the top.",
+  "compass_calibrate": "The compass isn't sure. Move the phone in a figure-eight a few times to calibrate it.",
+  "compass_magneticNote": "Pointing by magnetic north until your position is known.",
+  "compass_noPosition": "Your own position isn't known yet. Allow phone location or set the radio's position.",
+  "compass_noNodePosition": "This node hasn't shared a position, so there's nothing to point at.",
+  "compass_usePhoneLocation": "Use phone location",
+  "compass_sourcePhone": "Your position comes from the phone's GPS.",
+  "compass_sourceRadio": "Your position comes from the radio."
 }

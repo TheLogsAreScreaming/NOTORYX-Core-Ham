@@ -4779,54 +4779,34 @@ class AppLocalizationsRu extends AppLocalizations {
   String get losLegendTerrain => 'Рельеф';
 
   @override
-  String get compass_openHint => 'Указать направление';
+  String get nodeLook_menu => 'Фото или цвет';
 
   @override
-  String get compass_onTarget => 'Прямо впереди';
-
-  @override
-  String compass_turnRight(int degrees) {
-    return 'Повернитесь вправо на $degrees°';
+  String nodeLook_title(String name) {
+    return 'Вид: $name';
   }
 
   @override
-  String compass_turnLeft(int degrees) {
-    return 'Повернитесь влево на $degrees°';
+  String get nodeLook_hint =>
+      'Только на этом телефоне. Никогда не отправляется в сеть.';
+
+  @override
+  String get nodeLook_choosePhoto => 'Выбрать фото';
+
+  @override
+  String get nodeLook_removePhoto => 'Убрать фото';
+
+  @override
+  String get nodeLook_clear => 'Вернуть обычный вид';
+
+  @override
+  String nodeLook_colorN(int index) {
+    return 'Цвет $index';
   }
 
   @override
-  String compass_bearing(int degrees, String point) {
-    return 'Азимут $degrees° $point';
-  }
-
-  @override
-  String get compass_noSensor =>
-      'На этом устройстве нет компаса, поэтому стрелка показана с севером вверху.';
-
-  @override
-  String get compass_calibrate =>
-      'Компас неточен. Несколько раз проведите телефоном восьмёркой, чтобы откалибровать его.';
-
-  @override
-  String get compass_magneticNote =>
-      'Пока ваше положение неизвестно, направление по магнитному северу.';
-
-  @override
-  String get compass_noPosition =>
-      'Ваше положение пока неизвестно. Разрешите геолокацию телефона или задайте положение радио.';
-
-  @override
-  String get compass_noNodePosition =>
-      'Этот узел не сообщил своё положение, поэтому указывать не на что.';
-
-  @override
-  String get compass_usePhoneLocation => 'Использовать геолокацию телефона';
-
-  @override
-  String get compass_sourcePhone => 'Ваше положение берётся из GPS телефона.';
-
-  @override
-  String get compass_sourceRadio => 'Ваше положение берётся с радио.';
+  String get nodeLook_photoFailed =>
+      'Не удалось использовать это фото. Попробуйте другое.';
 
   @override
   String get losBlockedSpotsTitle => 'Зарезервированные места';
@@ -12408,4 +12388,54 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get bg_photoFailed =>
       'Не удалось использовать это фото. Попробуйте другое.';
+
+  @override
+  String get compass_openHint => 'Указать направление';
+
+  @override
+  String get compass_onTarget => 'Прямо впереди';
+
+  @override
+  String compass_turnRight(int degrees) {
+    return 'Повернитесь вправо на $degrees°';
+  }
+
+  @override
+  String compass_turnLeft(int degrees) {
+    return 'Повернитесь влево на $degrees°';
+  }
+
+  @override
+  String compass_bearing(int degrees, String point) {
+    return 'Азимут $degrees° $point';
+  }
+
+  @override
+  String get compass_noSensor =>
+      'На этом устройстве нет компаса, поэтому стрелка показана с севером вверху.';
+
+  @override
+  String get compass_calibrate =>
+      'Компас неточен. Несколько раз проведите телефоном восьмёркой, чтобы откалибровать его.';
+
+  @override
+  String get compass_magneticNote =>
+      'Пока ваше положение неизвестно, направление по магнитному северу.';
+
+  @override
+  String get compass_noPosition =>
+      'Ваше положение пока неизвестно. Разрешите геолокацию телефона или задайте положение радио.';
+
+  @override
+  String get compass_noNodePosition =>
+      'Этот узел не сообщил своё положение, поэтому указывать не на что.';
+
+  @override
+  String get compass_usePhoneLocation => 'Использовать геолокацию телефона';
+
+  @override
+  String get compass_sourcePhone => 'Ваше положение берётся из GPS телефона.';
+
+  @override
+  String get compass_sourceRadio => 'Ваше положение берётся с радио.';
 }

@@ -8208,83 +8208,53 @@ abstract class AppLocalizations {
   /// **'Terrain'**
   String get losLegendTerrain;
 
-  /// No description provided for @compass_openHint.
+  /// No description provided for @nodeLook_menu.
   ///
   /// In en, this message translates to:
-  /// **'Point me to it'**
-  String get compass_openHint;
+  /// **'Photo or colour'**
+  String get nodeLook_menu;
 
-  /// No description provided for @compass_onTarget.
+  /// No description provided for @nodeLook_title.
   ///
   /// In en, this message translates to:
-  /// **'Straight ahead'**
-  String get compass_onTarget;
+  /// **'Look for {name}'**
+  String nodeLook_title(String name);
 
-  /// No description provided for @compass_turnRight.
+  /// No description provided for @nodeLook_hint.
   ///
   /// In en, this message translates to:
-  /// **'Turn right {degrees}°'**
-  String compass_turnRight(int degrees);
+  /// **'Only on this phone. It\'s never sent over the mesh.'**
+  String get nodeLook_hint;
 
-  /// No description provided for @compass_turnLeft.
+  /// No description provided for @nodeLook_choosePhoto.
   ///
   /// In en, this message translates to:
-  /// **'Turn left {degrees}°'**
-  String compass_turnLeft(int degrees);
+  /// **'Choose photo'**
+  String get nodeLook_choosePhoto;
 
-  /// No description provided for @compass_bearing.
+  /// No description provided for @nodeLook_removePhoto.
   ///
   /// In en, this message translates to:
-  /// **'Bearing {degrees}° {point}'**
-  String compass_bearing(int degrees, String point);
+  /// **'Remove photo'**
+  String get nodeLook_removePhoto;
 
-  /// No description provided for @compass_noSensor.
+  /// No description provided for @nodeLook_clear.
   ///
   /// In en, this message translates to:
-  /// **'No compass on this device, so the arrow is drawn with north at the top.'**
-  String get compass_noSensor;
+  /// **'Use the default look'**
+  String get nodeLook_clear;
 
-  /// No description provided for @compass_calibrate.
+  /// No description provided for @nodeLook_colorN.
   ///
   /// In en, this message translates to:
-  /// **'The compass isn\'t sure. Move the phone in a figure-eight a few times to calibrate it.'**
-  String get compass_calibrate;
+  /// **'Colour {index}'**
+  String nodeLook_colorN(int index);
 
-  /// No description provided for @compass_magneticNote.
+  /// No description provided for @nodeLook_photoFailed.
   ///
   /// In en, this message translates to:
-  /// **'Pointing by magnetic north until your position is known.'**
-  String get compass_magneticNote;
-
-  /// No description provided for @compass_noPosition.
-  ///
-  /// In en, this message translates to:
-  /// **'Your own position isn\'t known yet. Allow phone location or set the radio\'s position.'**
-  String get compass_noPosition;
-
-  /// No description provided for @compass_noNodePosition.
-  ///
-  /// In en, this message translates to:
-  /// **'This node hasn\'t shared a position, so there\'s nothing to point at.'**
-  String get compass_noNodePosition;
-
-  /// No description provided for @compass_usePhoneLocation.
-  ///
-  /// In en, this message translates to:
-  /// **'Use phone location'**
-  String get compass_usePhoneLocation;
-
-  /// No description provided for @compass_sourcePhone.
-  ///
-  /// In en, this message translates to:
-  /// **'Your position comes from the phone\'s GPS.'**
-  String get compass_sourcePhone;
-
-  /// No description provided for @compass_sourceRadio.
-  ///
-  /// In en, this message translates to:
-  /// **'Your position comes from the radio.'**
-  String get compass_sourceRadio;
+  /// **'Couldn\'t use that photo. Try a different one.'**
+  String get nodeLook_photoFailed;
 
   /// No description provided for @losBlockedSpotsTitle.
   ///
@@ -20472,6 +20442,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Couldn\'t use that photo. Try a different one.'**
   String get bg_photoFailed;
+
+  /// No description provided for @compass_openHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Point me to it'**
+  String get compass_openHint;
+
+  /// No description provided for @compass_onTarget.
+  ///
+  /// In en, this message translates to:
+  /// **'Straight ahead'**
+  String get compass_onTarget;
+
+  /// No description provided for @compass_turnRight.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn right {degrees}°'**
+  String compass_turnRight(int degrees);
+
+  /// No description provided for @compass_turnLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn left {degrees}°'**
+  String compass_turnLeft(int degrees);
+
+  /// No description provided for @compass_bearing.
+  ///
+  /// In en, this message translates to:
+  /// **'Bearing {degrees}° {point}'**
+  String compass_bearing(int degrees, String point);
+
+  /// No description provided for @compass_noSensor.
+  ///
+  /// In en, this message translates to:
+  /// **'No compass on this device, so the arrow is drawn with north at the top.'**
+  String get compass_noSensor;
+
+  /// No description provided for @compass_calibrate.
+  ///
+  /// In en, this message translates to:
+  /// **'The compass isn\'t sure. Move the phone in a figure-eight a few times to calibrate it.'**
+  String get compass_calibrate;
+
+  /// No description provided for @compass_magneticNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Pointing by magnetic north until your position is known.'**
+  String get compass_magneticNote;
+
+  /// No description provided for @compass_noPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Your own position isn\'t known yet. Allow phone location or set the radio\'s position.'**
+  String get compass_noPosition;
+
+  /// No description provided for @compass_noNodePosition.
+  ///
+  /// In en, this message translates to:
+  /// **'This node hasn\'t shared a position, so there\'s nothing to point at.'**
+  String get compass_noNodePosition;
+
+  /// No description provided for @compass_usePhoneLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Use phone location'**
+  String get compass_usePhoneLocation;
+
+  /// No description provided for @compass_sourcePhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Your position comes from the phone\'s GPS.'**
+  String get compass_sourcePhone;
+
+  /// No description provided for @compass_sourceRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'Your position comes from the radio.'**
+  String get compass_sourceRadio;
 }
 
 class _AppLocalizationsDelegate

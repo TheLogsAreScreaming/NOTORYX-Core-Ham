@@ -4749,54 +4749,34 @@ class AppLocalizationsSk extends AppLocalizations {
   String get losLegendTerrain => 'Terén';
 
   @override
-  String get compass_openHint => 'Ukáž mi smer';
+  String get nodeLook_menu => 'Fotka alebo farba';
 
   @override
-  String get compass_onTarget => 'Rovno pred vami';
-
-  @override
-  String compass_turnRight(int degrees) {
-    return 'Otočte sa doprava o $degrees°';
+  String nodeLook_title(String name) {
+    return 'Vzhľad: $name';
   }
 
   @override
-  String compass_turnLeft(int degrees) {
-    return 'Otočte sa doľava o $degrees°';
+  String get nodeLook_hint =>
+      'Iba v tomto telefóne. Nikdy sa neposiela cez sieť.';
+
+  @override
+  String get nodeLook_choosePhoto => 'Vybrať fotku';
+
+  @override
+  String get nodeLook_removePhoto => 'Odstrániť fotku';
+
+  @override
+  String get nodeLook_clear => 'Použiť predvolený vzhľad';
+
+  @override
+  String nodeLook_colorN(int index) {
+    return 'Farba $index';
   }
 
   @override
-  String compass_bearing(int degrees, String point) {
-    return 'Azimut $degrees° $point';
-  }
-
-  @override
-  String get compass_noSensor =>
-      'Toto zariadenie nemá kompas, preto je šípka zobrazená so severom hore.';
-
-  @override
-  String get compass_calibrate =>
-      'Kompas si nie je istý. Niekoľkokrát pohybujte telefónom v tvare osmičky, aby ste ho kalibrovali.';
-
-  @override
-  String get compass_magneticNote =>
-      'Kým nie je známa vaša poloha, smer sa určuje podľa magnetického severu.';
-
-  @override
-  String get compass_noPosition =>
-      'Vaša poloha zatiaľ nie je známa. Povoľte polohu telefónu alebo nastavte polohu rádia.';
-
-  @override
-  String get compass_noNodePosition =>
-      'Tento uzol nezdieľal polohu, takže nie je kam ukázať.';
-
-  @override
-  String get compass_usePhoneLocation => 'Použiť polohu telefónu';
-
-  @override
-  String get compass_sourcePhone => 'Vaša poloha pochádza z GPS telefónu.';
-
-  @override
-  String get compass_sourceRadio => 'Vaša poloha pochádza z rádia.';
+  String get nodeLook_photoFailed =>
+      'Túto fotku sa nepodarilo použiť. Skúste inú.';
 
   @override
   String get losBlockedSpotsTitle => 'Zablokované miesta';
@@ -12341,4 +12321,54 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get bg_photoFailed => 'Túto fotku sa nepodarilo použiť. Skúste inú.';
+
+  @override
+  String get compass_openHint => 'Ukáž mi smer';
+
+  @override
+  String get compass_onTarget => 'Rovno pred vami';
+
+  @override
+  String compass_turnRight(int degrees) {
+    return 'Otočte sa doprava o $degrees°';
+  }
+
+  @override
+  String compass_turnLeft(int degrees) {
+    return 'Otočte sa doľava o $degrees°';
+  }
+
+  @override
+  String compass_bearing(int degrees, String point) {
+    return 'Azimut $degrees° $point';
+  }
+
+  @override
+  String get compass_noSensor =>
+      'Toto zariadenie nemá kompas, preto je šípka zobrazená so severom hore.';
+
+  @override
+  String get compass_calibrate =>
+      'Kompas si nie je istý. Niekoľkokrát pohybujte telefónom v tvare osmičky, aby ste ho kalibrovali.';
+
+  @override
+  String get compass_magneticNote =>
+      'Kým nie je známa vaša poloha, smer sa určuje podľa magnetického severu.';
+
+  @override
+  String get compass_noPosition =>
+      'Vaša poloha zatiaľ nie je známa. Povoľte polohu telefónu alebo nastavte polohu rádia.';
+
+  @override
+  String get compass_noNodePosition =>
+      'Tento uzol nezdieľal polohu, takže nie je kam ukázať.';
+
+  @override
+  String get compass_usePhoneLocation => 'Použiť polohu telefónu';
+
+  @override
+  String get compass_sourcePhone => 'Vaša poloha pochádza z GPS telefónu.';
+
+  @override
+  String get compass_sourceRadio => 'Vaša poloha pochádza z rádia.';
 }

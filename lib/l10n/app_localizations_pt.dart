@@ -4768,54 +4768,33 @@ class AppLocalizationsPt extends AppLocalizations {
   String get losLegendTerrain => 'Terreno';
 
   @override
-  String get compass_openHint => 'Aponta-me o caminho';
+  String get nodeLook_menu => 'Foto ou cor';
 
   @override
-  String get compass_onTarget => 'Em frente';
-
-  @override
-  String compass_turnRight(int degrees) {
-    return 'Vire $degrees° à direita';
+  String nodeLook_title(String name) {
+    return 'Aspeto de $name';
   }
 
   @override
-  String compass_turnLeft(int degrees) {
-    return 'Vire $degrees° à esquerda';
+  String get nodeLook_hint => 'Só neste telefone. Nunca é enviado pela malha.';
+
+  @override
+  String get nodeLook_choosePhoto => 'Escolher foto';
+
+  @override
+  String get nodeLook_removePhoto => 'Remover foto';
+
+  @override
+  String get nodeLook_clear => 'Usar o aspeto predefinido';
+
+  @override
+  String nodeLook_colorN(int index) {
+    return 'Cor $index';
   }
 
   @override
-  String compass_bearing(int degrees, String point) {
-    return 'Rumo $degrees° $point';
-  }
-
-  @override
-  String get compass_noSensor =>
-      'Este dispositivo não tem bússola, por isso a seta é desenhada com o norte para cima.';
-
-  @override
-  String get compass_calibrate =>
-      'A bússola está imprecisa. Mova o telefone em forma de oito algumas vezes para a calibrar.';
-
-  @override
-  String get compass_magneticNote =>
-      'Orientação pelo norte magnético até a sua posição ser conhecida.';
-
-  @override
-  String get compass_noPosition =>
-      'A sua posição ainda não é conhecida. Permita a localização do telefone ou defina a posição do rádio.';
-
-  @override
-  String get compass_noNodePosition =>
-      'Este nó não partilhou a posição, por isso não há para onde apontar.';
-
-  @override
-  String get compass_usePhoneLocation => 'Usar a localização do telefone';
-
-  @override
-  String get compass_sourcePhone => 'A sua posição vem do GPS do telefone.';
-
-  @override
-  String get compass_sourceRadio => 'A sua posição vem do rádio.';
+  String get nodeLook_photoFailed =>
+      'Não foi possível usar essa foto. Experimente outra.';
 
   @override
   String get losBlockedSpotsTitle => 'Locais ocupados';
@@ -12348,4 +12327,54 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get bg_photoFailed =>
       'Não foi possível usar essa foto. Experimente outra.';
+
+  @override
+  String get compass_openHint => 'Aponta-me o caminho';
+
+  @override
+  String get compass_onTarget => 'Em frente';
+
+  @override
+  String compass_turnRight(int degrees) {
+    return 'Vire $degrees° à direita';
+  }
+
+  @override
+  String compass_turnLeft(int degrees) {
+    return 'Vire $degrees° à esquerda';
+  }
+
+  @override
+  String compass_bearing(int degrees, String point) {
+    return 'Rumo $degrees° $point';
+  }
+
+  @override
+  String get compass_noSensor =>
+      'Este dispositivo não tem bússola, por isso a seta é desenhada com o norte para cima.';
+
+  @override
+  String get compass_calibrate =>
+      'A bússola está imprecisa. Mova o telefone em forma de oito algumas vezes para a calibrar.';
+
+  @override
+  String get compass_magneticNote =>
+      'Orientação pelo norte magnético até a sua posição ser conhecida.';
+
+  @override
+  String get compass_noPosition =>
+      'A sua posição ainda não é conhecida. Permita a localização do telefone ou defina a posição do rádio.';
+
+  @override
+  String get compass_noNodePosition =>
+      'Este nó não partilhou a posição, por isso não há para onde apontar.';
+
+  @override
+  String get compass_usePhoneLocation => 'Usar a localização do telefone';
+
+  @override
+  String get compass_sourcePhone => 'A sua posição vem do GPS do telefone.';
+
+  @override
+  String get compass_sourceRadio => 'A sua posição vem do rádio.';
 }

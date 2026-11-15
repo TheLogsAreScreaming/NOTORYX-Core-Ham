@@ -4777,54 +4777,34 @@ class AppLocalizationsUk extends AppLocalizations {
   String get losLegendTerrain => 'Рельєф';
 
   @override
-  String get compass_openHint => 'Вказати напрямок';
+  String get nodeLook_menu => 'Фото або колір';
 
   @override
-  String get compass_onTarget => 'Прямо попереду';
-
-  @override
-  String compass_turnRight(int degrees) {
-    return 'Поверніться праворуч на $degrees°';
+  String nodeLook_title(String name) {
+    return 'Вигляд: $name';
   }
 
   @override
-  String compass_turnLeft(int degrees) {
-    return 'Поверніться ліворуч на $degrees°';
+  String get nodeLook_hint =>
+      'Лише на цьому телефоні. Ніколи не надсилається в мережу.';
+
+  @override
+  String get nodeLook_choosePhoto => 'Вибрати фото';
+
+  @override
+  String get nodeLook_removePhoto => 'Прибрати фото';
+
+  @override
+  String get nodeLook_clear => 'Повернути звичайний вигляд';
+
+  @override
+  String nodeLook_colorN(int index) {
+    return 'Колір $index';
   }
 
   @override
-  String compass_bearing(int degrees, String point) {
-    return 'Азимут $degrees° $point';
-  }
-
-  @override
-  String get compass_noSensor =>
-      'На цьому пристрої немає компаса, тому стрілку показано з північчю вгорі.';
-
-  @override
-  String get compass_calibrate =>
-      'Компас неточний. Кілька разів проведіть телефоном вісімкою, щоб відкалібрувати його.';
-
-  @override
-  String get compass_magneticNote =>
-      'Поки ваше місце невідоме, напрямок за магнітною північчю.';
-
-  @override
-  String get compass_noPosition =>
-      'Ваше місце ще невідоме. Дозвольте геолокацію телефона або задайте положення радіо.';
-
-  @override
-  String get compass_noNodePosition =>
-      'Цей вузол не поділився місцем, тож немає куди вказувати.';
-
-  @override
-  String get compass_usePhoneLocation => 'Використати геолокацію телефона';
-
-  @override
-  String get compass_sourcePhone => 'Ваше місце береться з GPS телефона.';
-
-  @override
-  String get compass_sourceRadio => 'Ваше місце береться з радіо.';
+  String get nodeLook_photoFailed =>
+      'Не вдалося використати це фото. Спробуйте інше.';
 
   @override
   String get losBlockedSpotsTitle => 'Заблоковані місця';
@@ -12404,4 +12384,54 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get bg_photoFailed =>
       'Не вдалося використати це фото. Спробуйте інше.';
+
+  @override
+  String get compass_openHint => 'Вказати напрямок';
+
+  @override
+  String get compass_onTarget => 'Прямо попереду';
+
+  @override
+  String compass_turnRight(int degrees) {
+    return 'Поверніться праворуч на $degrees°';
+  }
+
+  @override
+  String compass_turnLeft(int degrees) {
+    return 'Поверніться ліворуч на $degrees°';
+  }
+
+  @override
+  String compass_bearing(int degrees, String point) {
+    return 'Азимут $degrees° $point';
+  }
+
+  @override
+  String get compass_noSensor =>
+      'На цьому пристрої немає компаса, тому стрілку показано з північчю вгорі.';
+
+  @override
+  String get compass_calibrate =>
+      'Компас неточний. Кілька разів проведіть телефоном вісімкою, щоб відкалібрувати його.';
+
+  @override
+  String get compass_magneticNote =>
+      'Поки ваше місце невідоме, напрямок за магнітною північчю.';
+
+  @override
+  String get compass_noPosition =>
+      'Ваше місце ще невідоме. Дозвольте геолокацію телефона або задайте положення радіо.';
+
+  @override
+  String get compass_noNodePosition =>
+      'Цей вузол не поділився місцем, тож немає куди вказувати.';
+
+  @override
+  String get compass_usePhoneLocation => 'Використати геолокацію телефона';
+
+  @override
+  String get compass_sourcePhone => 'Ваше місце береться з GPS телефона.';
+
+  @override
+  String get compass_sourceRadio => 'Ваше місце береться з радіо.';
 }

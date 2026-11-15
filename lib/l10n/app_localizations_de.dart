@@ -4778,54 +4778,34 @@ class AppLocalizationsDe extends AppLocalizations {
   String get losLegendTerrain => 'Gelände';
 
   @override
-  String get compass_openHint => 'Zeig mir den Weg';
+  String get nodeLook_menu => 'Foto oder Farbe';
 
   @override
-  String get compass_onTarget => 'Geradeaus';
-
-  @override
-  String compass_turnRight(int degrees) {
-    return '$degrees° nach rechts drehen';
+  String nodeLook_title(String name) {
+    return 'Aussehen von $name';
   }
 
   @override
-  String compass_turnLeft(int degrees) {
-    return '$degrees° nach links drehen';
+  String get nodeLook_hint =>
+      'Nur auf diesem Handy. Wird nie über das Mesh gesendet.';
+
+  @override
+  String get nodeLook_choosePhoto => 'Foto auswählen';
+
+  @override
+  String get nodeLook_removePhoto => 'Foto entfernen';
+
+  @override
+  String get nodeLook_clear => 'Standardaussehen verwenden';
+
+  @override
+  String nodeLook_colorN(int index) {
+    return 'Farbe $index';
   }
 
   @override
-  String compass_bearing(int degrees, String point) {
-    return 'Peilung $degrees° $point';
-  }
-
-  @override
-  String get compass_noSensor =>
-      'Dieses Gerät hat keinen Kompass, daher zeigt der Pfeil mit Norden nach oben.';
-
-  @override
-  String get compass_calibrate =>
-      'Der Kompass ist ungenau. Bewege das Handy ein paar Mal in einer Acht, um ihn zu kalibrieren.';
-
-  @override
-  String get compass_magneticNote =>
-      'Richtung nach magnetisch Nord, bis deine Position bekannt ist.';
-
-  @override
-  String get compass_noPosition =>
-      'Deine Position ist noch unbekannt. Erlaube den Handy-Standort oder lege die Position des Funkgeräts fest.';
-
-  @override
-  String get compass_noNodePosition =>
-      'Dieser Knoten hat keine Position geteilt, daher gibt es kein Ziel.';
-
-  @override
-  String get compass_usePhoneLocation => 'Handy-Standort verwenden';
-
-  @override
-  String get compass_sourcePhone => 'Deine Position kommt vom GPS des Handys.';
-
-  @override
-  String get compass_sourceRadio => 'Deine Position kommt vom Funkgerät.';
+  String get nodeLook_photoFailed =>
+      'Dieses Foto ließ sich nicht verwenden. Versuch ein anderes.';
 
   @override
   String get losBlockedSpotsTitle => 'Reservierte Plätze';
@@ -12373,4 +12353,54 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get bg_photoFailed =>
       'Dieses Foto ließ sich nicht verwenden. Versuch ein anderes.';
+
+  @override
+  String get compass_openHint => 'Zeig mir den Weg';
+
+  @override
+  String get compass_onTarget => 'Geradeaus';
+
+  @override
+  String compass_turnRight(int degrees) {
+    return '$degrees° nach rechts drehen';
+  }
+
+  @override
+  String compass_turnLeft(int degrees) {
+    return '$degrees° nach links drehen';
+  }
+
+  @override
+  String compass_bearing(int degrees, String point) {
+    return 'Peilung $degrees° $point';
+  }
+
+  @override
+  String get compass_noSensor =>
+      'Dieses Gerät hat keinen Kompass, daher zeigt der Pfeil mit Norden nach oben.';
+
+  @override
+  String get compass_calibrate =>
+      'Der Kompass ist ungenau. Bewege das Handy ein paar Mal in einer Acht, um ihn zu kalibrieren.';
+
+  @override
+  String get compass_magneticNote =>
+      'Richtung nach magnetisch Nord, bis deine Position bekannt ist.';
+
+  @override
+  String get compass_noPosition =>
+      'Deine Position ist noch unbekannt. Erlaube den Handy-Standort oder lege die Position des Funkgeräts fest.';
+
+  @override
+  String get compass_noNodePosition =>
+      'Dieser Knoten hat keine Position geteilt, daher gibt es kein Ziel.';
+
+  @override
+  String get compass_usePhoneLocation => 'Handy-Standort verwenden';
+
+  @override
+  String get compass_sourcePhone => 'Deine Position kommt vom GPS des Handys.';
+
+  @override
+  String get compass_sourceRadio => 'Deine Position kommt vom Funkgerät.';
 }

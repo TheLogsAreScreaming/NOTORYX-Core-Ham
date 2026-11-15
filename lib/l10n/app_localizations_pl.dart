@@ -4785,54 +4785,34 @@ class AppLocalizationsPl extends AppLocalizations {
   String get losLegendTerrain => 'Teren';
 
   @override
-  String get compass_openHint => 'Wskaż mi kierunek';
+  String get nodeLook_menu => 'Zdjęcie lub kolor';
 
   @override
-  String get compass_onTarget => 'Prosto przed tobą';
-
-  @override
-  String compass_turnRight(int degrees) {
-    return 'Obróć się w prawo o $degrees°';
+  String nodeLook_title(String name) {
+    return 'Wygląd: $name';
   }
 
   @override
-  String compass_turnLeft(int degrees) {
-    return 'Obróć się w lewo o $degrees°';
+  String get nodeLook_hint =>
+      'Tylko na tym telefonie. Nigdy nie jest wysyłane przez sieć.';
+
+  @override
+  String get nodeLook_choosePhoto => 'Wybierz zdjęcie';
+
+  @override
+  String get nodeLook_removePhoto => 'Usuń zdjęcie';
+
+  @override
+  String get nodeLook_clear => 'Użyj domyślnego wyglądu';
+
+  @override
+  String nodeLook_colorN(int index) {
+    return 'Kolor $index';
   }
 
   @override
-  String compass_bearing(int degrees, String point) {
-    return 'Namiar $degrees° $point';
-  }
-
-  @override
-  String get compass_noSensor =>
-      'To urządzenie nie ma kompasu, więc strzałka jest rysowana z północą u góry.';
-
-  @override
-  String get compass_calibrate =>
-      'Kompas jest niepewny. Porusz telefonem kilka razy po ósemce, aby go skalibrować.';
-
-  @override
-  String get compass_magneticNote =>
-      'Kierunek według północy magnetycznej, dopóki pozycja nie jest znana.';
-
-  @override
-  String get compass_noPosition =>
-      'Twoja pozycja nie jest jeszcze znana. Zezwól na lokalizację telefonu lub ustaw pozycję radia.';
-
-  @override
-  String get compass_noNodePosition =>
-      'Ten węzeł nie udostępnił pozycji, więc nie ma na co wskazać.';
-
-  @override
-  String get compass_usePhoneLocation => 'Użyj lokalizacji telefonu';
-
-  @override
-  String get compass_sourcePhone => 'Twoja pozycja pochodzi z GPS telefonu.';
-
-  @override
-  String get compass_sourceRadio => 'Twoja pozycja pochodzi z radia.';
+  String get nodeLook_photoFailed =>
+      'Nie można użyć tego zdjęcia. Spróbuj innego.';
 
   @override
   String get losBlockedSpotsTitle => 'Zablokowane miejsca';
@@ -12409,4 +12389,54 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get bg_photoFailed => 'Nie można użyć tego zdjęcia. Spróbuj innego.';
+
+  @override
+  String get compass_openHint => 'Wskaż mi kierunek';
+
+  @override
+  String get compass_onTarget => 'Prosto przed tobą';
+
+  @override
+  String compass_turnRight(int degrees) {
+    return 'Obróć się w prawo o $degrees°';
+  }
+
+  @override
+  String compass_turnLeft(int degrees) {
+    return 'Obróć się w lewo o $degrees°';
+  }
+
+  @override
+  String compass_bearing(int degrees, String point) {
+    return 'Namiar $degrees° $point';
+  }
+
+  @override
+  String get compass_noSensor =>
+      'To urządzenie nie ma kompasu, więc strzałka jest rysowana z północą u góry.';
+
+  @override
+  String get compass_calibrate =>
+      'Kompas jest niepewny. Porusz telefonem kilka razy po ósemce, aby go skalibrować.';
+
+  @override
+  String get compass_magneticNote =>
+      'Kierunek według północy magnetycznej, dopóki pozycja nie jest znana.';
+
+  @override
+  String get compass_noPosition =>
+      'Twoja pozycja nie jest jeszcze znana. Zezwól na lokalizację telefonu lub ustaw pozycję radia.';
+
+  @override
+  String get compass_noNodePosition =>
+      'Ten węzeł nie udostępnił pozycji, więc nie ma na co wskazać.';
+
+  @override
+  String get compass_usePhoneLocation => 'Użyj lokalizacji telefonu';
+
+  @override
+  String get compass_sourcePhone => 'Twoja pozycja pochodzi z GPS telefonu.';
+
+  @override
+  String get compass_sourceRadio => 'Twoja pozycja pochodzi z radia.';
 }

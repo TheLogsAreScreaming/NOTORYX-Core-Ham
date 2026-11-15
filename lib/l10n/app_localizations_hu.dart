@@ -4763,54 +4763,34 @@ class AppLocalizationsHu extends AppLocalizations {
   String get losLegendTerrain => 'Terep';
 
   @override
-  String get compass_openHint => 'Mutasd az irányt';
+  String get nodeLook_menu => 'Fotó vagy szín';
 
   @override
-  String get compass_onTarget => 'Egyenesen előre';
-
-  @override
-  String compass_turnRight(int degrees) {
-    return 'Fordulj jobbra $degrees°-ot';
+  String nodeLook_title(String name) {
+    return '$name megjelenése';
   }
 
   @override
-  String compass_turnLeft(int degrees) {
-    return 'Fordulj balra $degrees°-ot';
+  String get nodeLook_hint =>
+      'Csak ezen a telefonon. Soha nem kerül a hálózatra.';
+
+  @override
+  String get nodeLook_choosePhoto => 'Fotó kiválasztása';
+
+  @override
+  String get nodeLook_removePhoto => 'Fotó eltávolítása';
+
+  @override
+  String get nodeLook_clear => 'Alapértelmezett megjelenés';
+
+  @override
+  String nodeLook_colorN(int index) {
+    return '$index. szín';
   }
 
   @override
-  String compass_bearing(int degrees, String point) {
-    return 'Irány $degrees° $point';
-  }
-
-  @override
-  String get compass_noSensor =>
-      'Ezen az eszközön nincs iránytű, ezért a nyíl észak felfelé nézetben jelenik meg.';
-
-  @override
-  String get compass_calibrate =>
-      'Az iránytű bizonytalan. Mozgasd a telefont néhányszor nyolcas alakban a kalibráláshoz.';
-
-  @override
-  String get compass_magneticNote =>
-      'Amíg nem ismert a helyzeted, a mágneses északhoz igazodik.';
-
-  @override
-  String get compass_noPosition =>
-      'A saját helyzeted még nem ismert. Engedélyezd a telefon helyadatait, vagy állítsd be a rádió helyzetét.';
-
-  @override
-  String get compass_noNodePosition =>
-      'Ez a csomópont nem osztott meg helyzetet, így nincs mire mutatni.';
-
-  @override
-  String get compass_usePhoneLocation => 'Telefon helyadatainak használata';
-
-  @override
-  String get compass_sourcePhone => 'A helyzeted a telefon GPS-éből származik.';
-
-  @override
-  String get compass_sourceRadio => 'A helyzeted a rádióból származik.';
+  String get nodeLook_photoFailed =>
+      'Ezt a fotót nem lehet használni. Próbálj egy másikat.';
 
   @override
   String get losBlockedSpotsTitle => 'Blokkolt helyek';
@@ -12348,4 +12328,54 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get bg_photoFailed =>
       'Ezt a fotót nem lehet használni. Próbálj egy másikat.';
+
+  @override
+  String get compass_openHint => 'Mutasd az irányt';
+
+  @override
+  String get compass_onTarget => 'Egyenesen előre';
+
+  @override
+  String compass_turnRight(int degrees) {
+    return 'Fordulj jobbra $degrees°-ot';
+  }
+
+  @override
+  String compass_turnLeft(int degrees) {
+    return 'Fordulj balra $degrees°-ot';
+  }
+
+  @override
+  String compass_bearing(int degrees, String point) {
+    return 'Irány $degrees° $point';
+  }
+
+  @override
+  String get compass_noSensor =>
+      'Ezen az eszközön nincs iránytű, ezért a nyíl észak felfelé nézetben jelenik meg.';
+
+  @override
+  String get compass_calibrate =>
+      'Az iránytű bizonytalan. Mozgasd a telefont néhányszor nyolcas alakban a kalibráláshoz.';
+
+  @override
+  String get compass_magneticNote =>
+      'Amíg nem ismert a helyzeted, a mágneses északhoz igazodik.';
+
+  @override
+  String get compass_noPosition =>
+      'A saját helyzeted még nem ismert. Engedélyezd a telefon helyadatait, vagy állítsd be a rádió helyzetét.';
+
+  @override
+  String get compass_noNodePosition =>
+      'Ez a csomópont nem osztott meg helyzetet, így nincs mire mutatni.';
+
+  @override
+  String get compass_usePhoneLocation => 'Telefon helyadatainak használata';
+
+  @override
+  String get compass_sourcePhone => 'A helyzeted a telefon GPS-éből származik.';
+
+  @override
+  String get compass_sourceRadio => 'A helyzeted a rádióból származik.';
 }
