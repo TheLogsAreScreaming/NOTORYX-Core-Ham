@@ -2208,6 +2208,10 @@ class _LosProfilePainter extends CustomPainter {
       ..strokeWidth = 1.2;
     const dash = 5.0;
     const gap = 4.0;
+    // Where in the dash-gap cycle the line is. Carried from one sample to the
+    // next: segments are often shorter than one dash, and restarting the
+    // pattern on each one would draw a solid line.
+    var phase = 0.0;
     for (var i = 0; i < samples.length - 1; i++) {
       final a = map(
         samples[i].distanceMeters,
@@ -2224,10 +2228,11 @@ class _LosProfilePainter extends CustomPainter {
       final length = (b - a).distance;
       if (length <= 0) continue;
       final dir = (b - a) / length;
-      for (var t = 0.0; t < length; t += dash + gap) {
-        final end = math.min(t + dash, length);
-        canvas.drawLine(a + dir * t, a + dir * end, targetPaint);
+      final run = dashRuns(length, phase, dash: dash, gap: gap);
+      for (final (start, end) in run.runs) {
+        canvas.drawLine(a + dir * start, a + dir * end, targetPaint);
       }
+      phase = run.phase;
     }
   }
 
@@ -2392,4 +2397,25 @@ class _LegendEntry {
   final Color color;
 
   const _LegendEntry(this.label, this.color);
+}
+
+/// The drawn parts of a dashed segment [length] long, starting [phase] into
+/// the dash-gap cycle, and the phase to start the next segment with.
+@visibleForTesting
+({List<(double, double)> runs, double phase}) dashRuns(
+  double length,
+  double phase, {
+  required double dash,
+  required double gap,
+}) {
+  final runs = <(double, double)>[];
+  var t = 0.0;
+  while (t < length) {
+    final left = (phase < dash ? dash : dash + gap) - phase;
+    final step = math.min(left, length - t);
+    if (phase < dash) runs.add((t, t + step));
+    t += step;
+    phase = (phase + step) % (dash + gap);
+  }
+  return (runs: runs, phase: phase);
 }

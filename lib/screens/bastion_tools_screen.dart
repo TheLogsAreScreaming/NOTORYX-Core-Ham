@@ -16,6 +16,7 @@ import 'network_changes_screen.dart';
 import 'node_journal_screen.dart';
 import 'troubleshooting_screen.dart';
 import 'bastion_about_screen.dart';
+import 'backdrop_settings_screen.dart';
 import 'bot_settings_screen.dart';
 import 'connection_dashboard_screen.dart';
 import 'licensed_operator_screen.dart';
@@ -89,6 +90,16 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
             icon: Icons.tune_rounded,
             title: l10n.settings_title,
             builder: (_) => const SettingsScreen(),
+          ),
+          // Lives in Settings; search finds it here too.
+          _ToolAction(
+            icon: Icons.wallpaper_outlined,
+            title: l10n.bg_title,
+            subtitle:
+                '${l10n.bg_kindSolid}, ${l10n.bg_kindLinear}, '
+                '${l10n.bg_kindMesh}, ${l10n.bg_kindPhoto}',
+            builder: (_) => const BackdropSettingsScreen(),
+            searchOnly: true,
           ),
           _ToolAction(
             icon: Icons.smart_toy_outlined,
@@ -302,7 +313,11 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
           title: group.title,
           hue: index,
           actions: group.actions
-              .where((action) => action.matches(_query))
+              .where(
+                (action) =>
+                    action.matches(_query) &&
+                    (_query.isNotEmpty || !action.searchOnly),
+              )
               .toList(),
         ),
     ].where((group) => group.actions.isNotEmpty).toList();
@@ -396,7 +411,12 @@ class _ToolAction {
     required this.title,
     this.subtitle,
     required this.builder,
+    this.searchOnly = false,
   });
+
+  /// Listed only while searching: it lives elsewhere, and search still
+  /// finds it here.
+  final bool searchOnly;
 
   final IconData icon;
   final String title;

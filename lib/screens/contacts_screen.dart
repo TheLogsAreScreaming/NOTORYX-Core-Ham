@@ -41,6 +41,7 @@ import '../widgets/node_avatar.dart';
 import '../widgets/node_look_sheet.dart';
 import 'chat_screen.dart';
 import 'discovery_screen.dart';
+import 'node_compass_screen.dart';
 import 'repeater_hub_screen.dart';
 import 'settings_screen.dart';
 import '../widgets/ui/mesh_states.dart';
@@ -1506,6 +1507,15 @@ class _ContactsScreenState extends State<ContactsScreen>
                   },
                 ),
             ],
+            if (contact.hasLocation)
+              ListTile(
+                leading: const Icon(Icons.explore_outlined),
+                title: Text(context.l10n.compass_openHint),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  openNodeCompass(context, contact);
+                },
+              ),
             ListTile(
               leading: const Icon(Icons.palette_outlined),
               title: Text(context.l10n.nodeLook_menu),
