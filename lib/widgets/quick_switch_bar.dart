@@ -38,6 +38,12 @@ class QuickSwitchBar extends StatelessWidget {
 
     void handleDestination(int index) {
       final tab = MainTab.values[index];
+      if (tab != current && tabNeedsRadio(tab) && !connector.isConnected) {
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(SnackBar(content: Text(l10n.trouble_connectedAdvice)));
+        return;
+      }
       if (tab != current) HapticFeedback.selectionClick();
       if (onSelected != null) {
         onSelected!(tab);
