@@ -46,6 +46,8 @@ import 'repeater_hub_screen.dart';
 import 'settings_screen.dart';
 import 'line_of_sight_map_screen.dart';
 import '../widgets/ui/mesh_states.dart';
+import 'node_compass_screen.dart';
+import '../widgets/node_avatar.dart';
 
 class MapScreen extends StatefulWidget {
   final LatLng? highlightPosition;
@@ -2467,11 +2469,17 @@ class _MapScreenState extends State<MapScreen> {
                 children: [
                   Row(
                     children: [
-                      AvatarCircle(
+                      NodeAvatar(
+                        nodeKey: contact.publicKeyHex,
                         name: contact.name,
                         size: 38,
-                        color: color,
                         icon: _getNodeIcon(contact.type),
+                        fallback: AvatarCircle(
+                          name: contact.name,
+                          size: 38,
+                          color: color,
+                          icon: _getNodeIcon(contact.type),
+                        ),
                       ),
                       const SizedBox(width: 10),
                       Expanded(
@@ -2586,6 +2594,13 @@ class _MapScreenState extends State<MapScreen> {
                   Row(
                     children: [
                       ..._selectedNodeActions(context, contact, connector),
+                      if (contact.hasLocation)
+                        IconButton(
+                          tooltip: context.l10n.compass_openHint,
+                          color: MapPalette.selected,
+                          icon: const Icon(Icons.explore_outlined),
+                          onPressed: () => openNodeCompass(context, contact),
+                        ),
                       TextButton(
                         style: TextButton.styleFrom(
                           foregroundColor: MapPalette.selected,
@@ -3013,6 +3028,17 @@ class _MapScreenState extends State<MapScreen> {
                       ),
                       const SizedBox(height: 16),
                       ...actions,
+                      if (contact.hasLocation) ...[
+                        const SizedBox(height: 8),
+                        OutlinedButton.icon(
+                          icon: const Icon(Icons.explore_outlined),
+                          label: Text(context.l10n.compass_openHint),
+                          onPressed: () {
+                            Navigator.pop(sheetContext);
+                            openNodeCompass(context, contact);
+                          },
+                        ),
+                      ],
                     ],
                   ),
                 ),

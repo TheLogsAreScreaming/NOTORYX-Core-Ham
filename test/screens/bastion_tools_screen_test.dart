@@ -101,4 +101,15 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Bot Mode'), findsOneWidget);
   });
+
+  testWidgets('Background is found by search but not listed', (tester) async {
+    await _pump(tester);
+    expect(find.text('Background'), findsNothing);
+    await tester.enterText(find.byType(TextField), 'background');
+    await tester.pumpAndSettle();
+    expect(find.text('Background'), findsOneWidget);
+    await tester.enterText(find.byType(TextField), 'gradient');
+    await tester.pumpAndSettle();
+    expect(find.text('Background'), findsOneWidget);
+  });
 }
