@@ -4778,6 +4778,65 @@ class AppLocalizationsDe extends AppLocalizations {
   String get losLegendTerrain => 'Gelände';
 
   @override
+  String get bg_title => 'Hintergrund';
+
+  @override
+  String get bg_kindTheme => 'Themen-Glühen';
+
+  @override
+  String get bg_kindSolid => 'Farbe';
+
+  @override
+  String get bg_kindLinear => 'Verlauf';
+
+  @override
+  String get bg_kindMesh => 'Farbwolken';
+
+  @override
+  String get bg_kindPhoto => 'Foto';
+
+  @override
+  String get bg_color1 => 'Erste Farbe';
+
+  @override
+  String get bg_color2 => 'Zweite Farbe';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Farbe $index';
+  }
+
+  @override
+  String get bg_dim => 'Abdunkeln';
+
+  @override
+  String get bg_blur => 'Unschärfe';
+
+  @override
+  String get bg_choosePhoto => 'Foto auswählen';
+
+  @override
+  String get bg_reset => 'Zurück zum Themen-Hintergrund';
+
+  @override
+  String get bg_hint =>
+      'Karten liegen als Milchglas darüber. Erhöhe das Abdunkeln, wenn Text schwer lesbar ist.';
+
+  @override
+  String get bg_previewTitle => 'Vorschau';
+
+  @override
+  String get bg_previewBody => 'So sieht Text auf einer Glaskarte aus.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'Das Foto bleibt auf diesem Handy und ist nicht in Backups enthalten.';
+
+  @override
+  String get bg_photoFailed =>
+      'Dieses Foto ließ sich nicht verwenden. Versuch ein anderes.';
+
+  @override
   String get losBlockedSpotsTitle => 'Reservierte Plätze';
 
   @override

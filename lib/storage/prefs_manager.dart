@@ -16,6 +16,9 @@ class PrefsManager {
     _instance ??= await SharedPreferences.getInstance();
   }
 
+  /// Whether [initialize] has finished.
+  static bool get isInitialized => _instance != null;
+
   /// Get the cached SharedPreferences instance.
   /// Throws StateError if initialize() hasn't been called.
   static SharedPreferences get instance {

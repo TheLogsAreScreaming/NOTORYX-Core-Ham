@@ -4541,6 +4541,62 @@ class AppLocalizationsKo extends AppLocalizations {
   String get losLegendTerrain => '지형';
 
   @override
+  String get bg_title => '배경';
+
+  @override
+  String get bg_kindTheme => '테마 광채';
+
+  @override
+  String get bg_kindSolid => '단색';
+
+  @override
+  String get bg_kindLinear => '그라데이션';
+
+  @override
+  String get bg_kindMesh => '메시 블렌드';
+
+  @override
+  String get bg_kindPhoto => '사진';
+
+  @override
+  String get bg_color1 => '첫 번째 색상';
+
+  @override
+  String get bg_color2 => '두 번째 색상';
+
+  @override
+  String bg_colorN(int index) {
+    return '색상 $index';
+  }
+
+  @override
+  String get bg_dim => '어둡게';
+
+  @override
+  String get bg_blur => '흐림';
+
+  @override
+  String get bg_choosePhoto => '사진 선택';
+
+  @override
+  String get bg_reset => '테마 배경으로 돌아가기';
+
+  @override
+  String get bg_hint => '카드는 그 위에 반투명 유리처럼 놓입니다. 글자가 잘 안 보이면 어둡게를 높이세요.';
+
+  @override
+  String get bg_previewTitle => '미리보기';
+
+  @override
+  String get bg_previewBody => '유리 카드 위의 글자는 이렇게 보입니다.';
+
+  @override
+  String get bg_photoNotBackedUp => '사진은 이 휴대폰에만 남고 백업에는 포함되지 않습니다.';
+
+  @override
+  String get bg_photoFailed => '이 사진은 사용할 수 없습니다. 다른 사진을 선택하세요.';
+
+  @override
   String get losBlockedSpotsTitle => '차단된 공간';
 
   @override

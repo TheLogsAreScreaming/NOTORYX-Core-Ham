@@ -2737,6 +2737,31 @@
   "losLegendRadioHorizon": "Radio horizon",
   "losLegendLosBeam": "LOS beam",
   "losLegendTerrain": "Terrain",
+  "bg_title": "Background",
+  "bg_kindTheme": "Theme glow",
+  "bg_kindSolid": "Colour",
+  "bg_kindLinear": "Gradient",
+  "bg_kindMesh": "Mesh blend",
+  "bg_kindPhoto": "Photo",
+  "bg_color1": "First colour",
+  "bg_color2": "Second colour",
+  "bg_colorN": "Colour {index}",
+  "@bg_colorN": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "bg_dim": "Dim",
+  "bg_blur": "Blur",
+  "bg_choosePhoto": "Choose photo",
+  "bg_reset": "Back to the theme's background",
+  "bg_hint": "Cards sit on frosted glass over this. Turn up Dim if text is hard to read.",
+  "bg_previewTitle": "Preview",
+  "bg_previewBody": "Text on a glass card looks like this.",
+  "bg_photoNotBackedUp": "The photo stays on this phone and isn't included in backups.",
+  "bg_photoFailed": "Couldn't use that photo. Try a different one.",
   "losBlockedSpotsTitle": "Blocked spots",
   "losBlockedSpotsHint": "Tap a blocked spot to highlight it on the map.",
   "losBlockedSpotChip": "{distance} {distanceUnit} • {obstruction} {heightUnit}",

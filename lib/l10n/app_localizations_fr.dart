@@ -4789,6 +4789,65 @@ class AppLocalizationsFr extends AppLocalizations {
   String get losLegendTerrain => 'Terrain';
 
   @override
+  String get bg_title => 'Arrière-plan';
+
+  @override
+  String get bg_kindTheme => 'Halo du thème';
+
+  @override
+  String get bg_kindSolid => 'Couleur';
+
+  @override
+  String get bg_kindLinear => 'Dégradé';
+
+  @override
+  String get bg_kindMesh => 'Fondu maillé';
+
+  @override
+  String get bg_kindPhoto => 'Photo';
+
+  @override
+  String get bg_color1 => 'Première couleur';
+
+  @override
+  String get bg_color2 => 'Deuxième couleur';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Couleur $index';
+  }
+
+  @override
+  String get bg_dim => 'Assombrir';
+
+  @override
+  String get bg_blur => 'Flou';
+
+  @override
+  String get bg_choosePhoto => 'Choisir une photo';
+
+  @override
+  String get bg_reset => 'Revenir à l\'arrière-plan du thème';
+
+  @override
+  String get bg_hint =>
+      'Les cartes en verre dépoli se posent dessus. Augmentez Assombrir si le texte est difficile à lire.';
+
+  @override
+  String get bg_previewTitle => 'Aperçu';
+
+  @override
+  String get bg_previewBody => 'Voici le texte sur une carte en verre.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'La photo reste sur ce téléphone et n\'est pas incluse dans les sauvegardes.';
+
+  @override
+  String get bg_photoFailed =>
+      'Impossible d\'utiliser cette photo. Essayez-en une autre.';
+
+  @override
   String get losBlockedSpotsTitle => 'Places occupés';
 
   @override

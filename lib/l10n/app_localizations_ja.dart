@@ -4532,6 +4532,62 @@ class AppLocalizationsJa extends AppLocalizations {
   String get losLegendTerrain => '地形';
 
   @override
+  String get bg_title => '背景';
+
+  @override
+  String get bg_kindTheme => 'テーマの光';
+
+  @override
+  String get bg_kindSolid => '単色';
+
+  @override
+  String get bg_kindLinear => 'グラデーション';
+
+  @override
+  String get bg_kindMesh => 'メッシュブレンド';
+
+  @override
+  String get bg_kindPhoto => '写真';
+
+  @override
+  String get bg_color1 => '1つ目の色';
+
+  @override
+  String get bg_color2 => '2つ目の色';
+
+  @override
+  String bg_colorN(int index) {
+    return '色 $index';
+  }
+
+  @override
+  String get bg_dim => '暗さ';
+
+  @override
+  String get bg_blur => 'ぼかし';
+
+  @override
+  String get bg_choosePhoto => '写真を選ぶ';
+
+  @override
+  String get bg_reset => 'テーマの背景に戻す';
+
+  @override
+  String get bg_hint => 'カードはすりガラスとして上に重なります。文字が読みにくい場合は暗さを上げてください。';
+
+  @override
+  String get bg_previewTitle => 'プレビュー';
+
+  @override
+  String get bg_previewBody => 'ガラスカード上の文字はこのように見えます。';
+
+  @override
+  String get bg_photoNotBackedUp => '写真はこの端末にだけ保存され、バックアップには含まれません。';
+
+  @override
+  String get bg_photoFailed => 'その写真は使えませんでした。別の写真を試してください。';
+
+  @override
   String get losBlockedSpotsTitle => '利用できない場所';
 
   @override

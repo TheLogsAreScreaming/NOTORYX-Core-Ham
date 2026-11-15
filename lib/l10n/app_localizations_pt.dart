@@ -4768,6 +4768,65 @@ class AppLocalizationsPt extends AppLocalizations {
   String get losLegendTerrain => 'Terreno';
 
   @override
+  String get bg_title => 'Fundo';
+
+  @override
+  String get bg_kindTheme => 'Brilho do tema';
+
+  @override
+  String get bg_kindSolid => 'Cor';
+
+  @override
+  String get bg_kindLinear => 'Gradiente';
+
+  @override
+  String get bg_kindMesh => 'Mistura suave';
+
+  @override
+  String get bg_kindPhoto => 'Foto';
+
+  @override
+  String get bg_color1 => 'Primeira cor';
+
+  @override
+  String get bg_color2 => 'Segunda cor';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Cor $index';
+  }
+
+  @override
+  String get bg_dim => 'Escurecer';
+
+  @override
+  String get bg_blur => 'Desfoque';
+
+  @override
+  String get bg_choosePhoto => 'Escolher foto';
+
+  @override
+  String get bg_reset => 'Voltar ao fundo do tema';
+
+  @override
+  String get bg_hint =>
+      'Os cartões ficam por cima como vidro fosco. Aumente Escurecer se o texto for difícil de ler.';
+
+  @override
+  String get bg_previewTitle => 'Pré-visualização';
+
+  @override
+  String get bg_previewBody => 'É assim que o texto fica num cartão de vidro.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'A foto fica neste telefone e não é incluída nas cópias de segurança.';
+
+  @override
+  String get bg_photoFailed =>
+      'Não foi possível usar essa foto. Experimente outra.';
+
+  @override
   String get losBlockedSpotsTitle => 'Locais ocupados';
 
   @override
