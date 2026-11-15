@@ -12289,4 +12289,21 @@ class AppLocalizationsSl extends AppLocalizations {
   String automation_placeholders(String list) {
     return 'Uporabite lahko $list';
   }
+
+  @override
+  String get losLegendFresnel => 'Fresnelova cona';
+
+  @override
+  String losFresnelClear(int percent) {
+    return 'Fresnelova cona je na najožji točki $percent% prosta. 60% ali več je dobro.';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return 'Fresnelova cona je na najožji točki le $percent% prosta. Ciljajte na 60% ali več: dvignite anteno ali premaknite točko.';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      'Teren sega v Fresnelovo cono in žarek. Dvignite anteno ali premaknite točko.';
 }

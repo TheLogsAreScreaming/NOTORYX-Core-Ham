@@ -4831,5 +4831,9 @@
   "checklist_deploy4": "무선 설정과 지역 확인",
   "checklist_deploy5": "노드를 통해 테스트 메시지 수신",
   "checklist_deploy6": "위치, 사진, 메모 기록",
-  "automation_placeholders": "사용 가능: {list}"
+  "automation_placeholders": "사용 가능: {list}",
+  "losLegendFresnel": "프레넬 영역",
+  "losFresnelClear": "가장 좁은 지점에서 프레넬 영역이 {percent}% 비어 있습니다. 60% 이상이면 좋습니다.",
+  "losFresnelPartial": "가장 좁은 지점에서 프레넬 영역이 {percent}%만 비어 있습니다. 60% 이상을 목표로 안테나를 높이거나 지점을 옮기세요.",
+  "losFresnelBlocked": "지형이 프레넬 영역과 전파 경로를 가로막습니다. 안테나를 높이거나 지점을 옮기세요."
 }

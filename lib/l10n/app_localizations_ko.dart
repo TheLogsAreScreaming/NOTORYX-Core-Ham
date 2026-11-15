@@ -11739,4 +11739,21 @@ class AppLocalizationsKo extends AppLocalizations {
   String automation_placeholders(String list) {
     return '사용 가능: $list';
   }
+
+  @override
+  String get losLegendFresnel => '프레넬 영역';
+
+  @override
+  String losFresnelClear(int percent) {
+    return '가장 좁은 지점에서 프레넬 영역이 $percent% 비어 있습니다. 60% 이상이면 좋습니다.';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return '가장 좁은 지점에서 프레넬 영역이 $percent%만 비어 있습니다. 60% 이상을 목표로 안테나를 높이거나 지점을 옮기세요.';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      '지형이 프레넬 영역과 전파 경로를 가로막습니다. 안테나를 높이거나 지점을 옮기세요.';
 }

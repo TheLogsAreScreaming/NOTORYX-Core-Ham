@@ -7556,5 +7556,23 @@
         "type": "String"
       }
     }
-  }
+  },
+  "losLegendFresnel": "Fresnel zone",
+  "losFresnelClear": "Fresnel zone {percent}% clear at the tightest point. 60% or more is good.",
+  "@losFresnelClear": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "losFresnelPartial": "Fresnel zone only {percent}% clear at the tightest point. Aim for 60% or more: raise an antenna or move a point.",
+  "@losFresnelPartial": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "losFresnelBlocked": "Terrain cuts into the Fresnel zone and the beam. Raise an antenna or move a point."
 }

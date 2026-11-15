@@ -4697,5 +4697,9 @@
   "checklist_deploy4": "Radioinställningar och region bekräftade",
   "checklist_deploy5": "Testmeddelande hört via noden",
   "checklist_deploy6": "Plats, foton och anteckningar sparade",
-  "automation_placeholders": "Du kan använda {list}"
+  "automation_placeholders": "Du kan använda {list}",
+  "losLegendFresnel": "Fresnelzon",
+  "losFresnelClear": "Fresnelzonen är {percent}% fri vid den trängsta punkten. 60% eller mer är bra.",
+  "losFresnelPartial": "Fresnelzonen är bara {percent}% fri vid den trängsta punkten. Sikta på 60% eller mer: höj en antenn eller flytta en punkt.",
+  "losFresnelBlocked": "Terrängen skär in i Fresnelzonen och strålen. Höj en antenn eller flytta en punkt."
 }

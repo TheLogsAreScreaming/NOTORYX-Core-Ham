@@ -4735,5 +4735,9 @@
   "checklist_deploy4": "Rádióbeállítások és régió megerősítve",
   "checklist_deploy5": "Tesztüzenet hallható a csomóponton át",
   "checklist_deploy6": "Hely, fotók és jegyzetek rögzítve",
-  "automation_placeholders": "Használható: {list}"
+  "automation_placeholders": "Használható: {list}",
+  "losLegendFresnel": "Fresnel-zóna",
+  "losFresnelClear": "A Fresnel-zóna a legszűkebb ponton {percent}%-ban szabad. 60% vagy több jó.",
+  "losFresnelPartial": "A Fresnel-zóna a legszűkebb ponton csak {percent}%-ban szabad. Legalább 60% a cél: emeld meg az antennát, vagy helyezz át egy pontot.",
+  "losFresnelBlocked": "A terep belelóg a Fresnel-zónába és a nyalábba. Emeld meg az antennát, vagy helyezz át egy pontot."
 }

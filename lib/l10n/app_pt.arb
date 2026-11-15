@@ -4697,5 +4697,9 @@
   "checklist_deploy4": "Definições de rádio e região confirmadas",
   "checklist_deploy5": "Mensagem de teste ouvida através do nó",
   "checklist_deploy6": "Localização, fotos e notas registadas",
-  "automation_placeholders": "Pode usar {list}"
+  "automation_placeholders": "Pode usar {list}",
+  "losLegendFresnel": "Zona de Fresnel",
+  "losFresnelClear": "Zona de Fresnel {percent}% livre no ponto mais apertado. 60% ou mais é bom.",
+  "losFresnelPartial": "Zona de Fresnel apenas {percent}% livre no ponto mais apertado. Procure 60% ou mais: suba uma antena ou mova um ponto.",
+  "losFresnelBlocked": "O terreno invade a zona de Fresnel e o feixe. Suba uma antena ou mova um ponto."
 }
