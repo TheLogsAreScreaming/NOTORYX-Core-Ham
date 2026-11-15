@@ -4789,6 +4789,56 @@ class AppLocalizationsFr extends AppLocalizations {
   String get losLegendTerrain => 'Terrain';
 
   @override
+  String get compass_openHint => 'M\'y diriger';
+
+  @override
+  String get compass_onTarget => 'Droit devant';
+
+  @override
+  String compass_turnRight(int degrees) {
+    return 'Tournez de $degrees° à droite';
+  }
+
+  @override
+  String compass_turnLeft(int degrees) {
+    return 'Tournez de $degrees° à gauche';
+  }
+
+  @override
+  String compass_bearing(int degrees, String point) {
+    return 'Cap $degrees° $point';
+  }
+
+  @override
+  String get compass_noSensor =>
+      'Cet appareil n\'a pas de boussole : la flèche est dessinée avec le nord en haut.';
+
+  @override
+  String get compass_calibrate =>
+      'La boussole est imprécise. Faites quelques huit avec le téléphone pour la calibrer.';
+
+  @override
+  String get compass_magneticNote =>
+      'Orientation sur le nord magnétique tant que votre position est inconnue.';
+
+  @override
+  String get compass_noPosition =>
+      'Votre position est encore inconnue. Autorisez la localisation du téléphone ou définissez la position de la radio.';
+
+  @override
+  String get compass_noNodePosition =>
+      'Ce nœud n\'a pas partagé sa position : rien à viser.';
+
+  @override
+  String get compass_usePhoneLocation => 'Utiliser la position du téléphone';
+
+  @override
+  String get compass_sourcePhone => 'Votre position vient du GPS du téléphone.';
+
+  @override
+  String get compass_sourceRadio => 'Votre position vient de la radio.';
+
+  @override
   String get losBlockedSpotsTitle => 'Places occupés';
 
   @override

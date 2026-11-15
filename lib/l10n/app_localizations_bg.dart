@@ -4772,6 +4772,57 @@ class AppLocalizationsBg extends AppLocalizations {
   String get losLegendTerrain => 'Терен';
 
   @override
+  String get compass_openHint => 'Насочи ме към него';
+
+  @override
+  String get compass_onTarget => 'Право напред';
+
+  @override
+  String compass_turnRight(int degrees) {
+    return 'Завийте надясно $degrees°';
+  }
+
+  @override
+  String compass_turnLeft(int degrees) {
+    return 'Завийте наляво $degrees°';
+  }
+
+  @override
+  String compass_bearing(int degrees, String point) {
+    return 'Азимут $degrees° $point';
+  }
+
+  @override
+  String get compass_noSensor =>
+      'Това устройство няма компас, затова стрелката е начертана със север нагоре.';
+
+  @override
+  String get compass_calibrate =>
+      'Компасът не е точен. Движете телефона няколко пъти във формата на осмица, за да го калибрирате.';
+
+  @override
+  String get compass_magneticNote =>
+      'Посоката е по магнитния север, докато позицията ви стане известна.';
+
+  @override
+  String get compass_noPosition =>
+      'Вашата позиция още не е известна. Разрешете местоположението на телефона или задайте позицията на радиото.';
+
+  @override
+  String get compass_noNodePosition =>
+      'Този възел не е споделил позиция, затова няма към какво да се сочи.';
+
+  @override
+  String get compass_usePhoneLocation =>
+      'Използвай местоположението на телефона';
+
+  @override
+  String get compass_sourcePhone => 'Позицията ви идва от GPS на телефона.';
+
+  @override
+  String get compass_sourceRadio => 'Позицията ви идва от радиото.';
+
+  @override
   String get losBlockedSpotsTitle => 'Ограничени места';
 
   @override

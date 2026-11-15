@@ -4725,6 +4725,56 @@ class AppLocalizationsSv extends AppLocalizations {
   String get losLegendTerrain => 'Terräng';
 
   @override
+  String get compass_openHint => 'Visa vägen dit';
+
+  @override
+  String get compass_onTarget => 'Rakt fram';
+
+  @override
+  String compass_turnRight(int degrees) {
+    return 'Vänd $degrees° åt höger';
+  }
+
+  @override
+  String compass_turnLeft(int degrees) {
+    return 'Vänd $degrees° åt vänster';
+  }
+
+  @override
+  String compass_bearing(int degrees, String point) {
+    return 'Bäring $degrees° $point';
+  }
+
+  @override
+  String get compass_noSensor =>
+      'Enheten saknar kompass, så pilen ritas med norr uppåt.';
+
+  @override
+  String get compass_calibrate =>
+      'Kompassen är osäker. Rör telefonen i en åtta några gånger för att kalibrera den.';
+
+  @override
+  String get compass_magneticNote =>
+      'Pekar mot magnetisk nord tills din position är känd.';
+
+  @override
+  String get compass_noPosition =>
+      'Din egen position är inte känd än. Tillåt telefonens plats eller ange radions position.';
+
+  @override
+  String get compass_noNodePosition =>
+      'Noden har inte delat någon position, så det finns inget att peka mot.';
+
+  @override
+  String get compass_usePhoneLocation => 'Använd telefonens plats';
+
+  @override
+  String get compass_sourcePhone => 'Din position kommer från telefonens GPS.';
+
+  @override
+  String get compass_sourceRadio => 'Din position kommer från radion.';
+
+  @override
   String get losBlockedSpotsTitle => 'Blockerade punkter';
 
   @override

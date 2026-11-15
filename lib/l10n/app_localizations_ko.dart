@@ -4541,6 +4541,52 @@ class AppLocalizationsKo extends AppLocalizations {
   String get losLegendTerrain => '지형';
 
   @override
+  String get compass_openHint => '방향 안내';
+
+  @override
+  String get compass_onTarget => '바로 앞';
+
+  @override
+  String compass_turnRight(int degrees) {
+    return '오른쪽으로 $degrees°';
+  }
+
+  @override
+  String compass_turnLeft(int degrees) {
+    return '왼쪽으로 $degrees°';
+  }
+
+  @override
+  String compass_bearing(int degrees, String point) {
+    return '방위 $degrees° $point';
+  }
+
+  @override
+  String get compass_noSensor => '이 기기에는 나침반이 없어 북쪽이 위인 기준으로 화살표를 표시합니다.';
+
+  @override
+  String get compass_calibrate => '나침반이 정확하지 않습니다. 휴대폰을 8자 모양으로 몇 번 움직여 보정하세요.';
+
+  @override
+  String get compass_magneticNote => '위치를 알 때까지 자북 기준으로 안내합니다.';
+
+  @override
+  String get compass_noPosition =>
+      '아직 내 위치를 알 수 없습니다. 휴대폰 위치를 허용하거나 무전기 위치를 설정하세요.';
+
+  @override
+  String get compass_noNodePosition => '이 노드는 위치를 공유하지 않아 가리킬 곳이 없습니다.';
+
+  @override
+  String get compass_usePhoneLocation => '휴대폰 위치 사용';
+
+  @override
+  String get compass_sourcePhone => '내 위치는 휴대폰 GPS에서 가져옵니다.';
+
+  @override
+  String get compass_sourceRadio => '내 위치는 무전기에서 가져옵니다.';
+
+  @override
   String get losBlockedSpotsTitle => '차단된 공간';
 
   @override

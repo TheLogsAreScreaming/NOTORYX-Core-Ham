@@ -4771,6 +4771,56 @@ class AppLocalizationsEs extends AppLocalizations {
   String get losLegendTerrain => 'Terreno';
 
   @override
+  String get compass_openHint => 'Llévame hasta él';
+
+  @override
+  String get compass_onTarget => 'Justo delante';
+
+  @override
+  String compass_turnRight(int degrees) {
+    return 'Gira $degrees° a la derecha';
+  }
+
+  @override
+  String compass_turnLeft(int degrees) {
+    return 'Gira $degrees° a la izquierda';
+  }
+
+  @override
+  String compass_bearing(int degrees, String point) {
+    return 'Rumbo $degrees° $point';
+  }
+
+  @override
+  String get compass_noSensor =>
+      'Este dispositivo no tiene brújula, así que la flecha se dibuja con el norte arriba.';
+
+  @override
+  String get compass_calibrate =>
+      'La brújula no es precisa. Mueve el teléfono en forma de ocho unas cuantas veces para calibrarla.';
+
+  @override
+  String get compass_magneticNote =>
+      'Se orienta por el norte magnético hasta conocer tu posición.';
+
+  @override
+  String get compass_noPosition =>
+      'Aún no se conoce tu posición. Permite la ubicación del teléfono o configura la posición de la radio.';
+
+  @override
+  String get compass_noNodePosition =>
+      'Este nodo no ha compartido su posición, así que no hay hacia dónde apuntar.';
+
+  @override
+  String get compass_usePhoneLocation => 'Usar la ubicación del teléfono';
+
+  @override
+  String get compass_sourcePhone => 'Tu posición viene del GPS del teléfono.';
+
+  @override
+  String get compass_sourceRadio => 'Tu posición viene de la radio.';
+
+  @override
   String get losBlockedSpotsTitle => 'Espacios ocupados';
 
   @override
