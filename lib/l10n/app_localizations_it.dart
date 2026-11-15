@@ -12357,4 +12357,55 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get bg_photoFailed =>
       'Impossibile usare questa foto. Provane un\'altra.';
+
+  @override
+  String get compass_openHint => 'Indicami la direzione';
+
+  @override
+  String get compass_onTarget => 'Dritto davanti';
+
+  @override
+  String compass_turnRight(int degrees) {
+    return 'Gira a destra di $degrees°';
+  }
+
+  @override
+  String compass_turnLeft(int degrees) {
+    return 'Gira a sinistra di $degrees°';
+  }
+
+  @override
+  String compass_bearing(int degrees, String point) {
+    return 'Rotta $degrees° $point';
+  }
+
+  @override
+  String get compass_noSensor =>
+      'Questo dispositivo non ha una bussola, quindi la freccia è disegnata con il nord in alto.';
+
+  @override
+  String get compass_calibrate =>
+      'La bussola è incerta. Muovi il telefono a forma di otto alcune volte per calibrarla.';
+
+  @override
+  String get compass_magneticNote =>
+      'Orientamento sul nord magnetico finché la tua posizione non è nota.';
+
+  @override
+  String get compass_noPosition =>
+      'La tua posizione non è ancora nota. Consenti la posizione del telefono o imposta quella della radio.';
+
+  @override
+  String get compass_noNodePosition =>
+      'Questo nodo non ha condiviso una posizione, quindi non c\'è nulla da indicare.';
+
+  @override
+  String get compass_usePhoneLocation => 'Usa la posizione del telefono';
+
+  @override
+  String get compass_sourcePhone =>
+      'La tua posizione arriva dal GPS del telefono.';
+
+  @override
+  String get compass_sourceRadio => 'La tua posizione arriva dalla radio.';
 }

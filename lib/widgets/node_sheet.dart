@@ -12,6 +12,7 @@ import '../models/contact.dart';
 import '../models/field_intel.dart';
 import '../screens/chat_screen.dart';
 import '../screens/map_screen.dart';
+import '../screens/node_compass_screen.dart';
 import '../screens/repeater_hub_screen.dart';
 import '../services/app_settings_service.dart';
 import '../theme/mesh_theme.dart';
@@ -169,7 +170,23 @@ void showNodeSheet(BuildContext context, Contact c) {
                 title:
                     '${distanceLabel(distanceKm(lat, lon, c.latitude!, c.longitude!), imperial)} '
                     '${compassPoint(bearingDeg(lat, lon, c.latitude!, c.longitude!))}',
+                subtitle: l10n.compass_openHint,
+                trailing: const Icon(Icons.explore_outlined),
                 divider: false,
+                onTap: () {
+                  Navigator.pop(sheet);
+                  openNodeCompass(context, c);
+                },
+              ),
+            if (!hasSelf && c.hasLocation)
+              InstrumentRow(
+                icon: Icons.explore_outlined,
+                title: l10n.compass_openHint,
+                divider: false,
+                onTap: () {
+                  Navigator.pop(sheet);
+                  openNodeCompass(context, c);
+                },
               ),
             InstrumentRow(
               icon: Icons.palette_outlined,

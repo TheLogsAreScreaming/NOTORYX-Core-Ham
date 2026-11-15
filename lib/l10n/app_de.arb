@@ -4848,5 +4848,18 @@
   "bg_previewTitle": "Vorschau",
   "bg_previewBody": "So sieht Text auf einer Glaskarte aus.",
   "bg_photoNotBackedUp": "Das Foto bleibt auf diesem Handy und ist nicht in Backups enthalten.",
-  "bg_photoFailed": "Dieses Foto ließ sich nicht verwenden. Versuch ein anderes."
+  "bg_photoFailed": "Dieses Foto ließ sich nicht verwenden. Versuch ein anderes.",
+  "compass_openHint": "Zeig mir den Weg",
+  "compass_onTarget": "Geradeaus",
+  "compass_turnRight": "{degrees}° nach rechts drehen",
+  "compass_turnLeft": "{degrees}° nach links drehen",
+  "compass_bearing": "Peilung {degrees}° {point}",
+  "compass_noSensor": "Dieses Gerät hat keinen Kompass, daher zeigt der Pfeil mit Norden nach oben.",
+  "compass_calibrate": "Der Kompass ist ungenau. Bewege das Handy ein paar Mal in einer Acht, um ihn zu kalibrieren.",
+  "compass_magneticNote": "Richtung nach magnetisch Nord, bis deine Position bekannt ist.",
+  "compass_noPosition": "Deine Position ist noch unbekannt. Erlaube den Handy-Standort oder lege die Position des Funkgeräts fest.",
+  "compass_noNodePosition": "Dieser Knoten hat keine Position geteilt, daher gibt es kein Ziel.",
+  "compass_usePhoneLocation": "Handy-Standort verwenden",
+  "compass_sourcePhone": "Deine Position kommt vom GPS des Handys.",
+  "compass_sourceRadio": "Deine Position kommt vom Funkgerät."
 }

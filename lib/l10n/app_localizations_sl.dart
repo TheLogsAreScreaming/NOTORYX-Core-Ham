@@ -12345,4 +12345,54 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get bg_photoFailed =>
       'Te fotografije ni bilo mogoče uporabiti. Poskusite drugo.';
+
+  @override
+  String get compass_openHint => 'Pokaži mi smer';
+
+  @override
+  String get compass_onTarget => 'Naravnost naprej';
+
+  @override
+  String compass_turnRight(int degrees) {
+    return 'Obrnite se desno za $degrees°';
+  }
+
+  @override
+  String compass_turnLeft(int degrees) {
+    return 'Obrnite se levo za $degrees°';
+  }
+
+  @override
+  String compass_bearing(int degrees, String point) {
+    return 'Smer $degrees° $point';
+  }
+
+  @override
+  String get compass_noSensor =>
+      'Ta naprava nima kompasa, zato je puščica narisana s severom zgoraj.';
+
+  @override
+  String get compass_calibrate =>
+      'Kompas ni zanesljiv. Nekajkrat premaknite telefon v obliki osmice, da ga umerite.';
+
+  @override
+  String get compass_magneticNote =>
+      'Dokler vaš položaj ni znan, smer kaže po magnetnem severu.';
+
+  @override
+  String get compass_noPosition =>
+      'Vaš položaj še ni znan. Dovolite lokacijo telefona ali nastavite položaj radia.';
+
+  @override
+  String get compass_noNodePosition =>
+      'To vozlišče ni delilo položaja, zato ni ničesar, kamor bi kazali.';
+
+  @override
+  String get compass_usePhoneLocation => 'Uporabi lokacijo telefona';
+
+  @override
+  String get compass_sourcePhone => 'Vaš položaj prihaja iz GPS telefona.';
+
+  @override
+  String get compass_sourceRadio => 'Vaš položaj prihaja iz radia.';
 }

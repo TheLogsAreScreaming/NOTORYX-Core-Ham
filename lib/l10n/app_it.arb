@@ -4848,5 +4848,18 @@
   "bg_previewTitle": "Anteprima",
   "bg_previewBody": "Ecco il testo su una scheda di vetro.",
   "bg_photoNotBackedUp": "La foto resta su questo telefono e non è inclusa nei backup.",
-  "bg_photoFailed": "Impossibile usare questa foto. Provane un'altra."
+  "bg_photoFailed": "Impossibile usare questa foto. Provane un'altra.",
+  "compass_openHint": "Indicami la direzione",
+  "compass_onTarget": "Dritto davanti",
+  "compass_turnRight": "Gira a destra di {degrees}°",
+  "compass_turnLeft": "Gira a sinistra di {degrees}°",
+  "compass_bearing": "Rotta {degrees}° {point}",
+  "compass_noSensor": "Questo dispositivo non ha una bussola, quindi la freccia è disegnata con il nord in alto.",
+  "compass_calibrate": "La bussola è incerta. Muovi il telefono a forma di otto alcune volte per calibrarla.",
+  "compass_magneticNote": "Orientamento sul nord magnetico finché la tua posizione non è nota.",
+  "compass_noPosition": "La tua posizione non è ancora nota. Consenti la posizione del telefono o imposta quella della radio.",
+  "compass_noNodePosition": "Questo nodo non ha condiviso una posizione, quindi non c'è nulla da indicare.",
+  "compass_usePhoneLocation": "Usa la posizione del telefono",
+  "compass_sourcePhone": "La tua posizione arriva dal GPS del telefono.",
+  "compass_sourceRadio": "La tua posizione arriva dalla radio."
 }

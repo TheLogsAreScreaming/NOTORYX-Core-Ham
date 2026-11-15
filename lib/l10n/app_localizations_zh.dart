@@ -11554,4 +11554,49 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get bg_photoFailed => '无法使用该照片，请换一张。';
+
+  @override
+  String get compass_openHint => '指引方向';
+
+  @override
+  String get compass_onTarget => '正前方';
+
+  @override
+  String compass_turnRight(int degrees) {
+    return '向右转$degrees°';
+  }
+
+  @override
+  String compass_turnLeft(int degrees) {
+    return '向左转$degrees°';
+  }
+
+  @override
+  String compass_bearing(int degrees, String point) {
+    return '方位 $degrees° $point';
+  }
+
+  @override
+  String get compass_noSensor => '此设备没有指南针，箭头以北为上显示。';
+
+  @override
+  String get compass_calibrate => '指南针不准确。请将手机按8字形移动几次进行校准。';
+
+  @override
+  String get compass_magneticNote => '在获知您的位置前，以磁北为准。';
+
+  @override
+  String get compass_noPosition => '尚不知道您的位置。请允许手机定位或设置电台位置。';
+
+  @override
+  String get compass_noNodePosition => '该节点未共享位置，无法指向。';
+
+  @override
+  String get compass_usePhoneLocation => '使用手机定位';
+
+  @override
+  String get compass_sourcePhone => '您的位置来自手机GPS。';
+
+  @override
+  String get compass_sourceRadio => '您的位置来自电台。';
 }

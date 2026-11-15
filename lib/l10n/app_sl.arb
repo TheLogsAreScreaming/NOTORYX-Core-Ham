@@ -4714,5 +4714,18 @@
   "bg_previewTitle": "Predogled",
   "bg_previewBody": "Tako je videti besedilo na stekleni kartici.",
   "bg_photoNotBackedUp": "Fotografija ostane na tem telefonu in ni vključena v varnostne kopije.",
-  "bg_photoFailed": "Te fotografije ni bilo mogoče uporabiti. Poskusite drugo."
+  "bg_photoFailed": "Te fotografije ni bilo mogoče uporabiti. Poskusite drugo.",
+  "compass_openHint": "Pokaži mi smer",
+  "compass_onTarget": "Naravnost naprej",
+  "compass_turnRight": "Obrnite se desno za {degrees}°",
+  "compass_turnLeft": "Obrnite se levo za {degrees}°",
+  "compass_bearing": "Smer {degrees}° {point}",
+  "compass_noSensor": "Ta naprava nima kompasa, zato je puščica narisana s severom zgoraj.",
+  "compass_calibrate": "Kompas ni zanesljiv. Nekajkrat premaknite telefon v obliki osmice, da ga umerite.",
+  "compass_magneticNote": "Dokler vaš položaj ni znan, smer kaže po magnetnem severu.",
+  "compass_noPosition": "Vaš položaj še ni znan. Dovolite lokacijo telefona ali nastavite položaj radia.",
+  "compass_noNodePosition": "To vozlišče ni delilo položaja, zato ni ničesar, kamor bi kazali.",
+  "compass_usePhoneLocation": "Uporabi lokacijo telefona",
+  "compass_sourcePhone": "Vaš položaj prihaja iz GPS telefona.",
+  "compass_sourceRadio": "Vaš položaj prihaja iz radia."
 }

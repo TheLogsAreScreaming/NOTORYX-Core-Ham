@@ -12298,4 +12298,55 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get bg_photoFailed =>
       'Die foto kon niet worden gebruikt. Probeer een andere.';
+
+  @override
+  String get compass_openHint => 'Wijs me de weg';
+
+  @override
+  String get compass_onTarget => 'Recht vooruit';
+
+  @override
+  String compass_turnRight(int degrees) {
+    return '$degrees° naar rechts draaien';
+  }
+
+  @override
+  String compass_turnLeft(int degrees) {
+    return '$degrees° naar links draaien';
+  }
+
+  @override
+  String compass_bearing(int degrees, String point) {
+    return 'Peiling $degrees° $point';
+  }
+
+  @override
+  String get compass_noSensor =>
+      'Dit apparaat heeft geen kompas, dus de pijl staat met het noorden boven.';
+
+  @override
+  String get compass_calibrate =>
+      'Het kompas is onzeker. Beweeg de telefoon een paar keer in een achtvorm om het te kalibreren.';
+
+  @override
+  String get compass_magneticNote =>
+      'Richting op magnetisch noorden totdat je positie bekend is.';
+
+  @override
+  String get compass_noPosition =>
+      'Je eigen positie is nog niet bekend. Sta telefoonlocatie toe of stel de positie van de radio in.';
+
+  @override
+  String get compass_noNodePosition =>
+      'Deze node heeft geen positie gedeeld, dus er is niets om naar te wijzen.';
+
+  @override
+  String get compass_usePhoneLocation => 'Telefoonlocatie gebruiken';
+
+  @override
+  String get compass_sourcePhone =>
+      'Je positie komt van de gps van de telefoon.';
+
+  @override
+  String get compass_sourceRadio => 'Je positie komt van de radio.';
 }
