@@ -2434,6 +2434,10 @@
       }
     }
   },
+  "losLegendFresnel": "菲涅耳区",
+  "losFresnelClear": "最窄处菲涅耳区有{percent}%无遮挡。60%或以上为良好。",
+  "losFresnelPartial": "最窄处菲涅耳区仅有{percent}%无遮挡。目标为60%或以上：升高天线或移动位置。",
+  "losFresnelBlocked": "地形侵入菲涅耳区并遮挡波束。请升高天线或移动位置。",
   "losBlockedSpotsTitle": "被占用区域",
   "losBlockedSpotsHint": "点击地图上的某个被遮盖的区域，以突出显示该区域。",
   "losSelectedObstructionTitle": "选择性阻碍",

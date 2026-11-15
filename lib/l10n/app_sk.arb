@@ -2429,6 +2429,10 @@
       }
     }
   },
+  "losLegendFresnel": "Fresnelova zóna",
+  "losFresnelClear": "Fresnelova zóna je v najužšom mieste voľná na {percent}%. 60% a viac je dobré.",
+  "losFresnelPartial": "Fresnelova zóna je v najužšom mieste voľná len na {percent}%. Cieľom je 60% a viac: zdvihnite anténu alebo posuňte bod.",
+  "losFresnelBlocked": "Terén zasahuje do Fresnelovej zóny aj lúča. Zdvihnite anténu alebo posuňte bod.",
   "losBlockedSpotsTitle": "Zablokované miesta",
   "losBlockedSpotsHint": "Kliknite na zablokované miesto, aby ste ho zvýraznili na mape.",
   "losSelectedObstructionTitle": "Vybraná prekážka",

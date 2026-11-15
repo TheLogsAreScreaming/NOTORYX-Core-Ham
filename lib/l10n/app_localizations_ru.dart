@@ -4779,6 +4779,23 @@ class AppLocalizationsRu extends AppLocalizations {
   String get losLegendTerrain => 'Рельеф';
 
   @override
+  String get losLegendFresnel => 'Зона Френеля';
+
+  @override
+  String losFresnelClear(int percent) {
+    return 'Зона Френеля свободна на $percent% в самом узком месте. 60% и больше — хорошо.';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return 'Зона Френеля свободна лишь на $percent% в самом узком месте. Цель — 60% и больше: поднимите антенну или передвиньте точку.';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      'Рельеф перекрывает зону Френеля и луч. Поднимите антенну или передвиньте точку.';
+
+  @override
   String get losBlockedSpotsTitle => 'Зарезервированные места';
 
   @override

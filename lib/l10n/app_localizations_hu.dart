@@ -4763,6 +4763,23 @@ class AppLocalizationsHu extends AppLocalizations {
   String get losLegendTerrain => 'Terep';
 
   @override
+  String get losLegendFresnel => 'Fresnel-zóna';
+
+  @override
+  String losFresnelClear(int percent) {
+    return 'A Fresnel-zóna a legszűkebb ponton $percent%-ban szabad. 60% vagy több jó.';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return 'A Fresnel-zóna a legszűkebb ponton csak $percent%-ban szabad. Legalább 60% a cél: emeld meg az antennát, vagy helyezz át egy pontot.';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      'A terep belelóg a Fresnel-zónába és a nyalábba. Emeld meg az antennát, vagy helyezz át egy pontot.';
+
+  @override
   String get losBlockedSpotsTitle => 'Blokkolt helyek';
 
   @override

@@ -2468,6 +2468,10 @@
     }
   },
   "losBlockedSpotsHint": "지도에서 특정 위치를 강조하려면 해당 위치를 클릭하세요.",
+  "losLegendFresnel": "프레넬 영역",
+  "losFresnelClear": "가장 좁은 지점에서 프레넬 영역이 {percent}% 비어 있습니다. 60% 이상이면 좋습니다.",
+  "losFresnelPartial": "가장 좁은 지점에서 프레넬 영역이 {percent}%만 비어 있습니다. 60% 이상을 목표로 안테나를 높이거나 지점을 옮기세요.",
+  "losFresnelBlocked": "지형이 프레넬 영역과 전파 경로를 가로막습니다. 안테나를 높이거나 지점을 옮기세요.",
   "losBlockedSpotsTitle": "차단된 공간",
   "losSelectedObstructionTitle": "선택된 장애물",
   "losBlockedSpotChip": "{distance} {distanceUnit} • {obstruction} {heightUnit}",
