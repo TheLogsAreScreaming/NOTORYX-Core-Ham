@@ -236,13 +236,13 @@ void main() {
       expect(result.worstFresnelClearance!, lessThan(0));
     });
 
-    test('no frequency falls back to the 915 MHz baseline', () {
+    test('no frequency matches a radio on 906.875 MHz', () {
       final points = longPoints(21);
       final withFreq = LineOfSightService.computeFromElevations(
         points: points,
         elevations: List<double>.filled(points.length, 0),
         kFactor: 4.0 / 3.0,
-        frequencyMHz: 915,
+        frequencyMHz: 906.875,
       );
       final without = LineOfSightService.computeFromElevations(
         points: points,
