@@ -4772,63 +4772,55 @@ class AppLocalizationsBg extends AppLocalizations {
   String get losLegendTerrain => 'Терен';
 
   @override
-  String get bg_title => 'Фон';
+  String get compass_openHint => 'Насочи ме към него';
 
   @override
-  String get bg_kindTheme => 'Сияние на темата';
+  String get compass_onTarget => 'Право напред';
 
   @override
-  String get bg_kindSolid => 'Цвят';
-
-  @override
-  String get bg_kindLinear => 'Преливане';
-
-  @override
-  String get bg_kindMesh => 'Мрежово смесване';
-
-  @override
-  String get bg_kindPhoto => 'Снимка';
-
-  @override
-  String get bg_color1 => 'Първи цвят';
-
-  @override
-  String get bg_color2 => 'Втори цвят';
-
-  @override
-  String bg_colorN(int index) {
-    return 'Цвят $index';
+  String compass_turnRight(int degrees) {
+    return 'Завийте надясно $degrees°';
   }
 
   @override
-  String get bg_dim => 'Затъмняване';
+  String compass_turnLeft(int degrees) {
+    return 'Завийте наляво $degrees°';
+  }
 
   @override
-  String get bg_blur => 'Размазване';
+  String compass_bearing(int degrees, String point) {
+    return 'Азимут $degrees° $point';
+  }
 
   @override
-  String get bg_choosePhoto => 'Изберете снимка';
+  String get compass_noSensor =>
+      'Това устройство няма компас, затова стрелката е начертана със север нагоре.';
 
   @override
-  String get bg_reset => 'Обратно към фона на темата';
+  String get compass_calibrate =>
+      'Компасът не е точен. Движете телефона няколко пъти във формата на осмица, за да го калибрирате.';
 
   @override
-  String get bg_hint =>
-      'Картите стоят върху матово стъкло над него. Увеличете затъмняването, ако текстът се чете трудно.';
+  String get compass_magneticNote =>
+      'Посоката е по магнитния север, докато позицията ви стане известна.';
 
   @override
-  String get bg_previewTitle => 'Преглед';
+  String get compass_noPosition =>
+      'Вашата позиция още не е известна. Разрешете местоположението на телефона или задайте позицията на радиото.';
 
   @override
-  String get bg_previewBody => 'Текстът върху стъклена карта изглежда така.';
+  String get compass_noNodePosition =>
+      'Този възел не е споделил позиция, затова няма към какво да се сочи.';
 
   @override
-  String get bg_photoNotBackedUp =>
-      'Снимката остава на този телефон и не влиза в резервните копия.';
+  String get compass_usePhoneLocation =>
+      'Използвай местоположението на телефона';
 
   @override
-  String get bg_photoFailed =>
-      'Тази снимка не може да се използва. Опитайте друга.';
+  String get compass_sourcePhone => 'Позицията ви идва от GPS на телефона.';
+
+  @override
+  String get compass_sourceRadio => 'Позицията ви идва от радиото.';
 
   @override
   String get losBlockedSpotsTitle => 'Ограничени места';
@@ -12300,4 +12292,63 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get losFresnelBlocked =>
       'Теренът навлиза в зоната на Френел и в лъча. Повдигнете антена или преместете точка.';
+
+  @override
+  String get bg_title => 'Фон';
+
+  @override
+  String get bg_kindTheme => 'Сияние на темата';
+
+  @override
+  String get bg_kindSolid => 'Цвят';
+
+  @override
+  String get bg_kindLinear => 'Преливане';
+
+  @override
+  String get bg_kindMesh => 'Мрежово смесване';
+
+  @override
+  String get bg_kindPhoto => 'Снимка';
+
+  @override
+  String get bg_color1 => 'Първи цвят';
+
+  @override
+  String get bg_color2 => 'Втори цвят';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Цвят $index';
+  }
+
+  @override
+  String get bg_dim => 'Затъмняване';
+
+  @override
+  String get bg_blur => 'Размазване';
+
+  @override
+  String get bg_choosePhoto => 'Изберете снимка';
+
+  @override
+  String get bg_reset => 'Обратно към фона на темата';
+
+  @override
+  String get bg_hint =>
+      'Картите стоят върху матово стъкло над него. Увеличете затъмняването, ако текстът се чете трудно.';
+
+  @override
+  String get bg_previewTitle => 'Преглед';
+
+  @override
+  String get bg_previewBody => 'Текстът върху стъклена карта изглежда така.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'Снимката остава на този телефон и не влиза в резервните копия.';
+
+  @override
+  String get bg_photoFailed =>
+      'Тази снимка не може да се използва. Опитайте друга.';
 }

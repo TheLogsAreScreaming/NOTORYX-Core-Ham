@@ -4778,63 +4778,54 @@ class AppLocalizationsDe extends AppLocalizations {
   String get losLegendTerrain => 'Gelände';
 
   @override
-  String get bg_title => 'Hintergrund';
+  String get compass_openHint => 'Zeig mir den Weg';
 
   @override
-  String get bg_kindTheme => 'Themen-Glühen';
+  String get compass_onTarget => 'Geradeaus';
 
   @override
-  String get bg_kindSolid => 'Farbe';
-
-  @override
-  String get bg_kindLinear => 'Verlauf';
-
-  @override
-  String get bg_kindMesh => 'Farbwolken';
-
-  @override
-  String get bg_kindPhoto => 'Foto';
-
-  @override
-  String get bg_color1 => 'Erste Farbe';
-
-  @override
-  String get bg_color2 => 'Zweite Farbe';
-
-  @override
-  String bg_colorN(int index) {
-    return 'Farbe $index';
+  String compass_turnRight(int degrees) {
+    return '$degrees° nach rechts drehen';
   }
 
   @override
-  String get bg_dim => 'Abdunkeln';
+  String compass_turnLeft(int degrees) {
+    return '$degrees° nach links drehen';
+  }
 
   @override
-  String get bg_blur => 'Unschärfe';
+  String compass_bearing(int degrees, String point) {
+    return 'Peilung $degrees° $point';
+  }
 
   @override
-  String get bg_choosePhoto => 'Foto auswählen';
+  String get compass_noSensor =>
+      'Dieses Gerät hat keinen Kompass, daher zeigt der Pfeil mit Norden nach oben.';
 
   @override
-  String get bg_reset => 'Zurück zum Themen-Hintergrund';
+  String get compass_calibrate =>
+      'Der Kompass ist ungenau. Bewege das Handy ein paar Mal in einer Acht, um ihn zu kalibrieren.';
 
   @override
-  String get bg_hint =>
-      'Karten liegen als Milchglas darüber. Erhöhe das Abdunkeln, wenn Text schwer lesbar ist.';
+  String get compass_magneticNote =>
+      'Richtung nach magnetisch Nord, bis deine Position bekannt ist.';
 
   @override
-  String get bg_previewTitle => 'Vorschau';
+  String get compass_noPosition =>
+      'Deine Position ist noch unbekannt. Erlaube den Handy-Standort oder lege die Position des Funkgeräts fest.';
 
   @override
-  String get bg_previewBody => 'So sieht Text auf einer Glaskarte aus.';
+  String get compass_noNodePosition =>
+      'Dieser Knoten hat keine Position geteilt, daher gibt es kein Ziel.';
 
   @override
-  String get bg_photoNotBackedUp =>
-      'Das Foto bleibt auf diesem Handy und ist nicht in Backups enthalten.';
+  String get compass_usePhoneLocation => 'Handy-Standort verwenden';
 
   @override
-  String get bg_photoFailed =>
-      'Dieses Foto ließ sich nicht verwenden. Versuch ein anderes.';
+  String get compass_sourcePhone => 'Deine Position kommt vom GPS des Handys.';
+
+  @override
+  String get compass_sourceRadio => 'Deine Position kommt vom Funkgerät.';
 
   @override
   String get losBlockedSpotsTitle => 'Reservierte Plätze';
@@ -12323,4 +12314,63 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get losFresnelBlocked =>
       'Gelände ragt in die Fresnel-Zone und den Strahl. Antenne höher setzen oder einen Punkt verschieben.';
+
+  @override
+  String get bg_title => 'Hintergrund';
+
+  @override
+  String get bg_kindTheme => 'Themen-Glühen';
+
+  @override
+  String get bg_kindSolid => 'Farbe';
+
+  @override
+  String get bg_kindLinear => 'Verlauf';
+
+  @override
+  String get bg_kindMesh => 'Farbwolken';
+
+  @override
+  String get bg_kindPhoto => 'Foto';
+
+  @override
+  String get bg_color1 => 'Erste Farbe';
+
+  @override
+  String get bg_color2 => 'Zweite Farbe';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Farbe $index';
+  }
+
+  @override
+  String get bg_dim => 'Abdunkeln';
+
+  @override
+  String get bg_blur => 'Unschärfe';
+
+  @override
+  String get bg_choosePhoto => 'Foto auswählen';
+
+  @override
+  String get bg_reset => 'Zurück zum Themen-Hintergrund';
+
+  @override
+  String get bg_hint =>
+      'Karten liegen als Milchglas darüber. Erhöhe das Abdunkeln, wenn Text schwer lesbar ist.';
+
+  @override
+  String get bg_previewTitle => 'Vorschau';
+
+  @override
+  String get bg_previewBody => 'So sieht Text auf einer Glaskarte aus.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'Das Foto bleibt auf diesem Handy und ist nicht in Backups enthalten.';
+
+  @override
+  String get bg_photoFailed =>
+      'Dieses Foto ließ sich nicht verwenden. Versuch ein anderes.';
 }

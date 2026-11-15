@@ -4725,63 +4725,54 @@ class AppLocalizationsSv extends AppLocalizations {
   String get losLegendTerrain => 'Terräng';
 
   @override
-  String get bg_title => 'Bakgrund';
+  String get compass_openHint => 'Visa vägen dit';
 
   @override
-  String get bg_kindTheme => 'Temaglöd';
+  String get compass_onTarget => 'Rakt fram';
 
   @override
-  String get bg_kindSolid => 'Färg';
-
-  @override
-  String get bg_kindLinear => 'Gradient';
-
-  @override
-  String get bg_kindMesh => 'Mjuk blandning';
-
-  @override
-  String get bg_kindPhoto => 'Foto';
-
-  @override
-  String get bg_color1 => 'Första färg';
-
-  @override
-  String get bg_color2 => 'Andra färg';
-
-  @override
-  String bg_colorN(int index) {
-    return 'Färg $index';
+  String compass_turnRight(int degrees) {
+    return 'Vänd $degrees° åt höger';
   }
 
   @override
-  String get bg_dim => 'Dämpa';
+  String compass_turnLeft(int degrees) {
+    return 'Vänd $degrees° åt vänster';
+  }
 
   @override
-  String get bg_blur => 'Oskärpa';
+  String compass_bearing(int degrees, String point) {
+    return 'Bäring $degrees° $point';
+  }
 
   @override
-  String get bg_choosePhoto => 'Välj foto';
+  String get compass_noSensor =>
+      'Enheten saknar kompass, så pilen ritas med norr uppåt.';
 
   @override
-  String get bg_reset => 'Tillbaka till temats bakgrund';
+  String get compass_calibrate =>
+      'Kompassen är osäker. Rör telefonen i en åtta några gånger för att kalibrera den.';
 
   @override
-  String get bg_hint =>
-      'Korten ligger ovanpå som frostat glas. Höj Dämpa om texten är svår att läsa.';
+  String get compass_magneticNote =>
+      'Pekar mot magnetisk nord tills din position är känd.';
 
   @override
-  String get bg_previewTitle => 'Förhandsvisning';
+  String get compass_noPosition =>
+      'Din egen position är inte känd än. Tillåt telefonens plats eller ange radions position.';
 
   @override
-  String get bg_previewBody => 'Så här ser text på ett glaskort ut.';
+  String get compass_noNodePosition =>
+      'Noden har inte delat någon position, så det finns inget att peka mot.';
 
   @override
-  String get bg_photoNotBackedUp =>
-      'Fotot stannar på den här telefonen och ingår inte i säkerhetskopior.';
+  String get compass_usePhoneLocation => 'Använd telefonens plats';
 
   @override
-  String get bg_photoFailed =>
-      'Det fotot gick inte att använda. Prova ett annat.';
+  String get compass_sourcePhone => 'Din position kommer från telefonens GPS.';
+
+  @override
+  String get compass_sourceRadio => 'Din position kommer från radion.';
 
   @override
   String get losBlockedSpotsTitle => 'Blockerade punkter';
@@ -12221,4 +12212,63 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get losFresnelBlocked =>
       'Terrängen skär in i Fresnelzonen och strålen. Höj en antenn eller flytta en punkt.';
+
+  @override
+  String get bg_title => 'Bakgrund';
+
+  @override
+  String get bg_kindTheme => 'Temaglöd';
+
+  @override
+  String get bg_kindSolid => 'Färg';
+
+  @override
+  String get bg_kindLinear => 'Gradient';
+
+  @override
+  String get bg_kindMesh => 'Mjuk blandning';
+
+  @override
+  String get bg_kindPhoto => 'Foto';
+
+  @override
+  String get bg_color1 => 'Första färg';
+
+  @override
+  String get bg_color2 => 'Andra färg';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Färg $index';
+  }
+
+  @override
+  String get bg_dim => 'Dämpa';
+
+  @override
+  String get bg_blur => 'Oskärpa';
+
+  @override
+  String get bg_choosePhoto => 'Välj foto';
+
+  @override
+  String get bg_reset => 'Tillbaka till temats bakgrund';
+
+  @override
+  String get bg_hint =>
+      'Korten ligger ovanpå som frostat glas. Höj Dämpa om texten är svår att läsa.';
+
+  @override
+  String get bg_previewTitle => 'Förhandsvisning';
+
+  @override
+  String get bg_previewBody => 'Så här ser text på ett glaskort ut.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'Fotot stannar på den här telefonen och ingår inte i säkerhetskopior.';
+
+  @override
+  String get bg_photoFailed =>
+      'Det fotot gick inte att använda. Prova ett annat.';
 }

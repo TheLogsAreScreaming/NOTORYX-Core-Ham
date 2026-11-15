@@ -4785,62 +4785,54 @@ class AppLocalizationsPl extends AppLocalizations {
   String get losLegendTerrain => 'Teren';
 
   @override
-  String get bg_title => 'Tło';
+  String get compass_openHint => 'Wskaż mi kierunek';
 
   @override
-  String get bg_kindTheme => 'Poświata motywu';
+  String get compass_onTarget => 'Prosto przed tobą';
 
   @override
-  String get bg_kindSolid => 'Kolor';
-
-  @override
-  String get bg_kindLinear => 'Gradient';
-
-  @override
-  String get bg_kindMesh => 'Miękkie przejście';
-
-  @override
-  String get bg_kindPhoto => 'Zdjęcie';
-
-  @override
-  String get bg_color1 => 'Pierwszy kolor';
-
-  @override
-  String get bg_color2 => 'Drugi kolor';
-
-  @override
-  String bg_colorN(int index) {
-    return 'Kolor $index';
+  String compass_turnRight(int degrees) {
+    return 'Obróć się w prawo o $degrees°';
   }
 
   @override
-  String get bg_dim => 'Przyciemnienie';
+  String compass_turnLeft(int degrees) {
+    return 'Obróć się w lewo o $degrees°';
+  }
 
   @override
-  String get bg_blur => 'Rozmycie';
+  String compass_bearing(int degrees, String point) {
+    return 'Namiar $degrees° $point';
+  }
 
   @override
-  String get bg_choosePhoto => 'Wybierz zdjęcie';
+  String get compass_noSensor =>
+      'To urządzenie nie ma kompasu, więc strzałka jest rysowana z północą u góry.';
 
   @override
-  String get bg_reset => 'Wróć do tła motywu';
+  String get compass_calibrate =>
+      'Kompas jest niepewny. Porusz telefonem kilka razy po ósemce, aby go skalibrować.';
 
   @override
-  String get bg_hint =>
-      'Karty leżą na nim jak matowe szkło. Zwiększ przyciemnienie, jeśli tekst trudno czytać.';
+  String get compass_magneticNote =>
+      'Kierunek według północy magnetycznej, dopóki pozycja nie jest znana.';
 
   @override
-  String get bg_previewTitle => 'Podgląd';
+  String get compass_noPosition =>
+      'Twoja pozycja nie jest jeszcze znana. Zezwól na lokalizację telefonu lub ustaw pozycję radia.';
 
   @override
-  String get bg_previewBody => 'Tak wygląda tekst na szklanej karcie.';
+  String get compass_noNodePosition =>
+      'Ten węzeł nie udostępnił pozycji, więc nie ma na co wskazać.';
 
   @override
-  String get bg_photoNotBackedUp =>
-      'Zdjęcie zostaje na tym telefonie i nie trafia do kopii zapasowych.';
+  String get compass_usePhoneLocation => 'Użyj lokalizacji telefonu';
 
   @override
-  String get bg_photoFailed => 'Nie można użyć tego zdjęcia. Spróbuj innego.';
+  String get compass_sourcePhone => 'Twoja pozycja pochodzi z GPS telefonu.';
+
+  @override
+  String get compass_sourceRadio => 'Twoja pozycja pochodzi z radia.';
 
   @override
   String get losBlockedSpotsTitle => 'Zablokowane miejsca';
@@ -12359,4 +12351,62 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get losFresnelBlocked =>
       'Teren wchodzi w strefę Fresnela i wiązkę. Podnieś antenę albo przesuń punkt.';
+
+  @override
+  String get bg_title => 'Tło';
+
+  @override
+  String get bg_kindTheme => 'Poświata motywu';
+
+  @override
+  String get bg_kindSolid => 'Kolor';
+
+  @override
+  String get bg_kindLinear => 'Gradient';
+
+  @override
+  String get bg_kindMesh => 'Miękkie przejście';
+
+  @override
+  String get bg_kindPhoto => 'Zdjęcie';
+
+  @override
+  String get bg_color1 => 'Pierwszy kolor';
+
+  @override
+  String get bg_color2 => 'Drugi kolor';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Kolor $index';
+  }
+
+  @override
+  String get bg_dim => 'Przyciemnienie';
+
+  @override
+  String get bg_blur => 'Rozmycie';
+
+  @override
+  String get bg_choosePhoto => 'Wybierz zdjęcie';
+
+  @override
+  String get bg_reset => 'Wróć do tła motywu';
+
+  @override
+  String get bg_hint =>
+      'Karty leżą na nim jak matowe szkło. Zwiększ przyciemnienie, jeśli tekst trudno czytać.';
+
+  @override
+  String get bg_previewTitle => 'Podgląd';
+
+  @override
+  String get bg_previewBody => 'Tak wygląda tekst na szklanej karcie.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'Zdjęcie zostaje na tym telefonie i nie trafia do kopii zapasowych.';
+
+  @override
+  String get bg_photoFailed => 'Nie można użyć tego zdjęcia. Spróbuj innego.';
 }

@@ -4532,60 +4532,50 @@ class AppLocalizationsJa extends AppLocalizations {
   String get losLegendTerrain => '地形';
 
   @override
-  String get bg_title => '背景';
+  String get compass_openHint => '方向を指す';
 
   @override
-  String get bg_kindTheme => 'テーマの光';
+  String get compass_onTarget => 'まっすぐ前方';
 
   @override
-  String get bg_kindSolid => '単色';
-
-  @override
-  String get bg_kindLinear => 'グラデーション';
-
-  @override
-  String get bg_kindMesh => 'メッシュブレンド';
-
-  @override
-  String get bg_kindPhoto => '写真';
-
-  @override
-  String get bg_color1 => '1つ目の色';
-
-  @override
-  String get bg_color2 => '2つ目の色';
-
-  @override
-  String bg_colorN(int index) {
-    return '色 $index';
+  String compass_turnRight(int degrees) {
+    return '右に$degrees°';
   }
 
   @override
-  String get bg_dim => '暗さ';
+  String compass_turnLeft(int degrees) {
+    return '左に$degrees°';
+  }
 
   @override
-  String get bg_blur => 'ぼかし';
+  String compass_bearing(int degrees, String point) {
+    return '方位 $degrees° $point';
+  }
 
   @override
-  String get bg_choosePhoto => '写真を選ぶ';
+  String get compass_noSensor => 'この端末にはコンパスがないため、北を上にして矢印を表示しています。';
 
   @override
-  String get bg_reset => 'テーマの背景に戻す';
+  String get compass_calibrate => 'コンパスの精度が低いです。端末を8の字に数回動かして調整してください。';
 
   @override
-  String get bg_hint => 'カードはすりガラスとして上に重なります。文字が読みにくい場合は暗さを上げてください。';
+  String get compass_magneticNote => '現在地がわかるまでは磁北を基準にしています。';
 
   @override
-  String get bg_previewTitle => 'プレビュー';
+  String get compass_noPosition =>
+      '現在地がまだわかりません。端末の位置情報を許可するか、無線機の位置を設定してください。';
 
   @override
-  String get bg_previewBody => 'ガラスカード上の文字はこのように見えます。';
+  String get compass_noNodePosition => 'このノードは位置を共有していないため、指す先がありません。';
 
   @override
-  String get bg_photoNotBackedUp => '写真はこの端末にだけ保存され、バックアップには含まれません。';
+  String get compass_usePhoneLocation => '端末の位置情報を使う';
 
   @override
-  String get bg_photoFailed => 'その写真は使えませんでした。別の写真を試してください。';
+  String get compass_sourcePhone => '現在地は端末のGPSから取得しています。';
+
+  @override
+  String get compass_sourceRadio => '現在地は無線機から取得しています。';
 
   @override
   String get losBlockedSpotsTitle => '利用できない場所';
@@ -11750,4 +11740,60 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get losFresnelBlocked =>
       '地形がフレネルゾーンと電波経路を遮っています。アンテナを高くするか地点を動かしてください。';
+
+  @override
+  String get bg_title => '背景';
+
+  @override
+  String get bg_kindTheme => 'テーマの光';
+
+  @override
+  String get bg_kindSolid => '単色';
+
+  @override
+  String get bg_kindLinear => 'グラデーション';
+
+  @override
+  String get bg_kindMesh => 'メッシュブレンド';
+
+  @override
+  String get bg_kindPhoto => '写真';
+
+  @override
+  String get bg_color1 => '1つ目の色';
+
+  @override
+  String get bg_color2 => '2つ目の色';
+
+  @override
+  String bg_colorN(int index) {
+    return '色 $index';
+  }
+
+  @override
+  String get bg_dim => '暗さ';
+
+  @override
+  String get bg_blur => 'ぼかし';
+
+  @override
+  String get bg_choosePhoto => '写真を選ぶ';
+
+  @override
+  String get bg_reset => 'テーマの背景に戻す';
+
+  @override
+  String get bg_hint => 'カードはすりガラスとして上に重なります。文字が読みにくい場合は暗さを上げてください。';
+
+  @override
+  String get bg_previewTitle => 'プレビュー';
+
+  @override
+  String get bg_previewBody => 'ガラスカード上の文字はこのように見えます。';
+
+  @override
+  String get bg_photoNotBackedUp => '写真はこの端末にだけ保存され、バックアップには含まれません。';
+
+  @override
+  String get bg_photoFailed => 'その写真は使えませんでした。別の写真を試してください。';
 }

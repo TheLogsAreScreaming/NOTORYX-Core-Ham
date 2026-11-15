@@ -4768,63 +4768,54 @@ class AppLocalizationsPt extends AppLocalizations {
   String get losLegendTerrain => 'Terreno';
 
   @override
-  String get bg_title => 'Fundo';
+  String get compass_openHint => 'Aponta-me o caminho';
 
   @override
-  String get bg_kindTheme => 'Brilho do tema';
+  String get compass_onTarget => 'Em frente';
 
   @override
-  String get bg_kindSolid => 'Cor';
-
-  @override
-  String get bg_kindLinear => 'Gradiente';
-
-  @override
-  String get bg_kindMesh => 'Mistura suave';
-
-  @override
-  String get bg_kindPhoto => 'Foto';
-
-  @override
-  String get bg_color1 => 'Primeira cor';
-
-  @override
-  String get bg_color2 => 'Segunda cor';
-
-  @override
-  String bg_colorN(int index) {
-    return 'Cor $index';
+  String compass_turnRight(int degrees) {
+    return 'Vire $degrees° à direita';
   }
 
   @override
-  String get bg_dim => 'Escurecer';
+  String compass_turnLeft(int degrees) {
+    return 'Vire $degrees° à esquerda';
+  }
 
   @override
-  String get bg_blur => 'Desfoque';
+  String compass_bearing(int degrees, String point) {
+    return 'Rumo $degrees° $point';
+  }
 
   @override
-  String get bg_choosePhoto => 'Escolher foto';
+  String get compass_noSensor =>
+      'Este dispositivo não tem bússola, por isso a seta é desenhada com o norte para cima.';
 
   @override
-  String get bg_reset => 'Voltar ao fundo do tema';
+  String get compass_calibrate =>
+      'A bússola está imprecisa. Mova o telefone em forma de oito algumas vezes para a calibrar.';
 
   @override
-  String get bg_hint =>
-      'Os cartões ficam por cima como vidro fosco. Aumente Escurecer se o texto for difícil de ler.';
+  String get compass_magneticNote =>
+      'Orientação pelo norte magnético até a sua posição ser conhecida.';
 
   @override
-  String get bg_previewTitle => 'Pré-visualização';
+  String get compass_noPosition =>
+      'A sua posição ainda não é conhecida. Permita a localização do telefone ou defina a posição do rádio.';
 
   @override
-  String get bg_previewBody => 'É assim que o texto fica num cartão de vidro.';
+  String get compass_noNodePosition =>
+      'Este nó não partilhou a posição, por isso não há para onde apontar.';
 
   @override
-  String get bg_photoNotBackedUp =>
-      'A foto fica neste telefone e não é incluída nas cópias de segurança.';
+  String get compass_usePhoneLocation => 'Usar a localização do telefone';
 
   @override
-  String get bg_photoFailed =>
-      'Não foi possível usar essa foto. Experimente outra.';
+  String get compass_sourcePhone => 'A sua posição vem do GPS do telefone.';
+
+  @override
+  String get compass_sourceRadio => 'A sua posição vem do rádio.';
 
   @override
   String get losBlockedSpotsTitle => 'Locais ocupados';
@@ -12298,4 +12289,63 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get losFresnelBlocked =>
       'O terreno invade a zona de Fresnel e o feixe. Suba uma antena ou mova um ponto.';
+
+  @override
+  String get bg_title => 'Fundo';
+
+  @override
+  String get bg_kindTheme => 'Brilho do tema';
+
+  @override
+  String get bg_kindSolid => 'Cor';
+
+  @override
+  String get bg_kindLinear => 'Gradiente';
+
+  @override
+  String get bg_kindMesh => 'Mistura suave';
+
+  @override
+  String get bg_kindPhoto => 'Foto';
+
+  @override
+  String get bg_color1 => 'Primeira cor';
+
+  @override
+  String get bg_color2 => 'Segunda cor';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Cor $index';
+  }
+
+  @override
+  String get bg_dim => 'Escurecer';
+
+  @override
+  String get bg_blur => 'Desfoque';
+
+  @override
+  String get bg_choosePhoto => 'Escolher foto';
+
+  @override
+  String get bg_reset => 'Voltar ao fundo do tema';
+
+  @override
+  String get bg_hint =>
+      'Os cartões ficam por cima como vidro fosco. Aumente Escurecer se o texto for difícil de ler.';
+
+  @override
+  String get bg_previewTitle => 'Pré-visualização';
+
+  @override
+  String get bg_previewBody => 'É assim que o texto fica num cartão de vidro.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'A foto fica neste telefone e não é incluída nas cópias de segurança.';
+
+  @override
+  String get bg_photoFailed =>
+      'Não foi possível usar essa foto. Experimente outra.';
 }

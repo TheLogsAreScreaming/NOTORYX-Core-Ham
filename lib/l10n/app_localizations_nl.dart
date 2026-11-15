@@ -4751,63 +4751,55 @@ class AppLocalizationsNl extends AppLocalizations {
   String get losLegendTerrain => 'Terrein';
 
   @override
-  String get bg_title => 'Achtergrond';
+  String get compass_openHint => 'Wijs me de weg';
 
   @override
-  String get bg_kindTheme => 'Themagloed';
+  String get compass_onTarget => 'Recht vooruit';
 
   @override
-  String get bg_kindSolid => 'Kleur';
-
-  @override
-  String get bg_kindLinear => 'Verloop';
-
-  @override
-  String get bg_kindMesh => 'Kleurmengsel';
-
-  @override
-  String get bg_kindPhoto => 'Foto';
-
-  @override
-  String get bg_color1 => 'Eerste kleur';
-
-  @override
-  String get bg_color2 => 'Tweede kleur';
-
-  @override
-  String bg_colorN(int index) {
-    return 'Kleur $index';
+  String compass_turnRight(int degrees) {
+    return '$degrees° naar rechts draaien';
   }
 
   @override
-  String get bg_dim => 'Dimmen';
+  String compass_turnLeft(int degrees) {
+    return '$degrees° naar links draaien';
+  }
 
   @override
-  String get bg_blur => 'Vervaging';
+  String compass_bearing(int degrees, String point) {
+    return 'Peiling $degrees° $point';
+  }
 
   @override
-  String get bg_choosePhoto => 'Foto kiezen';
+  String get compass_noSensor =>
+      'Dit apparaat heeft geen kompas, dus de pijl staat met het noorden boven.';
 
   @override
-  String get bg_reset => 'Terug naar de achtergrond van het thema';
+  String get compass_calibrate =>
+      'Het kompas is onzeker. Beweeg de telefoon een paar keer in een achtvorm om het te kalibreren.';
 
   @override
-  String get bg_hint =>
-      'Kaarten liggen er als matglas bovenop. Zet Dimmen hoger als tekst moeilijk leesbaar is.';
+  String get compass_magneticNote =>
+      'Richting op magnetisch noorden totdat je positie bekend is.';
 
   @override
-  String get bg_previewTitle => 'Voorbeeld';
+  String get compass_noPosition =>
+      'Je eigen positie is nog niet bekend. Sta telefoonlocatie toe of stel de positie van de radio in.';
 
   @override
-  String get bg_previewBody => 'Zo ziet tekst op een glazen kaart eruit.';
+  String get compass_noNodePosition =>
+      'Deze node heeft geen positie gedeeld, dus er is niets om naar te wijzen.';
 
   @override
-  String get bg_photoNotBackedUp =>
-      'De foto blijft op deze telefoon en zit niet in back-ups.';
+  String get compass_usePhoneLocation => 'Telefoonlocatie gebruiken';
 
   @override
-  String get bg_photoFailed =>
-      'Die foto kon niet worden gebruikt. Probeer een andere.';
+  String get compass_sourcePhone =>
+      'Je positie komt van de gps van de telefoon.';
+
+  @override
+  String get compass_sourceRadio => 'Je positie komt van de radio.';
 
   @override
   String get losBlockedSpotsTitle => 'Geplande plaatsen';
@@ -12268,4 +12260,63 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get losFresnelBlocked =>
       'Het terrein snijdt in de fresnelzone en de bundel. Zet een antenne hoger of verplaats een punt.';
+
+  @override
+  String get bg_title => 'Achtergrond';
+
+  @override
+  String get bg_kindTheme => 'Themagloed';
+
+  @override
+  String get bg_kindSolid => 'Kleur';
+
+  @override
+  String get bg_kindLinear => 'Verloop';
+
+  @override
+  String get bg_kindMesh => 'Kleurmengsel';
+
+  @override
+  String get bg_kindPhoto => 'Foto';
+
+  @override
+  String get bg_color1 => 'Eerste kleur';
+
+  @override
+  String get bg_color2 => 'Tweede kleur';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Kleur $index';
+  }
+
+  @override
+  String get bg_dim => 'Dimmen';
+
+  @override
+  String get bg_blur => 'Vervaging';
+
+  @override
+  String get bg_choosePhoto => 'Foto kiezen';
+
+  @override
+  String get bg_reset => 'Terug naar de achtergrond van het thema';
+
+  @override
+  String get bg_hint =>
+      'Kaarten liggen er als matglas bovenop. Zet Dimmen hoger als tekst moeilijk leesbaar is.';
+
+  @override
+  String get bg_previewTitle => 'Voorbeeld';
+
+  @override
+  String get bg_previewBody => 'Zo ziet tekst op een glazen kaart eruit.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'De foto blijft op deze telefoon en zit niet in back-ups.';
+
+  @override
+  String get bg_photoFailed =>
+      'Die foto kon niet worden gebruikt. Probeer een andere.';
 }

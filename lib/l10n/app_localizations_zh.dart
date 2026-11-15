@@ -4447,60 +4447,49 @@ class AppLocalizationsZh extends AppLocalizations {
   String get losLegendTerrain => '地形';
 
   @override
-  String get bg_title => '背景';
+  String get compass_openHint => '指引方向';
 
   @override
-  String get bg_kindTheme => '主题光晕';
+  String get compass_onTarget => '正前方';
 
   @override
-  String get bg_kindSolid => '纯色';
-
-  @override
-  String get bg_kindLinear => '渐变';
-
-  @override
-  String get bg_kindMesh => '网格混色';
-
-  @override
-  String get bg_kindPhoto => '照片';
-
-  @override
-  String get bg_color1 => '第一种颜色';
-
-  @override
-  String get bg_color2 => '第二种颜色';
-
-  @override
-  String bg_colorN(int index) {
-    return '颜色 $index';
+  String compass_turnRight(int degrees) {
+    return '向右转$degrees°';
   }
 
   @override
-  String get bg_dim => '调暗';
+  String compass_turnLeft(int degrees) {
+    return '向左转$degrees°';
+  }
 
   @override
-  String get bg_blur => '模糊';
+  String compass_bearing(int degrees, String point) {
+    return '方位 $degrees° $point';
+  }
 
   @override
-  String get bg_choosePhoto => '选择照片';
+  String get compass_noSensor => '此设备没有指南针，箭头以北为上显示。';
 
   @override
-  String get bg_reset => '恢复主题背景';
+  String get compass_calibrate => '指南针不准确。请将手机按8字形移动几次进行校准。';
 
   @override
-  String get bg_hint => '卡片以磨砂玻璃形式叠在其上。如文字难以阅读，请调高“调暗”。';
+  String get compass_magneticNote => '在获知您的位置前，以磁北为准。';
 
   @override
-  String get bg_previewTitle => '预览';
+  String get compass_noPosition => '尚不知道您的位置。请允许手机定位或设置电台位置。';
 
   @override
-  String get bg_previewBody => '玻璃卡片上的文字看起来是这样。';
+  String get compass_noNodePosition => '该节点未共享位置，无法指向。';
 
   @override
-  String get bg_photoNotBackedUp => '照片仅保存在本手机上，不包含在备份中。';
+  String get compass_usePhoneLocation => '使用手机定位';
 
   @override
-  String get bg_photoFailed => '无法使用该照片，请换一张。';
+  String get compass_sourcePhone => '您的位置来自手机GPS。';
+
+  @override
+  String get compass_sourceRadio => '您的位置来自电台。';
 
   @override
   String get losBlockedSpotsTitle => '被占用区域';
@@ -11526,4 +11515,60 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get losFresnelBlocked => '地形侵入菲涅耳区并遮挡波束。请升高天线或移动位置。';
+
+  @override
+  String get bg_title => '背景';
+
+  @override
+  String get bg_kindTheme => '主题光晕';
+
+  @override
+  String get bg_kindSolid => '纯色';
+
+  @override
+  String get bg_kindLinear => '渐变';
+
+  @override
+  String get bg_kindMesh => '网格混色';
+
+  @override
+  String get bg_kindPhoto => '照片';
+
+  @override
+  String get bg_color1 => '第一种颜色';
+
+  @override
+  String get bg_color2 => '第二种颜色';
+
+  @override
+  String bg_colorN(int index) {
+    return '颜色 $index';
+  }
+
+  @override
+  String get bg_dim => '调暗';
+
+  @override
+  String get bg_blur => '模糊';
+
+  @override
+  String get bg_choosePhoto => '选择照片';
+
+  @override
+  String get bg_reset => '恢复主题背景';
+
+  @override
+  String get bg_hint => '卡片以磨砂玻璃形式叠在其上。如文字难以阅读，请调高“调暗”。';
+
+  @override
+  String get bg_previewTitle => '预览';
+
+  @override
+  String get bg_previewBody => '玻璃卡片上的文字看起来是这样。';
+
+  @override
+  String get bg_photoNotBackedUp => '照片仅保存在本手机上，不包含在备份中。';
+
+  @override
+  String get bg_photoFailed => '无法使用该照片，请换一张。';
 }

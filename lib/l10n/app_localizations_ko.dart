@@ -4541,60 +4541,50 @@ class AppLocalizationsKo extends AppLocalizations {
   String get losLegendTerrain => '지형';
 
   @override
-  String get bg_title => '배경';
+  String get compass_openHint => '방향 안내';
 
   @override
-  String get bg_kindTheme => '테마 광채';
+  String get compass_onTarget => '바로 앞';
 
   @override
-  String get bg_kindSolid => '단색';
-
-  @override
-  String get bg_kindLinear => '그라데이션';
-
-  @override
-  String get bg_kindMesh => '메시 블렌드';
-
-  @override
-  String get bg_kindPhoto => '사진';
-
-  @override
-  String get bg_color1 => '첫 번째 색상';
-
-  @override
-  String get bg_color2 => '두 번째 색상';
-
-  @override
-  String bg_colorN(int index) {
-    return '색상 $index';
+  String compass_turnRight(int degrees) {
+    return '오른쪽으로 $degrees°';
   }
 
   @override
-  String get bg_dim => '어둡게';
+  String compass_turnLeft(int degrees) {
+    return '왼쪽으로 $degrees°';
+  }
 
   @override
-  String get bg_blur => '흐림';
+  String compass_bearing(int degrees, String point) {
+    return '방위 $degrees° $point';
+  }
 
   @override
-  String get bg_choosePhoto => '사진 선택';
+  String get compass_noSensor => '이 기기에는 나침반이 없어 북쪽이 위인 기준으로 화살표를 표시합니다.';
 
   @override
-  String get bg_reset => '테마 배경으로 돌아가기';
+  String get compass_calibrate => '나침반이 정확하지 않습니다. 휴대폰을 8자 모양으로 몇 번 움직여 보정하세요.';
 
   @override
-  String get bg_hint => '카드는 그 위에 반투명 유리처럼 놓입니다. 글자가 잘 안 보이면 어둡게를 높이세요.';
+  String get compass_magneticNote => '위치를 알 때까지 자북 기준으로 안내합니다.';
 
   @override
-  String get bg_previewTitle => '미리보기';
+  String get compass_noPosition =>
+      '아직 내 위치를 알 수 없습니다. 휴대폰 위치를 허용하거나 무전기 위치를 설정하세요.';
 
   @override
-  String get bg_previewBody => '유리 카드 위의 글자는 이렇게 보입니다.';
+  String get compass_noNodePosition => '이 노드는 위치를 공유하지 않아 가리킬 곳이 없습니다.';
 
   @override
-  String get bg_photoNotBackedUp => '사진은 이 휴대폰에만 남고 백업에는 포함되지 않습니다.';
+  String get compass_usePhoneLocation => '휴대폰 위치 사용';
 
   @override
-  String get bg_photoFailed => '이 사진은 사용할 수 없습니다. 다른 사진을 선택하세요.';
+  String get compass_sourcePhone => '내 위치는 휴대폰 GPS에서 가져옵니다.';
+
+  @override
+  String get compass_sourceRadio => '내 위치는 무전기에서 가져옵니다.';
 
   @override
   String get losBlockedSpotsTitle => '차단된 공간';
@@ -11766,4 +11756,60 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get losFresnelBlocked =>
       '지형이 프레넬 영역과 전파 경로를 가로막습니다. 안테나를 높이거나 지점을 옮기세요.';
+
+  @override
+  String get bg_title => '배경';
+
+  @override
+  String get bg_kindTheme => '테마 광채';
+
+  @override
+  String get bg_kindSolid => '단색';
+
+  @override
+  String get bg_kindLinear => '그라데이션';
+
+  @override
+  String get bg_kindMesh => '메시 블렌드';
+
+  @override
+  String get bg_kindPhoto => '사진';
+
+  @override
+  String get bg_color1 => '첫 번째 색상';
+
+  @override
+  String get bg_color2 => '두 번째 색상';
+
+  @override
+  String bg_colorN(int index) {
+    return '색상 $index';
+  }
+
+  @override
+  String get bg_dim => '어둡게';
+
+  @override
+  String get bg_blur => '흐림';
+
+  @override
+  String get bg_choosePhoto => '사진 선택';
+
+  @override
+  String get bg_reset => '테마 배경으로 돌아가기';
+
+  @override
+  String get bg_hint => '카드는 그 위에 반투명 유리처럼 놓입니다. 글자가 잘 안 보이면 어둡게를 높이세요.';
+
+  @override
+  String get bg_previewTitle => '미리보기';
+
+  @override
+  String get bg_previewBody => '유리 카드 위의 글자는 이렇게 보입니다.';
+
+  @override
+  String get bg_photoNotBackedUp => '사진은 이 휴대폰에만 남고 백업에는 포함되지 않습니다.';
+
+  @override
+  String get bg_photoFailed => '이 사진은 사용할 수 없습니다. 다른 사진을 선택하세요.';
 }

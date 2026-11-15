@@ -4749,62 +4749,54 @@ class AppLocalizationsSk extends AppLocalizations {
   String get losLegendTerrain => 'Terén';
 
   @override
-  String get bg_title => 'Pozadie';
+  String get compass_openHint => 'Ukáž mi smer';
 
   @override
-  String get bg_kindTheme => 'Žiara témy';
+  String get compass_onTarget => 'Rovno pred vami';
 
   @override
-  String get bg_kindSolid => 'Farba';
-
-  @override
-  String get bg_kindLinear => 'Prechod';
-
-  @override
-  String get bg_kindMesh => 'Jemné prelínanie';
-
-  @override
-  String get bg_kindPhoto => 'Fotka';
-
-  @override
-  String get bg_color1 => 'Prvá farba';
-
-  @override
-  String get bg_color2 => 'Druhá farba';
-
-  @override
-  String bg_colorN(int index) {
-    return 'Farba $index';
+  String compass_turnRight(int degrees) {
+    return 'Otočte sa doprava o $degrees°';
   }
 
   @override
-  String get bg_dim => 'Stmavenie';
+  String compass_turnLeft(int degrees) {
+    return 'Otočte sa doľava o $degrees°';
+  }
 
   @override
-  String get bg_blur => 'Rozmazanie';
+  String compass_bearing(int degrees, String point) {
+    return 'Azimut $degrees° $point';
+  }
 
   @override
-  String get bg_choosePhoto => 'Vybrať fotku';
+  String get compass_noSensor =>
+      'Toto zariadenie nemá kompas, preto je šípka zobrazená so severom hore.';
 
   @override
-  String get bg_reset => 'Späť na pozadie témy';
+  String get compass_calibrate =>
+      'Kompas si nie je istý. Niekoľkokrát pohybujte telefónom v tvare osmičky, aby ste ho kalibrovali.';
 
   @override
-  String get bg_hint =>
-      'Karty ležia nad ním ako matné sklo. Ak sa text ťažko číta, zvýšte stmavenie.';
+  String get compass_magneticNote =>
+      'Kým nie je známa vaša poloha, smer sa určuje podľa magnetického severu.';
 
   @override
-  String get bg_previewTitle => 'Ukážka';
+  String get compass_noPosition =>
+      'Vaša poloha zatiaľ nie je známa. Povoľte polohu telefónu alebo nastavte polohu rádia.';
 
   @override
-  String get bg_previewBody => 'Takto vyzerá text na sklenenej karte.';
+  String get compass_noNodePosition =>
+      'Tento uzol nezdieľal polohu, takže nie je kam ukázať.';
 
   @override
-  String get bg_photoNotBackedUp =>
-      'Fotka zostáva v tomto telefóne a nie je súčasťou záloh.';
+  String get compass_usePhoneLocation => 'Použiť polohu telefónu';
 
   @override
-  String get bg_photoFailed => 'Túto fotku sa nepodarilo použiť. Skúste inú.';
+  String get compass_sourcePhone => 'Vaša poloha pochádza z GPS telefónu.';
+
+  @override
+  String get compass_sourceRadio => 'Vaša poloha pochádza z rádia.';
 
   @override
   String get losBlockedSpotsTitle => 'Zablokované miesta';
@@ -12291,4 +12283,62 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get losFresnelBlocked =>
       'Terén zasahuje do Fresnelovej zóny aj lúča. Zdvihnite anténu alebo posuňte bod.';
+
+  @override
+  String get bg_title => 'Pozadie';
+
+  @override
+  String get bg_kindTheme => 'Žiara témy';
+
+  @override
+  String get bg_kindSolid => 'Farba';
+
+  @override
+  String get bg_kindLinear => 'Prechod';
+
+  @override
+  String get bg_kindMesh => 'Jemné prelínanie';
+
+  @override
+  String get bg_kindPhoto => 'Fotka';
+
+  @override
+  String get bg_color1 => 'Prvá farba';
+
+  @override
+  String get bg_color2 => 'Druhá farba';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Farba $index';
+  }
+
+  @override
+  String get bg_dim => 'Stmavenie';
+
+  @override
+  String get bg_blur => 'Rozmazanie';
+
+  @override
+  String get bg_choosePhoto => 'Vybrať fotku';
+
+  @override
+  String get bg_reset => 'Späť na pozadie témy';
+
+  @override
+  String get bg_hint =>
+      'Karty ležia nad ním ako matné sklo. Ak sa text ťažko číta, zvýšte stmavenie.';
+
+  @override
+  String get bg_previewTitle => 'Ukážka';
+
+  @override
+  String get bg_previewBody => 'Takto vyzerá text na sklenenej karte.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'Fotka zostáva v tomto telefóne a nie je súčasťou záloh.';
+
+  @override
+  String get bg_photoFailed => 'Túto fotku sa nepodarilo použiť. Skúste inú.';
 }
