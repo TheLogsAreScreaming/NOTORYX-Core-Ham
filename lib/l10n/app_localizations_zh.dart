@@ -11482,4 +11482,20 @@ class AppLocalizationsZh extends AppLocalizations {
   String automation_placeholders(String list) {
     return '可使用 $list';
   }
+
+  @override
+  String get losLegendFresnel => '菲涅耳区';
+
+  @override
+  String losFresnelClear(int percent) {
+    return '最窄处菲涅耳区有$percent%无遮挡。60%或以上为良好。';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return '最窄处菲涅耳区仅有$percent%无遮挡。目标为60%或以上：升高天线或移动位置。';
+  }
+
+  @override
+  String get losFresnelBlocked => '地形侵入菲涅耳区并遮挡波束。请升高天线或移动位置。';
 }

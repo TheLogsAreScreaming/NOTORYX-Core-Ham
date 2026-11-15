@@ -12175,4 +12175,21 @@ class AppLocalizationsSv extends AppLocalizations {
   String automation_placeholders(String list) {
     return 'Du kan använda $list';
   }
+
+  @override
+  String get losLegendFresnel => 'Fresnelzon';
+
+  @override
+  String losFresnelClear(int percent) {
+    return 'Fresnelzonen är $percent% fri vid den trängsta punkten. 60% eller mer är bra.';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return 'Fresnelzonen är bara $percent% fri vid den trängsta punkten. Sikta på 60% eller mer: höj en antenn eller flytta en punkt.';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      'Terrängen skär in i Fresnelzonen och strålen. Höj en antenn eller flytta en punkt.';
 }

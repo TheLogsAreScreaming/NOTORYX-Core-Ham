@@ -4692,5 +4692,9 @@
   "checklist_deploy4": "Nastavitve radia in regija potrjene",
   "checklist_deploy5": "Testno sporočilo slišano prek vozlišča",
   "checklist_deploy6": "Lokacija, fotografije in opombe zapisane",
-  "automation_placeholders": "Uporabite lahko {list}"
+  "automation_placeholders": "Uporabite lahko {list}",
+  "losLegendFresnel": "Fresnelova cona",
+  "losFresnelClear": "Fresnelova cona je na najožji točki {percent}% prosta. 60% ali več je dobro.",
+  "losFresnelPartial": "Fresnelova cona je na najožji točki le {percent}% prosta. Ciljajte na 60% ali več: dvignite anteno ali premaknite točko.",
+  "losFresnelBlocked": "Teren sega v Fresnelovo cono in žarek. Dvignite anteno ali premaknite točko."
 }

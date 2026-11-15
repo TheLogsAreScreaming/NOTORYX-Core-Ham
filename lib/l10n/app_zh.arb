@@ -4697,5 +4697,9 @@
   "checklist_deploy4": "已确认电台设置和地区",
   "checklist_deploy5": "已通过节点收到测试消息",
   "checklist_deploy6": "已记录位置、照片和备注",
-  "automation_placeholders": "可使用 {list}"
+  "automation_placeholders": "可使用 {list}",
+  "losLegendFresnel": "菲涅耳区",
+  "losFresnelClear": "最窄处菲涅耳区有{percent}%无遮挡。60%或以上为良好。",
+  "losFresnelPartial": "最窄处菲涅耳区仅有{percent}%无遮挡。目标为60%或以上：升高天线或移动位置。",
+  "losFresnelBlocked": "地形侵入菲涅耳区并遮挡波束。请升高天线或移动位置。"
 }

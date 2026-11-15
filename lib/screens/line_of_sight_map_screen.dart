@@ -749,7 +749,57 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
               ),
             ],
           ),
+          if (segment != null && segment.worstFresnelClearance != null) ...[
+            const SizedBox(height: 10),
+            _buildFresnelVerdict(segment.worstFresnelClearance!),
+          ],
         ],
+      ),
+    );
+  }
+
+  /// One line saying how much of the first Fresnel zone is clear at its
+  /// tightest point, with a hint when it falls short of 60%.
+  Widget _buildFresnelVerdict(double worstClearance) {
+    final l10n = context.l10n;
+    final percent = (worstClearance * 100).clamp(0, 100).round();
+    final String text;
+    final Color color;
+    final IconData icon;
+    if (worstClearance < 0) {
+      text = l10n.losFresnelBlocked;
+      color = LosPalette.blocked;
+      icon = Icons.block;
+    } else if (worstClearance < LineOfSightService.fresnelClearTarget) {
+      text = l10n.losFresnelPartial(percent);
+      color = LosPalette.marginal;
+      icon = Icons.warning_amber_rounded;
+    } else {
+      text = l10n.losFresnelClear(percent);
+      color = LosPalette.clear;
+      icon = Icons.check_circle_outline;
+    }
+    return Semantics(
+      container: true,
+      label: text,
+      child: ExcludeSemantics(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(icon, color: color, size: 18),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                text,
+                style: const TextStyle(
+                  color: LosPalette.text,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -1006,6 +1056,7 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
               terrainLabel: context.l10n.losLegendTerrain,
               losBeamLabel: context.l10n.losLegendLosBeam,
               radioHorizonLabel: context.l10n.losLegendRadioHorizon,
+              fresnelLabel: context.l10n.losLegendFresnel,
             ),
           ],
           if (obstructions.isNotEmpty) ...[
@@ -1771,7 +1822,7 @@ class _LosProfileGeometry {
   late final double minY = samples
       .map(
         (s) => math.min(
-          math.min(s.terrainMeters, s.lineHeightMeters),
+          math.min(s.terrainMeters, s.fresnelBottomMeters),
           s.refractedHeightMeters,
         ),
       )
@@ -1779,7 +1830,7 @@ class _LosProfileGeometry {
   late final double maxY = samples
       .map(
         (s) => math.max(
-          math.max(s.terrainMeters, s.lineHeightMeters),
+          math.max(s.terrainMeters, s.fresnelTopMeters),
           s.refractedHeightMeters,
         ),
       )
@@ -1839,7 +1890,7 @@ class _LosProfilePainter extends CustomPainter {
     final minY = samples
         .map(
           (s) => math.min(
-            math.min(s.terrainMeters, s.lineHeightMeters),
+            math.min(s.terrainMeters, s.fresnelBottomMeters),
             s.refractedHeightMeters,
           ),
         )
@@ -1847,7 +1898,7 @@ class _LosProfilePainter extends CustomPainter {
     final maxY = samples
         .map(
           (s) => math.max(
-            math.max(s.terrainMeters, s.lineHeightMeters),
+            math.max(s.terrainMeters, s.fresnelTopMeters),
             s.refractedHeightMeters,
           ),
         )
@@ -1976,6 +2027,8 @@ class _LosProfilePainter extends CustomPainter {
         ..style = PaintingStyle.stroke
         ..strokeWidth = 2.5,
     );
+
+    _paintFresnelZone(canvas, mapPoint);
 
     final losLine = ui.Path();
     for (int i = 0; i < samples.length; i++) {
@@ -2120,6 +2173,64 @@ class _LosProfilePainter extends CustomPainter {
     }
   }
 
+  /// Shades the first Fresnel zone around the beam and draws a dashed line
+  /// where 60% of it is clear, the usual minimum for a solid link.
+  void _paintFresnelZone(Canvas canvas, Offset Function(double, double) map) {
+    if (!samples.any((s) => s.fresnelRadiusMeters > 0)) return;
+    final zone = ui.Path();
+    for (var i = 0; i < samples.length; i++) {
+      final p = map(samples[i].distanceMeters, samples[i].fresnelTopMeters);
+      if (i == 0) {
+        zone.moveTo(p.dx, p.dy);
+      } else {
+        zone.lineTo(p.dx, p.dy);
+      }
+    }
+    for (var i = samples.length - 1; i >= 0; i--) {
+      final p = map(samples[i].distanceMeters, samples[i].fresnelBottomMeters);
+      zone.lineTo(p.dx, p.dy);
+    }
+    zone.close();
+    canvas.drawPath(
+      zone,
+      Paint()..color = LosPalette.fresnel.withValues(alpha: 0.16),
+    );
+    canvas.drawPath(
+      zone,
+      Paint()
+        ..color = LosPalette.fresnel.withValues(alpha: 0.55)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1,
+    );
+
+    final targetPaint = Paint()
+      ..color = LosPalette.fresnel
+      ..strokeWidth = 1.2;
+    const dash = 5.0;
+    const gap = 4.0;
+    for (var i = 0; i < samples.length - 1; i++) {
+      final a = map(
+        samples[i].distanceMeters,
+        samples[i].lineHeightMeters -
+            samples[i].fresnelRadiusMeters *
+                LineOfSightService.fresnelClearTarget,
+      );
+      final b = map(
+        samples[i + 1].distanceMeters,
+        samples[i + 1].lineHeightMeters -
+            samples[i + 1].fresnelRadiusMeters *
+                LineOfSightService.fresnelClearTarget,
+      );
+      final length = (b - a).distance;
+      if (length <= 0) continue;
+      final dir = (b - a) / length;
+      for (var t = 0.0; t < length; t += dash + gap) {
+        final end = math.min(t + dash, length);
+        canvas.drawLine(a + dir * t, a + dir * end, targetPaint);
+      }
+    }
+  }
+
   double _displayDistance(double meters) {
     return distanceUnit == 'mi'
         ? (meters / 1000.0) * 0.621371
@@ -2217,11 +2328,13 @@ class _LosLegend extends StatelessWidget {
   final String terrainLabel;
   final String losBeamLabel;
   final String radioHorizonLabel;
+  final String fresnelLabel;
 
   const _LosLegend({
     required this.terrainLabel,
     required this.losBeamLabel,
     required this.radioHorizonLabel,
+    required this.fresnelLabel,
   });
 
   @override
@@ -2242,6 +2355,7 @@ class _LosLegend extends StatelessWidget {
       _LegendEntry(terrainLabel, LosPalette.terrain),
       _LegendEntry(losBeamLabel, LosPalette.beam),
       _LegendEntry(radioHorizonLabel, LosPalette.horizon),
+      _LegendEntry(fresnelLabel, LosPalette.fresnel),
       const _LegendEntry('Blocked', LosPalette.blocked),
     ];
 

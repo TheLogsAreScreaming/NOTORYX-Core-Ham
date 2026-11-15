@@ -12308,4 +12308,21 @@ class AppLocalizationsUk extends AppLocalizations {
   String automation_placeholders(String list) {
     return 'Можна використовувати $list';
   }
+
+  @override
+  String get losLegendFresnel => 'Зона Френеля';
+
+  @override
+  String losFresnelClear(int percent) {
+    return 'Зона Френеля вільна на $percent% у найвужчому місці. 60% і більше — добре.';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return 'Зона Френеля вільна лише на $percent% у найвужчому місці. Мета — 60% і більше: підніміть антену або перемістіть точку.';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      'Рельєф перекриває зону Френеля і промінь. Підніміть антену або перемістіть точку.';
 }

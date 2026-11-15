@@ -4826,5 +4826,9 @@
   "checklist_deploy4": "無線設定と地域を確認した",
   "checklist_deploy5": "テスト送信がノード経由で届いた",
   "checklist_deploy6": "位置・写真・メモを記録した",
-  "automation_placeholders": "使用できる語: {list}"
+  "automation_placeholders": "使用できる語: {list}",
+  "losLegendFresnel": "フレネルゾーン",
+  "losFresnelClear": "最も狭い地点でフレネルゾーンの{percent}%が開けています。60%以上なら良好です。",
+  "losFresnelPartial": "最も狭い地点でフレネルゾーンの{percent}%しか開けていません。60%以上を目指して、アンテナを高くするか地点を動かしてください。",
+  "losFresnelBlocked": "地形がフレネルゾーンと電波経路を遮っています。アンテナを高くするか地点を動かしてください。"
 }

@@ -12281,4 +12281,21 @@ class AppLocalizationsIt extends AppLocalizations {
   String automation_placeholders(String list) {
     return 'Puoi usare $list';
   }
+
+  @override
+  String get losLegendFresnel => 'Zona di Fresnel';
+
+  @override
+  String losFresnelClear(int percent) {
+    return 'Zona di Fresnel libera al $percent% nel punto più stretto. 60% o più va bene.';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return 'Zona di Fresnel libera solo al $percent% nel punto più stretto. Punta al 60% o più: alza un\'antenna o sposta un punto.';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      'Il terreno entra nella zona di Fresnel e nel fascio. Alza un\'antenna o sposta un punto.';
 }
