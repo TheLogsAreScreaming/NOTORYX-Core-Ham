@@ -4702,5 +4702,9 @@
   "checklist_deploy4": "Radio-instellingen en regio bevestigd",
   "checklist_deploy5": "Testbericht via het knooppunt gehoord",
   "checklist_deploy6": "Locatie, foto's en notities vastgelegd",
-  "automation_placeholders": "Je kunt {list} gebruiken"
+  "automation_placeholders": "Je kunt {list} gebruiken",
+  "losLegendFresnel": "Fresnelzone",
+  "losFresnelClear": "Fresnelzone op het smalste punt {percent}% vrij. 60% of meer is goed.",
+  "losFresnelPartial": "Fresnelzone op het smalste punt maar {percent}% vrij. Streef naar 60% of meer: zet een antenne hoger of verplaats een punt.",
+  "losFresnelBlocked": "Het terrein snijdt in de fresnelzone en de bundel. Zet een antenne hoger of verplaats een punt."
 }

@@ -12274,4 +12274,21 @@ class AppLocalizationsSk extends AppLocalizations {
   String automation_placeholders(String list) {
     return 'Môžete použiť $list';
   }
+
+  @override
+  String get losLegendFresnel => 'Fresnelova zóna';
+
+  @override
+  String losFresnelClear(int percent) {
+    return 'Fresnelova zóna je v najužšom mieste voľná na $percent%. 60% a viac je dobré.';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return 'Fresnelova zóna je v najužšom mieste voľná len na $percent%. Cieľom je 60% a viac: zdvihnite anténu alebo posuňte bod.';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      'Terén zasahuje do Fresnelovej zóny aj lúča. Zdvihnite anténu alebo posuňte bod.';
 }

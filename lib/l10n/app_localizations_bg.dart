@@ -12283,4 +12283,21 @@ class AppLocalizationsBg extends AppLocalizations {
   String automation_placeholders(String list) {
     return 'Можете да използвате $list';
   }
+
+  @override
+  String get losLegendFresnel => 'Зона на Френел';
+
+  @override
+  String losFresnelClear(int percent) {
+    return 'Зоната на Френел е $percent% свободна в най-тясната точка. 60% или повече е добре.';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return 'Зоната на Френел е само $percent% свободна в най-тясната точка. Целете 60% или повече: повдигнете антена или преместете точка.';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      'Теренът навлиза в зоната на Френел и в лъча. Повдигнете антена или преместете точка.';
 }

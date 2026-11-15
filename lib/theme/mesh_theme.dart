@@ -152,6 +152,7 @@ class LosPalette {
   static const terrain = Color(0xFFA3E635);
   static const beam = Color(0xFF38BDF8);
   static const horizon = Color(0xFFFBBF24);
+  static const fresnel = Color(0xFFC4B5FD);
   static const blocked = Color(0xFFDB8D85);
   static const marginal = Color(0xFFD6B77C);
   static const clear = Color(0xFF93B99D);

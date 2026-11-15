@@ -20370,6 +20370,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You can use {list}'**
   String automation_placeholders(String list);
+
+  /// No description provided for @losLegendFresnel.
+  ///
+  /// In en, this message translates to:
+  /// **'Fresnel zone'**
+  String get losLegendFresnel;
+
+  /// No description provided for @losFresnelClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Fresnel zone {percent}% clear at the tightest point. 60% or more is good.'**
+  String losFresnelClear(int percent);
+
+  /// No description provided for @losFresnelPartial.
+  ///
+  /// In en, this message translates to:
+  /// **'Fresnel zone only {percent}% clear at the tightest point. Aim for 60% or more: raise an antenna or move a point.'**
+  String losFresnelPartial(int percent);
+
+  /// No description provided for @losFresnelBlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Terrain cuts into the Fresnel zone and the beam. Raise an antenna or move a point.'**
+  String get losFresnelBlocked;
 }
 
 class _AppLocalizationsDelegate

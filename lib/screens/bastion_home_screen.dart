@@ -241,7 +241,7 @@ class BastionHomeScreen extends StatelessWidget {
                     0,
                   ),
                   child: Text(
-                    '$checkInHint ${sosHint(context, ops)}',
+                    joinHomeHints(checkInHint, sosHint(context, ops)),
                     style: Theme.of(
                       context,
                     ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
@@ -424,3 +424,9 @@ class _StationRow extends StatelessWidget {
     );
   }
 }
+
+/// The line under Check in and SOS: both hints, or one when they're the
+/// same (with no radio both say "Connect your radio first.").
+@visibleForTesting
+String joinHomeHints(String checkIn, String sos) =>
+    checkIn == sos ? checkIn : '$checkIn $sos';

@@ -4836,5 +4836,9 @@
   "checklist_deploy4": "Funkeinstellungen und Region bestätigt",
   "checklist_deploy5": "Testnachricht über den Knoten gehört",
   "checklist_deploy6": "Standort, Fotos und Notizen festgehalten",
-  "automation_placeholders": "Verwendbar: {list}"
+  "automation_placeholders": "Verwendbar: {list}",
+  "losLegendFresnel": "Fresnel-Zone",
+  "losFresnelClear": "Fresnel-Zone an der engsten Stelle zu {percent}% frei. Ab 60% ist gut.",
+  "losFresnelPartial": "Fresnel-Zone an der engsten Stelle nur zu {percent}% frei. Ziel sind 60% oder mehr: Antenne höher setzen oder einen Punkt verschieben.",
+  "losFresnelBlocked": "Gelände ragt in die Fresnel-Zone und den Strahl. Antenne höher setzen oder einen Punkt verschieben."
 }

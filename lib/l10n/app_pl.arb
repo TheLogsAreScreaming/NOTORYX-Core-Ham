@@ -4740,5 +4740,9 @@
   "checklist_deploy4": "Ustawienia radia i region potwierdzone",
   "checklist_deploy5": "Wiadomość testowa usłyszana przez węzeł",
   "checklist_deploy6": "Lokalizacja, zdjęcia i notatki zapisane",
-  "automation_placeholders": "Możesz użyć {list}"
+  "automation_placeholders": "Możesz użyć {list}",
+  "losLegendFresnel": "Strefa Fresnela",
+  "losFresnelClear": "Strefa Fresnela wolna w {percent}% w najciaśniejszym miejscu. 60% lub więcej to dobry wynik.",
+  "losFresnelPartial": "Strefa Fresnela wolna tylko w {percent}% w najciaśniejszym miejscu. Celuj w 60% lub więcej: podnieś antenę albo przesuń punkt.",
+  "losFresnelBlocked": "Teren wchodzi w strefę Fresnela i wiązkę. Podnieś antenę albo przesuń punkt."
 }
