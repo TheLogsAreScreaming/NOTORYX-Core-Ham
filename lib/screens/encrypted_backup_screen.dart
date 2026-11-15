@@ -7,6 +7,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../l10n/l10n.dart';
 import '../services/encrypted_backup_service.dart';
+import '../services/node_look_store.dart';
 import '../storage/db/history_backup.dart';
 import '../storage/db/message_db.dart';
 import '../widgets/ember_backdrop.dart';
@@ -151,6 +152,7 @@ class _EncryptedBackupScreenState extends State<EncryptedBackupScreen> {
       );
       if (go != true) return;
       final restored = await service.restore(values);
+      NodeLookStore.instance.reload();
       final db = messages > 0 ? await MessageDb.ready : null;
       final added = db == null
           ? 0

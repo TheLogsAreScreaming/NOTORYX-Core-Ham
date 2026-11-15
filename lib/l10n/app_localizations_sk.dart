@@ -4749,6 +4749,36 @@ class AppLocalizationsSk extends AppLocalizations {
   String get losLegendTerrain => 'Terén';
 
   @override
+  String get nodeLook_menu => 'Fotka alebo farba';
+
+  @override
+  String nodeLook_title(String name) {
+    return 'Vzhľad: $name';
+  }
+
+  @override
+  String get nodeLook_hint =>
+      'Iba v tomto telefóne. Nikdy sa neposiela cez sieť.';
+
+  @override
+  String get nodeLook_choosePhoto => 'Vybrať fotku';
+
+  @override
+  String get nodeLook_removePhoto => 'Odstrániť fotku';
+
+  @override
+  String get nodeLook_clear => 'Použiť predvolený vzhľad';
+
+  @override
+  String nodeLook_colorN(int index) {
+    return 'Farba $index';
+  }
+
+  @override
+  String get nodeLook_photoFailed =>
+      'Túto fotku sa nepodarilo použiť. Skúste inú.';
+
+  @override
   String get losBlockedSpotsTitle => 'Zablokované miesta';
 
   @override

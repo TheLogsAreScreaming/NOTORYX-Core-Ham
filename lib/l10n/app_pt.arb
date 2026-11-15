@@ -2429,6 +2429,14 @@
       }
     }
   },
+  "nodeLook_menu": "Foto ou cor",
+  "nodeLook_title": "Aspeto de {name}",
+  "nodeLook_hint": "Só neste telefone. Nunca é enviado pela malha.",
+  "nodeLook_choosePhoto": "Escolher foto",
+  "nodeLook_removePhoto": "Remover foto",
+  "nodeLook_clear": "Usar o aspeto predefinido",
+  "nodeLook_colorN": "Cor {index}",
+  "nodeLook_photoFailed": "Não foi possível usar essa foto. Experimente outra.",
   "losBlockedSpotsTitle": "Locais ocupados",
   "losBlockedSpotsHint": "Toque em um ponto bloqueado para destacá-lo no mapa.",
   "losSelectedObstructionTitle": "Obstrução selecionada",

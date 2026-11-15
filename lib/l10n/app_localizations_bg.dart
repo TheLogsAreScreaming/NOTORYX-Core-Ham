@@ -4772,6 +4772,36 @@ class AppLocalizationsBg extends AppLocalizations {
   String get losLegendTerrain => 'Терен';
 
   @override
+  String get nodeLook_menu => 'Снимка или цвят';
+
+  @override
+  String nodeLook_title(String name) {
+    return 'Вид на $name';
+  }
+
+  @override
+  String get nodeLook_hint =>
+      'Само на този телефон. Никога не се изпраща по мрежата.';
+
+  @override
+  String get nodeLook_choosePhoto => 'Изберете снимка';
+
+  @override
+  String get nodeLook_removePhoto => 'Премахни снимката';
+
+  @override
+  String get nodeLook_clear => 'Използвай стандартния вид';
+
+  @override
+  String nodeLook_colorN(int index) {
+    return 'Цвят $index';
+  }
+
+  @override
+  String get nodeLook_photoFailed =>
+      'Тази снимка не може да се използва. Опитайте друга.';
+
+  @override
   String get losBlockedSpotsTitle => 'Ограничени места';
 
   @override

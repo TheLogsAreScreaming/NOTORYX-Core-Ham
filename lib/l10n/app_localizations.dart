@@ -8208,6 +8208,54 @@ abstract class AppLocalizations {
   /// **'Terrain'**
   String get losLegendTerrain;
 
+  /// No description provided for @nodeLook_menu.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo or colour'**
+  String get nodeLook_menu;
+
+  /// No description provided for @nodeLook_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Look for {name}'**
+  String nodeLook_title(String name);
+
+  /// No description provided for @nodeLook_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Only on this phone. It\'s never sent over the mesh.'**
+  String get nodeLook_hint;
+
+  /// No description provided for @nodeLook_choosePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose photo'**
+  String get nodeLook_choosePhoto;
+
+  /// No description provided for @nodeLook_removePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove photo'**
+  String get nodeLook_removePhoto;
+
+  /// No description provided for @nodeLook_clear.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the default look'**
+  String get nodeLook_clear;
+
+  /// No description provided for @nodeLook_colorN.
+  ///
+  /// In en, this message translates to:
+  /// **'Colour {index}'**
+  String nodeLook_colorN(int index);
+
+  /// No description provided for @nodeLook_photoFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t use that photo. Try a different one.'**
+  String get nodeLook_photoFailed;
+
   /// No description provided for @losBlockedSpotsTitle.
   ///
   /// In en, this message translates to:

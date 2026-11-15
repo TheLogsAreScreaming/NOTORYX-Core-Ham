@@ -2563,6 +2563,14 @@
       }
     }
   },
+  "nodeLook_menu": "Foto o color",
+  "nodeLook_title": "Aspecto de {name}",
+  "nodeLook_hint": "Solo en este teléfono. Nunca se envía por la malla.",
+  "nodeLook_choosePhoto": "Elegir foto",
+  "nodeLook_removePhoto": "Quitar foto",
+  "nodeLook_clear": "Usar el aspecto predeterminado",
+  "nodeLook_colorN": "Color {index}",
+  "nodeLook_photoFailed": "No se pudo usar esa foto. Prueba con otra.",
   "losBlockedSpotsTitle": "Espacios ocupados",
   "losBlockedSpotsHint": "Seleccione un punto bloqueado para resaltarlo en el mapa.",
   "losSelectedObstructionTitle": "Obstrucción seleccionada",

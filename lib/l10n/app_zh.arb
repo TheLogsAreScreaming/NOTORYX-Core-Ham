@@ -2434,6 +2434,14 @@
       }
     }
   },
+  "nodeLook_menu": "照片或颜色",
+  "nodeLook_title": "{name} 的外观",
+  "nodeLook_hint": "仅保存在本手机上，绝不会通过网状网络发送。",
+  "nodeLook_choosePhoto": "选择照片",
+  "nodeLook_removePhoto": "移除照片",
+  "nodeLook_clear": "使用默认外观",
+  "nodeLook_colorN": "颜色 {index}",
+  "nodeLook_photoFailed": "无法使用该照片，请换一张。",
   "losBlockedSpotsTitle": "被占用区域",
   "losBlockedSpotsHint": "点击地图上的某个被遮盖的区域，以突出显示该区域。",
   "losSelectedObstructionTitle": "选择性阻碍",

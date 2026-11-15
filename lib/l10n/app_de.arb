@@ -2563,6 +2563,14 @@
       }
     }
   },
+  "nodeLook_menu": "Foto oder Farbe",
+  "nodeLook_title": "Aussehen von {name}",
+  "nodeLook_hint": "Nur auf diesem Handy. Wird nie über das Mesh gesendet.",
+  "nodeLook_choosePhoto": "Foto auswählen",
+  "nodeLook_removePhoto": "Foto entfernen",
+  "nodeLook_clear": "Standardaussehen verwenden",
+  "nodeLook_colorN": "Farbe {index}",
+  "nodeLook_photoFailed": "Dieses Foto ließ sich nicht verwenden. Versuch ein anderes.",
   "losBlockedSpotsTitle": "Reservierte Plätze",
   "losSelectedObstructionTitle": "Ausgewählte Behinderung",
   "losBlockedSpotChip": "{distance} • {distanceUnit} • {obstruction} {heightUnit}",

@@ -4778,6 +4778,36 @@ class AppLocalizationsIt extends AppLocalizations {
   String get losLegendTerrain => 'Terreno';
 
   @override
+  String get nodeLook_menu => 'Foto o colore';
+
+  @override
+  String nodeLook_title(String name) {
+    return 'Aspetto di $name';
+  }
+
+  @override
+  String get nodeLook_hint =>
+      'Solo su questo telefono. Non viene mai inviato sulla mesh.';
+
+  @override
+  String get nodeLook_choosePhoto => 'Scegli foto';
+
+  @override
+  String get nodeLook_removePhoto => 'Rimuovi foto';
+
+  @override
+  String get nodeLook_clear => 'Usa l\'aspetto predefinito';
+
+  @override
+  String nodeLook_colorN(int index) {
+    return 'Colore $index';
+  }
+
+  @override
+  String get nodeLook_photoFailed =>
+      'Impossibile usare questa foto. Provane un\'altra.';
+
+  @override
   String get losBlockedSpotsTitle => 'Posti occupati';
 
   @override

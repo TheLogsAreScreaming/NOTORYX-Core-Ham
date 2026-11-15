@@ -4778,6 +4778,36 @@ class AppLocalizationsDe extends AppLocalizations {
   String get losLegendTerrain => 'Gelände';
 
   @override
+  String get nodeLook_menu => 'Foto oder Farbe';
+
+  @override
+  String nodeLook_title(String name) {
+    return 'Aussehen von $name';
+  }
+
+  @override
+  String get nodeLook_hint =>
+      'Nur auf diesem Handy. Wird nie über das Mesh gesendet.';
+
+  @override
+  String get nodeLook_choosePhoto => 'Foto auswählen';
+
+  @override
+  String get nodeLook_removePhoto => 'Foto entfernen';
+
+  @override
+  String get nodeLook_clear => 'Standardaussehen verwenden';
+
+  @override
+  String nodeLook_colorN(int index) {
+    return 'Farbe $index';
+  }
+
+  @override
+  String get nodeLook_photoFailed =>
+      'Dieses Foto ließ sich nicht verwenden. Versuch ein anderes.';
+
+  @override
   String get losBlockedSpotsTitle => 'Reservierte Plätze';
 
   @override

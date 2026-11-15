@@ -4785,6 +4785,36 @@ class AppLocalizationsPl extends AppLocalizations {
   String get losLegendTerrain => 'Teren';
 
   @override
+  String get nodeLook_menu => 'Zdjęcie lub kolor';
+
+  @override
+  String nodeLook_title(String name) {
+    return 'Wygląd: $name';
+  }
+
+  @override
+  String get nodeLook_hint =>
+      'Tylko na tym telefonie. Nigdy nie jest wysyłane przez sieć.';
+
+  @override
+  String get nodeLook_choosePhoto => 'Wybierz zdjęcie';
+
+  @override
+  String get nodeLook_removePhoto => 'Usuń zdjęcie';
+
+  @override
+  String get nodeLook_clear => 'Użyj domyślnego wyglądu';
+
+  @override
+  String nodeLook_colorN(int index) {
+    return 'Kolor $index';
+  }
+
+  @override
+  String get nodeLook_photoFailed =>
+      'Nie można użyć tego zdjęcia. Spróbuj innego.';
+
+  @override
   String get losBlockedSpotsTitle => 'Zablokowane miejsca';
 
   @override

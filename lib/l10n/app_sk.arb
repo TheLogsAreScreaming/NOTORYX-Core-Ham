@@ -2429,6 +2429,14 @@
       }
     }
   },
+  "nodeLook_menu": "Fotka alebo farba",
+  "nodeLook_title": "Vzhľad: {name}",
+  "nodeLook_hint": "Iba v tomto telefóne. Nikdy sa neposiela cez sieť.",
+  "nodeLook_choosePhoto": "Vybrať fotku",
+  "nodeLook_removePhoto": "Odstrániť fotku",
+  "nodeLook_clear": "Použiť predvolený vzhľad",
+  "nodeLook_colorN": "Farba {index}",
+  "nodeLook_photoFailed": "Túto fotku sa nepodarilo použiť. Skúste inú.",
   "losBlockedSpotsTitle": "Zablokované miesta",
   "losBlockedSpotsHint": "Kliknite na zablokované miesto, aby ste ho zvýraznili na mape.",
   "losSelectedObstructionTitle": "Vybraná prekážka",

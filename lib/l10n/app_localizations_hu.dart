@@ -4763,6 +4763,36 @@ class AppLocalizationsHu extends AppLocalizations {
   String get losLegendTerrain => 'Terep';
 
   @override
+  String get nodeLook_menu => 'Fotó vagy szín';
+
+  @override
+  String nodeLook_title(String name) {
+    return '$name megjelenése';
+  }
+
+  @override
+  String get nodeLook_hint =>
+      'Csak ezen a telefonon. Soha nem kerül a hálózatra.';
+
+  @override
+  String get nodeLook_choosePhoto => 'Fotó kiválasztása';
+
+  @override
+  String get nodeLook_removePhoto => 'Fotó eltávolítása';
+
+  @override
+  String get nodeLook_clear => 'Alapértelmezett megjelenés';
+
+  @override
+  String nodeLook_colorN(int index) {
+    return '$index. szín';
+  }
+
+  @override
+  String get nodeLook_photoFailed =>
+      'Ezt a fotót nem lehet használni. Próbálj egy másikat.';
+
+  @override
   String get losBlockedSpotsTitle => 'Blokkolt helyek';
 
   @override

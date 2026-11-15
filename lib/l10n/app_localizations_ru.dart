@@ -4779,6 +4779,36 @@ class AppLocalizationsRu extends AppLocalizations {
   String get losLegendTerrain => 'Рельеф';
 
   @override
+  String get nodeLook_menu => 'Фото или цвет';
+
+  @override
+  String nodeLook_title(String name) {
+    return 'Вид: $name';
+  }
+
+  @override
+  String get nodeLook_hint =>
+      'Только на этом телефоне. Никогда не отправляется в сеть.';
+
+  @override
+  String get nodeLook_choosePhoto => 'Выбрать фото';
+
+  @override
+  String get nodeLook_removePhoto => 'Убрать фото';
+
+  @override
+  String get nodeLook_clear => 'Вернуть обычный вид';
+
+  @override
+  String nodeLook_colorN(int index) {
+    return 'Цвет $index';
+  }
+
+  @override
+  String get nodeLook_photoFailed =>
+      'Не удалось использовать это фото. Попробуйте другое.';
+
+  @override
   String get losBlockedSpotsTitle => 'Зарезервированные места';
 
   @override

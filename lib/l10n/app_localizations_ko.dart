@@ -4541,6 +4541,34 @@ class AppLocalizationsKo extends AppLocalizations {
   String get losLegendTerrain => '지형';
 
   @override
+  String get nodeLook_menu => '사진 또는 색상';
+
+  @override
+  String nodeLook_title(String name) {
+    return '$name 모양';
+  }
+
+  @override
+  String get nodeLook_hint => '이 휴대폰에만 저장되며 메시로 전송되지 않습니다.';
+
+  @override
+  String get nodeLook_choosePhoto => '사진 선택';
+
+  @override
+  String get nodeLook_removePhoto => '사진 제거';
+
+  @override
+  String get nodeLook_clear => '기본 모양 사용';
+
+  @override
+  String nodeLook_colorN(int index) {
+    return '색상 $index';
+  }
+
+  @override
+  String get nodeLook_photoFailed => '이 사진은 사용할 수 없습니다. 다른 사진을 선택하세요.';
+
+  @override
   String get losBlockedSpotsTitle => '차단된 공간';
 
   @override

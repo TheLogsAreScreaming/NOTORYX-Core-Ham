@@ -4777,6 +4777,36 @@ class AppLocalizationsUk extends AppLocalizations {
   String get losLegendTerrain => 'Рельєф';
 
   @override
+  String get nodeLook_menu => 'Фото або колір';
+
+  @override
+  String nodeLook_title(String name) {
+    return 'Вигляд: $name';
+  }
+
+  @override
+  String get nodeLook_hint =>
+      'Лише на цьому телефоні. Ніколи не надсилається в мережу.';
+
+  @override
+  String get nodeLook_choosePhoto => 'Вибрати фото';
+
+  @override
+  String get nodeLook_removePhoto => 'Прибрати фото';
+
+  @override
+  String get nodeLook_clear => 'Повернути звичайний вигляд';
+
+  @override
+  String nodeLook_colorN(int index) {
+    return 'Колір $index';
+  }
+
+  @override
+  String get nodeLook_photoFailed =>
+      'Не вдалося використати це фото. Спробуйте інше.';
+
+  @override
   String get losBlockedSpotsTitle => 'Заблоковані місця';
 
   @override

@@ -2737,6 +2737,28 @@
   "losLegendRadioHorizon": "Radio horizon",
   "losLegendLosBeam": "LOS beam",
   "losLegendTerrain": "Terrain",
+  "nodeLook_menu": "Photo or colour",
+  "nodeLook_title": "Look for {name}",
+  "@nodeLook_title": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "nodeLook_hint": "Only on this phone. It's never sent over the mesh.",
+  "nodeLook_choosePhoto": "Choose photo",
+  "nodeLook_removePhoto": "Remove photo",
+  "nodeLook_clear": "Use the default look",
+  "nodeLook_colorN": "Colour {index}",
+  "@nodeLook_colorN": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "nodeLook_photoFailed": "Couldn't use that photo. Try a different one.",
   "losBlockedSpotsTitle": "Blocked spots",
   "losBlockedSpotsHint": "Tap a blocked spot to highlight it on the map.",
   "losBlockedSpotChip": "{distance} {distanceUnit} • {obstruction} {heightUnit}",
