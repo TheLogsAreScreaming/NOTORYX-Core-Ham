@@ -4777,21 +4777,63 @@ class AppLocalizationsUk extends AppLocalizations {
   String get losLegendTerrain => 'Рельєф';
 
   @override
-  String get losLegendFresnel => 'Зона Френеля';
+  String get bg_title => 'Фон';
 
   @override
-  String losFresnelClear(int percent) {
-    return 'Зона Френеля вільна на $percent% у найвужчому місці. 60% і більше — добре.';
+  String get bg_kindTheme => 'Сяйво теми';
+
+  @override
+  String get bg_kindSolid => 'Колір';
+
+  @override
+  String get bg_kindLinear => 'Градієнт';
+
+  @override
+  String get bg_kindMesh => 'М\'яке змішування';
+
+  @override
+  String get bg_kindPhoto => 'Фото';
+
+  @override
+  String get bg_color1 => 'Перший колір';
+
+  @override
+  String get bg_color2 => 'Другий колір';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Колір $index';
   }
 
   @override
-  String losFresnelPartial(int percent) {
-    return 'Зона Френеля вільна лише на $percent% у найвужчому місці. Мета — 60% і більше: підніміть антену або перемістіть точку.';
-  }
+  String get bg_dim => 'Затемнення';
 
   @override
-  String get losFresnelBlocked =>
-      'Рельєф перекриває зону Френеля і промінь. Підніміть антену або перемістіть точку.';
+  String get bg_blur => 'Розмиття';
+
+  @override
+  String get bg_choosePhoto => 'Вибрати фото';
+
+  @override
+  String get bg_reset => 'Повернути фон теми';
+
+  @override
+  String get bg_hint =>
+      'Картки лежать поверх як матове скло. Збільште затемнення, якщо текст важко читати.';
+
+  @override
+  String get bg_previewTitle => 'Попередній перегляд';
+
+  @override
+  String get bg_previewBody => 'Так виглядає текст на скляній картці.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'Фото залишається на цьому телефоні й не входить до резервних копій.';
+
+  @override
+  String get bg_photoFailed =>
+      'Не вдалося використати це фото. Спробуйте інше.';
 
   @override
   String get losBlockedSpotsTitle => 'Заблоковані місця';
@@ -12295,4 +12337,21 @@ class AppLocalizationsUk extends AppLocalizations {
   String automation_placeholders(String list) {
     return 'Можна використовувати $list';
   }
+
+  @override
+  String get losLegendFresnel => 'Зона Френеля';
+
+  @override
+  String losFresnelClear(int percent) {
+    return 'Зона Френеля вільна на $percent% у найвужчому місці. 60% і більше — добре.';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return 'Зона Френеля вільна лише на $percent% у найвужчому місці. Мета — 60% і більше: підніміть антену або перемістіть точку.';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      'Рельєф перекриває зону Френеля і промінь. Підніміть антену або перемістіть точку.';
 }

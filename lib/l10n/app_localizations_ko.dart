@@ -4541,21 +4541,60 @@ class AppLocalizationsKo extends AppLocalizations {
   String get losLegendTerrain => '지형';
 
   @override
-  String get losLegendFresnel => '프레넬 영역';
+  String get bg_title => '배경';
 
   @override
-  String losFresnelClear(int percent) {
-    return '가장 좁은 지점에서 프레넬 영역이 $percent% 비어 있습니다. 60% 이상이면 좋습니다.';
+  String get bg_kindTheme => '테마 광채';
+
+  @override
+  String get bg_kindSolid => '단색';
+
+  @override
+  String get bg_kindLinear => '그라데이션';
+
+  @override
+  String get bg_kindMesh => '메시 블렌드';
+
+  @override
+  String get bg_kindPhoto => '사진';
+
+  @override
+  String get bg_color1 => '첫 번째 색상';
+
+  @override
+  String get bg_color2 => '두 번째 색상';
+
+  @override
+  String bg_colorN(int index) {
+    return '색상 $index';
   }
 
   @override
-  String losFresnelPartial(int percent) {
-    return '가장 좁은 지점에서 프레넬 영역이 $percent%만 비어 있습니다. 60% 이상을 목표로 안테나를 높이거나 지점을 옮기세요.';
-  }
+  String get bg_dim => '어둡게';
 
   @override
-  String get losFresnelBlocked =>
-      '지형이 프레넬 영역과 전파 경로를 가로막습니다. 안테나를 높이거나 지점을 옮기세요.';
+  String get bg_blur => '흐림';
+
+  @override
+  String get bg_choosePhoto => '사진 선택';
+
+  @override
+  String get bg_reset => '테마 배경으로 돌아가기';
+
+  @override
+  String get bg_hint => '카드는 그 위에 반투명 유리처럼 놓입니다. 글자가 잘 안 보이면 어둡게를 높이세요.';
+
+  @override
+  String get bg_previewTitle => '미리보기';
+
+  @override
+  String get bg_previewBody => '유리 카드 위의 글자는 이렇게 보입니다.';
+
+  @override
+  String get bg_photoNotBackedUp => '사진은 이 휴대폰에만 남고 백업에는 포함되지 않습니다.';
+
+  @override
+  String get bg_photoFailed => '이 사진은 사용할 수 없습니다. 다른 사진을 선택하세요.';
 
   @override
   String get losBlockedSpotsTitle => '차단된 공간';
@@ -11710,4 +11749,21 @@ class AppLocalizationsKo extends AppLocalizations {
   String automation_placeholders(String list) {
     return '사용 가능: $list';
   }
+
+  @override
+  String get losLegendFresnel => '프레넬 영역';
+
+  @override
+  String losFresnelClear(int percent) {
+    return '가장 좁은 지점에서 프레넬 영역이 $percent% 비어 있습니다. 60% 이상이면 좋습니다.';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return '가장 좁은 지점에서 프레넬 영역이 $percent%만 비어 있습니다. 60% 이상을 목표로 안테나를 높이거나 지점을 옮기세요.';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      '지형이 프레넬 영역과 전파 경로를 가로막습니다. 안테나를 높이거나 지점을 옮기세요.';
 }

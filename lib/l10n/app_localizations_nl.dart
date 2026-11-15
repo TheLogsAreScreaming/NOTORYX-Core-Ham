@@ -4751,21 +4751,63 @@ class AppLocalizationsNl extends AppLocalizations {
   String get losLegendTerrain => 'Terrein';
 
   @override
-  String get losLegendFresnel => 'Fresnelzone';
+  String get bg_title => 'Achtergrond';
 
   @override
-  String losFresnelClear(int percent) {
-    return 'Fresnelzone op het smalste punt $percent% vrij. 60% of meer is goed.';
+  String get bg_kindTheme => 'Themagloed';
+
+  @override
+  String get bg_kindSolid => 'Kleur';
+
+  @override
+  String get bg_kindLinear => 'Verloop';
+
+  @override
+  String get bg_kindMesh => 'Kleurmengsel';
+
+  @override
+  String get bg_kindPhoto => 'Foto';
+
+  @override
+  String get bg_color1 => 'Eerste kleur';
+
+  @override
+  String get bg_color2 => 'Tweede kleur';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Kleur $index';
   }
 
   @override
-  String losFresnelPartial(int percent) {
-    return 'Fresnelzone op het smalste punt maar $percent% vrij. Streef naar 60% of meer: zet een antenne hoger of verplaats een punt.';
-  }
+  String get bg_dim => 'Dimmen';
 
   @override
-  String get losFresnelBlocked =>
-      'Het terrein snijdt in de fresnelzone en de bundel. Zet een antenne hoger of verplaats een punt.';
+  String get bg_blur => 'Vervaging';
+
+  @override
+  String get bg_choosePhoto => 'Foto kiezen';
+
+  @override
+  String get bg_reset => 'Terug naar de achtergrond van het thema';
+
+  @override
+  String get bg_hint =>
+      'Kaarten liggen er als matglas bovenop. Zet Dimmen hoger als tekst moeilijk leesbaar is.';
+
+  @override
+  String get bg_previewTitle => 'Voorbeeld';
+
+  @override
+  String get bg_previewBody => 'Zo ziet tekst op een glazen kaart eruit.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'De foto blijft op deze telefoon en zit niet in back-ups.';
+
+  @override
+  String get bg_photoFailed =>
+      'Die foto kon niet worden gebruikt. Probeer een andere.';
 
   @override
   String get losBlockedSpotsTitle => 'Geplande plaatsen';
@@ -12209,4 +12251,21 @@ class AppLocalizationsNl extends AppLocalizations {
   String automation_placeholders(String list) {
     return 'Je kunt $list gebruiken';
   }
+
+  @override
+  String get losLegendFresnel => 'Fresnelzone';
+
+  @override
+  String losFresnelClear(int percent) {
+    return 'Fresnelzone op het smalste punt $percent% vrij. 60% of meer is goed.';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return 'Fresnelzone op het smalste punt maar $percent% vrij. Streef naar 60% of meer: zet een antenne hoger of verplaats een punt.';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      'Het terrein snijdt in de fresnelzone en de bundel. Zet een antenne hoger of verplaats een punt.';
 }

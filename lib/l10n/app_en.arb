@@ -2737,24 +2737,31 @@
   "losLegendRadioHorizon": "Radio horizon",
   "losLegendLosBeam": "LOS beam",
   "losLegendTerrain": "Terrain",
-  "losLegendFresnel": "Fresnel zone",
-  "losFresnelClear": "Fresnel zone {percent}% clear at the tightest point. 60% or more is good.",
-  "@losFresnelClear": {
+  "bg_title": "Background",
+  "bg_kindTheme": "Theme glow",
+  "bg_kindSolid": "Colour",
+  "bg_kindLinear": "Gradient",
+  "bg_kindMesh": "Mesh blend",
+  "bg_kindPhoto": "Photo",
+  "bg_color1": "First colour",
+  "bg_color2": "Second colour",
+  "bg_colorN": "Colour {index}",
+  "@bg_colorN": {
     "placeholders": {
-      "percent": {
+      "index": {
         "type": "int"
       }
     }
   },
-  "losFresnelPartial": "Fresnel zone only {percent}% clear at the tightest point. Aim for 60% or more: raise an antenna or move a point.",
-  "@losFresnelPartial": {
-    "placeholders": {
-      "percent": {
-        "type": "int"
-      }
-    }
-  },
-  "losFresnelBlocked": "Terrain cuts into the Fresnel zone and the beam. Raise an antenna or move a point.",
+  "bg_dim": "Dim",
+  "bg_blur": "Blur",
+  "bg_choosePhoto": "Choose photo",
+  "bg_reset": "Back to the theme's background",
+  "bg_hint": "Cards sit on frosted glass over this. Turn up Dim if text is hard to read.",
+  "bg_previewTitle": "Preview",
+  "bg_previewBody": "Text on a glass card looks like this.",
+  "bg_photoNotBackedUp": "The photo stays on this phone and isn't included in backups.",
+  "bg_photoFailed": "Couldn't use that photo. Try a different one.",
   "losBlockedSpotsTitle": "Blocked spots",
   "losBlockedSpotsHint": "Tap a blocked spot to highlight it on the map.",
   "losBlockedSpotChip": "{distance} {distanceUnit} • {obstruction} {heightUnit}",
@@ -7537,5 +7544,23 @@
         "type": "String"
       }
     }
-  }
+  },
+  "losLegendFresnel": "Fresnel zone",
+  "losFresnelClear": "Fresnel zone {percent}% clear at the tightest point. 60% or more is good.",
+  "@losFresnelClear": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "losFresnelPartial": "Fresnel zone only {percent}% clear at the tightest point. Aim for 60% or more: raise an antenna or move a point.",
+  "@losFresnelPartial": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "losFresnelBlocked": "Terrain cuts into the Fresnel zone and the beam. Raise an antenna or move a point."
 }

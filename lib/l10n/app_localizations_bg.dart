@@ -4772,21 +4772,63 @@ class AppLocalizationsBg extends AppLocalizations {
   String get losLegendTerrain => 'Терен';
 
   @override
-  String get losLegendFresnel => 'Зона на Френел';
+  String get bg_title => 'Фон';
 
   @override
-  String losFresnelClear(int percent) {
-    return 'Зоната на Френел е $percent% свободна в най-тясната точка. 60% или повече е добре.';
+  String get bg_kindTheme => 'Сияние на темата';
+
+  @override
+  String get bg_kindSolid => 'Цвят';
+
+  @override
+  String get bg_kindLinear => 'Преливане';
+
+  @override
+  String get bg_kindMesh => 'Мрежово смесване';
+
+  @override
+  String get bg_kindPhoto => 'Снимка';
+
+  @override
+  String get bg_color1 => 'Първи цвят';
+
+  @override
+  String get bg_color2 => 'Втори цвят';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Цвят $index';
   }
 
   @override
-  String losFresnelPartial(int percent) {
-    return 'Зоната на Френел е само $percent% свободна в най-тясната точка. Целете 60% или повече: повдигнете антена или преместете точка.';
-  }
+  String get bg_dim => 'Затъмняване';
 
   @override
-  String get losFresnelBlocked =>
-      'Теренът навлиза в зоната на Френел и в лъча. Повдигнете антена или преместете точка.';
+  String get bg_blur => 'Размазване';
+
+  @override
+  String get bg_choosePhoto => 'Изберете снимка';
+
+  @override
+  String get bg_reset => 'Обратно към фона на темата';
+
+  @override
+  String get bg_hint =>
+      'Картите стоят върху матово стъкло над него. Увеличете затъмняването, ако текстът се чете трудно.';
+
+  @override
+  String get bg_previewTitle => 'Преглед';
+
+  @override
+  String get bg_previewBody => 'Текстът върху стъклена карта изглежда така.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'Снимката остава на този телефон и не влиза в резервните копия.';
+
+  @override
+  String get bg_photoFailed =>
+      'Тази снимка не може да се използва. Опитайте друга.';
 
   @override
   String get losBlockedSpotsTitle => 'Ограничени места';
@@ -12241,4 +12283,21 @@ class AppLocalizationsBg extends AppLocalizations {
   String automation_placeholders(String list) {
     return 'Можете да използвате $list';
   }
+
+  @override
+  String get losLegendFresnel => 'Зона на Френел';
+
+  @override
+  String losFresnelClear(int percent) {
+    return 'Зоната на Френел е $percent% свободна в най-тясната точка. 60% или повече е добре.';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return 'Зоната на Френел е само $percent% свободна в най-тясната точка. Целете 60% или повече: повдигнете антена или преместете точка.';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      'Теренът навлиза в зоната на Френел и в лъча. Повдигнете антена или преместете точка.';
 }

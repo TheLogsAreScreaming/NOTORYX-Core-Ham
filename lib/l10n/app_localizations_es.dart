@@ -4771,21 +4771,62 @@ class AppLocalizationsEs extends AppLocalizations {
   String get losLegendTerrain => 'Terreno';
 
   @override
-  String get losLegendFresnel => 'Zona de Fresnel';
+  String get bg_title => 'Fondo';
 
   @override
-  String losFresnelClear(int percent) {
-    return 'Zona de Fresnel despejada al $percent% en el punto más estrecho. Un 60% o más es bueno.';
+  String get bg_kindTheme => 'Brillo del tema';
+
+  @override
+  String get bg_kindSolid => 'Color';
+
+  @override
+  String get bg_kindLinear => 'Degradado';
+
+  @override
+  String get bg_kindMesh => 'Mezcla suave';
+
+  @override
+  String get bg_kindPhoto => 'Foto';
+
+  @override
+  String get bg_color1 => 'Primer color';
+
+  @override
+  String get bg_color2 => 'Segundo color';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Color $index';
   }
 
   @override
-  String losFresnelPartial(int percent) {
-    return 'Zona de Fresnel despejada solo al $percent% en el punto más estrecho. Busca un 60% o más: sube una antena o mueve un punto.';
-  }
+  String get bg_dim => 'Atenuar';
 
   @override
-  String get losFresnelBlocked =>
-      'El terreno invade la zona de Fresnel y el haz. Sube una antena o mueve un punto.';
+  String get bg_blur => 'Desenfoque';
+
+  @override
+  String get bg_choosePhoto => 'Elegir foto';
+
+  @override
+  String get bg_reset => 'Volver al fondo del tema';
+
+  @override
+  String get bg_hint =>
+      'Las tarjetas son de cristal esmerilado encima. Sube Atenuar si cuesta leer el texto.';
+
+  @override
+  String get bg_previewTitle => 'Vista previa';
+
+  @override
+  String get bg_previewBody => 'Así se ve el texto en una tarjeta de cristal.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'La foto se queda en este teléfono y no se incluye en las copias de seguridad.';
+
+  @override
+  String get bg_photoFailed => 'No se pudo usar esa foto. Prueba con otra.';
 
   @override
   String get losBlockedSpotsTitle => 'Espacios ocupados';
@@ -12259,4 +12300,21 @@ class AppLocalizationsEs extends AppLocalizations {
   String automation_placeholders(String list) {
     return 'Puedes usar $list';
   }
+
+  @override
+  String get losLegendFresnel => 'Zona de Fresnel';
+
+  @override
+  String losFresnelClear(int percent) {
+    return 'Zona de Fresnel despejada al $percent% en el punto más estrecho. Un 60% o más es bueno.';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return 'Zona de Fresnel despejada solo al $percent% en el punto más estrecho. Busca un 60% o más: sube una antena o mueve un punto.';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      'El terreno invade la zona de Fresnel y el haz. Sube una antena o mueve un punto.';
 }

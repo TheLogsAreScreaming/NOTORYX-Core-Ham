@@ -14,6 +14,7 @@ import '../widgets/auto_connect_switch.dart';
 import '../widgets/ember_backdrop.dart';
 import '../widgets/regional_preset_banner.dart';
 import '../widgets/theme_picker.dart';
+import 'backdrop_settings_screen.dart';
 import '../widgets/us_bandwidth_notice.dart';
 import '../services/corescope.dart';
 import '../services/app_settings_service.dart';
@@ -138,6 +139,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                         ),
                         const ThemePicker(),
+                        const SizedBox(height: 6),
+                        const BackdropSettingsTile(),
                       ],
                     ),
                   ),

@@ -8208,29 +8208,113 @@ abstract class AppLocalizations {
   /// **'Terrain'**
   String get losLegendTerrain;
 
-  /// No description provided for @losLegendFresnel.
+  /// No description provided for @bg_title.
   ///
   /// In en, this message translates to:
-  /// **'Fresnel zone'**
-  String get losLegendFresnel;
+  /// **'Background'**
+  String get bg_title;
 
-  /// No description provided for @losFresnelClear.
+  /// No description provided for @bg_kindTheme.
   ///
   /// In en, this message translates to:
-  /// **'Fresnel zone {percent}% clear at the tightest point. 60% or more is good.'**
-  String losFresnelClear(int percent);
+  /// **'Theme glow'**
+  String get bg_kindTheme;
 
-  /// No description provided for @losFresnelPartial.
+  /// No description provided for @bg_kindSolid.
   ///
   /// In en, this message translates to:
-  /// **'Fresnel zone only {percent}% clear at the tightest point. Aim for 60% or more: raise an antenna or move a point.'**
-  String losFresnelPartial(int percent);
+  /// **'Colour'**
+  String get bg_kindSolid;
 
-  /// No description provided for @losFresnelBlocked.
+  /// No description provided for @bg_kindLinear.
   ///
   /// In en, this message translates to:
-  /// **'Terrain cuts into the Fresnel zone and the beam. Raise an antenna or move a point.'**
-  String get losFresnelBlocked;
+  /// **'Gradient'**
+  String get bg_kindLinear;
+
+  /// No description provided for @bg_kindMesh.
+  ///
+  /// In en, this message translates to:
+  /// **'Mesh blend'**
+  String get bg_kindMesh;
+
+  /// No description provided for @bg_kindPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo'**
+  String get bg_kindPhoto;
+
+  /// No description provided for @bg_color1.
+  ///
+  /// In en, this message translates to:
+  /// **'First colour'**
+  String get bg_color1;
+
+  /// No description provided for @bg_color2.
+  ///
+  /// In en, this message translates to:
+  /// **'Second colour'**
+  String get bg_color2;
+
+  /// No description provided for @bg_colorN.
+  ///
+  /// In en, this message translates to:
+  /// **'Colour {index}'**
+  String bg_colorN(int index);
+
+  /// No description provided for @bg_dim.
+  ///
+  /// In en, this message translates to:
+  /// **'Dim'**
+  String get bg_dim;
+
+  /// No description provided for @bg_blur.
+  ///
+  /// In en, this message translates to:
+  /// **'Blur'**
+  String get bg_blur;
+
+  /// No description provided for @bg_choosePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose photo'**
+  String get bg_choosePhoto;
+
+  /// No description provided for @bg_reset.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to the theme\'s background'**
+  String get bg_reset;
+
+  /// No description provided for @bg_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Cards sit on frosted glass over this. Turn up Dim if text is hard to read.'**
+  String get bg_hint;
+
+  /// No description provided for @bg_previewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get bg_previewTitle;
+
+  /// No description provided for @bg_previewBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Text on a glass card looks like this.'**
+  String get bg_previewBody;
+
+  /// No description provided for @bg_photoNotBackedUp.
+  ///
+  /// In en, this message translates to:
+  /// **'The photo stays on this phone and isn\'t included in backups.'**
+  String get bg_photoNotBackedUp;
+
+  /// No description provided for @bg_photoFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t use that photo. Try a different one.'**
+  String get bg_photoFailed;
 
   /// No description provided for @losBlockedSpotsTitle.
   ///
@@ -20286,6 +20370,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You can use {list}'**
   String automation_placeholders(String list);
+
+  /// No description provided for @losLegendFresnel.
+  ///
+  /// In en, this message translates to:
+  /// **'Fresnel zone'**
+  String get losLegendFresnel;
+
+  /// No description provided for @losFresnelClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Fresnel zone {percent}% clear at the tightest point. 60% or more is good.'**
+  String losFresnelClear(int percent);
+
+  /// No description provided for @losFresnelPartial.
+  ///
+  /// In en, this message translates to:
+  /// **'Fresnel zone only {percent}% clear at the tightest point. Aim for 60% or more: raise an antenna or move a point.'**
+  String losFresnelPartial(int percent);
+
+  /// No description provided for @losFresnelBlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Terrain cuts into the Fresnel zone and the beam. Raise an antenna or move a point.'**
+  String get losFresnelBlocked;
 }
 
 class _AppLocalizationsDelegate

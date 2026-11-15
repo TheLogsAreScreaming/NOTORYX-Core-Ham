@@ -4748,21 +4748,63 @@ class AppLocalizationsSl extends AppLocalizations {
   String get losLegendTerrain => 'Teren';
 
   @override
-  String get losLegendFresnel => 'Fresnelova cona';
+  String get bg_title => 'Ozadje';
 
   @override
-  String losFresnelClear(int percent) {
-    return 'Fresnelova cona je na najožji točki $percent% prosta. 60% ali več je dobro.';
+  String get bg_kindTheme => 'Sij teme';
+
+  @override
+  String get bg_kindSolid => 'Barva';
+
+  @override
+  String get bg_kindLinear => 'Preliv';
+
+  @override
+  String get bg_kindMesh => 'Mehko prelivanje';
+
+  @override
+  String get bg_kindPhoto => 'Fotografija';
+
+  @override
+  String get bg_color1 => 'Prva barva';
+
+  @override
+  String get bg_color2 => 'Druga barva';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Barva $index';
   }
 
   @override
-  String losFresnelPartial(int percent) {
-    return 'Fresnelova cona je na najožji točki le $percent% prosta. Ciljajte na 60% ali več: dvignite anteno ali premaknite točko.';
-  }
+  String get bg_dim => 'Zatemnitev';
 
   @override
-  String get losFresnelBlocked =>
-      'Teren sega v Fresnelovo cono in žarek. Dvignite anteno ali premaknite točko.';
+  String get bg_blur => 'Zameglitev';
+
+  @override
+  String get bg_choosePhoto => 'Izberi fotografijo';
+
+  @override
+  String get bg_reset => 'Nazaj na ozadje teme';
+
+  @override
+  String get bg_hint =>
+      'Kartice ležijo nad njim kot motno steklo. Če je besedilo težko berljivo, povečajte zatemnitev.';
+
+  @override
+  String get bg_previewTitle => 'Predogled';
+
+  @override
+  String get bg_previewBody => 'Tako je videti besedilo na stekleni kartici.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'Fotografija ostane na tem telefonu in ni vključena v varnostne kopije.';
+
+  @override
+  String get bg_photoFailed =>
+      'Te fotografije ni bilo mogoče uporabiti. Poskusite drugo.';
 
   @override
   String get losBlockedSpotsTitle => 'Zasedena parkirišča';
@@ -12256,4 +12298,21 @@ class AppLocalizationsSl extends AppLocalizations {
   String automation_placeholders(String list) {
     return 'Uporabite lahko $list';
   }
+
+  @override
+  String get losLegendFresnel => 'Fresnelova cona';
+
+  @override
+  String losFresnelClear(int percent) {
+    return 'Fresnelova cona je na najožji točki $percent% prosta. 60% ali več je dobro.';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return 'Fresnelova cona je na najožji točki le $percent% prosta. Ciljajte na 60% ali več: dvignite anteno ali premaknite točko.';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      'Teren sega v Fresnelovo cono in žarek. Dvignite anteno ali premaknite točko.';
 }

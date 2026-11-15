@@ -4725,21 +4725,63 @@ class AppLocalizationsSv extends AppLocalizations {
   String get losLegendTerrain => 'Terräng';
 
   @override
-  String get losLegendFresnel => 'Fresnelzon';
+  String get bg_title => 'Bakgrund';
 
   @override
-  String losFresnelClear(int percent) {
-    return 'Fresnelzonen är $percent% fri vid den trängsta punkten. 60% eller mer är bra.';
+  String get bg_kindTheme => 'Temaglöd';
+
+  @override
+  String get bg_kindSolid => 'Färg';
+
+  @override
+  String get bg_kindLinear => 'Gradient';
+
+  @override
+  String get bg_kindMesh => 'Mjuk blandning';
+
+  @override
+  String get bg_kindPhoto => 'Foto';
+
+  @override
+  String get bg_color1 => 'Första färg';
+
+  @override
+  String get bg_color2 => 'Andra färg';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Färg $index';
   }
 
   @override
-  String losFresnelPartial(int percent) {
-    return 'Fresnelzonen är bara $percent% fri vid den trängsta punkten. Sikta på 60% eller mer: höj en antenn eller flytta en punkt.';
-  }
+  String get bg_dim => 'Dämpa';
 
   @override
-  String get losFresnelBlocked =>
-      'Terrängen skär in i Fresnelzonen och strålen. Höj en antenn eller flytta en punkt.';
+  String get bg_blur => 'Oskärpa';
+
+  @override
+  String get bg_choosePhoto => 'Välj foto';
+
+  @override
+  String get bg_reset => 'Tillbaka till temats bakgrund';
+
+  @override
+  String get bg_hint =>
+      'Korten ligger ovanpå som frostat glas. Höj Dämpa om texten är svår att läsa.';
+
+  @override
+  String get bg_previewTitle => 'Förhandsvisning';
+
+  @override
+  String get bg_previewBody => 'Så här ser text på ett glaskort ut.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'Fotot stannar på den här telefonen och ingår inte i säkerhetskopior.';
+
+  @override
+  String get bg_photoFailed =>
+      'Det fotot gick inte att använda. Prova ett annat.';
 
   @override
   String get losBlockedSpotsTitle => 'Blockerade punkter';
@@ -12162,4 +12204,21 @@ class AppLocalizationsSv extends AppLocalizations {
   String automation_placeholders(String list) {
     return 'Du kan använda $list';
   }
+
+  @override
+  String get losLegendFresnel => 'Fresnelzon';
+
+  @override
+  String losFresnelClear(int percent) {
+    return 'Fresnelzonen är $percent% fri vid den trängsta punkten. 60% eller mer är bra.';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return 'Fresnelzonen är bara $percent% fri vid den trängsta punkten. Sikta på 60% eller mer: höj en antenn eller flytta en punkt.';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      'Terrängen skär in i Fresnelzonen och strålen. Höj en antenn eller flytta en punkt.';
 }

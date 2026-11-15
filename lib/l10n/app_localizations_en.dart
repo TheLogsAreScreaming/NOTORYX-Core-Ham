@@ -4703,21 +4703,62 @@ class AppLocalizationsEn extends AppLocalizations {
   String get losLegendTerrain => 'Terrain';
 
   @override
-  String get losLegendFresnel => 'Fresnel zone';
+  String get bg_title => 'Background';
 
   @override
-  String losFresnelClear(int percent) {
-    return 'Fresnel zone $percent% clear at the tightest point. 60% or more is good.';
+  String get bg_kindTheme => 'Theme glow';
+
+  @override
+  String get bg_kindSolid => 'Colour';
+
+  @override
+  String get bg_kindLinear => 'Gradient';
+
+  @override
+  String get bg_kindMesh => 'Mesh blend';
+
+  @override
+  String get bg_kindPhoto => 'Photo';
+
+  @override
+  String get bg_color1 => 'First colour';
+
+  @override
+  String get bg_color2 => 'Second colour';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Colour $index';
   }
 
   @override
-  String losFresnelPartial(int percent) {
-    return 'Fresnel zone only $percent% clear at the tightest point. Aim for 60% or more: raise an antenna or move a point.';
-  }
+  String get bg_dim => 'Dim';
 
   @override
-  String get losFresnelBlocked =>
-      'Terrain cuts into the Fresnel zone and the beam. Raise an antenna or move a point.';
+  String get bg_blur => 'Blur';
+
+  @override
+  String get bg_choosePhoto => 'Choose photo';
+
+  @override
+  String get bg_reset => 'Back to the theme\'s background';
+
+  @override
+  String get bg_hint =>
+      'Cards sit on frosted glass over this. Turn up Dim if text is hard to read.';
+
+  @override
+  String get bg_previewTitle => 'Preview';
+
+  @override
+  String get bg_previewBody => 'Text on a glass card looks like this.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'The photo stays on this phone and isn\'t included in backups.';
+
+  @override
+  String get bg_photoFailed => 'Couldn\'t use that photo. Try a different one.';
 
   @override
   String get losBlockedSpotsTitle => 'Blocked spots';
@@ -12116,4 +12157,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String automation_placeholders(String list) {
     return 'You can use $list';
   }
+
+  @override
+  String get losLegendFresnel => 'Fresnel zone';
+
+  @override
+  String losFresnelClear(int percent) {
+    return 'Fresnel zone $percent% clear at the tightest point. 60% or more is good.';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return 'Fresnel zone only $percent% clear at the tightest point. Aim for 60% or more: raise an antenna or move a point.';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      'Terrain cuts into the Fresnel zone and the beam. Raise an antenna or move a point.';
 }

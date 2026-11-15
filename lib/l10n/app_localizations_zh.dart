@@ -4447,20 +4447,60 @@ class AppLocalizationsZh extends AppLocalizations {
   String get losLegendTerrain => '地形';
 
   @override
-  String get losLegendFresnel => '菲涅耳区';
+  String get bg_title => '背景';
 
   @override
-  String losFresnelClear(int percent) {
-    return '最窄处菲涅耳区有$percent%无遮挡。60%或以上为良好。';
+  String get bg_kindTheme => '主题光晕';
+
+  @override
+  String get bg_kindSolid => '纯色';
+
+  @override
+  String get bg_kindLinear => '渐变';
+
+  @override
+  String get bg_kindMesh => '网格混色';
+
+  @override
+  String get bg_kindPhoto => '照片';
+
+  @override
+  String get bg_color1 => '第一种颜色';
+
+  @override
+  String get bg_color2 => '第二种颜色';
+
+  @override
+  String bg_colorN(int index) {
+    return '颜色 $index';
   }
 
   @override
-  String losFresnelPartial(int percent) {
-    return '最窄处菲涅耳区仅有$percent%无遮挡。目标为60%或以上：升高天线或移动位置。';
-  }
+  String get bg_dim => '调暗';
 
   @override
-  String get losFresnelBlocked => '地形侵入菲涅耳区并遮挡波束。请升高天线或移动位置。';
+  String get bg_blur => '模糊';
+
+  @override
+  String get bg_choosePhoto => '选择照片';
+
+  @override
+  String get bg_reset => '恢复主题背景';
+
+  @override
+  String get bg_hint => '卡片以磨砂玻璃形式叠在其上。如文字难以阅读，请调高“调暗”。';
+
+  @override
+  String get bg_previewTitle => '预览';
+
+  @override
+  String get bg_previewBody => '玻璃卡片上的文字看起来是这样。';
+
+  @override
+  String get bg_photoNotBackedUp => '照片仅保存在本手机上，不包含在备份中。';
+
+  @override
+  String get bg_photoFailed => '无法使用该照片，请换一张。';
 
   @override
   String get losBlockedSpotsTitle => '被占用区域';
@@ -11470,4 +11510,20 @@ class AppLocalizationsZh extends AppLocalizations {
   String automation_placeholders(String list) {
     return '可使用 $list';
   }
+
+  @override
+  String get losLegendFresnel => '菲涅耳区';
+
+  @override
+  String losFresnelClear(int percent) {
+    return '最窄处菲涅耳区有$percent%无遮挡。60%或以上为良好。';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return '最窄处菲涅耳区仅有$percent%无遮挡。目标为60%或以上：升高天线或移动位置。';
+  }
+
+  @override
+  String get losFresnelBlocked => '地形侵入菲涅耳区并遮挡波束。请升高天线或移动位置。';
 }

@@ -4749,21 +4749,62 @@ class AppLocalizationsSk extends AppLocalizations {
   String get losLegendTerrain => 'Terén';
 
   @override
-  String get losLegendFresnel => 'Fresnelova zóna';
+  String get bg_title => 'Pozadie';
 
   @override
-  String losFresnelClear(int percent) {
-    return 'Fresnelova zóna je v najužšom mieste voľná na $percent%. 60% a viac je dobré.';
+  String get bg_kindTheme => 'Žiara témy';
+
+  @override
+  String get bg_kindSolid => 'Farba';
+
+  @override
+  String get bg_kindLinear => 'Prechod';
+
+  @override
+  String get bg_kindMesh => 'Jemné prelínanie';
+
+  @override
+  String get bg_kindPhoto => 'Fotka';
+
+  @override
+  String get bg_color1 => 'Prvá farba';
+
+  @override
+  String get bg_color2 => 'Druhá farba';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Farba $index';
   }
 
   @override
-  String losFresnelPartial(int percent) {
-    return 'Fresnelova zóna je v najužšom mieste voľná len na $percent%. Cieľom je 60% a viac: zdvihnite anténu alebo posuňte bod.';
-  }
+  String get bg_dim => 'Stmavenie';
 
   @override
-  String get losFresnelBlocked =>
-      'Terén zasahuje do Fresnelovej zóny aj lúča. Zdvihnite anténu alebo posuňte bod.';
+  String get bg_blur => 'Rozmazanie';
+
+  @override
+  String get bg_choosePhoto => 'Vybrať fotku';
+
+  @override
+  String get bg_reset => 'Späť na pozadie témy';
+
+  @override
+  String get bg_hint =>
+      'Karty ležia nad ním ako matné sklo. Ak sa text ťažko číta, zvýšte stmavenie.';
+
+  @override
+  String get bg_previewTitle => 'Ukážka';
+
+  @override
+  String get bg_previewBody => 'Takto vyzerá text na sklenenej karte.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'Fotka zostáva v tomto telefóne a nie je súčasťou záloh.';
+
+  @override
+  String get bg_photoFailed => 'Túto fotku sa nepodarilo použiť. Skúste inú.';
 
   @override
   String get losBlockedSpotsTitle => 'Zablokované miesta';
@@ -12233,4 +12274,21 @@ class AppLocalizationsSk extends AppLocalizations {
   String automation_placeholders(String list) {
     return 'Môžete použiť $list';
   }
+
+  @override
+  String get losLegendFresnel => 'Fresnelova zóna';
+
+  @override
+  String losFresnelClear(int percent) {
+    return 'Fresnelova zóna je v najužšom mieste voľná na $percent%. 60% a viac je dobré.';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return 'Fresnelova zóna je v najužšom mieste voľná len na $percent%. Cieľom je 60% a viac: zdvihnite anténu alebo posuňte bod.';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      'Terén zasahuje do Fresnelovej zóny aj lúča. Zdvihnite anténu alebo posuňte bod.';
 }

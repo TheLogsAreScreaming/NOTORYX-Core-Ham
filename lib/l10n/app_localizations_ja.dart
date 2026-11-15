@@ -4532,21 +4532,60 @@ class AppLocalizationsJa extends AppLocalizations {
   String get losLegendTerrain => '地形';
 
   @override
-  String get losLegendFresnel => 'フレネルゾーン';
+  String get bg_title => '背景';
 
   @override
-  String losFresnelClear(int percent) {
-    return '最も狭い地点でフレネルゾーンの$percent%が開けています。60%以上なら良好です。';
+  String get bg_kindTheme => 'テーマの光';
+
+  @override
+  String get bg_kindSolid => '単色';
+
+  @override
+  String get bg_kindLinear => 'グラデーション';
+
+  @override
+  String get bg_kindMesh => 'メッシュブレンド';
+
+  @override
+  String get bg_kindPhoto => '写真';
+
+  @override
+  String get bg_color1 => '1つ目の色';
+
+  @override
+  String get bg_color2 => '2つ目の色';
+
+  @override
+  String bg_colorN(int index) {
+    return '色 $index';
   }
 
   @override
-  String losFresnelPartial(int percent) {
-    return '最も狭い地点でフレネルゾーンの$percent%しか開けていません。60%以上を目指して、アンテナを高くするか地点を動かしてください。';
-  }
+  String get bg_dim => '暗さ';
 
   @override
-  String get losFresnelBlocked =>
-      '地形がフレネルゾーンと電波経路を遮っています。アンテナを高くするか地点を動かしてください。';
+  String get bg_blur => 'ぼかし';
+
+  @override
+  String get bg_choosePhoto => '写真を選ぶ';
+
+  @override
+  String get bg_reset => 'テーマの背景に戻す';
+
+  @override
+  String get bg_hint => 'カードはすりガラスとして上に重なります。文字が読みにくい場合は暗さを上げてください。';
+
+  @override
+  String get bg_previewTitle => 'プレビュー';
+
+  @override
+  String get bg_previewBody => 'ガラスカード上の文字はこのように見えます。';
+
+  @override
+  String get bg_photoNotBackedUp => '写真はこの端末にだけ保存され、バックアップには含まれません。';
+
+  @override
+  String get bg_photoFailed => 'その写真は使えませんでした。別の写真を試してください。';
 
   @override
   String get losBlockedSpotsTitle => '利用できない場所';
@@ -11694,4 +11733,21 @@ class AppLocalizationsJa extends AppLocalizations {
   String automation_placeholders(String list) {
     return '使用できる語: $list';
   }
+
+  @override
+  String get losLegendFresnel => 'フレネルゾーン';
+
+  @override
+  String losFresnelClear(int percent) {
+    return '最も狭い地点でフレネルゾーンの$percent%が開けています。60%以上なら良好です。';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return '最も狭い地点でフレネルゾーンの$percent%しか開けていません。60%以上を目指して、アンテナを高くするか地点を動かしてください。';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      '地形がフレネルゾーンと電波経路を遮っています。アンテナを高くするか地点を動かしてください。';
 }

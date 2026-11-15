@@ -4785,21 +4785,62 @@ class AppLocalizationsPl extends AppLocalizations {
   String get losLegendTerrain => 'Teren';
 
   @override
-  String get losLegendFresnel => 'Strefa Fresnela';
+  String get bg_title => 'Tło';
 
   @override
-  String losFresnelClear(int percent) {
-    return 'Strefa Fresnela wolna w $percent% w najciaśniejszym miejscu. 60% lub więcej to dobry wynik.';
+  String get bg_kindTheme => 'Poświata motywu';
+
+  @override
+  String get bg_kindSolid => 'Kolor';
+
+  @override
+  String get bg_kindLinear => 'Gradient';
+
+  @override
+  String get bg_kindMesh => 'Miękkie przejście';
+
+  @override
+  String get bg_kindPhoto => 'Zdjęcie';
+
+  @override
+  String get bg_color1 => 'Pierwszy kolor';
+
+  @override
+  String get bg_color2 => 'Drugi kolor';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Kolor $index';
   }
 
   @override
-  String losFresnelPartial(int percent) {
-    return 'Strefa Fresnela wolna tylko w $percent% w najciaśniejszym miejscu. Celuj w 60% lub więcej: podnieś antenę albo przesuń punkt.';
-  }
+  String get bg_dim => 'Przyciemnienie';
 
   @override
-  String get losFresnelBlocked =>
-      'Teren wchodzi w strefę Fresnela i wiązkę. Podnieś antenę albo przesuń punkt.';
+  String get bg_blur => 'Rozmycie';
+
+  @override
+  String get bg_choosePhoto => 'Wybierz zdjęcie';
+
+  @override
+  String get bg_reset => 'Wróć do tła motywu';
+
+  @override
+  String get bg_hint =>
+      'Karty leżą na nim jak matowe szkło. Zwiększ przyciemnienie, jeśli tekst trudno czytać.';
+
+  @override
+  String get bg_previewTitle => 'Podgląd';
+
+  @override
+  String get bg_previewBody => 'Tak wygląda tekst na szklanej karcie.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'Zdjęcie zostaje na tym telefonie i nie trafia do kopii zapasowych.';
+
+  @override
+  String get bg_photoFailed => 'Nie można użyć tego zdjęcia. Spróbuj innego.';
 
   @override
   String get losBlockedSpotsTitle => 'Zablokowane miejsca';
@@ -12301,4 +12342,21 @@ class AppLocalizationsPl extends AppLocalizations {
   String automation_placeholders(String list) {
     return 'Możesz użyć $list';
   }
+
+  @override
+  String get losLegendFresnel => 'Strefa Fresnela';
+
+  @override
+  String losFresnelClear(int percent) {
+    return 'Strefa Fresnela wolna w $percent% w najciaśniejszym miejscu. 60% lub więcej to dobry wynik.';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return 'Strefa Fresnela wolna tylko w $percent% w najciaśniejszym miejscu. Celuj w 60% lub więcej: podnieś antenę albo przesuń punkt.';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      'Teren wchodzi w strefę Fresnela i wiązkę. Podnieś antenę albo przesuń punkt.';
 }
