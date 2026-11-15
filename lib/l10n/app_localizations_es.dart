@@ -4771,6 +4771,23 @@ class AppLocalizationsEs extends AppLocalizations {
   String get losLegendTerrain => 'Terreno';
 
   @override
+  String get losLegendFresnel => 'Zona de Fresnel';
+
+  @override
+  String losFresnelClear(int percent) {
+    return 'Zona de Fresnel despejada al $percent% en el punto más estrecho. Un 60% o más es bueno.';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return 'Zona de Fresnel despejada solo al $percent% en el punto más estrecho. Busca un 60% o más: sube una antena o mueve un punto.';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      'El terreno invade la zona de Fresnel y el haz. Sube una antena o mueve un punto.';
+
+  @override
   String get losBlockedSpotsTitle => 'Espacios ocupados';
 
   @override

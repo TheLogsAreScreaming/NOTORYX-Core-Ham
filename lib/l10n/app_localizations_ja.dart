@@ -4532,6 +4532,23 @@ class AppLocalizationsJa extends AppLocalizations {
   String get losLegendTerrain => '地形';
 
   @override
+  String get losLegendFresnel => 'フレネルゾーン';
+
+  @override
+  String losFresnelClear(int percent) {
+    return '最も狭い地点でフレネルゾーンの$percent%が開けています。60%以上なら良好です。';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return '最も狭い地点でフレネルゾーンの$percent%しか開けていません。60%以上を目指して、アンテナを高くするか地点を動かしてください。';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      '地形がフレネルゾーンと電波経路を遮っています。アンテナを高くするか地点を動かしてください。';
+
+  @override
   String get losBlockedSpotsTitle => '利用できない場所';
 
   @override

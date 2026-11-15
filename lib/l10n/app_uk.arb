@@ -2410,6 +2410,10 @@
     }
   },
   "losBlockedSpotsHint": "Натисніть на заблоковане місце, щоб виділити його на карті.",
+  "losLegendFresnel": "Зона Френеля",
+  "losFresnelClear": "Зона Френеля вільна на {percent}% у найвужчому місці. 60% і більше — добре.",
+  "losFresnelPartial": "Зона Френеля вільна лише на {percent}% у найвужчому місці. Мета — 60% і більше: підніміть антену або перемістіть точку.",
+  "losFresnelBlocked": "Рельєф перекриває зону Френеля і промінь. Підніміть антену або перемістіть точку.",
   "losBlockedSpotsTitle": "Заблоковані місця",
   "losSelectedObstructionTitle": "Вибраний об'єкт перешкоди",
   "losBlockedSpotChip": "{distance} {distanceUnit} • {obstruction} {heightUnit}",

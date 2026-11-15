@@ -2431,6 +2431,10 @@
     }
   },
   "losBlockedSpotChip": "{distance} {distanceUnit} • {obstruction} {heightUnit}",
+  "losLegendFresnel": "Fresnelzon",
+  "losFresnelClear": "Fresnelzonen är {percent}% fri vid den trängsta punkten. 60% eller mer är bra.",
+  "losFresnelPartial": "Fresnelzonen är bara {percent}% fri vid den trängsta punkten. Sikta på 60% eller mer: höj en antenn eller flytta en punkt.",
+  "losFresnelBlocked": "Terrängen skär in i Fresnelzonen och strålen. Höj en antenn eller flytta en punkt.",
   "losBlockedSpotsTitle": "Blockerade punkter",
   "losSelectedObstructionTitle": "Valt hinder",
   "losBlockedSpotsHint": "Klicka på en markerad plats för att framhäva den på kartan.",

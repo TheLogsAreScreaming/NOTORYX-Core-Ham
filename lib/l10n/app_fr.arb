@@ -2564,6 +2564,10 @@
     }
   },
   "losSelectedObstructionTitle": "Obstruction sélectionnée",
+  "losLegendFresnel": "Zone de Fresnel",
+  "losFresnelClear": "Zone de Fresnel dégagée à {percent}% au point le plus serré. 60% ou plus, c'est bien.",
+  "losFresnelPartial": "Zone de Fresnel dégagée à seulement {percent}% au point le plus serré. Visez 60% ou plus : montez une antenne ou déplacez un point.",
+  "losFresnelBlocked": "Le relief coupe la zone de Fresnel et le faisceau. Montez une antenne ou déplacez un point.",
   "losBlockedSpotsTitle": "Places occupés",
   "losBlockedSpotsHint": "Sélectionnez un emplacement bloqué pour le mettre en évidence sur la carte.",
   "losSelectedObstructionDetails": "Bloqué par {obstruction}, à une hauteur de {heightUnit}, à une distance de {distanceFromA} par rapport à A et à une distance de {distanceFromB} par rapport à B ({distanceUnit}).",

@@ -2468,6 +2468,10 @@
     }
   },
   "losSelectedObstructionTitle": "Wybór przeszkody",
+  "losLegendFresnel": "Strefa Fresnela",
+  "losFresnelClear": "Strefa Fresnela wolna w {percent}% w najciaśniejszym miejscu. 60% lub więcej to dobry wynik.",
+  "losFresnelPartial": "Strefa Fresnela wolna tylko w {percent}% w najciaśniejszym miejscu. Celuj w 60% lub więcej: podnieś antenę albo przesuń punkt.",
+  "losFresnelBlocked": "Teren wchodzi w strefę Fresnela i wiązkę. Podnieś antenę albo przesuń punkt.",
   "losBlockedSpotsTitle": "Zablokowane miejsca",
   "losBlockedSpotsHint": "Kliknij zablokowane miejsce, aby je zaznaczyć na mapie.",
   "losBlockedSpotChip": "{distance} {distanceUnit} • {obstruction} {heightUnit}",

@@ -2429,6 +2429,10 @@
       }
     }
   },
+  "losLegendFresnel": "Zona de Fresnel",
+  "losFresnelClear": "Zona de Fresnel {percent}% livre no ponto mais apertado. 60% ou mais é bom.",
+  "losFresnelPartial": "Zona de Fresnel apenas {percent}% livre no ponto mais apertado. Procure 60% ou mais: suba uma antena ou mova um ponto.",
+  "losFresnelBlocked": "O terreno invade a zona de Fresnel e o feixe. Suba uma antena ou mova um ponto.",
   "losBlockedSpotsTitle": "Locais ocupados",
   "losBlockedSpotsHint": "Toque em um ponto bloqueado para destacá-lo no mapa.",
   "losSelectedObstructionTitle": "Obstrução selecionada",
