@@ -124,6 +124,27 @@ class MapPalette {
   static const markerShadow = Color(0xB3000000);
 }
 
+/// Colours offered for a custom background: deep and bright tones that
+/// sit well behind frosted glass once dimmed.
+class BackdropPalette {
+  BackdropPalette._();
+
+  static const List<Color> colors = [
+    Color(0xFF0B1F3A), // night blue
+    Color(0xFF1E3A5F), // slate blue
+    Color(0xFF0F766E), // deep teal
+    Color(0xFF14532D), // forest
+    Color(0xFF4D7C0F), // moss
+    Color(0xFFB4532A), // ember
+    Color(0xFFC2410C), // orange
+    Color(0xFF9F1239), // crimson
+    Color(0xFF6D28D9), // violet
+    Color(0xFFDB2777), // pink
+    Color(0xFF374151), // graphite
+    Color(0xFFE7E5E4), // stone
+  ];
+}
+
 /// High-contrast colors for line-of-sight maps and elevation profiles.
 class LosPalette {
   LosPalette._();

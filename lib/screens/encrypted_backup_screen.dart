@@ -6,6 +6,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../l10n/l10n.dart';
+import '../services/backdrop_store.dart';
 import '../services/encrypted_backup_service.dart';
 import '../storage/db/history_backup.dart';
 import '../storage/db/message_db.dart';
@@ -151,6 +152,7 @@ class _EncryptedBackupScreenState extends State<EncryptedBackupScreen> {
       );
       if (go != true) return;
       final restored = await service.restore(values);
+      BackdropStore.instance.reload();
       final db = messages > 0 ? await MessageDb.ready : null;
       final added = db == null
           ? 0

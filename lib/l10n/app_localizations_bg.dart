@@ -12292,4 +12292,63 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get losFresnelBlocked =>
       'Теренът навлиза в зоната на Френел и в лъча. Повдигнете антена или преместете точка.';
+
+  @override
+  String get bg_title => 'Фон';
+
+  @override
+  String get bg_kindTheme => 'Сияние на темата';
+
+  @override
+  String get bg_kindSolid => 'Цвят';
+
+  @override
+  String get bg_kindLinear => 'Преливане';
+
+  @override
+  String get bg_kindMesh => 'Мрежово смесване';
+
+  @override
+  String get bg_kindPhoto => 'Снимка';
+
+  @override
+  String get bg_color1 => 'Първи цвят';
+
+  @override
+  String get bg_color2 => 'Втори цвят';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Цвят $index';
+  }
+
+  @override
+  String get bg_dim => 'Затъмняване';
+
+  @override
+  String get bg_blur => 'Размазване';
+
+  @override
+  String get bg_choosePhoto => 'Изберете снимка';
+
+  @override
+  String get bg_reset => 'Обратно към фона на темата';
+
+  @override
+  String get bg_hint =>
+      'Картите стоят върху матово стъкло над него. Увеличете затъмняването, ако текстът се чете трудно.';
+
+  @override
+  String get bg_previewTitle => 'Преглед';
+
+  @override
+  String get bg_previewBody => 'Текстът върху стъклена карта изглежда така.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'Снимката остава на този телефон и не влиза в резервните копия.';
+
+  @override
+  String get bg_photoFailed =>
+      'Тази снимка не може да се използва. Опитайте друга.';
 }

@@ -12289,4 +12289,63 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get losFresnelBlocked =>
       'A terep belelóg a Fresnel-zónába és a nyalábba. Emeld meg az antennát, vagy helyezz át egy pontot.';
+
+  @override
+  String get bg_title => 'Háttér';
+
+  @override
+  String get bg_kindTheme => 'Téma ragyogása';
+
+  @override
+  String get bg_kindSolid => 'Szín';
+
+  @override
+  String get bg_kindLinear => 'Színátmenet';
+
+  @override
+  String get bg_kindMesh => 'Lágy keverés';
+
+  @override
+  String get bg_kindPhoto => 'Fotó';
+
+  @override
+  String get bg_color1 => 'Első szín';
+
+  @override
+  String get bg_color2 => 'Második szín';
+
+  @override
+  String bg_colorN(int index) {
+    return '$index. szín';
+  }
+
+  @override
+  String get bg_dim => 'Sötétítés';
+
+  @override
+  String get bg_blur => 'Elmosás';
+
+  @override
+  String get bg_choosePhoto => 'Fotó kiválasztása';
+
+  @override
+  String get bg_reset => 'Vissza a téma hátteréhez';
+
+  @override
+  String get bg_hint =>
+      'A kártyák matt üvegként ülnek rajta. Ha nehéz olvasni, növeld a sötétítést.';
+
+  @override
+  String get bg_previewTitle => 'Előnézet';
+
+  @override
+  String get bg_previewBody => 'Így néz ki a szöveg egy üvegkártyán.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'A fotó ezen a telefonon marad, és nem kerül a biztonsági mentésekbe.';
+
+  @override
+  String get bg_photoFailed =>
+      'Ezt a fotót nem lehet használni. Próbálj egy másikat.';
 }
