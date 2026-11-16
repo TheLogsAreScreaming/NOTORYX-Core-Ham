@@ -85,4 +85,23 @@ void main() {
     expect(best.first.count, 2);
     expect(best.first.snrAverage, closeTo(7, 0.01)); // 10 + 0.3 * (0 - 10)
   });
+
+  test('lists a repeater once when heard by path ID and by its key', () {
+    final now = DateTime(2026, 11, 15, 12);
+    DirectHeard h(String id, double snr, int minutesAgo) => DirectHeard(
+      id: id,
+      snr: snr,
+      lastHeard: now.subtract(Duration(minutes: minutesAgo)),
+    );
+    final key = '3D4A${'0' * 60}';
+    final best = rankDirect([
+      h('3D', 4, 1),
+      h('3D4A', 2, 5),
+      h(key, 6, 10),
+      h('9C', 1, 2),
+    ], now);
+    expect(best.map((e) => e.id), [key, '9C']);
+    expect(best.first.snrAverage, 4); // the most recent reading
+    expect(best.first.count, 3);
+  });
 }
