@@ -23,7 +23,8 @@ class DirectRepeaterService extends ChangeNotifier {
   /// Most neighbours kept; the least recently heard are dropped beyond it.
   static const maxTracked = 200;
 
-  Iterable<DirectHeard> get heard => _heard.values;
+  /// Every neighbour heard, one entry per node (see [mergeSameNode]).
+  Iterable<DirectHeard> get heard => mergeSameNode(_heard.values);
 
   /// The best few heard in the last hour.
   List<DirectHeard> best({int limit = 5}) =>
