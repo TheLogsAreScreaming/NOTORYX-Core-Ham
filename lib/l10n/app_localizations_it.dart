@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12408,4 +12409,96 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get compass_sourceRadio => 'La tua posizione arriva dalla radio.';
+
+  @override
+  String get traffic_mode => 'Traffico';
+
+  @override
+  String get traffic_modeHint => 'Mostra i pacchetti che attraversano la mesh';
+
+  @override
+  String get traffic_locate => 'Localizza';
+
+  @override
+  String get traffic_advert => 'Annuncio';
+
+  @override
+  String get traffic_filter => 'Filtro';
+
+  @override
+  String get traffic_search => 'Cerca';
+
+  @override
+  String get traffic_fitAll => 'Mostra tutto';
+
+  @override
+  String get traffic_options => 'Opzioni';
+
+  @override
+  String get traffic_kindAdvert => 'Annuncio';
+
+  @override
+  String get traffic_kindDirect => 'Messaggio diretto';
+
+  @override
+  String get traffic_kindChannel => 'Messaggio di canale';
+
+  @override
+  String get traffic_kindAck => 'Conferma';
+
+  @override
+  String get traffic_kindTrace => 'Traccia';
+
+  @override
+  String get traffic_kindPath => 'Percorso';
+
+  @override
+  String get traffic_filterTitle => 'Tipi di pacchetto da mostrare';
+
+  @override
+  String get traffic_listening => 'In ascolto dei pacchetti…';
+
+  @override
+  String traffic_heardFrom(String name, String snr) {
+    return 'Ricevuto da $name · $snr dB';
+  }
+
+  @override
+  String traffic_flood(int hops) {
+    return 'Flood $hops';
+  }
+
+  @override
+  String get traffic_direct => 'Diretto';
+
+  @override
+  String traffic_snr(String snr) {
+    return 'SNR $snr';
+  }
+
+  @override
+  String traffic_rssi(int rssi) {
+    return '$rssi dBm';
+  }
+
+  @override
+  String traffic_notOnMapCount(int count) {
+    return '$count non sulla mappa';
+  }
+
+  @override
+  String traffic_age(int seconds) {
+    return '$seconds s';
+  }
+
+  @override
+  String traffic_notOnMapList(String names) {
+    return 'Non sulla mappa: $names';
+  }
+
+  @override
+  String get traffic_unknown => 'Sconosciuto';
+
+  @override
+  String get traffic_cardHint => 'Mostra il percorso sulla mappa';
 }

@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12381,4 +12382,96 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get compass_sourceRadio => 'Позицията ви идва от радиото.';
+
+  @override
+  String get traffic_mode => 'Трафик';
+
+  @override
+  String get traffic_modeHint => 'Показва пакетите, които минават през мрежата';
+
+  @override
+  String get traffic_locate => 'Намери';
+
+  @override
+  String get traffic_advert => 'Обява';
+
+  @override
+  String get traffic_filter => 'Филтър';
+
+  @override
+  String get traffic_search => 'Търсене';
+
+  @override
+  String get traffic_fitAll => 'Покажи всички';
+
+  @override
+  String get traffic_options => 'Опции';
+
+  @override
+  String get traffic_kindAdvert => 'Обява';
+
+  @override
+  String get traffic_kindDirect => 'Лично съобщение';
+
+  @override
+  String get traffic_kindChannel => 'Съобщение в канал';
+
+  @override
+  String get traffic_kindAck => 'Потвърждение';
+
+  @override
+  String get traffic_kindTrace => 'Трасиране';
+
+  @override
+  String get traffic_kindPath => 'Път';
+
+  @override
+  String get traffic_filterTitle => 'Показвани типове пакети';
+
+  @override
+  String get traffic_listening => 'Изчакване на пакети…';
+
+  @override
+  String traffic_heardFrom(String name, String snr) {
+    return 'Чуто от $name · $snr dB';
+  }
+
+  @override
+  String traffic_flood(int hops) {
+    return 'Flood $hops';
+  }
+
+  @override
+  String get traffic_direct => 'Директно';
+
+  @override
+  String traffic_snr(String snr) {
+    return 'SNR $snr';
+  }
+
+  @override
+  String traffic_rssi(int rssi) {
+    return '$rssi dBm';
+  }
+
+  @override
+  String traffic_notOnMapCount(int count) {
+    return '$count не са на картата';
+  }
+
+  @override
+  String traffic_age(int seconds) {
+    return '$seconds с';
+  }
+
+  @override
+  String traffic_notOnMapList(String names) {
+    return 'Не са на картата: $names';
+  }
+
+  @override
+  String get traffic_unknown => 'Неизвестен';
+
+  @override
+  String get traffic_cardHint => 'Показва маршрута на картата';
 }

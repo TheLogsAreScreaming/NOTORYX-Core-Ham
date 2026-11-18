@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12439,4 +12440,96 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get compass_sourceRadio => 'Twoja pozycja pochodzi z radia.';
+
+  @override
+  String get traffic_mode => 'Ruch';
+
+  @override
+  String get traffic_modeHint => 'Pokaż pakiety przechodzące przez sieć mesh';
+
+  @override
+  String get traffic_locate => 'Zlokalizuj';
+
+  @override
+  String get traffic_advert => 'Ogłoszenie';
+
+  @override
+  String get traffic_filter => 'Filtr';
+
+  @override
+  String get traffic_search => 'Szukaj';
+
+  @override
+  String get traffic_fitAll => 'Pokaż wszystko';
+
+  @override
+  String get traffic_options => 'Opcje';
+
+  @override
+  String get traffic_kindAdvert => 'Ogłoszenie';
+
+  @override
+  String get traffic_kindDirect => 'Wiadomość prywatna';
+
+  @override
+  String get traffic_kindChannel => 'Wiadomość na kanale';
+
+  @override
+  String get traffic_kindAck => 'Potwierdzenie';
+
+  @override
+  String get traffic_kindTrace => 'Śledzenie';
+
+  @override
+  String get traffic_kindPath => 'Ścieżka';
+
+  @override
+  String get traffic_filterTitle => 'Pokazywane typy pakietów';
+
+  @override
+  String get traffic_listening => 'Nasłuchiwanie pakietów…';
+
+  @override
+  String traffic_heardFrom(String name, String snr) {
+    return 'Odebrano od $name · $snr dB';
+  }
+
+  @override
+  String traffic_flood(int hops) {
+    return 'Flood $hops';
+  }
+
+  @override
+  String get traffic_direct => 'Bezpośrednio';
+
+  @override
+  String traffic_snr(String snr) {
+    return 'SNR $snr';
+  }
+
+  @override
+  String traffic_rssi(int rssi) {
+    return '$rssi dBm';
+  }
+
+  @override
+  String traffic_notOnMapCount(int count) {
+    return 'Poza mapą: $count';
+  }
+
+  @override
+  String traffic_age(int seconds) {
+    return '$seconds s';
+  }
+
+  @override
+  String traffic_notOnMapList(String names) {
+    return 'Poza mapą: $names';
+  }
+
+  @override
+  String get traffic_unknown => 'Nieznany';
+
+  @override
+  String get traffic_cardHint => 'Pokazuje trasę na mapie';
 }

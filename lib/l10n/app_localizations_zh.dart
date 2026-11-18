@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -11599,4 +11600,96 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get compass_sourceRadio => '您的位置来自电台。';
+
+  @override
+  String get traffic_mode => '流量';
+
+  @override
+  String get traffic_modeHint => '显示在网状网络中传输的数据包';
+
+  @override
+  String get traffic_locate => '定位';
+
+  @override
+  String get traffic_advert => '广播';
+
+  @override
+  String get traffic_filter => '筛选';
+
+  @override
+  String get traffic_search => '搜索';
+
+  @override
+  String get traffic_fitAll => '全部显示';
+
+  @override
+  String get traffic_options => '选项';
+
+  @override
+  String get traffic_kindAdvert => '广播';
+
+  @override
+  String get traffic_kindDirect => '私信';
+
+  @override
+  String get traffic_kindChannel => '频道消息';
+
+  @override
+  String get traffic_kindAck => '确认';
+
+  @override
+  String get traffic_kindTrace => '追踪';
+
+  @override
+  String get traffic_kindPath => '路径';
+
+  @override
+  String get traffic_filterTitle => '显示的数据包类型';
+
+  @override
+  String get traffic_listening => '正在监听数据包…';
+
+  @override
+  String traffic_heardFrom(String name, String snr) {
+    return '来自 $name · $snr dB';
+  }
+
+  @override
+  String traffic_flood(int hops) {
+    return '泛洪 $hops';
+  }
+
+  @override
+  String get traffic_direct => '直连';
+
+  @override
+  String traffic_snr(String snr) {
+    return 'SNR $snr';
+  }
+
+  @override
+  String traffic_rssi(int rssi) {
+    return '$rssi dBm';
+  }
+
+  @override
+  String traffic_notOnMapCount(int count) {
+    return '$count 个不在地图上';
+  }
+
+  @override
+  String traffic_age(int seconds) {
+    return '$seconds秒';
+  }
+
+  @override
+  String traffic_notOnMapList(String names) {
+    return '不在地图上：$names';
+  }
+
+  @override
+  String get traffic_unknown => '未知';
+
+  @override
+  String get traffic_cardHint => '在地图上显示路线';
 }

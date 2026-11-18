@@ -7621,5 +7621,83 @@
   "compass_noNodePosition": "This node hasn't shared a position, so there's nothing to point at.",
   "compass_usePhoneLocation": "Use phone location",
   "compass_sourcePhone": "Your position comes from the phone's GPS.",
-  "compass_sourceRadio": "Your position comes from the radio."
+  "compass_sourceRadio": "Your position comes from the radio.",
+  "traffic_mode": "Traffic",
+  "traffic_modeHint": "Show packets moving across the mesh",
+  "traffic_locate": "Locate",
+  "traffic_advert": "Advert",
+  "traffic_filter": "Filter",
+  "traffic_search": "Search",
+  "traffic_fitAll": "Fit all",
+  "traffic_options": "Options",
+  "traffic_kindAdvert": "Advert",
+  "traffic_kindDirect": "Direct message",
+  "traffic_kindChannel": "Channel message",
+  "traffic_kindAck": "Acknowledgement",
+  "traffic_kindTrace": "Trace",
+  "traffic_kindPath": "Path",
+  "traffic_filterTitle": "Packet types to show",
+  "traffic_listening": "Listening for packets…",
+  "traffic_heardFrom": "Heard from {name} · {snr} dB",
+  "@traffic_heardFrom": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "traffic_flood": "Flood {hops}",
+  "@traffic_flood": {
+    "placeholders": {
+      "hops": {
+        "type": "int"
+      }
+    }
+  },
+  "traffic_direct": "Direct",
+  "traffic_snr": "SNR {snr}",
+  "@traffic_snr": {
+    "placeholders": {
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "traffic_rssi": "{rssi} dBm",
+  "@traffic_rssi": {
+    "placeholders": {
+      "rssi": {
+        "type": "int"
+      }
+    }
+  },
+  "traffic_notOnMapCount": "{count} not on map",
+  "@traffic_notOnMapCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "traffic_age": "{seconds}s",
+  "@traffic_age": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "traffic_notOnMapList": "Not on map: {names}",
+  "@traffic_notOnMapList": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "traffic_unknown": "Unknown",
+  "traffic_cardHint": "Shows the route on the map"
 }

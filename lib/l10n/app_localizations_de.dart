@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12403,4 +12404,96 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get compass_sourceRadio => 'Deine Position kommt vom Funkgerät.';
+
+  @override
+  String get traffic_mode => 'Verkehr';
+
+  @override
+  String get traffic_modeHint => 'Pakete zeigen, die durch das Mesh laufen';
+
+  @override
+  String get traffic_locate => 'Orten';
+
+  @override
+  String get traffic_advert => 'Advert';
+
+  @override
+  String get traffic_filter => 'Filter';
+
+  @override
+  String get traffic_search => 'Suchen';
+
+  @override
+  String get traffic_fitAll => 'Alles zeigen';
+
+  @override
+  String get traffic_options => 'Optionen';
+
+  @override
+  String get traffic_kindAdvert => 'Advert';
+
+  @override
+  String get traffic_kindDirect => 'Direktnachricht';
+
+  @override
+  String get traffic_kindChannel => 'Kanalnachricht';
+
+  @override
+  String get traffic_kindAck => 'Bestätigung';
+
+  @override
+  String get traffic_kindTrace => 'Trace';
+
+  @override
+  String get traffic_kindPath => 'Pfad';
+
+  @override
+  String get traffic_filterTitle => 'Angezeigte Pakettypen';
+
+  @override
+  String get traffic_listening => 'Warte auf Pakete…';
+
+  @override
+  String traffic_heardFrom(String name, String snr) {
+    return 'Gehört von $name · $snr dB';
+  }
+
+  @override
+  String traffic_flood(int hops) {
+    return 'Flood $hops';
+  }
+
+  @override
+  String get traffic_direct => 'Direkt';
+
+  @override
+  String traffic_snr(String snr) {
+    return 'SNR $snr';
+  }
+
+  @override
+  String traffic_rssi(int rssi) {
+    return '$rssi dBm';
+  }
+
+  @override
+  String traffic_notOnMapCount(int count) {
+    return '$count nicht auf der Karte';
+  }
+
+  @override
+  String traffic_age(int seconds) {
+    return '$seconds s';
+  }
+
+  @override
+  String traffic_notOnMapList(String names) {
+    return 'Nicht auf der Karte: $names';
+  }
+
+  @override
+  String get traffic_unknown => 'Unbekannt';
+
+  @override
+  String get traffic_cardHint => 'Zeigt die Route auf der Karte';
 }

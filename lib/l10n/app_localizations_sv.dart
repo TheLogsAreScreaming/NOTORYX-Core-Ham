@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12301,4 +12302,96 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get compass_sourceRadio => 'Din position kommer från radion.';
+
+  @override
+  String get traffic_mode => 'Trafik';
+
+  @override
+  String get traffic_modeHint => 'Visa paket som rör sig genom meshen';
+
+  @override
+  String get traffic_locate => 'Hitta mig';
+
+  @override
+  String get traffic_advert => 'Advert';
+
+  @override
+  String get traffic_filter => 'Filter';
+
+  @override
+  String get traffic_search => 'Sök';
+
+  @override
+  String get traffic_fitAll => 'Visa allt';
+
+  @override
+  String get traffic_options => 'Alternativ';
+
+  @override
+  String get traffic_kindAdvert => 'Advert';
+
+  @override
+  String get traffic_kindDirect => 'Direktmeddelande';
+
+  @override
+  String get traffic_kindChannel => 'Kanalmeddelande';
+
+  @override
+  String get traffic_kindAck => 'Kvittens';
+
+  @override
+  String get traffic_kindTrace => 'Spårning';
+
+  @override
+  String get traffic_kindPath => 'Väg';
+
+  @override
+  String get traffic_filterTitle => 'Pakettyper som visas';
+
+  @override
+  String get traffic_listening => 'Lyssnar efter paket…';
+
+  @override
+  String traffic_heardFrom(String name, String snr) {
+    return 'Hörd från $name · $snr dB';
+  }
+
+  @override
+  String traffic_flood(int hops) {
+    return 'Flood $hops';
+  }
+
+  @override
+  String get traffic_direct => 'Direkt';
+
+  @override
+  String traffic_snr(String snr) {
+    return 'SNR $snr';
+  }
+
+  @override
+  String traffic_rssi(int rssi) {
+    return '$rssi dBm';
+  }
+
+  @override
+  String traffic_notOnMapCount(int count) {
+    return '$count inte på kartan';
+  }
+
+  @override
+  String traffic_age(int seconds) {
+    return '$seconds s';
+  }
+
+  @override
+  String traffic_notOnMapList(String names) {
+    return 'Inte på kartan: $names';
+  }
+
+  @override
+  String get traffic_unknown => 'Okänd';
+
+  @override
+  String get traffic_cardHint => 'Visar vägen på kartan';
 }
