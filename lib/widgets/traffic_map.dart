@@ -505,14 +505,31 @@ class MapToolItem {
   final Key? key;
 }
 
-/// The frosted vertical toolbar on the right of the map.
+/// The frosted vertical toolbar on the right of the map. When the space it
+/// gets is too short for labelled buttons it shows icons only, and it
+/// scrolls if even those don't fit.
 class MapToolPill extends StatelessWidget {
   const MapToolPill({super.key, required this.items});
 
   final List<MapToolItem> items;
 
+  static const _labelledHeight = 50.0;
+  static const _compactHeight = 44.0;
+  static const _padding = 6.0;
+
   @override
   Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final compact =
+            constraints.maxHeight <
+            items.length * _labelledHeight + 2 * _padding;
+        return SingleChildScrollView(child: _pill(context, compact));
+      },
+    );
+  }
+
+  Widget _pill(BuildContext context, bool compact) {
     final theme = Theme.of(context);
     final dark = theme.brightness == Brightness.dark;
     final idle = dark ? MapPalette.textPrimary : theme.colorScheme.onSurface;
@@ -520,7 +537,7 @@ class MapToolPill extends StatelessWidget {
     return FrostedPanel(
       radius: 28,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 6),
+        padding: const EdgeInsets.symmetric(vertical: _padding),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -537,8 +554,8 @@ class MapToolPill extends StatelessWidget {
                     onTap: item.onPressed,
                     customBorder: const StadiumBorder(),
                     child: SizedBox(
-                      width: 64,
-                      height: 50,
+                      width: compact ? 52 : 64,
+                      height: compact ? _compactHeight : _labelledHeight,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -547,19 +564,20 @@ class MapToolPill extends StatelessWidget {
                             size: 22,
                             color: item.selected == true ? on : idle,
                           ),
-                          const SizedBox(height: 2),
-                          Text(
-                            item.label,
-                            maxLines: 1,
-                            overflow: TextOverflow.fade,
-                            softWrap: false,
-                            style: theme.textTheme.labelSmall?.copyWith(
-                              color: item.selected == true ? on : idle,
-                              fontWeight: item.selected == true
-                                  ? FontWeight.w700
-                                  : FontWeight.w500,
+                          if (!compact) const SizedBox(height: 2),
+                          if (!compact)
+                            Text(
+                              item.label,
+                              maxLines: 1,
+                              overflow: TextOverflow.fade,
+                              softWrap: false,
+                              style: theme.textTheme.labelSmall?.copyWith(
+                                color: item.selected == true ? on : idle,
+                                fontWeight: item.selected == true
+                                    ? FontWeight.w700
+                                    : FontWeight.w500,
+                              ),
                             ),
-                          ),
                         ],
                       ),
                     ),

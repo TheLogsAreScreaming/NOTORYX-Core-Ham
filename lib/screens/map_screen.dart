@@ -357,15 +357,16 @@ class _MapScreenState extends State<MapScreen> {
     final l10n = context.l10n;
     final isDesktop = _isDesktopPlatform(defaultTargetPlatform);
     final trafficOn = _trafficFeed != null;
-    // Padding rather than top/bottom insets, so a short landscape screen
-    // shrinks the pill's scroll area instead of failing layout.
+    // Padding rather than top/bottom insets, so a short screen gives the
+    // pill less room (it then drops its labels) instead of failing layout.
     return Positioned(
       right: 12,
       top: 0,
       bottom: 0,
       child: Padding(
         padding: EdgeInsets.only(top: 140, bottom: trafficOn ? 210 : 16),
-        child: SingleChildScrollView(
+        child: Align(
+          alignment: Alignment.topRight,
           child: MapToolPill(
             items: [
               if (isDesktop) ...[
