@@ -72,7 +72,14 @@ unzip -q "$work/ort.nupkg" 'build/native/include/*' "runtimes/linux-${arch}/nati
 
 mkdir -p "$dest/include" "$dest/lib"
 cp "$work"/pkg/build/native/include/* "$dest/include/"
-cp "$work"/pkg/runtimes/linux-${arch}/native/libonnxruntime*.so* "$dest/lib/"
+# Same layout as Microsoft's Linux tarball: the real file is
+# libonnxruntime.so.<version>, with libonnxruntime.so.1 (its soname) and
+# libonnxruntime.so linking to it. The linker looks for the soname.
+native="$work/pkg/runtimes/linux-${arch}/native"
+cp "$native/libonnxruntime.so" "$dest/lib/libonnxruntime.so.${nuget_version}"
+ln -sf "libonnxruntime.so.${nuget_version}" "$dest/lib/libonnxruntime.so.1"
+ln -sf libonnxruntime.so.1 "$dest/lib/libonnxruntime.so"
+cp "$native/libonnxruntime_providers_shared.so" "$dest/lib/" 2>/dev/null || true
 test -f "$dest/include/onnxruntime_cxx_api.h"
 test -f "$dest/lib/libonnxruntime.so"
 echo "Placed ONNX Runtime ${nuget_version} in ${dest}:"
