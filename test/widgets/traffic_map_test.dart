@@ -99,4 +99,31 @@ void main() {
     await tester.tap(find.text('Traffic'));
     expect(on, isTrue);
   });
+
+  testWidgets('the tool pill drops its labels when space is short', (
+    tester,
+  ) async {
+    final items = [
+      for (final label in ['Locate', 'Advert', 'Filter', 'Traffic'])
+        MapToolItem(icon: Icons.circle, label: label, onPressed: () {}),
+    ];
+    Widget sized(double height) => _app(
+      Align(
+        alignment: Alignment.topRight,
+        child: SizedBox(
+          height: height,
+          child: MapToolPill(items: items),
+        ),
+      ),
+    );
+
+    await tester.pumpWidget(sized(400));
+    expect(find.text('Locate'), findsOneWidget);
+
+    await tester.pumpWidget(sized(190));
+    expect(find.text('Locate'), findsNothing);
+    expect(find.byIcon(Icons.circle), findsNWidgets(4));
+    expect(find.byTooltip('Locate'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
 }
