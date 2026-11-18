@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12378,4 +12379,96 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get compass_sourceRadio => 'A helyzeted a rádióból származik.';
+
+  @override
+  String get traffic_mode => 'Forgalom';
+
+  @override
+  String get traffic_modeHint => 'A hálón áthaladó csomagok megjelenítése';
+
+  @override
+  String get traffic_locate => 'Helymeghatározás';
+
+  @override
+  String get traffic_advert => 'Hirdetés';
+
+  @override
+  String get traffic_filter => 'Szűrő';
+
+  @override
+  String get traffic_search => 'Keresés';
+
+  @override
+  String get traffic_fitAll => 'Összes mutatása';
+
+  @override
+  String get traffic_options => 'Beállítások';
+
+  @override
+  String get traffic_kindAdvert => 'Hirdetés';
+
+  @override
+  String get traffic_kindDirect => 'Közvetlen üzenet';
+
+  @override
+  String get traffic_kindChannel => 'Csatornaüzenet';
+
+  @override
+  String get traffic_kindAck => 'Nyugtázás';
+
+  @override
+  String get traffic_kindTrace => 'Nyomkövetés';
+
+  @override
+  String get traffic_kindPath => 'Útvonal';
+
+  @override
+  String get traffic_filterTitle => 'Megjelenített csomagtípusok';
+
+  @override
+  String get traffic_listening => 'Csomagokra vár…';
+
+  @override
+  String traffic_heardFrom(String name, String snr) {
+    return 'Hallva innen: $name · $snr dB';
+  }
+
+  @override
+  String traffic_flood(int hops) {
+    return 'Flood $hops';
+  }
+
+  @override
+  String get traffic_direct => 'Közvetlen';
+
+  @override
+  String traffic_snr(String snr) {
+    return 'SNR $snr';
+  }
+
+  @override
+  String traffic_rssi(int rssi) {
+    return '$rssi dBm';
+  }
+
+  @override
+  String traffic_notOnMapCount(int count) {
+    return '$count nincs a térképen';
+  }
+
+  @override
+  String traffic_age(int seconds) {
+    return '$seconds mp';
+  }
+
+  @override
+  String traffic_notOnMapList(String names) {
+    return 'Nincs a térképen: $names';
+  }
+
+  @override
+  String get traffic_unknown => 'Ismeretlen';
+
+  @override
+  String get traffic_cardHint => 'Megmutatja az útvonalat a térképen';
 }

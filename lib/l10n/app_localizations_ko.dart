@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -11840,4 +11841,96 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get compass_sourceRadio => '내 위치는 무전기에서 가져옵니다.';
+
+  @override
+  String get traffic_mode => '트래픽';
+
+  @override
+  String get traffic_modeHint => '메시를 지나는 패킷 표시';
+
+  @override
+  String get traffic_locate => '내 위치';
+
+  @override
+  String get traffic_advert => '광고';
+
+  @override
+  String get traffic_filter => '필터';
+
+  @override
+  String get traffic_search => '검색';
+
+  @override
+  String get traffic_fitAll => '전체 보기';
+
+  @override
+  String get traffic_options => '옵션';
+
+  @override
+  String get traffic_kindAdvert => '광고';
+
+  @override
+  String get traffic_kindDirect => '개인 메시지';
+
+  @override
+  String get traffic_kindChannel => '채널 메시지';
+
+  @override
+  String get traffic_kindAck => '수신 확인';
+
+  @override
+  String get traffic_kindTrace => '추적';
+
+  @override
+  String get traffic_kindPath => '경로';
+
+  @override
+  String get traffic_filterTitle => '표시할 패킷 유형';
+
+  @override
+  String get traffic_listening => '패킷 수신 대기 중…';
+
+  @override
+  String traffic_heardFrom(String name, String snr) {
+    return '$name에서 수신 · $snr dB';
+  }
+
+  @override
+  String traffic_flood(int hops) {
+    return '플러드 $hops';
+  }
+
+  @override
+  String get traffic_direct => '직접';
+
+  @override
+  String traffic_snr(String snr) {
+    return 'SNR $snr';
+  }
+
+  @override
+  String traffic_rssi(int rssi) {
+    return '$rssi dBm';
+  }
+
+  @override
+  String traffic_notOnMapCount(int count) {
+    return '지도에 없음 $count';
+  }
+
+  @override
+  String traffic_age(int seconds) {
+    return '$seconds초';
+  }
+
+  @override
+  String traffic_notOnMapList(String names) {
+    return '지도에 없음: $names';
+  }
+
+  @override
+  String get traffic_unknown => '알 수 없음';
+
+  @override
+  String get traffic_cardHint => '지도에 경로 표시';
 }

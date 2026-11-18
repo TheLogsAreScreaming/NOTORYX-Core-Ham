@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12371,4 +12372,96 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get compass_sourceRadio => 'Vaša poloha pochádza z rádia.';
+
+  @override
+  String get traffic_mode => 'Prevádzka';
+
+  @override
+  String get traffic_modeHint => 'Zobraziť pakety prechádzajúce sieťou mesh';
+
+  @override
+  String get traffic_locate => 'Nájsť';
+
+  @override
+  String get traffic_advert => 'Ohlásenie';
+
+  @override
+  String get traffic_filter => 'Filter';
+
+  @override
+  String get traffic_search => 'Hľadať';
+
+  @override
+  String get traffic_fitAll => 'Zobraziť všetko';
+
+  @override
+  String get traffic_options => 'Možnosti';
+
+  @override
+  String get traffic_kindAdvert => 'Ohlásenie';
+
+  @override
+  String get traffic_kindDirect => 'Priama správa';
+
+  @override
+  String get traffic_kindChannel => 'Správa kanála';
+
+  @override
+  String get traffic_kindAck => 'Potvrdenie';
+
+  @override
+  String get traffic_kindTrace => 'Trasovanie';
+
+  @override
+  String get traffic_kindPath => 'Cesta';
+
+  @override
+  String get traffic_filterTitle => 'Zobrazené typy paketov';
+
+  @override
+  String get traffic_listening => 'Čaká sa na pakety…';
+
+  @override
+  String traffic_heardFrom(String name, String snr) {
+    return 'Prijaté od $name · $snr dB';
+  }
+
+  @override
+  String traffic_flood(int hops) {
+    return 'Flood $hops';
+  }
+
+  @override
+  String get traffic_direct => 'Priamo';
+
+  @override
+  String traffic_snr(String snr) {
+    return 'SNR $snr';
+  }
+
+  @override
+  String traffic_rssi(int rssi) {
+    return '$rssi dBm';
+  }
+
+  @override
+  String traffic_notOnMapCount(int count) {
+    return 'Mimo mapy: $count';
+  }
+
+  @override
+  String traffic_age(int seconds) {
+    return '$seconds s';
+  }
+
+  @override
+  String traffic_notOnMapList(String names) {
+    return 'Mimo mapy: $names';
+  }
+
+  @override
+  String get traffic_unknown => 'Neznámy';
+
+  @override
+  String get traffic_cardHint => 'Zobrazí trasu na mape';
 }

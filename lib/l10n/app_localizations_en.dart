@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12255,4 +12256,96 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get compass_sourceRadio => 'Your position comes from the radio.';
+
+  @override
+  String get traffic_mode => 'Traffic';
+
+  @override
+  String get traffic_modeHint => 'Show packets moving across the mesh';
+
+  @override
+  String get traffic_locate => 'Locate';
+
+  @override
+  String get traffic_advert => 'Advert';
+
+  @override
+  String get traffic_filter => 'Filter';
+
+  @override
+  String get traffic_search => 'Search';
+
+  @override
+  String get traffic_fitAll => 'Fit all';
+
+  @override
+  String get traffic_options => 'Options';
+
+  @override
+  String get traffic_kindAdvert => 'Advert';
+
+  @override
+  String get traffic_kindDirect => 'Direct message';
+
+  @override
+  String get traffic_kindChannel => 'Channel message';
+
+  @override
+  String get traffic_kindAck => 'Acknowledgement';
+
+  @override
+  String get traffic_kindTrace => 'Trace';
+
+  @override
+  String get traffic_kindPath => 'Path';
+
+  @override
+  String get traffic_filterTitle => 'Packet types to show';
+
+  @override
+  String get traffic_listening => 'Listening for packets…';
+
+  @override
+  String traffic_heardFrom(String name, String snr) {
+    return 'Heard from $name · $snr dB';
+  }
+
+  @override
+  String traffic_flood(int hops) {
+    return 'Flood $hops';
+  }
+
+  @override
+  String get traffic_direct => 'Direct';
+
+  @override
+  String traffic_snr(String snr) {
+    return 'SNR $snr';
+  }
+
+  @override
+  String traffic_rssi(int rssi) {
+    return '$rssi dBm';
+  }
+
+  @override
+  String traffic_notOnMapCount(int count) {
+    return '$count not on map';
+  }
+
+  @override
+  String traffic_age(int seconds) {
+    return '${seconds}s';
+  }
+
+  @override
+  String traffic_notOnMapList(String names) {
+    return 'Not on map: $names';
+  }
+
+  @override
+  String get traffic_unknown => 'Unknown';
+
+  @override
+  String get traffic_cardHint => 'Shows the route on the map';
 }

@@ -1,0 +1,102 @@
+import 'dart:ui' show Tristate;
+
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:meshcore_open/l10n/app_localizations.dart';
+import 'package:meshcore_open/models/traffic_route.dart';
+import 'package:meshcore_open/widgets/traffic_map.dart';
+
+Widget _app(Widget child) => MaterialApp(
+  localizationsDelegates: AppLocalizations.localizationsDelegates,
+  supportedLocales: AppLocalizations.supportedLocales,
+  home: Scaffold(body: child),
+);
+
+void main() {
+  final route = TrafficRoute(
+    kind: TrafficKind.path,
+    hops: const [
+      TrafficHop(
+        id: '1FD75D',
+        role: TrafficHopRole.origin,
+        position: LatLng(40.6, -75.6),
+      ),
+      TrafficHop(id: 'F5', role: TrafficHopRole.repeater, name: 'Cellar'),
+      TrafficHop(
+        id: 'C7',
+        role: TrafficHopRole.repeater,
+        name: 'Ridge',
+        position: LatLng(40.2, -75.2),
+      ),
+      TrafficHop(id: '', role: TrafficHopRole.self, position: LatLng(40, -75)),
+    ],
+    receivedAt: DateTime.now(),
+    snr: 12,
+    rssi: -33,
+    isFlood: true,
+    hopCount: 16,
+    packetHash: '00',
+  );
+
+  testWidgets('the route card shows route, type, signal and legend', (
+    tester,
+  ) async {
+    var tapped = false;
+    await tester.pumpWidget(
+      _app(TrafficRouteCard(route: route, onTap: () => tapped = true)),
+    );
+    expect(find.text('1FD75D → Cellar → Ridge → You'), findsOneWidget);
+    expect(find.text('Heard from Ridge · 12 dB'), findsOneWidget);
+    expect(
+      find.textContaining('Flood 16 · -33 dBm · SNR 12 · 1 not on map · '),
+      findsOneWidget,
+    );
+    expect(find.text('Not on map: Cellar'), findsOneWidget);
+    // Pill plus legend entry.
+    expect(find.text('Path'), findsNWidgets(2));
+    for (final label in [
+      'Advert',
+      'Direct message',
+      'Channel message',
+      'Acknowledgement',
+      'Trace',
+    ]) {
+      expect(find.text(label), findsOneWidget);
+    }
+    await tester.tap(find.byType(TrafficRouteCard));
+    expect(tapped, isTrue);
+  });
+
+  testWidgets('with nothing heard yet the card says it is listening', (
+    tester,
+  ) async {
+    await tester.pumpWidget(_app(const TrafficRouteCard(route: null)));
+    expect(find.text('Listening for packets…'), findsOneWidget);
+  });
+
+  testWidgets('the tool pill marks the Traffic toggle', (tester) async {
+    var on = false;
+    await tester.pumpWidget(
+      _app(
+        MapToolPill(
+          items: [
+            MapToolItem(
+              key: const ValueKey('traffic'),
+              icon: Icons.route,
+              label: 'Traffic',
+              selected: true,
+              onPressed: () => on = true,
+            ),
+          ],
+        ),
+      ),
+    );
+    final semantics = tester.getSemantics(
+      find.byKey(const ValueKey('traffic')),
+    );
+    expect(semantics.flagsCollection.isToggled, Tristate.isTrue);
+    await tester.tap(find.text('Traffic'));
+    expect(on, isTrue);
+  });
+}

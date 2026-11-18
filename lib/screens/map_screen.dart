@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import '../services/waypoint_store.dart';
 import '../widgets/waypoint_map_layer.dart';
 import '../widgets/coordinate_copy_sheet.dart';
@@ -48,6 +49,10 @@ import 'line_of_sight_map_screen.dart';
 import '../widgets/ui/mesh_states.dart';
 import 'node_compass_screen.dart';
 import '../widgets/node_avatar.dart';
+import '../widgets/radio_overview_card.dart' show showAdvertChoice;
+import '../widgets/traffic_map.dart';
+import '../models/traffic_route.dart';
+import '../services/traffic_feed.dart';
 
 class MapScreen extends StatefulWidget {
   final LatLng? highlightPosition;
@@ -111,9 +116,12 @@ class _MapScreenState extends State<MapScreen> {
   List<_SharedMarker> _cachedSharedMarkers = const [];
   _NodeMarkersCacheKey? _nodeMarkersCacheKey;
   List<Marker> _cachedNodeMarkers = const [];
+  TrafficFeed? _trafficFeed;
+  Set<TrafficKind> _trafficKinds = TrafficKind.values.toSet();
 
   @override
   void dispose() {
+    _trafficFeed?.dispose();
     _searchController.dispose();
     _searchFocus.dispose();
     _mapController.dispose();
@@ -303,58 +311,132 @@ class _MapScreenState extends State<MapScreen> {
     _mapController.move(camera.center, nextZoom);
   }
 
-  Widget _buildControlRail(
+  void _setTraffic(bool on) {
+    HapticFeedback.selectionClick();
+    if (on == (_trafficFeed != null)) return;
+    setState(() {
+      if (on) {
+        final connector = context.read<MeshCoreConnector>();
+        _trafficFeed = TrafficFeed(
+          packets: connector.rxPackets,
+          contacts: () => connector.allContacts,
+          selfPosition: () =>
+              connector.selfLatitude == null || connector.selfLongitude == null
+              ? null
+              : LatLng(connector.selfLatitude!, connector.selfLongitude!),
+          selfId: () => connector.selfPublicKeyPrefixHex?.toUpperCase(),
+          selfName: () => connector.selfName,
+        )..kinds = _trafficKinds;
+      } else {
+        _trafficFeed?.dispose();
+        _trafficFeed = null;
+      }
+    });
+  }
+
+  void _fitPoints(List<LatLng> points) {
+    if (points.isEmpty) return;
+    if (points.length == 1) {
+      _mapController.move(points.single, max(_mapController.camera.zoom, 13));
+      return;
+    }
+    _mapController.fitCamera(
+      CameraFit.coordinates(
+        coordinates: points,
+        padding: const EdgeInsets.fromLTRB(48, 140, 96, 200),
+        maxZoom: 16,
+      ),
+    );
+  }
+
+  Widget _buildToolPill(
     BuildContext context, {
-    required LatLng center,
-    required double zoom,
     required MeshCoreConnector connector,
+    required List<Contact> visibleContacts,
   }) {
+    final l10n = context.l10n;
+    final isDesktop = _isDesktopPlatform(defaultTargetPlatform);
+    final trafficOn = _trafficFeed != null;
+    // Padding rather than top/bottom insets, so a short landscape screen
+    // shrinks the pill's scroll area instead of failing layout.
     return Positioned(
-      left: 12,
-      bottom: 96,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: _overlayPanelColor,
-          borderRadius: BorderRadius.circular(MeshRadii.xs),
-          border: Border.all(color: _overlayBorderColor),
-          boxShadow: [
-            BoxShadow(
-              color: _overlayShadowColor,
-              blurRadius: 8,
-              offset: Offset(0, 3),
-            ),
-          ],
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(MeshRadii.xs),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconButton(
-                color: _overlayPrimaryTextColor,
-                icon: const Icon(Icons.add),
-                visualDensity: VisualDensity.standard,
-                tooltip: context.l10n.map_zoomIn,
-                onPressed: () => _zoomMapBy(1),
-              ),
-              IconButton(
-                color: _overlayPrimaryTextColor,
-                icon: const Icon(Icons.remove),
-                tooltip: context.l10n.map_zoomOut,
-                onPressed: () => _zoomMapBy(-1),
-              ),
-              IconButton(
-                color: _overlayPrimaryTextColor,
-                icon: const Icon(Icons.crop_free),
-                tooltip: context.l10n.map_centerMap,
-                onPressed: () => _mapController.move(center, zoom),
-              ),
-              IconButton(
+      right: 12,
+      top: 0,
+      bottom: 0,
+      child: Padding(
+        padding: EdgeInsets.only(top: 140, bottom: trafficOn ? 210 : 16),
+        child: SingleChildScrollView(
+          child: MapToolPill(
+            items: [
+              if (isDesktop) ...[
+                MapToolItem(
+                  icon: Icons.add,
+                  label: l10n.map_zoomIn,
+                  onPressed: () => _zoomMapBy(1),
+                ),
+                MapToolItem(
+                  icon: Icons.remove,
+                  label: l10n.map_zoomOut,
+                  onPressed: () => _zoomMapBy(-1),
+                ),
+              ],
+              MapToolItem(
                 key: const ValueKey('map-my-position'),
-                color: MapPalette.selected,
-                icon: const Icon(Icons.my_location),
-                tooltip: context.l10n.map_goToMyPosition,
+                icon: Icons.near_me_outlined,
+                label: l10n.traffic_locate,
                 onPressed: () => unawaited(_goToMyPosition(connector)),
+              ),
+              MapToolItem(
+                key: const ValueKey('map-send-advert'),
+                icon: Icons.campaign_outlined,
+                label: l10n.traffic_advert,
+                onPressed: () =>
+                    unawaited(showAdvertChoice(context, connector)),
+              ),
+              MapToolItem(
+                key: const ValueKey('map-traffic-filter'),
+                icon: Icons.filter_list,
+                label: l10n.traffic_filter,
+                onPressed: () => showTrafficFilterSheet(
+                  context,
+                  kinds: _trafficKinds,
+                  onChanged: (kinds) {
+                    setState(() => _trafficKinds = kinds);
+                    _trafficFeed?.kinds = kinds;
+                  },
+                ),
+              ),
+              MapToolItem(
+                key: const ValueKey('map-traffic'),
+                icon: Icons.route,
+                label: l10n.traffic_mode,
+                selected: trafficOn,
+                onPressed: () => _setTraffic(!trafficOn),
+              ),
+              MapToolItem(
+                icon: Icons.search,
+                label: l10n.traffic_search,
+                onPressed: () => _searchFocus.requestFocus(),
+              ),
+              MapToolItem(
+                key: const ValueKey('map-fit-all'),
+                icon: Icons.open_in_full,
+                label: l10n.traffic_fitAll,
+                onPressed: () => _fitPoints([
+                  for (final c in visibleContacts)
+                    if (c.hasLocation) LatLng(c.latitude!, c.longitude!),
+                  if (connector.selfLatitude != null &&
+                      connector.selfLongitude != null)
+                    LatLng(connector.selfLatitude!, connector.selfLongitude!),
+                ]),
+              ),
+              MapToolItem(
+                icon: Icons.more_horiz,
+                label: l10n.traffic_options,
+                onPressed: () => _showFilterSheet(
+                  context,
+                  context.read<AppSettingsService>(),
+                ),
               ),
             ],
           ),
@@ -967,6 +1049,8 @@ class _MapScreenState extends State<MapScreen> {
                           ),
                       ],
                     ),
+                    if (_trafficFeed != null && !_isBuildingPathTrace)
+                      TrafficRouteLayer(feed: _trafficFeed!),
                     if (_showTelemetry && !_isBuildingPathTrace)
                       MapTelemetryLayer(
                         contacts: [
@@ -998,12 +1082,11 @@ class _MapScreenState extends State<MapScreen> {
                       ),
                   ],
                 ),
-                if (selectedContact == null)
-                  _buildControlRail(
+                if (selectedContact == null && !_isBuildingPathTrace)
+                  _buildToolPill(
                     context,
-                    center: center,
-                    zoom: initialZoom,
                     connector: connector,
+                    visibleContacts: visibleContacts,
                   ),
                 if (!_isBuildingPathTrace)
                   _buildTopOverlay(
@@ -1024,6 +1107,26 @@ class _MapScreenState extends State<MapScreen> {
                     pinCount: sharedMarkers.length,
                   ),
                 if (_isBuildingPathTrace) _buildPathTraceOverlay(),
+                if (_trafficFeed != null &&
+                    selectedContact == null &&
+                    !_isBuildingPathTrace)
+                  Positioned(
+                    left: 12,
+                    right: 12,
+                    bottom: 8,
+                    child: ListenableBuilder(
+                      listenable: _trafficFeed!,
+                      builder: (context, _) {
+                        final route = _trafficFeed?.latest;
+                        return TrafficRouteCard(
+                          route: route,
+                          onTap: route == null
+                              ? null
+                              : () => _fitPoints(route.points),
+                        );
+                      },
+                    ),
+                  ),
                 if (selectedContact != null && !_isBuildingPathTrace)
                   _buildSelectedNodeCard(context, selectedContact, connector),
               ],
@@ -1035,14 +1138,6 @@ class _MapScreenState extends State<MapScreen> {
                 highContrast: _useDarkOverlay,
               ),
             ),
-            floatingActionButton:
-                (selectedContact == null && !_isBuildingPathTrace)
-                ? FloatingActionButton(
-                    onPressed: () => _showFilterSheet(context, settingsService),
-                    tooltip: context.l10n.map_filterNodes,
-                    child: const Icon(Icons.filter_list),
-                  )
-                : null,
           ),
         );
       },
@@ -1585,6 +1680,7 @@ class _MapScreenState extends State<MapScreen> {
                     stale: stale,
                     online: online,
                     batteryLow: batteryLow,
+                    square: contact.type == advTypeRepeater,
                   ),
           ),
         ),
@@ -1768,7 +1864,7 @@ class _MapScreenState extends State<MapScreen> {
       case advTypeChat:
         return Icons.person;
       case advTypeRepeater:
-        return Icons.router;
+        return Icons.cell_tower;
       case advTypeRoom:
         return Icons.meeting_room;
       case advTypeSensor:
@@ -1785,6 +1881,7 @@ class _MapScreenState extends State<MapScreen> {
     bool stale = false,
     bool online = false,
     bool batteryLow = false,
+    bool square = false,
   }) {
     final statusColor = batteryLow
         ? MapPalette.batteryLow
@@ -1801,11 +1898,15 @@ class _MapScreenState extends State<MapScreen> {
           width: selected ? 44 : 36,
           height: selected ? 44 : 36,
           decoration: BoxDecoration(
-            shape: BoxShape.circle,
+            shape: square ? BoxShape.rectangle : BoxShape.circle,
+            borderRadius: square ? BorderRadius.circular(10) : null,
             color: selected ? MapPalette.selected : color,
+            // A recently heard repeater gets a green ring.
             border: Border.all(
-              color: MapPalette.markerOutline,
-              width: selected ? 3 : 2.5,
+              color: square && online && !selected
+                  ? MapPalette.online
+                  : MapPalette.markerOutline,
+              width: selected || (square && online) ? 3 : 2.5,
             ),
             boxShadow: [
               const BoxShadow(

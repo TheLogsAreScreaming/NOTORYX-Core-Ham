@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12395,4 +12396,96 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get compass_sourceRadio => 'Vaš položaj prihaja iz radia.';
+
+  @override
+  String get traffic_mode => 'Promet';
+
+  @override
+  String get traffic_modeHint => 'Prikaži pakete, ki potujejo po omrežju mesh';
+
+  @override
+  String get traffic_locate => 'Poišči';
+
+  @override
+  String get traffic_advert => 'Oglas';
+
+  @override
+  String get traffic_filter => 'Filter';
+
+  @override
+  String get traffic_search => 'Iskanje';
+
+  @override
+  String get traffic_fitAll => 'Prikaži vse';
+
+  @override
+  String get traffic_options => 'Možnosti';
+
+  @override
+  String get traffic_kindAdvert => 'Oglas';
+
+  @override
+  String get traffic_kindDirect => 'Neposredno sporočilo';
+
+  @override
+  String get traffic_kindChannel => 'Sporočilo kanala';
+
+  @override
+  String get traffic_kindAck => 'Potrditev';
+
+  @override
+  String get traffic_kindTrace => 'Sledenje';
+
+  @override
+  String get traffic_kindPath => 'Pot';
+
+  @override
+  String get traffic_filterTitle => 'Prikazane vrste paketov';
+
+  @override
+  String get traffic_listening => 'Čakanje na pakete…';
+
+  @override
+  String traffic_heardFrom(String name, String snr) {
+    return 'Slišano od $name · $snr dB';
+  }
+
+  @override
+  String traffic_flood(int hops) {
+    return 'Flood $hops';
+  }
+
+  @override
+  String get traffic_direct => 'Neposredno';
+
+  @override
+  String traffic_snr(String snr) {
+    return 'SNR $snr';
+  }
+
+  @override
+  String traffic_rssi(int rssi) {
+    return '$rssi dBm';
+  }
+
+  @override
+  String traffic_notOnMapCount(int count) {
+    return 'Ni na zemljevidu: $count';
+  }
+
+  @override
+  String traffic_age(int seconds) {
+    return '$seconds s';
+  }
+
+  @override
+  String traffic_notOnMapList(String names) {
+    return 'Ni na zemljevidu: $names';
+  }
+
+  @override
+  String get traffic_unknown => 'Neznano';
+
+  @override
+  String get traffic_cardHint => 'Prikaže pot na zemljevidu';
 }

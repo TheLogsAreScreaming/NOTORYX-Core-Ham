@@ -20520,6 +20520,162 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your position comes from the radio.'**
   String get compass_sourceRadio;
+
+  /// No description provided for @traffic_mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Traffic'**
+  String get traffic_mode;
+
+  /// No description provided for @traffic_modeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Show packets moving across the mesh'**
+  String get traffic_modeHint;
+
+  /// No description provided for @traffic_locate.
+  ///
+  /// In en, this message translates to:
+  /// **'Locate'**
+  String get traffic_locate;
+
+  /// No description provided for @traffic_advert.
+  ///
+  /// In en, this message translates to:
+  /// **'Advert'**
+  String get traffic_advert;
+
+  /// No description provided for @traffic_filter.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter'**
+  String get traffic_filter;
+
+  /// No description provided for @traffic_search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get traffic_search;
+
+  /// No description provided for @traffic_fitAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Fit all'**
+  String get traffic_fitAll;
+
+  /// No description provided for @traffic_options.
+  ///
+  /// In en, this message translates to:
+  /// **'Options'**
+  String get traffic_options;
+
+  /// No description provided for @traffic_kindAdvert.
+  ///
+  /// In en, this message translates to:
+  /// **'Advert'**
+  String get traffic_kindAdvert;
+
+  /// No description provided for @traffic_kindDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct message'**
+  String get traffic_kindDirect;
+
+  /// No description provided for @traffic_kindChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'Channel message'**
+  String get traffic_kindChannel;
+
+  /// No description provided for @traffic_kindAck.
+  ///
+  /// In en, this message translates to:
+  /// **'Acknowledgement'**
+  String get traffic_kindAck;
+
+  /// No description provided for @traffic_kindTrace.
+  ///
+  /// In en, this message translates to:
+  /// **'Trace'**
+  String get traffic_kindTrace;
+
+  /// No description provided for @traffic_kindPath.
+  ///
+  /// In en, this message translates to:
+  /// **'Path'**
+  String get traffic_kindPath;
+
+  /// No description provided for @traffic_filterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Packet types to show'**
+  String get traffic_filterTitle;
+
+  /// No description provided for @traffic_listening.
+  ///
+  /// In en, this message translates to:
+  /// **'Listening for packets…'**
+  String get traffic_listening;
+
+  /// No description provided for @traffic_heardFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Heard from {name} · {snr} dB'**
+  String traffic_heardFrom(String name, String snr);
+
+  /// No description provided for @traffic_flood.
+  ///
+  /// In en, this message translates to:
+  /// **'Flood {hops}'**
+  String traffic_flood(int hops);
+
+  /// No description provided for @traffic_direct.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct'**
+  String get traffic_direct;
+
+  /// No description provided for @traffic_snr.
+  ///
+  /// In en, this message translates to:
+  /// **'SNR {snr}'**
+  String traffic_snr(String snr);
+
+  /// No description provided for @traffic_rssi.
+  ///
+  /// In en, this message translates to:
+  /// **'{rssi} dBm'**
+  String traffic_rssi(int rssi);
+
+  /// No description provided for @traffic_notOnMapCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} not on map'**
+  String traffic_notOnMapCount(int count);
+
+  /// No description provided for @traffic_age.
+  ///
+  /// In en, this message translates to:
+  /// **'{seconds}s'**
+  String traffic_age(int seconds);
+
+  /// No description provided for @traffic_notOnMapList.
+  ///
+  /// In en, this message translates to:
+  /// **'Not on map: {names}'**
+  String traffic_notOnMapList(String names);
+
+  /// No description provided for @traffic_unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown'**
+  String get traffic_unknown;
+
+  /// No description provided for @traffic_cardHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Shows the route on the map'**
+  String get traffic_cardHint;
 }
 
 class _AppLocalizationsDelegate
