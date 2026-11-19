@@ -11,16 +11,31 @@ const staleAfterChoices = [0, 1, 6, 24, 72, 168];
 Duration? staleAfterFromHours(int hours) =>
     hours <= 0 ? null : Duration(hours: hours);
 
+/// The earliest last-heard time taken as real. A radio whose clock was
+/// never set reports 0 (the epoch) or a time just after it.
+final earliestKnownLastHeard = DateTime.utc(2020);
+
+/// How far ahead of [now] a last-heard time may be before it is taken as
+/// a wrong clock rather than a small drift.
+const maxLastHeardAhead = Duration(days: 1);
+
+/// [lastHeard] when it is a believable time at [now]; null when it is
+/// unknown: missing, before 2020 (an unset clock) or more than a day ahead.
+DateTime? knownLastHeard(DateTime? lastHeard, DateTime now) {
+  if (lastHeard == null) return null;
+  if (lastHeard.isBefore(earliestKnownLastHeard)) return null;
+  if (lastHeard.isAfter(now.add(maxLastHeardAhead))) return null;
+  return lastHeard;
+}
+
 /// Whether a node last heard at [lastHeard] is stale at [now].
 ///
-/// A node with no last-heard time ([lastHeard] null, or at or before the
-/// epoch, which is how the radio reports "never") is never stale, and
-/// nothing is stale when [after] is null or not positive (the setting is
-/// Off). A node heard exactly [after] ago is stale.
+/// A node whose last-heard time is unknown (see [knownLastHeard]) is never
+/// stale, and nothing is stale when [after] is null or not positive (the
+/// setting is Off). A node heard exactly [after] ago is stale.
 bool isStale(DateTime? lastHeard, DateTime now, Duration? after) {
   if (after == null || after <= Duration.zero) return false;
-  if (lastHeard == null || lastHeard.millisecondsSinceEpoch <= 0) {
-    return false;
-  }
-  return now.difference(lastHeard) >= after;
+  final known = knownLastHeard(lastHeard, now);
+  if (known == null) return false;
+  return now.difference(known) >= after;
 }

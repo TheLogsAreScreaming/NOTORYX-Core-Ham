@@ -4,6 +4,7 @@ library;
 
 import 'dart:math' as math;
 
+import 'package:flutter/painting.dart';
 import 'package:latlong2/latlong.dart';
 
 import 'app_settings.dart';
@@ -75,6 +76,43 @@ String ringLabel(double metres, UnitSystem units) {
 /// 0 = north, clockwise), on the same sphere the map's circles use.
 LatLng pointAt(LatLng centre, double metres, double bearing) =>
     const Distance().offset(centre, metres, bearing);
+
+/// The bearings tried, in order, for a ring's label: north first, then
+/// the directions nearest it, south last.
+const labelBearings = [0.0, 45.0, 315.0, 90.0, 270.0, 135.0, 225.0, 180.0];
+
+/// The part of a [view] not covered by the map's overlays: the view less
+/// [insets]. When the insets leave nothing, the whole view.
+Rect unobscuredArea(Size view, EdgeInsets insets) {
+  final area = insets.deflateRect(Offset.zero & view);
+  if (area.width <= 0 || area.height <= 0) return Offset.zero & view;
+  return area;
+}
+
+/// Whether a label of [size] centred on [point] lies wholly inside [area].
+bool labelFits(Offset point, Size size, Rect area) {
+  final half = Offset(size.width / 2, size.height / 2);
+  final topLeft = point - half, bottomRight = point + half;
+  return topLeft.dx >= area.left &&
+      topLeft.dy >= area.top &&
+      bottomRight.dx <= area.right &&
+      bottomRight.dy <= area.bottom;
+}
+
+/// The first of [bearings] at which a label of [size] fits inside [area],
+/// where [toScreen] gives the label's screen point at a bearing; null when
+/// it fits at none, so the label is left out rather than drawn hidden.
+double? visibleLabelBearing(
+  Offset Function(double bearing) toScreen,
+  Size size,
+  Rect area, {
+  List<double> bearings = labelBearings,
+}) {
+  for (final bearing in bearings) {
+    if (labelFits(toScreen(bearing), size, area)) return bearing;
+  }
+  return null;
+}
 
 /// [value] with at most two decimals and no trailing zeros.
 String _trim(double value) {

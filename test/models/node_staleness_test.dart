@@ -44,6 +44,49 @@ void main() {
     });
   });
 
+  group('knownLastHeard', () {
+    test('the epoch (a radio reporting 0) is unknown', () {
+      expect(
+        knownLastHeard(DateTime.fromMillisecondsSinceEpoch(0), now),
+        isNull,
+      );
+    });
+
+    test('a time just after the epoch (an unset clock) is unknown', () {
+      // 20 days after 1970, which showed as "stale · 20771 days ago".
+      final unset = DateTime.fromMillisecondsSinceEpoch(20 * 86400 * 1000);
+      expect(knownLastHeard(unset, now), isNull);
+      expect(isStale(unset, now, day), isFalse);
+    });
+
+    test('a pre-2020 time is unknown', () {
+      final old = DateTime.utc(2019, 12, 31, 23, 59);
+      expect(knownLastHeard(old, now), isNull);
+      expect(isStale(old, now, day), isFalse);
+    });
+
+    test('a time more than a day ahead is unknown', () {
+      final ahead = now.add(const Duration(days: 2));
+      expect(knownLastHeard(ahead, now), isNull);
+      expect(isStale(ahead, now, day), isFalse);
+    });
+
+    test('a little clock drift ahead is still known', () {
+      final drift = now.add(const Duration(hours: 2));
+      expect(knownLastHeard(drift, now), drift);
+    });
+
+    test('a normal time is known and can be stale', () {
+      final heard = DateTime(2026, 11, 10);
+      expect(knownLastHeard(heard, now), heard);
+      expect(isStale(heard, now, day), isTrue);
+    });
+
+    test('missing is unknown', () {
+      expect(knownLastHeard(null, now), isNull);
+    });
+  });
+
   group('staleAfterFromHours', () {
     test('0 is off; hours become a duration', () {
       expect(staleAfterFromHours(0), isNull);
