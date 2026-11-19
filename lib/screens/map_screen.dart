@@ -79,6 +79,16 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   // Zoom level at which node labels start to appear
   static const double _labelZoomThreshold = 14.0;
+
+  /// Where the tool pill starts: below the search bar and its two rows of
+  /// filter chips.
+  static const double _toolbarTop = 140;
+
+  /// How far the map's overlays reach in from each edge, so range-ring
+  /// labels stay out from under them: the search bar and chips on top, the
+  /// tool pill on the right and the route card at the bottom when it shows.
+  EdgeInsets get _overlayInsets =>
+      EdgeInsets.fromLTRB(16, _toolbarTop, 96, _trafficFeed == null ? 24 : 176);
   // Below this zoom, nearby nodes collapse into clusters.
   static const double _clusterOffZoom = 12.5;
   // Guessed (estimated) locations only render at closer zooms to avoid a
@@ -385,7 +395,7 @@ class _MapScreenState extends State<MapScreen> {
       top: 0,
       bottom: 0,
       child: Padding(
-        padding: EdgeInsets.only(top: 140, bottom: trafficOn ? 8 : 16),
+        padding: EdgeInsets.only(top: _toolbarTop, bottom: trafficOn ? 8 : 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -987,6 +997,7 @@ class _MapScreenState extends State<MapScreen> {
                           centre: self,
                           units: settings.unitSystem,
                           dark: _useDarkOverlay,
+                          insets: _overlayInsets,
                         ),
                     MarkerLayer(
                       markers: [

@@ -1,3 +1,6 @@
+import 'dart:math' as math;
+
+import 'package:flutter/painting.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:meshcore_open/models/app_settings.dart';
@@ -86,6 +89,83 @@ void main() {
       expect(east.longitude, greaterThan(centre.longitude));
       expect(pointAt(centre, 1000, 180).latitude, lessThan(centre.latitude));
       expect(pointAt(centre, 1000, 270).longitude, lessThan(centre.longitude));
+    });
+  });
+
+  group('unobscuredArea', () {
+    test('is the view less the overlay insets', () {
+      expect(
+        unobscuredArea(
+          const Size(400, 800),
+          const EdgeInsets.fromLTRB(64, 140, 96, 24),
+        ),
+        const Rect.fromLTRB(64, 140, 304, 776),
+      );
+    });
+
+    test('falls back to the whole view when the insets cover it', () {
+      expect(
+        unobscuredArea(
+          const Size(100, 100),
+          const EdgeInsets.fromLTRB(60, 0, 60, 0),
+        ),
+        const Rect.fromLTWH(0, 0, 100, 100),
+      );
+    });
+  });
+
+  group('labelFits', () {
+    const area = Rect.fromLTRB(0, 100, 300, 500);
+    const size = Size(72, 20);
+
+    test('a label wholly inside fits', () {
+      expect(labelFits(const Offset(150, 300), size, area), isTrue);
+      expect(labelFits(const Offset(36, 110), size, area), isTrue);
+    });
+
+    test('a label reaching under an overlay does not fit', () {
+      // Its top edge under the top bar.
+      expect(labelFits(const Offset(150, 105), size, area), isFalse);
+      // Its right edge under the side toolbar.
+      expect(labelFits(const Offset(280, 300), size, area), isFalse);
+    });
+  });
+
+  group('visibleLabelBearing', () {
+    const area = Rect.fromLTRB(0, 100, 300, 500);
+    const size = Size(72, 20);
+    // A ring of 150 px round (150, 200): its north point is at y 50,
+    // under the top bar.
+    Offset ring(double bearing) {
+      final rad = bearing * math.pi / 180;
+      return Offset(150 + 150 * math.sin(rad), 200 - 150 * math.cos(rad));
+    }
+
+    test('north when north is visible', () {
+      Offset big(double bearing) {
+        final rad = bearing * math.pi / 180;
+        return Offset(150 + 80 * math.sin(rad), 300 - 80 * math.cos(rad));
+      }
+
+      expect(visibleLabelBearing(big, size, area), 0);
+    });
+
+    test('moves round the ring when north is hidden', () {
+      final bearing = visibleLabelBearing(ring, size, area);
+      expect(bearing, isNotNull);
+      expect(bearing, isNot(0));
+      expect(labelFits(ring(bearing!), size, area), isTrue);
+    });
+
+    test('is null when the label fits nowhere on the ring', () {
+      Offset offScreen(double bearing) => const Offset(-500, -500);
+      expect(visibleLabelBearing(offScreen, size, area), isNull);
+    });
+
+    test('tries north first and south last', () {
+      expect(labelBearings.first, 0);
+      expect(labelBearings.last, 180);
+      expect(labelBearings.toSet(), hasLength(8));
     });
   });
 }
