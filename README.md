@@ -17,7 +17,7 @@ NOTORYX Core Ham is the amateur radio (FCC Part 97) edition of NOTORYX Core. Pai
   <img src="docs/screenshots/ham_presets.png" width="230" alt="Radio presets: US 33 cm and 70 cm only">
 </p>
 
-> **Status: test builds.** The latest is **[test 15](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/releases/tag/v0.1.0-test.15)** (`0.1.0-test.15`, 16 November 2026). The app and firmware pass automated tests and a mesh simulator, but have **not been tested on the air yet**. Use them only on a bench with dummy loads or minimum power until they have been. Everything you send is readable by anyone: that's the law on amateur bands, not a bug.
+> **Status: test builds.** The latest is **[test 17](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/releases/tag/v0.1.0-test.17)** (`0.1.0-test.17`, 19 November 2026). The app and firmware pass automated tests and a mesh simulator, but have **not been tested on the air yet**. Use them only on a bench with dummy loads or minimum power until they have been. Everything you send is readable by anyone: that's the law on amateur bands, not a bug.
 
 ## What makes it a ham app
 
@@ -101,6 +101,8 @@ Everything from NOTORYX Core, working over plain-text ham frames:
 
 ### Maps, paths and coverage
 - Live mesh map with offline map packs, and a **track log** that records your trail and exports GPX.
+- **Live Traffic map:** turn on **Traffic** in the map toolbar to see every packet the radio hears drawn from where it started, through each repeater, to you, coloured by packet type. It only listens; nothing is stored or sent.
+- **Stale nodes and range rings:** nodes not heard for a time you choose are marked stale and faded on the map, and the map can draw distance rings around your position.
 - **Path graph:** every path you've heard, drawn as flows from far repeaters to you. Short (1-byte) hops are matched to a specific repeater using longer paths.
 - **Route Intelligence:** learned routes and the best repeaters your radio hears directly.
 - **Observer reach:** check which online observers heard a message you sent, how many hops it took and the best signal. Repeaters you don't have as contacts can be named online. Both use a CoreScope analyzer you choose in Settings.
