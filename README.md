@@ -17,7 +17,7 @@ NOTORYX Core Ham is the amateur radio (FCC Part 97) edition of NOTORYX Core. Pai
   <img src="docs/screenshots/ham_presets.png" width="230" alt="Radio presets: US 33 cm and 70 cm only">
 </p>
 
-> **Status: test builds.** The latest is **[test 17](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/releases/tag/v0.1.0-test.17)** (`0.1.0-test.17`, 19 November 2026). The app and firmware pass automated tests and a mesh simulator, but have **not been tested on the air yet**. Use them only on a bench with dummy loads or minimum power until they have been. Everything you send is readable by anyone: that's the law on amateur bands, not a bug.
+> **Status: test builds.** The newest is always at the top of **[the releases page](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/releases)**. The app and firmware pass automated tests and a mesh simulator, but have **not been tested on the air yet**. Use them only on a bench with dummy loads or minimum power until they have been. Everything you send is readable by anyone: that's the law on amateur bands, not a bug.
 
 ## What makes it a ham app
 
