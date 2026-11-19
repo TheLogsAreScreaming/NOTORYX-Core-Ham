@@ -41,7 +41,7 @@ jobs:
       - name: Test
         run: bash tools/ci_retry.sh flutter test
       - name: Build universal macOS app
-        run: bash tools/ci_retry.sh flutter build macos --release
+        run: bash tools/ci_retry.sh flutter build macos --dart-define=GIPHY_API_KEY=${{ secrets.GIPHY_API_KEY }} --release
       - name: Check the app runs on Intel and Apple silicon
         run: |
           APP="build/macos/Build/Products/Release/NOTORYX Core Ham.app"

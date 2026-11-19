@@ -683,16 +683,17 @@ class _ChatScreenState extends State<ChatScreen> {
                       ],
                     ),
                   ),
-                  PopupMenuItem(
-                    value: 'gif',
-                    child: Row(
-                      children: [
-                        const Icon(Icons.gif_box),
-                        const SizedBox(width: 12),
-                        Text(context.l10n.chat_sendGif),
-                      ],
+                  if (GifPicker.isAvailable)
+                    PopupMenuItem(
+                      value: 'gif',
+                      child: Row(
+                        children: [
+                          const Icon(Icons.gif_box),
+                          const SizedBox(width: 12),
+                          Text(context.l10n.chat_sendGif),
+                        ],
+                      ),
                     ),
-                  ),
                   PopupMenuItem(
                     value: 'position',
                     enabled: myPositionMessage(connector) != null,
