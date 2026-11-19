@@ -1901,7 +1901,10 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
         settings.imageMessagesEnabled && !imageCodecDownloading;
     final showCorridorAction = connector.floodCorridorSupported == true;
     final menuItemCount =
-        4 + (showImageAction ? 1 : 0) + (showCorridorAction ? 1 : 0);
+        3 +
+        (GifPicker.isAvailable ? 1 : 0) +
+        (showImageAction ? 1 : 0) +
+        (showCorridorAction ? 1 : 0);
     final scheme = Theme.of(context).colorScheme;
     return Container(
       decoration: BoxDecoration(
@@ -1971,16 +1974,17 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                           ],
                         ),
                       ),
-                      PopupMenuItem(
-                        value: 'gif',
-                        child: Row(
-                          children: [
-                            const Icon(Icons.gif_box),
-                            const SizedBox(width: 12),
-                            Text(context.l10n.chat_sendGif),
-                          ],
+                      if (GifPicker.isAvailable)
+                        PopupMenuItem(
+                          value: 'gif',
+                          child: Row(
+                            children: [
+                              const Icon(Icons.gif_box),
+                              const SizedBox(width: 12),
+                              Text(context.l10n.chat_sendGif),
+                            ],
+                          ),
                         ),
-                      ),
                       PopupMenuItem(
                         value: 'position',
                         enabled: myPositionMessage(connector) != null,

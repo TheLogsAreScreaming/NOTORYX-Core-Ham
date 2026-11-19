@@ -10,6 +10,12 @@ class GifPicker extends StatefulWidget {
 
   const GifPicker({super.key, required this.onGifSelected});
 
+  /// Whether this build has a GIPHY key, so GIF search can work.
+  ///
+  /// Builds without one hide the "Send GIF" action. Received GIFs still
+  /// display, because loading them from the GIPHY media CDN needs no key.
+  static bool get isAvailable => _GifPickerState._giphyApiKey.isNotEmpty;
+
   @override
   State<GifPicker> createState() => _GifPickerState();
 }
@@ -20,9 +26,10 @@ class _GifPickerState extends State<GifPicker> {
   bool _isLoading = false;
   String? _error;
 
-  // Giphy API key - Using public beta key (limited usage)
-  // For production, replace with your own Giphy API key from developers.giphy.com
-  static const String _giphyApiKey = 'sXpGFDGZs0Dv1mmNFvYaGUvYwKX0PWIh';
+  // GIPHY API key, supplied at build time with
+  // --dart-define=GIPHY_API_KEY=<key> (CI reads the GIPHY_API_KEY secret).
+  // Never put a key in source: this repository is public.
+  static const String _giphyApiKey = String.fromEnvironment('GIPHY_API_KEY');
 
   @override
   void initState() {

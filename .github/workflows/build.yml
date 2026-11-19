@@ -56,7 +56,7 @@ jobs:
             sleep 10
           done
       - run: flutter pub get
-      - run: bash tools/ci_retry.sh flutter build apk --release --no-pub
+      - run: bash tools/ci_retry.sh flutter build apk --dart-define=GIPHY_API_KEY=${{ secrets.GIPHY_API_KEY }} --release --no-pub
 
   ios:
     if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main' || startsWith(github.head_ref, 'release/')
@@ -75,7 +75,7 @@ jobs:
           channel: "stable"
           cache: true
       - run: flutter pub get
-      - run: bash tools/ci_retry.sh flutter build ios --release --no-codesign --no-pub
+      - run: bash tools/ci_retry.sh flutter build ios --dart-define=GIPHY_API_KEY=${{ secrets.GIPHY_API_KEY }} --release --no-codesign --no-pub
 
   linux:
     runs-on: ubuntu-24.04  # 26.04 headers break the Flutter Linux build
@@ -91,7 +91,7 @@ jobs:
       - run: flutter pub get
       - name: ONNX Runtime from NuGet if GitHub's download is unavailable
         run: bash ci/onnxruntime-linux-fallback.sh release
-      - run: bash tools/ci_retry.sh flutter build linux --release --no-pub
+      - run: bash tools/ci_retry.sh flutter build linux --dart-define=GIPHY_API_KEY=${{ secrets.GIPHY_API_KEY }} --release --no-pub
 
   macos:
     if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main' || startsWith(github.head_ref, 'release/')
@@ -110,7 +110,7 @@ jobs:
           channel: "stable"
           cache: true
       - run: flutter pub get
-      - run: bash tools/ci_retry.sh flutter build macos --release --no-pub --obfuscate --split-debug-info=build/symbols/macos
+      - run: bash tools/ci_retry.sh flutter build macos --dart-define=GIPHY_API_KEY=${{ secrets.GIPHY_API_KEY }} --release --no-pub --obfuscate --split-debug-info=build/symbols/macos
       - name: Verify and package universal Mac candidate
         run: |
           set -euo pipefail
@@ -147,4 +147,4 @@ jobs:
           channel: "stable"
           cache: true
       - run: flutter pub get
-      - run: bash tools/ci_retry.sh flutter build web --release --no-pub
+      - run: bash tools/ci_retry.sh flutter build web --dart-define=GIPHY_API_KEY=${{ secrets.GIPHY_API_KEY }} --release --no-pub

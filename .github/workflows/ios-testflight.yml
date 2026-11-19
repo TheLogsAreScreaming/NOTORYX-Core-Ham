@@ -37,7 +37,7 @@ jobs:
       - name: Build the archive
         run: |
           sed -i '' "s/DEVELOPMENT_TEAM = [A-Z0-9]*;/DEVELOPMENT_TEAM = $APPLE_TEAM_ID;/" ios/Runner.xcodeproj/project.pbxproj
-          bash tools/ci_retry.sh flutter build ipa --release --no-codesign --no-pub
+          bash tools/ci_retry.sh flutter build ipa --dart-define=GIPHY_API_KEY=${{ secrets.GIPHY_API_KEY }} --release --no-codesign --no-pub
       - name: Sign and upload to TestFlight
         run: |
           KEY="$RUNNER_TEMP/AuthKey_$ASC_KEY_ID.p8"
