@@ -3,7 +3,7 @@ description: "NOTORYX Core Ham: an independent MeshCore LoRa companion app"
 publish_to: 'none'
 # NOTORYX Core Ham versions. The build number stays above 76 (the copy of
 # NOTORYX Core it started from), so Android installs updates over test 1.
-version: 0.1.0-test.16+114
+version: 0.1.0-test.17+115
 
 environment:
   sdk: ^3.9.2
@@ -88,6 +88,13 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   flutter_launcher_icons: ^0.14.4
   fake_async: ^1.3.3
+
+# jni 1.2.0 / jni_flutter 1.1.0 (published 2026-11-18) make path_provider_android
+# fail to find android.content.Context at startup, so the app hangs on the
+# splash screen. Keep the versions test.15 shipped with until that's fixed.
+dependency_overrides:
+  jni: 1.1.2
+  jni_flutter: 1.0.4+1
 
 flutter:
   generate: true
