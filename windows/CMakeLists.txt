@@ -53,6 +53,46 @@ add_subdirectory(${FLUTTER_MANAGED_DIR})
 add_subdirectory("runner")
 
 
+# ONNX Runtime for flutter_onnxruntime. The plugin normally downloads it from
+# the github.com/microsoft/onnxruntime releases page, which now returns 404, so
+# the Windows build fails. Fetch Microsoft's official NuGet package instead
+# (hash-checked) and unpack it into the exact folder the plugin checks first.
+# The plugin then skips its own download and still ships onnxruntime.dll with
+# the app. Must run before generated_plugins.cmake.
+if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+  set(ONNXRUNTIME_VERSION "1.28.0")
+  set(_ort_sha256 "769d1d3ea8ab6cd69f737c9dd4d4462aa4ad0ccfa106eaf506efc40d7bead5db")
+  set(_ort_dir "${CMAKE_BINARY_DIR}/plugins/flutter_onnxruntime/onnxruntime/onnxruntime-win-x64-${ONNXRUNTIME_VERSION}")
+  if(NOT EXISTS "${_ort_dir}/include/onnxruntime_cxx_api.h")
+    set(_ort_pkg "${CMAKE_BINARY_DIR}/onnxruntime-${ONNXRUNTIME_VERSION}.nupkg")
+    set(_ort_tmp "${CMAKE_BINARY_DIR}/onnxruntime-nupkg")
+    message(STATUS "Fetching ONNX Runtime ${ONNXRUNTIME_VERSION} from NuGet")
+    file(DOWNLOAD
+      "https://api.nuget.org/v3-flatcontainer/microsoft.ml.onnxruntime/${ONNXRUNTIME_VERSION}/microsoft.ml.onnxruntime.${ONNXRUNTIME_VERSION}.nupkg"
+      "${_ort_pkg}"
+      EXPECTED_HASH SHA256=${_ort_sha256}
+      STATUS _ort_status)
+    list(GET _ort_status 0 _ort_code)
+    if(NOT _ort_code EQUAL 0)
+      message(FATAL_ERROR "ONNX Runtime NuGet download failed: ${_ort_status}")
+    endif()
+    file(REMOVE_RECURSE "${_ort_tmp}")
+    file(MAKE_DIRECTORY "${_ort_tmp}")
+    execute_process(COMMAND ${CMAKE_COMMAND} -E tar xf "${_ort_pkg}"
+                    WORKING_DIRECTORY "${_ort_tmp}" RESULT_VARIABLE _ort_rc)
+    if(NOT _ort_rc EQUAL 0)
+      message(FATAL_ERROR "Could not unpack ONNX Runtime NuGet package")
+    endif()
+    file(MAKE_DIRECTORY "${_ort_dir}/include" "${_ort_dir}/lib")
+    file(GLOB _ort_headers "${_ort_tmp}/build/native/include/*")
+    file(GLOB _ort_bins "${_ort_tmp}/runtimes/win-x64/native/*")
+    file(COPY ${_ort_headers} DESTINATION "${_ort_dir}/include")
+    file(COPY ${_ort_bins} DESTINATION "${_ort_dir}/lib")
+    file(REMOVE_RECURSE "${_ort_tmp}")
+    file(REMOVE "${_ort_pkg}")
+  endif()
+endif()
+
 # Generated plugin build rules, which manage building the plugins and adding
 # them to the application.
 include(flutter/generated_plugins.cmake)
