@@ -4753,5 +4753,14 @@
   "traffic_age": "{seconds} s",
   "traffic_notOnMapList": "Mimo mapy: {names}",
   "traffic_unknown": "Neznámy",
-  "traffic_cardHint": "Zobrazí trasu na mape"
+  "traffic_cardHint": "Zobrazí trasu na mape",
+  "stale_setting": "Označiť uzly ako neaktuálne po",
+  "stale_settingHint": "Kontakty a opakovače, ktoré neboli tak dlho počuť, sa v zozname označia ako neaktuálne a na mape zoslabnú.",
+  "stale_off": "Vyp.",
+  "stale_hours": "{count, plural, other{{count} h}}",
+  "stale_days": "{count, plural, other{{count} d}}",
+  "stale_badge": "neaktuálny · {age}",
+  "rangeRings_toggle": "Kruhy vzdialenosti",
+  "rangeRings_hint": "Kruhy vzdialenosti okolo vašej polohy, podľa zobrazenia",
+  "rangeRings_noPosition": "Vaša poloha ešte nie je známa, preto nie je možné nakresliť kruhy vzdialenosti."
 }

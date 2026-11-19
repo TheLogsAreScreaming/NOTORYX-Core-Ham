@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12532,4 +12531,51 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get traffic_cardHint => 'Pokazuje trasę na mapie';
+
+  @override
+  String get stale_setting => 'Oznacz węzły jako nieaktualne po';
+
+  @override
+  String get stale_settingHint =>
+      'Kontakty i przekaźniki niesłyszane tak długo są oznaczane na liście jako nieaktualne i wyblakłe na mapie.';
+
+  @override
+  String get stale_off => 'Wył.';
+
+  @override
+  String stale_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count godz.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_days(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count dni',
+      one: '1 dzień',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_badge(String age) {
+    return 'nieaktualny · $age';
+  }
+
+  @override
+  String get rangeRings_toggle => 'Pierścienie odległości';
+
+  @override
+  String get rangeRings_hint =>
+      'Pierścienie odległości wokół Twojej pozycji, dopasowane do widoku';
+
+  @override
+  String get rangeRings_noPosition =>
+      'Twoja pozycja nie jest jeszcze znana, więc nie można narysować pierścieni odległości.';
 }

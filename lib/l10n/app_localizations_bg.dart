@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12474,4 +12473,51 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get traffic_cardHint => 'Показва маршрута на картата';
+
+  @override
+  String get stale_setting => 'Отбелязване на възлите като остарели след';
+
+  @override
+  String get stale_settingHint =>
+      'Контакти и повторители, които не са чути толкова време, се отбелязват като остарели в списъка и избледняват на картата.';
+
+  @override
+  String get stale_off => 'Изкл.';
+
+  @override
+  String stale_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ч',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_days(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count дни',
+      one: '1 ден',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_badge(String age) {
+    return 'остарял · $age';
+  }
+
+  @override
+  String get rangeRings_toggle => 'Кръгове на разстояние';
+
+  @override
+  String get rangeRings_hint =>
+      'Кръгове на разстояние около вашата позиция, според изгледа';
+
+  @override
+  String get rangeRings_noPosition =>
+      'Позицията ви още не е известна, затова кръговете на разстояние не могат да се начертаят.';
 }

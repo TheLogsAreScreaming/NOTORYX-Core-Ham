@@ -8,6 +8,7 @@ import '../connector/meshcore_connector.dart';
 import '../l10n/l10n.dart';
 import '../models/app_settings.dart';
 import '../models/image_codec_support.dart';
+import '../models/node_staleness.dart';
 import '../models/translation_support.dart';
 import '../services/app_settings_service.dart';
 import '../services/image_codec_service.dart';
@@ -1141,6 +1142,33 @@ class AppSettingsScreen extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+      const Divider(height: 1, indent: 16),
+      ListTile(
+        key: const ValueKey('stale-after-setting'),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+        leading: const Icon(Icons.history_toggle_off, size: 20),
+        title: Text(context.l10n.stale_setting),
+        subtitle: Text(context.l10n.stale_settingHint),
+        trailing: DropdownButton<int>(
+          value:
+              staleAfterChoices.contains(
+                settingsService.settings.staleAfterHours,
+              )
+              ? settingsService.settings.staleAfterHours
+              : 24,
+          underline: const SizedBox.shrink(),
+          onChanged: (v) {
+            if (v != null) settingsService.setStaleAfterHours(v);
+          },
+          items: [
+            for (final h in staleAfterChoices)
+              DropdownMenuItem(
+                value: h,
+                child: Text(staleAfterLabel(context, h)),
+              ),
+          ],
         ),
       ),
       const Divider(height: 1, indent: 16),
@@ -2904,4 +2932,12 @@ class _ScrollIntoViewOnceState extends State<_ScrollIntoViewOnce> {
 
   @override
   Widget build(BuildContext context) => widget.child;
+}
+
+/// The label for a "Mark nodes stale after" choice of [hours].
+String staleAfterLabel(BuildContext context, int hours) {
+  final l10n = context.l10n;
+  if (hours <= 0) return l10n.stale_off;
+  if (hours % 24 == 0 && hours > 24) return l10n.stale_days(hours ~/ 24);
+  return l10n.stale_hours(hours);
 }

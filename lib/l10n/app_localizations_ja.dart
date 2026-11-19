@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -11917,4 +11916,48 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get traffic_cardHint => '地図上に経路を表示';
+
+  @override
+  String get stale_setting => 'ノードを古いとみなすまで';
+
+  @override
+  String get stale_settingHint =>
+      'この期間受信がない連絡先とリピーターは、リストで古いと表示され、地図では薄く表示されます。';
+
+  @override
+  String get stale_off => 'オフ';
+
+  @override
+  String stale_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count時間',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_days(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count日',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_badge(String age) {
+    return '古い · $age';
+  }
+
+  @override
+  String get rangeRings_toggle => '距離リング';
+
+  @override
+  String get rangeRings_hint => '表示範囲に合わせた、現在地を中心とする距離リング';
+
+  @override
+  String get rangeRings_noPosition => '現在地がまだ不明なため、距離リングを描けません。';
 }

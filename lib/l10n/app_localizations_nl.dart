@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12442,4 +12441,51 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get traffic_cardHint => 'Toont de route op de kaart';
+
+  @override
+  String get stale_setting => 'Nodes als verouderd markeren na';
+
+  @override
+  String get stale_settingHint =>
+      'Contacten en repeaters die zo lang niet gehoord zijn, worden in de lijst als verouderd gemarkeerd en op de kaart vervaagd.';
+
+  @override
+  String get stale_off => 'Uit';
+
+  @override
+  String stale_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count u',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_days(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count dagen',
+      one: '1 dag',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_badge(String age) {
+    return 'verouderd · $age';
+  }
+
+  @override
+  String get rangeRings_toggle => 'Afstandsringen';
+
+  @override
+  String get rangeRings_hint =>
+      'Afstandsringen rond je positie, passend bij het beeld';
+
+  @override
+  String get rangeRings_noPosition =>
+      'Je positie is nog niet bekend, dus afstandsringen kunnen niet getekend worden.';
 }

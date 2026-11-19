@@ -4791,5 +4791,14 @@
   "traffic_age": "{seconds} mp",
   "traffic_notOnMapList": "Nincs a térképen: {names}",
   "traffic_unknown": "Ismeretlen",
-  "traffic_cardHint": "Megmutatja az útvonalat a térképen"
+  "traffic_cardHint": "Megmutatja az útvonalat a térképen",
+  "stale_setting": "Csomópontok elavultnak jelölése ennyi után",
+  "stale_settingHint": "Az ennyi ideje nem hallott kontaktok és átjátszók elavultként jelennek meg a listában, és halványan a térképen.",
+  "stale_off": "Ki",
+  "stale_hours": "{count, plural, other{{count} ó}}",
+  "stale_days": "{count, plural, other{{count} nap}}",
+  "stale_badge": "elavult · {age}",
+  "rangeRings_toggle": "Távolsággyűrűk",
+  "rangeRings_hint": "Távolsággyűrűk a pozíciód körül, a nézethez igazítva",
+  "rangeRings_noPosition": "A pozíciód még nem ismert, ezért a távolsággyűrűk nem rajzolhatók meg."
 }

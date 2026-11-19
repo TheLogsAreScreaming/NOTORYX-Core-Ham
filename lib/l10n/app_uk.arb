@@ -4733,5 +4733,14 @@
   "traffic_age": "{seconds} с",
   "traffic_notOnMapList": "Немає на карті: {names}",
   "traffic_unknown": "Невідомо",
-  "traffic_cardHint": "Показує маршрут на карті"
+  "traffic_cardHint": "Показує маршрут на карті",
+  "stale_setting": "Позначати вузли застарілими через",
+  "stale_settingHint": "Контакти й ретранслятори, яких не було чути стільки часу, позначаються у списку як застарілі й бліднуть на мапі.",
+  "stale_off": "Вимк.",
+  "stale_hours": "{count, plural, other{{count} год}}",
+  "stale_days": "{count, plural, other{{count} дн.}}",
+  "stale_badge": "застарілий · {age}",
+  "rangeRings_toggle": "Кільця відстані",
+  "rangeRings_hint": "Кільця відстані навколо вашої позиції, за розміром огляду",
+  "rangeRings_noPosition": "Ваша позиція ще невідома, тому кільця відстані не можна намалювати."
 }

@@ -4753,5 +4753,14 @@
   "traffic_age": "{seconds} с",
   "traffic_notOnMapList": "Не са на картата: {names}",
   "traffic_unknown": "Неизвестен",
-  "traffic_cardHint": "Показва маршрута на картата"
+  "traffic_cardHint": "Показва маршрута на картата",
+  "stale_setting": "Отбелязване на възлите като остарели след",
+  "stale_settingHint": "Контакти и повторители, които не са чути толкова време, се отбелязват като остарели в списъка и избледняват на картата.",
+  "stale_off": "Изкл.",
+  "stale_hours": "{count, plural, other{{count} ч}}",
+  "stale_days": "{count, plural, =1{1 ден} other{{count} дни}}",
+  "stale_badge": "остарял · {age}",
+  "rangeRings_toggle": "Кръгове на разстояние",
+  "rangeRings_hint": "Кръгове на разстояние около вашата позиция, според изгледа",
+  "rangeRings_noPosition": "Позицията ви още не е известна, затова кръговете на разстояние не могат да се начертаят."
 }

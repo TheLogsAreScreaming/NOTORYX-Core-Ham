@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12496,4 +12495,51 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get traffic_cardHint => 'Zeigt die Route auf der Karte';
+
+  @override
+  String get stale_setting => 'Knoten als veraltet markieren nach';
+
+  @override
+  String get stale_settingHint =>
+      'Kontakte und Repeater, die so lange nicht gehört wurden, werden in der Liste als veraltet markiert und auf der Karte blasser gezeigt.';
+
+  @override
+  String get stale_off => 'Aus';
+
+  @override
+  String stale_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count h',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_days(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count Tage',
+      one: '1 Tag',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_badge(String age) {
+    return 'veraltet · $age';
+  }
+
+  @override
+  String get rangeRings_toggle => 'Entfernungsringe';
+
+  @override
+  String get rangeRings_hint =>
+      'Entfernungsringe um Ihre Position, passend zur Ansicht';
+
+  @override
+  String get rangeRings_noPosition =>
+      'Ihre Position ist noch unbekannt, daher können keine Entfernungsringe gezeichnet werden.';
 }

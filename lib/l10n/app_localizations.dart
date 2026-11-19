@@ -20676,6 +20676,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Shows the route on the map'**
   String get traffic_cardHint;
+
+  /// No description provided for @stale_setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark nodes stale after'**
+  String get stale_setting;
+
+  /// No description provided for @stale_settingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Contacts and repeaters not heard for this long are marked stale in the list and faded on the map.'**
+  String get stale_settingHint;
+
+  /// No description provided for @stale_off.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get stale_off;
+
+  /// No description provided for @stale_hours.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, other{{count} h}}'**
+  String stale_hours(int count);
+
+  /// No description provided for @stale_days.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 day} other{{count} days}}'**
+  String stale_days(int count);
+
+  /// No description provided for @stale_badge.
+  ///
+  /// In en, this message translates to:
+  /// **'stale · {age}'**
+  String stale_badge(String age);
+
+  /// No description provided for @rangeRings_toggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Range rings'**
+  String get rangeRings_toggle;
+
+  /// No description provided for @rangeRings_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Distance rings around your position, sized to the view'**
+  String get rangeRings_hint;
+
+  /// No description provided for @rangeRings_noPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Your position isn\'t known yet, so range rings can\'t be drawn.'**
+  String get rangeRings_noPosition;
 }
 
 class _AppLocalizationsDelegate

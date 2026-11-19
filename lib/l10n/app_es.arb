@@ -4887,5 +4887,14 @@
   "traffic_age": "{seconds} s",
   "traffic_notOnMapList": "Sin ubicación: {names}",
   "traffic_unknown": "Desconocido",
-  "traffic_cardHint": "Muestra la ruta en el mapa"
+  "traffic_cardHint": "Muestra la ruta en el mapa",
+  "stale_setting": "Marcar nodos como inactivos tras",
+  "stale_settingHint": "Los contactos y repetidores sin oír durante este tiempo se marcan como inactivos en la lista y se atenúan en el mapa.",
+  "stale_off": "Desactivado",
+  "stale_hours": "{count, plural, other{{count} h}}",
+  "stale_days": "{count, plural, =1{1 día} other{{count} días}}",
+  "stale_badge": "inactivo · {age}",
+  "rangeRings_toggle": "Anillos de distancia",
+  "rangeRings_hint": "Anillos de distancia alrededor de tu posición, ajustados a la vista",
+  "rangeRings_noPosition": "Aún no se conoce tu posición, así que no se pueden dibujar los anillos de distancia."
 }

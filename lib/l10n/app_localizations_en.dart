@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12348,4 +12347,51 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get traffic_cardHint => 'Shows the route on the map';
+
+  @override
+  String get stale_setting => 'Mark nodes stale after';
+
+  @override
+  String get stale_settingHint =>
+      'Contacts and repeaters not heard for this long are marked stale in the list and faded on the map.';
+
+  @override
+  String get stale_off => 'Off';
+
+  @override
+  String stale_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count h',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_days(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days',
+      one: '1 day',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_badge(String age) {
+    return 'stale · $age';
+  }
+
+  @override
+  String get rangeRings_toggle => 'Range rings';
+
+  @override
+  String get rangeRings_hint =>
+      'Distance rings around your position, sized to the view';
+
+  @override
+  String get rangeRings_noPosition =>
+      'Your position isn\'t known yet, so range rings can\'t be drawn.';
 }

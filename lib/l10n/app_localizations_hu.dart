@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12471,4 +12470,50 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get traffic_cardHint => 'Megmutatja az útvonalat a térképen';
+
+  @override
+  String get stale_setting => 'Csomópontok elavultnak jelölése ennyi után';
+
+  @override
+  String get stale_settingHint =>
+      'Az ennyi ideje nem hallott kontaktok és átjátszók elavultként jelennek meg a listában, és halványan a térképen.';
+
+  @override
+  String get stale_off => 'Ki';
+
+  @override
+  String stale_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ó',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_days(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count nap',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_badge(String age) {
+    return 'elavult · $age';
+  }
+
+  @override
+  String get rangeRings_toggle => 'Távolsággyűrűk';
+
+  @override
+  String get rangeRings_hint =>
+      'Távolsággyűrűk a pozíciód körül, a nézethez igazítva';
+
+  @override
+  String get rangeRings_noPosition =>
+      'A pozíciód még nem ismert, ezért a távolsággyűrűk nem rajzolhatók meg.';
 }
