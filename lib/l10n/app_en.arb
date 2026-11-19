@@ -7699,5 +7699,17 @@
     }
   },
   "traffic_unknown": "Unknown",
-  "traffic_cardHint": "Shows the route on the map"
+  "traffic_cardHint": "Shows the route on the map",
+  "stale_setting": "Mark nodes stale after",
+  "stale_settingHint": "Contacts and repeaters not heard for this long are marked stale in the list and faded on the map.",
+  "stale_off": "Off",
+  "stale_hours": "{count, plural, other{{count} h}}",
+  "@stale_hours": {"placeholders": {"count": {"type": "int"}}},
+  "stale_days": "{count, plural, =1{1 day} other{{count} days}}",
+  "@stale_days": {"placeholders": {"count": {"type": "int"}}},
+  "stale_badge": "stale · {age}",
+  "@stale_badge": {"placeholders": {"age": {"type": "String"}}},
+  "rangeRings_toggle": "Range rings",
+  "rangeRings_hint": "Distance rings around your position, sized to the view",
+  "rangeRings_noPosition": "Your position isn't known yet, so range rings can't be drawn."
 }

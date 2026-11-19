@@ -4753,5 +4753,14 @@
   "traffic_age": "{seconds} s",
   "traffic_notOnMapList": "Ni na zemljevidu: {names}",
   "traffic_unknown": "Neznano",
-  "traffic_cardHint": "Prikaže pot na zemljevidu"
+  "traffic_cardHint": "Prikaže pot na zemljevidu",
+  "stale_setting": "Označi vozlišča kot zastarela po",
+  "stale_settingHint": "Stiki in repetitorji, ki jih toliko časa ni bilo slišati, so na seznamu označeni kot zastareli in na zemljevidu zbledijo.",
+  "stale_off": "Izklop",
+  "stale_hours": "{count, plural, other{{count} h}}",
+  "stale_days": "{count, plural, other{{count} d}}",
+  "stale_badge": "zastarelo · {age}",
+  "rangeRings_toggle": "Krogi razdalje",
+  "rangeRings_hint": "Krogi razdalje okoli vašega položaja, prilagojeni pogledu",
+  "rangeRings_noPosition": "Vaš položaj še ni znan, zato krogov razdalje ni mogoče narisati."
 }

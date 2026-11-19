@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12490,4 +12489,51 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get traffic_cardHint => 'Muestra la ruta en el mapa';
+
+  @override
+  String get stale_setting => 'Marcar nodos como inactivos tras';
+
+  @override
+  String get stale_settingHint =>
+      'Los contactos y repetidores sin oír durante este tiempo se marcan como inactivos en la lista y se atenúan en el mapa.';
+
+  @override
+  String get stale_off => 'Desactivado';
+
+  @override
+  String stale_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count h',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_days(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count días',
+      one: '1 día',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_badge(String age) {
+    return 'inactivo · $age';
+  }
+
+  @override
+  String get rangeRings_toggle => 'Anillos de distancia';
+
+  @override
+  String get rangeRings_hint =>
+      'Anillos de distancia alrededor de tu posición, ajustados a la vista';
+
+  @override
+  String get rangeRings_noPosition =>
+      'Aún no se conoce tu posición, así que no se pueden dibujar los anillos de distancia.';
 }

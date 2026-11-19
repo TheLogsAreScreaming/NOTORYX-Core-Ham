@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12488,4 +12487,50 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get traffic_cardHint => 'Prikaže pot na zemljevidu';
+
+  @override
+  String get stale_setting => 'Označi vozlišča kot zastarela po';
+
+  @override
+  String get stale_settingHint =>
+      'Stiki in repetitorji, ki jih toliko časa ni bilo slišati, so na seznamu označeni kot zastareli in na zemljevidu zbledijo.';
+
+  @override
+  String get stale_off => 'Izklop';
+
+  @override
+  String stale_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count h',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_days(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count d',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_badge(String age) {
+    return 'zastarelo · $age';
+  }
+
+  @override
+  String get rangeRings_toggle => 'Krogi razdalje';
+
+  @override
+  String get rangeRings_hint =>
+      'Krogi razdalje okoli vašega položaja, prilagojeni pogledu';
+
+  @override
+  String get rangeRings_noPosition =>
+      'Vaš položaj še ni znan, zato krogov razdalje ni mogoče narisati.';
 }

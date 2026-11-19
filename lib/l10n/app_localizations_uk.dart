@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12527,4 +12526,50 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get traffic_cardHint => 'Показує маршрут на карті';
+
+  @override
+  String get stale_setting => 'Позначати вузли застарілими через';
+
+  @override
+  String get stale_settingHint =>
+      'Контакти й ретранслятори, яких не було чути стільки часу, позначаються у списку як застарілі й бліднуть на мапі.';
+
+  @override
+  String get stale_off => 'Вимк.';
+
+  @override
+  String stale_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count год',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_days(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count дн.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_badge(String age) {
+    return 'застарілий · $age';
+  }
+
+  @override
+  String get rangeRings_toggle => 'Кільця відстані';
+
+  @override
+  String get rangeRings_hint =>
+      'Кільця відстані навколо вашої позиції, за розміром огляду';
+
+  @override
+  String get rangeRings_noPosition =>
+      'Ваша позиція ще невідома, тому кільця відстані не можна намалювати.';
 }

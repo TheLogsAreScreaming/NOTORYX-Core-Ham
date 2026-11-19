@@ -4753,5 +4753,14 @@
   "traffic_age": "{seconds} s",
   "traffic_notOnMapList": "Inte på kartan: {names}",
   "traffic_unknown": "Okänd",
-  "traffic_cardHint": "Visar vägen på kartan"
+  "traffic_cardHint": "Visar vägen på kartan",
+  "stale_setting": "Markera noder som inaktuella efter",
+  "stale_settingHint": "Kontakter och repeatrar som inte hörts på så länge markeras som inaktuella i listan och tonas ned på kartan.",
+  "stale_off": "Av",
+  "stale_hours": "{count, plural, other{{count} h}}",
+  "stale_days": "{count, plural, =1{1 dag} other{{count} dagar}}",
+  "stale_badge": "inaktuell · {age}",
+  "rangeRings_toggle": "Avståndsringar",
+  "rangeRings_hint": "Avståndsringar runt din position, anpassade till vyn",
+  "rangeRings_noPosition": "Din position är inte känd än, så avståndsringar kan inte ritas."
 }

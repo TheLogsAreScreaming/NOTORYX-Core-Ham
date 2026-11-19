@@ -4758,5 +4758,14 @@
   "traffic_age": "{seconds}秒",
   "traffic_notOnMapList": "不在地图上：{names}",
   "traffic_unknown": "未知",
-  "traffic_cardHint": "在地图上显示路线"
+  "traffic_cardHint": "在地图上显示路线",
+  "stale_setting": "节点标记为过时的时间",
+  "stale_settingHint": "超过此时间未收到的联系人和中继器会在列表中标记为过时，并在地图上淡化显示。",
+  "stale_off": "关闭",
+  "stale_hours": "{count, plural, other{{count} 小时}}",
+  "stale_days": "{count, plural, other{{count} 天}}",
+  "stale_badge": "过时 · {age}",
+  "rangeRings_toggle": "距离圈",
+  "rangeRings_hint": "以你的位置为中心、按视图大小绘制的距离圈",
+  "rangeRings_noPosition": "你的位置尚未知，无法绘制距离圈。"
 }

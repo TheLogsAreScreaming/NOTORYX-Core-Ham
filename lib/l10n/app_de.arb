@@ -4887,5 +4887,14 @@
   "traffic_age": "{seconds} s",
   "traffic_notOnMapList": "Nicht auf der Karte: {names}",
   "traffic_unknown": "Unbekannt",
-  "traffic_cardHint": "Zeigt die Route auf der Karte"
+  "traffic_cardHint": "Zeigt die Route auf der Karte",
+  "stale_setting": "Knoten als veraltet markieren nach",
+  "stale_settingHint": "Kontakte und Repeater, die so lange nicht gehört wurden, werden in der Liste als veraltet markiert und auf der Karte blasser gezeigt.",
+  "stale_off": "Aus",
+  "stale_hours": "{count, plural, other{{count} h}}",
+  "stale_days": "{count, plural, =1{1 Tag} other{{count} Tage}}",
+  "stale_badge": "veraltet · {age}",
+  "rangeRings_toggle": "Entfernungsringe",
+  "rangeRings_hint": "Entfernungsringe um Ihre Position, passend zur Ansicht",
+  "rangeRings_noPosition": "Ihre Position ist noch unbekannt, daher können keine Entfernungsringe gezeichnet werden."
 }

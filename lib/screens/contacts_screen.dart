@@ -15,6 +15,8 @@ import '../connector/meshcore_protocol.dart';
 import '../models/contact.dart';
 import '../l10n/contact_localization.dart';
 import '../models/contact_group.dart';
+import '../models/node_staleness.dart';
+import '../services/app_settings_service.dart';
 import '../services/ui_view_state_service.dart';
 import '../theme/mesh_theme.dart';
 import '../utils/contact_search.dart';
@@ -747,6 +749,11 @@ class _ContactsScreenState extends State<ContactsScreen>
 
   Widget _buildContactsBody(BuildContext context, MeshCoreConnector connector) {
     final viewState = context.watch<UiViewStateService>();
+    final staleAfter = staleAfterFromHours(
+      context.select<AppSettingsService?, int>(
+        (s) => s?.settings.staleAfterHours ?? 24,
+      ),
+    );
     final contacts = connector.contacts;
     final waitingForInitialContacts =
         connector.isConnected &&
@@ -983,6 +990,11 @@ class _ContactsScreenState extends State<ContactsScreen>
                             contact: contact,
                             pathHashByteWidth: connector.pathHashByteWidth,
                             lastSeen: _resolveLastSeen(contact),
+                            stale: isStale(
+                              contact.lastSeen,
+                              DateTime.now(),
+                              staleAfter,
+                            ),
                             unreadCount: unreadCount,
                             isFavorite: contact.isFavorite,
                             onTap: () => _openChat(context, contact),
@@ -1616,6 +1628,9 @@ class _ContactTile extends StatelessWidget {
   final Contact contact;
   final int pathHashByteWidth;
   final DateTime lastSeen;
+
+  /// Not heard (no advert) within the "Mark nodes stale after" setting.
+  final bool stale;
   final int unreadCount;
   final bool isFavorite;
   final VoidCallback onTap;
@@ -1625,6 +1640,7 @@ class _ContactTile extends StatelessWidget {
     required this.contact,
     required this.pathHashByteWidth,
     required this.lastSeen,
+    this.stale = false,
     required this.unreadCount,
     required this.isFavorite,
     required this.onTap,
@@ -1652,9 +1668,13 @@ class _ContactTile extends StatelessWidget {
     final emoji = firstEmoji(contact.name);
     final hasUnread = unreadCount > 0;
     // What it is and when we last heard it; how far sits on the right.
+    // A stale node says so in words and with an icon, not by colour alone,
+    // and its age is from its last advert.
     final subtitle = [
       contact.typeLabel(l10n),
-      _formatLastSeen(context, lastSeen),
+      stale
+          ? l10n.stale_badge(_formatLastSeen(context, contact.lastSeen))
+          : _formatLastSeen(context, lastSeen),
     ].join(' · ');
 
     // A glyph, not an avatar: the node type, or the emoji it's named with.
@@ -1732,15 +1752,30 @@ class _ContactTile extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 2),
-                          Text(
-                            subtitle,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context).textTheme.bodySmall
-                                ?.copyWith(
-                                  fontSize: 13,
+                          Row(
+                            children: [
+                              if (stale) ...[
+                                Icon(
+                                  Icons.history_toggle_off,
+                                  key: const ValueKey('contact-stale-icon'),
+                                  size: 14,
                                   color: MeshPalette.ink3,
                                 ),
+                                const SizedBox(width: 4),
+                              ],
+                              Flexible(
+                                child: Text(
+                                  subtitle,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.bodySmall
+                                      ?.copyWith(
+                                        fontSize: 13,
+                                        color: MeshPalette.ink3,
+                                      ),
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -1817,6 +1852,9 @@ class _ContactTileEntrance extends StatelessWidget {
   final Contact contact;
   final int pathHashByteWidth;
   final DateTime lastSeen;
+
+  /// Not heard (no advert) within the "Mark nodes stale after" setting.
+  final bool stale;
   final int unreadCount;
   final bool isFavorite;
   final VoidCallback onTap;
@@ -1827,6 +1865,7 @@ class _ContactTileEntrance extends StatelessWidget {
     required this.contact,
     required this.pathHashByteWidth,
     required this.lastSeen,
+    this.stale = false,
     required this.unreadCount,
     required this.isFavorite,
     required this.onTap,
@@ -1841,6 +1880,7 @@ class _ContactTileEntrance extends StatelessWidget {
         contact: contact,
         pathHashByteWidth: pathHashByteWidth,
         lastSeen: lastSeen,
+        stale: stale,
         unreadCount: unreadCount,
         isFavorite: isFavorite,
         onTap: onTap,

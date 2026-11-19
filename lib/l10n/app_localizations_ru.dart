@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12531,4 +12530,50 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get traffic_cardHint => 'Показывает маршрут на карте';
+
+  @override
+  String get stale_setting => 'Отмечать узлы устаревшими через';
+
+  @override
+  String get stale_settingHint =>
+      'Контакты и ретрансляторы, которых не было слышно столько времени, отмечаются в списке как устаревшие и бледнеют на карте.';
+
+  @override
+  String get stale_off => 'Выкл.';
+
+  @override
+  String stale_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ч',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_days(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count дн.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_badge(String age) {
+    return 'устарел · $age';
+  }
+
+  @override
+  String get rangeRings_toggle => 'Кольца дальности';
+
+  @override
+  String get rangeRings_hint =>
+      'Кольца дальности вокруг вашей позиции, по размеру вида';
+
+  @override
+  String get rangeRings_noPosition =>
+      'Ваша позиция пока неизвестна, поэтому кольца дальности нельзя нарисовать.';
 }

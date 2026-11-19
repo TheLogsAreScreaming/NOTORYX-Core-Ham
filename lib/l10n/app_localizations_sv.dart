@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12394,4 +12393,51 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get traffic_cardHint => 'Visar vägen på kartan';
+
+  @override
+  String get stale_setting => 'Markera noder som inaktuella efter';
+
+  @override
+  String get stale_settingHint =>
+      'Kontakter och repeatrar som inte hörts på så länge markeras som inaktuella i listan och tonas ned på kartan.';
+
+  @override
+  String get stale_off => 'Av';
+
+  @override
+  String stale_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count h',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_days(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count dagar',
+      one: '1 dag',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_badge(String age) {
+    return 'inaktuell · $age';
+  }
+
+  @override
+  String get rangeRings_toggle => 'Avståndsringar';
+
+  @override
+  String get rangeRings_hint =>
+      'Avståndsringar runt din position, anpassade till vyn';
+
+  @override
+  String get rangeRings_noPosition =>
+      'Din position är inte känd än, så avståndsringar kan inte ritas.';
 }

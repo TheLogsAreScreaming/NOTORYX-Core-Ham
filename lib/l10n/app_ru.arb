@@ -4056,5 +4056,14 @@
   "traffic_age": "{seconds} с",
   "traffic_notOnMapList": "Нет на карте: {names}",
   "traffic_unknown": "Неизвестно",
-  "traffic_cardHint": "Показывает маршрут на карте"
+  "traffic_cardHint": "Показывает маршрут на карте",
+  "stale_setting": "Отмечать узлы устаревшими через",
+  "stale_settingHint": "Контакты и ретрансляторы, которых не было слышно столько времени, отмечаются в списке как устаревшие и бледнеют на карте.",
+  "stale_off": "Выкл.",
+  "stale_hours": "{count, plural, other{{count} ч}}",
+  "stale_days": "{count, plural, other{{count} дн.}}",
+  "stale_badge": "устарел · {age}",
+  "rangeRings_toggle": "Кольца дальности",
+  "rangeRings_hint": "Кольца дальности вокруг вашей позиции, по размеру вида",
+  "rangeRings_noPosition": "Ваша позиция пока неизвестна, поэтому кольца дальности нельзя нарисовать."
 }

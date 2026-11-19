@@ -159,6 +159,13 @@ class AppSettings {
   /// The map's telemetry badges, and which reading they show (a
   /// `TelemetryMetric` name), kept between visits.
   final bool mapShowTelemetry;
+
+  /// Hours a node may go unheard (no advert) before it's shown as stale in
+  /// the contacts list and faded on the map. 0 turns it off.
+  final int staleAfterHours;
+
+  /// Whether the map draws distance rings around your own position.
+  final bool mapShowRangeRings;
   final String mapTelemetryMetric;
 
   /// Signs every channel post, not only SOS. Each signature is one extra
@@ -298,6 +305,8 @@ class AppSettings {
     this.linkPreviews = false,
     this.autoConnectRadio = false,
     this.mapShowTelemetry = false,
+    this.staleAfterHours = 24,
+    this.mapShowRangeRings = false,
     this.mapTelemetryMetric = 'battery',
     this.signChannelPosts = false,
     this.reactionsOverRadio = 'auto',
@@ -394,6 +403,8 @@ class AppSettings {
       'link_previews': linkPreviews,
       'auto_connect_radio': autoConnectRadio,
       'map_show_telemetry': mapShowTelemetry,
+      'stale_after_hours': staleAfterHours,
+      'map_show_range_rings': mapShowRangeRings,
       'map_telemetry_metric': mapTelemetryMetric,
       'sign_channel_posts': signChannelPosts,
       'reactions_over_radio': reactionsOverRadio,
@@ -519,6 +530,8 @@ class AppSettings {
       linkPreviews: json['link_previews'] as bool? ?? false,
       autoConnectRadio: json['auto_connect_radio'] as bool? ?? false,
       mapShowTelemetry: json['map_show_telemetry'] as bool? ?? false,
+      staleAfterHours: json['stale_after_hours'] as int? ?? 24,
+      mapShowRangeRings: json['map_show_range_rings'] as bool? ?? false,
       mapTelemetryMetric: json['map_telemetry_metric'] as String? ?? 'battery',
       signChannelPosts: json['sign_channel_posts'] as bool? ?? false,
       reactionsOverRadio: switch (json['reactions_over_radio']) {
@@ -660,6 +673,8 @@ class AppSettings {
     bool? linkPreviews,
     bool? autoConnectRadio,
     bool? mapShowTelemetry,
+    int? staleAfterHours,
+    bool? mapShowRangeRings,
     String? mapTelemetryMetric,
     bool? signChannelPosts,
     String? reactionsOverRadio,
@@ -754,6 +769,8 @@ class AppSettings {
       linkPreviews: linkPreviews ?? this.linkPreviews,
       autoConnectRadio: autoConnectRadio ?? this.autoConnectRadio,
       mapShowTelemetry: mapShowTelemetry ?? this.mapShowTelemetry,
+      staleAfterHours: staleAfterHours ?? this.staleAfterHours,
+      mapShowRangeRings: mapShowRangeRings ?? this.mapShowRangeRings,
       mapTelemetryMetric: mapTelemetryMetric ?? this.mapTelemetryMetric,
       signChannelPosts: signChannelPosts ?? this.signChannelPosts,
       reactionsOverRadio: reactionsOverRadio ?? this.reactionsOverRadio,

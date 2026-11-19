@@ -4887,5 +4887,14 @@
   "traffic_age": "{seconds}秒",
   "traffic_notOnMapList": "地図外: {names}",
   "traffic_unknown": "不明",
-  "traffic_cardHint": "地図上に経路を表示"
+  "traffic_cardHint": "地図上に経路を表示",
+  "stale_setting": "ノードを古いとみなすまで",
+  "stale_settingHint": "この期間受信がない連絡先とリピーターは、リストで古いと表示され、地図では薄く表示されます。",
+  "stale_off": "オフ",
+  "stale_hours": "{count, plural, other{{count}時間}}",
+  "stale_days": "{count, plural, other{{count}日}}",
+  "stale_badge": "古い · {age}",
+  "rangeRings_toggle": "距離リング",
+  "rangeRings_hint": "表示範囲に合わせた、現在地を中心とする距離リング",
+  "rangeRings_noPosition": "現在地がまだ不明なため、距離リングを描けません。"
 }

@@ -4791,5 +4791,14 @@
   "traffic_age": "{seconds} s",
   "traffic_notOnMapList": "Poza mapą: {names}",
   "traffic_unknown": "Nieznany",
-  "traffic_cardHint": "Pokazuje trasę na mapie"
+  "traffic_cardHint": "Pokazuje trasę na mapie",
+  "stale_setting": "Oznacz węzły jako nieaktualne po",
+  "stale_settingHint": "Kontakty i przekaźniki niesłyszane tak długo są oznaczane na liście jako nieaktualne i wyblakłe na mapie.",
+  "stale_off": "Wył.",
+  "stale_hours": "{count, plural, other{{count} godz.}}",
+  "stale_days": "{count, plural, =1{1 dzień} other{{count} dni}}",
+  "stale_badge": "nieaktualny · {age}",
+  "rangeRings_toggle": "Pierścienie odległości",
+  "rangeRings_hint": "Pierścienie odległości wokół Twojej pozycji, dopasowane do widoku",
+  "rangeRings_noPosition": "Twoja pozycja nie jest jeszcze znana, więc nie można narysować pierścieni odległości."
 }

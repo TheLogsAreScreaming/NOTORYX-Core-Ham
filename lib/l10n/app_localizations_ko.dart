@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -11933,4 +11932,48 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get traffic_cardHint => '지도에 경로 표시';
+
+  @override
+  String get stale_setting => '노드를 오래됨으로 표시하는 시간';
+
+  @override
+  String get stale_settingHint =>
+      '이 기간 동안 수신되지 않은 연락처와 리피터는 목록에서 오래됨으로 표시되고 지도에서 흐리게 보입니다.';
+
+  @override
+  String get stale_off => '끄기';
+
+  @override
+  String stale_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count시간',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_days(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count일',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_badge(String age) {
+    return '오래됨 · $age';
+  }
+
+  @override
+  String get rangeRings_toggle => '거리 링';
+
+  @override
+  String get rangeRings_hint => '화면에 맞춘, 내 위치 주변의 거리 링';
+
+  @override
+  String get rangeRings_noPosition => '아직 위치를 알 수 없어 거리 링을 그릴 수 없습니다.';
 }

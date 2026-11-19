@@ -23,6 +23,8 @@ import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../l10n/l10n.dart';
 import '../models/app_settings.dart';
+import '../models/node_staleness.dart';
+import '../widgets/range_rings_layer.dart';
 import '../models/channel.dart';
 import '../models/contact.dart';
 import '../l10n/contact_localization.dart';
@@ -158,6 +160,21 @@ class _MapScreenState extends State<MapScreen> {
     if (d.inMinutes <= 60) return _NodeAge.online;
     if (d.inHours <= 24) return _NodeAge.recent;
     return _NodeAge.stale;
+  }
+
+  /// Whether [contact] hasn't advertised within the "Mark nodes stale
+  /// after" setting; its marker is drawn faded.
+  bool _isNodeStale(Contact contact, int staleAfterHours) => isStale(
+    contact.lastSeen,
+    DateTime.now(),
+    staleAfterFromHours(staleAfterHours),
+  );
+
+  /// Your own position from the radio, or null when it isn't known.
+  LatLng? _selfPosition(MeshCoreConnector connector) {
+    final lat = connector.selfLatitude, lon = connector.selfLongitude;
+    if (lat == null || lon == null || (lat == 0 && lon == 0)) return null;
+    return LatLng(lat, lon);
   }
 
   void _selectNode(Contact contact, {LatLng? guessedPosition}) {
@@ -964,6 +981,13 @@ class _MapScreenState extends State<MapScreen> {
                       ),
                     if (sharedMarkerPolylines.isNotEmpty)
                       PolylineLayer(polylines: sharedMarkerPolylines),
+                    if (settings.mapShowRangeRings)
+                      if (_selfPosition(connector) case final self?)
+                        RangeRingsLayer(
+                          centre: self,
+                          units: settings.unitSystem,
+                          dark: _useDarkOverlay,
+                        ),
                     MarkerLayer(
                       markers: [
                         if (highlightPosition != null)
@@ -1170,8 +1194,11 @@ class _MapScreenState extends State<MapScreen> {
   }) {
     final visibleContactsSignature = Object.hashAll(
       contacts.map(
-        (contact) =>
-            Object.hash(_mapContactSignature(contact), _ageOf(contact)),
+        (contact) => Object.hash(
+          _mapContactSignature(contact),
+          _ageOf(contact),
+          _isNodeStale(contact, settings.staleAfterHours),
+        ),
       ),
     );
     final key = _NodeMarkersCacheKey(
@@ -1644,6 +1671,10 @@ class _MapScreenState extends State<MapScreen> {
     final online = age == _NodeAge.online;
     final batteryLow = _isBatteryLow(contact);
     final size = selected ? 46.0 : (dot ? 22.0 : 40.0);
+    final faded = _isNodeStale(
+      contact,
+      context.read<AppSettingsService>().settings.staleAfterHours,
+    );
     return Marker(
       point: LatLng(contact.latitude!, contact.longitude!),
       width: size,
@@ -1662,36 +1693,39 @@ class _MapScreenState extends State<MapScreen> {
           onTap: () => _isBuildingPathTrace
               ? _addToPath(context, contact)
               : _selectNode(contact),
-          child: Center(
-            child: dot && !selected
-                ? Container(
-                    width: 15,
-                    height: 15,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: baseColor,
-                      border: Border.all(
-                        color: MapPalette.markerOutline,
-                        width: 2,
-                      ),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: MapPalette.markerShadow,
-                          blurRadius: 6,
-                          offset: Offset(0, 2),
+          child: Opacity(
+            opacity: faded ? 0.45 : 1,
+            child: Center(
+              child: dot && !selected
+                  ? Container(
+                      width: 15,
+                      height: 15,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: baseColor,
+                        border: Border.all(
+                          color: MapPalette.markerOutline,
+                          width: 2,
                         ),
-                      ],
+                        boxShadow: const [
+                          BoxShadow(
+                            color: MapPalette.markerShadow,
+                            blurRadius: 6,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                    )
+                  : _buildNodeMarkerWidget(
+                      color: baseColor,
+                      icon: _getNodeIcon(contact.type),
+                      selected: selected,
+                      stale: stale,
+                      online: online,
+                      batteryLow: batteryLow,
+                      square: contact.type == advTypeRepeater,
                     ),
-                  )
-                : _buildNodeMarkerWidget(
-                    color: baseColor,
-                    icon: _getNodeIcon(contact.type),
-                    selected: selected,
-                    stale: stale,
-                    online: online,
-                    batteryLow: batteryLow,
-                    square: contact.type == advTypeRepeater,
-                  ),
+            ),
           ),
         ),
       ),
@@ -3740,6 +3774,29 @@ class _MapScreenState extends State<MapScreen> {
                               service.setMapShowOtherNodes(value),
                         ),
                         SectionHeader(sheetContext.l10n.map_markers),
+                        SwitchListTile(
+                          key: const ValueKey('map-range-rings'),
+                          secondary: const Icon(Icons.track_changes),
+                          title: Text(sheetContext.l10n.rangeRings_toggle),
+                          subtitle: Text(sheetContext.l10n.rangeRings_hint),
+                          value: settings.mapShowRangeRings,
+                          dense: true,
+                          onChanged: (value) {
+                            service.setMapShowRangeRings(value);
+                            if (value &&
+                                _selfPosition(
+                                      sheetContext.read<MeshCoreConnector>(),
+                                    ) ==
+                                    null) {
+                              showDismissibleSnackBar(
+                                sheetContext,
+                                content: Text(
+                                  sheetContext.l10n.rangeRings_noPosition,
+                                ),
+                              );
+                            }
+                          },
+                        ),
                         SwitchListTile(
                           title: Text(sheetContext.l10n.map_showSharedMarkers),
                           value: settings.mapShowMarkers,

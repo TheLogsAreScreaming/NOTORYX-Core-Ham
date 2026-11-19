@@ -4753,5 +4753,14 @@
   "traffic_age": "{seconds} s",
   "traffic_notOnMapList": "Fora do mapa: {names}",
   "traffic_unknown": "Desconhecido",
-  "traffic_cardHint": "Mostra a rota no mapa"
+  "traffic_cardHint": "Mostra a rota no mapa",
+  "stale_setting": "Marcar nós como inativos após",
+  "stale_settingHint": "Contactos e repetidores não ouvidos durante este tempo são marcados como inativos na lista e esbatidos no mapa.",
+  "stale_off": "Desligado",
+  "stale_hours": "{count, plural, other{{count} h}}",
+  "stale_days": "{count, plural, =1{1 dia} other{{count} dias}}",
+  "stale_badge": "inativo · {age}",
+  "rangeRings_toggle": "Anéis de distância",
+  "rangeRings_hint": "Anéis de distância à volta da sua posição, ajustados à vista",
+  "rangeRings_noPosition": "A sua posição ainda não é conhecida, por isso os anéis de distância não podem ser desenhados."
 }
