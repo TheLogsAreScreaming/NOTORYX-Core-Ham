@@ -12488,4 +12488,206 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'Je positie is nog niet bekend, dus afstandsringen kunnen niet getekend worden.';
+
+  @override
+  String get sarneg_title => 'SARNEG-codewoord';
+
+  @override
+  String get sarneg_toolSubtitle =>
+      'Stuur coördinaten en frequenties als codeletters';
+
+  @override
+  String get sarneg_intro =>
+      'Spreek een woord van 10 letters af zonder dubbele letter. De eerste letter staat voor 0, de volgende voor 1, enzovoort, zodat de cijfers in een bericht als letters worden verzonden.';
+
+  @override
+  String get sarneg_notEncryption =>
+      'SARNEG verbergt getallen (coördinaten, frequenties, tijden) voor een toevallige luisteraar. Het is geen versleuteling: wie een paar berichten hoort, kan het woord achterhalen. Gebruik voor belangrijke zaken privékanalen.';
+
+  @override
+  String get sarneg_noWord => 'Nog geen codewoord op deze telefoon.';
+
+  @override
+  String get sarneg_typeWord => 'Woord typen';
+
+  @override
+  String get sarneg_scanOrPaste => 'Scannen of plakken';
+
+  @override
+  String get sarneg_change => 'Wijzigen';
+
+  @override
+  String get sarneg_share => 'Delen';
+
+  @override
+  String get sarneg_forget => 'Vergeten';
+
+  @override
+  String get sarneg_forgetTitle => 'Codewoorden vergeten?';
+
+  @override
+  String get sarneg_forgetBody =>
+      'Al ontvangen berichten blijven staan, maar deze telefoon kan ze niet meer decoderen.';
+
+  @override
+  String get sarneg_cancel => 'Annuleren';
+
+  @override
+  String get sarneg_save => 'Opslaan';
+
+  @override
+  String get sarneg_done => 'Klaar';
+
+  @override
+  String get sarneg_todayWord => 'Woord van vandaag';
+
+  @override
+  String get sarneg_todayWordDated => 'Woord van vandaag (gedateerd)';
+
+  @override
+  String get sarneg_show => 'Woord tonen';
+
+  @override
+  String get sarneg_hide => 'Woord verbergen';
+
+  @override
+  String get sarneg_datedTitle => 'Woorden voor bepaalde dagen';
+
+  @override
+  String get sarneg_datedHint =>
+      'Op deze dagen vervangt het gedateerde woord het hoofdwoord. Oude dagen worden verwijderd.';
+
+  @override
+  String get sarneg_addDay => 'Dag toevoegen';
+
+  @override
+  String sarneg_removeDay(String day) {
+    return '$day verwijderen';
+  }
+
+  @override
+  String get sarneg_dayPickerHelp => 'Dag voor dit woord';
+
+  @override
+  String sarneg_wordForDay(String day) {
+    return 'Woord voor $day';
+  }
+
+  @override
+  String sarneg_maxDated(int count) {
+    return 'Hoogstens $count gedateerde woorden';
+  }
+
+  @override
+  String get sarneg_setTitle => 'Codewoord instellen';
+
+  @override
+  String get sarneg_changeTitle => 'Codewoord wijzigen';
+
+  @override
+  String get sarneg_problemLength => 'Gebruik precies 10 letters';
+
+  @override
+  String get sarneg_problemLetters => 'Gebruik alleen de letters A tot Z';
+
+  @override
+  String get sarneg_problemRepeats => 'Geen letter mag twee keer voorkomen';
+
+  @override
+  String get sarneg_tryTitle => 'Met de hand coderen of decoderen';
+
+  @override
+  String get sarneg_numbersToEncode => 'Te coderen getallen';
+
+  @override
+  String get sarneg_lettersToDecode => 'Te decoderen letters';
+
+  @override
+  String get sarneg_copy => 'Kopiëren';
+
+  @override
+  String get sarneg_copied => 'Gekopieerd';
+
+  @override
+  String get sarneg_shareTitle => 'Codewoord delen';
+
+  @override
+  String get sarneg_shareBody =>
+      'Laat dit persoonlijk aan je team zien. Iedereen die het scant, kan je SARNEG-berichten lezen.';
+
+  @override
+  String get sarneg_copyText => 'Kopiëren als tekst';
+
+  @override
+  String get sarneg_copiedPrivate =>
+      'Gekopieerd. Plak het alleen op een privéplek.';
+
+  @override
+  String get sarneg_importTitle => 'Codewoord ophalen';
+
+  @override
+  String get sarneg_scanQr => 'QR-code scannen';
+
+  @override
+  String get sarneg_pasteLabel => 'Of plak de tekst';
+
+  @override
+  String get sarneg_useWord => 'Dit woord gebruiken';
+
+  @override
+  String get sarneg_saved => 'Codewoord opgeslagen';
+
+  @override
+  String get sarneg_badShare => 'Geen geldig SARNEG-codewoord';
+
+  @override
+  String get sarneg_cameraOff =>
+      'Camera niet beschikbaar. Plak de tekst hieronder.';
+
+  @override
+  String get sarneg_composeTitle => 'Getallen in SARNEG versturen';
+
+  @override
+  String get sarneg_composeHint =>
+      'Cijfers gaan als codeletters de lucht in. Andere woorden worden verzonden zoals ze zijn.';
+
+  @override
+  String get sarneg_numbersToSend => 'Te versturen getallen';
+
+  @override
+  String get sarneg_addPosition => 'Mijn positie toevoegen';
+
+  @override
+  String get sarneg_goesOutAs => 'Wordt verzonden als';
+
+  @override
+  String get sarneg_putInMessage => 'In bericht zetten';
+
+  @override
+  String get sarneg_needWord =>
+      'Stel eerst het codewoord van je team in. Iedereen die de getallen moet lezen, heeft hetzelfde woord nodig.';
+
+  @override
+  String get sarneg_locationOff => 'Locatie staat uit voor deze app';
+
+  @override
+  String get sarneg_noFix =>
+      'Nog geen positie. Probeer het opnieuw in de open lucht.';
+
+  @override
+  String get sarneg_composeTooltip => 'Getallen in SARNEG versturen';
+
+  @override
+  String get sarneg_tapToDecode => 'SARNEG · tik om te decoderen';
+
+  @override
+  String get sarneg_noWordSet => 'SARNEG · geen codewoord ingesteld';
+
+  @override
+  String sarneg_decoded(String text) {
+    return 'Gedecodeerd: $text';
+  }
+
+  @override
+  String get sarneg_decodeA11y => 'SARNEG-getallen decoderen';
 }

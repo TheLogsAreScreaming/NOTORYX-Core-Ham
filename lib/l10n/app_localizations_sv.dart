@@ -12440,4 +12440,205 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'Din position är inte känd än, så avståndsringar kan inte ritas.';
+
+  @override
+  String get sarneg_title => 'SARNEG-kodord';
+
+  @override
+  String get sarneg_toolSubtitle =>
+      'Skicka koordinater och frekvenser som kodbokstäver';
+
+  @override
+  String get sarneg_intro =>
+      'Kom överens om ett ord på 10 bokstäver utan upprepad bokstav. Första bokstaven står för 0, nästa för 1 och så vidare, så att siffrorna i ett meddelande skickas som bokstäver.';
+
+  @override
+  String get sarneg_notEncryption =>
+      'SARNEG döljer siffror (koordinater, frekvenser, tider) för en tillfällig lyssnare. Det är inte kryptering: den som hör några meddelanden kan räkna ut ordet. Använd privata kanaler för det som är viktigt.';
+
+  @override
+  String get sarneg_noWord => 'Inget kodord på den här telefonen än.';
+
+  @override
+  String get sarneg_typeWord => 'Skriv ett ord';
+
+  @override
+  String get sarneg_scanOrPaste => 'Skanna eller klistra in';
+
+  @override
+  String get sarneg_change => 'Ändra';
+
+  @override
+  String get sarneg_share => 'Dela';
+
+  @override
+  String get sarneg_forget => 'Glöm';
+
+  @override
+  String get sarneg_forgetTitle => 'Glömma kodorden?';
+
+  @override
+  String get sarneg_forgetBody =>
+      'Meddelanden som redan tagits emot finns kvar, men den här telefonen kan inte längre avkoda dem.';
+
+  @override
+  String get sarneg_cancel => 'Avbryt';
+
+  @override
+  String get sarneg_save => 'Spara';
+
+  @override
+  String get sarneg_done => 'Klar';
+
+  @override
+  String get sarneg_todayWord => 'Dagens ord';
+
+  @override
+  String get sarneg_todayWordDated => 'Dagens ord (daterat)';
+
+  @override
+  String get sarneg_show => 'Visa ordet';
+
+  @override
+  String get sarneg_hide => 'Dölj ordet';
+
+  @override
+  String get sarneg_datedTitle => 'Ord för vissa dagar';
+
+  @override
+  String get sarneg_datedHint =>
+      'De här dagarna ersätter det daterade ordet huvudordet. Gamla dagar tas bort.';
+
+  @override
+  String get sarneg_addDay => 'Lägg till en dag';
+
+  @override
+  String sarneg_removeDay(String day) {
+    return 'Ta bort $day';
+  }
+
+  @override
+  String get sarneg_dayPickerHelp => 'Dag för det här ordet';
+
+  @override
+  String sarneg_wordForDay(String day) {
+    return 'Ord för $day';
+  }
+
+  @override
+  String sarneg_maxDated(int count) {
+    return 'Högst $count daterade ord';
+  }
+
+  @override
+  String get sarneg_setTitle => 'Ange kodordet';
+
+  @override
+  String get sarneg_changeTitle => 'Ändra kodordet';
+
+  @override
+  String get sarneg_problemLength => 'Använd exakt 10 bokstäver';
+
+  @override
+  String get sarneg_problemLetters => 'Använd bara bokstäverna A till Z';
+
+  @override
+  String get sarneg_problemRepeats => 'Ingen bokstav får förekomma två gånger';
+
+  @override
+  String get sarneg_tryTitle => 'Koda eller avkoda för hand';
+
+  @override
+  String get sarneg_numbersToEncode => 'Siffror att koda';
+
+  @override
+  String get sarneg_lettersToDecode => 'Bokstäver att avkoda';
+
+  @override
+  String get sarneg_copy => 'Kopiera';
+
+  @override
+  String get sarneg_copied => 'Kopierat';
+
+  @override
+  String get sarneg_shareTitle => 'Dela kodordet';
+
+  @override
+  String get sarneg_shareBody =>
+      'Visa det här för ditt team personligen. Den som skannar det kan läsa era SARNEG-meddelanden.';
+
+  @override
+  String get sarneg_copyText => 'Kopiera som text';
+
+  @override
+  String get sarneg_copiedPrivate =>
+      'Kopierat. Klistra bara in det på ett privat ställe.';
+
+  @override
+  String get sarneg_importTitle => 'Hämta ett kodord';
+
+  @override
+  String get sarneg_scanQr => 'Skanna QR-kod';
+
+  @override
+  String get sarneg_pasteLabel => 'Eller klistra in texten';
+
+  @override
+  String get sarneg_useWord => 'Använd det här ordet';
+
+  @override
+  String get sarneg_saved => 'Kodordet sparat';
+
+  @override
+  String get sarneg_badShare => 'Inte ett giltigt SARNEG-kodord';
+
+  @override
+  String get sarneg_cameraOff =>
+      'Kameran är inte tillgänglig. Klistra in texten nedan.';
+
+  @override
+  String get sarneg_composeTitle => 'Skicka siffror i SARNEG';
+
+  @override
+  String get sarneg_composeHint =>
+      'Siffror skickas som kodbokstäver. Andra ord skickas som de är.';
+
+  @override
+  String get sarneg_numbersToSend => 'Siffror att skicka';
+
+  @override
+  String get sarneg_addPosition => 'Lägg till min position';
+
+  @override
+  String get sarneg_goesOutAs => 'Skickas som';
+
+  @override
+  String get sarneg_putInMessage => 'Lägg i meddelandet';
+
+  @override
+  String get sarneg_needWord =>
+      'Ange först teamets kodord. Alla som ska läsa siffrorna behöver samma ord.';
+
+  @override
+  String get sarneg_locationOff => 'Plats är avstängd för den här appen';
+
+  @override
+  String get sarneg_noFix => 'Ingen position än. Försök igen utomhus.';
+
+  @override
+  String get sarneg_composeTooltip => 'Skicka siffror i SARNEG';
+
+  @override
+  String get sarneg_tapToDecode => 'SARNEG · tryck för att avkoda';
+
+  @override
+  String get sarneg_noWordSet => 'SARNEG · inget kodord angivet';
+
+  @override
+  String sarneg_decoded(String text) {
+    return 'Avkodat: $text';
+  }
+
+  @override
+  String get sarneg_decodeA11y => 'Avkoda SARNEG-siffror';
 }

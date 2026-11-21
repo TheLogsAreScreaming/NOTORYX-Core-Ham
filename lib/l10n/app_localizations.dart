@@ -20730,6 +20730,372 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your position isn\'t known yet, so range rings can\'t be drawn.'**
   String get rangeRings_noPosition;
+
+  /// SARNEG: Search And Rescue Numerical Encryption Grid. Keep the word SARNEG untranslated.
+  ///
+  /// In en, this message translates to:
+  /// **'SARNEG code word'**
+  String get sarneg_title;
+
+  /// No description provided for @sarneg_toolSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Send grids and frequencies as code letters'**
+  String get sarneg_toolSubtitle;
+
+  /// No description provided for @sarneg_intro.
+  ///
+  /// In en, this message translates to:
+  /// **'Agree a 10-letter word with no repeated letter. Its first letter stands for 0, the next for 1, and so on, so the numbers in a message go out as letters.'**
+  String get sarneg_intro;
+
+  /// No description provided for @sarneg_notEncryption.
+  ///
+  /// In en, this message translates to:
+  /// **'SARNEG hides numbers (grids, frequencies, times) from a casual listener. It is not encryption: someone who hears a few messages can work out the word. Keep using private channels for anything that matters.'**
+  String get sarneg_notEncryption;
+
+  /// No description provided for @sarneg_noWord.
+  ///
+  /// In en, this message translates to:
+  /// **'No code word on this phone yet.'**
+  String get sarneg_noWord;
+
+  /// No description provided for @sarneg_typeWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Type a word'**
+  String get sarneg_typeWord;
+
+  /// No description provided for @sarneg_scanOrPaste.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan or paste'**
+  String get sarneg_scanOrPaste;
+
+  /// No description provided for @sarneg_change.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get sarneg_change;
+
+  /// No description provided for @sarneg_share.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get sarneg_share;
+
+  /// No description provided for @sarneg_forget.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget'**
+  String get sarneg_forget;
+
+  /// No description provided for @sarneg_forgetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget the code words?'**
+  String get sarneg_forgetTitle;
+
+  /// No description provided for @sarneg_forgetBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages already received stay as they are, but this phone can no longer decode them.'**
+  String get sarneg_forgetBody;
+
+  /// No description provided for @sarneg_cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get sarneg_cancel;
+
+  /// No description provided for @sarneg_save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get sarneg_save;
+
+  /// No description provided for @sarneg_done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get sarneg_done;
+
+  /// No description provided for @sarneg_todayWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s word'**
+  String get sarneg_todayWord;
+
+  /// No description provided for @sarneg_todayWordDated.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s word (dated)'**
+  String get sarneg_todayWordDated;
+
+  /// No description provided for @sarneg_show.
+  ///
+  /// In en, this message translates to:
+  /// **'Show the word'**
+  String get sarneg_show;
+
+  /// No description provided for @sarneg_hide.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide the word'**
+  String get sarneg_hide;
+
+  /// No description provided for @sarneg_datedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Words for given days'**
+  String get sarneg_datedTitle;
+
+  /// No description provided for @sarneg_datedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'On these days the dated word replaces the main one. Old days are removed.'**
+  String get sarneg_datedHint;
+
+  /// No description provided for @sarneg_addDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a day'**
+  String get sarneg_addDay;
+
+  /// No description provided for @sarneg_removeDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {day}'**
+  String sarneg_removeDay(String day);
+
+  /// No description provided for @sarneg_dayPickerHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Day for this word'**
+  String get sarneg_dayPickerHelp;
+
+  /// No description provided for @sarneg_wordForDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Word for {day}'**
+  String sarneg_wordForDay(String day);
+
+  /// No description provided for @sarneg_maxDated.
+  ///
+  /// In en, this message translates to:
+  /// **'At most {count} dated words'**
+  String sarneg_maxDated(int count);
+
+  /// No description provided for @sarneg_setTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set the code word'**
+  String get sarneg_setTitle;
+
+  /// No description provided for @sarneg_changeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Change the code word'**
+  String get sarneg_changeTitle;
+
+  /// No description provided for @sarneg_problemLength.
+  ///
+  /// In en, this message translates to:
+  /// **'Use exactly 10 letters'**
+  String get sarneg_problemLength;
+
+  /// No description provided for @sarneg_problemLetters.
+  ///
+  /// In en, this message translates to:
+  /// **'Use only the letters A to Z'**
+  String get sarneg_problemLetters;
+
+  /// No description provided for @sarneg_problemRepeats.
+  ///
+  /// In en, this message translates to:
+  /// **'No letter may appear twice'**
+  String get sarneg_problemRepeats;
+
+  /// No description provided for @sarneg_tryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Encode or decode by hand'**
+  String get sarneg_tryTitle;
+
+  /// No description provided for @sarneg_numbersToEncode.
+  ///
+  /// In en, this message translates to:
+  /// **'Numbers to encode'**
+  String get sarneg_numbersToEncode;
+
+  /// No description provided for @sarneg_lettersToDecode.
+  ///
+  /// In en, this message translates to:
+  /// **'Letters to decode'**
+  String get sarneg_lettersToDecode;
+
+  /// No description provided for @sarneg_copy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy'**
+  String get sarneg_copy;
+
+  /// No description provided for @sarneg_copied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied'**
+  String get sarneg_copied;
+
+  /// No description provided for @sarneg_shareTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Share the code word'**
+  String get sarneg_shareTitle;
+
+  /// No description provided for @sarneg_shareBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Show this to your team in person. Anyone who scans it can read your SARNEG messages.'**
+  String get sarneg_shareBody;
+
+  /// No description provided for @sarneg_copyText.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy as text'**
+  String get sarneg_copyText;
+
+  /// No description provided for @sarneg_copiedPrivate.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied. Paste it only somewhere private.'**
+  String get sarneg_copiedPrivate;
+
+  /// No description provided for @sarneg_importTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Get a code word'**
+  String get sarneg_importTitle;
+
+  /// No description provided for @sarneg_scanQr.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan QR code'**
+  String get sarneg_scanQr;
+
+  /// No description provided for @sarneg_pasteLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Or paste the text'**
+  String get sarneg_pasteLabel;
+
+  /// No description provided for @sarneg_useWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Use this word'**
+  String get sarneg_useWord;
+
+  /// No description provided for @sarneg_saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Code word saved'**
+  String get sarneg_saved;
+
+  /// No description provided for @sarneg_badShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Not a valid SARNEG code word'**
+  String get sarneg_badShare;
+
+  /// No description provided for @sarneg_cameraOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera unavailable. Paste the text below.'**
+  String get sarneg_cameraOff;
+
+  /// No description provided for @sarneg_composeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Send numbers in SARNEG'**
+  String get sarneg_composeTitle;
+
+  /// No description provided for @sarneg_composeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Digits go out as code letters. Other words are sent as they are.'**
+  String get sarneg_composeHint;
+
+  /// No description provided for @sarneg_numbersToSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Numbers to send'**
+  String get sarneg_numbersToSend;
+
+  /// No description provided for @sarneg_addPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Add my position'**
+  String get sarneg_addPosition;
+
+  /// No description provided for @sarneg_goesOutAs.
+  ///
+  /// In en, this message translates to:
+  /// **'Goes out as'**
+  String get sarneg_goesOutAs;
+
+  /// No description provided for @sarneg_putInMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Put in message'**
+  String get sarneg_putInMessage;
+
+  /// No description provided for @sarneg_needWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Set your team\'s code word first. Everyone who should read the numbers needs the same word.'**
+  String get sarneg_needWord;
+
+  /// No description provided for @sarneg_locationOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Location is off for this app'**
+  String get sarneg_locationOff;
+
+  /// No description provided for @sarneg_noFix.
+  ///
+  /// In en, this message translates to:
+  /// **'No position fix yet. Try again in the open.'**
+  String get sarneg_noFix;
+
+  /// No description provided for @sarneg_composeTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Send numbers in SARNEG'**
+  String get sarneg_composeTooltip;
+
+  /// No description provided for @sarneg_tapToDecode.
+  ///
+  /// In en, this message translates to:
+  /// **'SARNEG · tap to decode'**
+  String get sarneg_tapToDecode;
+
+  /// No description provided for @sarneg_noWordSet.
+  ///
+  /// In en, this message translates to:
+  /// **'SARNEG · no code word set'**
+  String get sarneg_noWordSet;
+
+  /// No description provided for @sarneg_decoded.
+  ///
+  /// In en, this message translates to:
+  /// **'Decoded: {text}'**
+  String sarneg_decoded(String text);
+
+  /// No description provided for @sarneg_decodeA11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Decode SARNEG numbers'**
+  String get sarneg_decodeA11y;
 }
 
 class _AppLocalizationsDelegate
