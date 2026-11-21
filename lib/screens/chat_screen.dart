@@ -65,8 +65,6 @@ import '../widgets/mesh_ui.dart';
 import '../widgets/node_avatar.dart';
 import 'telemetry_screen.dart';
 import '../widgets/ui/mesh_states.dart';
-import 'sarneg/sarneg.dart';
-import 'sarneg/sarneg_ui.dart';
 
 // Image messages are deliberately absent from this screen, and there is no
 // flag to flip: the AEIC wire format is `CMD_SEND_CHANNEL_DATA` (62) /
@@ -738,7 +736,6 @@ class _ChatScreenState extends State<ChatScreen> {
               // No image button here: the image wire format is GRP_DATA, a
               // channel primitive with no DM equivalent (see the note at the
               // top of this file).
-              SarnegComposeButton(controller: _textController),
               Expanded(
                 child: ValueListenableBuilder<TextEditingValue>(
                   valueListenable: _textController,
@@ -1831,20 +1828,13 @@ class _MessageBubble extends StatelessWidget {
 
     Widget buildTextContent() {
       final text = buildPlainText();
-      final sarneg = isSarnegMessage(message.text);
-      if (previewLink == null && !sarneg) return text;
+      if (previewLink == null) return text;
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           text,
-          if (sarneg)
-            SarnegDecodeLine(
-              text: message.text,
-              at: message.timestamp,
-              color: textColor,
-            ),
-          if (previewLink case final link?) LinkPreviewCard(url: link),
+          LinkPreviewCard(url: previewLink),
         ],
       );
     }
