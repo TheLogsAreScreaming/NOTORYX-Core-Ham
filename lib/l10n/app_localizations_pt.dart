@@ -12516,4 +12516,205 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'A sua posição ainda não é conhecida, por isso os anéis de distância não podem ser desenhados.';
+
+  @override
+  String get sarneg_title => 'Palavra-código SARNEG';
+
+  @override
+  String get sarneg_toolSubtitle =>
+      'Envie coordenadas e frequências como letras de código';
+
+  @override
+  String get sarneg_intro =>
+      'Combinem uma palavra de 10 letras sem letras repetidas. A primeira letra vale 0, a seguinte 1 e assim por diante, para que os números de uma mensagem saiam como letras.';
+
+  @override
+  String get sarneg_notEncryption =>
+      'O SARNEG esconde números (coordenadas, frequências, horários) de um ouvinte casual. Não é criptografia: quem ouvir algumas mensagens pode descobrir a palavra. Continue usando canais privados para o que importa.';
+
+  @override
+  String get sarneg_noWord => 'Ainda não há palavra-código neste telefone.';
+
+  @override
+  String get sarneg_typeWord => 'Digitar uma palavra';
+
+  @override
+  String get sarneg_scanOrPaste => 'Escanear ou colar';
+
+  @override
+  String get sarneg_change => 'Alterar';
+
+  @override
+  String get sarneg_share => 'Compartilhar';
+
+  @override
+  String get sarneg_forget => 'Esquecer';
+
+  @override
+  String get sarneg_forgetTitle => 'Esquecer as palavras-código?';
+
+  @override
+  String get sarneg_forgetBody =>
+      'As mensagens já recebidas continuam como estão, mas este telefone não poderá mais decodificá-las.';
+
+  @override
+  String get sarneg_cancel => 'Cancelar';
+
+  @override
+  String get sarneg_save => 'Salvar';
+
+  @override
+  String get sarneg_done => 'Concluído';
+
+  @override
+  String get sarneg_todayWord => 'Palavra de hoje';
+
+  @override
+  String get sarneg_todayWordDated => 'Palavra de hoje (com data)';
+
+  @override
+  String get sarneg_show => 'Mostrar a palavra';
+
+  @override
+  String get sarneg_hide => 'Ocultar a palavra';
+
+  @override
+  String get sarneg_datedTitle => 'Palavras para dias específicos';
+
+  @override
+  String get sarneg_datedHint =>
+      'Nesses dias, a palavra com data substitui a principal. Dias passados são removidos.';
+
+  @override
+  String get sarneg_addDay => 'Adicionar um dia';
+
+  @override
+  String sarneg_removeDay(String day) {
+    return 'Remover $day';
+  }
+
+  @override
+  String get sarneg_dayPickerHelp => 'Dia para esta palavra';
+
+  @override
+  String sarneg_wordForDay(String day) {
+    return 'Palavra para $day';
+  }
+
+  @override
+  String sarneg_maxDated(int count) {
+    return 'No máximo $count palavras com data';
+  }
+
+  @override
+  String get sarneg_setTitle => 'Definir a palavra-código';
+
+  @override
+  String get sarneg_changeTitle => 'Alterar a palavra-código';
+
+  @override
+  String get sarneg_problemLength => 'Use exatamente 10 letras';
+
+  @override
+  String get sarneg_problemLetters => 'Use apenas as letras de A a Z';
+
+  @override
+  String get sarneg_problemRepeats => 'Nenhuma letra pode aparecer duas vezes';
+
+  @override
+  String get sarneg_tryTitle => 'Codificar ou decodificar à mão';
+
+  @override
+  String get sarneg_numbersToEncode => 'Números para codificar';
+
+  @override
+  String get sarneg_lettersToDecode => 'Letras para decodificar';
+
+  @override
+  String get sarneg_copy => 'Copiar';
+
+  @override
+  String get sarneg_copied => 'Copiado';
+
+  @override
+  String get sarneg_shareTitle => 'Compartilhar a palavra-código';
+
+  @override
+  String get sarneg_shareBody =>
+      'Mostre isto à sua equipe pessoalmente. Quem escanear poderá ler suas mensagens SARNEG.';
+
+  @override
+  String get sarneg_copyText => 'Copiar como texto';
+
+  @override
+  String get sarneg_copiedPrivate =>
+      'Copiado. Cole apenas em um lugar privado.';
+
+  @override
+  String get sarneg_importTitle => 'Obter uma palavra-código';
+
+  @override
+  String get sarneg_scanQr => 'Escanear código QR';
+
+  @override
+  String get sarneg_pasteLabel => 'Ou cole o texto';
+
+  @override
+  String get sarneg_useWord => 'Usar esta palavra';
+
+  @override
+  String get sarneg_saved => 'Palavra-código salva';
+
+  @override
+  String get sarneg_badShare => 'Não é uma palavra-código SARNEG válida';
+
+  @override
+  String get sarneg_cameraOff => 'Câmera indisponível. Cole o texto abaixo.';
+
+  @override
+  String get sarneg_composeTitle => 'Enviar números em SARNEG';
+
+  @override
+  String get sarneg_composeHint =>
+      'Os dígitos saem como letras de código. As outras palavras são enviadas como estão.';
+
+  @override
+  String get sarneg_numbersToSend => 'Números para enviar';
+
+  @override
+  String get sarneg_addPosition => 'Adicionar minha posição';
+
+  @override
+  String get sarneg_goesOutAs => 'Será enviado como';
+
+  @override
+  String get sarneg_putInMessage => 'Colocar na mensagem';
+
+  @override
+  String get sarneg_needWord =>
+      'Primeiro defina a palavra-código da equipe. Todos que devem ler os números precisam da mesma palavra.';
+
+  @override
+  String get sarneg_locationOff =>
+      'A localização está desativada para este app';
+
+  @override
+  String get sarneg_noFix => 'Ainda sem posição. Tente de novo ao ar livre.';
+
+  @override
+  String get sarneg_composeTooltip => 'Enviar números em SARNEG';
+
+  @override
+  String get sarneg_tapToDecode => 'SARNEG · toque para decodificar';
+
+  @override
+  String get sarneg_noWordSet => 'SARNEG · nenhuma palavra-código';
+
+  @override
+  String sarneg_decoded(String text) {
+    return 'Decodificado: $text';
+  }
+
+  @override
+  String get sarneg_decodeA11y => 'Decodificar números SARNEG';
 }

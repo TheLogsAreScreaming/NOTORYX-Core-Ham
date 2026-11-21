@@ -11976,4 +11976,200 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get rangeRings_noPosition => '아직 위치를 알 수 없어 거리 링을 그릴 수 없습니다.';
+
+  @override
+  String get sarneg_title => 'SARNEG 코드 단어';
+
+  @override
+  String get sarneg_toolSubtitle => '좌표와 주파수를 코드 문자로 보내기';
+
+  @override
+  String get sarneg_intro =>
+      '같은 글자가 반복되지 않는 10글자 단어를 정하세요. 첫 글자는 0, 다음 글자는 1을 나타내는 식으로 메시지의 숫자가 글자로 전송됩니다.';
+
+  @override
+  String get sarneg_notEncryption =>
+      'SARNEG는 숫자(좌표, 주파수, 시간)를 우연히 듣는 사람에게서 숨깁니다. 암호화가 아닙니다. 메시지 몇 개를 들으면 단어를 알아낼 수 있습니다. 중요한 내용은 계속 비공개 채널을 사용하세요.';
+
+  @override
+  String get sarneg_noWord => '이 휴대폰에는 아직 코드 단어가 없습니다.';
+
+  @override
+  String get sarneg_typeWord => '단어 입력';
+
+  @override
+  String get sarneg_scanOrPaste => '스캔 또는 붙여넣기';
+
+  @override
+  String get sarneg_change => '변경';
+
+  @override
+  String get sarneg_share => '공유';
+
+  @override
+  String get sarneg_forget => '삭제';
+
+  @override
+  String get sarneg_forgetTitle => '코드 단어를 삭제할까요?';
+
+  @override
+  String get sarneg_forgetBody =>
+      '이미 받은 메시지는 그대로 남지만 이 휴대폰에서는 더 이상 해독할 수 없습니다.';
+
+  @override
+  String get sarneg_cancel => '취소';
+
+  @override
+  String get sarneg_save => '저장';
+
+  @override
+  String get sarneg_done => '완료';
+
+  @override
+  String get sarneg_todayWord => '오늘의 단어';
+
+  @override
+  String get sarneg_todayWordDated => '오늘의 단어(날짜 지정)';
+
+  @override
+  String get sarneg_show => '단어 보기';
+
+  @override
+  String get sarneg_hide => '단어 숨기기';
+
+  @override
+  String get sarneg_datedTitle => '특정 날짜의 단어';
+
+  @override
+  String get sarneg_datedHint => '이 날짜에는 날짜 지정 단어가 기본 단어를 대신합니다. 지난 날짜는 삭제됩니다.';
+
+  @override
+  String get sarneg_addDay => '날짜 추가';
+
+  @override
+  String sarneg_removeDay(String day) {
+    return '$day 삭제';
+  }
+
+  @override
+  String get sarneg_dayPickerHelp => '이 단어의 날짜';
+
+  @override
+  String sarneg_wordForDay(String day) {
+    return '$day의 단어';
+  }
+
+  @override
+  String sarneg_maxDated(int count) {
+    return '날짜 지정 단어는 최대 $count개입니다';
+  }
+
+  @override
+  String get sarneg_setTitle => '코드 단어 설정';
+
+  @override
+  String get sarneg_changeTitle => '코드 단어 변경';
+
+  @override
+  String get sarneg_problemLength => '정확히 10글자를 사용하세요';
+
+  @override
+  String get sarneg_problemLetters => 'A부터 Z까지의 글자만 사용하세요';
+
+  @override
+  String get sarneg_problemRepeats => '같은 글자를 두 번 쓸 수 없습니다';
+
+  @override
+  String get sarneg_tryTitle => '직접 인코딩 또는 디코딩';
+
+  @override
+  String get sarneg_numbersToEncode => '인코딩할 숫자';
+
+  @override
+  String get sarneg_lettersToDecode => '디코딩할 글자';
+
+  @override
+  String get sarneg_copy => '복사';
+
+  @override
+  String get sarneg_copied => '복사됨';
+
+  @override
+  String get sarneg_shareTitle => '코드 단어 공유';
+
+  @override
+  String get sarneg_shareBody =>
+      '팀원에게 직접 보여 주세요. 이를 스캔한 사람은 누구나 SARNEG 메시지를 읽을 수 있습니다.';
+
+  @override
+  String get sarneg_copyText => '텍스트로 복사';
+
+  @override
+  String get sarneg_copiedPrivate => '복사했습니다. 비공개 장소에만 붙여넣으세요.';
+
+  @override
+  String get sarneg_importTitle => '코드 단어 받기';
+
+  @override
+  String get sarneg_scanQr => 'QR 코드 스캔';
+
+  @override
+  String get sarneg_pasteLabel => '또는 텍스트 붙여넣기';
+
+  @override
+  String get sarneg_useWord => '이 단어 사용';
+
+  @override
+  String get sarneg_saved => '코드 단어를 저장했습니다';
+
+  @override
+  String get sarneg_badShare => '유효한 SARNEG 코드 단어가 아닙니다';
+
+  @override
+  String get sarneg_cameraOff => '카메라를 사용할 수 없습니다. 아래에 텍스트를 붙여넣으세요.';
+
+  @override
+  String get sarneg_composeTitle => 'SARNEG로 숫자 보내기';
+
+  @override
+  String get sarneg_composeHint => '숫자는 코드 문자로 전송됩니다. 다른 단어는 그대로 전송됩니다.';
+
+  @override
+  String get sarneg_numbersToSend => '보낼 숫자';
+
+  @override
+  String get sarneg_addPosition => '내 위치 추가';
+
+  @override
+  String get sarneg_goesOutAs => '전송될 내용';
+
+  @override
+  String get sarneg_putInMessage => '메시지에 넣기';
+
+  @override
+  String get sarneg_needWord =>
+      '먼저 팀의 코드 단어를 설정하세요. 숫자를 읽어야 하는 모든 사람에게 같은 단어가 필요합니다.';
+
+  @override
+  String get sarneg_locationOff => '이 앱의 위치가 꺼져 있습니다';
+
+  @override
+  String get sarneg_noFix => '아직 위치를 잡지 못했습니다. 탁 트인 곳에서 다시 시도하세요.';
+
+  @override
+  String get sarneg_composeTooltip => 'SARNEG로 숫자 보내기';
+
+  @override
+  String get sarneg_tapToDecode => 'SARNEG · 탭하여 디코딩';
+
+  @override
+  String get sarneg_noWordSet => 'SARNEG · 코드 단어 없음';
+
+  @override
+  String sarneg_decoded(String text) {
+    return '디코딩됨: $text';
+  }
+
+  @override
+  String get sarneg_decodeA11y => 'SARNEG 숫자 디코딩';
 }
