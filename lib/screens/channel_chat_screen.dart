@@ -74,6 +74,8 @@ import 'waypoints_screen.dart' show SaveWaypointButton;
 import 'region_management_screen.dart';
 import '../storage/region_store.dart';
 import '../widgets/ui/mesh_states.dart';
+import 'sarneg/sarneg.dart';
+import 'sarneg/sarneg_ui.dart';
 
 class ChannelChatScreen extends StatefulWidget {
   final Channel channel;
@@ -682,13 +684,20 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
 
     Widget buildTextContent() {
       final text = buildPlainText();
-      if (previewLink == null) return text;
+      final sarneg = isSarnegMessage(message.text);
+      if (previewLink == null && !sarneg) return text;
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           text,
-          LinkPreviewCard(url: previewLink),
+          if (sarneg)
+            SarnegDecodeLine(
+              text: message.text,
+              at: message.timestamp,
+              color: textColor,
+            ),
+          if (previewLink case final link?) LinkPreviewCard(url: link),
         ],
       );
     }
@@ -2055,6 +2064,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                       languageCode: settings.translationTargetLanguageCode,
                       onPressed: _showTranslationOptions,
                     ),
+                  SarnegComposeButton(controller: _textController),
                   Expanded(
                     child: ValueListenableBuilder<TextEditingValue>(
                       valueListenable: _textController,
