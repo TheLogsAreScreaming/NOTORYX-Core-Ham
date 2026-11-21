@@ -28,12 +28,15 @@ NOTORYX Core Ham is the amateur radio (FCC Part 97) edition of NOTORYX Core. Pai
 | Station ID | none | Your call sign ends every frame, including frames a repeater relays (§97.119) |
 | No call sign, no transmission | — | The radio stays silent until its name starts with a valid call sign |
 | Content | AES encrypted | Plain text; authentication kept (§97.113(a)(4)) |
+| SARNEG code words | Yes | **No**: see below |
 | Bands | regional presets | 33 cm (902–928 MHz) and 70 cm (420–450 MHz) only |
 | Repeater login | password sent encrypted | One-time proof; the password never goes on air |
 | Other traffic | — | Ordinary (Part 15) MeshCore traffic on the same channel is ignored |
 | Operator | — | **Licensed operator** setup: call sign, licence class and a coordination acknowledgment |
 | Power | — | Estimated output and ERP from the board's amplifier and your antenna system, flagged above 10 W (§97.311) |
 | Location | — | Cautions for the §97.303 limits: the 33 cm exclusion areas and 420–430 MHz north of Line A |
+
+**Why there are no SARNEG code words.** The other NOTORYX apps can send numbers as SARNEG code letters, so a casual listener can't read a grid or a frequency. On amateur bands, §97.113(a)(4) forbids messages encoded to hide their meaning, and hiding numbers is the whole point of SARNEG. So this app leaves it out, and it never decodes `[SARNEG]` messages either. Send numbers in plain text, or use NOTORYX Core on licence-free settings when a team needs SARNEG.
 
 The NOTORYX Ham firmware isn't compatible with ordinary MeshCore on the air. Every radio in your mesh, repeaters included, needs it.
 
