@@ -3,7 +3,7 @@
     "short_name": "NOTORYX Ham",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#150F0D",
+    "background_color": "#080808",
     "theme_color": "#FF9A3C",
     "description": "Off-grid messaging, trip check-ins and SOS over your MeshCore LoRa radio.",
     "orientation": "portrait-primary",
