@@ -17434,32 +17434,20 @@ abstract class AppLocalizations {
   /// No description provided for @theme_desc_blaze.
   ///
   /// In en, this message translates to:
-  /// **'Charcoal slate with hi-vis orange. The default.'**
+  /// **'Charcoal slate with hi-vis orange'**
   String get theme_desc_blaze;
 
-  /// No description provided for @theme_desc_neon_anarchy.
+  /// No description provided for @theme_desc_blackout.
   ///
   /// In en, this message translates to:
-  /// **'Toxic green and electric purple on black'**
-  String get theme_desc_neon_anarchy;
+  /// **'Matte black and steel. The default.'**
+  String get theme_desc_blackout;
 
   /// No description provided for @theme_desc_tactical.
   ///
   /// In en, this message translates to:
   /// **'Olive, gunmetal and earth tones for the field'**
   String get theme_desc_tactical;
-
-  /// No description provided for @theme_desc_pink_overload.
-  ///
-  /// In en, this message translates to:
-  /// **'Hot pink, bubblegum and lavender'**
-  String get theme_desc_pink_overload;
-
-  /// No description provided for @theme_desc_bare_beauty.
-  ///
-  /// In en, this message translates to:
-  /// **'Warm nude, dusty rose, cocoa and sage'**
-  String get theme_desc_bare_beauty;
 
   /// No description provided for @theme_desc_okabe_ito.
   ///
@@ -17472,84 +17460,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Dim red for working in the dark'**
   String get theme_desc_night_ops;
-
-  /// No description provided for @theme_desc_seasonal.
-  ///
-  /// In en, this message translates to:
-  /// **'Follows the season, or pick one'**
-  String get theme_desc_seasonal;
-
-  /// No description provided for @theme_seasonNow.
-  ///
-  /// In en, this message translates to:
-  /// **'Now: {season}'**
-  String theme_seasonNow(String season);
-
-  /// No description provided for @theme_season.
-  ///
-  /// In en, this message translates to:
-  /// **'Season'**
-  String get theme_season;
-
-  /// No description provided for @theme_seasonAuto.
-  ///
-  /// In en, this message translates to:
-  /// **'Automatic'**
-  String get theme_seasonAuto;
-
-  /// No description provided for @season_spring.
-  ///
-  /// In en, this message translates to:
-  /// **'Spring'**
-  String get season_spring;
-
-  /// No description provided for @season_summer.
-  ///
-  /// In en, this message translates to:
-  /// **'Summer'**
-  String get season_summer;
-
-  /// No description provided for @season_autumn.
-  ///
-  /// In en, this message translates to:
-  /// **'Autumn'**
-  String get season_autumn;
-
-  /// No description provided for @season_winter.
-  ///
-  /// In en, this message translates to:
-  /// **'Winter'**
-  String get season_winter;
-
-  /// No description provided for @season_halloween.
-  ///
-  /// In en, this message translates to:
-  /// **'Halloween'**
-  String get season_halloween;
-
-  /// No description provided for @season_christmas.
-  ///
-  /// In en, this message translates to:
-  /// **'Christmas'**
-  String get season_christmas;
-
-  /// No description provided for @season_valentine.
-  ///
-  /// In en, this message translates to:
-  /// **'Valentine\'s Day'**
-  String get season_valentine;
-
-  /// No description provided for @theme_holidays.
-  ///
-  /// In en, this message translates to:
-  /// **'Holiday colours'**
-  String get theme_holidays;
-
-  /// No description provided for @theme_holidaysHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Halloween, Christmas and Valentine\'s Day, when the season is Automatic'**
-  String get theme_holidaysHint;
 
   /// No description provided for @rxLog_title.
   ///
@@ -18078,12 +17988,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'up to {seconds} s'**
   String adminWait_upTo(int seconds);
-
-  /// No description provided for @seasonal_holidays.
-  ///
-  /// In en, this message translates to:
-  /// **'Holiday colors'**
-  String get seasonal_holidays;
 
   /// No description provided for @coords_setting.
   ///

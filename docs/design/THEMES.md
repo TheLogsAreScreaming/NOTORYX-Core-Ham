@@ -1,17 +1,31 @@
 # Themes
 
-NOTORYX Core Ham offers exactly eight themes. They are defined in `lib/theme/bastion_themes.dart`, with Seasonal's looks in `lib/theme/seasonal_theme.dart`. Each theme is one `BastionPalette`, and that palette feeds both the Material `ColorScheme` (`MeshTheme.forPalette`) and the app's own tokens (`MeshPalette`). Screens never pick colours of their own.
+NOTORYX Core Ham offers five themes. They are defined in `lib/theme/bastion_themes.dart`. Each theme is one `BastionPalette`, and that palette feeds both the Material `ColorScheme` (`MeshTheme.forPalette`) and the app's own tokens (`MeshPalette`). Screens never pick colours of their own.
 
 | # | Theme | Look | Light/dark |
 |---|---|---|---|
-| 1 | **Blaze** (default) | Charcoal slate, hi-vis orange | Dark |
-| 2 | **Neon Anarchy** | Toxic green actions, electric-purple navigation, faint terminal grid | Dark |
+| 1 | **BLACKOUT** (default) | Matte black, charcoal, gunmetal, steel and frost; monochrome | Dark |
+| 2 | **Blaze** | Charcoal slate, hi-vis orange | Dark |
 | 3 | **Tactical** | Olive, gunmetal, forest, earth | Dark |
-| 4 | **Pink Overload** | Hot pink, bubblegum, lavender, small sparkles | Light |
-| 5 | **Bare Beauty** | Warm nude and peach, dusty rose, cocoa, sage/hazel | Light |
-| 6 | **Okabe-Ito** | Okabe-Ito hues on blue-grey | Dark |
-| 7 | **Night Ops** | Near-black, restrained red | Dark |
-| 8 | **Seasonal** | Changes with the date (below) | Varies |
+| 4 | **Okabe-Ito** | Okabe-Ito hues on blue-grey | Dark |
+| 5 | **Night Ops** | Near-black, restrained red | Dark |
+
+## BLACKOUT
+
+The NOTORYX BLACKOUT brand palette:
+
+| Role | Colour | Tokens |
+|---|---|---|
+| Matte (background) | `#080808` | `bg` |
+| Charcoal (surfaces, cards) | `#242424` | `bg3`; `bg1`/`bg2`/`bg4` are steps between |
+| Gunmetal (borders, dividers, disabled) | `#484848` | `line2` |
+| Steel (secondary text, icons) | `#888888`, lifted to `#9A9A9A` | `ink4` |
+| Frost (primary text, primary accent) | `#E8E8E8` | `ink`, `accent`, `nav` |
+
+- There is no brand accent colour: buttons, the selected tab and the backdrop glow are frost.
+- Steel is lifted to `#9A9A9A` for text, because `#888888` reaches only 4.35:1 on charcoal.
+- `line3` (field and button outlines) is `#7A7A7A` so it reaches 3:1 on every surface.
+- Signal (green), warning (amber) and alert (red) keep the same colours as Blaze. They carry meaning, so they are never grey. Map markers, avatar colours and the other fixed colours below don't change either.
 
 ## What each palette defines
 
@@ -31,7 +45,7 @@ These cover backgrounds, cards, the bottom bar, buttons, text, icons, borders, i
 
 ## Rules every palette meets
 
-`test/theme/bastion_themes_test.dart` checks these for all 7 fixed themes and all 7 Seasonal looks:
+`test/theme/bastion_themes_test.dart` checks these for every theme:
 
 - **Text contrast:** at least 4.5:1 on `bg`–`bg3` for every text token and for the status and accent colours.
 - **Navigation and second hue:** at least 4.5:1 for `nav` and `magenta` on `bg`/`bg1`.
@@ -48,45 +62,25 @@ These cover backgrounds, cards, the bottom bar, buttons, text, icons, borders, i
 
 The spec's colours were kept where they passed. Where they didn't, the lightness was nudged and the hue kept. For example:
 
-- Pink Overload's text-weight pink is `#B00062`; the brighter `#FF1493` is kept for accents and glows.
+- BLACKOUT's steel is `#9A9A9A` for text instead of `#888888`.
 - Night Ops's outlines are a little lighter than specified.
-
-## Seasonal
-
-- **Automatic** follows the local date using meteorological seasons for the northern hemisphere:
-
-  | Season | Months | Colours |
-  |---|---|---|
-  | Spring | March–May | sage, lavender, pale yellow, floral pink |
-  | Summer | June–August | ocean teal, turquoise, coral, warm sand |
-  | Autumn | September–November | burnt orange, amber, forest green, deep brown |
-  | Winter | December–February | ice blue, navy, silver, frost white |
-
-- **Holiday colours** is an optional switch, off by default, and applies only in Automatic:
-
-  | Holiday | Dates | Colours |
-  |---|---|---|
-  | Halloween | 24–31 October | black, purple, pumpkin |
-  | Christmas | 1–26 December | evergreen, cranberry, gold |
-  | Valentine's Day | 7–14 February | rose, blush, burgundy |
-
-- **Override:** a season can be picked instead of Automatic.
-- **Saved in settings:** `seasonal_choice` (`auto` or a season id) and `seasonal_holidays`.
-- **Date changes:** the date is checked again when the app comes back to the foreground. No other theme ever reads the date.
 
 ## Migration from earlier versions
 
-Saved ids map to their replacement in `BastionTheme.fromId`, so nobody's choice is reset to the default:
+Saved ids map to their replacement in `BastionTheme.fromId`. Themes that were removed open as BLACKOUT, with no error and no reset of other settings:
 
 | Saved | Now |
 |---|---|
-| `blaze` | Blaze |
-| `bubble_gum`, `topo_night` | Pink Overload |
-| `bronzed_blush` | Bare Beauty |
-| `red_light` | Night Ops |
+| `blackout`, or nothing saved (new install) | BLACKOUT |
+| `blaze`, `alpine_day` | Blaze |
+| `tactical` | Tactical |
+| `red_light`, `night_ops` | Night Ops |
 | `okabe_ito`, `okabe_ito_slate` | Okabe-Ito |
-| `autumn_frost`, `christmas` | Seasonal |
-| anything unknown | Blaze |
+| `neon_anarchy`, `pink_overload`, `bare_beauty`, `seasonal` (removed) | BLACKOUT |
+| `bubble_gum`, `topo_night`, `bronzed_blush`, `autumn_frost`, `christmas` | BLACKOUT |
+| anything unknown | BLACKOUT |
+
+The old `seasonal_choice` and `seasonal_holidays` settings are ignored if present.
 
 ## Colours deliberately not themed
 
@@ -97,13 +91,13 @@ Saved ids map to their replacement in `BastionTheme.fromId`, so nobody's choice 
 
 ## Selector
 
-Settings → Theme shows eight cards: two columns on a phone, four on a tablet, and one at very large text. Each card has:
+Settings → Theme shows five cards: two columns on a phone, four on a tablet, and one at very large text. Each card has:
 
 - a miniature drawn in that theme's colours (header, received and sent message, button, status dots, bottom bar);
 - the theme's name and a translated description;
 - a ring, a tick and the word "Selected" when it's in use.
 
-A change applies instantly and is saved. With Seasonal chosen, the season chips and the holiday switch appear under the cards.
+A change applies instantly and is saved.
 
 ## Not verified
 

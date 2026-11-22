@@ -10430,24 +10430,14 @@ class AppLocalizationsSk extends AppLocalizations {
   String get theme_selected => 'Vybraná';
 
   @override
-  String get theme_desc_blaze =>
-      'Tmavá bridlica s výstražnou oranžovou. Predvolená.';
+  String get theme_desc_blaze => 'Tmavá bridlica s výstražnou oranžovou';
 
   @override
-  String get theme_desc_neon_anarchy =>
-      'Toxická zelená a elektrická fialová na čiernej';
+  String get theme_desc_blackout => 'Matná čierna a oceľ. Predvolená.';
 
   @override
   String get theme_desc_tactical =>
       'Olivová, kovovo sivá a zemité tóny do terénu';
-
-  @override
-  String get theme_desc_pink_overload =>
-      'Žiarivo ružová, žuvačková a levanduľová';
-
-  @override
-  String get theme_desc_bare_beauty =>
-      'Teplý nude, púdrovo ružová, kakao a šalvia';
 
   @override
   String get theme_desc_okabe_ito =>
@@ -10455,49 +10445,6 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get theme_desc_night_ops => 'Tlmená červená na prácu v tme';
-
-  @override
-  String get theme_desc_seasonal =>
-      'Riadi sa ročným obdobím, alebo si jedno vyberte';
-
-  @override
-  String theme_seasonNow(String season) {
-    return 'Teraz: $season';
-  }
-
-  @override
-  String get theme_season => 'Ročné obdobie';
-
-  @override
-  String get theme_seasonAuto => 'Automaticky';
-
-  @override
-  String get season_spring => 'Jar';
-
-  @override
-  String get season_summer => 'Leto';
-
-  @override
-  String get season_autumn => 'Jeseň';
-
-  @override
-  String get season_winter => 'Zima';
-
-  @override
-  String get season_halloween => 'Halloween';
-
-  @override
-  String get season_christmas => 'Vianoce';
-
-  @override
-  String get season_valentine => 'Valentín';
-
-  @override
-  String get theme_holidays => 'Sviatočné farby';
-
-  @override
-  String get theme_holidaysHint =>
-      'Halloween, Vianoce a Valentín, keď je ročné obdobie automatické';
 
   @override
   String get rxLog_title => 'Denník RX';
@@ -10885,9 +10832,6 @@ class AppLocalizationsSk extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'až $seconds s';
   }
-
-  @override
-  String get seasonal_holidays => 'Sviatočné farby';
 
   @override
   String get coords_setting => 'Formát súradníc';

@@ -6,9 +6,8 @@ import '../l10n/l10n.dart';
 import '../services/app_settings_service.dart';
 import '../theme/mesh_theme.dart';
 
-/// The eight themes as cards with a miniature of each one; a tap applies the
-/// theme at once and saves it. With Seasonal chosen, its season controls
-/// follow the cards.
+/// The themes as cards with a miniature of each one; a tap applies the
+/// theme at once and saves it.
 class ThemePicker extends StatelessWidget {
   const ThemePicker({super.key});
 
@@ -49,32 +48,17 @@ class ThemePicker extends StatelessWidget {
             );
           },
         ),
-        if (selected == BastionTheme.seasonal) const _SeasonControls(),
       ],
     );
   }
 }
 
-/// The localized name of a [Season].
-String seasonName(AppLocalizations l10n, Season s) => switch (s) {
-  Season.spring => l10n.season_spring,
-  Season.summer => l10n.season_summer,
-  Season.autumn => l10n.season_autumn,
-  Season.winter => l10n.season_winter,
-  Season.halloween => l10n.season_halloween,
-  Season.christmas => l10n.season_christmas,
-  Season.valentine => l10n.season_valentine,
-};
-
 String _description(AppLocalizations l10n, BastionTheme t) => switch (t) {
+  BastionTheme.blackout => l10n.theme_desc_blackout,
   BastionTheme.blaze => l10n.theme_desc_blaze,
-  BastionTheme.neonAnarchy => l10n.theme_desc_neon_anarchy,
   BastionTheme.tactical => l10n.theme_desc_tactical,
-  BastionTheme.pinkOverload => l10n.theme_desc_pink_overload,
-  BastionTheme.bareBeauty => l10n.theme_desc_bare_beauty,
   BastionTheme.okabeIto => l10n.theme_desc_okabe_ito,
   BastionTheme.nightOps => l10n.theme_desc_night_ops,
-  BastionTheme.seasonal => l10n.theme_desc_seasonal,
 };
 
 /// One theme: a miniature screen drawn in that theme's own colours, its
@@ -97,10 +81,7 @@ class ThemeCard extends StatelessWidget {
     final p = theme.palette;
     final text = Theme.of(context).textTheme;
     final ring = Theme.of(context).colorScheme.primary;
-    final description = theme == BastionTheme.seasonal
-        ? '${_description(l10n, theme)}. '
-              '${l10n.theme_seasonNow(seasonName(l10n, SeasonalTheme.current()))}'
-        : _description(l10n, theme);
+    final description = _description(l10n, theme);
     final radius = BorderRadius.circular(MeshShape.card);
     return Semantics(
       button: true,
@@ -279,65 +260,6 @@ class _Miniature extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-/// Seasonal's choices: follow the date or keep one season, and whether the
-/// automatic choice includes holidays.
-class _SeasonControls extends StatelessWidget {
-  const _SeasonControls();
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    final settings = context.watch<AppSettingsService>();
-    final choice = settings.settings.seasonalChoice;
-    final auto = Season.fromId(choice) == null;
-    final today = SeasonalTheme.seasonFor(
-      SeasonalTheme.now(),
-      holidays: settings.settings.seasonalHolidays,
-    );
-    final options = <(String, String)>[
-      ('auto', '${l10n.theme_seasonAuto} (${seasonName(l10n, today)})'),
-      for (final s in Season.values.where((s) => !s.isHoliday))
-        (s.id, seasonName(l10n, s)),
-    ];
-    return Padding(
-      padding: const EdgeInsets.only(top: MeshSpace.md),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            l10n.theme_season,
-            style: Theme.of(
-              context,
-            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600),
-          ),
-          const SizedBox(height: MeshSpace.xs),
-          Wrap(
-            spacing: MeshSpace.sm,
-            runSpacing: MeshSpace.xs,
-            children: [
-              for (final (id, label) in options)
-                ChoiceChip(
-                  key: ValueKey('season-$id'),
-                  label: Text(label),
-                  selected: id == 'auto' ? auto : id == choice,
-                  onSelected: (_) => settings.setSeasonalChoice(id),
-                ),
-            ],
-          ),
-          SwitchListTile(
-            key: const ValueKey('season-holidays'),
-            contentPadding: EdgeInsets.zero,
-            title: Text(l10n.theme_holidays),
-            subtitle: Text(l10n.theme_holidaysHint),
-            value: settings.settings.seasonalHolidays,
-            onChanged: auto ? settings.setSeasonalHolidays : null,
-          ),
-        ],
       ),
     );
   }

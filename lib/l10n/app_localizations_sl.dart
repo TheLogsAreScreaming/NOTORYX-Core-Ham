@@ -10443,23 +10443,14 @@ class AppLocalizationsSl extends AppLocalizations {
   String get theme_selected => 'Izbrana';
 
   @override
-  String get theme_desc_blaze =>
-      'Temni skrilec z opozorilno oranžno. Privzeta.';
+  String get theme_desc_blaze => 'Temni skrilec z opozorilno oranžno';
 
   @override
-  String get theme_desc_neon_anarchy =>
-      'Strupeno zelena in električno vijolična na črni';
+  String get theme_desc_blackout => 'Mat črna in jeklo. Privzeta.';
 
   @override
   String get theme_desc_tactical =>
       'Olivna, kovinsko siva in zemeljski toni za teren';
-
-  @override
-  String get theme_desc_pink_overload => 'Živo roza, žvečilni gumi in sivka';
-
-  @override
-  String get theme_desc_bare_beauty =>
-      'Topel nude, pudrasto roza, kakav in žajbelj';
 
   @override
   String get theme_desc_okabe_ito =>
@@ -10467,48 +10458,6 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get theme_desc_night_ops => 'Pridušena rdeča za delo v temi';
-
-  @override
-  String get theme_desc_seasonal => 'Sledi letnemu času ali izberite enega';
-
-  @override
-  String theme_seasonNow(String season) {
-    return 'Zdaj: $season';
-  }
-
-  @override
-  String get theme_season => 'Letni čas';
-
-  @override
-  String get theme_seasonAuto => 'Samodejno';
-
-  @override
-  String get season_spring => 'Pomlad';
-
-  @override
-  String get season_summer => 'Poletje';
-
-  @override
-  String get season_autumn => 'Jesen';
-
-  @override
-  String get season_winter => 'Zima';
-
-  @override
-  String get season_halloween => 'Noč čarovnic';
-
-  @override
-  String get season_christmas => 'Božič';
-
-  @override
-  String get season_valentine => 'Valentinovo';
-
-  @override
-  String get theme_holidays => 'Praznične barve';
-
-  @override
-  String get theme_holidaysHint =>
-      'Noč čarovnic, božič in valentinovo, ko je letni čas samodejen';
 
   @override
   String get rxLog_title => 'Dnevnik RX';
@@ -10903,9 +10852,6 @@ class AppLocalizationsSl extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'do $seconds s';
   }
-
-  @override
-  String get seasonal_holidays => 'Praznične barve';
 
   @override
   String get coords_setting => 'Oblika koordinat';

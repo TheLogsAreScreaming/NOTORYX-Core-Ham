@@ -10444,22 +10444,14 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get theme_desc_blaze =>
-      'Ardósia escura com laranja de alta visibilidade. Predefinido.';
+      'Ardósia escura com laranja de alta visibilidade';
 
   @override
-  String get theme_desc_neon_anarchy =>
-      'Verde tóxico e roxo elétrico sobre preto';
+  String get theme_desc_blackout => 'Preto mate e aço. Predefinido.';
 
   @override
   String get theme_desc_tactical =>
       'Oliva, cinza-metal e tons terrosos para o campo';
-
-  @override
-  String get theme_desc_pink_overload => 'Rosa-choque, chiclete e lavanda';
-
-  @override
-  String get theme_desc_bare_beauty =>
-      'Nude quente, rosa antigo, cacau e sálvia';
 
   @override
   String get theme_desc_okabe_ito =>
@@ -10467,48 +10459,6 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get theme_desc_night_ops => 'Vermelho suave para trabalhar no escuro';
-
-  @override
-  String get theme_desc_seasonal => 'Acompanha a estação, ou escolha uma';
-
-  @override
-  String theme_seasonNow(String season) {
-    return 'Agora: $season';
-  }
-
-  @override
-  String get theme_season => 'Estação';
-
-  @override
-  String get theme_seasonAuto => 'Automática';
-
-  @override
-  String get season_spring => 'Primavera';
-
-  @override
-  String get season_summer => 'Verão';
-
-  @override
-  String get season_autumn => 'Outono';
-
-  @override
-  String get season_winter => 'Inverno';
-
-  @override
-  String get season_halloween => 'Halloween';
-
-  @override
-  String get season_christmas => 'Natal';
-
-  @override
-  String get season_valentine => 'Dia dos Namorados';
-
-  @override
-  String get theme_holidays => 'Cores festivas';
-
-  @override
-  String get theme_holidaysHint =>
-      'Halloween, Natal e Dia dos Namorados, quando a estação é automática';
 
   @override
   String get rxLog_title => 'Registo RX';
@@ -10889,9 +10839,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'até $seconds s';
   }
-
-  @override
-  String get seasonal_holidays => 'Cores festivas';
 
   @override
   String get coords_setting => 'Formato de coordenadas';

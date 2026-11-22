@@ -4,7 +4,6 @@ import 'bastion_themes.dart';
 import 'mesh_design.dart';
 
 export 'bastion_themes.dart';
-export 'seasonal_theme.dart';
 export 'mesh_design.dart';
 import 'okabe_ito.dart';
 
@@ -251,18 +250,11 @@ class MeshSpace {
 class MeshTheme {
   MeshTheme._();
 
-  /// The current theme if it's dark, otherwise Blaze.
+  /// The current theme if it's dark, otherwise BLACKOUT.
   static ThemeData dark() => forPalette(
     MeshPalette.current.brightness == Brightness.dark
         ? MeshPalette.current
-        : BastionTheme.blaze.palette,
-  );
-
-  /// The current theme if it's light, otherwise Pink Overload (a light one).
-  static ThemeData light() => forPalette(
-    MeshPalette.current.brightness == Brightness.light
-        ? MeshPalette.current
-        : BastionTheme.pinkOverload.palette,
+        : BastionTheme.blackout.palette,
   );
 
   /// Material theme for one of the Bastion palettes.

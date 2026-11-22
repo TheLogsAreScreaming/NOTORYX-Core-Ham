@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'seasonal_theme.dart';
-
 /// The decoration a theme's backdrop draws behind the page. All of them are
 /// static: nothing moves, so reduced motion has nothing to turn off.
 enum BackdropMotif {
   /// Faint topographic contour lines.
   contours,
-
-  /// Contours plus a faint terminal grid (Neon Anarchy).
-  grid,
-
-  /// Contours plus a scatter of small four-point sparkles (Pink Overload).
-  sparkle,
 }
 
 /// Every color a Bastion theme defines. [MeshPalette] reads the current one.
@@ -96,13 +88,53 @@ class BastionPalette {
   Color get magentaLine => magenta.withAlpha(0x47);
 }
 
-/// The eight themes offered in Settings, in the order they are shown.
+/// The five themes offered in Settings, in the order they are shown.
 enum BastionTheme {
-  // The signature theme and the default for new installs.
+  // The BLACKOUT brand look and the default for new installs: matte black,
+  // charcoal cards, gunmetal lines, steel and frost text. Monochrome, with
+  // no brand accent; signal, warning and alert keep their colours because
+  // they carry meaning. Steel (#888888) is lifted to #9A9A9A for the
+  // faintest text so it reaches 4.5:1 on charcoal.
+  blackout(
+    'blackout',
+    'BLACKOUT',
+    'Matte black and steel. The default.',
+    BastionPalette(
+      brightness: Brightness.dark,
+      bg: Color(0xFF080808),
+      bg1: Color(0xFF121212),
+      bg2: Color(0xFF1A1A1A),
+      bg3: Color(0xFF242424),
+      bg4: Color(0xFF2E2E2E),
+      line: Color(0xFF2A2A2A),
+      line2: Color(0xFF484848),
+      line3: Color(0xFF7A7A7A),
+      ink: Color(0xFFE8E8E8),
+      ink2: Color(0xFFCDCDCD),
+      ink3: Color(0xFFB0B0B0),
+      ink4: Color(0xFF9A9A9A),
+      signal: Color(0xFF8FD19E),
+      signalDim: Color(0xFF6FA37B),
+      warn: Color(0xFFF5C85A),
+      warnDim: Color(0xFFC9A043),
+      alert: Color(0xFFFF6B5E),
+      accent: Color(0xFFE8E8E8),
+      accentDim: Color(0xFFB0B0B0),
+      onAccent: Color(0xFF080808),
+      magenta: Color(0xFFBDBDBD),
+      me: Color(0xFF2A2A2A),
+      meBorder: Color(0xFF6A6A6A),
+      meInk: Color(0xFFE8E8E8),
+      primaryContainer: Color(0xFF2E2E2E),
+      secondaryContainer: Color(0xFF242424),
+      nav: Color(0xFFE8E8E8),
+    ),
+  ),
+  // The orange signature theme, the default before BLACKOUT.
   blaze(
     'blaze',
     'Blaze',
-    'Charcoal slate with hi-vis orange. The default.',
+    'Charcoal slate with hi-vis orange',
     BastionPalette(
       brightness: Brightness.dark,
       bg: Color(0xFF111820),
@@ -132,44 +164,6 @@ enum BastionTheme {
       primaryContainer: Color(0xFF4A2C0A),
       secondaryContainer: Color(0xFF3F3420),
       nav: Color(0xFFFF8A00),
-    ),
-  ),
-  // Hacker-terminal neon: green for actions, purple for navigation, a faint
-  // grid behind everything.
-  neonAnarchy(
-    'neon_anarchy',
-    'Neon Anarchy',
-    'Toxic green and electric purple on black',
-    BastionPalette(
-      brightness: Brightness.dark,
-      bg: Color(0xFF08060D),
-      bg1: Color(0xFF100A18),
-      bg2: Color(0xFF170E23),
-      bg3: Color(0xFF21112F),
-      bg4: Color(0xFF2E1842),
-      line: Color(0xFF2A1840),
-      line2: Color(0xFF3F2460),
-      line3: Color(0xFF8A5CC4),
-      ink: Color(0xFFF1E9FF),
-      ink2: Color(0xFFDCCDF5),
-      ink3: Color(0xFFC2AEE6),
-      ink4: Color(0xFFB39CDB),
-      signal: Color(0xFFADFF2F),
-      signalDim: Color(0xFF7DBF1F),
-      warn: Color(0xFFFFD23F),
-      warnDim: Color(0xFFC9A22E),
-      alert: Color(0xFFFF4D6D),
-      accent: Color(0xFFADFF2F),
-      accentDim: Color(0xFF7DBF1F),
-      onAccent: Color(0xFF0B1400),
-      magenta: Color(0xFFC35BFF),
-      me: Color(0xFF22123A),
-      meBorder: Color(0xFFB026FF),
-      meInk: Color(0xFFF1E9FF),
-      primaryContainer: Color(0xFF243A06),
-      secondaryContainer: Color(0xFF3A1660),
-      nav: Color(0xFFC35BFF),
-      motif: BackdropMotif.grid,
     ),
   ),
   // Utilitarian olive and earth tones.
@@ -206,81 +200,6 @@ enum BastionTheme {
       primaryContainer: Color(0xFF3A4728),
       secondaryContainer: Color(0xFF4A3F27),
       nav: Color(0xFFA8BA79),
-    ),
-  ),
-  // Loud and glossy on purpose: hot-pink actions, lavender highlights and a
-  // light sparkle behind the page.
-  pinkOverload(
-    'pink_overload',
-    'Pink Overload',
-    'Hot pink, bubblegum and lavender',
-    BastionPalette(
-      brightness: Brightness.light,
-      bg: Color(0xFFFFF0FA),
-      bg1: Color(0xFFFFE3F3),
-      bg2: Color(0xFFFFD3EC),
-      bg3: Color(0xFFFFC1E3),
-      bg4: Color(0xFFF7A8D4),
-      line: Color(0xFFF5B3D9),
-      line2: Color(0xFFE58BC0),
-      line3: Color(0xFFB8447F),
-      ink: Color(0xFF542044),
-      ink2: Color(0xFF5E2550),
-      ink3: Color(0xFF6B2A5A),
-      ink4: Color(0xFF70295E),
-      signal: Color(0xFF0E6742),
-      signalDim: Color(0xFF2E7D5A),
-      warn: Color(0xFF7A4100),
-      warnDim: Color(0xFF8F5410),
-      alert: Color(0xFFB0002A),
-      accent: Color(0xFFB00062),
-      accentDim: Color(0xFFFF1493),
-      onAccent: Color(0xFFFFFFFF),
-      magenta: Color(0xFF7B2CBF),
-      me: Color(0xFFE6007C),
-      meBorder: Color(0xFFC77DFF),
-      meInk: Color(0xFFFFFFFF),
-      primaryContainer: Color(0xFFFFC1E3),
-      secondaryContainer: Color(0xFFEBD3FF),
-      nav: Color(0xFFC4006E),
-      motif: BackdropMotif.sparkle,
-    ),
-  ),
-  // Warm natural tones across a range of skin, lip and eye colours: nude and
-  // peach pages, dusty-rose actions, cocoa lines and sage-hazel highlights.
-  bareBeauty(
-    'bare_beauty',
-    'Bare Beauty',
-    'Warm nude, dusty rose, cocoa and sage',
-    BastionPalette(
-      brightness: Brightness.light,
-      bg: Color(0xFFFFF0E7),
-      bg1: Color(0xFFFBE5D8),
-      bg2: Color(0xFFF4D3C2),
-      bg3: Color(0xFFE8B69E),
-      bg4: Color(0xFFD9A088),
-      line: Color(0xFFEBC9B6),
-      line2: Color(0xFFD4A48C),
-      line3: Color(0xFF8E5E52),
-      ink: Color(0xFF38232B),
-      ink2: Color(0xFF45303A),
-      ink3: Color(0xFF553B40),
-      ink4: Color(0xFF5A3F3F),
-      signal: Color(0xFF305541),
-      signalDim: Color(0xFF4F7A66),
-      warn: Color(0xFF70440C),
-      warnDim: Color(0xFF8E5E20),
-      alert: Color(0xFF961D2C),
-      accent: Color(0xFF753C47),
-      accentDim: Color(0xFFA96870),
-      onAccent: Color(0xFFFFF6F1),
-      magenta: Color(0xFF586C63),
-      me: Color(0xFFA35F67),
-      meBorder: Color(0xFF754B43),
-      meInk: Color(0xFFFFF8F4),
-      primaryContainer: Color(0xFFF2C9C8),
-      secondaryContainer: Color(0xFFD8E3DC),
-      nav: Color(0xFF8A4A55),
     ),
   ),
   // Hues from the Okabe-Ito palette, lightened where needed so text still
@@ -356,43 +275,6 @@ enum BastionTheme {
       secondaryContainer: Color(0xFF3D1A10),
       nav: Color(0xFFE0574D),
     ),
-  ),
-  // Its colours come from [SeasonalTheme] when read through [palette]; the
-  // palette stored here is only the autumn fallback.
-  seasonal(
-    'seasonal',
-    'Seasonal',
-    'Follows the season, or pick one',
-    BastionPalette(
-      brightness: Brightness.dark,
-      bg: Color(0xFF1A120C),
-      bg1: Color(0xFF211710),
-      bg2: Color(0xFF2A1E15),
-      bg3: Color(0xFF36271B),
-      bg4: Color(0xFF453223),
-      line: Color(0xFF3A2A1D),
-      line2: Color(0xFF553D2A),
-      line3: Color(0xFF8E6A4A),
-      ink: Color(0xFFF5E8DA),
-      ink2: Color(0xFFE5D2BE),
-      ink3: Color(0xFFD2BBA2),
-      ink4: Color(0xFFC6AD92),
-      signal: Color(0xFF8FC28A),
-      signalDim: Color(0xFF6E9A6A),
-      warn: Color(0xFFF2B33D),
-      warnDim: Color(0xFFC08C2C),
-      alert: Color(0xFFFF6A55),
-      accent: Color(0xFFF08A3C),
-      accentDim: Color(0xFFC2410C),
-      onAccent: Color(0xFF1F0E00),
-      magenta: Color(0xFFE0B04A),
-      me: Color(0xFF3A2614),
-      meBorder: Color(0xFFC2410C),
-      meInk: Color(0xFFF5E8DA),
-      primaryContainer: Color(0xFF4F2A0E),
-      secondaryContainer: Color(0xFF2E3A1E),
-      nav: Color(0xFFF08A3C),
-    ),
   );
 
   const BastionTheme(this.id, this.label, this.description, this._palette);
@@ -401,23 +283,28 @@ enum BastionTheme {
   final String description;
   final BastionPalette _palette;
 
-  /// This theme's colours. Seasonal resolves to the palette for today's
-  /// date (or the season the operator picked) each time it is read.
-  BastionPalette get palette =>
-      this == seasonal ? SeasonalTheme.palette() : _palette;
+  /// This theme's colours.
+  BastionPalette get palette => _palette;
 
-  static const fallback = BastionTheme.blaze;
+  static const fallback = BastionTheme.blackout;
 
   /// Ids saved by earlier versions, mapped to the theme that replaced them,
   /// so nobody's choice is reset to the default by an update.
   static const _renamed = {
-    'bubble_gum': pinkOverload,
-    'topo_night': pinkOverload,
-    'bronzed_blush': bareBeauty,
+    // Themes removed when BLACKOUT became the default.
+    'neon_anarchy': blackout,
+    'pink_overload': blackout,
+    'bare_beauty': blackout,
+    'seasonal': blackout,
+    // Older ids whose replacement was later removed.
+    'bubble_gum': blackout,
+    'topo_night': blackout,
+    'bronzed_blush': blackout,
+    'autumn_frost': blackout,
+    'christmas': blackout,
+    // Older ids whose replacement is still offered.
     'red_light': nightOps,
     'okabe_ito_slate': okabeIto,
-    'autumn_frost': seasonal,
-    'christmas': seasonal,
     'alpine_day': blaze,
   };
 

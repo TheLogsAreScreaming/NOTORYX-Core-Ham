@@ -53,8 +53,8 @@ void main() {
 
     MeshPalette.current = BastionTheme.blaze.palette;
     final blaze = await initialsColor();
-    MeshPalette.current = BastionTheme.pinkOverload.palette;
-    final pink = await initialsColor();
-    expect(pink, isNot(blaze));
+    MeshPalette.current = BastionTheme.okabeIto.palette;
+    final okabe = await initialsColor();
+    expect(okabe, isNot(blaze));
   });
 }

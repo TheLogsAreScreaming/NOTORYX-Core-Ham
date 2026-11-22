@@ -10484,23 +10484,14 @@ class AppLocalizationsUk extends AppLocalizations {
   String get theme_selected => 'Вибрано';
 
   @override
-  String get theme_desc_blaze =>
-      'Темний сланець із сигнальним помаранчевим. Типова.';
+  String get theme_desc_blaze => 'Темний сланець із сигнальним помаранчевим';
 
   @override
-  String get theme_desc_neon_anarchy =>
-      'Отруйно-зелений і електричний фіолетовий на чорному';
+  String get theme_desc_blackout => 'Матовий чорний і сталь. Типова.';
 
   @override
   String get theme_desc_tactical =>
       'Оливковий, збройовий сірий і земляні тони для поля';
-
-  @override
-  String get theme_desc_pink_overload => 'Яскраво-рожевий, жуйка й лаванда';
-
-  @override
-  String get theme_desc_bare_beauty =>
-      'Теплий нюд, пильна троянда, какао й шавлія';
 
   @override
   String get theme_desc_okabe_ito =>
@@ -10509,49 +10500,6 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get theme_desc_night_ops =>
       'Приглушений червоний для роботи в темряві';
-
-  @override
-  String get theme_desc_seasonal =>
-      'Змінюється з порою року, або виберіть самі';
-
-  @override
-  String theme_seasonNow(String season) {
-    return 'Зараз: $season';
-  }
-
-  @override
-  String get theme_season => 'Пора року';
-
-  @override
-  String get theme_seasonAuto => 'Автоматично';
-
-  @override
-  String get season_spring => 'Весна';
-
-  @override
-  String get season_summer => 'Літо';
-
-  @override
-  String get season_autumn => 'Осінь';
-
-  @override
-  String get season_winter => 'Зима';
-
-  @override
-  String get season_halloween => 'Гелловін';
-
-  @override
-  String get season_christmas => 'Різдво';
-
-  @override
-  String get season_valentine => 'День святого Валентина';
-
-  @override
-  String get theme_holidays => 'Святкові кольори';
-
-  @override
-  String get theme_holidaysHint =>
-      'Гелловін, Різдво й День святого Валентина, коли пору року вибрано автоматично';
 
   @override
   String get rxLog_title => 'Журнал прийому';
@@ -10947,9 +10895,6 @@ class AppLocalizationsUk extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'до $seconds с';
   }
-
-  @override
-  String get seasonal_holidays => 'Святкові кольори';
 
   @override
   String get coords_setting => 'Формат координат';
