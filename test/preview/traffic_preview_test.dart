@@ -54,7 +54,9 @@ void main() {
 
   testWidgets('traffic map', skip: out == null, (tester) async {
     await _loadFonts();
-    final palette = BastionTheme.fromId('blaze').palette;
+    final palette = BastionTheme.fromId(
+      Platform.environment['PREVIEW_THEME']?.split(',').first,
+    ).palette;
     MeshPalette.current = palette;
     await tester.binding.setSurfaceSize(const Size(390, 844));
     tester.view.devicePixelRatio = 2;
@@ -68,10 +70,10 @@ void main() {
           role: TrafficHopRole.origin,
           position: const LatLng(40.95, -76.6),
         ),
-        _hop('F5', 'Mt Pisgah', 40.7, -76.1),
+        _hop('F5', 'North Peak', 40.7, -76.1),
         const TrafficHop(id: 'C7', role: TrafficHopRole.repeater),
         _hop('BF', null, 40.45, -75.5),
-        _hop('0D', 'Ridge W3', 40.2, -74.95),
+        _hop('0D', 'West Ridge', 40.2, -74.95),
         const TrafficHop(
           id: 'C0FFEE',
           role: TrafficHopRole.self,

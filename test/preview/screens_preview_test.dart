@@ -116,12 +116,12 @@ Contact _contact(
 );
 
 final _contacts = [
-  _contact(1, 'KD2ABC Ridge Camp', advTypeChat, ago: 2),
-  _contact(2, 'N7SAM trail crew', advTypeChat, hops: 2, ago: 14),
-  _contact(3, 'N0RPT Hollyburn', advTypeRepeater, hops: 0, ago: 1),
-  _contact(4, 'K7CYP Cypress Bowl', advTypeRepeater, hops: 1, ago: 40),
-  _contact(5, 'W1BC Basecamp Room', advTypeRoom, hops: 2, ago: 90),
-  _contact(6, 'KE7WX Weather', advTypeSensor, hops: 3, ago: 300),
+  _contact(1, 'N0XAA Ridge Camp', advTypeChat, ago: 2),
+  _contact(2, 'N0XAB trail crew', advTypeChat, hops: 2, ago: 14),
+  _contact(3, 'N0XAC North Peak', advTypeRepeater, hops: 0, ago: 1),
+  _contact(4, 'N0XAD East Ridge', advTypeRepeater, hops: 1, ago: 40),
+  _contact(5, 'N0XAE Basecamp Room', advTypeRoom, hops: 2, ago: 90),
+  _contact(6, 'N0XAF Weather', advTypeSensor, hops: 3, ago: 300),
 ];
 
 final _channels = [
@@ -141,7 +141,7 @@ List<ChannelMessage> _channelMessages(int index) => [
   ),
   ChannelMessage(
     senderName: 'Me',
-    text: 'Copy, 20 min out. Repeater at Hollyburn is solid.',
+    text: 'Copy, 20 min out. Repeater on North Peak is solid.',
     timestamp: _now.subtract(const Duration(minutes: 18)),
     isOutgoing: true,
     status: ChannelMessageStatus.sent,
@@ -227,9 +227,9 @@ class _PreviewConnector extends MeshCoreConnector {
   Future<List<ChannelMessage>> loadFullChannelHistory(Channel channel) async =>
       channel.index == 1 ? _pathHistory() : const [];
   @override
-  String? get selfName => 'W1AW Trail';
+  String? get selfName => 'N0XYZ Trail';
   @override
-  String get deviceDisplayName => 'W1AW Trail';
+  String get deviceDisplayName => 'N0XYZ Trail';
   @override
   Uint8List? get selfPublicKey => _key(99);
   @override
@@ -286,7 +286,7 @@ class _PreviewScanConnector extends _PreviewConnector {
   MeshCoreConnectionState get state => MeshCoreConnectionState.scanning;
   @override
   List<ScanResult> get scanResults => [
-    _scan('MeshCore-W1AW Trail', 'CF57FC24-9872-0AFC-7DEC-E36A387DE23D', -48),
+    _scan('MeshCore-N0XYZ Trail', 'CF57FC24-9872-0AFC-7DEC-E36A387DE23D', -48),
     _scan('MeshCore-Ridge Base', '7A10B2C3-1F4E-4D21-9A0B-5C6D7E8F9012', -71),
     _scan('MeshCore-Cabin Relay', 'E2B4C6D8-0A1C-4E3F-8B2D-4F6A8C0E2B44', -88),
   ];
@@ -579,7 +579,7 @@ void main() {
       create: (_) => OperatorProfileService()
         ..save(
           OperatorProfile(
-            callsign: 'W1AW',
+            callsign: 'N0XYZ',
             licenseClass: LicenseClass.general,
             acknowledgedAt: DateTime(2026, 11, 5),
           ),
@@ -590,7 +590,7 @@ void main() {
       create: (_) => OperatorProfileService()
         ..save(
           OperatorProfile(
-            callsign: 'W1AW',
+            callsign: 'N0XYZ',
             licenseClass: LicenseClass.general,
             acknowledgedAt: DateTime(2026, 11, 5),
           ),
@@ -772,8 +772,8 @@ List<NetworkSighting> _sampleSightings() {
       bestSnr: 7.25,
       bestRssi: -92,
       nodes: const [
-        HeardNode(key: 'a1b2c3d4', name: 'Hollyburn RPT', type: 2),
-        HeardNode(key: 'e5f60718', name: 'Cypress Bowl RPT', type: 2),
+        HeardNode(key: 'a1b2c3d4', name: 'North Peak RPT', type: 2),
+        HeardNode(key: 'e5f60718', name: 'East Ridge RPT', type: 2),
         HeardNode(key: '99aa0011', name: 'Ridge Camp', type: 1),
       ],
     ),
@@ -791,7 +791,7 @@ List<NetworkSighting> _sampleSightings() {
       packets: 3,
       bestSnr: -4.5,
       bestRssi: -118,
-      nodes: const [HeardNode(key: '0badf00d', name: 'Seymour RPT', type: 2)],
+      nodes: const [HeardNode(key: '0badf00d', name: 'Summit RPT', type: 2)],
     ),
   ];
 }
