@@ -151,15 +151,19 @@ flutter_launcher_icons:
   ios: true
   image_path: "branding/notoryx-icon.png"
   remove_alpha_ios: true
-  adaptive_icon_background: "#150F0D"
+  background_color_ios: "#080808"
+  adaptive_icon_background: "#080808"
   adaptive_icon_foreground: "branding/notoryx-icon-foreground.png"
+  # The BLACKOUT foreground already sits inside the 66 dp safe zone.
+  adaptive_icon_foreground_inset: 0
+  adaptive_icon_monochrome: "branding/notoryx-icon-monochrome.png"
   macos:
     generate: true
     image_path: "branding/notoryx-icon-macos.png"
   web:
     generate: true
     image_path: "branding/notoryx-icon.png"
-    background_color: "#150F0D"
+    background_color: "#080808"
     theme_color: "#FF9A3C"
 
 build_pipe:
