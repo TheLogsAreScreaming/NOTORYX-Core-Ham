@@ -5,6 +5,17 @@ import '../models/path_selection.dart';
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 
+/// Companion firmware since MeshCore 4a869163 (2025-12-30) replaces the CLI
+/// frame timestamp with the companion radio's own clock for
+/// TXT_TYPE_CLI_DATA, so a plain `clock sync` copies the radio's clock to the
+/// repeater instead of the phone's. Send an explicit `time <epoch>` instead,
+/// the same as meshcore-cli does.
+String normalizeRepeaterClockSyncCommand(String command, {int? nowSeconds}) {
+  if (command.trim().toLowerCase() != 'clock sync') return command;
+  final epoch = nowSeconds ?? DateTime.now().millisecondsSinceEpoch ~/ 1000;
+  return 'time $epoch';
+}
+
 class RepeaterCommandService {
   final MeshCoreConnector _connector;
   final Map<String, Completer<String>> _pendingCommands = {};
@@ -67,7 +78,8 @@ class RepeaterCommandService {
     _pendingByPrefix[prefix] = commandId;
 
     try {
-      final framedCommand = '$prefix$command';
+      final framedCommand =
+          '$prefix${normalizeRepeaterClockSyncCommand(command)}';
       final pathLengthValue = selection.useFlood ? -1 : selection.hopCount;
       final timestampSeconds = DateTime.now().millisecondsSinceEpoch ~/ 1000;
       _connector.trackRepeaterAck(

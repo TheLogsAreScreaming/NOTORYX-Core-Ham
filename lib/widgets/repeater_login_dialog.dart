@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../l10n/l10n.dart';
 import '../models/contact.dart';
 import '../l10n/contact_localization.dart';
+import '../services/repeater_command_service.dart';
 import '../services/storage_service.dart';
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
@@ -202,7 +203,10 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
           await _connector.sendFrame(
             buildSendCliCommandFrame(
               repeater.publicKey,
-              'clock sync',
+              normalizeRepeaterClockSyncCommand(
+                'clock sync',
+                nowSeconds: timestampSeconds,
+              ),
               timestampSeconds: timestampSeconds,
             ),
           );
