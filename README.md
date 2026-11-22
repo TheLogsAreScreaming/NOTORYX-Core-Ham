@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="branding/notoryx-icon.png" width="120" alt="NOTORYX app icon">
+  <img src="branding/notoryx-ham-banner.png" alt="NOTORYX Core Ham: engineered for independence">
 </p>
 
 # NOTORYX Core Ham
@@ -19,7 +19,7 @@ NOTORYX Core Ham is the amateur radio (FCC Part 97) edition of NOTORYX Core. Pai
 
 > **Status: test builds.** The newest is always at the top of **[the releases page](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/releases)**. The app and firmware pass automated tests and a mesh simulator, but have **not been tested on the air yet**. Use them only on a bench with dummy loads or minimum power until they have been. Everything you send is readable by anyone: that's the law on amateur bands, not a bug.
 >
-> Latest: app **[0.1.0 test 17](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/releases/tag/v0.1.0-test.17)** (19 November 2026) and **[firmware test 4](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/releases/tag/v1.18.0-ham-test.4)**.
+> The newest firmware is **[firmware test 4](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/releases/tag/v1.18.0-ham-test.4)**.
 
 ## What makes it a ham app
 
@@ -63,11 +63,20 @@ Companion builds can be flashed from the browser with the **[web flasher](https:
 1. **Coordinate first.** Read the [coordination guide](docs/licensed-operator/COORDINATION.md) and agree a channel with your frequency coordinator and local operators.
 2. **Flash the NOTORYX Ham firmware** on every radio. See the [firmware repository](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Firmware) for builds and flashing.
 3. **Set up your operator.** Open **Settings → Licensed operator**, enter your call sign and licence class, read the guide and tick the acknowledgment. Until you do, a banner reminds you on every screen while a radio is connected.
-4. **Name your radio with your call sign.** The Licensed operator page offers **Set to W1AW** (with your call); you can add a suffix like `W1AW-2` or `W1AW Base`.
+4. **Name your radio with your call sign.** The Licensed operator page offers **Set to** your call sign; you can add a suffix like `-2` or ` Base` after it.
 5. **Pick the agreed channel.** **Settings → Radio settings → Presets** starts with **US 33cm**, the firmware default.
 6. **Check power and location.** On the Licensed operator page, enter any external amplifier, feedline loss and antenna gain. It estimates your output and ERP and warns about §97.303 location limits. Use the least power that works, and do an RF exposure evaluation before running higher power.
 
 The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**. Home is where check-in, SOS and your radio's readings live; **More** holds every tool and setting, with a search box.
+
+<p align="center">
+  <img src="docs/screenshots/home.png" width="200" alt="Home: radio readings, Check in and Hold for SOS, trip and field tools">
+  <img src="docs/screenshots/chats.png" width="200" alt="Chats: channels and direct messages, named with call signs">
+  <img src="docs/screenshots/dm_chat.png" width="200" alt="A direct message conversation; the message box reminds you that anyone listening can read it">
+  <img src="docs/screenshots/traffic_map.png" width="200" alt="Map with the live Traffic view: a packet's route drawn hop by hop">
+</p>
+
+Screenshots are rendered from the app with made-up demo stations, not real call signs.
 
 ## Downloads
 
@@ -150,7 +159,7 @@ Everything from NOTORYX Core, working over plain-text ham frames:
 
 ### Look and feel
 - **Frosted ember:** the main screens sit on a glow in your theme's colours, with see-through glass panels and a floating tab bar. With reduce motion turned on, the blur is off.
-- Five themes: **BLACKOUT** (the default: matte black and steel), **Blaze**, **Tactical**, **Okabe-Ito** (colour-vision friendly) and **Night Ops**.
+- **BLACKOUT** is the default look: matte black, charcoal and steel, with colour kept only where it means something (signal, warnings, SOS). Four more themes are in **Settings → Theme**: **Blaze** (hi-vis orange), **Tactical**, **Okabe-Ito** (colour-vision friendly) and **Night Ops** (dim red for the dark).
 - **Your own background:** **Settings → Background** puts a colour, gradient, mesh blend or your own photo behind the glass cards.
 - **A photo or colour per node:** from a node's sheet, give it a colour or photo. It shows in Nodes, the map and chats, stays on this phone and is never sent over the radio.
 - Available in 18 languages.
@@ -162,12 +171,13 @@ Everything from NOTORYX Core, working over plain-text ham frames:
 </p>
 
 <p align="center">
+  <img src="docs/screenshots/themes.png" width="200" alt="Theme picker: BLACKOUT selected, with Blaze, Tactical, Okabe-Ito and Night Ops">
   <img src="docs/screenshots/node_compass.png" width="200" alt="Compass pointing to a node, with distance, bearing and a turn hint">
   <img src="docs/screenshots/node_look.png" width="200" alt="Choosing a colour or photo for a node">
-  <img src="docs/screenshots/background.png" width="200" alt="Background settings: theme glow, colour, gradient, mesh blend or photo">
 </p>
 
 <p align="center">
+  <img src="docs/screenshots/background.png" width="200" alt="Background settings: theme glow, colour, gradient, mesh blend or photo">
   <img src="docs/screenshots/routes.png" width="200" alt="Route Intelligence">
   <img src="docs/screenshots/path_graph.png" width="200" alt="Path graph showing how messages reach you">
 </p>
@@ -232,7 +242,7 @@ flutter test
 - `lib/theme/`: themes and colors
 - `lib/utils/amateur_radio.dart`: ham frame handling, call-sign and band checks shared with the firmware
 - `docs/licensed-operator/`: the coordination guide and the Part 97 feasibility notes
-- `test/`: unit and widget tests; `test/preview/` renders screenshots with demo data (`PREVIEW_OUT=dir flutter test test/preview`; `PREVIEW_THEME=okabe_ito,night_ops` picks themes and `PREVIEW_ONLY=home,node_compass` picks screens)
+- `test/`: unit and widget tests; `test/preview/` renders screenshots with demo data (`PREVIEW_OUT=dir flutter test test/preview`; `PREVIEW_THEME=okabe_ito,night_ops` picks themes (BLACKOUT and Blaze by default) and `PREVIEW_ONLY=home,node_compass` picks screens)
 
 ## Contributing
 
