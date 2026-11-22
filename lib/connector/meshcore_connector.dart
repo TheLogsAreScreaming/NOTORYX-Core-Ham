@@ -4228,7 +4228,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _pathOpLock = completer.future;
     await prev;
     try {
-      if (!isConnected) return;
+      if (!isConnected || !_isKnownContact(contact)) return;
 
       final encodedPathLen = _encodePathLenForCurrentMode(pathLen, customPath);
       if (encodedPathLen == null) {
@@ -4264,6 +4264,13 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
+  /// Whether [contact] is still in the radio's contact list. The firmware's
+  /// CMD_ADD_UPDATE_CONTACT adds unknown keys, so a path or flag write for a
+  /// removed contact (for example a repeater screen still open after the
+  /// contact was deleted) would add it back on the radio.
+  bool _isKnownContact(Contact contact) =>
+      _contacts.any((c) => c.publicKeyHex == contact.publicKeyHex);
+
   Future<void> setContactFlags(
     Contact contact, {
     bool? isFavorite,
@@ -4272,7 +4279,7 @@ class MeshCoreConnector extends ChangeNotifier {
     bool? teleEnv,
     bool? remoteCli,
   }) async {
-    if (!isConnected) return;
+    if (!isConnected || !_isKnownContact(contact)) return;
     final latestContact =
         await _fetchContactSnapshotFromDevice(contact.publicKey) ?? contact;
     int updatedFlags = isFavorite != null
