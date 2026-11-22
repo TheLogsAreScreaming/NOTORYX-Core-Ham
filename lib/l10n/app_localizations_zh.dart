@@ -9763,66 +9763,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get theme_selected => '已选择';
 
   @override
-  String get theme_desc_blaze => '炭灰石板配高可见度橙色。默认主题。';
+  String get theme_desc_blaze => '炭灰石板配高可见度橙色';
 
   @override
-  String get theme_desc_neon_anarchy => '黑底上的毒绿与电光紫';
+  String get theme_desc_blackout => '哑光黑配钢灰。默认主题。';
 
   @override
   String get theme_desc_tactical => '适合野外的橄榄绿、枪灰与大地色';
-
-  @override
-  String get theme_desc_pink_overload => '亮粉、泡泡糖粉与薰衣草紫';
-
-  @override
-  String get theme_desc_bare_beauty => '温暖裸色、灰玫瑰、可可与鼠尾草';
 
   @override
   String get theme_desc_okabe_ito => '适合色觉差异，蓝灰底色';
 
   @override
   String get theme_desc_night_ops => '适合暗处使用的柔和红色';
-
-  @override
-  String get theme_desc_seasonal => '随季节变化，或自选季节';
-
-  @override
-  String theme_seasonNow(String season) {
-    return '当前：$season';
-  }
-
-  @override
-  String get theme_season => '季节';
-
-  @override
-  String get theme_seasonAuto => '自动';
-
-  @override
-  String get season_spring => '春';
-
-  @override
-  String get season_summer => '夏';
-
-  @override
-  String get season_autumn => '秋';
-
-  @override
-  String get season_winter => '冬';
-
-  @override
-  String get season_halloween => '万圣节';
-
-  @override
-  String get season_christmas => '圣诞节';
-
-  @override
-  String get season_valentine => '情人节';
-
-  @override
-  String get theme_holidays => '节日配色';
-
-  @override
-  String get theme_holidaysHint => '季节为自动时，使用万圣节、圣诞节和情人节配色';
 
   @override
   String get rxLog_title => '接收日志';
@@ -10180,9 +10133,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return '最多 $seconds 秒';
   }
-
-  @override
-  String get seasonal_holidays => '节日配色';
 
   @override
   String get coords_setting => '坐标格式';

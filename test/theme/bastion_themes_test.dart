@@ -15,13 +15,9 @@ double contrast(Color a, Color b) {
   return x > y ? (x + .05) / (y + .05) : (y + .05) / (x + .05);
 }
 
-/// Every palette a person can end up looking at: the seven fixed themes and
-/// each of Seasonal's looks.
+/// Every palette a person can end up looking at.
 Map<String, BastionPalette> allPalettes() => {
-  for (final t in BastionTheme.values)
-    if (t != BastionTheme.seasonal) t.id: t.palette,
-  for (final s in Season.values)
-    'seasonal ${s.id}': SeasonalTheme.paletteFor(s),
+  for (final t in BastionTheme.values) t.id: t.palette,
 };
 
 Widget picker(AppSettingsService settings, {double textScale = 1}) =>
@@ -54,43 +50,60 @@ Future<AppSettingsService> freshSettings([
 void main() {
   tearDown(() {
     MeshPalette.current = BastionTheme.fallback.palette;
-    SeasonalTheme.choice = null;
-    SeasonalTheme.holidays = false;
-    SeasonalTheme.now = DateTime.now;
   });
 
-  test('exactly eight themes, in order, with Blaze the default', () {
+  test('exactly five themes, in order, with BLACKOUT the default', () {
     expect(BastionTheme.values.map((t) => t.id), [
+      'blackout',
       'blaze',
-      'neon_anarchy',
       'tactical',
-      'pink_overload',
-      'bare_beauty',
       'okabe_ito',
       'night_ops',
-      'seasonal',
     ]);
-    expect(AppSettings().appTheme, 'blaze');
-    expect(BastionTheme.fromId(null), BastionTheme.blaze);
-    expect(BastionTheme.fromId('nope'), BastionTheme.blaze);
+    expect(AppSettings().appTheme, 'blackout');
+    expect(BastionTheme.fromId(null), BastionTheme.blackout);
+    expect(BastionTheme.fromId('nope'), BastionTheme.blackout);
   });
 
   test('saved ids from earlier versions map to their replacements', () {
     const expected = {
       'blaze': BastionTheme.blaze,
-      'autumn_frost': BastionTheme.seasonal,
-      'bubble_gum': BastionTheme.pinkOverload,
-      'bronzed_blush': BastionTheme.bareBeauty,
+      'tactical': BastionTheme.tactical,
       'red_light': BastionTheme.nightOps,
       'okabe_ito': BastionTheme.okabeIto,
       'okabe_ito_slate': BastionTheme.okabeIto,
-      'topo_night': BastionTheme.pinkOverload,
-      'christmas': BastionTheme.seasonal,
       'alpine_day': BastionTheme.blaze,
-      'halloween': BastionTheme.blaze,
+      // Removed themes, and older ids that led to them, open as BLACKOUT.
+      'neon_anarchy': BastionTheme.blackout,
+      'pink_overload': BastionTheme.blackout,
+      'bare_beauty': BastionTheme.blackout,
+      'seasonal': BastionTheme.blackout,
+      'autumn_frost': BastionTheme.blackout,
+      'bubble_gum': BastionTheme.blackout,
+      'bronzed_blush': BastionTheme.blackout,
+      'topo_night': BastionTheme.blackout,
+      'christmas': BastionTheme.blackout,
+      'halloween': BastionTheme.blackout,
     };
     for (final e in expected.entries) {
       expect(BastionTheme.fromId(e.key), e.value, reason: e.key);
+    }
+  });
+
+  test('BLACKOUT is monochrome but keeps the meaning colours', () {
+    final p = BastionTheme.blackout.palette;
+    expect(p.brightness, Brightness.dark);
+    expect(p.bg, const Color(0xFF080808));
+    expect(p.bg3, const Color(0xFF242424));
+    expect(p.line2, const Color(0xFF484848));
+    expect(p.ink, const Color(0xFFE8E8E8));
+    expect(p.accent, const Color(0xFFE8E8E8));
+    for (final c in [p.bg, p.bg3, p.line2, p.ink, p.accent, p.nav]) {
+      expect(HSVColor.fromColor(c).saturation, 0, reason: '$c');
+    }
+    // Signal, warning and alert still carry colour.
+    for (final c in [p.signal, p.warn, p.alert]) {
+      expect(HSVColor.fromColor(c).saturation, greaterThan(0.3), reason: '$c');
     }
   });
 
@@ -185,72 +198,6 @@ void main() {
     expect(MapPalette.repeater, OkabeIto.nodeType(advTypeRepeater));
   });
 
-  test('Pink Overload and Bare Beauty are clearly different looks', () {
-    final pink = BastionTheme.pinkOverload.palette;
-    final nude = BastionTheme.bareBeauty.palette;
-    expect(pink.brightness, Brightness.light);
-    expect(nude.brightness, Brightness.light);
-    expect(pink.accent, isNot(nude.accent));
-    expect(pink.motif, BackdropMotif.sparkle);
-    expect(nude.motif, BackdropMotif.contours);
-    // Pink is far more saturated than the natural tones.
-    expect(
-      HSVColor.fromColor(pink.me).saturation,
-      greaterThan(HSVColor.fromColor(nude.me).saturation + 0.3),
-    );
-    expect(BastionTheme.neonAnarchy.palette.motif, BackdropMotif.grid);
-  });
-
-  group('Seasonal', () {
-    test('follows the local date', () {
-      Season on(int m, int d, {bool holidays = false}) =>
-          SeasonalTheme.seasonFor(DateTime(2026, m, d), holidays: holidays);
-      expect(on(3, 1), Season.spring);
-      expect(on(5, 31), Season.spring);
-      expect(on(6, 1), Season.summer);
-      expect(on(9, 1), Season.autumn);
-      expect(on(11, 30), Season.autumn);
-      expect(on(12, 1), Season.winter);
-      expect(on(2, 28), Season.winter);
-      // Holidays only when switched on.
-      expect(on(10, 31), Season.autumn);
-      expect(on(10, 31, holidays: true), Season.halloween);
-      expect(on(10, 23, holidays: true), Season.autumn);
-      expect(on(12, 20, holidays: true), Season.christmas);
-      expect(on(12, 27, holidays: true), Season.winter);
-      expect(on(2, 14, holidays: true), Season.valentine);
-      expect(on(2, 15, holidays: true), Season.winter);
-    });
-
-    test('a picked season overrides the date', () {
-      SeasonalTheme.now = () => DateTime(2026, 7, 4);
-      expect(BastionTheme.seasonal.palette, SeasonalPalettes.summer);
-      SeasonalTheme.choice = Season.winter;
-      expect(BastionTheme.seasonal.palette, SeasonalPalettes.winter);
-    });
-
-    test('other themes never change with the date', () {
-      for (final date in [DateTime(2026, 1, 1), DateTime(2026, 10, 31)]) {
-        SeasonalTheme.now = () => date;
-        SeasonalTheme.holidays = true;
-        expect(BastionTheme.blaze.palette.accent, const Color(0xFFFF8A00));
-      }
-    });
-
-    test('settings keep the choice and the holiday switch', () {
-      final saved = AppSettings().copyWith(
-        appTheme: 'seasonal',
-        seasonalChoice: 'spring',
-        seasonalHolidays: true,
-      );
-      final back = AppSettings.fromJson(saved.toJson());
-      expect(back.seasonalChoice, 'spring');
-      expect(back.seasonalHolidays, isTrue);
-      expect(AppSettings().seasonalChoice, 'auto');
-      expect(AppSettings().seasonalHolidays, isFalse);
-    });
-  });
-
   for (final (width, scale) in [(320.0, 2.0), (390.0, 1.0), (900.0, 1.0)]) {
     testWidgets(
       'picking a theme saves and restores it ($width px, ${scale}x)',
@@ -262,16 +209,16 @@ void main() {
         for (final t in BastionTheme.values) {
           expect(find.byKey(ValueKey('theme-${t.id}')), findsOneWidget);
         }
-        final neon = find.byKey(const ValueKey('theme-neon_anarchy'));
-        await tester.ensureVisible(neon);
-        await tester.tap(neon);
+        final nightOps = find.byKey(const ValueKey('theme-night_ops'));
+        await tester.ensureVisible(nightOps);
+        await tester.tap(nightOps);
         await tester.pumpAndSettle();
         expect(tester.takeException(), isNull);
-        expect(settings.settings.appTheme, 'neon_anarchy');
+        expect(settings.settings.appTheme, 'night_ops');
         expect(find.text('Selected'), findsOneWidget);
         final restored = AppSettingsService();
         await restored.loadSettings();
-        expect(restored.settings.appTheme, 'neon_anarchy');
+        expect(restored.settings.appTheme, 'night_ops');
         await tester.pumpWidget(const SizedBox.shrink());
         restored.dispose();
         settings.dispose();
@@ -279,55 +226,30 @@ void main() {
     );
   }
 
-  testWidgets('Seasonal shows its season controls, others do not', (
-    tester,
-  ) async {
-    SeasonalTheme.now = () => DateTime(2026, 10, 31);
-    final settings = await freshSettings();
-    await tester.pumpWidget(picker(settings));
-    expect(find.byKey(const ValueKey('season-auto')), findsNothing);
-    final seasonal = find.byKey(const ValueKey('theme-seasonal'));
-    await tester.ensureVisible(seasonal);
-    await tester.tap(seasonal);
-    await tester.pumpAndSettle();
-    expect(find.text('Automatic (Autumn)'), findsOneWidget);
-    final holidays = find.byKey(const ValueKey('season-holidays'));
-    await tester.ensureVisible(holidays);
-    await tester.tap(holidays);
-    await tester.pumpAndSettle();
-    expect(settings.settings.seasonalHolidays, isTrue);
-    expect(find.text('Automatic (Halloween)'), findsOneWidget);
-    final winter = find.byKey(const ValueKey('season-winter'));
-    await tester.ensureVisible(winter);
-    await tester.tap(winter);
-    await tester.pumpAndSettle();
-    expect(settings.settings.seasonalChoice, 'winter');
-    await tester.pumpWidget(const SizedBox.shrink());
-    settings.dispose();
-  });
-
-  testWidgets('an old saved theme opens on its replacement', (tester) async {
-    final settings = await freshSettings({
-      'app_settings': '{"app_theme":"bubble_gum"}',
+  for (final removed in ['pink_overload', 'seasonal', 'bubble_gum']) {
+    testWidgets('a removed theme ($removed) opens as BLACKOUT', (tester) async {
+      final settings = await freshSettings({
+        'app_settings': '{"app_theme":"$removed"}',
+      });
+      await tester.pumpWidget(picker(settings));
+      expect(tester.takeException(), isNull);
+      final card = tester.widget<Semantics>(
+        find
+            .ancestor(
+              of: find.byKey(const ValueKey('theme-blackout')),
+              matching: find.byType(Semantics),
+            )
+            .first,
+      );
+      expect(card.properties.selected, isTrue);
+      await tester.pumpWidget(const SizedBox.shrink());
+      settings.dispose();
     });
-    await tester.pumpWidget(picker(settings));
-    final card = tester.widget<Semantics>(
-      find
-          .ancestor(
-            of: find.byKey(const ValueKey('theme-pink_overload')),
-            matching: find.byType(Semantics),
-          )
-          .first,
-    );
-    expect(card.properties.selected, isTrue);
-    await tester.pumpWidget(const SizedBox.shrink());
-    settings.dispose();
-  });
+  }
 
   test('the palette follows the chosen theme', () {
-    MeshPalette.current = BastionTheme.pinkOverload.palette;
-    expect(MeshPalette.accent, BastionTheme.pinkOverload.palette.accent);
-    expect(MeshTheme.light().brightness, Brightness.light);
+    MeshPalette.current = BastionTheme.nightOps.palette;
+    expect(MeshPalette.accent, BastionTheme.nightOps.palette.accent);
     MeshPalette.current = BastionTheme.blaze.palette;
     expect(MeshPalette.accent, const Color(0xFFFF8A00));
     expect(MeshTheme.dark().brightness, Brightness.dark);

@@ -614,24 +614,9 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    // Seasonal follows the date, so check it again when the app comes back.
-    if (state == AppLifecycleState.resumed &&
-        BastionTheme.fromId(widget.appSettingsService.settings.appTheme) ==
-            BastionTheme.seasonal &&
-        mounted) {
-      setState(() {});
-    }
     _fieldOps.setForeground(state == AppLifecycleState.resumed);
     _readAloud.foreground = state == AppLifecycleState.resumed;
     widget.receivedImageStore.setForeground(state == AppLifecycleState.resumed);
-    // Seasonal follows the date: a phone left open overnight on the last day
-    // of a season picks up the new one when it comes back.
-    if (state == AppLifecycleState.resumed &&
-        BastionTheme.fromId(widget.appSettingsService.settings.appTheme) ==
-            BastionTheme.seasonal &&
-        !identical(MeshPalette.current, BastionTheme.seasonal.palette)) {
-      setState(() {});
-    }
     if (state == AppLifecycleState.paused ||
         state == AppLifecycleState.hidden) {
       unawaited(_telemetry.flush());
@@ -779,8 +764,6 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   /// directly, so after a switch every widget is rebuilt once, in place, so
   /// nothing (open screens, scroll position) is lost.
   BastionPalette _applyTheme(AppSettings settings) {
-    SeasonalTheme.choice = Season.fromId(settings.seasonalChoice);
-    SeasonalTheme.holidays = settings.seasonalHolidays;
     final palette = BastionTheme.fromId(settings.appTheme).palette;
     if (!identical(MeshPalette.current, palette)) {
       MeshPalette.current = palette;

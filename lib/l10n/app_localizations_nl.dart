@@ -10418,21 +10418,14 @@ class AppLocalizationsNl extends AppLocalizations {
   String get theme_selected => 'Geselecteerd';
 
   @override
-  String get theme_desc_blaze =>
-      'Donker leisteen met signaaloranje. Standaard.';
+  String get theme_desc_blaze => 'Donker leisteen met signaaloranje';
 
   @override
-  String get theme_desc_neon_anarchy => 'Gifgroen en elektrisch paars op zwart';
+  String get theme_desc_blackout => 'Matzwart en staal. Standaard.';
 
   @override
   String get theme_desc_tactical =>
       'Olijf, kanongrijs en aardetinten voor in het veld';
-
-  @override
-  String get theme_desc_pink_overload => 'Felroze, kauwgomroze en lavendel';
-
-  @override
-  String get theme_desc_bare_beauty => 'Warm nude, oudroze, cacao en salie';
 
   @override
   String get theme_desc_okabe_ito =>
@@ -10440,48 +10433,6 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get theme_desc_night_ops => 'Gedempt rood voor werken in het donker';
-
-  @override
-  String get theme_desc_seasonal => 'Volgt het seizoen, of kies er een';
-
-  @override
-  String theme_seasonNow(String season) {
-    return 'Nu: $season';
-  }
-
-  @override
-  String get theme_season => 'Seizoen';
-
-  @override
-  String get theme_seasonAuto => 'Automatisch';
-
-  @override
-  String get season_spring => 'Lente';
-
-  @override
-  String get season_summer => 'Zomer';
-
-  @override
-  String get season_autumn => 'Herfst';
-
-  @override
-  String get season_winter => 'Winter';
-
-  @override
-  String get season_halloween => 'Halloween';
-
-  @override
-  String get season_christmas => 'Kerst';
-
-  @override
-  String get season_valentine => 'Valentijnsdag';
-
-  @override
-  String get theme_holidays => 'Feestdagkleuren';
-
-  @override
-  String get theme_holidaysHint =>
-      'Halloween, kerst en Valentijnsdag, als het seizoen automatisch is';
 
   @override
   String get rxLog_title => 'RX-logboek';
@@ -10860,9 +10811,6 @@ class AppLocalizationsNl extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'tot $seconds s';
   }
-
-  @override
-  String get seasonal_holidays => 'Feestkleuren';
 
   @override
   String get coords_setting => 'Coördinaatnotatie';

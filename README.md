@@ -150,7 +150,7 @@ Everything from NOTORYX Core, working over plain-text ham frames:
 
 ### Look and feel
 - **Frosted ember:** the main screens sit on a glow in your theme's colours, with see-through glass panels and a floating tab bar. With reduce motion turned on, the blur is off.
-- Eight themes: **Blaze** (the default), **Neon Anarchy**, **Tactical**, **Pink Overload**, **Bare Beauty**, **Okabe-Ito** (colour-vision friendly), **Night Ops** and **Seasonal**.
+- Five themes: **BLACKOUT** (the default: matte black and steel), **Blaze**, **Tactical**, **Okabe-Ito** (colour-vision friendly) and **Night Ops**.
 - **Your own background:** **Settings → Background** puts a colour, gradient, mesh blend or your own photo behind the glass cards.
 - **A photo or colour per node:** from a node's sheet, give it a colour or photo. It shows in Nodes, the map and chats, stays on this phone and is never sent over the radio.
 - Available in 18 languages.
@@ -168,7 +168,6 @@ Everything from NOTORYX Core, working over plain-text ham frames:
 </p>
 
 <p align="center">
-  <img src="docs/screenshots/home_pink_overload.png" width="200" alt="Home in the Pink Overload theme">
   <img src="docs/screenshots/routes.png" width="200" alt="Route Intelligence">
   <img src="docs/screenshots/path_graph.png" width="200" alt="Path graph showing how messages reach you">
 </p>

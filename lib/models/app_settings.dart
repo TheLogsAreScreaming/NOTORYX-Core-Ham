@@ -176,15 +176,9 @@ class AppSettings {
   /// 863–870 MHz duty-cycle band), 'on' or 'off' (this device only).
   final String reactionsOverRadio;
 
-  /// The chosen color theme's id (see BastionTheme); Blaze by default.
+  /// The chosen color theme's id (see BastionTheme); BLACKOUT by default.
+  /// An id that is no longer offered opens as BLACKOUT.
   final String appTheme;
-
-  /// The Seasonal theme's pick: 'auto' follows the date, otherwise a
-  /// [Season] id.
-  final String seasonalChoice;
-
-  /// Whether Seasonal's Automatic also shows holiday colours.
-  final bool seasonalHolidays;
 
   /// How positions are shown: 'decimal', 'dms', 'utm' or 'mgrs'.
   final String coordinateFormat;
@@ -310,9 +304,7 @@ class AppSettings {
     this.mapTelemetryMetric = 'battery',
     this.signChannelPosts = false,
     this.reactionsOverRadio = 'auto',
-    this.appTheme = 'blaze',
-    this.seasonalChoice = 'auto',
-    this.seasonalHolidays = false,
+    this.appTheme = 'blackout',
     this.coordinateFormat = 'decimal',
     this.channelMessageRetentionDays = 0,
     this.imageMessagesEnabled = false,
@@ -409,8 +401,6 @@ class AppSettings {
       'sign_channel_posts': signChannelPosts,
       'reactions_over_radio': reactionsOverRadio,
       'app_theme': appTheme,
-      'seasonal_choice': seasonalChoice,
-      'seasonal_holidays': seasonalHolidays,
       'coordinate_format': coordinateFormat,
       'channel_message_retention_days': channelMessageRetentionDays,
       'image_messages_enabled': imageMessagesEnabled,
@@ -538,9 +528,7 @@ class AppSettings {
         final String v when const {'auto', 'on', 'off'}.contains(v) => v,
         _ => 'auto',
       },
-      appTheme: json['app_theme'] as String? ?? 'blaze',
-      seasonalChoice: json['seasonal_choice'] as String? ?? 'auto',
-      seasonalHolidays: json['seasonal_holidays'] as bool? ?? false,
+      appTheme: json['app_theme'] as String? ?? 'blackout',
       coordinateFormat: json['coordinate_format'] as String? ?? 'decimal',
       channelMessageRetentionDays:
           channelRetentionChoices.contains(
@@ -679,8 +667,6 @@ class AppSettings {
     bool? signChannelPosts,
     String? reactionsOverRadio,
     String? appTheme,
-    String? seasonalChoice,
-    bool? seasonalHolidays,
     String? coordinateFormat,
     int? channelMessageRetentionDays,
     bool? imageMessagesEnabled,
@@ -775,8 +761,6 @@ class AppSettings {
       signChannelPosts: signChannelPosts ?? this.signChannelPosts,
       reactionsOverRadio: reactionsOverRadio ?? this.reactionsOverRadio,
       appTheme: appTheme ?? this.appTheme,
-      seasonalChoice: seasonalChoice ?? this.seasonalChoice,
-      seasonalHolidays: seasonalHolidays ?? this.seasonalHolidays,
       coordinateFormat: coordinateFormat ?? this.coordinateFormat,
       channelMessageRetentionDays:
           channelMessageRetentionDays ?? this.channelMessageRetentionDays,

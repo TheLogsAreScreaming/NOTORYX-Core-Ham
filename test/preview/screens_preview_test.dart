@@ -674,23 +674,17 @@ void main() {
   final only = Platform.environment['PREVIEW_ONLY']?.split(',').toSet();
   final height =
       double.tryParse(Platform.environment['PREVIEW_HEIGHT'] ?? '') ?? 844;
-  // PREVIEW_THEME=okabe_ito,night_ops (etc.) picks themes; by default the
-  // dark Blaze theme and the light Pink Overload theme.
-  // seasonal_winter (etc.) renders one of Seasonal's looks.
+  // PREVIEW_THEME=okabe_ito,night_ops (etc.) picks themes; by default
+  // BLACKOUT and Blaze.
   (String, BastionPalette) themeFor(String id) {
-    final season = Season.fromId(id.replaceFirst('seasonal_', ''));
-    if (id.startsWith('seasonal_') && season != null) {
-      return (id, SeasonalTheme.paletteFor(season));
-    }
     final t = BastionTheme.fromId(id);
     return (t.id, t.palette);
   }
 
-  final themes =
-      (Platform.environment['PREVIEW_THEME'] ?? 'blaze,pink_overload')
-          .split(',')
-          .map(themeFor)
-          .toList();
+  final themes = (Platform.environment['PREVIEW_THEME'] ?? 'blackout,blaze')
+      .split(',')
+      .map(themeFor)
+      .toList();
   // PREVIEW_A11Y=1 also runs Flutter's accessibility guidelines on every
   // screen and writes the findings to a11y.txt instead of failing.
   final a11y = Platform.environment['PREVIEW_A11Y'] != null;

@@ -10496,22 +10496,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get theme_selected => 'Sélectionné';
 
   @override
-  String get theme_desc_blaze =>
-      'Ardoise sombre et orange haute visibilité. Par défaut.';
+  String get theme_desc_blaze => 'Ardoise sombre et orange haute visibilité';
 
   @override
-  String get theme_desc_neon_anarchy =>
-      'Vert toxique et violet électrique sur noir';
+  String get theme_desc_blackout => 'Noir mat et acier. Par défaut.';
 
   @override
   String get theme_desc_tactical =>
       'Olive, gris canon et tons terre pour le terrain';
-
-  @override
-  String get theme_desc_pink_overload => 'Rose vif, chewing-gum et lavande';
-
-  @override
-  String get theme_desc_bare_beauty => 'Nude chaud, vieux rose, cacao et sauge';
 
   @override
   String get theme_desc_okabe_ito =>
@@ -10520,48 +10512,6 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get theme_desc_night_ops =>
       'Rouge tamisé pour travailler dans le noir';
-
-  @override
-  String get theme_desc_seasonal => 'Suit la saison, ou choisissez-en une';
-
-  @override
-  String theme_seasonNow(String season) {
-    return 'En ce moment : $season';
-  }
-
-  @override
-  String get theme_season => 'Saison';
-
-  @override
-  String get theme_seasonAuto => 'Automatique';
-
-  @override
-  String get season_spring => 'Printemps';
-
-  @override
-  String get season_summer => 'Été';
-
-  @override
-  String get season_autumn => 'Automne';
-
-  @override
-  String get season_winter => 'Hiver';
-
-  @override
-  String get season_halloween => 'Halloween';
-
-  @override
-  String get season_christmas => 'Noël';
-
-  @override
-  String get season_valentine => 'Saint-Valentin';
-
-  @override
-  String get theme_holidays => 'Couleurs de fête';
-
-  @override
-  String get theme_holidaysHint =>
-      'Halloween, Noël et la Saint-Valentin, quand la saison est automatique';
 
   @override
   String get rxLog_title => 'Journal RX';
@@ -10941,9 +10891,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'jusqu\'à $seconds s';
   }
-
-  @override
-  String get seasonal_holidays => 'Couleurs des fêtes';
 
   @override
   String get coords_setting => 'Format des coordonnées';

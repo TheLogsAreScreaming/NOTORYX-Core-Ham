@@ -10379,21 +10379,13 @@ class AppLocalizationsSv extends AppLocalizations {
   String get theme_selected => 'Vald';
 
   @override
-  String get theme_desc_blaze => 'Skiffergrått med signalorange. Standard.';
+  String get theme_desc_blaze => 'Skiffergrått med signalorange';
 
   @override
-  String get theme_desc_neon_anarchy =>
-      'Giftgrönt och elektriskt lila på svart';
+  String get theme_desc_blackout => 'Mattsvart och stål. Standard.';
 
   @override
   String get theme_desc_tactical => 'Oliv, vapengrått och jordtoner för fältet';
-
-  @override
-  String get theme_desc_pink_overload => 'Knallrosa, tuggummirosa och lavendel';
-
-  @override
-  String get theme_desc_bare_beauty =>
-      'Varm nude, gammelrosa, kakao och salvia';
 
   @override
   String get theme_desc_okabe_ito =>
@@ -10401,48 +10393,6 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get theme_desc_night_ops => 'Dämpat rött för arbete i mörker';
-
-  @override
-  String get theme_desc_seasonal => 'Följer årstiden, eller välj en';
-
-  @override
-  String theme_seasonNow(String season) {
-    return 'Nu: $season';
-  }
-
-  @override
-  String get theme_season => 'Årstid';
-
-  @override
-  String get theme_seasonAuto => 'Automatisk';
-
-  @override
-  String get season_spring => 'Vår';
-
-  @override
-  String get season_summer => 'Sommar';
-
-  @override
-  String get season_autumn => 'Höst';
-
-  @override
-  String get season_winter => 'Vinter';
-
-  @override
-  String get season_halloween => 'Halloween';
-
-  @override
-  String get season_christmas => 'Jul';
-
-  @override
-  String get season_valentine => 'Alla hjärtans dag';
-
-  @override
-  String get theme_holidays => 'Högtidsfärger';
-
-  @override
-  String get theme_holidaysHint =>
-      'Halloween, jul och alla hjärtans dag, när årstiden är automatisk';
 
   @override
   String get rxLog_title => 'RX-logg';
@@ -10821,9 +10771,6 @@ class AppLocalizationsSv extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'upp till $seconds s';
   }
-
-  @override
-  String get seasonal_holidays => 'Högtidsfärger';
 
   @override
   String get coords_setting => 'Koordinatformat';
