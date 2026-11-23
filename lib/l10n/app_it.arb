@@ -4880,5 +4880,22 @@
   "stale_badge": "inattivo · {age}",
   "rangeRings_toggle": "Anelli di distanza",
   "rangeRings_hint": "Anelli di distanza attorno alla tua posizione, adattati alla vista",
-  "rangeRings_noPosition": "La tua posizione non è ancora nota, quindi gli anelli di distanza non possono essere disegnati."
+  "rangeRings_noPosition": "La tua posizione non è ancora nota, quindi gli anelli di distanza non possono essere disegnati.",
+  "coverageHex_notoryxTitle": "Mappa di copertura NOTORYX",
+  "coverageHex_notoryxShare": "Condividi con la mappa di copertura NOTORYX",
+  "coverageHex_notoryxShareHint": "Una mappa pubblica della copertura MeshCore reale. Non viene inviato nulla finché non accetti.",
+  "coverageHex_notoryxConsent": "Il telefono invia ciò che la radio ha sentito in ogni esagono (circa 0,9 km): intensità del segnale, numero di pacchetti, ripetitori sentiti direttamente e una fascia di 15 minuti. Non invia mai la traccia GPS né la posizione esatta. Invia anche gli annunci pubblici dei ripetitori (nome e posizione) perché la mappa possa nominarli. I caricamenti sono firmati con una chiave di copertura separata dalla radio, così puoi cancellarli in seguito.",
+  "coverageHex_notoryxAnonymousNote": "I caricamenti anonimi non si possono cancellare in seguito.",
+  "coverageHex_mapperName": "Nome del mappatore (facoltativo)",
+  "coverageHex_mapperNameHint": "Visibile solo ai membri NOTORYX. Lascia vuoto per restare senza nome.",
+  "coverageHex_shareAction": "Condividi",
+  "coverageHex_notNow": "Non ora",
+  "coverageHex_stopSharing": "Interrompi condivisione",
+  "coverageHex_eraseUploads": "Cancella i miei caricamenti",
+  "coverageHex_eraseConfirm": "Eliminare tutto ciò che questo telefono ha caricato sulla mappa di copertura NOTORYX? Non si può annullare.",
+  "coverageHex_erased": "{count} rilevamenti cancellati dalla mappa.",
+  "coverageHex_eraseFailed": "Impossibile cancellare. Controlla la connessione e riprova.",
+  "coverageHex_openMap": "Apri la mappa di copertura",
+  "coverageHex_trimDrives": "Nascondi inizio e fine di ogni percorso",
+  "coverageHex_trimDrivesHint": "I primi e gli ultimi 2 esagoni di ogni sessione restano su questo telefono, così le mappe non mostrano dove abiti o parcheggi."
 }

@@ -12479,4 +12479,65 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'Vaš položaj še ni znan, zato krogov razdalje ni mogoče narisati.';
+
+  @override
+  String get coverageHex_notoryxTitle => 'Zemljevid pokritosti NOTORYX';
+
+  @override
+  String get coverageHex_notoryxShare =>
+      'Deli z zemljevidom pokritosti NOTORYX';
+
+  @override
+  String get coverageHex_notoryxShareHint =>
+      'Javni zemljevid dejanske pokritosti MeshCore. Nič se ne pošlje, dokler se ne strinjate.';
+
+  @override
+  String get coverageHex_notoryxConsent =>
+      'Telefon pošlje, kaj je radio slišal v vsakem šestkotniku (približno 0,9 km): moč signala, število paketov, neposredno slišane repetitorje in 15-minutni časovni razpon. Nikoli ne pošlje vaše GPS-sledi ali natančnega položaja. Pošlje tudi javne oglase repetitorjev (ime in položaj), da jih zemljevid lahko poimenuje. Nalaganja so podpisana s ključem pokritosti, ločenim od radia, zato jih lahko pozneje izbrišete.';
+
+  @override
+  String get coverageHex_notoryxAnonymousNote =>
+      'Anonimnih nalaganj pozneje ni mogoče izbrisati.';
+
+  @override
+  String get coverageHex_mapperName => 'Ime kartografa (neobvezno)';
+
+  @override
+  String get coverageHex_mapperNameHint =>
+      'Vidno samo članom NOTORYX. Pustite prazno, če želite ostati brez imena.';
+
+  @override
+  String get coverageHex_shareAction => 'Deli';
+
+  @override
+  String get coverageHex_notNow => 'Ne zdaj';
+
+  @override
+  String get coverageHex_stopSharing => 'Ustavi deljenje';
+
+  @override
+  String get coverageHex_eraseUploads => 'Izbriši moja nalaganja';
+
+  @override
+  String get coverageHex_eraseConfirm =>
+      'Izbrišem vse, kar je ta telefon naložil na zemljevid pokritosti NOTORYX? Tega ni mogoče razveljaviti.';
+
+  @override
+  String coverageHex_erased(String count) {
+    return 'Z zemljevida izbrisanih meritev: $count.';
+  }
+
+  @override
+  String get coverageHex_eraseFailed =>
+      'Brisanje ni uspelo. Preverite povezavo in poskusite znova.';
+
+  @override
+  String get coverageHex_openMap => 'Odpri zemljevid pokritosti';
+
+  @override
+  String get coverageHex_trimDrives => 'Skrij začetek in konec vsake vožnje';
+
+  @override
+  String get coverageHex_trimDrivesHint =>
+      'Prva in zadnja 2 šestkotnika vsake seje ostaneta v tem telefonu, zato zemljevidi ne pokažejo, kje živite ali parkirate.';
 }

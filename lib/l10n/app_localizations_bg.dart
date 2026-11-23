@@ -12466,4 +12466,66 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'Позицията ви още не е известна, затова кръговете на разстояние не могат да се начертаят.';
+
+  @override
+  String get coverageHex_notoryxTitle => 'Карта на покритието NOTORYX';
+
+  @override
+  String get coverageHex_notoryxShare =>
+      'Споделяне с картата на покритието NOTORYX';
+
+  @override
+  String get coverageHex_notoryxShareHint =>
+      'Публична карта на реалното покритие на MeshCore. Нищо не се изпраща, докато не се съгласите.';
+
+  @override
+  String get coverageHex_notoryxConsent =>
+      'Телефонът ви изпраща какво е чуло радиото във всеки шестоъгълник (около 0,9 km): сила на сигнала, брой пакети, директно чутите репитери и 15-минутен интервал. Никога не изпраща GPS следата или точното ви местоположение. Изпраща и публичните обявления на репитерите (име и позиция), за да може картата да ги назове. Качванията са подписани с ключ за покритие, отделен от радиото ви, така че можете да ги изтриете по-късно.';
+
+  @override
+  String get coverageHex_notoryxAnonymousNote =>
+      'Анонимните качвания не могат да бъдат изтрити по-късно.';
+
+  @override
+  String get coverageHex_mapperName => 'Име на картографа (по избор)';
+
+  @override
+  String get coverageHex_mapperNameHint =>
+      'Показва се само на членовете на NOTORYX. Оставете празно, за да останете без име.';
+
+  @override
+  String get coverageHex_shareAction => 'Споделяне';
+
+  @override
+  String get coverageHex_notNow => 'Не сега';
+
+  @override
+  String get coverageHex_stopSharing => 'Спиране на споделянето';
+
+  @override
+  String get coverageHex_eraseUploads => 'Изтриване на моите качвания';
+
+  @override
+  String get coverageHex_eraseConfirm =>
+      'Да се изтрие ли всичко, което този телефон е качил в картата на покритието NOTORYX? Това не може да бъде отменено.';
+
+  @override
+  String coverageHex_erased(String count) {
+    return 'Изтрити са $count измервания от картата.';
+  }
+
+  @override
+  String get coverageHex_eraseFailed =>
+      'Изтриването не успя. Проверете връзката и опитайте отново.';
+
+  @override
+  String get coverageHex_openMap => 'Отваряне на картата на покритието';
+
+  @override
+  String get coverageHex_trimDrives =>
+      'Скриване на началото и края на всяко пътуване';
+
+  @override
+  String get coverageHex_trimDrivesHint =>
+      'Първите и последните 2 шестоъгълника от всяка сесия остават на този телефон, така че картите не могат да покажат къде живеете или паркирате.';
 }

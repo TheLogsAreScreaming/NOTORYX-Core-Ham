@@ -4746,5 +4746,22 @@
   "stale_badge": "neaktuálny · {age}",
   "rangeRings_toggle": "Kruhy vzdialenosti",
   "rangeRings_hint": "Kruhy vzdialenosti okolo vašej polohy, podľa zobrazenia",
-  "rangeRings_noPosition": "Vaša poloha ešte nie je známa, preto nie je možné nakresliť kruhy vzdialenosti."
+  "rangeRings_noPosition": "Vaša poloha ešte nie je známa, preto nie je možné nakresliť kruhy vzdialenosti.",
+  "coverageHex_notoryxTitle": "Mapa pokrytia NOTORYX",
+  "coverageHex_notoryxShare": "Zdieľať s mapou pokrytia NOTORYX",
+  "coverageHex_notoryxShareHint": "Verejná mapa skutočného pokrytia MeshCore. Kým nesúhlasíte, nič sa neodošle.",
+  "coverageHex_notoryxConsent": "Telefón posiela, čo rádio počulo v každom šesťuholníku (asi 0,9 km): silu signálu, počet paketov, priamo počuté opakovače a 15-minútový interval. Nikdy neposiela vašu GPS trasu ani presnú polohu. Posiela aj verejné ohlásenia opakovačov (názov a polohu), aby ich mapa mohla pomenovať. Nahrávky sú podpísané kľúčom pokrytia oddeleným od rádia, takže ich môžete neskôr vymazať.",
+  "coverageHex_notoryxAnonymousNote": "Anonymné nahrávky nie je možné neskôr vymazať.",
+  "coverageHex_mapperName": "Meno mapovača (voliteľné)",
+  "coverageHex_mapperNameHint": "Zobrazí sa len členom NOTORYX. Nechajte prázdne, ak chcete zostať bez mena.",
+  "coverageHex_shareAction": "Zdieľať",
+  "coverageHex_notNow": "Teraz nie",
+  "coverageHex_stopSharing": "Prestať zdieľať",
+  "coverageHex_eraseUploads": "Vymazať moje nahrávky",
+  "coverageHex_eraseConfirm": "Vymazať všetko, čo tento telefón nahral na mapu pokrytia NOTORYX? Nedá sa to vrátiť.",
+  "coverageHex_erased": "Z mapy vymazaných meraní: {count}.",
+  "coverageHex_eraseFailed": "Vymazanie zlyhalo. Skontrolujte pripojenie a skúste to znova.",
+  "coverageHex_openMap": "Otvoriť mapu pokrytia",
+  "coverageHex_trimDrives": "Skryť začiatok a koniec každej jazdy",
+  "coverageHex_trimDrivesHint": "Prvé a posledné 2 šesťuholníky každej relácie zostanú v tomto telefóne, takže mapy neukážu, kde bývate alebo parkujete."
 }

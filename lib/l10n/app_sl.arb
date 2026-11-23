@@ -4746,5 +4746,22 @@
   "stale_badge": "zastarelo · {age}",
   "rangeRings_toggle": "Krogi razdalje",
   "rangeRings_hint": "Krogi razdalje okoli vašega položaja, prilagojeni pogledu",
-  "rangeRings_noPosition": "Vaš položaj še ni znan, zato krogov razdalje ni mogoče narisati."
+  "rangeRings_noPosition": "Vaš položaj še ni znan, zato krogov razdalje ni mogoče narisati.",
+  "coverageHex_notoryxTitle": "Zemljevid pokritosti NOTORYX",
+  "coverageHex_notoryxShare": "Deli z zemljevidom pokritosti NOTORYX",
+  "coverageHex_notoryxShareHint": "Javni zemljevid dejanske pokritosti MeshCore. Nič se ne pošlje, dokler se ne strinjate.",
+  "coverageHex_notoryxConsent": "Telefon pošlje, kaj je radio slišal v vsakem šestkotniku (približno 0,9 km): moč signala, število paketov, neposredno slišane repetitorje in 15-minutni časovni razpon. Nikoli ne pošlje vaše GPS-sledi ali natančnega položaja. Pošlje tudi javne oglase repetitorjev (ime in položaj), da jih zemljevid lahko poimenuje. Nalaganja so podpisana s ključem pokritosti, ločenim od radia, zato jih lahko pozneje izbrišete.",
+  "coverageHex_notoryxAnonymousNote": "Anonimnih nalaganj pozneje ni mogoče izbrisati.",
+  "coverageHex_mapperName": "Ime kartografa (neobvezno)",
+  "coverageHex_mapperNameHint": "Vidno samo članom NOTORYX. Pustite prazno, če želite ostati brez imena.",
+  "coverageHex_shareAction": "Deli",
+  "coverageHex_notNow": "Ne zdaj",
+  "coverageHex_stopSharing": "Ustavi deljenje",
+  "coverageHex_eraseUploads": "Izbriši moja nalaganja",
+  "coverageHex_eraseConfirm": "Izbrišem vse, kar je ta telefon naložil na zemljevid pokritosti NOTORYX? Tega ni mogoče razveljaviti.",
+  "coverageHex_erased": "Z zemljevida izbrisanih meritev: {count}.",
+  "coverageHex_eraseFailed": "Brisanje ni uspelo. Preverite povezavo in poskusite znova.",
+  "coverageHex_openMap": "Odpri zemljevid pokritosti",
+  "coverageHex_trimDrives": "Skrij začetek in konec vsake vožnje",
+  "coverageHex_trimDrivesHint": "Prva in zadnja 2 šestkotnika vsake seje ostaneta v tem telefonu, zato zemljevidi ne pokažejo, kje živite ali parkirate."
 }

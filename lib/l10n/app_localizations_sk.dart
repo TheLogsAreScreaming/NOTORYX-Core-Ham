@@ -12453,4 +12453,64 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'Vaša poloha ešte nie je známa, preto nie je možné nakresliť kruhy vzdialenosti.';
+
+  @override
+  String get coverageHex_notoryxTitle => 'Mapa pokrytia NOTORYX';
+
+  @override
+  String get coverageHex_notoryxShare => 'Zdieľať s mapou pokrytia NOTORYX';
+
+  @override
+  String get coverageHex_notoryxShareHint =>
+      'Verejná mapa skutočného pokrytia MeshCore. Kým nesúhlasíte, nič sa neodošle.';
+
+  @override
+  String get coverageHex_notoryxConsent =>
+      'Telefón posiela, čo rádio počulo v každom šesťuholníku (asi 0,9 km): silu signálu, počet paketov, priamo počuté opakovače a 15-minútový interval. Nikdy neposiela vašu GPS trasu ani presnú polohu. Posiela aj verejné ohlásenia opakovačov (názov a polohu), aby ich mapa mohla pomenovať. Nahrávky sú podpísané kľúčom pokrytia oddeleným od rádia, takže ich môžete neskôr vymazať.';
+
+  @override
+  String get coverageHex_notoryxAnonymousNote =>
+      'Anonymné nahrávky nie je možné neskôr vymazať.';
+
+  @override
+  String get coverageHex_mapperName => 'Meno mapovača (voliteľné)';
+
+  @override
+  String get coverageHex_mapperNameHint =>
+      'Zobrazí sa len členom NOTORYX. Nechajte prázdne, ak chcete zostať bez mena.';
+
+  @override
+  String get coverageHex_shareAction => 'Zdieľať';
+
+  @override
+  String get coverageHex_notNow => 'Teraz nie';
+
+  @override
+  String get coverageHex_stopSharing => 'Prestať zdieľať';
+
+  @override
+  String get coverageHex_eraseUploads => 'Vymazať moje nahrávky';
+
+  @override
+  String get coverageHex_eraseConfirm =>
+      'Vymazať všetko, čo tento telefón nahral na mapu pokrytia NOTORYX? Nedá sa to vrátiť.';
+
+  @override
+  String coverageHex_erased(String count) {
+    return 'Z mapy vymazaných meraní: $count.';
+  }
+
+  @override
+  String get coverageHex_eraseFailed =>
+      'Vymazanie zlyhalo. Skontrolujte pripojenie a skúste to znova.';
+
+  @override
+  String get coverageHex_openMap => 'Otvoriť mapu pokrytia';
+
+  @override
+  String get coverageHex_trimDrives => 'Skryť začiatok a koniec každej jazdy';
+
+  @override
+  String get coverageHex_trimDrivesHint =>
+      'Prvé a posledné 2 šesťuholníky každej relácie zostanú v tomto telefóne, takže mapy neukážu, kde bývate alebo parkujete.';
 }

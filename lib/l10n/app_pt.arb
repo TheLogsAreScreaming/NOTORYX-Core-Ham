@@ -4746,5 +4746,22 @@
   "stale_badge": "inativo · {age}",
   "rangeRings_toggle": "Anéis de distância",
   "rangeRings_hint": "Anéis de distância à volta da sua posição, ajustados à vista",
-  "rangeRings_noPosition": "A sua posição ainda não é conhecida, por isso os anéis de distância não podem ser desenhados."
+  "rangeRings_noPosition": "A sua posição ainda não é conhecida, por isso os anéis de distância não podem ser desenhados.",
+  "coverageHex_notoryxTitle": "Mapa de cobertura NOTORYX",
+  "coverageHex_notoryxShare": "Partilhar com o mapa de cobertura NOTORYX",
+  "coverageHex_notoryxShareHint": "Um mapa público da cobertura real da MeshCore. Nada é enviado até concordar.",
+  "coverageHex_notoryxConsent": "O telemóvel envia o que o rádio ouviu em cada hexágono (cerca de 0,9 km): intensidade do sinal, número de pacotes, repetidores ouvidos diretamente e um intervalo de 15 minutos. Nunca envia o seu trajeto GPS nem a posição exata. Envia também os anúncios públicos dos repetidores (nome e posição) para que o mapa os possa identificar. Os envios são assinados com uma chave de cobertura separada do rádio, por isso pode apagá-los mais tarde.",
+  "coverageHex_notoryxAnonymousNote": "Os envios anónimos não podem ser apagados depois.",
+  "coverageHex_mapperName": "Nome do mapeador (opcional)",
+  "coverageHex_mapperNameHint": "Visível apenas para membros NOTORYX. Deixe vazio para ficar sem nome.",
+  "coverageHex_shareAction": "Partilhar",
+  "coverageHex_notNow": "Agora não",
+  "coverageHex_stopSharing": "Parar de partilhar",
+  "coverageHex_eraseUploads": "Apagar os meus envios",
+  "coverageHex_eraseConfirm": "Apagar tudo o que este telemóvel enviou para o mapa de cobertura NOTORYX? Não é possível anular.",
+  "coverageHex_erased": "Foram apagadas {count} leituras do mapa.",
+  "coverageHex_eraseFailed": "Não foi possível apagar. Verifique a ligação e tente novamente.",
+  "coverageHex_openMap": "Abrir o mapa de cobertura",
+  "coverageHex_trimDrives": "Ocultar o início e o fim de cada percurso",
+  "coverageHex_trimDrivesHint": "Os primeiros e últimos 2 hexágonos de cada sessão ficam neste telemóvel, para que os mapas não mostrem onde vive ou estaciona."
 }

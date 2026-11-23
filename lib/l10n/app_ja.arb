@@ -4880,5 +4880,22 @@
   "stale_badge": "古い · {age}",
   "rangeRings_toggle": "距離リング",
   "rangeRings_hint": "表示範囲に合わせた、現在地を中心とする距離リング",
-  "rangeRings_noPosition": "現在地がまだ不明なため、距離リングを描けません。"
+  "rangeRings_noPosition": "現在地がまだ不明なため、距離リングを描けません。",
+  "coverageHex_notoryxTitle": "NOTORYX カバレッジマップ",
+  "coverageHex_notoryxShare": "NOTORYX カバレッジマップに共有",
+  "coverageHex_notoryxShareHint": "実際の MeshCore カバレッジの公開マップです。同意するまで何も送信されません。",
+  "coverageHex_notoryxConsent": "電話は各六角形（約 0.9 km）で無線機が受信した内容を送信します：信号強度、パケット数、直接受信したリピーター、15 分単位の時間帯。GPS の軌跡や正確な位置は送信しません。マップがリピーター名を表示できるよう、リピーター自身の公開アドバート（名前と位置）も送信します。アップロードは無線機とは別のカバレッジ鍵で署名されるため、後で消去できます。",
+  "coverageHex_notoryxAnonymousNote": "匿名のアップロードは後で消去できません。",
+  "coverageHex_mapperName": "マッパー名（任意）",
+  "coverageHex_mapperNameHint": "NOTORYX メンバーにのみ表示されます。名前なしにするには空欄のままにします。",
+  "coverageHex_shareAction": "共有",
+  "coverageHex_notNow": "今はしない",
+  "coverageHex_stopSharing": "共有をやめる",
+  "coverageHex_eraseUploads": "自分のアップロードを消去",
+  "coverageHex_eraseConfirm": "この電話が NOTORYX カバレッジマップにアップロードしたすべてを削除しますか？元に戻せません。",
+  "coverageHex_erased": "マップから {count} 件の測定を消去しました。",
+  "coverageHex_eraseFailed": "消去できませんでした。接続を確認して、もう一度お試しください。",
+  "coverageHex_openMap": "カバレッジマップを開く",
+  "coverageHex_trimDrives": "各移動の開始と終了を隠す",
+  "coverageHex_trimDrivesHint": "各マッピングの最初と最後の 2 つの六角形はこの電話に残るため、マップに自宅や駐車場所が表示されません。"
 }

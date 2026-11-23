@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:cryptography/cryptography.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
@@ -161,5 +162,157 @@ void main() {
     await service.upload();
     expect(posts, hasLength(1));
     expect(posts.single.headers.containsKey('X-Notoryx-Signature'), isFalse);
+  });
+
+  /// Drives through cells cell-1 … cell-[n], one packet a minute, while
+  /// mapping is on.
+  Future<void> drive(int n) async {
+    await service.setMapping(true);
+    for (var i = 1; i <= n; i++) {
+      final at = now.add(Duration(minutes: i));
+      service.fixForTesting = PositionFix(i.toDouble(), -122, 10, at);
+      service.recordForTesting(_packet(at, 0x5a));
+    }
+  }
+
+  List<String> sentCells() => [
+    for (final p in posts)
+      for (final c in (jsonDecode(p.body) as Map)['cells'] as List)
+        c['cell'] as String,
+  ];
+
+  const live = CoverageTarget(
+    id: 'live',
+    name: 'Map',
+    url: 'https://map.example/up',
+    privacy: CoveragePrivacy.live,
+  );
+
+  test('the first and last two cells of a drive never upload', () async {
+    await service.saveTarget(live);
+    await drive(6);
+    now = now.add(const Duration(hours: 1));
+    await service.upload(); // still mapping: the last two are held back
+    expect(sentCells()..sort(), ['cell-3', 'cell-4']);
+    await service.setMapping(false);
+    await service.upload();
+    expect(sentCells()..sort(), ['cell-3', 'cell-4']);
+    expect(service.pendingFor(live), 0);
+    // They stay on the phone's own map.
+    expect(service.cells, hasLength(6));
+  });
+
+  test('a drive cut short by the app closing is still trimmed', () async {
+    final store = _Store();
+    service.dispose();
+    service = CoverageHexService(
+      MeshCoreConnector(),
+      indexer: _Cells(),
+      fixes: () => const Stream.empty(),
+      network: net,
+      store: store,
+      clock: () => now,
+      client: MockClient((req) async {
+        posts.add(req);
+        return http.Response('', 200);
+      }),
+    );
+    await service.load();
+    await service.saveTarget(live);
+    await drive(5);
+    await service.saveForTesting(); // as the 20 s autosave would
+    final saved = store.data;
+    service.dispose();
+    service = CoverageHexService(
+      MeshCoreConnector(),
+      indexer: _Cells(),
+      fixes: () => const Stream.empty(),
+      network: net,
+      store: _Store()..data = saved,
+      clock: () => now,
+      client: MockClient((req) async {
+        posts.add(req);
+        return http.Response('', 200);
+      }),
+    );
+    await service.load();
+    now = now.add(const Duration(hours: 1));
+    await service.upload();
+    expect(sentCells(), ['cell-3']);
+  });
+
+  test('with trimming off, the whole drive uploads', () async {
+    await service.setTrimDrives(false);
+    await service.saveTarget(live);
+    await drive(4);
+    await service.setMapping(false);
+    now = now.add(const Duration(hours: 1));
+    await service.upload();
+    expect(sentCells()..sort(), ['cell-1', 'cell-2', 'cell-3', 'cell-4']);
+  });
+
+  test(
+    'only the NOTORYX map gets the mapper name and repeater adverts',
+    () async {
+      await service.setMapperName('  Ridge Runner ');
+      await service.saveTarget(live);
+      await service.saveTarget(
+        CoverageTarget.notoryxMap(privacy: CoveragePrivacy.live),
+      );
+      service.fixForTesting = PositionFix(47, -122, 10, now);
+      service.recordForTesting(_packet(now, 0x5a));
+      now = now.add(const Duration(hours: 1));
+      await service.upload();
+      expect(posts, hasLength(2));
+      final byUrl = {
+        for (final p in posts) p.url.toString(): jsonDecode(p.body),
+      };
+      final ours = byUrl[notoryxCoverageUploadUrl] as Map;
+      expect(ours['mapper'], 'Ridge Runner');
+      expect(ours['repeaters'], isA<List>());
+      final theirs = byUrl['https://map.example/up'] as Map;
+      expect(theirs.containsKey('mapper'), isFalse);
+      expect(theirs.containsKey('repeaters'), isFalse);
+      // Extra fields don't break the per-cell signatures.
+      expect(
+        (await verifyCoverageReport(ours, now: now)).accepted,
+        hasLength(1),
+      );
+    },
+  );
+
+  test('erasing sends a fresh request signed by the coverage key', () async {
+    service.dispose();
+    late http.Request sent;
+    service = CoverageHexService(
+      MeshCoreConnector(),
+      indexer: _Cells(),
+      fixes: () => const Stream.empty(),
+      network: net,
+      store: _Store(),
+      clock: () => now,
+      client: MockClient((req) async {
+        sent = req;
+        return http.Response('{"erased":12}', 200);
+      }),
+    );
+    await service.load();
+    expect(await service.eraseNotoryxUploads(), 12);
+    expect(sent.url.toString(), notoryxCoverageEraseUrl);
+    final body = jsonDecode(sent.body) as Map;
+    expect(body['format'], 'notoryx-coverage-erase/1');
+    expect(body['key'], await service.signerKey());
+    expect(body['time'], now.toIso8601String());
+    final ok = await Ed25519().verify(
+      utf8.encode(sent.body),
+      signature: Signature(
+        base64Decode(sent.headers['X-Notoryx-Signature']!),
+        publicKey: SimplePublicKey(
+          base64Decode(body['key'] as String),
+          type: KeyPairType.ed25519,
+        ),
+      ),
+    );
+    expect(ok, isTrue);
   });
 }

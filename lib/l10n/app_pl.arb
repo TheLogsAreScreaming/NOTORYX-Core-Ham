@@ -4784,5 +4784,22 @@
   "stale_badge": "nieaktualny · {age}",
   "rangeRings_toggle": "Pierścienie odległości",
   "rangeRings_hint": "Pierścienie odległości wokół Twojej pozycji, dopasowane do widoku",
-  "rangeRings_noPosition": "Twoja pozycja nie jest jeszcze znana, więc nie można narysować pierścieni odległości."
+  "rangeRings_noPosition": "Twoja pozycja nie jest jeszcze znana, więc nie można narysować pierścieni odległości.",
+  "coverageHex_notoryxTitle": "Mapa zasięgu NOTORYX",
+  "coverageHex_notoryxShare": "Udostępniaj mapie zasięgu NOTORYX",
+  "coverageHex_notoryxShareHint": "Publiczna mapa rzeczywistego zasięgu MeshCore. Nic nie zostanie wysłane, dopóki się nie zgodzisz.",
+  "coverageHex_notoryxConsent": "Telefon wysyła to, co radio usłyszało w każdym sześciokącie (ok. 0,9 km): siłę sygnału, liczbę pakietów, bezpośrednio słyszane przemienniki i 15-minutowy przedział czasu. Nigdy nie wysyła Twojej ścieżki GPS ani dokładnej pozycji. Wysyła też publiczne ogłoszenia przemienników (nazwę i pozycję), aby mapa mogła je nazwać. Przesyłki są podpisane kluczem zasięgu niezależnym od radia, więc możesz je później usunąć.",
+  "coverageHex_notoryxAnonymousNote": "Anonimowych przesyłek nie można później usunąć.",
+  "coverageHex_mapperName": "Nazwa mapującego (opcjonalnie)",
+  "coverageHex_mapperNameHint": "Widoczna tylko dla członków NOTORYX. Zostaw puste, aby pozostać bez nazwy.",
+  "coverageHex_shareAction": "Udostępnij",
+  "coverageHex_notNow": "Nie teraz",
+  "coverageHex_stopSharing": "Przestań udostępniać",
+  "coverageHex_eraseUploads": "Usuń moje przesyłki",
+  "coverageHex_eraseConfirm": "Usunąć wszystko, co ten telefon przesłał na mapę zasięgu NOTORYX? Tego nie można cofnąć.",
+  "coverageHex_erased": "Usunięto z mapy {count} pomiarów.",
+  "coverageHex_eraseFailed": "Nie udało się usunąć. Sprawdź połączenie i spróbuj ponownie.",
+  "coverageHex_openMap": "Otwórz mapę zasięgu",
+  "coverageHex_trimDrives": "Ukrywaj początek i koniec każdej trasy",
+  "coverageHex_trimDrivesHint": "Pierwsze i ostatnie 2 sześciokąty każdej sesji zostają w tym telefonie, więc mapy nie pokażą, gdzie mieszkasz lub parkujesz."
 }

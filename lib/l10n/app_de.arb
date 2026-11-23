@@ -4880,5 +4880,22 @@
   "stale_badge": "veraltet · {age}",
   "rangeRings_toggle": "Entfernungsringe",
   "rangeRings_hint": "Entfernungsringe um Ihre Position, passend zur Ansicht",
-  "rangeRings_noPosition": "Ihre Position ist noch unbekannt, daher können keine Entfernungsringe gezeichnet werden."
+  "rangeRings_noPosition": "Ihre Position ist noch unbekannt, daher können keine Entfernungsringe gezeichnet werden.",
+  "coverageHex_notoryxTitle": "NOTORYX-Abdeckungskarte",
+  "coverageHex_notoryxShare": "Mit der NOTORYX-Abdeckungskarte teilen",
+  "coverageHex_notoryxShareHint": "Eine öffentliche Karte der echten MeshCore-Abdeckung. Nichts wird gesendet, bevor du zustimmst.",
+  "coverageHex_notoryxConsent": "Dein Telefon sendet, was das Funkgerät in jedem Sechseck (ca. 0,9 km breit) gehört hat: Signalstärke, Paketanzahl, direkt gehörte Repeater und ein 15-Minuten-Zeitfenster. Es sendet nie deinen GPS-Track oder deine genaue Position. Es sendet auch die öffentlichen Adverts der Repeater (Name und Position), damit die Karte sie benennen kann. Uploads werden mit einem Abdeckungsschlüssel signiert, der von deinem Funkgerät getrennt ist, damit du sie später löschen kannst.",
+  "coverageHex_notoryxAnonymousNote": "Anonyme Uploads können später nicht gelöscht werden.",
+  "coverageHex_mapperName": "Mapper-Name (optional)",
+  "coverageHex_mapperNameHint": "Nur für NOTORYX-Mitglieder sichtbar. Leer lassen, um namenlos zu bleiben.",
+  "coverageHex_shareAction": "Teilen",
+  "coverageHex_notNow": "Nicht jetzt",
+  "coverageHex_stopSharing": "Teilen beenden",
+  "coverageHex_eraseUploads": "Meine Uploads löschen",
+  "coverageHex_eraseConfirm": "Alles löschen, was dieses Telefon auf die NOTORYX-Abdeckungskarte hochgeladen hat? Das kann nicht rückgängig gemacht werden.",
+  "coverageHex_erased": "{count} Messungen von der Karte gelöscht.",
+  "coverageHex_eraseFailed": "Löschen fehlgeschlagen. Prüfe deine Verbindung und versuche es erneut.",
+  "coverageHex_openMap": "Abdeckungskarte öffnen",
+  "coverageHex_trimDrives": "Anfang und Ende jeder Fahrt verbergen",
+  "coverageHex_trimDrivesHint": "Die ersten und letzten 2 Sechsecke jeder Kartierung bleiben auf diesem Telefon, damit Karten nicht zeigen, wo du wohnst oder parkst."
 }

@@ -12436,4 +12436,64 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'Je positie is nog niet bekend, dus afstandsringen kunnen niet getekend worden.';
+
+  @override
+  String get coverageHex_notoryxTitle => 'NOTORYX-dekkingskaart';
+
+  @override
+  String get coverageHex_notoryxShare => 'Delen met de NOTORYX-dekkingskaart';
+
+  @override
+  String get coverageHex_notoryxShareHint =>
+      'Een openbare kaart van echte MeshCore-dekking. Er wordt niets verstuurd tot je akkoord gaat.';
+
+  @override
+  String get coverageHex_notoryxConsent =>
+      'Je telefoon stuurt wat de radio in elke zeshoek (ongeveer 0,9 km) hoorde: signaalsterkte, aantal pakketten, de direct gehoorde repeaters en een tijdvak van 15 minuten. Je GPS-spoor of exacte positie wordt nooit verstuurd. Ook de eigen openbare adverts van repeaters (naam en positie) worden verstuurd, zodat de kaart ze kan benoemen. Uploads worden ondertekend met een dekkingssleutel los van je radio, zodat je ze later kunt wissen.';
+
+  @override
+  String get coverageHex_notoryxAnonymousNote =>
+      'Anonieme uploads kunnen later niet worden gewist.';
+
+  @override
+  String get coverageHex_mapperName => 'Mappernaam (optioneel)';
+
+  @override
+  String get coverageHex_mapperNameHint =>
+      'Alleen zichtbaar voor NOTORYX-leden. Laat leeg om naamloos te blijven.';
+
+  @override
+  String get coverageHex_shareAction => 'Delen';
+
+  @override
+  String get coverageHex_notNow => 'Niet nu';
+
+  @override
+  String get coverageHex_stopSharing => 'Stoppen met delen';
+
+  @override
+  String get coverageHex_eraseUploads => 'Mijn uploads wissen';
+
+  @override
+  String get coverageHex_eraseConfirm =>
+      'Alles verwijderen wat deze telefoon naar de NOTORYX-dekkingskaart heeft geüpload? Dit kan niet ongedaan worden gemaakt.';
+
+  @override
+  String coverageHex_erased(String count) {
+    return '$count metingen van de kaart gewist.';
+  }
+
+  @override
+  String get coverageHex_eraseFailed =>
+      'Wissen mislukt. Controleer je verbinding en probeer het opnieuw.';
+
+  @override
+  String get coverageHex_openMap => 'Dekkingskaart openen';
+
+  @override
+  String get coverageHex_trimDrives => 'Begin en einde van elke rit verbergen';
+
+  @override
+  String get coverageHex_trimDrivesHint =>
+      'De eerste en laatste 2 zeshoeken van elke sessie blijven op deze telefoon, zodat kaarten niet tonen waar je woont of parkeert.';
 }

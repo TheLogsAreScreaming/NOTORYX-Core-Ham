@@ -12461,4 +12461,66 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'A pozíciód még nem ismert, ezért a távolsággyűrűk nem rajzolhatók meg.';
+
+  @override
+  String get coverageHex_notoryxTitle => 'NOTORYX lefedettségi térkép';
+
+  @override
+  String get coverageHex_notoryxShare =>
+      'Megosztás a NOTORYX lefedettségi térképpel';
+
+  @override
+  String get coverageHex_notoryxShareHint =>
+      'A valós MeshCore-lefedettség nyilvános térképe. Semmi sem kerül elküldésre, amíg bele nem egyezel.';
+
+  @override
+  String get coverageHex_notoryxConsent =>
+      'A telefonod elküldi, mit hallott a rádió az egyes hatszögekben (kb. 0,9 km): jelerősséget, csomagszámot, a közvetlenül hallott átjátszókat és egy 15 perces időszakot. Soha nem küldi el a GPS-nyomvonaladat vagy pontos helyzetedet. Az átjátszók saját nyilvános hirdetéseit (név és pozíció) is elküldi, hogy a térkép megnevezhesse őket. A feltöltéseket a rádiótól független lefedettségi kulcs írja alá, így később törölheted őket.';
+
+  @override
+  String get coverageHex_notoryxAnonymousNote =>
+      'A névtelen feltöltéseket később nem lehet törölni.';
+
+  @override
+  String get coverageHex_mapperName => 'Térképező neve (nem kötelező)';
+
+  @override
+  String get coverageHex_mapperNameHint =>
+      'Csak a NOTORYX-tagok látják. Hagyd üresen, ha név nélkül maradnál.';
+
+  @override
+  String get coverageHex_shareAction => 'Megosztás';
+
+  @override
+  String get coverageHex_notNow => 'Most nem';
+
+  @override
+  String get coverageHex_stopSharing => 'Megosztás leállítása';
+
+  @override
+  String get coverageHex_eraseUploads => 'Feltöltéseim törlése';
+
+  @override
+  String get coverageHex_eraseConfirm =>
+      'Törlöd mindazt, amit ez a telefon a NOTORYX lefedettségi térképre feltöltött? Ez nem vonható vissza.';
+
+  @override
+  String coverageHex_erased(String count) {
+    return '$count mérés törölve a térképről.';
+  }
+
+  @override
+  String get coverageHex_eraseFailed =>
+      'A törlés nem sikerült. Ellenőrizd a kapcsolatot, és próbáld újra.';
+
+  @override
+  String get coverageHex_openMap => 'Lefedettségi térkép megnyitása';
+
+  @override
+  String get coverageHex_trimDrives =>
+      'Minden út elejének és végének elrejtése';
+
+  @override
+  String get coverageHex_trimDrivesHint =>
+      'Minden térképezés első és utolsó 2 hatszöge ezen a telefonon marad, így a térképek nem mutatják, hol laksz vagy parkolsz.';
 }

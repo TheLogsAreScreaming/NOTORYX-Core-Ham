@@ -12387,4 +12387,64 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'Din position är inte känd än, så avståndsringar kan inte ritas.';
+
+  @override
+  String get coverageHex_notoryxTitle => 'NOTORYX täckningskarta';
+
+  @override
+  String get coverageHex_notoryxShare => 'Dela med NOTORYX täckningskarta';
+
+  @override
+  String get coverageHex_notoryxShareHint =>
+      'En offentlig karta över verklig MeshCore-täckning. Inget skickas förrän du godkänner.';
+
+  @override
+  String get coverageHex_notoryxConsent =>
+      'Telefonen skickar vad radion hörde i varje hexagon (cirka 0,9 km): signalstyrka, antal paket, direkt hörda repeatrar och ett 15-minutersintervall. Den skickar aldrig ditt GPS-spår eller din exakta position. Den skickar också repeatrarnas egna offentliga adverts (namn och position) så att kartan kan namnge dem. Uppladdningar signeras med en täckningsnyckel som är skild från din radio, så du kan radera dem senare.';
+
+  @override
+  String get coverageHex_notoryxAnonymousNote =>
+      'Anonyma uppladdningar kan inte raderas senare.';
+
+  @override
+  String get coverageHex_mapperName => 'Kartläggarnamn (valfritt)';
+
+  @override
+  String get coverageHex_mapperNameHint =>
+      'Visas bara för NOTORYX-medlemmar. Lämna tomt för att vara namnlös.';
+
+  @override
+  String get coverageHex_shareAction => 'Dela';
+
+  @override
+  String get coverageHex_notNow => 'Inte nu';
+
+  @override
+  String get coverageHex_stopSharing => 'Sluta dela';
+
+  @override
+  String get coverageHex_eraseUploads => 'Radera mina uppladdningar';
+
+  @override
+  String get coverageHex_eraseConfirm =>
+      'Radera allt som den här telefonen laddat upp till NOTORYX täckningskarta? Det går inte att ångra.';
+
+  @override
+  String coverageHex_erased(String count) {
+    return 'Raderade $count mätningar från kartan.';
+  }
+
+  @override
+  String get coverageHex_eraseFailed =>
+      'Det gick inte att radera. Kontrollera anslutningen och försök igen.';
+
+  @override
+  String get coverageHex_openMap => 'Öppna täckningskartan';
+
+  @override
+  String get coverageHex_trimDrives => 'Dölj början och slutet av varje tur';
+
+  @override
+  String get coverageHex_trimDrivesHint =>
+      'De första och sista 2 hexagonerna i varje kartläggning stannar på telefonen, så kartor kan inte visa var du bor eller parkerar.';
 }

@@ -160,6 +160,12 @@ class CoverageGrid {
   }
 }
 
+/// NOTORYX's own coverage map.
+const notoryxCoverageSite = 'https://coverage.meshmayhem.org/';
+const notoryxCoverageUploadUrl = 'https://coverage.meshmayhem.org/v1/reports';
+const notoryxCoverageEraseUrl = 'https://coverage.meshmayhem.org/v1/erase';
+const notoryxCoverageTargetId = 'notoryx-coverage-map';
+
 /// A coverage map that takes uploads.
 class CoverageTarget {
   final String id;
@@ -179,6 +185,18 @@ class CoverageTarget {
     this.privacy = CoveragePrivacy.delayed,
     this.enabled = true,
   });
+
+  /// The NOTORYX coverage map, with [privacy] as the user chose.
+  factory CoverageTarget.notoryxMap({
+    CoveragePrivacy privacy = CoveragePrivacy.delayed,
+  }) => CoverageTarget(
+    id: notoryxCoverageTargetId,
+    name: 'NOTORYX coverage map',
+    url: notoryxCoverageUploadUrl,
+    privacy: privacy,
+  );
+
+  bool get isNotoryxMap => id == notoryxCoverageTargetId;
 
   /// Only HTTPS endpoints are accepted, as MeshMapper also requires.
   static bool isValidUrl(String url) {

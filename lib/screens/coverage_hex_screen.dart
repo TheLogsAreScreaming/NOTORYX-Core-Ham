@@ -6,6 +6,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../l10n/app_localizations.dart';
 import '../l10n/l10n.dart';
@@ -152,11 +153,26 @@ class CoverageHexScreen extends StatelessWidget {
             ),
             MeshGroup(
               children: [
+                if (!service.targets.any((t) => t.isNotoryxMap))
+                  MeshNavRow(
+                    key: const ValueKey('coverage-notoryx-share'),
+                    icon: Icons.public_rounded,
+                    title: t.coverageHex_notoryxShare,
+                    subtitle: t.coverageHex_notoryxShareHint,
+                    onTap: () => _notoryxMap(context, service, null),
+                  ),
                 SwitchListTile(
                   title: Text(t.coverageHex_wifiOnly),
                   subtitle: Text(t.coverageHex_wifiOnlyHint),
                   value: service.wifiOnly,
                   onChanged: (v) => unawaited(service.setWifiOnly(v)),
+                ),
+                SwitchListTile(
+                  key: const ValueKey('coverage-trim-drives'),
+                  title: Text(t.coverageHex_trimDrives),
+                  subtitle: Text(t.coverageHex_trimDrivesHint),
+                  value: service.trimDrives,
+                  onChanged: (v) => unawaited(service.setTrimDrives(v)),
                 ),
                 for (final t in service.targets)
                   MeshNavRow(
@@ -171,13 +187,26 @@ class CoverageHexScreen extends StatelessWidget {
                       ),
                       ?_uploadText(context, service.statusOf(t.id)),
                     ].join(' · '),
-                    onTap: () => _editTarget(context, service, t),
+                    onTap: () => t.isNotoryxMap
+                        ? _notoryxMap(context, service, t)
+                        : _editTarget(context, service, t),
                   ),
                 MeshNavRow(
                   icon: Icons.add_rounded,
                   title: t.coverageHex_addMap,
                   subtitle: t.coverageHex_addMapHint,
                   onTap: () => _editTarget(context, service, null),
+                ),
+                MeshNavRow(
+                  icon: Icons.map_outlined,
+                  title: t.coverageHex_openMap,
+                  subtitle: 'coverage.meshmayhem.org',
+                  onTap: () => unawaited(
+                    launchUrl(
+                      Uri.parse(notoryxCoverageSite),
+                      mode: LaunchMode.externalApplication,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -194,6 +223,68 @@ class CoverageHexScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  /// Join, change or leave the NOTORYX coverage map. Joining always shows
+  /// what is sent first; nothing is uploaded until the user agrees.
+  Future<void> _notoryxMap(
+    BuildContext context,
+    CoverageHexService service,
+    CoverageTarget? existing,
+  ) async {
+    final messenger = ScaffoldMessenger.of(context);
+    final t = context.l10n;
+    final result = await showDialog<_NotoryxChoice>(
+      context: context,
+      builder: (_) =>
+          _NotoryxMapDialog(existing: existing, mapperName: service.mapperName),
+    );
+    if (result == null) return;
+    switch (result.action) {
+      case _NotoryxAction.share:
+        await service.setMapperName(result.name);
+        await service.saveTarget(
+          (existing ?? CoverageTarget.notoryxMap()).copyWith(
+            privacy: result.privacy,
+            enabled: true,
+          ),
+        );
+      case _NotoryxAction.stop:
+        await service.removeTarget(notoryxCoverageTargetId);
+      case _NotoryxAction.erase:
+        if (!context.mounted) return;
+        final sure = await showDialog<bool>(
+          context: context,
+          builder: (dialog) => AlertDialog(
+            title: Text(t.coverageHex_eraseUploads),
+            content: Text(t.coverageHex_eraseConfirm),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(dialog, false),
+                child: Text(t.common_cancel),
+              ),
+              FilledButton(
+                style: FilledButton.styleFrom(
+                  backgroundColor: MeshPalette.alert,
+                ),
+                onPressed: () => Navigator.pop(dialog, true),
+                child: Text(t.coverageHex_eraseUploads),
+              ),
+            ],
+          ),
+        );
+        if (sure != true) return;
+        final erased = await service.eraseNotoryxUploads();
+        messenger.showSnackBar(
+          SnackBar(
+            content: Text(
+              erased == null
+                  ? t.coverageHex_eraseFailed
+                  : t.coverageHex_erased('$erased'),
+            ),
+          ),
+        );
+    }
   }
 
   Future<void> _editTarget(
@@ -425,6 +516,132 @@ class _TargetDialogState extends State<_TargetDialog> {
             );
           },
           child: Text(t.common_save),
+        ),
+      ],
+    );
+  }
+}
+
+enum _NotoryxAction { share, stop, erase }
+
+class _NotoryxChoice {
+  final _NotoryxAction action;
+  final CoveragePrivacy privacy;
+  final String name;
+  const _NotoryxChoice(
+    this.action, {
+    this.privacy = CoveragePrivacy.delayed,
+    this.name = '',
+  });
+}
+
+/// What the NOTORYX coverage map gets, the privacy level and an optional
+/// mapper name. Shown before the first upload, and to change or leave.
+class _NotoryxMapDialog extends StatefulWidget {
+  const _NotoryxMapDialog({this.existing, required this.mapperName});
+
+  final CoverageTarget? existing;
+  final String mapperName;
+
+  @override
+  State<_NotoryxMapDialog> createState() => _NotoryxMapDialogState();
+}
+
+class _NotoryxMapDialogState extends State<_NotoryxMapDialog> {
+  late final _name = TextEditingController(text: widget.mapperName);
+  late var _privacy = widget.existing?.privacy ?? CoveragePrivacy.delayed;
+
+  @override
+  void dispose() {
+    _name.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.l10n;
+    final joined = widget.existing != null;
+    return AlertDialog(
+      title: Text(t.coverageHex_notoryxTitle),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(t.coverageHex_notoryxConsent),
+            const SizedBox(height: MeshSpace.md),
+            DropdownButtonFormField<CoveragePrivacy>(
+              isExpanded: true,
+              initialValue: _privacy,
+              decoration: InputDecoration(
+                labelText: t.coverageHex_privacy,
+                helperText: _privacy == CoveragePrivacy.anonymous
+                    ? '${_privacyHint(t, _privacy)} '
+                          '${t.coverageHex_notoryxAnonymousNote}'
+                    : _privacyHint(t, _privacy),
+                helperMaxLines: 4,
+              ),
+              items: [
+                for (final p in CoveragePrivacy.values)
+                  DropdownMenuItem(value: p, child: Text(_privacyLabel(t, p))),
+              ],
+              onChanged: (v) => setState(() => _privacy = v ?? _privacy),
+            ),
+            if (_privacy != CoveragePrivacy.anonymous)
+              TextField(
+                controller: _name,
+                maxLength: 32,
+                decoration: InputDecoration(
+                  labelText: t.coverageHex_mapperName,
+                  helperText: t.coverageHex_mapperNameHint,
+                  helperMaxLines: 2,
+                ),
+              ),
+            if (joined) ...[
+              const SizedBox(height: MeshSpace.sm),
+              TextButton.icon(
+                key: const ValueKey('coverage-notoryx-erase'),
+                onPressed: () => Navigator.pop(
+                  context,
+                  const _NotoryxChoice(_NotoryxAction.erase),
+                ),
+                icon: Icon(
+                  Icons.delete_forever_outlined,
+                  color: MeshPalette.alert,
+                ),
+                label: Text(
+                  t.coverageHex_eraseUploads,
+                  style: TextStyle(color: MeshPalette.alert),
+                ),
+              ),
+            ],
+          ],
+        ),
+      ),
+      actions: [
+        if (joined)
+          TextButton(
+            onPressed: () => Navigator.pop(
+              context,
+              const _NotoryxChoice(_NotoryxAction.stop),
+            ),
+            child: Text(t.coverageHex_stopSharing),
+          ),
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(joined ? t.common_cancel : t.coverageHex_notNow),
+        ),
+        FilledButton(
+          key: const ValueKey('coverage-notoryx-confirm'),
+          onPressed: () => Navigator.pop(
+            context,
+            _NotoryxChoice(
+              _NotoryxAction.share,
+              privacy: _privacy,
+              name: _privacy == CoveragePrivacy.anonymous ? '' : _name.text,
+            ),
+          ),
+          child: Text(joined ? t.common_save : t.coverageHex_shareAction),
         ),
       ],
     );
