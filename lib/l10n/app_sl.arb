@@ -3703,6 +3703,8 @@
   "scanner_lastRadio": "Zadnji radio",
   "scanner_reconnect": "Ponovno poveži",
   "scanner_tcpHint": "Radio z Wi‑Fi strojno programsko opremo v vašem omrežju.",
+  "scanner_tryDemo": "Preizkusi demo",
+  "scanner_tryDemoHint": "Namišljen radio in omrežje. Nič se ne pošlje.",
   "scanner_otherWays": "Drugi načini povezave",
   "scanner_radiosFound": "{count, plural, =1{1 radio v bližini} two{{count} radia v bližini} few{{count} radii v bližini} other{{count} radiev v bližini}}",
   "scanner_searchingTitle": "Iskanje radiev…",

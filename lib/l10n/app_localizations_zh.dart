@@ -7762,6 +7762,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get scanner_tcpHint => '你网络中带 Wi‑Fi 固件的电台。';
 
   @override
+  String get scanner_tryDemo => '试用演示';
+
+  @override
+  String get scanner_tryDemoHint => '模拟的电台和网络。不会发送任何内容。';
+
+  @override
   String get scanner_otherWays => '其他连接方式';
 
   @override

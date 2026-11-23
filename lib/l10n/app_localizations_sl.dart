@@ -8314,6 +8314,13 @@ class AppLocalizationsSl extends AppLocalizations {
       'Radio z Wi‑Fi strojno programsko opremo v vašem omrežju.';
 
   @override
+  String get scanner_tryDemo => 'Preizkusi demo';
+
+  @override
+  String get scanner_tryDemoHint =>
+      'Namišljen radio in omrežje. Nič se ne pošlje.';
+
+  @override
   String get scanner_otherWays => 'Drugi načini povezave';
 
   @override

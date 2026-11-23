@@ -3703,6 +3703,8 @@
   "scanner_lastRadio": "Senaste radio",
   "scanner_reconnect": "Anslut igen",
   "scanner_tcpHint": "En radio med Wi‑Fi-firmware i ditt nätverk.",
+  "scanner_tryDemo": "Prova en demo",
+  "scanner_tryDemoHint": "En låtsasradio och ett låtsasnät. Inget skickas.",
   "scanner_otherWays": "Andra sätt att ansluta",
   "scanner_radiosFound": "{count, plural, =1{1 radio i närheten} other{{count} radioenheter i närheten}}",
   "scanner_searchingTitle": "Letar efter radioenheter…",

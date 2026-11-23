@@ -3837,6 +3837,8 @@
   "scanner_lastRadio": "Letztes Funkgerät",
   "scanner_reconnect": "Neu verbinden",
   "scanner_tcpHint": "Ein Funkgerät mit WLAN-Firmware in deinem Netzwerk.",
+  "scanner_tryDemo": "Demo ausprobieren",
+  "scanner_tryDemoHint": "Ein simuliertes Funkgerät und Mesh. Es wird nichts gesendet.",
   "scanner_otherWays": "Andere Verbindungswege",
   "scanner_radiosFound": "{count, plural, =1{1 Funkgerät in der Nähe} other{{count} Funkgeräte in der Nähe}}",
   "scanner_searchingTitle": "Suche nach Funkgeräten…",

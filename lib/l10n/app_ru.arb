@@ -3006,6 +3006,8 @@
   "scanner_lastRadio": "Последнее радио",
   "scanner_reconnect": "Переподключить",
   "scanner_tcpHint": "Радио с прошивкой Wi‑Fi в вашей сети.",
+  "scanner_tryDemo": "Попробовать демо",
+  "scanner_tryDemoHint": "Вымышленная рация и сеть. Ничего не отправляется.",
   "scanner_otherWays": "Другие способы подключения",
   "scanner_radiosFound": "{count, plural, =1{1 радио поблизости} other{{count} радио поблизости}}",
   "scanner_searchingTitle": "Поиск радио…",
