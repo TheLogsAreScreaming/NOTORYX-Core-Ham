@@ -12082,4 +12082,272 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get coverageHex_trimDrivesHint =>
       '每次测绘的前 2 个和最后 2 个六边形只保留在此手机上，因此地图不会显示你住在哪里或停车的位置。';
+
+  @override
+  String get appSettings_resetRoutingToDefault => '将路由算法重置为默认值';
+
+  @override
+  String get appSettings_resetRoutingToDefaultSubtitle => '将路由算法设置恢复为出厂默认值';
+
+  @override
+  String get appSettings_routingResetToDefault => '路由算法设置已重置为默认值';
+
+  @override
+  String get discoveredContacts_importNodes => '导入节点';
+
+  @override
+  String get discoveredContacts_importHint =>
+      '读取联系人链接、公钥，或 JSON / CSV 节点列表。它们会添加到此列表，而不是你的电台。';
+
+  @override
+  String get discoveredContacts_importFromFile => '从文件';
+
+  @override
+  String get discoveredContacts_importFromClipboard => '从剪贴板';
+
+  @override
+  String get discoveredContacts_importFailed => '无法读取';
+
+  @override
+  String get discoveredContacts_importNone => '未找到节点';
+
+  @override
+  String get discoveredContacts_importNotConnected => '请先连接电台';
+
+  @override
+  String discoveredContacts_importResult(int added, int updated, int skipped) {
+    return '新增 $added，更新 $updated，跳过 $skipped';
+  }
+
+  @override
+  String home_knownNodes(int chats, int repeaters, int rooms) {
+    return '聊天 $chats · 中继 $repeaters · 房间 $rooms';
+  }
+
+  @override
+  String home_radioHolds(int count, int max) {
+    return '电台已存 $count / $max 个联系人';
+  }
+
+  @override
+  String messageFilter_markedSpamCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '已将 $count 条消息标记为垃圾消息',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageFilter_markedNotSpamCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '已将 $count 条消息标记为非垃圾消息',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get messageFilter_title => '消息过滤';
+
+  @override
+  String get messageFilter_settingsSubtitle => '隐藏垃圾消息和重复消息';
+
+  @override
+  String get messageFilter_enabled => '过滤消息';
+
+  @override
+  String get messageFilter_enabledSubtitle => '适用于频道消息';
+
+  @override
+  String get messageFilter_displayTitle => '已过滤的消息';
+
+  @override
+  String get messageFilter_displayPlaceholder => '显示一个小占位提示';
+
+  @override
+  String get messageFilter_displayHide => '完全隐藏';
+
+  @override
+  String get messageFilter_displayHideHelp => '被隐藏的消息仍会保留在“已过滤的消息”列表中。';
+
+  @override
+  String get messageFilter_rulesSection => '你的规则';
+
+  @override
+  String get messageFilter_rulesEmpty => '还没有规则。添加一个词语、短语或发送者名称，即可隐藏匹配的消息。';
+
+  @override
+  String get messageFilter_addRule => '添加规则';
+
+  @override
+  String get messageFilter_editRule => '编辑规则';
+
+  @override
+  String get messageFilter_rulePattern => '词语、短语或名称';
+
+  @override
+  String get messageFilter_rulePatternHint => '例如 meshos';
+
+  @override
+  String get messageFilter_ruleWhere => '查找范围';
+
+  @override
+  String get messageFilter_ruleFieldText => '消息内容';
+
+  @override
+  String get messageFilter_ruleFieldSender => '发送者名称';
+
+  @override
+  String get messageFilter_ruleFieldBoth => '两者';
+
+  @override
+  String get messageFilter_ruleMatch => '匹配方式';
+
+  @override
+  String get messageFilter_ruleMatchContains => '包含';
+
+  @override
+  String get messageFilter_ruleMatchWholeWord => '完整词语';
+
+  @override
+  String get messageFilter_ruleMatchExact => '完全相同';
+
+  @override
+  String get messageFilter_ruleDeleted => '规则已删除';
+
+  @override
+  String get messageFilter_ruleSaved => '规则已保存';
+
+  @override
+  String get messageFilter_automaticSection => '自动';
+
+  @override
+  String get messageFilter_duplicates => '重复消息';
+
+  @override
+  String get messageFilter_duplicatesSubtitle => '重复发送的相同消息，或多个发送者发送的相同消息';
+
+  @override
+  String get messageFilter_repeatSends => '视为重复的发送次数';
+
+  @override
+  String messageFilter_repeatSendsSubtitle(int count) {
+    return '同一发送者在 10 分钟内发送同一消息 $count 次时隐藏该消息';
+  }
+
+  @override
+  String get messageFilter_repeatedCharacters => '重复字符';
+
+  @override
+  String get messageFilter_repeatedCharactersSubtitle =>
+      '同一字符的长串重复，例如“aaaaaaaaaaaaaaaaaaaa”';
+
+  @override
+  String get messageFilter_learning => '从“垃圾消息”点击中学习';
+
+  @override
+  String messageFilter_learningSubtitle(int spam, int notSpam) {
+    return '$spam 个垃圾消息示例和 $notSpam 个非垃圾消息示例';
+  }
+
+  @override
+  String get messageFilter_resetLearning => '重置学习';
+
+  @override
+  String get messageFilter_resetLearningConfirm =>
+      '要清除从你点击“垃圾消息”和“非垃圾消息”中学到的所有内容吗？你的规则会保留。';
+
+  @override
+  String messageFilter_filteredMessages(int count) {
+    return '已过滤的消息（$count）';
+  }
+
+  @override
+  String get messageFilter_filteredMessagesEmpty => '没有被过滤的消息。';
+
+  @override
+  String get messageFilter_ghostSingle => '已隐藏的消息 · 点击查看';
+
+  @override
+  String messageFilter_ghostMany(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 条已隐藏的消息 · 点击查看',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get messageFilter_ghostSingleExpanded => '正在显示已隐藏的消息 · 点击隐藏';
+
+  @override
+  String messageFilter_ghostManyExpanded(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '正在显示 $count 条已隐藏的消息 · 点击隐藏',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageFilter_reasonTextRule(String pattern) {
+    return '已过滤：匹配“$pattern”';
+  }
+
+  @override
+  String messageFilter_reasonSenderRule(String pattern) {
+    return '已过滤：发送者“$pattern”';
+  }
+
+  @override
+  String get messageFilter_reasonRepeatedCharacters => '已过滤：重复字符';
+
+  @override
+  String get messageFilter_reasonDuplicate => '已过滤：重复消息';
+
+  @override
+  String get messageFilter_reasonCrossSenderDuplicate => '已过滤：多个发送者发送的相同消息';
+
+  @override
+  String get messageFilter_reasonLearned => '已过滤：与你标记为垃圾消息的内容相似';
+
+  @override
+  String get messageFilter_reasonManual => '已过滤：你已将此消息标记为垃圾消息';
+
+  @override
+  String get messageFilter_notSpam => '非垃圾消息';
+
+  @override
+  String get messageFilter_hideAgain => '隐藏';
+
+  @override
+  String get messageFilter_markSpam => '标记为垃圾消息';
+
+  @override
+  String get messageFilter_markedSpam => '已标记为垃圾消息';
+
+  @override
+  String get messageFilter_markedNotSpam => '已标记为非垃圾消息';
+
+  @override
+  String get messageFilter_filterSender => '过滤此发送者';
+
+  @override
+  String messageFilter_filterSenderConfirm(String name) {
+    return '要隐藏来自“$name”的所有消息吗？';
+  }
+
+  @override
+  String get messageFilter_filterLikeThis => '过滤类似的消息…';
+
+  @override
+  String get messageFilter_channelToggle => '过滤此频道中的消息';
+
+  @override
+  String get messageFilter_ghostIconTooltip => '已被你的消息过滤隐藏';
 }

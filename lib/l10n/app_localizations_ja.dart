@@ -12313,4 +12313,278 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get coverageHex_trimDrivesHint =>
       '各マッピングの最初と最後の 2 つの六角形はこの電話に残るため、マップに自宅や駐車場所が表示されません。';
+
+  @override
+  String get appSettings_resetRoutingToDefault => 'ルーティングアルゴリズムをデフォルトにリセット';
+
+  @override
+  String get appSettings_resetRoutingToDefaultSubtitle =>
+      'ルーティングアルゴリズムの設定を工場出荷時のデフォルトに戻す';
+
+  @override
+  String get appSettings_routingResetToDefault =>
+      'ルーティングアルゴリズムの設定がデフォルトにリセットされました';
+
+  @override
+  String get discoveredContacts_importNodes => 'ノードをインポート';
+
+  @override
+  String get discoveredContacts_importHint =>
+      '連絡先リンク、公開鍵、またはJSON/CSVのノード一覧を読み込みます。無線機ではなく、この一覧に追加されます。';
+
+  @override
+  String get discoveredContacts_importFromFile => 'ファイルから';
+
+  @override
+  String get discoveredContacts_importFromClipboard => 'クリップボードから';
+
+  @override
+  String get discoveredContacts_importFailed => '読み込めませんでした';
+
+  @override
+  String get discoveredContacts_importNone => 'ノードが見つかりません';
+
+  @override
+  String get discoveredContacts_importNotConnected => '先に無線機を接続してください';
+
+  @override
+  String discoveredContacts_importResult(int added, int updated, int skipped) {
+    return '新規 $added、更新 $updated、スキップ $skipped';
+  }
+
+  @override
+  String home_knownNodes(int chats, int repeaters, int rooms) {
+    return 'チャット $chats · リピーター $repeaters · ルーム $rooms';
+  }
+
+  @override
+  String home_radioHolds(int count, int max) {
+    return '無線機の連絡先 $count / $max';
+  }
+
+  @override
+  String messageFilter_markedSpamCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'メッセージ $count 件をスパムとしてマークしました',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageFilter_markedNotSpamCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'メッセージ $count 件をスパムではないとマークしました',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get messageFilter_title => 'メッセージフィルター';
+
+  @override
+  String get messageFilter_settingsSubtitle => 'スパムや繰り返しのメッセージを隠す';
+
+  @override
+  String get messageFilter_enabled => 'メッセージをフィルターする';
+
+  @override
+  String get messageFilter_enabledSubtitle => 'チャンネルのメッセージに適用されます';
+
+  @override
+  String get messageFilter_displayTitle => 'フィルターされたメッセージ';
+
+  @override
+  String get messageFilter_displayPlaceholder => '小さな表示を残す';
+
+  @override
+  String get messageFilter_displayHide => '完全に隠す';
+
+  @override
+  String get messageFilter_displayHideHelp =>
+      '隠したメッセージは「フィルターされたメッセージ」の一覧に残ります。';
+
+  @override
+  String get messageFilter_rulesSection => 'あなたのルール';
+
+  @override
+  String get messageFilter_rulesEmpty =>
+      'ルールはまだありません。単語、フレーズ、送信者名を追加すると、一致するメッセージを隠せます。';
+
+  @override
+  String get messageFilter_addRule => 'ルールを追加';
+
+  @override
+  String get messageFilter_editRule => 'ルールを編集';
+
+  @override
+  String get messageFilter_rulePattern => '単語、フレーズ、名前';
+
+  @override
+  String get messageFilter_rulePatternHint => '例: meshos';
+
+  @override
+  String get messageFilter_ruleWhere => '対象';
+
+  @override
+  String get messageFilter_ruleFieldText => 'メッセージ本文';
+
+  @override
+  String get messageFilter_ruleFieldSender => '送信者名';
+
+  @override
+  String get messageFilter_ruleFieldBoth => '両方';
+
+  @override
+  String get messageFilter_ruleMatch => '一致の条件';
+
+  @override
+  String get messageFilter_ruleMatchContains => '含む';
+
+  @override
+  String get messageFilter_ruleMatchWholeWord => '単語全体';
+
+  @override
+  String get messageFilter_ruleMatchExact => '完全一致';
+
+  @override
+  String get messageFilter_ruleDeleted => 'ルールを削除しました';
+
+  @override
+  String get messageFilter_ruleSaved => 'ルールを保存しました';
+
+  @override
+  String get messageFilter_automaticSection => '自動';
+
+  @override
+  String get messageFilter_duplicates => '繰り返しのメッセージ';
+
+  @override
+  String get messageFilter_duplicatesSubtitle =>
+      '同じメッセージが再送されたり、複数の送信者から届いたりしたもの';
+
+  @override
+  String get messageFilter_repeatSends => '繰り返しと見なす送信回数';
+
+  @override
+  String messageFilter_repeatSendsSubtitle(int count) {
+    return '同じ送信者が10分以内に同じメッセージを$count回送信したら非表示にします';
+  }
+
+  @override
+  String get messageFilter_repeatedCharacters => '繰り返しの文字';
+
+  @override
+  String get messageFilter_repeatedCharactersSubtitle =>
+      '同じ文字の長い連続（例：「aaaaaaaaaaaaaaaaaaaa」）';
+
+  @override
+  String get messageFilter_learning => 'スパムのタップから学習';
+
+  @override
+  String messageFilter_learningSubtitle(int spam, int notSpam) {
+    return 'スパム $spam 件、スパムではない $notSpam 件の例';
+  }
+
+  @override
+  String get messageFilter_resetLearning => '学習をリセット';
+
+  @override
+  String get messageFilter_resetLearningConfirm =>
+      '「スパム」と「スパムではない」のタップから学習した内容をすべて忘れますか？ルールはそのまま残ります。';
+
+  @override
+  String messageFilter_filteredMessages(int count) {
+    return 'フィルターされたメッセージ ($count)';
+  }
+
+  @override
+  String get messageFilter_filteredMessagesEmpty => 'フィルターされたメッセージはありません。';
+
+  @override
+  String get messageFilter_ghostSingle => '隠したメッセージ · タップで表示';
+
+  @override
+  String messageFilter_ghostMany(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '隠したメッセージ $count 件 · タップで表示',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get messageFilter_ghostSingleExpanded => '隠したメッセージを表示中 · タップで隠す';
+
+  @override
+  String messageFilter_ghostManyExpanded(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '隠したメッセージ $count 件を表示中 · タップで隠す',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageFilter_reasonTextRule(String pattern) {
+    return 'フィルター: 「$pattern」に一致';
+  }
+
+  @override
+  String messageFilter_reasonSenderRule(String pattern) {
+    return 'フィルター: 送信者「$pattern」';
+  }
+
+  @override
+  String get messageFilter_reasonRepeatedCharacters => 'フィルター: 繰り返しの文字';
+
+  @override
+  String get messageFilter_reasonDuplicate => 'フィルター: 繰り返しのメッセージ';
+
+  @override
+  String get messageFilter_reasonCrossSenderDuplicate =>
+      'フィルター: 複数の送信者から同じメッセージ';
+
+  @override
+  String get messageFilter_reasonLearned => 'フィルター: スパムにしたメッセージに似ています';
+
+  @override
+  String get messageFilter_reasonManual => 'フィルター: あなたがスパムにしました';
+
+  @override
+  String get messageFilter_notSpam => 'スパムではない';
+
+  @override
+  String get messageFilter_hideAgain => '隠す';
+
+  @override
+  String get messageFilter_markSpam => 'スパムにする';
+
+  @override
+  String get messageFilter_markedSpam => 'スパムとしてマークしました';
+
+  @override
+  String get messageFilter_markedNotSpam => 'スパムではないとマークしました';
+
+  @override
+  String get messageFilter_filterSender => 'この送信者をフィルター';
+
+  @override
+  String messageFilter_filterSenderConfirm(String name) {
+    return '「$name」からのメッセージをすべて隠しますか？';
+  }
+
+  @override
+  String get messageFilter_filterLikeThis => 'このようなメッセージをフィルター…';
+
+  @override
+  String get messageFilter_channelToggle => 'このチャンネルでメッセージをフィルター';
+
+  @override
+  String get messageFilter_ghostIconTooltip => 'メッセージフィルターで隠されました';
 }

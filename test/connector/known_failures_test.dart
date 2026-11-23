@@ -147,6 +147,13 @@ void main() {
       expect(names, hasLength(3), reason: 'never more than the radio holds');
       expect(names, contains('Node 2'), reason: 'favorites are never replaced');
       expect(names, containsAll(['Node 7', 'Node 8']));
+      final heard = connector.discoveredContacts.map((c) => c.name).toSet();
+      expect(
+        heard,
+        containsAll(['Node 1', 'Node 3', 'Node 4', 'Node 5', 'Node 6']),
+        reason: 'contacts the radio replaced are still remembered as heard',
+      );
+      expect(connector.knownNodeCounts.total, 8);
     });
 
     test('full table without overwrite: the radio adds nothing, nor do we', () {

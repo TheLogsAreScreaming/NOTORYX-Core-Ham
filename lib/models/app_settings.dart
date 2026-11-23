@@ -79,6 +79,15 @@ class AppSettings {
   static const Object _unset = Object();
   static const String stadiaDemo = '51bd0381-4685-4666-bae8-48940f6d77c0';
 
+  // Routing and retry defaults, shared by the constructor, fromJson and
+  // AppSettingsService.resetRoutingSettingsToDefault.
+  static const double defaultMaxRouteWeight = 5.0;
+  static const double defaultInitialRouteWeight = 3.0;
+  static const double defaultRouteWeightSuccessIncrement = 0.5;
+  static const double defaultRouteWeightFailureDecrement = 0.2;
+  static const int defaultMaxMessageRetries = 5;
+  static const int defaultMessageFloodAttempts = 2;
+
   final bool clearPathOnMaxRetry;
   final bool mapShowRepeaters;
   final bool mapShowChatNodes;
@@ -273,12 +282,12 @@ class AppSettings {
     this.autoSendZeroHopAdvertOnGpsUpdate = false,
     this.gpsIntervalSeconds = 900,
     this.autoRouteRotationEnabled = true,
-    this.maxRouteWeight = 5.0,
-    this.initialRouteWeight = 3.0,
-    this.routeWeightSuccessIncrement = 0.5,
-    this.routeWeightFailureDecrement = 0.2,
-    this.maxMessageRetries = 5,
-    this.messageFloodAttempts = 2,
+    this.maxRouteWeight = defaultMaxRouteWeight,
+    this.initialRouteWeight = defaultInitialRouteWeight,
+    this.routeWeightSuccessIncrement = defaultRouteWeightSuccessIncrement,
+    this.routeWeightFailureDecrement = defaultRouteWeightFailureDecrement,
+    this.maxMessageRetries = defaultMaxMessageRetries,
+    this.messageFloodAttempts = defaultMessageFloodAttempts,
     this.favoriteReturnHours = 6,
     this.repeaterQuietHours = 24,
     this.newRepeaterAlerts = false,
@@ -474,15 +483,22 @@ class AppSettings {
           (json['gps_interval_seconds'] as num?)?.toInt() ?? 900,
       autoRouteRotationEnabled:
           json['auto_route_rotation_enabled'] as bool? ?? true,
-      maxRouteWeight: (json['max_route_weight'] as num?)?.toDouble() ?? 5.0,
+      maxRouteWeight:
+          (json['max_route_weight'] as num?)?.toDouble() ??
+          defaultMaxRouteWeight,
       initialRouteWeight:
-          (json['initial_route_weight'] as num?)?.toDouble() ?? 3.0,
+          (json['initial_route_weight'] as num?)?.toDouble() ??
+          defaultInitialRouteWeight,
       routeWeightSuccessIncrement:
-          (json['route_weight_success_increment'] as num?)?.toDouble() ?? 0.5,
+          (json['route_weight_success_increment'] as num?)?.toDouble() ??
+          defaultRouteWeightSuccessIncrement,
       routeWeightFailureDecrement:
-          (json['route_weight_failure_decrement'] as num?)?.toDouble() ?? 0.2,
-      maxMessageRetries: json['max_message_retries'] as int? ?? 5,
-      messageFloodAttempts: json['message_flood_attempts'] as int? ?? 2,
+          (json['route_weight_failure_decrement'] as num?)?.toDouble() ??
+          defaultRouteWeightFailureDecrement,
+      maxMessageRetries:
+          json['max_message_retries'] as int? ?? defaultMaxMessageRetries,
+      messageFloodAttempts:
+          json['message_flood_attempts'] as int? ?? defaultMessageFloodAttempts,
       favoriteReturnHours: json['favorite_return_hours'] as int? ?? 6,
       repeaterQuietHours: json['repeater_quiet_hours'] as int? ?? 24,
       newRepeaterAlerts: json['new_repeater_alerts'] as bool? ?? false,

@@ -12882,4 +12882,290 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get coverageHex_trimDrivesHint =>
       'Os primeiros e últimos 2 hexágonos de cada sessão ficam neste telemóvel, para que os mapas não mostrem onde vive ou estaciona.';
+
+  @override
+  String get appSettings_resetRoutingToDefault =>
+      'Redefinir algoritmo de roteamento para o padrão';
+
+  @override
+  String get appSettings_resetRoutingToDefaultSubtitle =>
+      'Restaurar as configurações do algoritmo de roteamento para os valores padrão de fábrica';
+
+  @override
+  String get appSettings_routingResetToDefault =>
+      'Configurações do algoritmo de roteamento redefinidas para o padrão';
+
+  @override
+  String get discoveredContacts_importNodes => 'Importar nós';
+
+  @override
+  String get discoveredContacts_importHint =>
+      'Lê links de contacto, chaves públicas ou uma lista de nós em JSON ou CSV. São adicionados a esta lista, não ao seu rádio.';
+
+  @override
+  String get discoveredContacts_importFromFile => 'De um ficheiro';
+
+  @override
+  String get discoveredContacts_importFromClipboard =>
+      'Da área de transferência';
+
+  @override
+  String get discoveredContacts_importFailed => 'Não foi possível ler';
+
+  @override
+  String get discoveredContacts_importNone => 'Nenhum nó encontrado';
+
+  @override
+  String get discoveredContacts_importNotConnected =>
+      'Ligue primeiro o seu rádio';
+
+  @override
+  String discoveredContacts_importResult(int added, int updated, int skipped) {
+    return '$added novos, $updated atualizados, $skipped ignorados';
+  }
+
+  @override
+  String home_knownNodes(int chats, int repeaters, int rooms) {
+    return 'Conversas $chats · Repetidores $repeaters · Salas $rooms';
+  }
+
+  @override
+  String home_radioHolds(int count, int max) {
+    return 'O rádio guarda $count de $max contactos';
+  }
+
+  @override
+  String messageFilter_markedSpamCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count mensagens marcadas como spam',
+      one: '1 mensagem marcada como spam',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageFilter_markedNotSpamCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count mensagens marcadas como não spam',
+      one: '1 mensagem marcada como não spam',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get messageFilter_title => 'Filtro de mensagens';
+
+  @override
+  String get messageFilter_settingsSubtitle =>
+      'Oculta mensagens de spam e repetidas';
+
+  @override
+  String get messageFilter_enabled => 'Filtrar mensagens';
+
+  @override
+  String get messageFilter_enabledSubtitle => 'Aplica-se às mensagens de canal';
+
+  @override
+  String get messageFilter_displayTitle => 'Mensagens filtradas';
+
+  @override
+  String get messageFilter_displayPlaceholder => 'Mostrar um aviso pequeno';
+
+  @override
+  String get messageFilter_displayHide => 'Ocultar completamente';
+
+  @override
+  String get messageFilter_displayHideHelp =>
+      'As mensagens ocultas continuam na lista de Mensagens filtradas.';
+
+  @override
+  String get messageFilter_rulesSection => 'Suas regras';
+
+  @override
+  String get messageFilter_rulesEmpty =>
+      'Ainda não há regras. Adicione uma palavra, frase ou nome de remetente para ocultar as mensagens que correspondam.';
+
+  @override
+  String get messageFilter_addRule => 'Adicionar regra';
+
+  @override
+  String get messageFilter_editRule => 'Editar regra';
+
+  @override
+  String get messageFilter_rulePattern => 'Palavra, frase ou nome';
+
+  @override
+  String get messageFilter_rulePatternHint => 'ex.: meshos';
+
+  @override
+  String get messageFilter_ruleWhere => 'Procurar em';
+
+  @override
+  String get messageFilter_ruleFieldText => 'Texto da mensagem';
+
+  @override
+  String get messageFilter_ruleFieldSender => 'Nome do remetente';
+
+  @override
+  String get messageFilter_ruleFieldBoth => 'Ambos';
+
+  @override
+  String get messageFilter_ruleMatch => 'Correspondência';
+
+  @override
+  String get messageFilter_ruleMatchContains => 'Contém';
+
+  @override
+  String get messageFilter_ruleMatchWholeWord => 'Palavra inteira';
+
+  @override
+  String get messageFilter_ruleMatchExact => 'Exata';
+
+  @override
+  String get messageFilter_ruleDeleted => 'Regra excluída';
+
+  @override
+  String get messageFilter_ruleSaved => 'Regra salva';
+
+  @override
+  String get messageFilter_automaticSection => 'Automático';
+
+  @override
+  String get messageFilter_duplicates => 'Mensagens repetidas';
+
+  @override
+  String get messageFilter_duplicatesSubtitle =>
+      'A mesma mensagem enviada de novo, ou por vários remetentes';
+
+  @override
+  String get messageFilter_repeatSends => 'Envios que contam como repetição';
+
+  @override
+  String messageFilter_repeatSendsSubtitle(int count) {
+    return 'Ocultar uma mensagem quando o mesmo remetente a envia $count vezes em 10 minutos';
+  }
+
+  @override
+  String get messageFilter_repeatedCharacters => 'Caracteres repetidos';
+
+  @override
+  String get messageFilter_repeatedCharactersSubtitle =>
+      'Sequências longas de um mesmo caractere, como \"aaaaaaaaaaaaaaaaaaaa\"';
+
+  @override
+  String get messageFilter_learning => 'Aprender com os toques em Spam';
+
+  @override
+  String messageFilter_learningSubtitle(int spam, int notSpam) {
+    return '$spam exemplos de spam e $notSpam de não spam';
+  }
+
+  @override
+  String get messageFilter_resetLearning => 'Redefinir aprendizado';
+
+  @override
+  String get messageFilter_resetLearningConfirm =>
+      'Esquecer tudo o que foi aprendido com seus toques em Spam e Não é spam? Suas regras são mantidas.';
+
+  @override
+  String messageFilter_filteredMessages(int count) {
+    return 'Mensagens filtradas ($count)';
+  }
+
+  @override
+  String get messageFilter_filteredMessagesEmpty => 'Nada foi filtrado.';
+
+  @override
+  String get messageFilter_ghostSingle => 'Mensagem oculta · Toque para ver';
+
+  @override
+  String messageFilter_ghostMany(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count mensagens ocultas · Toque para ver',
+      one: '$count mensagem oculta · Toque para ver',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get messageFilter_ghostSingleExpanded =>
+      'Mostrando mensagem oculta · Toque para ocultar';
+
+  @override
+  String messageFilter_ghostManyExpanded(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Mostrando $count mensagens ocultas · Toque para ocultar',
+      one: 'Mostrando 1 mensagem oculta · Toque para ocultar',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageFilter_reasonTextRule(String pattern) {
+    return 'Filtrada: corresponde a \"$pattern\"';
+  }
+
+  @override
+  String messageFilter_reasonSenderRule(String pattern) {
+    return 'Filtrada: remetente \"$pattern\"';
+  }
+
+  @override
+  String get messageFilter_reasonRepeatedCharacters =>
+      'Filtrada: caracteres repetidos';
+
+  @override
+  String get messageFilter_reasonDuplicate => 'Filtrada: mensagem repetida';
+
+  @override
+  String get messageFilter_reasonCrossSenderDuplicate =>
+      'Filtrada: a mesma mensagem de vários remetentes';
+
+  @override
+  String get messageFilter_reasonLearned =>
+      'Filtrada: parece mensagens que você marcou como spam';
+
+  @override
+  String get messageFilter_reasonManual => 'Filtrada: você a marcou como spam';
+
+  @override
+  String get messageFilter_notSpam => 'Não é spam';
+
+  @override
+  String get messageFilter_hideAgain => 'Ocultar';
+
+  @override
+  String get messageFilter_markSpam => 'Marcar como spam';
+
+  @override
+  String get messageFilter_markedSpam => 'Marcada como spam';
+
+  @override
+  String get messageFilter_markedNotSpam => 'Marcada como não spam';
+
+  @override
+  String get messageFilter_filterSender => 'Filtrar este remetente';
+
+  @override
+  String messageFilter_filterSenderConfirm(String name) {
+    return 'Ocultar todas as mensagens de \"$name\"?';
+  }
+
+  @override
+  String get messageFilter_filterLikeThis => 'Filtrar mensagens como esta…';
+
+  @override
+  String get messageFilter_channelToggle => 'Filtrar mensagens neste canal';
+
+  @override
+  String get messageFilter_ghostIconTooltip =>
+      'Oculta pelo seu filtro de mensagens';
 }

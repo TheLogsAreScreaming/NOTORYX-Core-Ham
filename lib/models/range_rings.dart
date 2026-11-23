@@ -21,8 +21,15 @@ const minMetricStep = 10.0;
 /// The smallest imperial ring step, in miles.
 const minImperialStep = 0.1;
 
-/// Rounds [raw] down to the nearest 1, 2 or 5 × 10^n, and never below
-/// [minStep]. A non-finite or non-positive [raw] gives [minStep].
+/// The step values tried in each power of ten, smallest first.
+///
+/// Finer than the classic 1-2-5 so the rings fill at least two thirds of
+/// the space they have: rounding 4.9 down to 2 left them at 40%.
+const niceMantissas = [1.0, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 8.0];
+
+/// Rounds [raw] down to the nearest [niceMantissas] value × 10^n (1, 1.5,
+/// 2, 2.5, 3, 4, 5, 6 or 8), and never below [minStep]. A non-finite or
+/// non-positive [raw] gives [minStep].
 double niceStep(double raw, {required double minStep}) {
   if (!raw.isFinite || raw <= minStep) return minStep;
   final exponent = (math.log(raw) / math.ln10).floor();
@@ -30,15 +37,13 @@ double niceStep(double raw, {required double minStep}) {
   // A tiny tolerance so 0.5 or 2000 isn't floored to the step below by a
   // rounding error in log/pow.
   final mantissa = raw / magnitude + 1e-9;
-  final double digit;
+  var digit = niceMantissas.first;
   if (mantissa >= 10) {
     digit = 10;
-  } else if (mantissa >= 5) {
-    digit = 5;
-  } else if (mantissa >= 2) {
-    digit = 2;
   } else {
-    digit = 1;
+    for (final m in niceMantissas) {
+      if (mantissa >= m) digit = m;
+    }
   }
   final step = _clean(digit * magnitude);
   return step < minStep ? minStep : step;

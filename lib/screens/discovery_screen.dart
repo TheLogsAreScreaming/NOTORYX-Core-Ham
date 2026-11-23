@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +12,7 @@ import '../l10n/contact_localization.dart';
 import '../models/contact.dart';
 import '../theme/mesh_theme.dart';
 import '../utils/contact_search.dart';
+import '../utils/node_import.dart';
 import '../utils/platform_info.dart';
 import '../widgets/app_bar.dart';
 import '../widgets/list_filter_widget.dart';
@@ -268,6 +270,23 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
                           Flexible(
                             child: Text(
                               l10n.discoveredContacts_selectAll,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    PopupMenuItem(
+                      key: const ValueKey('discovered-import'),
+                      enabled: connector.isConnected,
+                      onTap: () => _importNodes(connector),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.file_download_outlined),
+                          const SizedBox(width: 8),
+                          Flexible(
+                            child: Text(
+                              l10n.discoveredContacts_importNodes,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -552,6 +571,84 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
         connector.removeDiscoveredContact(contact);
         break;
     }
+  }
+
+  /// Reads nodes from a file or the clipboard into the heard-node list.
+  Future<void> _importNodes(MeshCoreConnector connector) async {
+    final l10n = context.l10n;
+    final source = await showModalBottomSheet<String>(
+      context: context,
+      builder: (sheet) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ListTile(
+              title: Text(
+                l10n.discoveredContacts_importNodes,
+                style: Theme.of(sheet).textTheme.titleMedium,
+              ),
+              subtitle: Text(l10n.discoveredContacts_importHint),
+            ),
+            ListTile(
+              key: const ValueKey('discovered-import-file'),
+              leading: const Icon(Icons.folder_open),
+              title: Text(l10n.discoveredContacts_importFromFile),
+              onTap: () => Navigator.pop(sheet, 'file'),
+            ),
+            ListTile(
+              key: const ValueKey('discovered-import-clipboard'),
+              leading: const Icon(Icons.content_paste),
+              title: Text(l10n.discoveredContacts_importFromClipboard),
+              onTap: () => Navigator.pop(sheet, 'clipboard'),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (source == null || !mounted) return;
+
+    String? text;
+    try {
+      if (source == 'file') {
+        final file = await openFile();
+        if (file == null) return;
+        text = await file.readAsString();
+      } else {
+        text = (await Clipboard.getData('text/plain'))?.text;
+      }
+    } on Object {
+      text = null;
+      if (!mounted) return;
+      showDismissibleSnackBar(
+        context,
+        content: Text(l10n.discoveredContacts_importFailed),
+      );
+      return;
+    }
+    if (!mounted) return;
+    final nodes = parseNodeImport(text ?? '');
+    if (nodes.isEmpty) {
+      showDismissibleSnackBar(
+        context,
+        content: Text(l10n.discoveredContacts_importNone),
+      );
+      return;
+    }
+    final result = await connector.importHeardNodes(nodes);
+    if (!mounted) return;
+    showDismissibleSnackBar(
+      context,
+      content: Text(
+        result == null
+            ? l10n.discoveredContacts_importNotConnected
+            : l10n.discoveredContacts_importResult(
+                result.added,
+                result.updated,
+                result.skipped,
+              ),
+      ),
+    );
   }
 
   Future<void> _deleteContacts(

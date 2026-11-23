@@ -74,6 +74,16 @@ class ChannelMessage {
   /// region's name, or [unknownRegion] for a region this app can't name.
   final String? region;
 
+  /// Set when the message filter hid this message (a FilterReason JSON
+  /// name). Filtered messages are kept, never deleted.
+  final String? filterReason;
+
+  /// Extra context for [filterReason], e.g. the matching rule pattern.
+  final String? filterDetail;
+
+  /// Whether the message filter hid this message.
+  bool get isFiltered => filterReason != null;
+
   ChannelMessage({
     this.senderKey,
     required this.senderName,
@@ -103,6 +113,8 @@ class ChannelMessage {
     this.signature = ChannelSignature.none,
     this.signerKey,
     this.region,
+    this.filterReason,
+    this.filterDetail,
   }) : messageId =
            messageId ??
            '${timestamp.millisecondsSinceEpoch}_${senderName.hashCode}_${text.hashCode}',
@@ -138,6 +150,9 @@ class ChannelMessage {
     ChannelSignature? signature,
     Uint8List? signerKey,
     String? region,
+    String? filterReason,
+    String? filterDetail,
+    bool clearFilter = false,
   }) {
     return ChannelMessage(
       senderKey: senderKey,
@@ -176,6 +191,8 @@ class ChannelMessage {
       signature: signature ?? this.signature,
       signerKey: signerKey ?? this.signerKey,
       region: region ?? this.region,
+      filterReason: clearFilter ? null : (filterReason ?? this.filterReason),
+      filterDetail: clearFilter ? null : (filterDetail ?? this.filterDetail),
     );
   }
 

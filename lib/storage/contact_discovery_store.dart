@@ -3,14 +3,46 @@ import 'dart:typed_data';
 
 import '../models/advert_signature.dart';
 import '../models/contact.dart';
+import 'discovery_file.dart';
 import 'prefs_manager.dart';
 
+/// The nodes heard on the mesh that are not contacts on the radio.
+///
+/// Kept in its own file (thousands of nodes are a few megabytes) rather than in
+/// preferences, which are read whole at every start. A list saved in
+/// preferences by an older version moves to the file on first load. The web
+/// build, and tests without a file system, keep using preferences.
 class ContactDiscoveryStore {
+  ContactDiscoveryStore({Future<String?> Function()? directory})
+    : _directory = directory ?? discoveryDirectory;
+
   static const String _keyPrefix = 'discovered_contacts';
+
+  final Future<String?> Function() _directory;
 
   Future<List<Contact>> loadContacts() async {
     final prefs = PrefsManager.instance;
-    final jsonStr = prefs.getString(_keyPrefix);
+    final dir = await _directory();
+    String? jsonStr;
+    if (dir != null) {
+      try {
+        jsonStr = await readDiscoveryFile(dir);
+      } on Object {
+        jsonStr = null;
+      }
+    }
+    if (jsonStr == null) {
+      jsonStr = prefs.getString(_keyPrefix);
+      if (jsonStr != null && dir != null) {
+        // Move the old preferences copy to the file, then drop it.
+        try {
+          await writeDiscoveryFile(dir, jsonStr);
+          await prefs.remove(_keyPrefix);
+        } on Object {
+          // Keep the preferences copy; the next save tries the file again.
+        }
+      }
+    }
     if (jsonStr == null) return [];
 
     try {
@@ -26,9 +58,17 @@ class ContactDiscoveryStore {
   }
 
   Future<void> saveContacts(List<Contact> contacts) async {
-    final prefs = PrefsManager.instance;
-    final jsonList = contacts.map(_toJson).toList();
-    await prefs.setString(_keyPrefix, jsonEncode(jsonList));
+    final json = jsonEncode(contacts.map(_toJson).toList());
+    final dir = await _directory();
+    if (dir != null) {
+      try {
+        await writeDiscoveryFile(dir, json);
+        return;
+      } on Object {
+        // Fall through to preferences rather than lose the list.
+      }
+    }
+    await PrefsManager.instance.setString(_keyPrefix, json);
   }
 
   Map<String, dynamic> _toJson(Contact contact) {

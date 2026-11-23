@@ -221,6 +221,23 @@ class AppSettingsService extends ChangeNotifier {
     await updateSettings(_settings.copyWith(messageFloodAttempts: value));
   }
 
+  /// Puts the route weights and the direct and flood retry counts back to
+  /// their defaults. Auto route rotation stays on or off as it was.
+  Future<void> resetRoutingSettingsToDefault() async {
+    await updateSettings(
+      _settings.copyWith(
+        maxRouteWeight: AppSettings.defaultMaxRouteWeight,
+        initialRouteWeight: AppSettings.defaultInitialRouteWeight,
+        routeWeightSuccessIncrement:
+            AppSettings.defaultRouteWeightSuccessIncrement,
+        routeWeightFailureDecrement:
+            AppSettings.defaultRouteWeightFailureDecrement,
+        maxMessageRetries: AppSettings.defaultMaxMessageRetries,
+        messageFloodAttempts: AppSettings.defaultMessageFloodAttempts,
+      ),
+    );
+  }
+
   Future<void> setRepeaterQuietHours(int value) async {
     await updateSettings(_settings.copyWith(repeaterQuietHours: value));
   }

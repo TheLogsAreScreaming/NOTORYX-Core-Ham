@@ -441,8 +441,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
     };
 
     // Last message preview
-    final messages = connector.getChannelMessages(channel);
-    final lastMessage = messages.isNotEmpty ? messages.last : null;
+    // The newest message the filter did not hide: spam never reaches the
+    // channel list preview.
+    final lastMessage = connector.latestVisibleChannelMessage(channel);
     final lastMessageText = lastMessage?.text ?? '';
     final lastPreview =
         lastMessageText.isNotEmpty &&

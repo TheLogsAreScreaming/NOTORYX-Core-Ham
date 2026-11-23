@@ -52,6 +52,7 @@ class BastionHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.watch<MeshCoreConnector>();
+    final known = c.knownNodeCounts;
     final stats = c.latestRadioStats;
     final ops = context.watch<FieldOpsService>();
     final heardAll =
@@ -183,7 +184,7 @@ class BastionHomeScreen extends StatelessWidget {
                       'RSSI',
                     ),
                     Readout(
-                      '${c.contacts.length}',
+                      '${known.total}',
                       l10n.bastion_nodes,
                       color: MeshPalette.secondary,
                     ),
@@ -191,6 +192,23 @@ class BastionHomeScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: MeshSpace.sm),
+              // What the app remembers, which can be far more than the
+              // radio's own contact table holds.
+              if (known.total > 0)
+                GlassActionRow(
+                  key: const ValueKey('home-known-nodes'),
+                  icon: Icons.hub_outlined,
+                  title: l10n.home_knownNodes(
+                    known.chats,
+                    known.repeaters,
+                    known.rooms,
+                  ),
+                  subtitle: l10n.home_radioHolds(
+                    c.contacts.length,
+                    c.maxContacts,
+                  ),
+                  onTap: () => open(const DiscoveryScreen()),
+                ),
               if (!online)
                 GlassActionRow(
                   icon: Icons.bluetooth_searching_rounded,

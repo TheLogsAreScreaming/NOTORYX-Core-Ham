@@ -12805,4 +12805,290 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get coverageHex_trimDrivesHint =>
       'De första och sista 2 hexagonerna i varje kartläggning stannar på telefonen, så kartor kan inte visa var du bor eller parkerar.';
+
+  @override
+  String get appSettings_resetRoutingToDefault =>
+      'Återställ rutningsalgoritm till standard';
+
+  @override
+  String get appSettings_resetRoutingToDefaultSubtitle =>
+      'Återställ rutningsalgoritmins inställningar till fabriksstandard';
+
+  @override
+  String get appSettings_routingResetToDefault =>
+      'Rutningsalgoritmins inställningar återställda till standard';
+
+  @override
+  String get discoveredContacts_importNodes => 'Importera noder';
+
+  @override
+  String get discoveredContacts_importHint =>
+      'Läser kontaktlänkar, publika nycklar eller en JSON- eller CSV-lista med noder. De läggs till i den här listan, inte i din radio.';
+
+  @override
+  String get discoveredContacts_importFromFile => 'Från en fil';
+
+  @override
+  String get discoveredContacts_importFromClipboard => 'Från urklipp';
+
+  @override
+  String get discoveredContacts_importFailed => 'Kunde inte läsas';
+
+  @override
+  String get discoveredContacts_importNone => 'Inga noder hittades';
+
+  @override
+  String get discoveredContacts_importNotConnected => 'Anslut din radio först';
+
+  @override
+  String discoveredContacts_importResult(int added, int updated, int skipped) {
+    return '$added nya, $updated uppdaterade, $skipped överhoppade';
+  }
+
+  @override
+  String home_knownNodes(int chats, int repeaters, int rooms) {
+    return 'Chattar $chats · Repeatrar $repeaters · Rum $rooms';
+  }
+
+  @override
+  String home_radioHolds(int count, int max) {
+    return 'Radion har $count av $max kontakter';
+  }
+
+  @override
+  String messageFilter_markedSpamCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count meddelanden markerade som skräppost',
+      one: '1 meddelande markerat som skräppost',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageFilter_markedNotSpamCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count meddelanden markerade som inte skräppost',
+      one: '1 meddelande markerat som inte skräppost',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get messageFilter_title => 'Meddelandefilter';
+
+  @override
+  String get messageFilter_settingsSubtitle =>
+      'Dölj skräppost och upprepade meddelanden';
+
+  @override
+  String get messageFilter_enabled => 'Filtrera meddelanden';
+
+  @override
+  String get messageFilter_enabledSubtitle => 'Gäller kanalmeddelanden';
+
+  @override
+  String get messageFilter_displayTitle => 'Filtrerade meddelanden';
+
+  @override
+  String get messageFilter_displayPlaceholder => 'Visa en liten platshållare';
+
+  @override
+  String get messageFilter_displayHide => 'Dölj helt';
+
+  @override
+  String get messageFilter_displayHideHelp =>
+      'Dolda meddelanden finns kvar i listan Filtrerade meddelanden.';
+
+  @override
+  String get messageFilter_rulesSection => 'Dina regler';
+
+  @override
+  String get messageFilter_rulesEmpty =>
+      'Inga regler ännu. Lägg till ett ord, en fras eller ett avsändarnamn för att dölja matchande meddelanden.';
+
+  @override
+  String get messageFilter_addRule => 'Lägg till regel';
+
+  @override
+  String get messageFilter_editRule => 'Redigera regel';
+
+  @override
+  String get messageFilter_rulePattern => 'Ord, fras eller namn';
+
+  @override
+  String get messageFilter_rulePatternHint => 't.ex. meshos';
+
+  @override
+  String get messageFilter_ruleWhere => 'Sök i';
+
+  @override
+  String get messageFilter_ruleFieldText => 'Meddelandetext';
+
+  @override
+  String get messageFilter_ruleFieldSender => 'Avsändarnamn';
+
+  @override
+  String get messageFilter_ruleFieldBoth => 'Båda';
+
+  @override
+  String get messageFilter_ruleMatch => 'Matchning';
+
+  @override
+  String get messageFilter_ruleMatchContains => 'Innehåller';
+
+  @override
+  String get messageFilter_ruleMatchWholeWord => 'Helt ord';
+
+  @override
+  String get messageFilter_ruleMatchExact => 'Exakt';
+
+  @override
+  String get messageFilter_ruleDeleted => 'Regeln har raderats';
+
+  @override
+  String get messageFilter_ruleSaved => 'Regeln har sparats';
+
+  @override
+  String get messageFilter_automaticSection => 'Automatiskt';
+
+  @override
+  String get messageFilter_duplicates => 'Upprepade meddelanden';
+
+  @override
+  String get messageFilter_duplicatesSubtitle =>
+      'Samma meddelande skickas igen, eller av flera avsändare';
+
+  @override
+  String get messageFilter_repeatSends => 'Utskick som räknas som upprepning';
+
+  @override
+  String messageFilter_repeatSendsSubtitle(int count) {
+    return 'Dölj ett meddelande när samma avsändare skickar det $count gånger inom 10 minuter';
+  }
+
+  @override
+  String get messageFilter_repeatedCharacters => 'Upprepade tecken';
+
+  @override
+  String get messageFilter_repeatedCharactersSubtitle =>
+      'Långa följder av samma tecken, som ”aaaaaaaaaaaaaaaaaaaa”';
+
+  @override
+  String get messageFilter_learning => 'Lär av tryck på Skräppost';
+
+  @override
+  String messageFilter_learningSubtitle(int spam, int notSpam) {
+    return '$spam skräppost- och $notSpam inte-skräppost-exempel';
+  }
+
+  @override
+  String get messageFilter_resetLearning => 'Återställ inlärning';
+
+  @override
+  String get messageFilter_resetLearningConfirm =>
+      'Glömma allt som lärts från dina tryck på Skräppost och Inte skräppost? Dina regler behålls.';
+
+  @override
+  String messageFilter_filteredMessages(int count) {
+    return 'Filtrerade meddelanden ($count)';
+  }
+
+  @override
+  String get messageFilter_filteredMessagesEmpty => 'Inget har filtrerats.';
+
+  @override
+  String get messageFilter_ghostSingle =>
+      'Dolt meddelande · Tryck för att visa';
+
+  @override
+  String messageFilter_ghostMany(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count dolda meddelanden · Tryck för att visa',
+      one: '$count dolt meddelande · Tryck för att visa',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get messageFilter_ghostSingleExpanded =>
+      'Visar dolt meddelande · Tryck för att dölja';
+
+  @override
+  String messageFilter_ghostManyExpanded(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Visar $count dolda meddelanden · Tryck för att dölja',
+      one: 'Visar $count dolt meddelande · Tryck för att dölja',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageFilter_reasonTextRule(String pattern) {
+    return 'Filtrerat: matchar ”$pattern”';
+  }
+
+  @override
+  String messageFilter_reasonSenderRule(String pattern) {
+    return 'Filtrerat: avsändare ”$pattern”';
+  }
+
+  @override
+  String get messageFilter_reasonRepeatedCharacters =>
+      'Filtrerat: upprepade tecken';
+
+  @override
+  String get messageFilter_reasonDuplicate => 'Filtrerat: upprepat meddelande';
+
+  @override
+  String get messageFilter_reasonCrossSenderDuplicate =>
+      'Filtrerat: samma meddelande från flera avsändare';
+
+  @override
+  String get messageFilter_reasonLearned =>
+      'Filtrerat: liknar meddelanden du markerat som skräppost';
+
+  @override
+  String get messageFilter_reasonManual =>
+      'Filtrerat: du markerade detta som skräppost';
+
+  @override
+  String get messageFilter_notSpam => 'Inte skräppost';
+
+  @override
+  String get messageFilter_hideAgain => 'Dölj';
+
+  @override
+  String get messageFilter_markSpam => 'Markera som skräppost';
+
+  @override
+  String get messageFilter_markedSpam => 'Markerat som skräppost';
+
+  @override
+  String get messageFilter_markedNotSpam => 'Markerat som inte skräppost';
+
+  @override
+  String get messageFilter_filterSender => 'Filtrera denna avsändare';
+
+  @override
+  String messageFilter_filterSenderConfirm(String name) {
+    return 'Dölja alla meddelanden från ”$name”?';
+  }
+
+  @override
+  String get messageFilter_filterLikeThis => 'Filtrera meddelanden som detta…';
+
+  @override
+  String get messageFilter_channelToggle =>
+      'Filtrera meddelanden i den här kanalen';
+
+  @override
+  String get messageFilter_ghostIconTooltip => 'Dolt av ditt meddelandefilter';
 }
