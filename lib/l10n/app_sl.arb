@@ -4857,5 +4857,7 @@
   "discoveredContacts_importFailed": "Branje ni uspelo",
   "discoveredContacts_importNone": "Ni najdenih vozlišč",
   "discoveredContacts_importNotConnected": "Najprej poveži radio",
-  "discoveredContacts_importResult": "Novih: {added}, posodobljenih: {updated}, preskočenih: {skipped}"
+  "discoveredContacts_importResult": "Novih: {added}, posodobljenih: {updated}, preskočenih: {skipped}",
+  "home_knownNodes": "Klepeti {chats} · Repetitorji {repeaters} · Sobe {rooms}",
+  "home_radioHolds": "Radio hrani stike: {count} od {max}"
 }

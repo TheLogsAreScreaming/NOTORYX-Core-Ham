@@ -12844,4 +12844,14 @@ class AppLocalizationsSv extends AppLocalizations {
   String discoveredContacts_importResult(int added, int updated, int skipped) {
     return '$added nya, $updated uppdaterade, $skipped överhoppade';
   }
+
+  @override
+  String home_knownNodes(int chats, int repeaters, int rooms) {
+    return 'Chattar $chats · Repeatrar $repeaters · Rum $rooms';
+  }
+
+  @override
+  String home_radioHolds(int count, int max) {
+    return 'Radion har $count av $max kontakter';
+  }
 }

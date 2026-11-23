@@ -12925,4 +12925,14 @@ class AppLocalizationsBg extends AppLocalizations {
   String discoveredContacts_importResult(int added, int updated, int skipped) {
     return 'Нови: $added, обновени: $updated, пропуснати: $skipped';
   }
+
+  @override
+  String home_knownNodes(int chats, int repeaters, int rooms) {
+    return 'Чатове $chats · Ретранслатори $repeaters · Стаи $rooms';
+  }
+
+  @override
+  String home_radioHolds(int count, int max) {
+    return 'Радиото пази контакти: $count от $max';
+  }
 }

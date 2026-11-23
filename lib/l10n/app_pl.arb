@@ -4895,5 +4895,7 @@
   "discoveredContacts_importFailed": "Nie udało się odczytać",
   "discoveredContacts_importNone": "Nie znaleziono węzłów",
   "discoveredContacts_importNotConnected": "Najpierw połącz radio",
-  "discoveredContacts_importResult": "Nowe: {added}, zaktualizowane: {updated}, pominięte: {skipped}"
+  "discoveredContacts_importResult": "Nowe: {added}, zaktualizowane: {updated}, pominięte: {skipped}",
+  "home_knownNodes": "Czaty {chats} · Przekaźniki {repeaters} · Pokoje {rooms}",
+  "home_radioHolds": "Radio przechowuje kontakty: {count} z {max}"
 }

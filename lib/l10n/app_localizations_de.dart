@@ -12950,4 +12950,14 @@ class AppLocalizationsDe extends AppLocalizations {
   String discoveredContacts_importResult(int added, int updated, int skipped) {
     return '$added neu, $updated aktualisiert, $skipped übersprungen';
   }
+
+  @override
+  String home_knownNodes(int chats, int repeaters, int rooms) {
+    return 'Chats $chats · Repeater $repeaters · Räume $rooms';
+  }
+
+  @override
+  String home_radioHolds(int count, int max) {
+    return 'Funkgerät speichert $count von $max Kontakten';
+  }
 }

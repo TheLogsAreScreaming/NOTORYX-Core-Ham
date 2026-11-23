@@ -4895,5 +4895,7 @@
   "discoveredContacts_importFailed": "Nem sikerült beolvasni",
   "discoveredContacts_importNone": "Nem található csomópont",
   "discoveredContacts_importNotConnected": "Előbb csatlakoztasd a rádiót",
-  "discoveredContacts_importResult": "Új: {added}, frissítve: {updated}, kihagyva: {skipped}"
+  "discoveredContacts_importResult": "Új: {added}, frissítve: {updated}, kihagyva: {skipped}",
+  "home_knownNodes": "Csevegések {chats} · Átjátszók {repeaters} · Szobák {rooms}",
+  "home_radioHolds": "A rádió {count}/{max} kapcsolatot tárol"
 }

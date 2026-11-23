@@ -4991,5 +4991,7 @@
   "discoveredContacts_importFailed": "읽을 수 없습니다",
   "discoveredContacts_importNone": "노드를 찾을 수 없습니다",
   "discoveredContacts_importNotConnected": "먼저 무전기를 연결하세요",
-  "discoveredContacts_importResult": "새 노드 {added}, 업데이트 {updated}, 건너뜀 {skipped}"
+  "discoveredContacts_importResult": "새 노드 {added}, 업데이트 {updated}, 건너뜀 {skipped}",
+  "home_knownNodes": "채팅 {chats} · 리피터 {repeaters} · 룸 {rooms}",
+  "home_radioHolds": "무전기 연락처 {count} / {max}"
 }

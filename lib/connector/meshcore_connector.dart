@@ -674,6 +674,35 @@ class MeshCoreConnector extends ChangeNotifier {
     return List.unmodifiable(_discoveredContacts);
   }
 
+  /// Every node this app remembers: the radio's contacts plus heard nodes,
+  /// each counted once, by type.
+  KnownNodeCounts get knownNodeCounts {
+    final types = <String, int>{};
+    for (final c in _discoveredContacts) {
+      types[c.publicKeyHex] = c.type;
+    }
+    for (final c in _contacts) {
+      types[c.publicKeyHex] = c.type;
+    }
+    var chats = 0, repeaters = 0, rooms = 0;
+    for (final t in types.values) {
+      switch (t) {
+        case advTypeRepeater:
+          repeaters++;
+        case advTypeRoom:
+          rooms++;
+        case advTypeChat:
+          chats++;
+      }
+    }
+    return KnownNodeCounts(
+      total: types.length,
+      chats: chats,
+      repeaters: repeaters,
+      rooms: rooms,
+    );
+  }
+
   List<Channel> get channels => List.unmodifiable(_channels);
 
   /// Slots where the radio's channel differs from the app's saved copy and
@@ -891,7 +920,17 @@ class MeshCoreConnector extends ChangeNotifier {
         !_preserveContactsOnRefresh &&
         !_contactSyncUsesSinceFilter &&
         _contactSyncSeen.isNotEmpty) {
+      // The radio no longer has these (it replaced them when its table was
+      // full, or they were deleted elsewhere); keep them as heard nodes.
+      for (final c in _contacts) {
+        if (!_contactSyncSeen.contains(c.publicKeyHex)) _keepDroppedContact(c);
+      }
       _contacts.removeWhere((c) => !_contactSyncSeen.contains(c.publicKeyHex));
+      // Forget the removed ones too, or Discovery keeps hiding them as if
+      // they were still saved on the radio.
+      _knownContactKeys
+        ..clear()
+        ..addAll(_contacts.map((c) => c.publicKeyHex));
     }
     _contactSyncSeen.clear();
     _contactSyncStalled = stalled;
@@ -6579,6 +6618,8 @@ class MeshCoreConnector extends ChangeNotifier {
     final evicted = oldest;
     _contacts.removeWhere((c) => c.publicKeyHex == evicted.publicKeyHex);
     _knownContactKeys.remove(evicted.publicKeyHex);
+    // The radio forgets it; this app keeps it in the heard-node list.
+    _keepDroppedContact(evicted);
     appLogger.info(
       'Contact table full; radio replaced ${evicted.name} with ${contact.name}',
       tag: 'Connector',
@@ -8858,6 +8899,17 @@ class MeshCoreConnector extends ChangeNotifier {
     return queueId.startsWith(_reactionSendQueuePrefix);
   }
 
+  /// Moves a contact the radio dropped into the heard-node list, so the app
+  /// still remembers it (name, type, position, last heard) after the radio's
+  /// contact table forgets it.
+  void _keepDroppedContact(Contact contact) {
+    _handleDiscovery(
+      contact,
+      contact.rawPacket ?? Uint8List(0),
+      noNotify: true,
+    );
+  }
+
   Map<String, String> _parseKeyValueString(String input) {
     final result = <String, String>{};
 
@@ -9813,4 +9865,20 @@ class NodeImportResult {
 
   /// Already on the radio, this radio itself, or nothing new.
   final int skipped;
+}
+
+/// See [MeshCoreConnector.knownNodeCounts]. Sensors and unknown types count
+/// only toward [total].
+class KnownNodeCounts {
+  const KnownNodeCounts({
+    required this.total,
+    required this.chats,
+    required this.repeaters,
+    required this.rooms,
+  });
+
+  final int total;
+  final int chats;
+  final int repeaters;
+  final int rooms;
 }

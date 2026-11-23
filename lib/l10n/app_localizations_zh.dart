@@ -12118,4 +12118,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String discoveredContacts_importResult(int added, int updated, int skipped) {
     return '新增 $added，更新 $updated，跳过 $skipped';
   }
+
+  @override
+  String home_knownNodes(int chats, int repeaters, int rooms) {
+    return '聊天 $chats · 中继 $repeaters · 房间 $rooms';
+  }
+
+  @override
+  String home_radioHolds(int count, int max) {
+    return '电台已存 $count / $max 个联系人';
+  }
 }

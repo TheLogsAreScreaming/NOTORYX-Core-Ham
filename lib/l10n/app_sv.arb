@@ -4857,5 +4857,7 @@
   "discoveredContacts_importFailed": "Kunde inte läsas",
   "discoveredContacts_importNone": "Inga noder hittades",
   "discoveredContacts_importNotConnected": "Anslut din radio först",
-  "discoveredContacts_importResult": "{added} nya, {updated} uppdaterade, {skipped} överhoppade"
+  "discoveredContacts_importResult": "{added} nya, {updated} uppdaterade, {skipped} överhoppade",
+  "home_knownNodes": "Chattar {chats} · Repeatrar {repeaters} · Rum {rooms}",
+  "home_radioHolds": "Radion har {count} av {max} kontakter"
 }

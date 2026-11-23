@@ -4160,5 +4160,7 @@
   "discoveredContacts_importFailed": "Не удалось прочитать",
   "discoveredContacts_importNone": "Узлы не найдены",
   "discoveredContacts_importNotConnected": "Сначала подключите радио",
-  "discoveredContacts_importResult": "Новых: {added}, обновлено: {updated}, пропущено: {skipped}"
+  "discoveredContacts_importResult": "Новых: {added}, обновлено: {updated}, пропущено: {skipped}",
+  "home_knownNodes": "Чаты {chats} · Ретрансляторы {repeaters} · Комнаты {rooms}",
+  "home_radioHolds": "Радио хранит контакты: {count} из {max}"
 }

@@ -4857,5 +4857,7 @@
   "discoveredContacts_importFailed": "Não foi possível ler",
   "discoveredContacts_importNone": "Nenhum nó encontrado",
   "discoveredContacts_importNotConnected": "Ligue primeiro o seu rádio",
-  "discoveredContacts_importResult": "{added} novos, {updated} atualizados, {skipped} ignorados"
+  "discoveredContacts_importResult": "{added} novos, {updated} atualizados, {skipped} ignorados",
+  "home_knownNodes": "Conversas {chats} · Repetidores {repeaters} · Salas {rooms}",
+  "home_radioHolds": "O rádio guarda {count} de {max} contactos"
 }

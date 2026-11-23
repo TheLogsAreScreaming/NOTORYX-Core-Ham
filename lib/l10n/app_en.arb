@@ -8069,5 +8069,30 @@
         "type": "int"
       }
     }
+  },
+  "home_knownNodes": "Chats {chats} · Repeaters {repeaters} · Rooms {rooms}",
+  "@home_knownNodes": {
+    "placeholders": {
+      "chats": {
+        "type": "int"
+      },
+      "repeaters": {
+        "type": "int"
+      },
+      "rooms": {
+        "type": "int"
+      }
+    }
+  },
+  "home_radioHolds": "Radio holds {count} of {max} contacts",
+  "@home_radioHolds": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
   }
 }

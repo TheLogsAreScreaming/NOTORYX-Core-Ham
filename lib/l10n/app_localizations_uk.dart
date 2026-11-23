@@ -12971,4 +12971,14 @@ class AppLocalizationsUk extends AppLocalizations {
   String discoveredContacts_importResult(int added, int updated, int skipped) {
     return 'Нових: $added, оновлено: $updated, пропущено: $skipped';
   }
+
+  @override
+  String home_knownNodes(int chats, int repeaters, int rooms) {
+    return 'Чати $chats · Ретранслятори $repeaters · Кімнати $rooms';
+  }
+
+  @override
+  String home_radioHolds(int count, int max) {
+    return 'Радіо зберігає контакти: $count з $max';
+  }
 }

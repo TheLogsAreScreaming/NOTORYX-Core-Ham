@@ -12933,4 +12933,14 @@ class AppLocalizationsSl extends AppLocalizations {
   String discoveredContacts_importResult(int added, int updated, int skipped) {
     return 'Novih: $added, posodobljenih: $updated, preskočenih: $skipped';
   }
+
+  @override
+  String home_knownNodes(int chats, int repeaters, int rooms) {
+    return 'Klepeti $chats · Repetitorji $repeaters · Sobe $rooms';
+  }
+
+  @override
+  String home_radioHolds(int count, int max) {
+    return 'Radio hrani stike: $count od $max';
+  }
 }

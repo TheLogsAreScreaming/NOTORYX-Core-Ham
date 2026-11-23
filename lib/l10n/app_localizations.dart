@@ -21320,6 +21320,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{added} new, {updated} updated, {skipped} skipped'**
   String discoveredContacts_importResult(int added, int updated, int skipped);
+
+  /// No description provided for @home_knownNodes.
+  ///
+  /// In en, this message translates to:
+  /// **'Chats {chats} · Repeaters {repeaters} · Rooms {rooms}'**
+  String home_knownNodes(int chats, int repeaters, int rooms);
+
+  /// No description provided for @home_radioHolds.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio holds {count} of {max} contacts'**
+  String home_radioHolds(int count, int max);
 }
 
 class _AppLocalizationsDelegate

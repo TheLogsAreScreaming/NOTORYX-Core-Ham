@@ -4857,5 +4857,7 @@
   "discoveredContacts_importFailed": "Nepodarilo sa načítať",
   "discoveredContacts_importNone": "Nenašli sa žiadne uzly",
   "discoveredContacts_importNotConnected": "Najprv pripoj rádio",
-  "discoveredContacts_importResult": "Nové: {added}, aktualizované: {updated}, preskočené: {skipped}"
+  "discoveredContacts_importResult": "Nové: {added}, aktualizované: {updated}, preskočené: {skipped}",
+  "home_knownNodes": "Čety {chats} · Opakovače {repeaters} · Miestnosti {rooms}",
+  "home_radioHolds": "Rádio uchováva kontakty: {count} z {max}"
 }

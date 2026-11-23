@@ -4991,5 +4991,7 @@
   "discoveredContacts_importFailed": "読み込めませんでした",
   "discoveredContacts_importNone": "ノードが見つかりません",
   "discoveredContacts_importNotConnected": "先に無線機を接続してください",
-  "discoveredContacts_importResult": "新規 {added}、更新 {updated}、スキップ {skipped}"
+  "discoveredContacts_importResult": "新規 {added}、更新 {updated}、スキップ {skipped}",
+  "home_knownNodes": "チャット {chats} · リピーター {repeaters} · ルーム {rooms}",
+  "home_radioHolds": "無線機の連絡先 {count} / {max}"
 }

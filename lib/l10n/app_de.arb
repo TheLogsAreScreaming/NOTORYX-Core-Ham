@@ -4991,5 +4991,7 @@
   "discoveredContacts_importFailed": "Konnte nicht gelesen werden",
   "discoveredContacts_importNone": "Keine Knoten gefunden",
   "discoveredContacts_importNotConnected": "Verbinde zuerst dein Funkgerät",
-  "discoveredContacts_importResult": "{added} neu, {updated} aktualisiert, {skipped} übersprungen"
+  "discoveredContacts_importResult": "{added} neu, {updated} aktualisiert, {skipped} übersprungen",
+  "home_knownNodes": "Chats {chats} · Repeater {repeaters} · Räume {rooms}",
+  "home_radioHolds": "Funkgerät speichert {count} von {max} Kontakten"
 }

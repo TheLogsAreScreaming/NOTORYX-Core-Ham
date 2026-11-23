@@ -12366,4 +12366,14 @@ class AppLocalizationsKo extends AppLocalizations {
   String discoveredContacts_importResult(int added, int updated, int skipped) {
     return '새 노드 $added, 업데이트 $updated, 건너뜀 $skipped';
   }
+
+  @override
+  String home_knownNodes(int chats, int repeaters, int rooms) {
+    return '채팅 $chats · 리피터 $repeaters · 룸 $rooms';
+  }
+
+  @override
+  String home_radioHolds(int count, int max) {
+    return '무전기 연락처 $count / $max';
+  }
 }

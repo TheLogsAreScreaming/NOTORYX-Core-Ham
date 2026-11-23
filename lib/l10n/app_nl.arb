@@ -4857,5 +4857,7 @@
   "discoveredContacts_importFailed": "Kon niet worden gelezen",
   "discoveredContacts_importNone": "Geen nodes gevonden",
   "discoveredContacts_importNotConnected": "Verbind eerst je radio",
-  "discoveredContacts_importResult": "{added} nieuw, {updated} bijgewerkt, {skipped} overgeslagen"
+  "discoveredContacts_importResult": "{added} nieuw, {updated} bijgewerkt, {skipped} overgeslagen",
+  "home_knownNodes": "Chats {chats} · Repeaters {repeaters} · Ruimtes {rooms}",
+  "home_radioHolds": "Radio bewaart {count} van {max} contacten"
 }

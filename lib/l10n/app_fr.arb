@@ -4991,5 +4991,7 @@
   "discoveredContacts_importFailed": "Lecture impossible",
   "discoveredContacts_importNone": "Aucun nœud trouvé",
   "discoveredContacts_importNotConnected": "Connectez d'abord votre radio",
-  "discoveredContacts_importResult": "{added} nouveaux, {updated} mis à jour, {skipped} ignorés"
+  "discoveredContacts_importResult": "{added} nouveaux, {updated} mis à jour, {skipped} ignorés",
+  "home_knownNodes": "Discussions {chats} · Relais {repeaters} · Salons {rooms}",
+  "home_radioHolds": "La radio contient {count} contacts sur {max}"
 }

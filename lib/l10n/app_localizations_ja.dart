@@ -12351,4 +12351,14 @@ class AppLocalizationsJa extends AppLocalizations {
   String discoveredContacts_importResult(int added, int updated, int skipped) {
     return '新規 $added、更新 $updated、スキップ $skipped';
   }
+
+  @override
+  String home_knownNodes(int chats, int repeaters, int rooms) {
+    return 'チャット $chats · リピーター $repeaters · ルーム $rooms';
+  }
+
+  @override
+  String home_radioHolds(int count, int max) {
+    return '無線機の連絡先 $count / $max';
+  }
 }

@@ -4857,5 +4857,7 @@
   "discoveredContacts_importFailed": "Не може да се прочете",
   "discoveredContacts_importNone": "Не са намерени възли",
   "discoveredContacts_importNotConnected": "Първо свържете радиото",
-  "discoveredContacts_importResult": "Нови: {added}, обновени: {updated}, пропуснати: {skipped}"
+  "discoveredContacts_importResult": "Нови: {added}, обновени: {updated}, пропуснати: {skipped}",
+  "home_knownNodes": "Чатове {chats} · Ретранслатори {repeaters} · Стаи {rooms}",
+  "home_radioHolds": "Радиото пази контакти: {count} от {max}"
 }

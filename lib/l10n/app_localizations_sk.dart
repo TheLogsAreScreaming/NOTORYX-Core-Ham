@@ -12905,4 +12905,14 @@ class AppLocalizationsSk extends AppLocalizations {
   String discoveredContacts_importResult(int added, int updated, int skipped) {
     return 'Nové: $added, aktualizované: $updated, preskočené: $skipped';
   }
+
+  @override
+  String home_knownNodes(int chats, int repeaters, int rooms) {
+    return 'Čety $chats · Opakovače $repeaters · Miestnosti $rooms';
+  }
+
+  @override
+  String home_radioHolds(int count, int max) {
+    return 'Rádio uchováva kontakty: $count z $max';
+  }
 }

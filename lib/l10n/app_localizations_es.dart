@@ -12943,4 +12943,14 @@ class AppLocalizationsEs extends AppLocalizations {
   String discoveredContacts_importResult(int added, int updated, int skipped) {
     return '$added nuevos, $updated actualizados, $skipped omitidos';
   }
+
+  @override
+  String home_knownNodes(int chats, int repeaters, int rooms) {
+    return 'Chats $chats · Repetidores $repeaters · Salas $rooms';
+  }
+
+  @override
+  String home_radioHolds(int count, int max) {
+    return 'La radio guarda $count de $max contactos';
+  }
 }

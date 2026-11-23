@@ -82,5 +82,9 @@ void main() {
       'Node 2',
       reason: 'an unknown name is filled in',
     );
+    final counts = connector.knownNodeCounts;
+    expect(counts.total, 2);
+    expect(counts.repeaters, 2);
+    expect(counts.chats, 0);
   });
 }

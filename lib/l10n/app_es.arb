@@ -4991,5 +4991,7 @@
   "discoveredContacts_importFailed": "No se pudo leer",
   "discoveredContacts_importNone": "No se encontraron nodos",
   "discoveredContacts_importNotConnected": "Conecta primero tu radio",
-  "discoveredContacts_importResult": "{added} nuevos, {updated} actualizados, {skipped} omitidos"
+  "discoveredContacts_importResult": "{added} nuevos, {updated} actualizados, {skipped} omitidos",
+  "home_knownNodes": "Chats {chats} · Repetidores {repeaters} · Salas {rooms}",
+  "home_radioHolds": "La radio guarda {count} de {max} contactos"
 }
