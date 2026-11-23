@@ -766,6 +766,14 @@ Uint8List buildResetPathFrame(Uint8List pubKey) {
   return writer.toBytes();
 }
 
+/// [time] as the 32-bit seconds value of a contact's last-advert field.
+///
+/// The radio drops any advert that is not newer than this field, so contact
+/// writes must send the node's own advert time (or 0 for a node never heard),
+/// never the phone's clock.
+int advertSeconds(DateTime time) =>
+    (time.millisecondsSinceEpoch ~/ 1000).clamp(0, 0xFFFFFFFF).toInt();
+
 // Build CMD_ADD_UPDATE_CONTACT frame to set custom path
 // Format: [cmd][pub_key x32][type][flags][path_len][path x64][name x32][Lat? x4, Lon? x4][timestamp? x4]
 Uint8List buildUpdateContactPathFrame(
