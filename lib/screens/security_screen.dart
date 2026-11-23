@@ -31,7 +31,7 @@ class _SecurityScreenState extends State<SecurityScreen> {
     await MessageDb.ready;
     if (!mounted) return;
     setState(() {
-      _wantEncrypted = prefs.getBool(MessageDb.encryptPrefKey) ?? false;
+      _wantEncrypted = MessageDb.wantsEncryption(prefs);
       _lockAvailable = available;
     });
   }
