@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io' show Platform, File;
+import 'dart:isolate';
 import 'dart:ui';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/timezone.dart' as tz;
 
 import '../helpers/message_url_image_helper.dart';
@@ -21,6 +24,38 @@ class NotificationReply {
   final String text;
 }
 
+/// Port the running app listens on for notification actions taken without
+/// opening it (Android Auto, watches, the notification shade).
+const notificationActionPortName = 'notoryx_notification_actions';
+
+/// Where a reply typed while the app wasn't running waits for the next start.
+const _heldReplyKey = 'notification_held_reply';
+
+/// Runs in a background isolate when a Reply or Mark-as-read action is used
+/// without opening the app. The radio link lives in the app's main isolate,
+/// so the action is passed there; with no app running, a reply is kept for
+/// the next start instead of being lost.
+@pragma('vm:entry-point')
+Future<void> notificationActionBackgroundHandler(
+  NotificationResponse response,
+) async {
+  final action = {
+    'actionId': response.actionId,
+    'payload': response.payload,
+    'input': response.input,
+  };
+  final port = IsolateNameServer.lookupPortByName(notificationActionPortName);
+  if (port != null) {
+    port.send(action);
+    return;
+  }
+  if (NotificationService.replyFrom(response) == null) return;
+  try {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_heldReplyKey, jsonEncode(action));
+  } catch (_) {}
+}
+
 class NotificationService {
   static final NotificationService _instance = NotificationService._internal();
   factory NotificationService() => _instance;
@@ -33,7 +68,15 @@ class NotificationService {
   NotificationReply? _launchReply;
 
   static const _replyActionId = 'reply';
+  static const _markReadActionId = 'mark_read';
   static const _replyCategoryId = 'message_reply';
+
+  final StreamController<String> _markReads =
+      StreamController<String>.broadcast();
+  ReceivePort? _actionPort;
+
+  /// Payloads of conversations marked read from a notification.
+  Stream<String> get markReads => _markReads.stream;
 
   /// Whether new message notifications offer a reply box. Turned off while
   /// app lock is on, so nobody can answer from the phone's lock screen.
@@ -173,16 +216,56 @@ class NotificationService {
       await _notifications.initialize(
         settings: initSettings,
         onDidReceiveNotificationResponse: _onNotificationTapped,
+        onDidReceiveBackgroundNotificationResponse:
+            notificationActionBackgroundHandler,
       );
       _isInitialized = true;
+      _listenForBackgroundActions();
       final launch = await _notifications.getNotificationAppLaunchDetails();
       if (launch?.didNotificationLaunchApp ?? false) {
         final response = launch!.notificationResponse;
         if (response != null) _launchReply = replyFrom(response);
         if (_launchReply == null) _launchPayload = response?.payload;
       }
+      _launchReply ??= await _takeHeldReply();
     } catch (e) {
       debugPrint('Error initializing notifications: $e');
+    }
+  }
+
+  void _listenForBackgroundActions() {
+    if (kIsWeb || _actionPort != null) return;
+    final port = ReceivePort();
+    IsolateNameServer.removePortNameMapping(notificationActionPortName);
+    IsolateNameServer.registerPortWithName(
+      port.sendPort,
+      notificationActionPortName,
+    );
+    port.listen((message) {
+      if (message is! Map) return;
+      _onNotificationTapped(_actionResponse(message));
+    });
+    _actionPort = port;
+  }
+
+  static NotificationResponse _actionResponse(Map<dynamic, dynamic> action) =>
+      NotificationResponse(
+        notificationResponseType:
+            NotificationResponseType.selectedNotificationAction,
+        actionId: action['actionId'] as String?,
+        payload: action['payload'] as String?,
+        input: action['input'] as String?,
+      );
+
+  Future<NotificationReply?> _takeHeldReply() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final raw = prefs.getString(_heldReplyKey);
+      if (raw == null) return null;
+      await prefs.remove(_heldReplyKey);
+      return replyFrom(_actionResponse(jsonDecode(raw) as Map));
+    } catch (_) {
+      return null;
     }
   }
 
@@ -494,22 +577,47 @@ class NotificationService {
     }
   }
 
+  /// Reply and Mark-as-read, shaped the way Android Auto and watches need:
+  /// semantic actions that run without opening the app. The action is
+  /// handed to the running app through [notificationActionPortName].
   List<AndroidNotificationAction>? get _replyActions => quickReplyEnabled
       ? [
           AndroidNotificationAction(
             _replyActionId,
             _l10n.notification_replyAction,
-            // The radio link lives in the app's main isolate, so the app has
-            // to come forward to send.
-            showsUserInterface: true,
+            semanticAction: SemanticAction.reply,
             inputs: [
               AndroidNotificationActionInput(
                 label: _l10n.notification_replyHint,
               ),
             ],
           ),
+          AndroidNotificationAction(
+            _markReadActionId,
+            _l10n.notification_markRead,
+            semanticAction: SemanticAction.markAsRead,
+          ),
         ]
       : null;
+
+  /// A conversation-style notification, which Android Auto requires to read
+  /// a message aloud and offer a reply.
+  MessagingStyleInformation _conversationStyle({
+    required String from,
+    required String message,
+    String? conversationTitle,
+  }) => MessagingStyleInformation(
+    Person(name: _l10n.notification_you),
+    conversationTitle: conversationTitle,
+    groupConversation: conversationTitle != null,
+    messages: [
+      Message(
+        formatNotificationText(message),
+        DateTime.now(),
+        Person(name: from),
+      ),
+    ],
+  );
 
   String? get _replyCategory => quickReplyEnabled ? _replyCategoryId : null;
 
@@ -541,7 +649,7 @@ class NotificationService {
               FilePathAndroidBitmap(imagePath),
               summaryText: formatNotificationText(message),
             )
-          : null,
+          : _conversationStyle(from: contactName, message: message),
     );
 
     final iosDetails = DarwinNotificationDetails(
@@ -666,7 +774,11 @@ class NotificationService {
               FilePathAndroidBitmap(imagePath),
               summaryText: formatNotificationText(message),
             )
-          : null,
+          : _conversationStyle(
+              from: channelName,
+              message: message,
+              conversationTitle: channelName,
+            ),
     );
 
     final iosDetails = DarwinNotificationDetails(
@@ -736,7 +848,16 @@ class NotificationService {
     }
   }
 
+  @visibleForTesting
+  void handleResponseForTest(NotificationResponse response) =>
+      _onNotificationTapped(response);
+
   void _onNotificationTapped(NotificationResponse response) {
+    if (response.actionId == _markReadActionId) {
+      final marked = response.payload;
+      if (marked != null && !_markReads.isClosed) _markReads.add(marked);
+      return;
+    }
     final reply = replyFrom(response);
     if (reply != null) {
       if (!_replies.isClosed) _replies.add(reply);

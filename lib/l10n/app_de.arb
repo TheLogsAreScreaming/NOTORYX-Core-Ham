@@ -4611,6 +4611,8 @@
   "reactions_radioOff": "Aus (dieses Gerät)",
   "notification_replyAction": "Antworten",
   "notification_replyHint": "Antwort schreiben",
+  "notification_markRead": "Als gelesen markieren",
+  "notification_you": "Sie",
   "mesh_title": "Mesh-Zustand",
   "mesh_overallGood": "Das Mesh sieht gut aus",
   "mesh_overallFair": "Das Mesh funktioniert, mit Problemen",

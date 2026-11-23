@@ -11190,6 +11190,12 @@ class AppLocalizationsSl extends AppLocalizations {
   String get notification_replyHint => 'Napišite odgovor';
 
   @override
+  String get notification_markRead => 'Označi kot prebrano';
+
+  @override
+  String get notification_you => 'Vi';
+
+  @override
   String get mesh_title => 'Stanje mreže';
 
   @override

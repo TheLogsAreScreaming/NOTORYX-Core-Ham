@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android Auto: this app's message notifications can be shown, read aloud
+     and replied to in the car. -->
+<automotiveApp>
+    <uses name="notification" />
+</automotiveApp>

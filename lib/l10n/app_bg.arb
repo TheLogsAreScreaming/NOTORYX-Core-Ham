@@ -4477,6 +4477,8 @@
   "reactions_radioOff": "Изкл. (това устройство)",
   "notification_replyAction": "Отговор",
   "notification_replyHint": "Напишете отговор",
+  "notification_markRead": "Маркирай като прочетено",
+  "notification_you": "Вие",
   "mesh_title": "Състояние на мрежата",
   "mesh_overallGood": "Мрежата изглежда наред",
   "mesh_overallFair": "Мрежата работи, но с проблеми",

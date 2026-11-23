@@ -11169,6 +11169,12 @@ class AppLocalizationsPt extends AppLocalizations {
   String get notification_replyHint => 'Escreve uma resposta';
 
   @override
+  String get notification_markRead => 'Marcar como lida';
+
+  @override
+  String get notification_you => 'Você';
+
+  @override
   String get mesh_title => 'Saúde da rede';
 
   @override

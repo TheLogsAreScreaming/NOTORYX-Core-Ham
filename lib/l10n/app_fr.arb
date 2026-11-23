@@ -4611,6 +4611,8 @@
   "reactions_radioOff": "Non (cet appareil)",
   "notification_replyAction": "Répondre",
   "notification_replyHint": "Écrire une réponse",
+  "notification_markRead": "Marquer comme lu",
+  "notification_you": "Vous",
   "mesh_title": "Santé du maillage",
   "mesh_overallGood": "Le maillage semble en bonne santé",
   "mesh_overallFair": "Le maillage fonctionne, avec des soucis",

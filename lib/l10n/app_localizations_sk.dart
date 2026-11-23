@@ -11165,6 +11165,12 @@ class AppLocalizationsSk extends AppLocalizations {
   String get notification_replyHint => 'Napíšte odpoveď';
 
   @override
+  String get notification_markRead => 'Označiť ako prečítané';
+
+  @override
+  String get notification_you => 'Vy';
+
+  @override
   String get mesh_title => 'Stav siete';
 
   @override

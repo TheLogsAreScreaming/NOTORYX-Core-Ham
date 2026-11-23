@@ -4477,6 +4477,8 @@
   "reactions_radioOff": "Uit (dit apparaat)",
   "notification_replyAction": "Beantwoorden",
   "notification_replyHint": "Schrijf een antwoord",
+  "notification_markRead": "Markeren als gelezen",
+  "notification_you": "Jij",
   "mesh_title": "Meshgezondheid",
   "mesh_overallGood": "Het mesh ziet er gezond uit",
   "mesh_overallFair": "Het mesh werkt, met wat problemen",

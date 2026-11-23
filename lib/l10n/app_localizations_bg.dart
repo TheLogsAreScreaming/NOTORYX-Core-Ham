@@ -11169,6 +11169,12 @@ class AppLocalizationsBg extends AppLocalizations {
   String get notification_replyHint => 'Напишете отговор';
 
   @override
+  String get notification_markRead => 'Маркирай като прочетено';
+
+  @override
+  String get notification_you => 'Вие';
+
+  @override
   String get mesh_title => 'Състояние на мрежата';
 
   @override

@@ -4611,6 +4611,8 @@
   "reactions_radioOff": "No (este dispositivo)",
   "notification_replyAction": "Responder",
   "notification_replyHint": "Escribe una respuesta",
+  "notification_markRead": "Marcar como leído",
+  "notification_you": "Tú",
   "mesh_title": "Salud de la malla",
   "mesh_overallGood": "La malla se ve bien",
   "mesh_overallFair": "La malla funciona, con problemas",

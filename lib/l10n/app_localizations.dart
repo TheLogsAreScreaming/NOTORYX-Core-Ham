@@ -18517,6 +18517,18 @@ abstract class AppLocalizations {
   /// **'Write a reply'**
   String get notification_replyHint;
 
+  /// No description provided for @notification_markRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as read'**
+  String get notification_markRead;
+
+  /// No description provided for @notification_you.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get notification_you;
+
   /// No description provided for @mesh_title.
   ///
   /// In en, this message translates to:

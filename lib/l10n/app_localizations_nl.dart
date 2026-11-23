@@ -11142,6 +11142,12 @@ class AppLocalizationsNl extends AppLocalizations {
   String get notification_replyHint => 'Schrijf een antwoord';
 
   @override
+  String get notification_markRead => 'Markeren als gelezen';
+
+  @override
+  String get notification_you => 'Jij';
+
+  @override
   String get mesh_title => 'Meshgezondheid';
 
   @override

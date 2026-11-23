@@ -4611,6 +4611,8 @@
   "reactions_radioOff": "オフ（この端末）",
   "notification_replyAction": "返信",
   "notification_replyHint": "返信を入力",
+  "notification_markRead": "既読にする",
+  "notification_you": "あなた",
   "mesh_title": "メッシュの状態",
   "mesh_overallGood": "メッシュは良好です",
   "mesh_overallFair": "メッシュは動いていますが問題があります",
