@@ -12,10 +12,12 @@ import '../models/path_selection.dart';
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../services/repeater_command_service.dart';
+import '../services/repeater_status_history.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/admin_wait_banner.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/mesh_ui.dart';
+import '../widgets/repeater_history_widgets.dart';
 import '../widgets/routing_sheet.dart';
 import '../helpers/snack_bar_builder.dart';
 
@@ -166,6 +168,16 @@ class _NeighborsScreenState extends State<NeighborsScreen> {
         }
       });
 
+      context
+          .read<RepeaterStatusHistory?>()
+          ?.recordNeighbours(widget.repeater.publicKeyHex, {
+            for (final n in parsedNeighbors)
+              if (n['publicKey'] case final Uint8List key)
+                pubKeyToHex(key): (
+                  snr: n['snr'] as double,
+                  heardSecsAgo: n['lastHeard'] as int,
+                ),
+          });
       setState(() {
         _parsedNeighbors = parsedNeighbors;
         _neighborCount = neighborCount;
@@ -434,6 +446,11 @@ class _NeighborsScreenState extends State<NeighborsScreen> {
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
+                ),
+                NeighbourSnrTrend(
+                  repeaterKey: widget.repeater.publicKeyHex,
+                  neighbourPrefix: pubKeyToHex(data['publicKey'] as Uint8List),
+                  name: name,
                 ),
               ],
             ),

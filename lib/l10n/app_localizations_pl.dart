@@ -12522,4 +12522,93 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'Twoja pozycja nie jest jeszcze znana, więc nie można narysować pierścieni odległości.';
+
+  @override
+  String get history_window24h => '24 godz.';
+
+  @override
+  String get history_window7d => '7 dni';
+
+  @override
+  String get history_window30d => '30 dni';
+
+  @override
+  String get statusHistory_title => 'Historia stanu';
+
+  @override
+  String get statusHistory_battery => 'Bateria';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Poziom szumu';
+
+  @override
+  String get statusHistory_errors => 'Błędy';
+
+  @override
+  String get statusHistory_uptime => 'Czas pracy';
+
+  @override
+  String get statusHistory_empty =>
+      'Każde sprawdzenie stanu jest tu zapisywane, by widzieć, jak przekaźnik zmienia się w czasie.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'Brak odczytów $metric w tym okresie.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Wykres $metric, odczyty: $count, od $low do $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Zapisane sprawdzenia: $count',
+      zero: 'Brak zapisanych sprawdzeń',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Wyczyść historię';
+
+  @override
+  String get statusHistory_clearTitle => 'Wyczyścić historię tego przekaźnika?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'Zapisane sprawdzenia stanu i odczyty SNR sąsiadów tego przekaźnika zostaną usunięte z telefonu.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return 'Trend SNR dla $name, odczyty: $count. Dotknij, aby zobaczyć wykres.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return 'SNR: $name';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'Jak dobrze przekaźnik słyszał sąsiada przy każdym zapytaniu; zapisane w telefonie.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return 'Odczyty: $count · min. $low · śr. $avg · maks. $high';
+  }
 }

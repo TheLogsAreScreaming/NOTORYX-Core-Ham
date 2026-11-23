@@ -12479,4 +12479,93 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'Vaš položaj še ni znan, zato krogov razdalje ni mogoče narisati.';
+
+  @override
+  String get history_window24h => '24 h';
+
+  @override
+  String get history_window7d => '7 dni';
+
+  @override
+  String get history_window30d => '30 dni';
+
+  @override
+  String get statusHistory_title => 'Zgodovina stanja';
+
+  @override
+  String get statusHistory_battery => 'Baterija';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Raven šuma';
+
+  @override
+  String get statusHistory_errors => 'Napake';
+
+  @override
+  String get statusHistory_uptime => 'Čas delovanja';
+
+  @override
+  String get statusHistory_empty =>
+      'Vsako preverjanje stanja se shrani tukaj, da vidite, kako se repetitor spreminja.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'V tem obdobju ni meritev $metric.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Graf $metric, meritve: $count, od $low do $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Shranjena preverjanja: $count',
+      zero: 'Ni shranjenih preverjanj',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Počisti zgodovino';
+
+  @override
+  String get statusHistory_clearTitle => 'Počistim zgodovino tega repetitorja?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'Shranjena preverjanja stanja in meritve SNR sosedov tega repetitorja bodo odstranjene s telefona.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return 'Trend SNR za $name, meritve: $count. Tapnite za graf.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return 'SNR: $name';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'Kako dobro je repetitor slišal soseda ob vsakem vprašanju; shranjeno na telefonu.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return 'Meritve: $count · min. $low · povp. $avg · maks. $high';
+  }
 }

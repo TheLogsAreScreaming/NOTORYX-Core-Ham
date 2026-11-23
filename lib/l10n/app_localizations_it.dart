@@ -12493,4 +12493,95 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'La tua posizione non è ancora nota, quindi gli anelli di distanza non possono essere disegnati.';
+
+  @override
+  String get history_window24h => '24 h';
+
+  @override
+  String get history_window7d => '7 giorni';
+
+  @override
+  String get history_window30d => '30 giorni';
+
+  @override
+  String get statusHistory_title => 'Cronologia stato';
+
+  @override
+  String get statusHistory_battery => 'Batteria';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Rumore di fondo';
+
+  @override
+  String get statusHistory_errors => 'Errori';
+
+  @override
+  String get statusHistory_uptime => 'Tempo attivo';
+
+  @override
+  String get statusHistory_empty =>
+      'Ogni controllo di stato viene salvato qui, così puoi vedere come cambia questo ripetitore nel tempo.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'Nessuna lettura di $metric in questo intervallo.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Grafico $metric, $count letture, da $low a $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count controlli salvati',
+      one: '1 controllo salvato',
+      zero: 'Nessun controllo salvato',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Cancella cronologia';
+
+  @override
+  String get statusHistory_clearTitle =>
+      'Cancellare la cronologia di questo ripetitore?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'I controlli di stato e le letture SNR dei vicini di questo ripetitore vengono rimossi da questo telefono.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return 'Andamento SNR di $name, $count letture. Tocca per il grafico.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return 'SNR di $name';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'Quanto bene questo ripetitore ha sentito il vicino ogni volta che hai chiesto, salvato su questo telefono.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count letture · min $low · media $avg · max $high';
+  }
 }

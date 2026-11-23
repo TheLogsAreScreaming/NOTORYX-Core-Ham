@@ -12461,4 +12461,93 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'A pozíciód még nem ismert, ezért a távolsággyűrűk nem rajzolhatók meg.';
+
+  @override
+  String get history_window24h => '24 ó';
+
+  @override
+  String get history_window7d => '7 nap';
+
+  @override
+  String get history_window30d => '30 nap';
+
+  @override
+  String get statusHistory_title => 'Állapotelőzmények';
+
+  @override
+  String get statusHistory_battery => 'Akku';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Zajszint';
+
+  @override
+  String get statusHistory_errors => 'Hibák';
+
+  @override
+  String get statusHistory_uptime => 'Üzemidő';
+
+  @override
+  String get statusHistory_empty =>
+      'Minden állapotlekérdezés ide kerül, így látod, hogyan változik az átjátszó idővel.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'Nincs $metric adat ebben az időszakban.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metric grafikon, $count adat, $low és $high között';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count mentett lekérdezés',
+      zero: 'Nincs mentett lekérdezés',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Előzmények törlése';
+
+  @override
+  String get statusHistory_clearTitle => 'Törlöd az átjátszó előzményeit?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'Az átjátszó mentett állapotlekérdezései és szomszéd-SNR adatai törlődnek a telefonról.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return '$name SNR-trendje, $count adat. Koppints a grafikonért.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return '$name SNR-je';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'Mennyire jól hallotta az átjátszó a szomszédot az egyes lekérdezéskor; a telefonon tárolva.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count adat · min. $low · átlag $avg · max. $high';
+  }
 }

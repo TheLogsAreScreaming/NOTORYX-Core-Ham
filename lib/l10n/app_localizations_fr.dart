@@ -12522,4 +12522,95 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'Votre position est encore inconnue, les cercles de distance ne peuvent donc pas être tracés.';
+
+  @override
+  String get history_window24h => '24 h';
+
+  @override
+  String get history_window7d => '7 jours';
+
+  @override
+  String get history_window30d => '30 jours';
+
+  @override
+  String get statusHistory_title => 'Historique d\'état';
+
+  @override
+  String get statusHistory_battery => 'Batterie';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Bruit de fond';
+
+  @override
+  String get statusHistory_errors => 'Erreurs';
+
+  @override
+  String get statusHistory_uptime => 'Durée de fonctionnement';
+
+  @override
+  String get statusHistory_empty =>
+      'Chaque vérification d\'état est enregistrée ici, pour voir l\'évolution de ce répéteur.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'Aucune mesure de $metric sur cette période.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Graphique $metric, $count mesures, de $low à $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count vérifications enregistrées',
+      one: '1 vérification enregistrée',
+      zero: 'Aucune vérification enregistrée',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Effacer l\'historique';
+
+  @override
+  String get statusHistory_clearTitle =>
+      'Effacer l\'historique de ce répéteur ?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'Les vérifications d\'état et les mesures SNR des voisins de ce répéteur sont supprimées de ce téléphone.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return 'Tendance SNR de $name, $count mesures. Touchez pour le graphique.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return 'SNR de $name';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'La qualité de réception du voisin par ce répéteur à chaque demande, gardée sur ce téléphone.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count mesures · min $low · moyenne $avg · max $high';
+  }
 }

@@ -12453,4 +12453,93 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'Vaša poloha ešte nie je známa, preto nie je možné nakresliť kruhy vzdialenosti.';
+
+  @override
+  String get history_window24h => '24 h';
+
+  @override
+  String get history_window7d => '7 dní';
+
+  @override
+  String get history_window30d => '30 dní';
+
+  @override
+  String get statusHistory_title => 'História stavu';
+
+  @override
+  String get statusHistory_battery => 'Batéria';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Úroveň šumu';
+
+  @override
+  String get statusHistory_errors => 'Chyby';
+
+  @override
+  String get statusHistory_uptime => 'Doba behu';
+
+  @override
+  String get statusHistory_empty =>
+      'Každá kontrola stavu sa uloží sem, aby ste videli, ako sa opakovač mení v čase.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'V tomto období nie sú údaje $metric.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Graf $metric, údaje: $count, od $low do $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Uložené kontroly: $count',
+      zero: 'Žiadne uložené kontroly',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Vymazať históriu';
+
+  @override
+  String get statusHistory_clearTitle => 'Vymazať históriu tohto opakovača?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'Uložené kontroly stavu a hodnoty SNR susedov tohto opakovača sa z telefónu odstránia.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return 'Trend SNR pre $name, údaje: $count. Ťuknite pre graf.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return 'SNR: $name';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'Ako dobre opakovač počul suseda pri každej požiadavke; uložené v telefóne.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return 'Údaje: $count · min. $low · priem. $avg · max. $high';
+  }
 }

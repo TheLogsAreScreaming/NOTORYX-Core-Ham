@@ -11910,4 +11910,91 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get rangeRings_noPosition => '現在地がまだ不明なため、距離リングを描けません。';
+
+  @override
+  String get history_window24h => '24時間';
+
+  @override
+  String get history_window7d => '7日';
+
+  @override
+  String get history_window30d => '30日';
+
+  @override
+  String get statusHistory_title => 'ステータス履歴';
+
+  @override
+  String get statusHistory_battery => 'バッテリー';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'ノイズフロア';
+
+  @override
+  String get statusHistory_errors => 'エラー';
+
+  @override
+  String get statusHistory_uptime => '稼働時間';
+
+  @override
+  String get statusHistory_empty => 'ステータス確認の結果はここに保存され、このリピーターの変化を確認できます。';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'この期間の$metricデータはありません。';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metricのグラフ、$count件、$low〜$high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '保存された確認 $count件',
+      zero: '保存された確認なし',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => '履歴を消去';
+
+  @override
+  String get statusHistory_clearTitle => 'このリピーターの履歴を消去しますか?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'このリピーターの保存済みステータスと隣接ノードのSNRがこの端末から削除されます。';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return '$nameのSNR推移、$count件。タップでグラフ表示。';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return '$nameのSNR';
+  }
+
+  @override
+  String get snrHistory_hint => '問い合わせのたびにリピーターがこの隣接ノードをどれだけ良く受信したか。この端末に保存。';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count件 · 最低 $low · 平均 $avg · 最高 $high';
+  }
 }
