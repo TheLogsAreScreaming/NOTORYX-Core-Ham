@@ -12528,4 +12528,94 @@ class AppLocalizationsPt extends AppLocalizations {
   String channelConflict_usedApp(int index) {
     return 'Gravada a versão do app no espaço $index';
   }
+
+  @override
+  String get history_window24h => '24 h';
+
+  @override
+  String get history_window7d => '7 dias';
+
+  @override
+  String get history_window30d => '30 dias';
+
+  @override
+  String get statusHistory_title => 'Histórico de estado';
+
+  @override
+  String get statusHistory_battery => 'Bateria';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Ruído de fundo';
+
+  @override
+  String get statusHistory_errors => 'Erros';
+
+  @override
+  String get statusHistory_uptime => 'Tempo ligado';
+
+  @override
+  String get statusHistory_empty =>
+      'Cada verificação de estado fica guardada aqui, para ver como este repetidor muda ao longo do tempo.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'Sem leituras de $metric neste período.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Gráfico de $metric, $count leituras, de $low a $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count verificações guardadas',
+      one: '1 verificação guardada',
+      zero: 'Sem verificações guardadas',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Limpar histórico';
+
+  @override
+  String get statusHistory_clearTitle => 'Limpar o histórico deste repetidor?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'As verificações de estado e leituras de SNR dos vizinhos deste repetidor são removidas deste telemóvel.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return 'Tendência de SNR de $name, $count leituras. Toque para ver o gráfico.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return 'SNR de $name';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'Quão bem este repetidor ouviu o vizinho em cada consulta, guardado neste telemóvel.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count leituras · mín. $low · média $avg · máx. $high';
+  }
 }

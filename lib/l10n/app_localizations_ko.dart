@@ -11990,4 +11990,91 @@ class AppLocalizationsKo extends AppLocalizations {
   String channelConflict_usedApp(int index) {
     return '슬롯 $index에 앱 버전을 썼습니다';
   }
+
+  @override
+  String get history_window24h => '24시간';
+
+  @override
+  String get history_window7d => '7일';
+
+  @override
+  String get history_window30d => '30일';
+
+  @override
+  String get statusHistory_title => '상태 기록';
+
+  @override
+  String get statusHistory_battery => '배터리';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => '잡음 레벨';
+
+  @override
+  String get statusHistory_errors => '오류';
+
+  @override
+  String get statusHistory_uptime => '가동 시간';
+
+  @override
+  String get statusHistory_empty => '상태 확인 결과가 여기에 저장되어 이 중계기의 변화를 볼 수 있습니다.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return '이 기간에 $metric 값이 없습니다.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metric 차트, $count개, $low~$high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '저장된 확인 $count개',
+      zero: '저장된 확인 없음',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => '기록 지우기';
+
+  @override
+  String get statusHistory_clearTitle => '이 중계기의 기록을 지울까요?';
+
+  @override
+  String get statusHistory_clearBody =>
+      '이 중계기의 저장된 상태 확인과 이웃 SNR 값이 이 휴대폰에서 삭제됩니다.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return '$name의 SNR 추이, $count개. 탭하면 차트가 열립니다.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return '$name의 SNR';
+  }
+
+  @override
+  String get snrHistory_hint => '요청할 때마다 이 중계기가 이웃을 얼마나 잘 수신했는지, 이 휴대폰에 저장됩니다.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count개 · 최저 $low · 평균 $avg · 최고 $high';
+  }
 }

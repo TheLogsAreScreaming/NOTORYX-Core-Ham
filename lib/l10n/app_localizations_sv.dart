@@ -12452,4 +12452,94 @@ class AppLocalizationsSv extends AppLocalizations {
   String channelConflict_usedApp(int index) {
     return 'Skrev appens version till plats $index';
   }
+
+  @override
+  String get history_window24h => '24 h';
+
+  @override
+  String get history_window7d => '7 dagar';
+
+  @override
+  String get history_window30d => '30 dagar';
+
+  @override
+  String get statusHistory_title => 'Statushistorik';
+
+  @override
+  String get statusHistory_battery => 'Batteri';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Brusgolv';
+
+  @override
+  String get statusHistory_errors => 'Fel';
+
+  @override
+  String get statusHistory_uptime => 'Drifttid';
+
+  @override
+  String get statusHistory_empty =>
+      'Varje statuskontroll sparas här så att du ser hur repeatern förändras över tid.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'Inga $metric-värden under den här perioden.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metric-diagram, $count värden, från $low till $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count sparade kontroller',
+      one: '1 sparad kontroll',
+      zero: 'Inga sparade kontroller',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Rensa historik';
+
+  @override
+  String get statusHistory_clearTitle => 'Rensa repeaterns historik?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'Sparade statuskontroller och grannars SNR-värden för repeatern tas bort från telefonen.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return 'SNR-trend för $name, $count värden. Tryck för diagram.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return 'SNR för $name';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'Hur bra repeatern hörde grannen varje gång du frågade, sparat på telefonen.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count värden · lägst $low · snitt $avg · högst $high';
+  }
 }

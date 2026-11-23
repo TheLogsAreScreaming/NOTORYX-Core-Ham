@@ -12586,4 +12586,94 @@ class AppLocalizationsRu extends AppLocalizations {
   String channelConflict_usedApp(int index) {
     return 'Версия приложения записана в слот $index';
   }
+
+  @override
+  String get history_window24h => '24 ч';
+
+  @override
+  String get history_window7d => '7 дней';
+
+  @override
+  String get history_window30d => '30 дней';
+
+  @override
+  String get statusHistory_title => 'История состояния';
+
+  @override
+  String get statusHistory_battery => 'Батарея';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Уровень шума';
+
+  @override
+  String get statusHistory_errors => 'Ошибки';
+
+  @override
+  String get statusHistory_uptime => 'Время работы';
+
+  @override
+  String get statusHistory_empty =>
+      'Каждая проверка состояния сохраняется здесь, чтобы видеть, как меняется ретранслятор со временем.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'Нет значений «$metric» за этот период.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'График «$metric», значений: $count, от $low до $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Сохранено проверок: $count',
+      zero: 'Нет сохранённых проверок',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Очистить историю';
+
+  @override
+  String get statusHistory_clearTitle =>
+      'Очистить историю этого ретранслятора?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'Сохранённые проверки состояния и SNR соседей этого ретранслятора будут удалены с телефона.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return 'Тренд SNR для $name, значений: $count. Нажмите для графика.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return 'SNR: $name';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'Насколько хорошо ретранслятор слышал соседа при каждом запросе; хранится на этом телефоне.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return 'Значений: $count · мин. $low · сред. $avg · макс. $high';
+  }
 }

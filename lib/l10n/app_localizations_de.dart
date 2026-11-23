@@ -12557,4 +12557,94 @@ class AppLocalizationsDe extends AppLocalizations {
   String channelConflict_usedApp(int index) {
     return 'App-Version in Platz $index geschrieben';
   }
+
+  @override
+  String get history_window24h => '24 h';
+
+  @override
+  String get history_window7d => '7 Tage';
+
+  @override
+  String get history_window30d => '30 Tage';
+
+  @override
+  String get statusHistory_title => 'Statusverlauf';
+
+  @override
+  String get statusHistory_battery => 'Akku';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Grundrauschen';
+
+  @override
+  String get statusHistory_errors => 'Fehler';
+
+  @override
+  String get statusHistory_uptime => 'Laufzeit';
+
+  @override
+  String get statusHistory_empty =>
+      'Jede Statusabfrage wird hier gespeichert, damit du siehst, wie sich dieser Repeater mit der Zeit verändert.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'Keine Werte für $metric in diesem Zeitraum.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Diagramm $metric, $count Werte, von $low bis $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count gespeicherte Abfragen',
+      one: '1 gespeicherte Abfrage',
+      zero: 'Keine gespeicherten Abfragen',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Verlauf löschen';
+
+  @override
+  String get statusHistory_clearTitle => 'Verlauf dieses Repeaters löschen?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'Gespeicherte Statusabfragen und Nachbar-SNR-Werte dieses Repeaters werden von diesem Telefon gelöscht.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return 'SNR-Verlauf für $name, $count Werte. Tippen für Diagramm.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return 'SNR von $name';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'Wie gut dieser Repeater den Nachbarn bei jeder Abfrage gehört hat, auf diesem Telefon gespeichert.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count Werte · Min. $low · Mittel $avg · Max. $high';
+  }
 }

@@ -12406,4 +12406,94 @@ class AppLocalizationsEn extends AppLocalizations {
   String channelConflict_usedApp(int index) {
     return 'Wrote the app\'s version to slot $index';
   }
+
+  @override
+  String get history_window24h => '24 h';
+
+  @override
+  String get history_window7d => '7 days';
+
+  @override
+  String get history_window30d => '30 days';
+
+  @override
+  String get statusHistory_title => 'Status history';
+
+  @override
+  String get statusHistory_battery => 'Battery';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Noise floor';
+
+  @override
+  String get statusHistory_errors => 'Errors';
+
+  @override
+  String get statusHistory_uptime => 'Uptime';
+
+  @override
+  String get statusHistory_empty =>
+      'Each status check you run is saved here, so you can see how this repeater changes over time.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'No $metric readings in this time range.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metric chart, $count readings, from $low to $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count saved checks',
+      one: '1 saved check',
+      zero: 'No saved checks',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Clear history';
+
+  @override
+  String get statusHistory_clearTitle => 'Clear this repeater\'s history?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'Saved status checks and neighbour SNR readings for this repeater are removed from this phone.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return 'SNR trend for $name, $count readings. Tap for the chart.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return 'SNR of $name';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'How well this repeater heard the neighbour each time you asked, kept on this phone.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count readings · low $low · average $avg · high $high';
+  }
 }

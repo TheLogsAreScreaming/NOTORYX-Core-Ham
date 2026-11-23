@@ -20730,6 +20730,137 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Wrote the app\'s version to slot {index}'**
   String channelConflict_usedApp(int index);
+
+  /// No description provided for @history_window24h.
+  ///
+  /// In en, this message translates to:
+  /// **'24 h'**
+  String get history_window24h;
+
+  /// No description provided for @history_window7d.
+  ///
+  /// In en, this message translates to:
+  /// **'7 days'**
+  String get history_window7d;
+
+  /// No description provided for @history_window30d.
+  ///
+  /// In en, this message translates to:
+  /// **'30 days'**
+  String get history_window30d;
+
+  /// No description provided for @statusHistory_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Status history'**
+  String get statusHistory_title;
+
+  /// No description provided for @statusHistory_battery.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery'**
+  String get statusHistory_battery;
+
+  /// No description provided for @statusHistory_rssi.
+  ///
+  /// In en, this message translates to:
+  /// **'RSSI'**
+  String get statusHistory_rssi;
+
+  /// No description provided for @statusHistory_snr.
+  ///
+  /// In en, this message translates to:
+  /// **'SNR'**
+  String get statusHistory_snr;
+
+  /// No description provided for @statusHistory_noiseFloor.
+  ///
+  /// In en, this message translates to:
+  /// **'Noise floor'**
+  String get statusHistory_noiseFloor;
+
+  /// No description provided for @statusHistory_errors.
+  ///
+  /// In en, this message translates to:
+  /// **'Errors'**
+  String get statusHistory_errors;
+
+  /// No description provided for @statusHistory_uptime.
+  ///
+  /// In en, this message translates to:
+  /// **'Uptime'**
+  String get statusHistory_uptime;
+
+  /// No description provided for @statusHistory_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Each status check you run is saved here, so you can see how this repeater changes over time.'**
+  String get statusHistory_empty;
+
+  /// No description provided for @statusHistory_noneInWindow.
+  ///
+  /// In en, this message translates to:
+  /// **'No {metric} readings in this time range.'**
+  String statusHistory_noneInWindow(String metric);
+
+  /// No description provided for @statusHistory_chartLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{metric} chart, {count} readings, from {low} to {high}'**
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  );
+
+  /// No description provided for @statusHistory_count.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No saved checks} =1{1 saved check} other{{count} saved checks}}'**
+  String statusHistory_count(int count);
+
+  /// No description provided for @statusHistory_clear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear history'**
+  String get statusHistory_clear;
+
+  /// No description provided for @statusHistory_clearTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear this repeater\'s history?'**
+  String get statusHistory_clearTitle;
+
+  /// No description provided for @statusHistory_clearBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved status checks and neighbour SNR readings for this repeater are removed from this phone.'**
+  String get statusHistory_clearBody;
+
+  /// No description provided for @snrHistory_trendLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'SNR trend for {name}, {count} readings. Tap for the chart.'**
+  String snrHistory_trendLabel(String name, int count);
+
+  /// No description provided for @snrHistory_title.
+  ///
+  /// In en, this message translates to:
+  /// **'SNR of {name}'**
+  String snrHistory_title(String name);
+
+  /// No description provided for @snrHistory_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'How well this repeater heard the neighbour each time you asked, kept on this phone.'**
+  String get snrHistory_hint;
+
+  /// No description provided for @snrHistory_summary.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} readings · low {low} · average {avg} · high {high}'**
+  String snrHistory_summary(int count, String low, String avg, String high);
 }
 
 class _AppLocalizationsDelegate
