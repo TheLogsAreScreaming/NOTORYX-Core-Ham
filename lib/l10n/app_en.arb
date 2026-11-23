@@ -8048,5 +8048,26 @@
   "coverageHex_trimDrivesHint": "The first and last 2 hexagons of every mapping session stay on this phone, so maps can't show where you live or park.",
   "appSettings_resetRoutingToDefault": "Reset Routing Algorithm to Default",
   "appSettings_resetRoutingToDefaultSubtitle": "Restore routing algorithm settings to factory defaults",
-  "appSettings_routingResetToDefault": "Routing algorithm settings reset to default"
+  "appSettings_routingResetToDefault": "Routing algorithm settings reset to default",
+  "discoveredContacts_importNodes": "Import nodes",
+  "discoveredContacts_importHint": "Reads contact links, public keys, or a JSON or CSV list of nodes. They are added to this list, not to your radio.",
+  "discoveredContacts_importFromFile": "From a file",
+  "discoveredContacts_importFromClipboard": "From the clipboard",
+  "discoveredContacts_importFailed": "Couldn't read that",
+  "discoveredContacts_importNone": "No nodes found",
+  "discoveredContacts_importNotConnected": "Connect to your radio first",
+  "discoveredContacts_importResult": "{added} new, {updated} updated, {skipped} skipped",
+  "@discoveredContacts_importResult": {
+    "placeholders": {
+      "added": {
+        "type": "int"
+      },
+      "updated": {
+        "type": "int"
+      },
+      "skipped": {
+        "type": "int"
+      }
+    }
+  }
 }

@@ -21272,6 +21272,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Routing algorithm settings reset to default'**
   String get appSettings_routingResetToDefault;
+
+  /// No description provided for @discoveredContacts_importNodes.
+  ///
+  /// In en, this message translates to:
+  /// **'Import nodes'**
+  String get discoveredContacts_importNodes;
+
+  /// No description provided for @discoveredContacts_importHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Reads contact links, public keys, or a JSON or CSV list of nodes. They are added to this list, not to your radio.'**
+  String get discoveredContacts_importHint;
+
+  /// No description provided for @discoveredContacts_importFromFile.
+  ///
+  /// In en, this message translates to:
+  /// **'From a file'**
+  String get discoveredContacts_importFromFile;
+
+  /// No description provided for @discoveredContacts_importFromClipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'From the clipboard'**
+  String get discoveredContacts_importFromClipboard;
+
+  /// No description provided for @discoveredContacts_importFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t read that'**
+  String get discoveredContacts_importFailed;
+
+  /// No description provided for @discoveredContacts_importNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No nodes found'**
+  String get discoveredContacts_importNone;
+
+  /// No description provided for @discoveredContacts_importNotConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect to your radio first'**
+  String get discoveredContacts_importNotConnected;
+
+  /// No description provided for @discoveredContacts_importResult.
+  ///
+  /// In en, this message translates to:
+  /// **'{added} new, {updated} updated, {skipped} skipped'**
+  String discoveredContacts_importResult(int added, int updated, int skipped);
 }
 
 class _AppLocalizationsDelegate

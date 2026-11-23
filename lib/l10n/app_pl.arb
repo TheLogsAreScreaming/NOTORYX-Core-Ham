@@ -4887,5 +4887,13 @@
   "coverageHex_trimDrivesHint": "Pierwsze i ostatnie 2 sześciokąty każdej sesji zostają w tym telefonie, więc mapy nie pokażą, gdzie mieszkasz lub parkujesz.",
   "appSettings_resetRoutingToDefault": "Resetuj algorytm trasowania do domyślnych",
   "appSettings_resetRoutingToDefaultSubtitle": "Przywróć ustawienia algorytmu trasowania do fabrycznych ustawień domyślnych",
-  "appSettings_routingResetToDefault": "Ustawienia algorytmu trasowania zresetowane do domyślnych"
+  "appSettings_routingResetToDefault": "Ustawienia algorytmu trasowania zresetowane do domyślnych",
+  "discoveredContacts_importNodes": "Importuj węzły",
+  "discoveredContacts_importHint": "Odczytuje linki kontaktów, klucze publiczne lub listę węzłów w JSON albo CSV. Trafiają na tę listę, nie do radia.",
+  "discoveredContacts_importFromFile": "Z pliku",
+  "discoveredContacts_importFromClipboard": "Ze schowka",
+  "discoveredContacts_importFailed": "Nie udało się odczytać",
+  "discoveredContacts_importNone": "Nie znaleziono węzłów",
+  "discoveredContacts_importNotConnected": "Najpierw połącz radio",
+  "discoveredContacts_importResult": "Nowe: {added}, zaktualizowane: {updated}, pominięte: {skipped}"
 }

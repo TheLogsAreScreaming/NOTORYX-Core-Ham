@@ -12955,4 +12955,33 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get appSettings_routingResetToDefault =>
       'Paramètres de l\'algorithme de routage réinitialisés';
+
+  @override
+  String get discoveredContacts_importNodes => 'Importer des nœuds';
+
+  @override
+  String get discoveredContacts_importHint =>
+      'Lit des liens de contact, des clés publiques ou une liste de nœuds en JSON ou CSV. Ils sont ajoutés à cette liste, pas à votre radio.';
+
+  @override
+  String get discoveredContacts_importFromFile => 'Depuis un fichier';
+
+  @override
+  String get discoveredContacts_importFromClipboard =>
+      'Depuis le presse-papiers';
+
+  @override
+  String get discoveredContacts_importFailed => 'Lecture impossible';
+
+  @override
+  String get discoveredContacts_importNone => 'Aucun nœud trouvé';
+
+  @override
+  String get discoveredContacts_importNotConnected =>
+      'Connectez d\'abord votre radio';
+
+  @override
+  String discoveredContacts_importResult(int added, int updated, int skipped) {
+    return '$added nouveaux, $updated mis à jour, $skipped ignorés';
+  }
 }

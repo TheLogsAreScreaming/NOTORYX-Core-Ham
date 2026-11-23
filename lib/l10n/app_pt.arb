@@ -4849,5 +4849,13 @@
   "coverageHex_trimDrivesHint": "Os primeiros e últimos 2 hexágonos de cada sessão ficam neste telemóvel, para que os mapas não mostrem onde vive ou estaciona.",
   "appSettings_resetRoutingToDefault": "Redefinir algoritmo de roteamento para o padrão",
   "appSettings_resetRoutingToDefaultSubtitle": "Restaurar as configurações do algoritmo de roteamento para os valores padrão de fábrica",
-  "appSettings_routingResetToDefault": "Configurações do algoritmo de roteamento redefinidas para o padrão"
+  "appSettings_routingResetToDefault": "Configurações do algoritmo de roteamento redefinidas para o padrão",
+  "discoveredContacts_importNodes": "Importar nós",
+  "discoveredContacts_importHint": "Lê links de contacto, chaves públicas ou uma lista de nós em JSON ou CSV. São adicionados a esta lista, não ao seu rádio.",
+  "discoveredContacts_importFromFile": "De um ficheiro",
+  "discoveredContacts_importFromClipboard": "Da área de transferência",
+  "discoveredContacts_importFailed": "Não foi possível ler",
+  "discoveredContacts_importNone": "Nenhum nó encontrado",
+  "discoveredContacts_importNotConnected": "Ligue primeiro o seu rádio",
+  "discoveredContacts_importResult": "{added} novos, {updated} atualizados, {skipped} ignorados"
 }

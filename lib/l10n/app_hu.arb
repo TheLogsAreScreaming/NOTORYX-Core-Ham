@@ -4887,5 +4887,13 @@
   "coverageHex_trimDrivesHint": "Minden térképezés első és utolsó 2 hatszöge ezen a telefonon marad, így a térképek nem mutatják, hol laksz vagy parkolsz.",
   "appSettings_resetRoutingToDefault": "Útvonaltervezési algoritmus visszaállítása alapértelmezettre",
   "appSettings_resetRoutingToDefaultSubtitle": "Útvonaltervezési algoritmus beállításainak visszaállítása gyári alapértelmezett értékekre",
-  "appSettings_routingResetToDefault": "Útvonaltervezési algoritmus beállításai visszaállítva alapértelmezettre"
+  "appSettings_routingResetToDefault": "Útvonaltervezési algoritmus beállításai visszaállítva alapértelmezettre",
+  "discoveredContacts_importNodes": "Csomópontok importálása",
+  "discoveredContacts_importHint": "Kapcsolat-linkeket, nyilvános kulcsokat vagy JSON/CSV csomópontlistát olvas be. Ehhez a listához adódnak, nem a rádióhoz.",
+  "discoveredContacts_importFromFile": "Fájlból",
+  "discoveredContacts_importFromClipboard": "A vágólapról",
+  "discoveredContacts_importFailed": "Nem sikerült beolvasni",
+  "discoveredContacts_importNone": "Nem található csomópont",
+  "discoveredContacts_importNotConnected": "Előbb csatlakoztasd a rádiót",
+  "discoveredContacts_importResult": "Új: {added}, frissítve: {updated}, kihagyva: {skipped}"
 }

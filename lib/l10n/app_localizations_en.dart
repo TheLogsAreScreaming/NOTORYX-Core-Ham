@@ -12770,4 +12770,32 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get appSettings_routingResetToDefault =>
       'Routing algorithm settings reset to default';
+
+  @override
+  String get discoveredContacts_importNodes => 'Import nodes';
+
+  @override
+  String get discoveredContacts_importHint =>
+      'Reads contact links, public keys, or a JSON or CSV list of nodes. They are added to this list, not to your radio.';
+
+  @override
+  String get discoveredContacts_importFromFile => 'From a file';
+
+  @override
+  String get discoveredContacts_importFromClipboard => 'From the clipboard';
+
+  @override
+  String get discoveredContacts_importFailed => 'Couldn\'t read that';
+
+  @override
+  String get discoveredContacts_importNone => 'No nodes found';
+
+  @override
+  String get discoveredContacts_importNotConnected =>
+      'Connect to your radio first';
+
+  @override
+  String discoveredContacts_importResult(int added, int updated, int skipped) {
+    return '$added new, $updated updated, $skipped skipped';
+  }
 }

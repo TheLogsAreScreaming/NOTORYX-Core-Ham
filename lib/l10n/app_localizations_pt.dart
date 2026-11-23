@@ -12894,4 +12894,33 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get appSettings_routingResetToDefault =>
       'Configurações do algoritmo de roteamento redefinidas para o padrão';
+
+  @override
+  String get discoveredContacts_importNodes => 'Importar nós';
+
+  @override
+  String get discoveredContacts_importHint =>
+      'Lê links de contacto, chaves públicas ou uma lista de nós em JSON ou CSV. São adicionados a esta lista, não ao seu rádio.';
+
+  @override
+  String get discoveredContacts_importFromFile => 'De um ficheiro';
+
+  @override
+  String get discoveredContacts_importFromClipboard =>
+      'Da área de transferência';
+
+  @override
+  String get discoveredContacts_importFailed => 'Não foi possível ler';
+
+  @override
+  String get discoveredContacts_importNone => 'Nenhum nó encontrado';
+
+  @override
+  String get discoveredContacts_importNotConnected =>
+      'Ligue primeiro o seu rádio';
+
+  @override
+  String discoveredContacts_importResult(int added, int updated, int skipped) {
+    return '$added novos, $updated atualizados, $skipped ignorados';
+  }
 }

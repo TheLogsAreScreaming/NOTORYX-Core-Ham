@@ -12922,4 +12922,32 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get appSettings_routingResetToDefault =>
       'Routing-Algorithmus-Einstellungen auf Standard zurückgesetzt';
+
+  @override
+  String get discoveredContacts_importNodes => 'Knoten importieren';
+
+  @override
+  String get discoveredContacts_importHint =>
+      'Liest Kontaktlinks, öffentliche Schlüssel oder eine JSON- oder CSV-Liste von Knoten. Sie werden dieser Liste hinzugefügt, nicht deinem Funkgerät.';
+
+  @override
+  String get discoveredContacts_importFromFile => 'Aus einer Datei';
+
+  @override
+  String get discoveredContacts_importFromClipboard => 'Aus der Zwischenablage';
+
+  @override
+  String get discoveredContacts_importFailed => 'Konnte nicht gelesen werden';
+
+  @override
+  String get discoveredContacts_importNone => 'Keine Knoten gefunden';
+
+  @override
+  String get discoveredContacts_importNotConnected =>
+      'Verbinde zuerst dein Funkgerät';
+
+  @override
+  String discoveredContacts_importResult(int added, int updated, int skipped) {
+    return '$added neu, $updated aktualisiert, $skipped übersprungen';
+  }
 }

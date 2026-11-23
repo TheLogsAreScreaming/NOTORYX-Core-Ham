@@ -4849,5 +4849,13 @@
   "coverageHex_trimDrivesHint": "De eerste en laatste 2 zeshoeken van elke sessie blijven op deze telefoon, zodat kaarten niet tonen waar je woont of parkeert.",
   "appSettings_resetRoutingToDefault": "Routeringsalgoritme resetten naar standaard",
   "appSettings_resetRoutingToDefaultSubtitle": "Routeringsalgoritme-instellingen herstellen naar fabrieksstandaardwaarden",
-  "appSettings_routingResetToDefault": "Routeringsalgoritme-instellingen gereset naar standaard"
+  "appSettings_routingResetToDefault": "Routeringsalgoritme-instellingen gereset naar standaard",
+  "discoveredContacts_importNodes": "Nodes importeren",
+  "discoveredContacts_importHint": "Leest contactlinks, openbare sleutels of een JSON- of CSV-lijst met nodes. Ze worden aan deze lijst toegevoegd, niet aan je radio.",
+  "discoveredContacts_importFromFile": "Uit een bestand",
+  "discoveredContacts_importFromClipboard": "Van het klembord",
+  "discoveredContacts_importFailed": "Kon niet worden gelezen",
+  "discoveredContacts_importNone": "Geen nodes gevonden",
+  "discoveredContacts_importNotConnected": "Verbind eerst je radio",
+  "discoveredContacts_importResult": "{added} nieuw, {updated} bijgewerkt, {skipped} overgeslagen"
 }

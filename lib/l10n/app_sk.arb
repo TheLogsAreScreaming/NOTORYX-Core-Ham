@@ -4849,5 +4849,13 @@
   "coverageHex_trimDrivesHint": "Prvé a posledné 2 šesťuholníky každej relácie zostanú v tomto telefóne, takže mapy neukážu, kde bývate alebo parkujete.",
   "appSettings_resetRoutingToDefault": "Obnoviť algoritmus smerovania na predvolené",
   "appSettings_resetRoutingToDefaultSubtitle": "Obnoviť nastavenia algoritmu smerovania na továrne predvolené hodnoty",
-  "appSettings_routingResetToDefault": "Nastavenia algoritmu smerovania obnovené na predvolené"
+  "appSettings_routingResetToDefault": "Nastavenia algoritmu smerovania obnovené na predvolené",
+  "discoveredContacts_importNodes": "Importovať uzly",
+  "discoveredContacts_importHint": "Načíta odkazy na kontakty, verejné kľúče alebo zoznam uzlov v JSON či CSV. Pridajú sa do tohto zoznamu, nie do rádia.",
+  "discoveredContacts_importFromFile": "Zo súboru",
+  "discoveredContacts_importFromClipboard": "Zo schránky",
+  "discoveredContacts_importFailed": "Nepodarilo sa načítať",
+  "discoveredContacts_importNone": "Nenašli sa žiadne uzly",
+  "discoveredContacts_importNotConnected": "Najprv pripoj rádio",
+  "discoveredContacts_importResult": "Nové: {added}, aktualizované: {updated}, preskočené: {skipped}"
 }

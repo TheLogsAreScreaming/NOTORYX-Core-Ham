@@ -4152,5 +4152,13 @@
   "coverageHex_trimDrivesHint": "Первые и последние 2 шестиугольника каждой сессии остаются на телефоне, поэтому карты не покажут, где вы живёте или паркуетесь.",
   "appSettings_resetRoutingToDefault": "Сбросить алгоритм маршрутизации к значению по умолчанию",
   "appSettings_resetRoutingToDefaultSubtitle": "Восстановить настройки алгоритма маршрутизации к заводским значениям по умолчанию",
-  "appSettings_routingResetToDefault": "Настройки алгоритма маршрутизации сброшены к значению по умолчанию"
+  "appSettings_routingResetToDefault": "Настройки алгоритма маршрутизации сброшены к значению по умолчанию",
+  "discoveredContacts_importNodes": "Импорт узлов",
+  "discoveredContacts_importHint": "Читает ссылки на контакты, открытые ключи или список узлов в JSON или CSV. Они добавляются в этот список, а не в радио.",
+  "discoveredContacts_importFromFile": "Из файла",
+  "discoveredContacts_importFromClipboard": "Из буфера обмена",
+  "discoveredContacts_importFailed": "Не удалось прочитать",
+  "discoveredContacts_importNone": "Узлы не найдены",
+  "discoveredContacts_importNotConnected": "Сначала подключите радио",
+  "discoveredContacts_importResult": "Новых: {added}, обновлено: {updated}, пропущено: {skipped}"
 }

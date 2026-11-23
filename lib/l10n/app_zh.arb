@@ -4854,5 +4854,13 @@
   "coverageHex_trimDrivesHint": "每次测绘的前 2 个和最后 2 个六边形只保留在此手机上，因此地图不会显示你住在哪里或停车的位置。",
   "appSettings_resetRoutingToDefault": "将路由算法重置为默认值",
   "appSettings_resetRoutingToDefaultSubtitle": "将路由算法设置恢复为出厂默认值",
-  "appSettings_routingResetToDefault": "路由算法设置已重置为默认值"
+  "appSettings_routingResetToDefault": "路由算法设置已重置为默认值",
+  "discoveredContacts_importNodes": "导入节点",
+  "discoveredContacts_importHint": "读取联系人链接、公钥，或 JSON / CSV 节点列表。它们会添加到此列表，而不是你的电台。",
+  "discoveredContacts_importFromFile": "从文件",
+  "discoveredContacts_importFromClipboard": "从剪贴板",
+  "discoveredContacts_importFailed": "无法读取",
+  "discoveredContacts_importNone": "未找到节点",
+  "discoveredContacts_importNotConnected": "请先连接电台",
+  "discoveredContacts_importResult": "新增 {added}，更新 {updated}，跳过 {skipped}"
 }

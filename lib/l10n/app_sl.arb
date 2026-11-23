@@ -4849,5 +4849,13 @@
   "coverageHex_trimDrivesHint": "Prva in zadnja 2 šestkotnika vsake seje ostaneta v tem telefonu, zato zemljevidi ne pokažejo, kje živite ali parkirate.",
   "appSettings_resetRoutingToDefault": "Ponastavite algoritem usmerjanja na privzeto",
   "appSettings_resetRoutingToDefaultSubtitle": "Obnovite nastavitve algoritma usmerjanja na tovarniške privzetke",
-  "appSettings_routingResetToDefault": "Nastavitve algoritma usmerjanja so ponastavljene na privzeto"
+  "appSettings_routingResetToDefault": "Nastavitve algoritma usmerjanja so ponastavljene na privzeto",
+  "discoveredContacts_importNodes": "Uvozi vozlišča",
+  "discoveredContacts_importHint": "Prebere povezave do stikov, javne ključe ali seznam vozlišč v JSON ali CSV. Dodajo se na ta seznam, ne v radio.",
+  "discoveredContacts_importFromFile": "Iz datoteke",
+  "discoveredContacts_importFromClipboard": "Iz odložišča",
+  "discoveredContacts_importFailed": "Branje ni uspelo",
+  "discoveredContacts_importNone": "Ni najdenih vozlišč",
+  "discoveredContacts_importNotConnected": "Najprej poveži radio",
+  "discoveredContacts_importResult": "Novih: {added}, posodobljenih: {updated}, preskočenih: {skipped}"
 }

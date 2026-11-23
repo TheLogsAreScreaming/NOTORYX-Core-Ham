@@ -12817,4 +12817,31 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get appSettings_routingResetToDefault =>
       'Rutningsalgoritmins inställningar återställda till standard';
+
+  @override
+  String get discoveredContacts_importNodes => 'Importera noder';
+
+  @override
+  String get discoveredContacts_importHint =>
+      'Läser kontaktlänkar, publika nycklar eller en JSON- eller CSV-lista med noder. De läggs till i den här listan, inte i din radio.';
+
+  @override
+  String get discoveredContacts_importFromFile => 'Från en fil';
+
+  @override
+  String get discoveredContacts_importFromClipboard => 'Från urklipp';
+
+  @override
+  String get discoveredContacts_importFailed => 'Kunde inte läsas';
+
+  @override
+  String get discoveredContacts_importNone => 'Inga noder hittades';
+
+  @override
+  String get discoveredContacts_importNotConnected => 'Anslut din radio först';
+
+  @override
+  String discoveredContacts_importResult(int added, int updated, int skipped) {
+    return '$added nya, $updated uppdaterade, $skipped överhoppade';
+  }
 }

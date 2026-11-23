@@ -12898,4 +12898,31 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get appSettings_routingResetToDefault =>
       'Настройките на алгоритъма за маршрутизация са нулирани до стойност по подразбиране';
+
+  @override
+  String get discoveredContacts_importNodes => 'Импортиране на възли';
+
+  @override
+  String get discoveredContacts_importHint =>
+      'Чете връзки към контакти, публични ключове или списък с възли в JSON или CSV. Добавят се към този списък, не към радиото.';
+
+  @override
+  String get discoveredContacts_importFromFile => 'От файл';
+
+  @override
+  String get discoveredContacts_importFromClipboard => 'От клипборда';
+
+  @override
+  String get discoveredContacts_importFailed => 'Не може да се прочете';
+
+  @override
+  String get discoveredContacts_importNone => 'Не са намерени възли';
+
+  @override
+  String get discoveredContacts_importNotConnected => 'Първо свържете радиото';
+
+  @override
+  String discoveredContacts_importResult(int added, int updated, int skipped) {
+    return 'Нови: $added, обновени: $updated, пропуснати: $skipped';
+  }
 }

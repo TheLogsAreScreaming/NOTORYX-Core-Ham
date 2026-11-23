@@ -12888,4 +12888,32 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get appSettings_routingResetToDefault =>
       'Útvonaltervezési algoritmus beállításai visszaállítva alapértelmezettre';
+
+  @override
+  String get discoveredContacts_importNodes => 'Csomópontok importálása';
+
+  @override
+  String get discoveredContacts_importHint =>
+      'Kapcsolat-linkeket, nyilvános kulcsokat vagy JSON/CSV csomópontlistát olvas be. Ehhez a listához adódnak, nem a rádióhoz.';
+
+  @override
+  String get discoveredContacts_importFromFile => 'Fájlból';
+
+  @override
+  String get discoveredContacts_importFromClipboard => 'A vágólapról';
+
+  @override
+  String get discoveredContacts_importFailed => 'Nem sikerült beolvasni';
+
+  @override
+  String get discoveredContacts_importNone => 'Nem található csomópont';
+
+  @override
+  String get discoveredContacts_importNotConnected =>
+      'Előbb csatlakoztasd a rádiót';
+
+  @override
+  String discoveredContacts_importResult(int added, int updated, int skipped) {
+    return 'Új: $added, frissítve: $updated, kihagyva: $skipped';
+  }
 }

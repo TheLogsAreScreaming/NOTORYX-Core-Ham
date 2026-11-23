@@ -4983,5 +4983,13 @@
   "coverageHex_trimDrivesHint": "Les 2 premiers et 2 derniers hexagones de chaque session restent sur ce téléphone, pour que les cartes ne montrent pas où vous habitez ou vous garez.",
   "appSettings_resetRoutingToDefault": "Réinitialiser l'algorithme de routage",
   "appSettings_resetRoutingToDefaultSubtitle": "Restaurer les paramètres de l'algorithme de routage aux valeurs par défaut",
-  "appSettings_routingResetToDefault": "Paramètres de l'algorithme de routage réinitialisés"
+  "appSettings_routingResetToDefault": "Paramètres de l'algorithme de routage réinitialisés",
+  "discoveredContacts_importNodes": "Importer des nœuds",
+  "discoveredContacts_importHint": "Lit des liens de contact, des clés publiques ou une liste de nœuds en JSON ou CSV. Ils sont ajoutés à cette liste, pas à votre radio.",
+  "discoveredContacts_importFromFile": "Depuis un fichier",
+  "discoveredContacts_importFromClipboard": "Depuis le presse-papiers",
+  "discoveredContacts_importFailed": "Lecture impossible",
+  "discoveredContacts_importNone": "Aucun nœud trouvé",
+  "discoveredContacts_importNotConnected": "Connectez d'abord votre radio",
+  "discoveredContacts_importResult": "{added} nouveaux, {updated} mis à jour, {skipped} ignorés"
 }

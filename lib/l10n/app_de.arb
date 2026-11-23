@@ -4983,5 +4983,13 @@
   "coverageHex_trimDrivesHint": "Die ersten und letzten 2 Sechsecke jeder Kartierung bleiben auf diesem Telefon, damit Karten nicht zeigen, wo du wohnst oder parkst.",
   "appSettings_resetRoutingToDefault": "Routing-Algorithmus auf Standard zurücksetzen",
   "appSettings_resetRoutingToDefaultSubtitle": "Routing-Algorithmus-Einstellungen auf Werkseinstellungen zurücksetzen",
-  "appSettings_routingResetToDefault": "Routing-Algorithmus-Einstellungen auf Standard zurückgesetzt"
+  "appSettings_routingResetToDefault": "Routing-Algorithmus-Einstellungen auf Standard zurückgesetzt",
+  "discoveredContacts_importNodes": "Knoten importieren",
+  "discoveredContacts_importHint": "Liest Kontaktlinks, öffentliche Schlüssel oder eine JSON- oder CSV-Liste von Knoten. Sie werden dieser Liste hinzugefügt, nicht deinem Funkgerät.",
+  "discoveredContacts_importFromFile": "Aus einer Datei",
+  "discoveredContacts_importFromClipboard": "Aus der Zwischenablage",
+  "discoveredContacts_importFailed": "Konnte nicht gelesen werden",
+  "discoveredContacts_importNone": "Keine Knoten gefunden",
+  "discoveredContacts_importNotConnected": "Verbinde zuerst dein Funkgerät",
+  "discoveredContacts_importResult": "{added} neu, {updated} aktualisiert, {skipped} übersprungen"
 }

@@ -12339,4 +12339,31 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get appSettings_routingResetToDefault => '라우팅 알고리즘 설정이 기본값으로 재설정되었습니다';
+
+  @override
+  String get discoveredContacts_importNodes => '노드 가져오기';
+
+  @override
+  String get discoveredContacts_importHint =>
+      '연락처 링크, 공개 키 또는 JSON/CSV 노드 목록을 읽습니다. 무전기가 아니라 이 목록에 추가됩니다.';
+
+  @override
+  String get discoveredContacts_importFromFile => '파일에서';
+
+  @override
+  String get discoveredContacts_importFromClipboard => '클립보드에서';
+
+  @override
+  String get discoveredContacts_importFailed => '읽을 수 없습니다';
+
+  @override
+  String get discoveredContacts_importNone => '노드를 찾을 수 없습니다';
+
+  @override
+  String get discoveredContacts_importNotConnected => '먼저 무전기를 연결하세요';
+
+  @override
+  String discoveredContacts_importResult(int added, int updated, int skipped) {
+    return '새 노드 $added, 업데이트 $updated, 건너뜀 $skipped';
+  }
 }

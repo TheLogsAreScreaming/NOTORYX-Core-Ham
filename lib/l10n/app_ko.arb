@@ -4983,5 +4983,13 @@
   "coverageHex_trimDrivesHint": "매핑 세션마다 처음과 마지막 2개의 육각형은 이 휴대폰에만 남으므로 지도에 사는 곳이나 주차 위치가 나타나지 않습니다.",
   "appSettings_resetRoutingToDefault": "라우팅 알고리즘 기본값으로 재설정",
   "appSettings_resetRoutingToDefaultSubtitle": "라우팅 알고리즘 설정을 공장 기본값으로 복원",
-  "appSettings_routingResetToDefault": "라우팅 알고리즘 설정이 기본값으로 재설정되었습니다"
+  "appSettings_routingResetToDefault": "라우팅 알고리즘 설정이 기본값으로 재설정되었습니다",
+  "discoveredContacts_importNodes": "노드 가져오기",
+  "discoveredContacts_importHint": "연락처 링크, 공개 키 또는 JSON/CSV 노드 목록을 읽습니다. 무전기가 아니라 이 목록에 추가됩니다.",
+  "discoveredContacts_importFromFile": "파일에서",
+  "discoveredContacts_importFromClipboard": "클립보드에서",
+  "discoveredContacts_importFailed": "읽을 수 없습니다",
+  "discoveredContacts_importNone": "노드를 찾을 수 없습니다",
+  "discoveredContacts_importNotConnected": "먼저 무전기를 연결하세요",
+  "discoveredContacts_importResult": "새 노드 {added}, 업데이트 {updated}, 건너뜀 {skipped}"
 }

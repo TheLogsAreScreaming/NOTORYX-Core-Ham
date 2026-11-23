@@ -4829,5 +4829,13 @@
   "coverageHex_trimDrivesHint": "Перші й останні 2 шестикутники кожного сеансу залишаються на телефоні, тож карти не покажуть, де ви живете чи паркуєтеся.",
   "appSettings_resetRoutingToDefault": "Скинути алгоритм маршрутизації до типового",
   "appSettings_resetRoutingToDefaultSubtitle": "Відновити налаштування алгоритму маршрутизації до заводських значень за замовчуванням",
-  "appSettings_routingResetToDefault": "Налаштування алгоритму маршрутизації скинуто до типових"
+  "appSettings_routingResetToDefault": "Налаштування алгоритму маршрутизації скинуто до типових",
+  "discoveredContacts_importNodes": "Імпорт вузлів",
+  "discoveredContacts_importHint": "Читає посилання на контакти, відкриті ключі або список вузлів у JSON чи CSV. Вони додаються до цього списку, а не до радіо.",
+  "discoveredContacts_importFromFile": "З файлу",
+  "discoveredContacts_importFromClipboard": "З буфера обміну",
+  "discoveredContacts_importFailed": "Не вдалося прочитати",
+  "discoveredContacts_importNone": "Вузлів не знайдено",
+  "discoveredContacts_importNotConnected": "Спочатку підключіть радіо",
+  "discoveredContacts_importResult": "Нових: {added}, оновлено: {updated}, пропущено: {skipped}"
 }

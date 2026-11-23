@@ -12906,4 +12906,31 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get appSettings_routingResetToDefault =>
       'Nastavitve algoritma usmerjanja so ponastavljene na privzeto';
+
+  @override
+  String get discoveredContacts_importNodes => 'Uvozi vozlišča';
+
+  @override
+  String get discoveredContacts_importHint =>
+      'Prebere povezave do stikov, javne ključe ali seznam vozlišč v JSON ali CSV. Dodajo se na ta seznam, ne v radio.';
+
+  @override
+  String get discoveredContacts_importFromFile => 'Iz datoteke';
+
+  @override
+  String get discoveredContacts_importFromClipboard => 'Iz odložišča';
+
+  @override
+  String get discoveredContacts_importFailed => 'Branje ni uspelo';
+
+  @override
+  String get discoveredContacts_importNone => 'Ni najdenih vozlišč';
+
+  @override
+  String get discoveredContacts_importNotConnected => 'Najprej poveži radio';
+
+  @override
+  String discoveredContacts_importResult(int added, int updated, int skipped) {
+    return 'Novih: $added, posodobljenih: $updated, preskočenih: $skipped';
+  }
 }

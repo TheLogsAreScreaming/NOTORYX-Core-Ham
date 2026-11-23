@@ -12943,4 +12943,32 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get appSettings_routingResetToDefault =>
       'Налаштування алгоритму маршрутизації скинуто до типових';
+
+  @override
+  String get discoveredContacts_importNodes => 'Імпорт вузлів';
+
+  @override
+  String get discoveredContacts_importHint =>
+      'Читає посилання на контакти, відкриті ключі або список вузлів у JSON чи CSV. Вони додаються до цього списку, а не до радіо.';
+
+  @override
+  String get discoveredContacts_importFromFile => 'З файлу';
+
+  @override
+  String get discoveredContacts_importFromClipboard => 'З буфера обміну';
+
+  @override
+  String get discoveredContacts_importFailed => 'Не вдалося прочитати';
+
+  @override
+  String get discoveredContacts_importNone => 'Вузлів не знайдено';
+
+  @override
+  String get discoveredContacts_importNotConnected =>
+      'Спочатку підключіть радіо';
+
+  @override
+  String discoveredContacts_importResult(int added, int updated, int skipped) {
+    return 'Нових: $added, оновлено: $updated, пропущено: $skipped';
+  }
 }

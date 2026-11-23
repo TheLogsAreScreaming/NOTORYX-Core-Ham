@@ -4983,5 +4983,13 @@
   "coverageHex_trimDrivesHint": "Los 2 primeros y 2 últimos hexágonos de cada sesión se quedan en este teléfono, para que los mapas no muestren dónde vives o aparcas.",
   "appSettings_resetRoutingToDefault": "Restablecer algoritmo de enrutamiento a predeterminado",
   "appSettings_resetRoutingToDefaultSubtitle": "Restaurar la configuración del algoritmo de enrutamiento a los valores predeterminados de fábrica",
-  "appSettings_routingResetToDefault": "Configuración del algoritmo de enrutamiento restablecida a predeterminado"
+  "appSettings_routingResetToDefault": "Configuración del algoritmo de enrutamiento restablecida a predeterminado",
+  "discoveredContacts_importNodes": "Importar nodos",
+  "discoveredContacts_importHint": "Lee enlaces de contacto, claves públicas o una lista de nodos en JSON o CSV. Se añaden a esta lista, no a tu radio.",
+  "discoveredContacts_importFromFile": "Desde un archivo",
+  "discoveredContacts_importFromClipboard": "Desde el portapapeles",
+  "discoveredContacts_importFailed": "No se pudo leer",
+  "discoveredContacts_importNone": "No se encontraron nodos",
+  "discoveredContacts_importNotConnected": "Conecta primero tu radio",
+  "discoveredContacts_importResult": "{added} nuevos, {updated} actualizados, {skipped} omitidos"
 }

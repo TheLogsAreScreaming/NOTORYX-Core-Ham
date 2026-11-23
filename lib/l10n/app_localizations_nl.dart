@@ -12866,4 +12866,31 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get appSettings_routingResetToDefault =>
       'Routeringsalgoritme-instellingen gereset naar standaard';
+
+  @override
+  String get discoveredContacts_importNodes => 'Nodes importeren';
+
+  @override
+  String get discoveredContacts_importHint =>
+      'Leest contactlinks, openbare sleutels of een JSON- of CSV-lijst met nodes. Ze worden aan deze lijst toegevoegd, niet aan je radio.';
+
+  @override
+  String get discoveredContacts_importFromFile => 'Uit een bestand';
+
+  @override
+  String get discoveredContacts_importFromClipboard => 'Van het klembord';
+
+  @override
+  String get discoveredContacts_importFailed => 'Kon niet worden gelezen';
+
+  @override
+  String get discoveredContacts_importNone => 'Geen nodes gevonden';
+
+  @override
+  String get discoveredContacts_importNotConnected => 'Verbind eerst je radio';
+
+  @override
+  String discoveredContacts_importResult(int added, int updated, int skipped) {
+    return '$added nieuw, $updated bijgewerkt, $skipped overgeslagen';
+  }
 }

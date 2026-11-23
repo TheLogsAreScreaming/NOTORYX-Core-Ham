@@ -31,6 +31,7 @@ import '../models/path_selection.dart';
 import '../models/translation_support.dart';
 import 'radio_signing.dart';
 import '../helpers/share_links.dart';
+import '../utils/node_import.dart';
 import '../helpers/reaction_helper.dart';
 import '../helpers/cyr2lat.dart';
 import '../helpers/smaz.dart';
@@ -243,6 +244,9 @@ class MeshCoreConnector extends ChangeNotifier {
   static const Duration _discoveredSaveDelay = Duration(seconds: 15);
   Timer? _discoveredSaveTimer;
   bool _discoveredDirty = false;
+  // The load of the saved list after connecting; an import waits for it so
+  // the load can't replace what was just imported.
+  Future<void>? _discoveredCacheLoad;
 
   MeshCoreConnectionState _state = MeshCoreConnectionState.disconnected;
   BluetoothDevice? _device;
@@ -1441,6 +1445,8 @@ class MeshCoreConnector extends ChangeNotifier {
   /// Feeds a companion stats frame, as the radio would.
   @visibleForTesting
   void debugHandleStatsFrame(Uint8List frame) => _handleStatsFrame(frame);
+  @visibleForTesting
+  void debugMarkConnected() => _state = MeshCoreConnectionState.connected;
 
   /// Sets the radio frequency as a self-info reply would.
   @visibleForTesting
@@ -1646,7 +1652,10 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
-  Future<void> _loadDiscoveredContactCache() async {
+  Future<void> _loadDiscoveredContactCache() =>
+      _discoveredCacheLoad = _readDiscoveredContactCache();
+
+  Future<void> _readDiscoveredContactCache() async {
     if (_demoSession) {
       _discoveredContacts.clear();
       return;
@@ -3720,6 +3729,7 @@ class MeshCoreConnector extends ChangeNotifier {
     // Save waiting changes first: a save after the clear would write an
     // empty list and lose every remembered node.
     await flushDiscoveredContacts();
+    _discoveredCacheLoad = null;
     _discoveredContacts.clear();
     _conversations.clear();
     _loadedConversationKeys.clear();
@@ -9522,6 +9532,93 @@ class MeshCoreConnector extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Adds [nodes] read from an import file to the heard-node list. Nodes
+  /// already on the radio are skipped; ones already heard get any missing
+  /// name, type or position and the later last-heard time. Needs a connected
+  /// radio, because the list is the connected radio's and is reloaded on
+  /// connect. Null when not connected.
+  Future<NodeImportResult?> importHeardNodes(List<ImportedNode> nodes) async {
+    if (!isConnected) return null;
+    await _discoveredCacheLoad;
+    if (!isConnected) return null;
+    final onRadio = {
+      for (final c in _contacts) c.publicKeyHex,
+      if (_selfPublicKey case final self? when self.isNotEmpty)
+        pubKeyToHex(self),
+    };
+    final indexByKey = {
+      for (final (i, c) in _discoveredContacts.indexed) c.publicKeyHex: i,
+    };
+    var added = 0;
+    var updated = 0;
+    var skipped = 0;
+    final now = DateTime.now();
+    for (final node in nodes) {
+      final key = node.publicKeyHex;
+      if (onRadio.contains(key)) {
+        skipped++;
+        continue;
+      }
+      final i = indexByKey[key];
+      if (i != null) {
+        final c = _discoveredContacts[i];
+        final hasPos = c.latitude != null && c.longitude != null;
+        final seen = node.lastSeen;
+        final newer = seen != null && seen.isAfter(c.lastSeen);
+        final unnamed = c.name.trim().isEmpty || c.name == 'Unknown';
+        if (newer ||
+            (!hasPos && node.latitude != null) ||
+            (unnamed && node.name != null)) {
+          _discoveredContacts[i] = c.copyWith(
+            name: unnamed ? node.name : null,
+            latitude: hasPos ? null : node.latitude,
+            longitude: hasPos ? null : node.longitude,
+            lastSeen: newer ? seen.toLocal() : null,
+          );
+          updated++;
+        } else {
+          skipped++;
+        }
+        continue;
+      }
+      if (_discoveredContacts.length >=
+          MeshCoreConnector._maxDiscoveredContacts) {
+        _evictStalestDiscoveredContact();
+        indexByKey
+          ..clear()
+          ..addAll({
+            for (final (j, c) in _discoveredContacts.indexed) c.publicKeyHex: j,
+          });
+      }
+      // An unknown last-heard time sorts the node last (and first to be
+      // forgotten) instead of showing it as just heard.
+      final seen =
+          node.lastSeen?.toLocal() ?? DateTime.fromMillisecondsSinceEpoch(0);
+      _discoveredContacts.add(
+        Contact(
+          publicKey: node.publicKey,
+          name: node.name ?? 'Unknown',
+          type: node.type ?? advTypeChat,
+          flags: 0,
+          pathLength: -1,
+          path: Uint8List(0),
+          latitude: node.latitude,
+          longitude: node.longitude,
+          lastSeen: seen.isAfter(now) ? now : seen,
+          isActive: false,
+        ),
+      );
+      indexByKey[key] = _discoveredContacts.length - 1;
+      added++;
+    }
+    if (added > 0 || updated > 0) {
+      unawaited(_persistDiscoveredContacts());
+      await flushDiscoveredContacts();
+      notifyListeners();
+    }
+    return NodeImportResult(added: added, updated: updated, skipped: skipped);
+  }
+
   /// Saves the heard-node list now if a save is waiting. Called when the app
   /// goes to the background and before the list is cleared on disconnect.
   Future<void> flushDiscoveredContacts() async {
@@ -9701,4 +9798,19 @@ class ReceivedChannelMessage {
 /// replaced while it awaited the platform.
 class _ConnectSuperseded implements Exception {
   const _ConnectSuperseded();
+}
+
+/// What [MeshCoreConnector.importHeardNodes] did.
+class NodeImportResult {
+  const NodeImportResult({
+    required this.added,
+    required this.updated,
+    required this.skipped,
+  });
+
+  final int added;
+  final int updated;
+
+  /// Already on the radio, this radio itself, or nothing new.
+  final int skipped;
 }

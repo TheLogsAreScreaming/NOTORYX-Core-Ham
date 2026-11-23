@@ -4849,5 +4849,13 @@
   "coverageHex_trimDrivesHint": "De första och sista 2 hexagonerna i varje kartläggning stannar på telefonen, så kartor kan inte visa var du bor eller parkerar.",
   "appSettings_resetRoutingToDefault": "Återställ rutningsalgoritm till standard",
   "appSettings_resetRoutingToDefaultSubtitle": "Återställ rutningsalgoritmins inställningar till fabriksstandard",
-  "appSettings_routingResetToDefault": "Rutningsalgoritmins inställningar återställda till standard"
+  "appSettings_routingResetToDefault": "Rutningsalgoritmins inställningar återställda till standard",
+  "discoveredContacts_importNodes": "Importera noder",
+  "discoveredContacts_importHint": "Läser kontaktlänkar, publika nycklar eller en JSON- eller CSV-lista med noder. De läggs till i den här listan, inte i din radio.",
+  "discoveredContacts_importFromFile": "Från en fil",
+  "discoveredContacts_importFromClipboard": "Från urklipp",
+  "discoveredContacts_importFailed": "Kunde inte läsas",
+  "discoveredContacts_importNone": "Inga noder hittades",
+  "discoveredContacts_importNotConnected": "Anslut din radio först",
+  "discoveredContacts_importResult": "{added} nya, {updated} uppdaterade, {skipped} överhoppade"
 }

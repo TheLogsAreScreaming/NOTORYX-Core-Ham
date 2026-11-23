@@ -12947,4 +12947,32 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get appSettings_routingResetToDefault =>
       'Настройки алгоритма маршрутизации сброшены к значению по умолчанию';
+
+  @override
+  String get discoveredContacts_importNodes => 'Импорт узлов';
+
+  @override
+  String get discoveredContacts_importHint =>
+      'Читает ссылки на контакты, открытые ключи или список узлов в JSON или CSV. Они добавляются в этот список, а не в радио.';
+
+  @override
+  String get discoveredContacts_importFromFile => 'Из файла';
+
+  @override
+  String get discoveredContacts_importFromClipboard => 'Из буфера обмена';
+
+  @override
+  String get discoveredContacts_importFailed => 'Не удалось прочитать';
+
+  @override
+  String get discoveredContacts_importNone => 'Узлы не найдены';
+
+  @override
+  String get discoveredContacts_importNotConnected =>
+      'Сначала подключите радио';
+
+  @override
+  String discoveredContacts_importResult(int added, int updated, int skipped) {
+    return 'Новых: $added, обновлено: $updated, пропущено: $skipped';
+  }
 }

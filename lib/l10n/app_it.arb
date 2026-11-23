@@ -4983,5 +4983,13 @@
   "coverageHex_trimDrivesHint": "I primi e gli ultimi 2 esagoni di ogni sessione restano su questo telefono, così le mappe non mostrano dove abiti o parcheggi.",
   "appSettings_resetRoutingToDefault": "Reimposta algoritmo di instradamento sui valori predefiniti",
   "appSettings_resetRoutingToDefaultSubtitle": "Ripristina le impostazioni dell'algoritmo di instradamento ai valori predefiniti di fabbrica",
-  "appSettings_routingResetToDefault": "Impostazioni algoritmo di instradamento reimpostate sui valori predefiniti"
+  "appSettings_routingResetToDefault": "Impostazioni algoritmo di instradamento reimpostate sui valori predefiniti",
+  "discoveredContacts_importNodes": "Importa nodi",
+  "discoveredContacts_importHint": "Legge link di contatto, chiavi pubbliche o un elenco di nodi JSON o CSV. Vengono aggiunti a questo elenco, non alla radio.",
+  "discoveredContacts_importFromFile": "Da un file",
+  "discoveredContacts_importFromClipboard": "Dagli appunti",
+  "discoveredContacts_importFailed": "Impossibile leggere",
+  "discoveredContacts_importNone": "Nessun nodo trovato",
+  "discoveredContacts_importNotConnected": "Prima collega la radio",
+  "discoveredContacts_importResult": "{added} nuovi, {updated} aggiornati, {skipped} saltati"
 }
