@@ -53,6 +53,9 @@ class NodeTelemetryStore extends ChangeNotifier {
        _now = clock ?? DateTime.now;
   final SharedPreferences prefs;
   final DateTime Function() _now;
+
+  /// Told about the readings each [record] call accepted.
+  void Function(String key, List<NodeReading> readings)? onRecorded;
   final int maxNodes;
   final Map<String, Map<String, NodeReading>> _nodes = {};
   final Map<String, String> _pendingSnapshots = {};
@@ -200,6 +203,7 @@ class NodeTelemetryStore extends ChangeNotifier {
       return;
     }
     var changed = false;
+    final accepted = <NodeReading>[];
     for (final raw in readings) {
       final type = raw['type'], channel = raw['channel'];
       if (type is! int || channel is! int || channel < 0 || channel > 255) {
@@ -207,20 +211,20 @@ class NodeTelemetryStore extends ChangeNotifier {
       }
       final value = _value(type, raw['value']);
       if (value == null) continue;
-      changed =
-          _put(
-            key,
-            NodeReading(
-              channel: channel,
-              type: type,
-              value: value,
-              at: time,
-              source: source,
-            ),
-          ) ||
-          changed;
+      final reading = NodeReading(
+        channel: channel,
+        type: type,
+        value: value,
+        at: time,
+        source: source,
+      );
+      if (_put(key, reading)) {
+        changed = true;
+        accepted.add(reading);
+      }
     }
     if (!changed) return;
+    onRecorded?.call(key, accepted);
     _trim();
     _saveTimer?.cancel();
     _saveTimer = Timer(

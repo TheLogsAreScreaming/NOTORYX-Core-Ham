@@ -1,6 +1,8 @@
 import 'services/app_lock_service.dart';
 import 'widgets/app_lock_gate.dart';
 import 'services/node_telemetry_store.dart';
+import 'services/sensor_history_store.dart';
+import 'helpers/sensor_labels.dart';
 
 import 'dart:async';
 
@@ -306,6 +308,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final ChannelDiscoveryService _channelDiscovery;
   late final AnalyzerService _analyzer;
   late final NodeTelemetryStore _telemetry;
+  late final SensorHistoryStore _sensorHistory;
   late final MySensorsService _mySensors;
   late final WardriveService _wardrive;
   late final NetworkScanService _networkScan;
@@ -363,6 +366,11 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     unawaited(_channelDiscovery.load());
     _analyzer = AnalyzerService()..load();
     _telemetry = NodeTelemetryStore(PrefsManager.instance);
+    _sensorHistory = SensorHistoryStore(
+      PrefsManager.instance,
+      onAlert: _showSensorAlert,
+    );
+    _telemetry.onRecorded = _sensorHistory.recordReadings;
     widget.connector.telemetryStore = _telemetry;
     _syncTelemetryScope();
     widget.connector.addListener(_syncTelemetryScope);
@@ -525,7 +533,9 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _mySensors.dispose();
     widget.connector.removeListener(_syncTelemetryScope);
     widget.connector.telemetryStore = null;
+    _telemetry.onRecorded = null;
     _telemetry.dispose();
+    _sensorHistory.dispose();
     _wardrive.dispose();
     _linkRouter.dispose();
     _networkScan.dispose();
@@ -552,6 +562,28 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
 
   void _syncTelemetryScope() {
     _telemetry.setScope(widget.connector.selfPublicKeyHex);
+    _sensorHistory.setScope(widget.connector.selfPublicKeyHex);
+  }
+
+  Future<void> _showSensorAlert(SensorAlert alert) async {
+    if (!widget.appSettingsService.settings.notificationsEnabled) return;
+    final notifications = NotificationService();
+    final l10n = notifications.l10n;
+    final name =
+        widget.connector.allContactsUnfiltered
+            .where((c) => c.publicKeyHex.toLowerCase() == alert.nodeKey)
+            .firstOrNull
+            ?.name ??
+        l10n.sensorHistory_unknownNode;
+    final what = sensorTypeLabel(l10n, alert.type);
+    final value = formatSensorValue(alert.type, alert.value);
+    final limit = formatSensorValue(alert.type, alert.limit);
+    await notifications.showSensorAlert(
+      id: '${alert.nodeKey}|${alert.metricId}',
+      body: alert.above
+          ? l10n.sensorHistory_alertAbove(name, what, value, limit)
+          : l10n.sensorHistory_alertBelow(name, what, value, limit),
+    );
   }
 
   void _syncQuickReply() {
@@ -620,6 +652,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     if (state == AppLifecycleState.paused ||
         state == AppLifecycleState.hidden) {
       unawaited(_telemetry.flush());
+      unawaited(_sensorHistory.flush());
       unawaited(widget.imageCodecService.handleMemoryPressure());
       unawaited(widget.receivedImageStore.handleMemoryPressure());
     }
@@ -657,6 +690,9 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         ChangeNotifierProvider<AnalyzerService?>.value(value: _analyzer),
         ChangeNotifierProvider<MySensorsService?>.value(value: _mySensors),
         ChangeNotifierProvider<NodeTelemetryStore?>.value(value: _telemetry),
+        ChangeNotifierProvider<SensorHistoryStore?>.value(
+          value: _sensorHistory,
+        ),
         ChangeNotifierProvider.value(value: _wardrive),
         ChangeNotifierProvider.value(value: _networkScan),
         ChangeNotifierProvider.value(value: _rxLog),

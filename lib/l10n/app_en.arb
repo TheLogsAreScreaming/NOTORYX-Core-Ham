@@ -7688,5 +7688,98 @@
   "@stale_badge": {"placeholders": {"age": {"type": "String"}}},
   "rangeRings_toggle": "Range rings",
   "rangeRings_hint": "Distance rings around your position, sized to the view",
-  "rangeRings_noPosition": "Your position isn't known yet, so range rings can't be drawn."
+  "rangeRings_noPosition": "Your position isn't known yet, so range rings can't be drawn.",
+  "sensorHistory_title": "Sensor history",
+  "sensorHistory_menuHint": "Charts for the last hour to day, and alerts",
+  "sensorHistory_readNow": "Read now",
+  "sensorHistory_window1h": "1 h",
+  "sensorHistory_window6h": "6 h",
+  "sensorHistory_window24h": "24 h",
+  "sensorHistory_empty": "No readings yet. Tap Read now, or turn on live updates or auto refresh in Telemetry; every reading is kept here for a day.",
+  "sensorHistory_updated": "Updated {time}",
+  "@sensorHistory_updated": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "sensorHistory_noneInWindow": "No readings in this time range.",
+  "sensorHistory_chartLabel": "{metric} chart, {count} readings, from {low} to {high}",
+  "@sensorHistory_chartLabel": {
+    "placeholders": {
+      "metric": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      },
+      "low": {
+        "type": "String"
+      },
+      "high": {
+        "type": "String"
+      }
+    }
+  },
+  "sensorHistory_noAlert": "No alert",
+  "sensorHistory_alertWhenAbove": "Alert above {value}",
+  "@sensorHistory_alertWhenAbove": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "sensorHistory_alertWhenBelow": "Alert below {value}",
+  "@sensorHistory_alertWhenBelow": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "sensorHistory_setAlert": "Alert…",
+  "sensorHistory_alertDialogTitle": "Alert on this value",
+  "sensorHistory_alertDialogHint": "You get a notification when a new reading crosses a limit. Leave a field empty to not use it.",
+  "sensorHistory_above": "Above",
+  "sensorHistory_below": "Below",
+  "sensorHistory_belowMustBeLower": "Must be lower than the upper limit",
+  "sensorHistory_removeAlert": "Remove",
+  "sensorHistory_alertTitle": "Sensor alert",
+  "sensorHistory_alertAbove": "{name}: {what} is {value}, above {limit}",
+  "@sensorHistory_alertAbove": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "what": {
+        "type": "String"
+      },
+      "value": {
+        "type": "String"
+      },
+      "limit": {
+        "type": "String"
+      }
+    }
+  },
+  "sensorHistory_alertBelow": "{name}: {what} is {value}, below {limit}",
+  "@sensorHistory_alertBelow": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "what": {
+        "type": "String"
+      },
+      "value": {
+        "type": "String"
+      },
+      "limit": {
+        "type": "String"
+      }
+    }
+  },
+  "sensorHistory_unknownNode": "A sensor"
 }

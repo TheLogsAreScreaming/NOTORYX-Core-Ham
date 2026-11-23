@@ -12521,4 +12521,106 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'Ваша позиция пока неизвестна, поэтому кольца дальности нельзя нарисовать.';
+
+  @override
+  String get sensorHistory_title => 'История датчика';
+
+  @override
+  String get sensorHistory_menuHint => 'Графики за час–сутки и оповещения';
+
+  @override
+  String get sensorHistory_readNow => 'Считать сейчас';
+
+  @override
+  String get sensorHistory_window1h => '1 ч';
+
+  @override
+  String get sensorHistory_window6h => '6 ч';
+
+  @override
+  String get sensorHistory_window24h => '24 ч';
+
+  @override
+  String get sensorHistory_empty =>
+      'Пока нет данных. Нажмите «Считать сейчас» или включите живые обновления либо автообновление в телеметрии; каждое значение хранится здесь сутки.';
+
+  @override
+  String sensorHistory_updated(String time) {
+    return 'Обновлено $time';
+  }
+
+  @override
+  String get sensorHistory_noneInWindow => 'Нет данных за этот период.';
+
+  @override
+  String sensorHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'График «$metric», значений: $count, от $low до $high';
+  }
+
+  @override
+  String get sensorHistory_noAlert => 'Без оповещения';
+
+  @override
+  String sensorHistory_alertWhenAbove(String value) {
+    return 'Оповещение выше $value';
+  }
+
+  @override
+  String sensorHistory_alertWhenBelow(String value) {
+    return 'Оповещение ниже $value';
+  }
+
+  @override
+  String get sensorHistory_setAlert => 'Оповещение…';
+
+  @override
+  String get sensorHistory_alertDialogTitle => 'Оповещение для значения';
+
+  @override
+  String get sensorHistory_alertDialogHint =>
+      'Уведомление придёт, когда новое значение пересечёт предел. Оставьте поле пустым, чтобы не использовать его.';
+
+  @override
+  String get sensorHistory_above => 'Выше';
+
+  @override
+  String get sensorHistory_below => 'Ниже';
+
+  @override
+  String get sensorHistory_belowMustBeLower =>
+      'Должно быть ниже верхнего предела';
+
+  @override
+  String get sensorHistory_removeAlert => 'Убрать';
+
+  @override
+  String get sensorHistory_alertTitle => 'Оповещение датчика';
+
+  @override
+  String sensorHistory_alertAbove(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what = $value, выше $limit';
+  }
+
+  @override
+  String sensorHistory_alertBelow(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what = $value, ниже $limit';
+  }
+
+  @override
+  String get sensorHistory_unknownNode => 'Датчик';
 }

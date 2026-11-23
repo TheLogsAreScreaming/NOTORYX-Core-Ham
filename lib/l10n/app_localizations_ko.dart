@@ -11926,4 +11926,105 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get rangeRings_noPosition => '아직 위치를 알 수 없어 거리 링을 그릴 수 없습니다.';
+
+  @override
+  String get sensorHistory_title => '센서 기록';
+
+  @override
+  String get sensorHistory_menuHint => '최근 1시간~24시간 차트와 알림';
+
+  @override
+  String get sensorHistory_readNow => '지금 읽기';
+
+  @override
+  String get sensorHistory_window1h => '1시간';
+
+  @override
+  String get sensorHistory_window6h => '6시간';
+
+  @override
+  String get sensorHistory_window24h => '24시간';
+
+  @override
+  String get sensorHistory_empty =>
+      '아직 값이 없습니다. 지금 읽기를 누르거나 텔레메트리에서 실시간 업데이트 또는 자동 새로고침을 켜세요. 모든 값은 여기에 하루 동안 보관됩니다.';
+
+  @override
+  String sensorHistory_updated(String time) {
+    return '$time 업데이트';
+  }
+
+  @override
+  String get sensorHistory_noneInWindow => '이 기간에 값이 없습니다.';
+
+  @override
+  String sensorHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metric 차트, $count개, $low~$high';
+  }
+
+  @override
+  String get sensorHistory_noAlert => '알림 없음';
+
+  @override
+  String sensorHistory_alertWhenAbove(String value) {
+    return '$value 초과 시 알림';
+  }
+
+  @override
+  String sensorHistory_alertWhenBelow(String value) {
+    return '$value 미만 시 알림';
+  }
+
+  @override
+  String get sensorHistory_setAlert => '알림…';
+
+  @override
+  String get sensorHistory_alertDialogTitle => '이 값에 대한 알림';
+
+  @override
+  String get sensorHistory_alertDialogHint =>
+      '새 값이 한계를 넘으면 알림을 받습니다. 사용하지 않을 칸은 비워 두세요.';
+
+  @override
+  String get sensorHistory_above => '초과';
+
+  @override
+  String get sensorHistory_below => '미만';
+
+  @override
+  String get sensorHistory_belowMustBeLower => '상한보다 낮아야 합니다';
+
+  @override
+  String get sensorHistory_removeAlert => '삭제';
+
+  @override
+  String get sensorHistory_alertTitle => '센서 알림';
+
+  @override
+  String sensorHistory_alertAbove(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what $value, $limit 초과';
+  }
+
+  @override
+  String sensorHistory_alertBelow(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what $value, $limit 미만';
+  }
+
+  @override
+  String get sensorHistory_unknownNode => '센서';
 }

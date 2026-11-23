@@ -12453,4 +12453,106 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'Vaša poloha ešte nie je známa, preto nie je možné nakresliť kruhy vzdialenosti.';
+
+  @override
+  String get sensorHistory_title => 'História senzora';
+
+  @override
+  String get sensorHistory_menuHint => 'Grafy za hodinu až deň a upozornenia';
+
+  @override
+  String get sensorHistory_readNow => 'Načítať teraz';
+
+  @override
+  String get sensorHistory_window1h => '1 h';
+
+  @override
+  String get sensorHistory_window6h => '6 h';
+
+  @override
+  String get sensorHistory_window24h => '24 h';
+
+  @override
+  String get sensorHistory_empty =>
+      'Zatiaľ žiadne údaje. Ťuknite na Načítať teraz alebo zapnite živé aktualizácie či automatické obnovovanie v telemetrii; každý údaj sa tu uchová deň.';
+
+  @override
+  String sensorHistory_updated(String time) {
+    return 'Aktualizované $time';
+  }
+
+  @override
+  String get sensorHistory_noneInWindow => 'V tomto období nie sú údaje.';
+
+  @override
+  String sensorHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Graf $metric, údaje: $count, od $low do $high';
+  }
+
+  @override
+  String get sensorHistory_noAlert => 'Bez upozornenia';
+
+  @override
+  String sensorHistory_alertWhenAbove(String value) {
+    return 'Upozornenie nad $value';
+  }
+
+  @override
+  String sensorHistory_alertWhenBelow(String value) {
+    return 'Upozornenie pod $value';
+  }
+
+  @override
+  String get sensorHistory_setAlert => 'Upozornenie…';
+
+  @override
+  String get sensorHistory_alertDialogTitle => 'Upozornenie na túto hodnotu';
+
+  @override
+  String get sensorHistory_alertDialogHint =>
+      'Upozornenie dostanete, keď nový údaj prekročí hranicu. Prázdne pole sa nepoužije.';
+
+  @override
+  String get sensorHistory_above => 'Nad';
+
+  @override
+  String get sensorHistory_below => 'Pod';
+
+  @override
+  String get sensorHistory_belowMustBeLower =>
+      'Musí byť nižšie ako horná hranica';
+
+  @override
+  String get sensorHistory_removeAlert => 'Odstrániť';
+
+  @override
+  String get sensorHistory_alertTitle => 'Upozornenie senzora';
+
+  @override
+  String sensorHistory_alertAbove(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what je $value, nad $limit';
+  }
+
+  @override
+  String sensorHistory_alertBelow(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what je $value, pod $limit';
+  }
+
+  @override
+  String get sensorHistory_unknownNode => 'Senzor';
 }

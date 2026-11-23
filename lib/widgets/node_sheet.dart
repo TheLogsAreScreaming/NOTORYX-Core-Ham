@@ -14,6 +14,7 @@ import '../screens/chat_screen.dart';
 import '../screens/map_screen.dart';
 import '../screens/node_compass_screen.dart';
 import '../screens/repeater_hub_screen.dart';
+import '../screens/sensor_history_screen.dart';
 import '../services/app_settings_service.dart';
 import '../theme/mesh_theme.dart';
 import 'instrument.dart';
@@ -186,6 +187,17 @@ void showNodeSheet(BuildContext context, Contact c) {
                 onTap: () {
                   Navigator.pop(sheet);
                   openNodeCompass(context, c);
+                },
+              ),
+            if (c.type == advTypeSensor)
+              InstrumentRow(
+                icon: Icons.show_chart,
+                title: l10n.sensorHistory_title,
+                subtitle: l10n.sensorHistory_menuHint,
+                divider: false,
+                onTap: () {
+                  Navigator.pop(sheet);
+                  openSensorHistory(context, c);
                 },
               ),
             InstrumentRow(

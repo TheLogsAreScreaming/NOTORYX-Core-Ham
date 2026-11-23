@@ -20634,6 +20634,165 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your position isn\'t known yet, so range rings can\'t be drawn.'**
   String get rangeRings_noPosition;
+
+  /// No description provided for @sensorHistory_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Sensor history'**
+  String get sensorHistory_title;
+
+  /// No description provided for @sensorHistory_menuHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Charts for the last hour to day, and alerts'**
+  String get sensorHistory_menuHint;
+
+  /// No description provided for @sensorHistory_readNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Read now'**
+  String get sensorHistory_readNow;
+
+  /// No description provided for @sensorHistory_window1h.
+  ///
+  /// In en, this message translates to:
+  /// **'1 h'**
+  String get sensorHistory_window1h;
+
+  /// No description provided for @sensorHistory_window6h.
+  ///
+  /// In en, this message translates to:
+  /// **'6 h'**
+  String get sensorHistory_window6h;
+
+  /// No description provided for @sensorHistory_window24h.
+  ///
+  /// In en, this message translates to:
+  /// **'24 h'**
+  String get sensorHistory_window24h;
+
+  /// No description provided for @sensorHistory_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No readings yet. Tap Read now, or turn on live updates or auto refresh in Telemetry; every reading is kept here for a day.'**
+  String get sensorHistory_empty;
+
+  /// No description provided for @sensorHistory_updated.
+  ///
+  /// In en, this message translates to:
+  /// **'Updated {time}'**
+  String sensorHistory_updated(String time);
+
+  /// No description provided for @sensorHistory_noneInWindow.
+  ///
+  /// In en, this message translates to:
+  /// **'No readings in this time range.'**
+  String get sensorHistory_noneInWindow;
+
+  /// No description provided for @sensorHistory_chartLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{metric} chart, {count} readings, from {low} to {high}'**
+  String sensorHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  );
+
+  /// No description provided for @sensorHistory_noAlert.
+  ///
+  /// In en, this message translates to:
+  /// **'No alert'**
+  String get sensorHistory_noAlert;
+
+  /// No description provided for @sensorHistory_alertWhenAbove.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert above {value}'**
+  String sensorHistory_alertWhenAbove(String value);
+
+  /// No description provided for @sensorHistory_alertWhenBelow.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert below {value}'**
+  String sensorHistory_alertWhenBelow(String value);
+
+  /// No description provided for @sensorHistory_setAlert.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert…'**
+  String get sensorHistory_setAlert;
+
+  /// No description provided for @sensorHistory_alertDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert on this value'**
+  String get sensorHistory_alertDialogTitle;
+
+  /// No description provided for @sensorHistory_alertDialogHint.
+  ///
+  /// In en, this message translates to:
+  /// **'You get a notification when a new reading crosses a limit. Leave a field empty to not use it.'**
+  String get sensorHistory_alertDialogHint;
+
+  /// No description provided for @sensorHistory_above.
+  ///
+  /// In en, this message translates to:
+  /// **'Above'**
+  String get sensorHistory_above;
+
+  /// No description provided for @sensorHistory_below.
+  ///
+  /// In en, this message translates to:
+  /// **'Below'**
+  String get sensorHistory_below;
+
+  /// No description provided for @sensorHistory_belowMustBeLower.
+  ///
+  /// In en, this message translates to:
+  /// **'Must be lower than the upper limit'**
+  String get sensorHistory_belowMustBeLower;
+
+  /// No description provided for @sensorHistory_removeAlert.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get sensorHistory_removeAlert;
+
+  /// No description provided for @sensorHistory_alertTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sensor alert'**
+  String get sensorHistory_alertTitle;
+
+  /// No description provided for @sensorHistory_alertAbove.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}: {what} is {value}, above {limit}'**
+  String sensorHistory_alertAbove(
+    String name,
+    String what,
+    String value,
+    String limit,
+  );
+
+  /// No description provided for @sensorHistory_alertBelow.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}: {what} is {value}, below {limit}'**
+  String sensorHistory_alertBelow(
+    String name,
+    String what,
+    String value,
+    String limit,
+  );
+
+  /// No description provided for @sensorHistory_unknownNode.
+  ///
+  /// In en, this message translates to:
+  /// **'A sensor'**
+  String get sensorHistory_unknownNode;
 }
 
 class _AppLocalizationsDelegate

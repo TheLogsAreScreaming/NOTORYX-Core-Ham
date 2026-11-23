@@ -12491,4 +12491,107 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'Ihre Position ist noch unbekannt, daher können keine Entfernungsringe gezeichnet werden.';
+
+  @override
+  String get sensorHistory_title => 'Sensorverlauf';
+
+  @override
+  String get sensorHistory_menuHint =>
+      'Diagramme der letzten Stunde bis 24 h und Alarme';
+
+  @override
+  String get sensorHistory_readNow => 'Jetzt lesen';
+
+  @override
+  String get sensorHistory_window1h => '1 h';
+
+  @override
+  String get sensorHistory_window6h => '6 h';
+
+  @override
+  String get sensorHistory_window24h => '24 h';
+
+  @override
+  String get sensorHistory_empty =>
+      'Noch keine Werte. Tippe auf Jetzt lesen oder schalte Live-Updates bzw. automatisches Aktualisieren in der Telemetrie ein; jeder Wert bleibt hier einen Tag.';
+
+  @override
+  String sensorHistory_updated(String time) {
+    return 'Aktualisiert $time';
+  }
+
+  @override
+  String get sensorHistory_noneInWindow => 'Keine Werte in diesem Zeitraum.';
+
+  @override
+  String sensorHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Diagramm $metric, $count Werte, von $low bis $high';
+  }
+
+  @override
+  String get sensorHistory_noAlert => 'Kein Alarm';
+
+  @override
+  String sensorHistory_alertWhenAbove(String value) {
+    return 'Alarm über $value';
+  }
+
+  @override
+  String sensorHistory_alertWhenBelow(String value) {
+    return 'Alarm unter $value';
+  }
+
+  @override
+  String get sensorHistory_setAlert => 'Alarm…';
+
+  @override
+  String get sensorHistory_alertDialogTitle => 'Alarm für diesen Wert';
+
+  @override
+  String get sensorHistory_alertDialogHint =>
+      'Du bekommst eine Benachrichtigung, wenn ein neuer Wert eine Grenze überschreitet. Leere Felder werden nicht genutzt.';
+
+  @override
+  String get sensorHistory_above => 'Über';
+
+  @override
+  String get sensorHistory_below => 'Unter';
+
+  @override
+  String get sensorHistory_belowMustBeLower =>
+      'Muss unter der oberen Grenze liegen';
+
+  @override
+  String get sensorHistory_removeAlert => 'Entfernen';
+
+  @override
+  String get sensorHistory_alertTitle => 'Sensoralarm';
+
+  @override
+  String sensorHistory_alertAbove(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what ist $value, über $limit';
+  }
+
+  @override
+  String sensorHistory_alertBelow(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what ist $value, unter $limit';
+  }
+
+  @override
+  String get sensorHistory_unknownNode => 'Ein Sensor';
 }

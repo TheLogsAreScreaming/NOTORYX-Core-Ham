@@ -12522,4 +12522,107 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'Votre position est encore inconnue, les cercles de distance ne peuvent donc pas être tracés.';
+
+  @override
+  String get sensorHistory_title => 'Historique du capteur';
+
+  @override
+  String get sensorHistory_menuHint =>
+      'Graphiques de la dernière heure à la journée, et alertes';
+
+  @override
+  String get sensorHistory_readNow => 'Lire maintenant';
+
+  @override
+  String get sensorHistory_window1h => '1 h';
+
+  @override
+  String get sensorHistory_window6h => '6 h';
+
+  @override
+  String get sensorHistory_window24h => '24 h';
+
+  @override
+  String get sensorHistory_empty =>
+      'Aucune mesure pour l\'instant. Touchez Lire maintenant ou activez les mises à jour en direct ou l\'actualisation auto dans Télémétrie ; chaque mesure est gardée ici une journée.';
+
+  @override
+  String sensorHistory_updated(String time) {
+    return 'Mis à jour $time';
+  }
+
+  @override
+  String get sensorHistory_noneInWindow => 'Aucune mesure sur cette période.';
+
+  @override
+  String sensorHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Graphique $metric, $count mesures, de $low à $high';
+  }
+
+  @override
+  String get sensorHistory_noAlert => 'Pas d\'alerte';
+
+  @override
+  String sensorHistory_alertWhenAbove(String value) {
+    return 'Alerte au-dessus de $value';
+  }
+
+  @override
+  String sensorHistory_alertWhenBelow(String value) {
+    return 'Alerte en dessous de $value';
+  }
+
+  @override
+  String get sensorHistory_setAlert => 'Alerte…';
+
+  @override
+  String get sensorHistory_alertDialogTitle => 'Alerte sur cette valeur';
+
+  @override
+  String get sensorHistory_alertDialogHint =>
+      'Vous recevez une notification quand une nouvelle mesure franchit une limite. Laissez un champ vide pour ne pas l\'utiliser.';
+
+  @override
+  String get sensorHistory_above => 'Au-dessus de';
+
+  @override
+  String get sensorHistory_below => 'En dessous de';
+
+  @override
+  String get sensorHistory_belowMustBeLower =>
+      'Doit être inférieur à la limite haute';
+
+  @override
+  String get sensorHistory_removeAlert => 'Supprimer';
+
+  @override
+  String get sensorHistory_alertTitle => 'Alerte capteur';
+
+  @override
+  String sensorHistory_alertAbove(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name : $what vaut $value, au-dessus de $limit';
+  }
+
+  @override
+  String sensorHistory_alertBelow(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name : $what vaut $value, en dessous de $limit';
+  }
+
+  @override
+  String get sensorHistory_unknownNode => 'Un capteur';
 }
