@@ -7685,11 +7685,29 @@
   "stale_settingHint": "Contacts and repeaters not heard for this long are marked stale in the list and faded on the map.",
   "stale_off": "Off",
   "stale_hours": "{count, plural, other{{count} h}}",
-  "@stale_hours": {"placeholders": {"count": {"type": "int"}}},
+  "@stale_hours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "stale_days": "{count, plural, =1{1 day} other{{count} days}}",
-  "@stale_days": {"placeholders": {"count": {"type": "int"}}},
+  "@stale_days": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "stale_badge": "stale · {age}",
-  "@stale_badge": {"placeholders": {"age": {"type": "String"}}},
+  "@stale_badge": {
+    "placeholders": {
+      "age": {
+        "type": "String"
+      }
+    }
+  },
   "rangeRings_toggle": "Range rings",
   "rangeRings_hint": "Distance rings around your position, sized to the view",
   "rangeRings_noPosition": "Your position isn't known yet, so range rings can't be drawn.",
@@ -8017,9 +8035,18 @@
   "coverageHex_eraseUploads": "Erase my uploads",
   "coverageHex_eraseConfirm": "Delete everything this phone uploaded to the NOTORYX coverage map? This can't be undone.",
   "coverageHex_erased": "Erased {count} readings from the map.",
-  "@coverageHex_erased": {"placeholders": {"count": {"type": "String"}}},
+  "@coverageHex_erased": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
   "coverageHex_eraseFailed": "Couldn't erase. Check your connection and try again.",
   "coverageHex_openMap": "Open the coverage map",
   "coverageHex_trimDrives": "Hide the start and end of each drive",
-  "coverageHex_trimDrivesHint": "The first and last 2 hexagons of every mapping session stay on this phone, so maps can't show where you live or park."
+  "coverageHex_trimDrivesHint": "The first and last 2 hexagons of every mapping session stay on this phone, so maps can't show where you live or park.",
+  "appSettings_resetRoutingToDefault": "Reset Routing Algorithm to Default",
+  "appSettings_resetRoutingToDefaultSubtitle": "Restore routing algorithm settings to factory defaults",
+  "appSettings_routingResetToDefault": "Routing algorithm settings reset to default"
 }

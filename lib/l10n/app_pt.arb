@@ -4846,5 +4846,8 @@
   "coverageHex_eraseFailed": "Não foi possível apagar. Verifique a ligação e tente novamente.",
   "coverageHex_openMap": "Abrir o mapa de cobertura",
   "coverageHex_trimDrives": "Ocultar o início e o fim de cada percurso",
-  "coverageHex_trimDrivesHint": "Os primeiros e últimos 2 hexágonos de cada sessão ficam neste telemóvel, para que os mapas não mostrem onde vive ou estaciona."
+  "coverageHex_trimDrivesHint": "Os primeiros e últimos 2 hexágonos de cada sessão ficam neste telemóvel, para que os mapas não mostrem onde vive ou estaciona.",
+  "appSettings_resetRoutingToDefault": "Redefinir algoritmo de roteamento para o padrão",
+  "appSettings_resetRoutingToDefaultSubtitle": "Restaurar as configurações do algoritmo de roteamento para os valores padrão de fábrica",
+  "appSettings_routingResetToDefault": "Configurações do algoritmo de roteamento redefinidas para o padrão"
 }

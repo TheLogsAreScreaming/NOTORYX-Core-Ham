@@ -4980,5 +4980,8 @@
   "coverageHex_eraseFailed": "Impossibile cancellare. Controlla la connessione e riprova.",
   "coverageHex_openMap": "Apri la mappa di copertura",
   "coverageHex_trimDrives": "Nascondi inizio e fine di ogni percorso",
-  "coverageHex_trimDrivesHint": "I primi e gli ultimi 2 esagoni di ogni sessione restano su questo telefono, così le mappe non mostrano dove abiti o parcheggi."
+  "coverageHex_trimDrivesHint": "I primi e gli ultimi 2 esagoni di ogni sessione restano su questo telefono, così le mappe non mostrano dove abiti o parcheggi.",
+  "appSettings_resetRoutingToDefault": "Reimposta algoritmo di instradamento sui valori predefiniti",
+  "appSettings_resetRoutingToDefaultSubtitle": "Ripristina le impostazioni dell'algoritmo di instradamento ai valori predefiniti di fabbrica",
+  "appSettings_routingResetToDefault": "Impostazioni algoritmo di instradamento reimpostate sui valori predefiniti"
 }

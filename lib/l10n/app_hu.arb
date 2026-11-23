@@ -4884,5 +4884,8 @@
   "coverageHex_eraseFailed": "A törlés nem sikerült. Ellenőrizd a kapcsolatot, és próbáld újra.",
   "coverageHex_openMap": "Lefedettségi térkép megnyitása",
   "coverageHex_trimDrives": "Minden út elejének és végének elrejtése",
-  "coverageHex_trimDrivesHint": "Minden térképezés első és utolsó 2 hatszöge ezen a telefonon marad, így a térképek nem mutatják, hol laksz vagy parkolsz."
+  "coverageHex_trimDrivesHint": "Minden térképezés első és utolsó 2 hatszöge ezen a telefonon marad, így a térképek nem mutatják, hol laksz vagy parkolsz.",
+  "appSettings_resetRoutingToDefault": "Útvonaltervezési algoritmus visszaállítása alapértelmezettre",
+  "appSettings_resetRoutingToDefaultSubtitle": "Útvonaltervezési algoritmus beállításainak visszaállítása gyári alapértelmezett értékekre",
+  "appSettings_routingResetToDefault": "Útvonaltervezési algoritmus beállításai visszaállítva alapértelmezettre"
 }

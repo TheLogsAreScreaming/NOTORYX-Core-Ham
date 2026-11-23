@@ -4980,5 +4980,8 @@
   "coverageHex_eraseFailed": "삭제하지 못했습니다. 연결을 확인하고 다시 시도하세요.",
   "coverageHex_openMap": "커버리지 지도 열기",
   "coverageHex_trimDrives": "각 주행의 시작과 끝 숨기기",
-  "coverageHex_trimDrivesHint": "매핑 세션마다 처음과 마지막 2개의 육각형은 이 휴대폰에만 남으므로 지도에 사는 곳이나 주차 위치가 나타나지 않습니다."
+  "coverageHex_trimDrivesHint": "매핑 세션마다 처음과 마지막 2개의 육각형은 이 휴대폰에만 남으므로 지도에 사는 곳이나 주차 위치가 나타나지 않습니다.",
+  "appSettings_resetRoutingToDefault": "라우팅 알고리즘 기본값으로 재설정",
+  "appSettings_resetRoutingToDefaultSubtitle": "라우팅 알고리즘 설정을 공장 기본값으로 복원",
+  "appSettings_routingResetToDefault": "라우팅 알고리즘 설정이 기본값으로 재설정되었습니다"
 }

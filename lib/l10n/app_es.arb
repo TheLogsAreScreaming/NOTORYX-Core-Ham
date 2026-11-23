@@ -4980,5 +4980,8 @@
   "coverageHex_eraseFailed": "No se pudo borrar. Comprueba la conexión e inténtalo de nuevo.",
   "coverageHex_openMap": "Abrir el mapa de cobertura",
   "coverageHex_trimDrives": "Ocultar el inicio y el final de cada trayecto",
-  "coverageHex_trimDrivesHint": "Los 2 primeros y 2 últimos hexágonos de cada sesión se quedan en este teléfono, para que los mapas no muestren dónde vives o aparcas."
+  "coverageHex_trimDrivesHint": "Los 2 primeros y 2 últimos hexágonos de cada sesión se quedan en este teléfono, para que los mapas no muestren dónde vives o aparcas.",
+  "appSettings_resetRoutingToDefault": "Restablecer algoritmo de enrutamiento a predeterminado",
+  "appSettings_resetRoutingToDefaultSubtitle": "Restaurar la configuración del algoritmo de enrutamiento a los valores predeterminados de fábrica",
+  "appSettings_routingResetToDefault": "Configuración del algoritmo de enrutamiento restablecida a predeterminado"
 }

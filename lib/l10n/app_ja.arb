@@ -4980,5 +4980,8 @@
   "coverageHex_eraseFailed": "消去できませんでした。接続を確認して、もう一度お試しください。",
   "coverageHex_openMap": "カバレッジマップを開く",
   "coverageHex_trimDrives": "各移動の開始と終了を隠す",
-  "coverageHex_trimDrivesHint": "各マッピングの最初と最後の 2 つの六角形はこの電話に残るため、マップに自宅や駐車場所が表示されません。"
+  "coverageHex_trimDrivesHint": "各マッピングの最初と最後の 2 つの六角形はこの電話に残るため、マップに自宅や駐車場所が表示されません。",
+  "appSettings_resetRoutingToDefault": "ルーティングアルゴリズムをデフォルトにリセット",
+  "appSettings_resetRoutingToDefaultSubtitle": "ルーティングアルゴリズムの設定を工場出荷時のデフォルトに戻す",
+  "appSettings_routingResetToDefault": "ルーティングアルゴリズムの設定がデフォルトにリセットされました"
 }

@@ -4846,5 +4846,8 @@
   "coverageHex_eraseFailed": "Det gick inte att radera. Kontrollera anslutningen och försök igen.",
   "coverageHex_openMap": "Öppna täckningskartan",
   "coverageHex_trimDrives": "Dölj början och slutet av varje tur",
-  "coverageHex_trimDrivesHint": "De första och sista 2 hexagonerna i varje kartläggning stannar på telefonen, så kartor kan inte visa var du bor eller parkerar."
+  "coverageHex_trimDrivesHint": "De första och sista 2 hexagonerna i varje kartläggning stannar på telefonen, så kartor kan inte visa var du bor eller parkerar.",
+  "appSettings_resetRoutingToDefault": "Återställ rutningsalgoritm till standard",
+  "appSettings_resetRoutingToDefaultSubtitle": "Återställ rutningsalgoritmins inställningar till fabriksstandard",
+  "appSettings_routingResetToDefault": "Rutningsalgoritmins inställningar återställda till standard"
 }

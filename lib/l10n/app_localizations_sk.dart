@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12866,4 +12867,16 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get coverageHex_trimDrivesHint =>
       'Prvé a posledné 2 šesťuholníky každej relácie zostanú v tomto telefóne, takže mapy neukážu, kde bývate alebo parkujete.';
+
+  @override
+  String get appSettings_resetRoutingToDefault =>
+      'Obnoviť algoritmus smerovania na predvolené';
+
+  @override
+  String get appSettings_resetRoutingToDefaultSubtitle =>
+      'Obnoviť nastavenia algoritmu smerovania na továrne predvolené hodnoty';
+
+  @override
+  String get appSettings_routingResetToDefault =>
+      'Nastavenia algoritmu smerovania obnovené na predvolené';
 }

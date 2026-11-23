@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12933,4 +12934,16 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get coverageHex_trimDrivesHint =>
       'Pierwsze i ostatnie 2 sześciokąty każdej sesji zostają w tym telefonie, więc mapy nie pokażą, gdzie mieszkasz lub parkujesz.';
+
+  @override
+  String get appSettings_resetRoutingToDefault =>
+      'Resetuj algorytm trasowania do domyślnych';
+
+  @override
+  String get appSettings_resetRoutingToDefaultSubtitle =>
+      'Przywróć ustawienia algorytmu trasowania do fabrycznych ustawień domyślnych';
+
+  @override
+  String get appSettings_routingResetToDefault =>
+      'Ustawienia algorytmu trasowania zresetowane do domyślnych';
 }

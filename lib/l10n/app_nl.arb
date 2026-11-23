@@ -4846,5 +4846,8 @@
   "coverageHex_eraseFailed": "Wissen mislukt. Controleer je verbinding en probeer het opnieuw.",
   "coverageHex_openMap": "Dekkingskaart openen",
   "coverageHex_trimDrives": "Begin en einde van elke rit verbergen",
-  "coverageHex_trimDrivesHint": "De eerste en laatste 2 zeshoeken van elke sessie blijven op deze telefoon, zodat kaarten niet tonen waar je woont of parkeert."
+  "coverageHex_trimDrivesHint": "De eerste en laatste 2 zeshoeken van elke sessie blijven op deze telefoon, zodat kaarten niet tonen waar je woont of parkeert.",
+  "appSettings_resetRoutingToDefault": "Routeringsalgoritme resetten naar standaard",
+  "appSettings_resetRoutingToDefaultSubtitle": "Routeringsalgoritme-instellingen herstellen naar fabrieksstandaardwaarden",
+  "appSettings_routingResetToDefault": "Routeringsalgoritme-instellingen gereset naar standaard"
 }

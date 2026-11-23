@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12758,4 +12759,16 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get coverageHex_trimDrivesHint =>
       'The first and last 2 hexagons of every mapping session stay on this phone, so maps can\'t show where you live or park.';
+
+  @override
+  String get appSettings_resetRoutingToDefault =>
+      'Reset Routing Algorithm to Default';
+
+  @override
+  String get appSettings_resetRoutingToDefaultSubtitle =>
+      'Restore routing algorithm settings to factory defaults';
+
+  @override
+  String get appSettings_routingResetToDefault =>
+      'Routing algorithm settings reset to default';
 }

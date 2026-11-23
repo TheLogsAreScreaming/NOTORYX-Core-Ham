@@ -4980,5 +4980,8 @@
   "coverageHex_eraseFailed": "Löschen fehlgeschlagen. Prüfe deine Verbindung und versuche es erneut.",
   "coverageHex_openMap": "Abdeckungskarte öffnen",
   "coverageHex_trimDrives": "Anfang und Ende jeder Fahrt verbergen",
-  "coverageHex_trimDrivesHint": "Die ersten und letzten 2 Sechsecke jeder Kartierung bleiben auf diesem Telefon, damit Karten nicht zeigen, wo du wohnst oder parkst."
+  "coverageHex_trimDrivesHint": "Die ersten und letzten 2 Sechsecke jeder Kartierung bleiben auf diesem Telefon, damit Karten nicht zeigen, wo du wohnst oder parkst.",
+  "appSettings_resetRoutingToDefault": "Routing-Algorithmus auf Standard zurücksetzen",
+  "appSettings_resetRoutingToDefaultSubtitle": "Routing-Algorithmus-Einstellungen auf Werkseinstellungen zurücksetzen",
+  "appSettings_routingResetToDefault": "Routing-Algorithmus-Einstellungen auf Standard zurückgesetzt"
 }

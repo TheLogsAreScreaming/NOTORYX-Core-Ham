@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12805,4 +12806,16 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get coverageHex_trimDrivesHint =>
       'De första och sista 2 hexagonerna i varje kartläggning stannar på telefonen, så kartor kan inte visa var du bor eller parkerar.';
+
+  @override
+  String get appSettings_resetRoutingToDefault =>
+      'Återställ rutningsalgoritm till standard';
+
+  @override
+  String get appSettings_resetRoutingToDefaultSubtitle =>
+      'Återställ rutningsalgoritmins inställningar till fabriksstandard';
+
+  @override
+  String get appSettings_routingResetToDefault =>
+      'Rutningsalgoritmins inställningar återställda till standard';
 }

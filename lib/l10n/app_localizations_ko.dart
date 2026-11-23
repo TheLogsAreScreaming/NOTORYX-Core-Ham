@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12329,4 +12330,14 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get coverageHex_trimDrivesHint =>
       '매핑 세션마다 처음과 마지막 2개의 육각형은 이 휴대폰에만 남으므로 지도에 사는 곳이나 주차 위치가 나타나지 않습니다.';
+
+  @override
+  String get appSettings_resetRoutingToDefault => '라우팅 알고리즘 기본값으로 재설정';
+
+  @override
+  String get appSettings_resetRoutingToDefaultSubtitle =>
+      '라우팅 알고리즘 설정을 공장 기본값으로 복원';
+
+  @override
+  String get appSettings_routingResetToDefault => '라우팅 알고리즘 설정이 기본값으로 재설정되었습니다';
 }

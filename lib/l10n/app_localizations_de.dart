@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -5500,8 +5501,7 @@ class AppLocalizationsDe extends AppLocalizations {
       locale: localeName,
       other:
           '$count Sprünge haben keinen Standort - der angezeigte Pfad ist unvollständig',
-      one:
-          '1 Sprung hat keinen Standort - der angezeigte Pfad ist unvollständig',
+      one: '1 Sprung hat keinen Standort - der angezeigte Pfad ist unvollständig',
     );
     return '$_temp0';
   }
@@ -12910,4 +12910,16 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get coverageHex_trimDrivesHint =>
       'Die ersten und letzten 2 Sechsecke jeder Kartierung bleiben auf diesem Telefon, damit Karten nicht zeigen, wo du wohnst oder parkst.';
+
+  @override
+  String get appSettings_resetRoutingToDefault =>
+      'Routing-Algorithmus auf Standard zurücksetzen';
+
+  @override
+  String get appSettings_resetRoutingToDefaultSubtitle =>
+      'Routing-Algorithmus-Einstellungen auf Werkseinstellungen zurücksetzen';
+
+  @override
+  String get appSettings_routingResetToDefault =>
+      'Routing-Algorithmus-Einstellungen auf Standard zurückgesetzt';
 }

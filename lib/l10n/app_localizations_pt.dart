@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12882,4 +12883,16 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get coverageHex_trimDrivesHint =>
       'Os primeiros e últimos 2 hexágonos de cada sessão ficam neste telemóvel, para que os mapas não mostrem onde vive ou estaciona.';
+
+  @override
+  String get appSettings_resetRoutingToDefault =>
+      'Redefinir algoritmo de roteamento para o padrão';
+
+  @override
+  String get appSettings_resetRoutingToDefaultSubtitle =>
+      'Restaurar as configurações do algoritmo de roteamento para os valores padrão de fábrica';
+
+  @override
+  String get appSettings_routingResetToDefault =>
+      'Configurações do algoritmo de roteamento redefinidas para o padrão';
 }

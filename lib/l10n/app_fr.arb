@@ -4980,5 +4980,8 @@
   "coverageHex_eraseFailed": "Effacement impossible. Vérifiez votre connexion et réessayez.",
   "coverageHex_openMap": "Ouvrir la carte de couverture",
   "coverageHex_trimDrives": "Masquer le début et la fin de chaque trajet",
-  "coverageHex_trimDrivesHint": "Les 2 premiers et 2 derniers hexagones de chaque session restent sur ce téléphone, pour que les cartes ne montrent pas où vous habitez ou vous garez."
+  "coverageHex_trimDrivesHint": "Les 2 premiers et 2 derniers hexagones de chaque session restent sur ce téléphone, pour que les cartes ne montrent pas où vous habitez ou vous garez.",
+  "appSettings_resetRoutingToDefault": "Réinitialiser l'algorithme de routage",
+  "appSettings_resetRoutingToDefaultSubtitle": "Restaurer les paramètres de l'algorithme de routage aux valeurs par défaut",
+  "appSettings_routingResetToDefault": "Paramètres de l'algorithme de routage réinitialisés"
 }

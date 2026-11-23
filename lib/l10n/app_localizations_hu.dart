@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12876,4 +12877,16 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get coverageHex_trimDrivesHint =>
       'Minden térképezés első és utolsó 2 hatszöge ezen a telefonon marad, így a térképek nem mutatják, hol laksz vagy parkolsz.';
+
+  @override
+  String get appSettings_resetRoutingToDefault =>
+      'Útvonaltervezési algoritmus visszaállítása alapértelmezettre';
+
+  @override
+  String get appSettings_resetRoutingToDefaultSubtitle =>
+      'Útvonaltervezési algoritmus beállításainak visszaállítása gyári alapértelmezett értékekre';
+
+  @override
+  String get appSettings_routingResetToDefault =>
+      'Útvonaltervezési algoritmus beállításai visszaállítva alapértelmezettre';
 }

@@ -4884,5 +4884,8 @@
   "coverageHex_eraseFailed": "Nie udało się usunąć. Sprawdź połączenie i spróbuj ponownie.",
   "coverageHex_openMap": "Otwórz mapę zasięgu",
   "coverageHex_trimDrives": "Ukrywaj początek i koniec każdej trasy",
-  "coverageHex_trimDrivesHint": "Pierwsze i ostatnie 2 sześciokąty każdej sesji zostają w tym telefonie, więc mapy nie pokażą, gdzie mieszkasz lub parkujesz."
+  "coverageHex_trimDrivesHint": "Pierwsze i ostatnie 2 sześciokąty każdej sesji zostają w tym telefonie, więc mapy nie pokażą, gdzie mieszkasz lub parkujesz.",
+  "appSettings_resetRoutingToDefault": "Resetuj algorytm trasowania do domyślnych",
+  "appSettings_resetRoutingToDefaultSubtitle": "Przywróć ustawienia algorytmu trasowania do fabrycznych ustawień domyślnych",
+  "appSettings_routingResetToDefault": "Ustawienia algorytmu trasowania zresetowane do domyślnych"
 }

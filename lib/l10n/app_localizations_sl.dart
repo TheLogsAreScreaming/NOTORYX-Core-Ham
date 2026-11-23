@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -10986,8 +10987,7 @@ class AppLocalizationsSl extends AppLocalizations {
           'V zadnjih 10 minutah je bilo tu slišanih $count okvirjev običajnega MeshCore',
       few:
           'V zadnjih 10 minutah so bili tu slišani $count okvirji običajnega MeshCore',
-      two:
-          'V zadnjih 10 minutah sta bila tu slišana 2 okvira običajnega MeshCore',
+      two: 'V zadnjih 10 minutah sta bila tu slišana 2 okvira običajnega MeshCore',
       one: 'V zadnjih 10 minutah je bil tu slišan 1 okvir običajnega MeshCore',
     );
     return '$_temp0';
@@ -12894,4 +12894,16 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get coverageHex_trimDrivesHint =>
       'Prva in zadnja 2 šestkotnika vsake seje ostaneta v tem telefonu, zato zemljevidi ne pokažejo, kje živite ali parkirate.';
+
+  @override
+  String get appSettings_resetRoutingToDefault =>
+      'Ponastavite algoritem usmerjanja na privzeto';
+
+  @override
+  String get appSettings_resetRoutingToDefaultSubtitle =>
+      'Obnovite nastavitve algoritma usmerjanja na tovarniške privzetke';
+
+  @override
+  String get appSettings_routingResetToDefault =>
+      'Nastavitve algoritma usmerjanja so ponastavljene na privzeto';
 }

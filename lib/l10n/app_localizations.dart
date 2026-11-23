@@ -21254,6 +21254,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The first and last 2 hexagons of every mapping session stay on this phone, so maps can\'t show where you live or park.'**
   String get coverageHex_trimDrivesHint;
+
+  /// No description provided for @appSettings_resetRoutingToDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Routing Algorithm to Default'**
+  String get appSettings_resetRoutingToDefault;
+
+  /// No description provided for @appSettings_resetRoutingToDefaultSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore routing algorithm settings to factory defaults'**
+  String get appSettings_resetRoutingToDefaultSubtitle;
+
+  /// No description provided for @appSettings_routingResetToDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'Routing algorithm settings reset to default'**
+  String get appSettings_routingResetToDefault;
 }
 
 class _AppLocalizationsDelegate

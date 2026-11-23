@@ -4846,5 +4846,8 @@
   "coverageHex_eraseFailed": "Brisanje ni uspelo. Preverite povezavo in poskusite znova.",
   "coverageHex_openMap": "Odpri zemljevid pokritosti",
   "coverageHex_trimDrives": "Skrij začetek in konec vsake vožnje",
-  "coverageHex_trimDrivesHint": "Prva in zadnja 2 šestkotnika vsake seje ostaneta v tem telefonu, zato zemljevidi ne pokažejo, kje živite ali parkirate."
+  "coverageHex_trimDrivesHint": "Prva in zadnja 2 šestkotnika vsake seje ostaneta v tem telefonu, zato zemljevidi ne pokažejo, kje živite ali parkirate.",
+  "appSettings_resetRoutingToDefault": "Ponastavite algoritem usmerjanja na privzeto",
+  "appSettings_resetRoutingToDefaultSubtitle": "Obnovite nastavitve algoritma usmerjanja na tovarniške privzetke",
+  "appSettings_routingResetToDefault": "Nastavitve algoritma usmerjanja so ponastavljene na privzeto"
 }

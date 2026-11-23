@@ -4846,5 +4846,8 @@
   "coverageHex_eraseFailed": "Vymazanie zlyhalo. Skontrolujte pripojenie a skúste to znova.",
   "coverageHex_openMap": "Otvoriť mapu pokrytia",
   "coverageHex_trimDrives": "Skryť začiatok a koniec každej jazdy",
-  "coverageHex_trimDrivesHint": "Prvé a posledné 2 šesťuholníky každej relácie zostanú v tomto telefóne, takže mapy neukážu, kde bývate alebo parkujete."
+  "coverageHex_trimDrivesHint": "Prvé a posledné 2 šesťuholníky každej relácie zostanú v tomto telefóne, takže mapy neukážu, kde bývate alebo parkujete.",
+  "appSettings_resetRoutingToDefault": "Obnoviť algoritmus smerovania na predvolené",
+  "appSettings_resetRoutingToDefaultSubtitle": "Obnoviť nastavenia algoritmu smerovania na továrne predvolené hodnoty",
+  "appSettings_routingResetToDefault": "Nastavenia algoritmu smerovania obnovené na predvolené"
 }

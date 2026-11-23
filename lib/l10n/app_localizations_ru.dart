@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12935,4 +12936,16 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get coverageHex_trimDrivesHint =>
       'Первые и последние 2 шестиугольника каждой сессии остаются на телефоне, поэтому карты не покажут, где вы живёте или паркуетесь.';
+
+  @override
+  String get appSettings_resetRoutingToDefault =>
+      'Сбросить алгоритм маршрутизации к значению по умолчанию';
+
+  @override
+  String get appSettings_resetRoutingToDefaultSubtitle =>
+      'Восстановить настройки алгоритма маршрутизации к заводским значениям по умолчанию';
+
+  @override
+  String get appSettings_routingResetToDefault =>
+      'Настройки алгоритма маршрутизации сброшены к значению по умолчанию';
 }

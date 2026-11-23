@@ -4851,5 +4851,8 @@
   "coverageHex_eraseFailed": "无法删除。请检查网络连接后重试。",
   "coverageHex_openMap": "打开覆盖地图",
   "coverageHex_trimDrives": "隐藏每次行程的起点和终点",
-  "coverageHex_trimDrivesHint": "每次测绘的前 2 个和最后 2 个六边形只保留在此手机上，因此地图不会显示你住在哪里或停车的位置。"
+  "coverageHex_trimDrivesHint": "每次测绘的前 2 个和最后 2 个六边形只保留在此手机上，因此地图不会显示你住在哪里或停车的位置。",
+  "appSettings_resetRoutingToDefault": "将路由算法重置为默认值",
+  "appSettings_resetRoutingToDefaultSubtitle": "将路由算法设置恢复为出厂默认值",
+  "appSettings_routingResetToDefault": "路由算法设置已重置为默认值"
 }

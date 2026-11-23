@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12082,4 +12083,13 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get coverageHex_trimDrivesHint =>
       '每次测绘的前 2 个和最后 2 个六边形只保留在此手机上，因此地图不会显示你住在哪里或停车的位置。';
+
+  @override
+  String get appSettings_resetRoutingToDefault => '将路由算法重置为默认值';
+
+  @override
+  String get appSettings_resetRoutingToDefaultSubtitle => '将路由算法设置恢复为出厂默认值';
+
+  @override
+  String get appSettings_routingResetToDefault => '路由算法设置已重置为默认值';
 }
