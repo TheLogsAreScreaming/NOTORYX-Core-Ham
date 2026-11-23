@@ -12524,6 +12524,72 @@ class AppLocalizationsFr extends AppLocalizations {
       'Votre position est encore inconnue, les cercles de distance ne peuvent donc pas être tracés.';
 
   @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count canaux de la radio diffèrent de l\'appli',
+      one: '1 canal de la radio diffère de l\'appli',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Vérifier';
+
+  @override
+  String get channelConflict_title => 'Différences de canaux';
+
+  @override
+  String get channelConflict_hint =>
+      'La radio contient un nom ou une clé différents de ceux enregistrés par l\'appli dans ces emplacements. Quelqu\'un les a peut-être changés avec une autre appli, ou la copie de l\'appli est ancienne. Choisissez la version à garder pour chaque emplacement.';
+
+  @override
+  String get channelConflict_allResolved =>
+      'Tous les emplacements correspondent maintenant.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'Emplacement $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'Sur la radio';
+
+  @override
+  String get channelConflict_inApp => 'Enregistré dans l\'appli';
+
+  @override
+  String get channelConflict_empty => 'Vide';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'clé $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'Nom différent';
+
+  @override
+  String get channelConflict_keyDiffers => 'Clé différente';
+
+  @override
+  String get channelConflict_keepRadio => 'Garder celle de la radio';
+
+  @override
+  String get channelConflict_useApp => 'Écrire celle de l\'appli';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'Version de la radio gardée pour l\'emplacement $index';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'Version de l\'appli écrite dans l\'emplacement $index';
+  }
+
+  @override
   String get history_window24h => '24 h';
 
   @override

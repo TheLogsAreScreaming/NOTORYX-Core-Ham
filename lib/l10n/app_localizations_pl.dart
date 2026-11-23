@@ -12524,6 +12524,71 @@ class AppLocalizationsPl extends AppLocalizations {
       'Twoja pozycja nie jest jeszcze znana, więc nie można narysować pierścieni odległości.';
 
   @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Kanały w radiu różniące się od aplikacji: $count',
+      one: '1 kanał w radiu różni się od aplikacji',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Przejrzyj';
+
+  @override
+  String get channelConflict_title => 'Różnice kanałów';
+
+  @override
+  String get channelConflict_hint =>
+      'Radio ma w tych slotach inną nazwę lub klucz niż zapisała aplikacja. Ktoś mógł je zmienić inną aplikacją albo kopia w aplikacji jest stara. Wybierz, którą wersję zachować dla każdego slotu.';
+
+  @override
+  String get channelConflict_allResolved => 'Wszystkie sloty są teraz zgodne.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'Slot $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'W radiu';
+
+  @override
+  String get channelConflict_inApp => 'Zapisane w aplikacji';
+
+  @override
+  String get channelConflict_empty => 'Pusty';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'klucz $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'Inna nazwa';
+
+  @override
+  String get channelConflict_keyDiffers => 'Inny klucz';
+
+  @override
+  String get channelConflict_keepRadio => 'Zachowaj z radia';
+
+  @override
+  String get channelConflict_useApp => 'Zapisz z aplikacji';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'Zachowano wersję z radia w slocie $index';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'Zapisano wersję z aplikacji w slocie $index';
+  }
+
+  @override
   String get history_window24h => '24 godz.';
 
   @override

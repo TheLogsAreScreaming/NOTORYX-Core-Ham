@@ -12389,6 +12389,71 @@ class AppLocalizationsSv extends AppLocalizations {
       'Din position är inte känd än, så avståndsringar kan inte ritas.';
 
   @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count kanaler i radion skiljer sig från appen',
+      one: '1 kanal i radion skiljer sig från appen',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Granska';
+
+  @override
+  String get channelConflict_title => 'Kanalskillnader';
+
+  @override
+  String get channelConflict_hint =>
+      'Radion har ett annat namn eller en annan nyckel i dessa platser än appen sparade. Någon kan ha ändrat dem med en annan app, eller så är appens kopia gammal. Välj vilken version som ska behållas för varje plats.';
+
+  @override
+  String get channelConflict_allResolved => 'Alla platser stämmer nu.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'Plats $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'I radion';
+
+  @override
+  String get channelConflict_inApp => 'Sparad i appen';
+
+  @override
+  String get channelConflict_empty => 'Tom';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'nyckel $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'Namnet skiljer sig';
+
+  @override
+  String get channelConflict_keyDiffers => 'Nyckeln skiljer sig';
+
+  @override
+  String get channelConflict_keepRadio => 'Behåll radions';
+
+  @override
+  String get channelConflict_useApp => 'Skriv appens till radion';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'Behöll radions version på plats $index';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'Skrev appens version till plats $index';
+  }
+
+  @override
   String get history_window24h => '24 h';
 
   @override

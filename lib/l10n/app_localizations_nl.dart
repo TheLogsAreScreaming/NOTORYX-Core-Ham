@@ -12438,6 +12438,71 @@ class AppLocalizationsNl extends AppLocalizations {
       'Je positie is nog niet bekend, dus afstandsringen kunnen niet getekend worden.';
 
   @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count kanalen op de radio wijken af van de app',
+      one: '1 kanaal op de radio wijkt af van de app',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Bekijken';
+
+  @override
+  String get channelConflict_title => 'Kanaalverschillen';
+
+  @override
+  String get channelConflict_hint =>
+      'De radio heeft in deze plaatsen een andere naam of sleutel dan de app heeft opgeslagen. Iemand heeft ze misschien met een andere app gewijzigd, of de kopie van de app is oud. Kies per plaats welke versie blijft.';
+
+  @override
+  String get channelConflict_allResolved => 'Alle plaatsen komen nu overeen.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'Plaats $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'Op de radio';
+
+  @override
+  String get channelConflict_inApp => 'Opgeslagen in de app';
+
+  @override
+  String get channelConflict_empty => 'Leeg';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'sleutel $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'Naam wijkt af';
+
+  @override
+  String get channelConflict_keyDiffers => 'Sleutel wijkt af';
+
+  @override
+  String get channelConflict_keepRadio => 'Die van de radio houden';
+
+  @override
+  String get channelConflict_useApp => 'Die van de app schrijven';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'Versie van de radio behouden in plaats $index';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'Versie van de app geschreven naar plaats $index';
+  }
+
+  @override
   String get history_window24h => '24 h';
 
   @override

@@ -1,3 +1,6 @@
+import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'message_db_stub.dart'
     if (dart.library.ffi) 'message_db_native.dart'
     as impl;
@@ -35,6 +38,23 @@ typedef ConversationRows = ({
 abstract class MessageDb {
   /// The preference asking for an encrypted database; applied at startup.
   static const encryptPrefKey = 'message_db_encrypt';
+
+  /// Whether the database should be encrypted. Someone who turned the
+  /// switch off keeps it off; otherwise phones and Macs encrypt by default,
+  /// so an existing plain history is converted once on the next start.
+  /// Elsewhere the platform's key storage isn't dependable, so it stays a
+  /// choice there.
+  static bool wantsEncryption(
+    SharedPreferences prefs, {
+    TargetPlatform? platform,
+  }) =>
+      prefs.getBool(encryptPrefKey) ??
+      switch (platform ?? defaultTargetPlatform) {
+        TargetPlatform.android ||
+        TargetPlatform.iOS ||
+        TargetPlatform.macOS => !kIsWeb,
+        _ => false,
+      };
 
   /// What the last open actually achieved.
   static MessageDbEncryption encryptionState = MessageDbEncryption.off;

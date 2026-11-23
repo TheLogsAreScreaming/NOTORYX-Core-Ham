@@ -12468,6 +12468,71 @@ class AppLocalizationsBg extends AppLocalizations {
       'Позицията ви още не е известна, затова кръговете на разстояние не могат да се начертаят.';
 
   @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count канала в радиото се различават от приложението',
+      one: '1 канал в радиото се различава от приложението',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Преглед';
+
+  @override
+  String get channelConflict_title => 'Разлики в каналите';
+
+  @override
+  String get channelConflict_hint =>
+      'Радиото пази различно име или ключ в тези слотове от запазеното в приложението. Може някой да ги е сменил с друго приложение или копието в приложението е старо. Изберете коя версия да остане за всеки слот.';
+
+  @override
+  String get channelConflict_allResolved => 'Всички слотове вече съвпадат.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'Слот $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'В радиото';
+
+  @override
+  String get channelConflict_inApp => 'Запазено в приложението';
+
+  @override
+  String get channelConflict_empty => 'Празно';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'ключ $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'Името се различава';
+
+  @override
+  String get channelConflict_keyDiffers => 'Ключът се различава';
+
+  @override
+  String get channelConflict_keepRadio => 'Запази от радиото';
+
+  @override
+  String get channelConflict_useApp => 'Запиши от приложението';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'Запазена е версията на радиото в слот $index';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'Версията на приложението е записана в слот $index';
+  }
+
+  @override
   String get history_window24h => '24 ч';
 
   @override

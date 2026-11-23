@@ -20635,6 +20635,102 @@ abstract class AppLocalizations {
   /// **'Your position isn\'t known yet, so range rings can\'t be drawn.'**
   String get rangeRings_noPosition;
 
+  /// No description provided for @channelConflict_banner.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 channel on the radio differs from the app} other{{count} channels on the radio differ from the app}}'**
+  String channelConflict_banner(int count);
+
+  /// No description provided for @channelConflict_review.
+  ///
+  /// In en, this message translates to:
+  /// **'Review'**
+  String get channelConflict_review;
+
+  /// No description provided for @channelConflict_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Channel differences'**
+  String get channelConflict_title;
+
+  /// No description provided for @channelConflict_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'The radio holds a different name or key in these slots than the app saved. Someone may have changed them with another app, or the app\'s copy is old. Choose which version to keep for each slot.'**
+  String get channelConflict_hint;
+
+  /// No description provided for @channelConflict_allResolved.
+  ///
+  /// In en, this message translates to:
+  /// **'All slots match now.'**
+  String get channelConflict_allResolved;
+
+  /// No description provided for @channelConflict_slot.
+  ///
+  /// In en, this message translates to:
+  /// **'Slot {index}'**
+  String channelConflict_slot(int index);
+
+  /// No description provided for @channelConflict_onRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'On the radio'**
+  String get channelConflict_onRadio;
+
+  /// No description provided for @channelConflict_inApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved in the app'**
+  String get channelConflict_inApp;
+
+  /// No description provided for @channelConflict_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Empty'**
+  String get channelConflict_empty;
+
+  /// No description provided for @channelConflict_key.
+  ///
+  /// In en, this message translates to:
+  /// **'key {fingerprint}'**
+  String channelConflict_key(String fingerprint);
+
+  /// No description provided for @channelConflict_nameDiffers.
+  ///
+  /// In en, this message translates to:
+  /// **'Name differs'**
+  String get channelConflict_nameDiffers;
+
+  /// No description provided for @channelConflict_keyDiffers.
+  ///
+  /// In en, this message translates to:
+  /// **'Key differs'**
+  String get channelConflict_keyDiffers;
+
+  /// No description provided for @channelConflict_keepRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep radio\'s'**
+  String get channelConflict_keepRadio;
+
+  /// No description provided for @channelConflict_useApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Write app\'s to radio'**
+  String get channelConflict_useApp;
+
+  /// No description provided for @channelConflict_keptRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'Kept the radio\'s version of slot {index}'**
+  String channelConflict_keptRadio(int index);
+
+  /// No description provided for @channelConflict_usedApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrote the app\'s version to slot {index}'**
+  String channelConflict_usedApp(int index);
+
   /// No description provided for @history_window24h.
   ///
   /// In en, this message translates to:

@@ -12465,6 +12465,71 @@ class AppLocalizationsPt extends AppLocalizations {
       'A sua posição ainda não é conhecida, por isso os anéis de distância não podem ser desenhados.';
 
   @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count canais do rádio diferem do app',
+      one: '1 canal do rádio difere do app',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Rever';
+
+  @override
+  String get channelConflict_title => 'Diferenças de canais';
+
+  @override
+  String get channelConflict_hint =>
+      'O rádio tem um nome ou chave diferente nestes espaços do que o app guardou. Alguém pode tê-los alterado com outro app, ou a cópia do app está desatualizada. Escolha que versão manter em cada espaço.';
+
+  @override
+  String get channelConflict_allResolved => 'Todos os espaços coincidem agora.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'Espaço $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'No rádio';
+
+  @override
+  String get channelConflict_inApp => 'Guardado no app';
+
+  @override
+  String get channelConflict_empty => 'Vazio';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'chave $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'Nome diferente';
+
+  @override
+  String get channelConflict_keyDiffers => 'Chave diferente';
+
+  @override
+  String get channelConflict_keepRadio => 'Manter a do rádio';
+
+  @override
+  String get channelConflict_useApp => 'Gravar a do app';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'Mantida a versão do rádio no espaço $index';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'Gravada a versão do app no espaço $index';
+  }
+
+  @override
   String get history_window24h => '24 h';
 
   @override

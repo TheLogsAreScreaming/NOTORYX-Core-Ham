@@ -12495,6 +12495,71 @@ class AppLocalizationsIt extends AppLocalizations {
       'La tua posizione non è ancora nota, quindi gli anelli di distanza non possono essere disegnati.';
 
   @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count canali della radio sono diversi dall\'app',
+      one: '1 canale della radio è diverso dall\'app',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Controlla';
+
+  @override
+  String get channelConflict_title => 'Differenze tra canali';
+
+  @override
+  String get channelConflict_hint =>
+      'La radio ha un nome o una chiave diversi da quelli salvati dall\'app in questi slot. Forse sono stati cambiati con un\'altra app, oppure la copia dell\'app è vecchia. Scegli quale versione tenere per ogni slot.';
+
+  @override
+  String get channelConflict_allResolved => 'Ora tutti gli slot coincidono.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'Slot $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'Sulla radio';
+
+  @override
+  String get channelConflict_inApp => 'Salvato nell\'app';
+
+  @override
+  String get channelConflict_empty => 'Vuoto';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'chiave $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'Nome diverso';
+
+  @override
+  String get channelConflict_keyDiffers => 'Chiave diversa';
+
+  @override
+  String get channelConflict_keepRadio => 'Tieni quella della radio';
+
+  @override
+  String get channelConflict_useApp => 'Scrivi quella dell\'app';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'Tenuta la versione della radio nello slot $index';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'Scritta la versione dell\'app nello slot $index';
+  }
+
+  @override
   String get history_window24h => '24 h';
 
   @override

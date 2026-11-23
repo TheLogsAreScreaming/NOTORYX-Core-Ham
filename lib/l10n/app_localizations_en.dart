@@ -12343,6 +12343,71 @@ class AppLocalizationsEn extends AppLocalizations {
       'Your position isn\'t known yet, so range rings can\'t be drawn.';
 
   @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count channels on the radio differ from the app',
+      one: '1 channel on the radio differs from the app',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Review';
+
+  @override
+  String get channelConflict_title => 'Channel differences';
+
+  @override
+  String get channelConflict_hint =>
+      'The radio holds a different name or key in these slots than the app saved. Someone may have changed them with another app, or the app\'s copy is old. Choose which version to keep for each slot.';
+
+  @override
+  String get channelConflict_allResolved => 'All slots match now.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'Slot $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'On the radio';
+
+  @override
+  String get channelConflict_inApp => 'Saved in the app';
+
+  @override
+  String get channelConflict_empty => 'Empty';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'key $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'Name differs';
+
+  @override
+  String get channelConflict_keyDiffers => 'Key differs';
+
+  @override
+  String get channelConflict_keepRadio => 'Keep radio\'s';
+
+  @override
+  String get channelConflict_useApp => 'Write app\'s to radio';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'Kept the radio\'s version of slot $index';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'Wrote the app\'s version to slot $index';
+  }
+
+  @override
   String get history_window24h => '24 h';
 
   @override
