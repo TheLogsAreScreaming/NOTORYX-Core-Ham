@@ -8,19 +8,32 @@ import 'package:meshcore_open/models/range_rings.dart';
 
 void main() {
   group('niceStep', () {
-    test('rounds down to 1, 2 or 5 × 10^n', () {
+    test('rounds down to 1, 1.5, 2, 2.5, 3, 4, 5, 6 or 8 × 10^n', () {
       expect(niceStep(1, minStep: 0.01), 1);
-      expect(niceStep(1.9, minStep: 0.01), 1);
+      expect(niceStep(1.49, minStep: 0.01), 1);
+      expect(niceStep(1.5, minStep: 0.01), 1.5);
+      expect(niceStep(1.9, minStep: 0.01), 1.5);
       expect(niceStep(2, minStep: 0.01), 2);
-      expect(niceStep(4.99, minStep: 0.01), 2);
+      expect(niceStep(2.7, minStep: 0.01), 2.5);
+      expect(niceStep(3.9, minStep: 0.01), 3);
+      expect(niceStep(4.99, minStep: 0.01), 4);
       expect(niceStep(5, minStep: 0.01), 5);
-      expect(niceStep(9.99, minStep: 0.01), 5);
+      expect(niceStep(7.9, minStep: 0.01), 6);
+      expect(niceStep(9.99, minStep: 0.01), 8);
       expect(niceStep(10, minStep: 0.01), 10);
-      expect(niceStep(730, minStep: 10), 500);
+      expect(niceStep(730, minStep: 10), 600);
       expect(niceStep(2400, minStep: 10), 2000);
-      expect(niceStep(0.37, minStep: 0.1), 0.2);
+      expect(niceStep(0.37, minStep: 0.1), 0.3);
       expect(niceStep(0.5, minStep: 0.1), 0.5);
-      expect(niceStep(0.3, minStep: 0.01), 0.2);
+      expect(niceStep(0.3, minStep: 0.01), 0.3);
+    });
+
+    test('keeps at least two thirds of the raw value', () {
+      for (var raw = 1.0; raw < 1e6; raw *= 1.013) {
+        final step = niceStep(raw, minStep: 0.001);
+        expect(step, lessThanOrEqualTo(raw * (1 + 1e-6)));
+        expect(step / raw, greaterThanOrEqualTo(2 / 3 - 1e-6));
+      }
     });
 
     test('never goes below the minimum step', () {
@@ -34,10 +47,10 @@ void main() {
 
   group('ringRadii', () {
     test('metric: four rings at a quarter of the view, rounded down', () {
-      // 3 km to the edge -> 750 m -> 500 m steps.
-      expect(ringRadii(3000, UnitSystem.metric), [500, 1000, 1500, 2000]);
-      // 100 m to the edge -> 25 m -> 20 m steps.
-      expect(ringRadii(100, UnitSystem.metric), [20, 40, 60, 80]);
+      // 3 km to the edge -> 750 m -> 600 m steps.
+      expect(ringRadii(3000, UnitSystem.metric), [600, 1200, 1800, 2400]);
+      // 100 m to the edge -> 25 m -> 25 m steps.
+      expect(ringRadii(100, UnitSystem.metric), [25, 50, 75, 100]);
     });
 
     test('metric steps start at 10 m', () {
@@ -45,9 +58,11 @@ void main() {
     });
 
     test('imperial steps are whole miles-based and start at 0.1 mi', () {
-      // 10 miles to the edge -> 2.5 mi -> 2 mi steps.
+      // 10 miles to the edge -> 2.5 mi -> 2.5 mi steps.
       final radii = ringRadii(10 * metresPerMile, UnitSystem.imperial);
-      expect(radii.map((r) => r / metresPerMile), [2, 4, 6, 8]);
+      expect(radii.map((r) => r / metresPerMile), [
+        for (final m in [2.5, 5, 7.5, 10]) closeTo(m, 1e-9),
+      ]);
       final tiny = ringRadii(50, UnitSystem.imperial);
       expect(tiny.first / metresPerMile, closeTo(0.1, 1e-9));
     });
