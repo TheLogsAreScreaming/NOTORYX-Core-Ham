@@ -19,6 +19,7 @@ import '../storage/community_store.dart';
 import '../theme/mesh_theme.dart';
 import '../utils/dialog_utils.dart';
 import '../utils/disconnect_navigation_mixin.dart';
+import '../widgets/channel_conflict_banner.dart';
 import '../widgets/ember_backdrop.dart';
 import '../widgets/list_filter_widget.dart';
 import '../widgets/ui/unread_badge.dart';
@@ -210,6 +211,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
               if (channels.isEmpty) {
                 return ListView(
                   children: [
+                    const ChannelConflictBanner(),
                     SizedBox(
                       height: MediaQuery.of(context).size.height - 200,
                       child: EmptyState(
@@ -282,6 +284,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                       },
                     ),
                   ),
+                  const ChannelConflictBanner(),
                   const _DiscoveredTray(),
                   Expanded(
                     child: filteredChannels.isEmpty

@@ -12523,6 +12523,161 @@ class AppLocalizationsRu extends AppLocalizations {
       'Ваша позиция пока неизвестна, поэтому кольца дальности нельзя нарисовать.';
 
   @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Каналов в радио, отличающихся от приложения: $count',
+      one: '1 канал в радио отличается от приложения',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Проверить';
+
+  @override
+  String get channelConflict_title => 'Расхождения каналов';
+
+  @override
+  String get channelConflict_hint =>
+      'В этих слотах радио хранит другое имя или ключ, чем сохранило приложение. Возможно, их изменили через другое приложение, или копия в приложении устарела. Выберите, какую версию оставить для каждого слота.';
+
+  @override
+  String get channelConflict_allResolved => 'Теперь все слоты совпадают.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'Слот $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'В радио';
+
+  @override
+  String get channelConflict_inApp => 'Сохранено в приложении';
+
+  @override
+  String get channelConflict_empty => 'Пусто';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'ключ $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'Имя отличается';
+
+  @override
+  String get channelConflict_keyDiffers => 'Ключ отличается';
+
+  @override
+  String get channelConflict_keepRadio => 'Оставить из радио';
+
+  @override
+  String get channelConflict_useApp => 'Записать из приложения';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'Оставлена версия радио в слоте $index';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'Версия приложения записана в слот $index';
+  }
+
+  @override
+  String get history_window24h => '24 ч';
+
+  @override
+  String get history_window7d => '7 дней';
+
+  @override
+  String get history_window30d => '30 дней';
+
+  @override
+  String get statusHistory_title => 'История состояния';
+
+  @override
+  String get statusHistory_battery => 'Батарея';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Уровень шума';
+
+  @override
+  String get statusHistory_errors => 'Ошибки';
+
+  @override
+  String get statusHistory_uptime => 'Время работы';
+
+  @override
+  String get statusHistory_empty =>
+      'Каждая проверка состояния сохраняется здесь, чтобы видеть, как меняется ретранслятор со временем.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'Нет значений «$metric» за этот период.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'График «$metric», значений: $count, от $low до $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Сохранено проверок: $count',
+      zero: 'Нет сохранённых проверок',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Очистить историю';
+
+  @override
+  String get statusHistory_clearTitle =>
+      'Очистить историю этого ретранслятора?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'Сохранённые проверки состояния и SNR соседей этого ретранслятора будут удалены с телефона.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return 'Тренд SNR для $name, значений: $count. Нажмите для графика.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return 'SNR: $name';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'Насколько хорошо ретранслятор слышал соседа при каждом запросе; хранится на этом телефоне.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return 'Значений: $count · мин. $low · сред. $avg · макс. $high';
+  }
+
+  @override
   String get follow_menu => 'Следить 15 мин';
 
   @override

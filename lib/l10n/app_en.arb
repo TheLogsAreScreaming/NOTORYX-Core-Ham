@@ -7689,6 +7689,141 @@
   "rangeRings_toggle": "Range rings",
   "rangeRings_hint": "Distance rings around your position, sized to the view",
   "rangeRings_noPosition": "Your position isn't known yet, so range rings can't be drawn.",
+  "channelConflict_banner": "{count, plural, =1{1 channel on the radio differs from the app} other{{count} channels on the radio differ from the app}}",
+  "@channelConflict_banner": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "channelConflict_review": "Review",
+  "channelConflict_title": "Channel differences",
+  "channelConflict_hint": "The radio holds a different name or key in these slots than the app saved. Someone may have changed them with another app, or the app's copy is old. Choose which version to keep for each slot.",
+  "channelConflict_allResolved": "All slots match now.",
+  "channelConflict_slot": "Slot {index}",
+  "@channelConflict_slot": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "channelConflict_onRadio": "On the radio",
+  "channelConflict_inApp": "Saved in the app",
+  "channelConflict_empty": "Empty",
+  "channelConflict_key": "key {fingerprint}",
+  "@channelConflict_key": {
+    "placeholders": {
+      "fingerprint": {
+        "type": "String"
+      }
+    }
+  },
+  "channelConflict_nameDiffers": "Name differs",
+  "channelConflict_keyDiffers": "Key differs",
+  "channelConflict_keepRadio": "Keep radio's",
+  "channelConflict_useApp": "Write app's to radio",
+  "channelConflict_keptRadio": "Kept the radio's version of slot {index}",
+  "@channelConflict_keptRadio": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "channelConflict_usedApp": "Wrote the app's version to slot {index}",
+  "@channelConflict_usedApp": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "history_window24h": "24 h",
+  "history_window7d": "7 days",
+  "history_window30d": "30 days",
+  "statusHistory_title": "Status history",
+  "statusHistory_battery": "Battery",
+  "statusHistory_rssi": "RSSI",
+  "statusHistory_snr": "SNR",
+  "statusHistory_noiseFloor": "Noise floor",
+  "statusHistory_errors": "Errors",
+  "statusHistory_uptime": "Uptime",
+  "statusHistory_empty": "Each status check you run is saved here, so you can see how this repeater changes over time.",
+  "statusHistory_noneInWindow": "No {metric} readings in this time range.",
+  "@statusHistory_noneInWindow": {
+    "placeholders": {
+      "metric": {
+        "type": "String"
+      }
+    }
+  },
+  "statusHistory_chartLabel": "{metric} chart, {count} readings, from {low} to {high}",
+  "@statusHistory_chartLabel": {
+    "placeholders": {
+      "metric": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      },
+      "low": {
+        "type": "String"
+      },
+      "high": {
+        "type": "String"
+      }
+    }
+  },
+  "statusHistory_count": "{count, plural, =0{No saved checks} =1{1 saved check} other{{count} saved checks}}",
+  "@statusHistory_count": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "statusHistory_clear": "Clear history",
+  "statusHistory_clearTitle": "Clear this repeater's history?",
+  "statusHistory_clearBody": "Saved status checks and neighbour SNR readings for this repeater are removed from this phone.",
+  "snrHistory_trendLabel": "SNR trend for {name}, {count} readings. Tap for the chart.",
+  "@snrHistory_trendLabel": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "snrHistory_title": "SNR of {name}",
+  "@snrHistory_title": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "snrHistory_hint": "How well this repeater heard the neighbour each time you asked, kept on this phone.",
+  "snrHistory_summary": "{count} readings · low {low} · average {avg} · high {high}",
+  "@snrHistory_summary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "low": {
+        "type": "String"
+      },
+      "avg": {
+        "type": "String"
+      },
+      "high": {
+        "type": "String"
+      }
+    }
+  },
   "follow_menu": "Follow for 15 min",
   "follow_menuHint": "Asks for its position every few minutes and draws its trail",
   "follow_title": "Following {name}",

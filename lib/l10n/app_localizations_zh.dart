@@ -11686,6 +11686,156 @@ class AppLocalizationsZh extends AppLocalizations {
   String get rangeRings_noPosition => '你的位置尚未知，无法绘制距离圈。';
 
   @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '电台上有 $count 个频道与应用不一致',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => '查看';
+
+  @override
+  String get channelConflict_title => '频道差异';
+
+  @override
+  String get channelConflict_hint =>
+      '这些槽位中电台的名称或密钥与应用保存的不同。可能有人用其他应用修改过，或应用中的副本已过时。请为每个槽位选择要保留的版本。';
+
+  @override
+  String get channelConflict_allResolved => '所有槽位现已一致。';
+
+  @override
+  String channelConflict_slot(int index) {
+    return '槽位 $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => '电台上';
+
+  @override
+  String get channelConflict_inApp => '应用中保存';
+
+  @override
+  String get channelConflict_empty => '空';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return '密钥 $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => '名称不同';
+
+  @override
+  String get channelConflict_keyDiffers => '密钥不同';
+
+  @override
+  String get channelConflict_keepRadio => '保留电台的';
+
+  @override
+  String get channelConflict_useApp => '写入应用的';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return '槽位 $index 已保留电台版本';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return '已将应用版本写入槽位 $index';
+  }
+
+  @override
+  String get history_window24h => '24 小时';
+
+  @override
+  String get history_window7d => '7 天';
+
+  @override
+  String get history_window30d => '30 天';
+
+  @override
+  String get statusHistory_title => '状态历史';
+
+  @override
+  String get statusHistory_battery => '电池';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => '底噪';
+
+  @override
+  String get statusHistory_errors => '错误';
+
+  @override
+  String get statusHistory_uptime => '运行时间';
+
+  @override
+  String get statusHistory_empty => '每次状态查询都会保存在这里，便于查看此中继器随时间的变化。';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return '此时间段内没有$metric数据。';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metric图表，$count 条，$low 至 $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '已保存 $count 次查询',
+      zero: '没有已保存的查询',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => '清除历史';
+
+  @override
+  String get statusHistory_clearTitle => '清除此中继器的历史？';
+
+  @override
+  String get statusHistory_clearBody => '将从此手机删除该中继器已保存的状态查询和邻居 SNR 记录。';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return '$name 的 SNR 趋势，$count 条。点按查看图表。';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return '$name 的 SNR';
+  }
+
+  @override
+  String get snrHistory_hint => '每次查询时该中继器收到此邻居的信号质量，保存在本机。';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count 条 · 最低 $low · 平均 $avg · 最高 $high';
+  }
+
+  @override
   String get follow_menu => '跟随 15 分钟';
 
   @override

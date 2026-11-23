@@ -12485,6 +12485,162 @@ class AppLocalizationsEs extends AppLocalizations {
       'Aún no se conoce tu posición, así que no se pueden dibujar los anillos de distancia.';
 
   @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count canales de la radio no coinciden con la app',
+      one: '1 canal de la radio no coincide con la app',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Revisar';
+
+  @override
+  String get channelConflict_title => 'Diferencias de canales';
+
+  @override
+  String get channelConflict_hint =>
+      'La radio tiene un nombre o clave distinto en estas ranuras al que guardó la app. Puede que alguien los cambiara con otra app, o la copia de la app es antigua. Elige qué versión conservar en cada ranura.';
+
+  @override
+  String get channelConflict_allResolved => 'Ya coinciden todas las ranuras.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'Ranura $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'En la radio';
+
+  @override
+  String get channelConflict_inApp => 'Guardado en la app';
+
+  @override
+  String get channelConflict_empty => 'Vacía';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'clave $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'El nombre difiere';
+
+  @override
+  String get channelConflict_keyDiffers => 'La clave difiere';
+
+  @override
+  String get channelConflict_keepRadio => 'Mantener la de la radio';
+
+  @override
+  String get channelConflict_useApp => 'Escribir la de la app';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'Se mantuvo la versión de la radio en la ranura $index';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'Se escribió la versión de la app en la ranura $index';
+  }
+
+  @override
+  String get history_window24h => '24 h';
+
+  @override
+  String get history_window7d => '7 días';
+
+  @override
+  String get history_window30d => '30 días';
+
+  @override
+  String get statusHistory_title => 'Historial de estado';
+
+  @override
+  String get statusHistory_battery => 'Batería';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Ruido de fondo';
+
+  @override
+  String get statusHistory_errors => 'Errores';
+
+  @override
+  String get statusHistory_uptime => 'Tiempo activo';
+
+  @override
+  String get statusHistory_empty =>
+      'Cada consulta de estado se guarda aquí, para ver cómo cambia este repetidor con el tiempo.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'No hay lecturas de $metric en este periodo.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Gráfico de $metric, $count lecturas, de $low a $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count consultas guardadas',
+      one: '1 consulta guardada',
+      zero: 'Sin consultas guardadas',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Borrar historial';
+
+  @override
+  String get statusHistory_clearTitle =>
+      '¿Borrar el historial de este repetidor?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'Se borran de este teléfono las consultas de estado y las lecturas de SNR de vecinos de este repetidor.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return 'Tendencia de SNR de $name, $count lecturas. Toca para ver el gráfico.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return 'SNR de $name';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'Lo bien que este repetidor oyó al vecino cada vez que preguntaste, guardado en este teléfono.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count lecturas · mín. $low · media $avg · máx. $high';
+  }
+
+  @override
   String get follow_menu => 'Seguir 15 min';
 
   @override

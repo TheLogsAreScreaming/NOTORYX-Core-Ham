@@ -12463,6 +12463,160 @@ class AppLocalizationsHu extends AppLocalizations {
       'A pozíciód még nem ismert, ezért a távolsággyűrűk nem rajzolhatók meg.';
 
   @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count csatorna eltér a rádióban és az alkalmazásban',
+      one: '1 csatorna eltér a rádióban és az alkalmazásban',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Áttekintés';
+
+  @override
+  String get channelConflict_title => 'Csatornaeltérések';
+
+  @override
+  String get channelConflict_hint =>
+      'A rádió ezekben a helyekben más nevet vagy kulcsot tárol, mint amit az alkalmazás mentett. Lehet, hogy valaki egy másik alkalmazással módosította, vagy az alkalmazás másolata régi. Válaszd ki, melyik változat maradjon az egyes helyeken.';
+
+  @override
+  String get channelConflict_allResolved => 'Most már minden hely egyezik.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return '$index. hely';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'A rádióban';
+
+  @override
+  String get channelConflict_inApp => 'Az alkalmazásban mentve';
+
+  @override
+  String get channelConflict_empty => 'Üres';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'kulcs $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'Eltérő név';
+
+  @override
+  String get channelConflict_keyDiffers => 'Eltérő kulcs';
+
+  @override
+  String get channelConflict_keepRadio => 'A rádióé marad';
+
+  @override
+  String get channelConflict_useApp => 'Az alkalmazásé kerüljön a rádióba';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'A rádió változata maradt a(z) $index. helyen';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'Az alkalmazás változata a(z) $index. helyre írva';
+  }
+
+  @override
+  String get history_window24h => '24 ó';
+
+  @override
+  String get history_window7d => '7 nap';
+
+  @override
+  String get history_window30d => '30 nap';
+
+  @override
+  String get statusHistory_title => 'Állapotelőzmények';
+
+  @override
+  String get statusHistory_battery => 'Akku';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Zajszint';
+
+  @override
+  String get statusHistory_errors => 'Hibák';
+
+  @override
+  String get statusHistory_uptime => 'Üzemidő';
+
+  @override
+  String get statusHistory_empty =>
+      'Minden állapotlekérdezés ide kerül, így látod, hogyan változik az átjátszó idővel.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'Nincs $metric adat ebben az időszakban.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metric grafikon, $count adat, $low és $high között';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count mentett lekérdezés',
+      zero: 'Nincs mentett lekérdezés',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Előzmények törlése';
+
+  @override
+  String get statusHistory_clearTitle => 'Törlöd az átjátszó előzményeit?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'Az átjátszó mentett állapotlekérdezései és szomszéd-SNR adatai törlődnek a telefonról.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return '$name SNR-trendje, $count adat. Koppints a grafikonért.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return '$name SNR-je';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'Mennyire jól hallotta az átjátszó a szomszédot az egyes lekérdezéskor; a telefonon tárolva.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count adat · min. $low · átlag $avg · max. $high';
+  }
+
+  @override
   String get follow_menu => 'Követés 15 percig';
 
   @override
