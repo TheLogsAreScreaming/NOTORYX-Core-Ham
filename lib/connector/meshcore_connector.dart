@@ -1272,7 +1272,6 @@ class MeshCoreConnector extends ChangeNotifier {
     return null;
   }
 
-
   List<ChannelMessage> getChannelMessages(Channel channel) {
     return _channelMessages[channel.index] ?? [];
   }
@@ -5864,7 +5863,6 @@ class MeshCoreConnector extends ChangeNotifier {
     _appliedFilterRulesRevision = service.rulesRevision;
     service.addListener(_onMessageFilterChanged);
   }
-
 
   @visibleForTesting
   void debugSetChannels(List<Channel> channels) => _channels
