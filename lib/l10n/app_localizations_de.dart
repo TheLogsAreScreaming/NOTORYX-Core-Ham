@@ -8334,6 +8334,13 @@ class AppLocalizationsDe extends AppLocalizations {
       'Ein Funkgerät mit WLAN-Firmware in deinem Netzwerk.';
 
   @override
+  String get scanner_tryDemo => 'Demo ausprobieren';
+
+  @override
+  String get scanner_tryDemoHint =>
+      'Ein simuliertes Funkgerät und Mesh. Es wird nichts gesendet.';
+
+  @override
   String get scanner_otherWays => 'Andere Verbindungswege';
 
   @override

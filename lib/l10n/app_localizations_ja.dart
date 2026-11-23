@@ -7926,6 +7926,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get scanner_tcpHint => 'ネットワーク上の Wi‑Fi ファームウェア搭載無線機。';
 
   @override
+  String get scanner_tryDemo => 'デモを試す';
+
+  @override
+  String get scanner_tryDemoHint => '架空の無線機とメッシュです。何も送信されません。';
+
+  @override
   String get scanner_otherWays => 'その他の接続方法';
 
   @override

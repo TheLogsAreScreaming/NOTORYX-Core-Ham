@@ -3683,6 +3683,8 @@
   "scanner_lastRadio": "Останнє радіо",
   "scanner_reconnect": "Перепідключити",
   "scanner_tcpHint": "Радіо з прошивкою Wi‑Fi у вашій мережі.",
+  "scanner_tryDemo": "Спробувати демо",
+  "scanner_tryDemoHint": "Вигадана рація та мережа. Нічого не надсилається.",
   "scanner_otherWays": "Інші способи підключення",
   "scanner_radiosFound": "{count, plural, =1{1 радіо поблизу} other{{count} радіо поблизу}}",
   "scanner_searchingTitle": "Пошук радіо…",

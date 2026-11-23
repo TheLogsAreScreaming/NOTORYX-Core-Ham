@@ -8359,6 +8359,13 @@ class AppLocalizationsUk extends AppLocalizations {
   String get scanner_tcpHint => 'Радіо з прошивкою Wi‑Fi у вашій мережі.';
 
   @override
+  String get scanner_tryDemo => 'Спробувати демо';
+
+  @override
+  String get scanner_tryDemoHint =>
+      'Вигадана рація та мережа. Нічого не надсилається.';
+
+  @override
   String get scanner_otherWays => 'Інші способи підключення';
 
   @override

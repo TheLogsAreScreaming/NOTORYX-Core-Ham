@@ -17,6 +17,7 @@ import '../services/field_ops_service.dart';
 import '../models/field_ops.dart';
 import '../helpers/direct_heard_name.dart';
 import '../services/corescope.dart';
+import '../models/direct_repeaters.dart';
 import '../services/direct_repeater_service.dart';
 import '../widgets/instrument.dart';
 import '../widgets/regional_preset_banner.dart';
@@ -53,7 +54,11 @@ class BastionHomeScreen extends StatelessWidget {
     final c = context.watch<MeshCoreConnector>();
     final stats = c.latestRadioStats;
     final ops = context.watch<FieldOpsService>();
-    final heard = context.watch<DirectRepeaterService?>()?.best() ?? const [];
+    final heardAll =
+        context.watch<DirectRepeaterService?>()?.best() ?? const [];
+    // The demo radio shows only its pretend mesh, never real readings.
+    final demo = c.isDemoRadio;
+    final heard = demo ? const <DirectHeard>[] : heardAll;
     final l10n = context.l10n;
     final online = c.isConnected;
     final profile = context.watch<OperatorProfileService>().profile;
@@ -287,7 +292,7 @@ class BastionHomeScreen extends StatelessWidget {
                     trailing: SignalReadout(h.snrAverage),
                     onTap: () => open(const BastionPathHubScreen()),
                   ),
-              if (online) const MySensorsPanel(),
+              if (online && !demo) const MySensorsPanel(),
               // 6. Everything else.
               InstrumentLabel(l10n.bastionHome_fieldTools),
               if (online)

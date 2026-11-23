@@ -3837,6 +3837,8 @@
   "scanner_lastRadio": "최근 무전기",
   "scanner_reconnect": "다시 연결",
   "scanner_tcpHint": "네트워크에 있는 Wi‑Fi 펌웨어 무전기.",
+  "scanner_tryDemo": "데모 체험",
+  "scanner_tryDemoHint": "가상의 무전기와 메시입니다. 아무것도 전송되지 않습니다.",
   "scanner_otherWays": "다른 연결 방법",
   "scanner_radiosFound": "{count, plural, other{주변 무전기 {count}대}}",
   "scanner_searchingTitle": "무전기를 찾는 중…",

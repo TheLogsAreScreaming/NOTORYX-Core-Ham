@@ -3741,6 +3741,8 @@
   "scanner_lastRadio": "Utolsó rádió",
   "scanner_reconnect": "Újracsatlakozás",
   "scanner_tcpHint": "Wi‑Fi firmware-rel működő rádió a hálózatodon.",
+  "scanner_tryDemo": "Demó kipróbálása",
+  "scanner_tryDemoHint": "Egy kitalált rádió és háló. Semmi nem kerül elküldésre.",
   "scanner_otherWays": "Más csatlakozási módok",
   "scanner_radiosFound": "{count, plural, =1{1 rádió a közelben} other{{count} rádió a közelben}}",
   "scanner_searchingTitle": "Rádiók keresése…",

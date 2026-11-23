@@ -8309,6 +8309,13 @@ class AppLocalizationsSk extends AppLocalizations {
   String get scanner_tcpHint => 'Rádio s firmvérom Wi‑Fi vo vašej sieti.';
 
   @override
+  String get scanner_tryDemo => 'Vyskúšať demo';
+
+  @override
+  String get scanner_tryDemoHint =>
+      'Vymyslené rádio a sieť. Nič sa neodosiela.';
+
+  @override
   String get scanner_otherWays => 'Iné spôsoby pripojenia';
 
   @override

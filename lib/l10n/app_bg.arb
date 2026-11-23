@@ -3703,6 +3703,8 @@
   "scanner_lastRadio": "Последно радио",
   "scanner_reconnect": "Свържи отново",
   "scanner_tcpHint": "Радио с Wi‑Fi фърмуер във вашата мрежа.",
+  "scanner_tryDemo": "Пробвайте демо",
+  "scanner_tryDemoHint": "Измислено радио и мрежа. Нищо не се изпраща.",
   "scanner_otherWays": "Други начини за свързване",
   "scanner_radiosFound": "{count, plural, =1{1 радио наблизо} other{{count} радиа наблизо}}",
   "scanner_searchingTitle": "Търсене на радиа…",

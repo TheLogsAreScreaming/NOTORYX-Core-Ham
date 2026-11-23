@@ -3741,6 +3741,8 @@
   "scanner_lastRadio": "Ostatnie radio",
   "scanner_reconnect": "Połącz ponownie",
   "scanner_tcpHint": "Radio z oprogramowaniem Wi‑Fi w twojej sieci.",
+  "scanner_tryDemo": "Wypróbuj demo",
+  "scanner_tryDemoHint": "Udawane radio i sieć. Nic nie jest wysyłane.",
   "scanner_otherWays": "Inne sposoby połączenia",
   "scanner_radiosFound": "{count, plural, =1{1 radio w pobliżu} few{{count} radia w pobliżu} many{{count} radiów w pobliżu} other{{count} radia w pobliżu}}",
   "scanner_searchingTitle": "Szukanie radiów…",

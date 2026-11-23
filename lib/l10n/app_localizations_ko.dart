@@ -7937,6 +7937,12 @@ class AppLocalizationsKo extends AppLocalizations {
   String get scanner_tcpHint => '네트워크에 있는 Wi‑Fi 펌웨어 무전기.';
 
   @override
+  String get scanner_tryDemo => '데모 체험';
+
+  @override
+  String get scanner_tryDemoHint => '가상의 무전기와 메시입니다. 아무것도 전송되지 않습니다.';
+
+  @override
   String get scanner_otherWays => '다른 연결 방법';
 
   @override

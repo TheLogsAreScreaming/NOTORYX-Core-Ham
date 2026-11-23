@@ -8313,6 +8313,13 @@ class AppLocalizationsHu extends AppLocalizations {
       'Wi‑Fi firmware-rel működő rádió a hálózatodon.';
 
   @override
+  String get scanner_tryDemo => 'Demó kipróbálása';
+
+  @override
+  String get scanner_tryDemoHint =>
+      'Egy kitalált rádió és háló. Semmi nem kerül elküldésre.';
+
+  @override
   String get scanner_otherWays => 'Más csatlakozási módok';
 
   @override

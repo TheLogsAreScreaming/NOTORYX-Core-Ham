@@ -8358,6 +8358,13 @@ class AppLocalizationsPl extends AppLocalizations {
   String get scanner_tcpHint => 'Radio z oprogramowaniem Wi‑Fi w twojej sieci.';
 
   @override
+  String get scanner_tryDemo => 'Wypróbuj demo';
+
+  @override
+  String get scanner_tryDemoHint =>
+      'Udawane radio i sieć. Nic nie jest wysyłane.';
+
+  @override
   String get scanner_otherWays => 'Inne sposoby połączenia';
 
   @override

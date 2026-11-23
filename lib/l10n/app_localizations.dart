@@ -13909,6 +13909,18 @@ abstract class AppLocalizations {
   /// **'A radio with Wi‑Fi firmware on your network.'**
   String get scanner_tcpHint;
 
+  /// No description provided for @scanner_tryDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'Try a demo'**
+  String get scanner_tryDemo;
+
+  /// No description provided for @scanner_tryDemoHint.
+  ///
+  /// In en, this message translates to:
+  /// **'A pretend radio and mesh. Nothing is sent.'**
+  String get scanner_tryDemoHint;
+
   /// No description provided for @scanner_otherWays.
   ///
   /// In en, this message translates to:

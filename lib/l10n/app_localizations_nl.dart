@@ -8288,6 +8288,13 @@ class AppLocalizationsNl extends AppLocalizations {
   String get scanner_tcpHint => 'Een radio met wifi-firmware op je netwerk.';
 
   @override
+  String get scanner_tryDemo => 'Probeer een demo';
+
+  @override
+  String get scanner_tryDemoHint =>
+      'Een nagebootste radio en mesh. Er wordt niets verzonden.';
+
+  @override
   String get scanner_otherWays => 'Andere manieren om te verbinden';
 
   @override

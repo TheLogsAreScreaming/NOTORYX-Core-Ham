@@ -40,7 +40,7 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  for (final choice in SetupConnection.values) {
+  for (final choice in [SetupConnection.bluetooth, SetupConnection.usb]) {
     testWidgets('returns $choice only after preparation', (tester) async {
       SetupConnection? result;
       await open(tester, onResult: (value) => result = value);
@@ -62,12 +62,25 @@ void main() {
     });
   }
 
+  testWidgets('Try a demo returns straight away, with no preparation', (
+    tester,
+  ) async {
+    SetupConnection? result;
+    await open(tester, onResult: (value) => result = value);
+    await tester.ensureVisible(find.byKey(const Key('setup-try-demo')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('setup-try-demo')));
+    await tester.pumpAndSettle();
+    expect(result, SetupConnection.demo);
+  });
+
   testWidgets('unsupported connections stay disabled', (tester) async {
     await open(tester, bluetooth: false, usb: false);
     final tiles = tester.widgetList<TransportTile>(find.byType(TransportTile));
-    expect(tiles, hasLength(2));
+    expect(tiles, hasLength(3), reason: 'Bluetooth, USB and the demo');
     for (final tile in tiles) {
-      expect(tile.onTap, isNull);
+      final demo = tile.key == const Key('setup-try-demo');
+      expect(tile.onTap == null, !demo, reason: 'only the demo needs no radio');
     }
     expect(find.byType(FilledButton), findsNothing);
     await tester.tap(find.text('Set up later'));

@@ -62,3 +62,10 @@ Source: https://github.com/MeshMapper/MeshMapper_Flutter_App
 
 Bastion also uses third-party Flutter and Dart packages. Their notices are available from the app's Open Source Licenses screen and their respective distributions.
 
+## flserial
+
+`third_party/flserial` is a bundled copy of [flserial](https://github.com/MeshEnvy/flserial)
+(MIT License, Copyright (c) 2024 Grzegorz Leśniak; see `third_party/flserial/LICENSE`),
+taken from the MIT-licensed MeshCore Open project with fixes: an idle USB serial port
+no longer keeps a CPU core busy on macOS and Linux, on Linux data waits until the read
+callback is installed, and closing a port frees its I/O buffers.

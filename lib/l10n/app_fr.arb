@@ -3837,6 +3837,8 @@
   "scanner_lastRadio": "Dernière radio",
   "scanner_reconnect": "Reconnecter",
   "scanner_tcpHint": "Une radio avec un firmware Wi‑Fi sur votre réseau.",
+  "scanner_tryDemo": "Essayer une démo",
+  "scanner_tryDemoHint": "Une radio et un maillage fictifs. Rien n’est envoyé.",
   "scanner_otherWays": "Autres moyens de connexion",
   "scanner_radiosFound": "{count, plural, =1{1 radio à proximité} other{{count} radios à proximité}}",
   "scanner_searchingTitle": "Recherche de radios…",

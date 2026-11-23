@@ -3837,6 +3837,8 @@
   "scanner_lastRadio": "前回の無線機",
   "scanner_reconnect": "再接続",
   "scanner_tcpHint": "ネットワーク上の Wi‑Fi ファームウェア搭載無線機。",
+  "scanner_tryDemo": "デモを試す",
+  "scanner_tryDemoHint": "架空の無線機とメッシュです。何も送信されません。",
   "scanner_otherWays": "その他の接続方法",
   "scanner_radiosFound": "{count, plural, other{近くの無線機 {count}台}}",
   "scanner_searchingTitle": "無線機を探しています…",

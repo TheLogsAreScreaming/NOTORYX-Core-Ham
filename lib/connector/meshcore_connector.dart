@@ -60,6 +60,7 @@ import '../services/timeout_prediction_service.dart';
 import '../services/translation_service.dart';
 import '../services/notification_service.dart';
 import 'meshcore_connector_usb.dart';
+import 'demo_companion.dart';
 import 'meshcore_connector_tcp.dart';
 import '../storage/channel_message_store.dart';
 import '../storage/channel_order_store.dart';
@@ -604,6 +605,14 @@ class MeshCoreConnector extends ChangeNotifier {
   Future<void> Function(BluetoothDevice device)? debugBleUnlinkOverride;
 
   String? get activeTcpEndpoint => _tcpConnector.activeEndpoint;
+
+  /// Whether the pretend in-app radio is connected instead of a real one.
+  bool get isDemoRadio => _demoSession && _tcpConnector.isDemo;
+
+  /// True from the start of a demo connection until its disconnect has
+  /// finished. While set, the heard-node list (shared by every real radio)
+  /// is neither loaded nor saved, so the demo can't show or overwrite it.
+  bool _demoSession = false;
   bool get isTcpTransportConnected =>
       _state == MeshCoreConnectionState.connected &&
       _activeTransport == MeshCoreTransportType.tcp;
@@ -1631,6 +1640,10 @@ class MeshCoreConnector extends ChangeNotifier {
   }
 
   Future<void> _loadDiscoveredContactCache() async {
+    if (_demoSession) {
+      _discoveredContacts.clear();
+      return;
+    }
     final cached = await _discoveryContactStore.loadContacts();
     // Trim a previously-saved oversized list down to the freshest entries so a
     // device that grew unbounded before the cap existed recovers on load.
@@ -2377,6 +2390,17 @@ class MeshCoreConnector extends ChangeNotifier {
 
     _appDebugLogService?.info('connectTcp: endpoint=$host:$port', tag: 'TCP');
 
+    _demoSession = isDemoRadioHost(host);
+    if (_demoSession) {
+      // Nothing heard by a real radio belongs in the demo.
+      _discoveredContacts.clear();
+      _directRepeaters.clear();
+      _latestRadioStats = null;
+      _lastRxSnr = null;
+      _lastRxRssi = null;
+      _lastRxSignalAt = null;
+    }
+
     await stopScan();
     _beginWiredConnect(automaticReconnect);
     _resetConnectionHandshakeState();
@@ -2462,8 +2486,11 @@ class MeshCoreConnector extends ChangeNotifier {
       await syncTime();
       _lastConnectionError = null;
       _reconnectAttempts = 0;
-      _linkTarget = TcpLinkTarget(host, port);
-      unawaited(_rememberRadio(SavedRadioTransport.tcp, '$host:$port'));
+      // The demo radio is never saved or reconnected to on its own.
+      if (!_tcpConnector.isDemo) {
+        _linkTarget = TcpLinkTarget(host, port);
+        unawaited(_rememberRadio(SavedRadioTransport.tcp, '$host:$port'));
+      }
     } catch (error) {
       _appDebugLogService?.error('TCP connection error: $error', tag: 'TCP');
       final tcpConnectCancelledBeforeHandshake =
@@ -3713,6 +3740,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _reactionSendQueueSequence = 0;
 
     _activeTransport = MeshCoreTransportType.bluetooth;
+    _demoSession = false;
 
     _setState(MeshCoreConnectionState.disconnected);
     _appDebugLogService?.info(
@@ -6637,6 +6665,7 @@ class MeshCoreConnector extends ChangeNotifier {
   }
 
   Future<void> _persistDiscoveredContacts() async {
+    if (_demoSession) return;
     await _discoveryContactStore.saveContacts(_discoveredContacts);
   }
 

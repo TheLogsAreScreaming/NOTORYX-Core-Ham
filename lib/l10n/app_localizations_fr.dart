@@ -8357,6 +8357,13 @@ class AppLocalizationsFr extends AppLocalizations {
       'Une radio avec un firmware Wi‑Fi sur votre réseau.';
 
   @override
+  String get scanner_tryDemo => 'Essayer une démo';
+
+  @override
+  String get scanner_tryDemoHint =>
+      'Une radio et un maillage fictifs. Rien n’est envoyé.';
+
+  @override
   String get scanner_otherWays => 'Autres moyens de connexion';
 
   @override
