@@ -56,6 +56,10 @@ class FollowService extends ChangeNotifier {
   String _name = '';
   DateTime? _startedAt;
   final List<FollowPoint> _trail = [];
+
+  /// The position the contact last advertised, so only a new advert adds
+  /// a point (a fresher reply is never pushed back by an old advert).
+  ({double lat, double lon})? _advertised;
   int _asked = 0;
   int _answered = 0;
   DateTime? _lastAskAt;
@@ -93,6 +97,7 @@ class FollowService extends ChangeNotifier {
     _name = contact.name;
     _startedAt = now;
     if (contact.hasLocation) {
+      _advertised = (lat: contact.latitude!, lon: contact.longitude!);
       _add(contact.latitude!, contact.longitude!, fromRequest: false);
     }
     _frames = connector.receivedFrames.listen(_onFrame);
@@ -118,6 +123,7 @@ class FollowService extends ChangeNotifier {
     _asked = 0;
     _answered = 0;
     _trail.clear();
+    _advertised = null;
     if (notify && !_disposed) notifyListeners();
   }
 
@@ -151,11 +157,10 @@ class FollowService extends ChangeNotifier {
   void _onContacts() {
     final c = _contact();
     if (c == null || !c.hasLocation) return;
-    final last = _trail.isEmpty ? null : _trail.last;
-    if (last != null && last.lat == c.latitude && last.lon == c.longitude) {
-      return;
-    }
-    _add(c.latitude!, c.longitude!, fromRequest: false);
+    final seen = (lat: c.latitude!, lon: c.longitude!);
+    if (seen == _advertised) return;
+    _advertised = seen;
+    _add(seen.lat, seen.lon, fromRequest: false);
     notifyListeners();
   }
 

@@ -55,7 +55,7 @@ void main() {
     expect(gpsFromLpp(Uint8List(0)), isNull);
   });
 
-  test('follows a contact: advert, replies, trail and stop', () {
+  test('follows a contact: advert, replies, trail and stop', () async {
     final radio = _Radio();
     final follow = FollowService(radio);
     follow.start(radio.node);
@@ -77,7 +77,13 @@ void main() {
     follow.handleFrameForTest(_telemetry(0xAB, 45.51001, -122.6));
     expect(follow.trail, hasLength(2));
 
+    // An unchanged advert after a fresher reply adds nothing.
+    radio.moved(_node(45.5, -122.6));
+    await Future<void>.delayed(const Duration(milliseconds: 120));
+    expect(follow.trail, hasLength(2));
+
     radio.moved(_node(45.52, -122.6));
+    await Future<void>.delayed(const Duration(milliseconds: 120));
     expect(follow.trail, hasLength(3));
     expect(follow.trail.last.fromRequest, isFalse);
 
