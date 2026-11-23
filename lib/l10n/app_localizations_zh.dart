@@ -11684,4 +11684,84 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get rangeRings_noPosition => '你的位置尚未知，无法绘制距离圈。';
+
+  @override
+  String get follow_menu => '跟随 15 分钟';
+
+  @override
+  String get follow_menuHint => '每隔几分钟请求一次位置并绘制轨迹';
+
+  @override
+  String follow_title(String name) {
+    return '正在跟随 $name';
+  }
+
+  @override
+  String get follow_askNow => '立即请求位置';
+
+  @override
+  String follow_fromYou(String distance, String direction, int degrees) {
+    return '距你 $distance，方位 $direction（$degrees°）';
+  }
+
+  @override
+  String get follow_waiting => '正在等待位置…';
+
+  @override
+  String get follow_noOwnPosition => '未知你自己的位置，无法显示距离和方位。';
+
+  @override
+  String follow_timeLeftLabel(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: '剩余约 $minutes 分钟',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String follow_lastFix(String ago) {
+    return '最后位置 $ago';
+  }
+
+  @override
+  String follow_secondsAgo(int n) {
+    return '$n 秒前';
+  }
+
+  @override
+  String follow_minutesAgo(int n) {
+    return '$n 分钟前';
+  }
+
+  @override
+  String follow_answers(int answered, int asked) {
+    return '已应答 $answered/$asked 次请求';
+  }
+
+  @override
+  String follow_points(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 个点',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get follow_hint => '15 分钟后自动停止。对方需在遥测设置中允许位置，否则只有在发送广播时才会更新。';
+
+  @override
+  String get follow_stop => '停止';
+
+  @override
+  String get follow_stopped => '未在跟随。重新开始可再请求 15 分钟位置。';
+
+  @override
+  String get follow_start => '跟随 15 分钟';
+
+  @override
+  String get follow_you => '你';
 }

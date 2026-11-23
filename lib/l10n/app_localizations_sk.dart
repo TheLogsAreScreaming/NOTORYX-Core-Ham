@@ -12453,4 +12453,88 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'Vaša poloha ešte nie je známa, preto nie je možné nakresliť kruhy vzdialenosti.';
+
+  @override
+  String get follow_menu => 'Sledovať 15 min';
+
+  @override
+  String get follow_menuHint =>
+      'Každých pár minút požiada o polohu a nakreslí stopu';
+
+  @override
+  String follow_title(String name) {
+    return 'Sledovanie: $name';
+  }
+
+  @override
+  String get follow_askNow => 'Požiadať o polohu teraz';
+
+  @override
+  String follow_fromYou(String distance, String direction, int degrees) {
+    return '$distance na $direction ($degrees°) od vás';
+  }
+
+  @override
+  String get follow_waiting => 'Čaká sa na polohu…';
+
+  @override
+  String get follow_noOwnPosition =>
+      'Vaša poloha nie je známa, preto nie je vzdialenosť ani smer.';
+
+  @override
+  String follow_timeLeftLabel(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Zostáva asi $minutes min',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String follow_lastFix(String ago) {
+    return 'posledná poloha $ago';
+  }
+
+  @override
+  String follow_secondsAgo(int n) {
+    return 'pred $n s';
+  }
+
+  @override
+  String follow_minutesAgo(int n) {
+    return 'pred $n min';
+  }
+
+  @override
+  String follow_answers(int answered, int asked) {
+    return 'odpovede: $answered/$asked';
+  }
+
+  @override
+  String follow_points(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'body: $count',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get follow_hint =>
+      'Po 15 minútach sa zastaví samo. Kontakt musí povoliť polohu v telemetrii, inak sa poloha mení len pri ohláseniach.';
+
+  @override
+  String get follow_stop => 'Zastaviť';
+
+  @override
+  String get follow_stopped =>
+      'Sledovanie je zastavené. Spustite znova na ďalších 15 minút.';
+
+  @override
+  String get follow_start => 'Sledovať 15 min';
+
+  @override
+  String get follow_you => 'Vy';
 }

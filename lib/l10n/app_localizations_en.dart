@@ -12341,4 +12341,90 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'Your position isn\'t known yet, so range rings can\'t be drawn.';
+
+  @override
+  String get follow_menu => 'Follow for 15 min';
+
+  @override
+  String get follow_menuHint =>
+      'Asks for its position every few minutes and draws its trail';
+
+  @override
+  String follow_title(String name) {
+    return 'Following $name';
+  }
+
+  @override
+  String get follow_askNow => 'Ask for position now';
+
+  @override
+  String follow_fromYou(String distance, String direction, int degrees) {
+    return '$distance $direction ($degrees°) from you';
+  }
+
+  @override
+  String get follow_waiting => 'Waiting for a position…';
+
+  @override
+  String get follow_noOwnPosition =>
+      'Your own position isn\'t known, so distance and bearing can\'t be shown.';
+
+  @override
+  String follow_timeLeftLabel(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'About $minutes minutes left',
+      one: 'About 1 minute left',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String follow_lastFix(String ago) {
+    return 'last position $ago';
+  }
+
+  @override
+  String follow_secondsAgo(int n) {
+    return '$n s ago';
+  }
+
+  @override
+  String follow_minutesAgo(int n) {
+    return '$n min ago';
+  }
+
+  @override
+  String follow_answers(int answered, int asked) {
+    return '$answered/$asked requests answered';
+  }
+
+  @override
+  String follow_points(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count points',
+      one: '1 point',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get follow_hint =>
+      'Stops by itself after 15 minutes. The contact must allow location in its telemetry settings, or it only moves when it sends an advert.';
+
+  @override
+  String get follow_stop => 'Stop';
+
+  @override
+  String get follow_stopped =>
+      'Not following. Start again to ask for its position for another 15 minutes.';
+
+  @override
+  String get follow_start => 'Follow 15 min';
+
+  @override
+  String get follow_you => 'You';
 }

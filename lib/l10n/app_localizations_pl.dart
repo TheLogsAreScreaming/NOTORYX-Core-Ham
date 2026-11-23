@@ -12522,4 +12522,87 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'Twoja pozycja nie jest jeszcze znana, więc nie można narysować pierścieni odległości.';
+
+  @override
+  String get follow_menu => 'Śledź przez 15 min';
+
+  @override
+  String get follow_menuHint => 'Co kilka minut pyta o pozycję i rysuje ślad';
+
+  @override
+  String follow_title(String name) {
+    return 'Śledzenie: $name';
+  }
+
+  @override
+  String get follow_askNow => 'Zapytaj o pozycję teraz';
+
+  @override
+  String follow_fromYou(String distance, String direction, int degrees) {
+    return '$distance na $direction ($degrees°) od ciebie';
+  }
+
+  @override
+  String get follow_waiting => 'Czekam na pozycję…';
+
+  @override
+  String get follow_noOwnPosition =>
+      'Twoja pozycja jest nieznana, więc nie ma odległości ani kierunku.';
+
+  @override
+  String follow_timeLeftLabel(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Zostało ok. $minutes min',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String follow_lastFix(String ago) {
+    return 'ostatnia pozycja $ago';
+  }
+
+  @override
+  String follow_secondsAgo(int n) {
+    return '$n s temu';
+  }
+
+  @override
+  String follow_minutesAgo(int n) {
+    return '$n min temu';
+  }
+
+  @override
+  String follow_answers(int answered, int asked) {
+    return 'odpowiedzi: $answered/$asked';
+  }
+
+  @override
+  String follow_points(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'punkty: $count',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get follow_hint =>
+      'Zatrzymuje się samo po 15 minutach. Kontakt musi zezwolić na lokalizację w telemetrii, inaczej pozycja zmienia się tylko przy ogłoszeniach.';
+
+  @override
+  String get follow_stop => 'Zatrzymaj';
+
+  @override
+  String get follow_stopped =>
+      'Śledzenie zatrzymane. Uruchom ponownie, aby pytać o pozycję kolejne 15 minut.';
+
+  @override
+  String get follow_start => 'Śledź 15 min';
+
+  @override
+  String get follow_you => 'Ty';
 }

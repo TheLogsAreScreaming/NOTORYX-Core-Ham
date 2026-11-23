@@ -11926,4 +11926,85 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get rangeRings_noPosition => '아직 위치를 알 수 없어 거리 링을 그릴 수 없습니다.';
+
+  @override
+  String get follow_menu => '15분 동안 따라가기';
+
+  @override
+  String get follow_menuHint => '몇 분마다 위치를 요청하고 경로를 그립니다';
+
+  @override
+  String follow_title(String name) {
+    return '$name 따라가는 중';
+  }
+
+  @override
+  String get follow_askNow => '지금 위치 요청';
+
+  @override
+  String follow_fromYou(String distance, String direction, int degrees) {
+    return '내 위치에서 $direction($degrees°) $distance';
+  }
+
+  @override
+  String get follow_waiting => '위치를 기다리는 중…';
+
+  @override
+  String get follow_noOwnPosition => '내 위치를 알 수 없어 거리와 방위를 표시할 수 없습니다.';
+
+  @override
+  String follow_timeLeftLabel(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: '약 $minutes분 남음',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String follow_lastFix(String ago) {
+    return '마지막 위치 $ago';
+  }
+
+  @override
+  String follow_secondsAgo(int n) {
+    return '$n초 전';
+  }
+
+  @override
+  String follow_minutesAgo(int n) {
+    return '$n분 전';
+  }
+
+  @override
+  String follow_answers(int answered, int asked) {
+    return '요청 $asked개 중 $answered개 응답';
+  }
+
+  @override
+  String follow_points(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count개 지점',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get follow_hint =>
+      '15분 후 자동으로 멈춥니다. 상대가 텔레메트리에서 위치를 허용해야 하며, 그렇지 않으면 광고를 보낼 때만 갱신됩니다.';
+
+  @override
+  String get follow_stop => '중지';
+
+  @override
+  String get follow_stopped => '따라가지 않는 중입니다. 다시 시작하면 15분 더 위치를 요청합니다.';
+
+  @override
+  String get follow_start => '15분 따라가기';
+
+  @override
+  String get follow_you => '나';
 }
