@@ -12615,4 +12615,87 @@ class AppLocalizationsHu extends AppLocalizations {
   String snrHistory_summary(int count, String low, String avg, String high) {
     return '$count adat · min. $low · átlag $avg · max. $high';
   }
+
+  @override
+  String get follow_menu => 'Követés 15 percig';
+
+  @override
+  String get follow_menuHint =>
+      'Néhány percenként lekéri a helyzetét és megrajzolja a nyomvonalat';
+
+  @override
+  String follow_title(String name) {
+    return '$name követése';
+  }
+
+  @override
+  String get follow_askNow => 'Helyzet lekérése most';
+
+  @override
+  String follow_fromYou(String distance, String direction, int degrees) {
+    return '$distance $direction ($degrees°) tőled';
+  }
+
+  @override
+  String get follow_waiting => 'Helyzetre várva…';
+
+  @override
+  String get follow_noOwnPosition =>
+      'A saját helyzeted ismeretlen, így a távolság és irány nem látható.';
+
+  @override
+  String follow_timeLeftLabel(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Kb. $minutes perc van hátra',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String follow_lastFix(String ago) {
+    return 'utolsó helyzet $ago';
+  }
+
+  @override
+  String follow_secondsAgo(int n) {
+    return '$n mp-e';
+  }
+
+  @override
+  String follow_minutesAgo(int n) {
+    return '$n perce';
+  }
+
+  @override
+  String follow_answers(int answered, int asked) {
+    return '$answered/$asked kérésre jött válasz';
+  }
+
+  @override
+  String follow_points(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count pont',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get follow_hint =>
+      '15 perc után magától leáll. A kapcsolatnak engedélyeznie kell a helyzetet a telemetriában, különben csak hirdetéskor mozdul.';
+
+  @override
+  String get follow_stop => 'Leállítás';
+
+  @override
+  String get follow_stopped => 'Nincs követés. Indítsd újra további 15 percre.';
+
+  @override
+  String get follow_start => 'Követés 15 perc';
+
+  @override
+  String get follow_you => 'Te';
 }

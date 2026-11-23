@@ -7823,5 +7823,88 @@
         "type": "String"
       }
     }
-  }
+  },
+  "follow_menu": "Follow for 15 min",
+  "follow_menuHint": "Asks for its position every few minutes and draws its trail",
+  "follow_title": "Following {name}",
+  "@follow_title": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "follow_askNow": "Ask for position now",
+  "follow_fromYou": "{distance} {direction} ({degrees}°) from you",
+  "@follow_fromYou": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "direction": {
+        "type": "String"
+      },
+      "degrees": {
+        "type": "int"
+      }
+    }
+  },
+  "follow_waiting": "Waiting for a position…",
+  "follow_noOwnPosition": "Your own position isn't known, so distance and bearing can't be shown.",
+  "follow_timeLeftLabel": "{minutes, plural, =1{About 1 minute left} other{About {minutes} minutes left}}",
+  "@follow_timeLeftLabel": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "follow_lastFix": "last position {ago}",
+  "@follow_lastFix": {
+    "placeholders": {
+      "ago": {
+        "type": "String"
+      }
+    }
+  },
+  "follow_secondsAgo": "{n} s ago",
+  "@follow_secondsAgo": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "follow_minutesAgo": "{n} min ago",
+  "@follow_minutesAgo": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "follow_answers": "{answered}/{asked} requests answered",
+  "@follow_answers": {
+    "placeholders": {
+      "answered": {
+        "type": "int"
+      },
+      "asked": {
+        "type": "int"
+      }
+    }
+  },
+  "follow_points": "{count, plural, =1{1 point} other{{count} points}}",
+  "@follow_points": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "follow_hint": "Stops by itself after 15 minutes. The contact must allow location in its telemetry settings, or it only moves when it sends an advert.",
+  "follow_stop": "Stop",
+  "follow_stopped": "Not following. Start again to ask for its position for another 15 minutes.",
+  "follow_start": "Follow 15 min",
+  "follow_you": "You"
 }

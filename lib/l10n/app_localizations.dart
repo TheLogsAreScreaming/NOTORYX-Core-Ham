@@ -20861,6 +20861,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count} readings · low {low} · average {avg} · high {high}'**
   String snrHistory_summary(int count, String low, String avg, String high);
+
+  /// No description provided for @follow_menu.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow for 15 min'**
+  String get follow_menu;
+
+  /// No description provided for @follow_menuHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Asks for its position every few minutes and draws its trail'**
+  String get follow_menuHint;
+
+  /// No description provided for @follow_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Following {name}'**
+  String follow_title(String name);
+
+  /// No description provided for @follow_askNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask for position now'**
+  String get follow_askNow;
+
+  /// No description provided for @follow_fromYou.
+  ///
+  /// In en, this message translates to:
+  /// **'{distance} {direction} ({degrees}°) from you'**
+  String follow_fromYou(String distance, String direction, int degrees);
+
+  /// No description provided for @follow_waiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for a position…'**
+  String get follow_waiting;
+
+  /// No description provided for @follow_noOwnPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Your own position isn\'t known, so distance and bearing can\'t be shown.'**
+  String get follow_noOwnPosition;
+
+  /// No description provided for @follow_timeLeftLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes, plural, =1{About 1 minute left} other{About {minutes} minutes left}}'**
+  String follow_timeLeftLabel(int minutes);
+
+  /// No description provided for @follow_lastFix.
+  ///
+  /// In en, this message translates to:
+  /// **'last position {ago}'**
+  String follow_lastFix(String ago);
+
+  /// No description provided for @follow_secondsAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} s ago'**
+  String follow_secondsAgo(int n);
+
+  /// No description provided for @follow_minutesAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} min ago'**
+  String follow_minutesAgo(int n);
+
+  /// No description provided for @follow_answers.
+  ///
+  /// In en, this message translates to:
+  /// **'{answered}/{asked} requests answered'**
+  String follow_answers(int answered, int asked);
+
+  /// No description provided for @follow_points.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 point} other{{count} points}}'**
+  String follow_points(int count);
+
+  /// No description provided for @follow_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Stops by itself after 15 minutes. The contact must allow location in its telemetry settings, or it only moves when it sends an advert.'**
+  String get follow_hint;
+
+  /// No description provided for @follow_stop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop'**
+  String get follow_stop;
+
+  /// No description provided for @follow_stopped.
+  ///
+  /// In en, this message translates to:
+  /// **'Not following. Start again to ask for its position for another 15 minutes.'**
+  String get follow_stopped;
+
+  /// No description provided for @follow_start.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow 15 min'**
+  String get follow_start;
+
+  /// No description provided for @follow_you.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get follow_you;
 }
 
 class _AppLocalizationsDelegate

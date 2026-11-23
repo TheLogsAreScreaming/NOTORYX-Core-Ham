@@ -11,6 +11,7 @@ import '../models/app_settings.dart';
 import '../models/contact.dart';
 import '../models/field_intel.dart';
 import '../screens/chat_screen.dart';
+import '../screens/follow_contact_screen.dart';
 import '../screens/map_screen.dart';
 import '../screens/node_compass_screen.dart';
 import '../screens/repeater_hub_screen.dart';
@@ -186,6 +187,17 @@ void showNodeSheet(BuildContext context, Contact c) {
                 onTap: () {
                   Navigator.pop(sheet);
                   openNodeCompass(context, c);
+                },
+              ),
+            if (c.hasLocation)
+              InstrumentRow(
+                icon: Icons.radar,
+                title: l10n.follow_menu,
+                subtitle: l10n.follow_menuHint,
+                divider: false,
+                onTap: () {
+                  Navigator.pop(sheet);
+                  followContact(context, c);
                 },
               ),
             InstrumentRow(

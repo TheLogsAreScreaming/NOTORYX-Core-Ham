@@ -12672,4 +12672,88 @@ class AppLocalizationsUk extends AppLocalizations {
   String snrHistory_summary(int count, String low, String avg, String high) {
     return 'Значень: $count · мін. $low · сер. $avg · макс. $high';
   }
+
+  @override
+  String get follow_menu => 'Стежити 15 хв';
+
+  @override
+  String get follow_menuHint =>
+      'Запитує позицію кожні кілька хвилин і малює слід';
+
+  @override
+  String follow_title(String name) {
+    return 'Стеження: $name';
+  }
+
+  @override
+  String get follow_askNow => 'Запитати позицію зараз';
+
+  @override
+  String follow_fromYou(String distance, String direction, int degrees) {
+    return '$distance на $direction ($degrees°) від вас';
+  }
+
+  @override
+  String get follow_waiting => 'Очікування позиції…';
+
+  @override
+  String get follow_noOwnPosition =>
+      'Ваша позиція невідома, тому відстань і напрямок недоступні.';
+
+  @override
+  String follow_timeLeftLabel(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Залишилося близько $minutes хв',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String follow_lastFix(String ago) {
+    return 'остання позиція $ago';
+  }
+
+  @override
+  String follow_secondsAgo(int n) {
+    return '$n с тому';
+  }
+
+  @override
+  String follow_minutesAgo(int n) {
+    return '$n хв тому';
+  }
+
+  @override
+  String follow_answers(int answered, int asked) {
+    return 'відповідей: $answered/$asked';
+  }
+
+  @override
+  String follow_points(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'точок: $count',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get follow_hint =>
+      'Зупиняється сам через 15 хвилин. Контакт має дозволити місцезнаходження в телеметрії, інакше позиція оновиться лише з його оголошень.';
+
+  @override
+  String get follow_stop => 'Стоп';
+
+  @override
+  String get follow_stopped =>
+      'Стеження зупинено. Запустіть знову, щоб запитувати позицію ще 15 хвилин.';
+
+  @override
+  String get follow_start => 'Стежити 15 хв';
+
+  @override
+  String get follow_you => 'Ви';
 }

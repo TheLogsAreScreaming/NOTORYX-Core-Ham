@@ -12622,4 +12622,90 @@ class AppLocalizationsBg extends AppLocalizations {
   String snrHistory_summary(int count, String low, String avg, String high) {
     return '$count стойности · мин. $low · средно $avg · макс. $high';
   }
+
+  @override
+  String get follow_menu => 'Следвай 15 мин';
+
+  @override
+  String get follow_menuHint =>
+      'Пита за позицията на няколко минути и чертае следата';
+
+  @override
+  String follow_title(String name) {
+    return 'Следване на $name';
+  }
+
+  @override
+  String get follow_askNow => 'Поискай позиция сега';
+
+  @override
+  String follow_fromYou(String distance, String direction, int degrees) {
+    return '$distance на $direction ($degrees°) от вас';
+  }
+
+  @override
+  String get follow_waiting => 'Изчакване на позиция…';
+
+  @override
+  String get follow_noOwnPosition =>
+      'Собствената ви позиция не е известна, затова няма разстояние и посока.';
+
+  @override
+  String follow_timeLeftLabel(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Остават около $minutes минути',
+      one: 'Остава около 1 минута',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String follow_lastFix(String ago) {
+    return 'последна позиция $ago';
+  }
+
+  @override
+  String follow_secondsAgo(int n) {
+    return 'преди $n с';
+  }
+
+  @override
+  String follow_minutesAgo(int n) {
+    return 'преди $n мин';
+  }
+
+  @override
+  String follow_answers(int answered, int asked) {
+    return '$answered/$asked отговорени заявки';
+  }
+
+  @override
+  String follow_points(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count точки',
+      one: '1 точка',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get follow_hint =>
+      'Спира само след 15 минути. Контактът трябва да разрешава местоположение в телеметрията, иначе се мести само при обявяване.';
+
+  @override
+  String get follow_stop => 'Спри';
+
+  @override
+  String get follow_stopped =>
+      'Следването е спряно. Стартирайте отново за още 15 минути.';
+
+  @override
+  String get follow_start => 'Следвай 15 мин';
+
+  @override
+  String get follow_you => 'Вие';
 }
