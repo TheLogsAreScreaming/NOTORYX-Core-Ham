@@ -170,6 +170,8 @@ class ChannelMessageStore {
         'signature': msg.signature.name,
       if (msg.signerKey != null) 'signerKey': base64Encode(msg.signerKey!),
       if (msg.region != null) 'region': msg.region,
+      if (msg.filterReason != null) 'filterReason': msg.filterReason,
+      if (msg.filterDetail != null) 'filterDetail': msg.filterDetail,
     };
   }
 
@@ -259,6 +261,8 @@ class ChannelMessageStore {
         orElse: () => ChannelSignature.none,
       ),
       region: json['region'] as String?,
+      filterReason: json['filterReason'] as String?,
+      filterDetail: json['filterDetail'] as String?,
       signerKey: json['signerKey'] is String
           ? Uint8List.fromList(base64Decode(json['signerKey'] as String))
           : null,

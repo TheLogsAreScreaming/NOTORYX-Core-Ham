@@ -25,6 +25,9 @@ import '../models/radio_rx_packet.dart';
 import '../models/saved_radio.dart';
 import '../models/contact.dart';
 import '../models/flood_corridor.dart';
+import '../models/field_ops.dart';
+import '../models/message_filter.dart';
+import '../services/message_filter/message_filter_service.dart';
 import '../models/heard_channel_packet.dart';
 import '../models/message.dart';
 import '../models/path_selection.dart';
@@ -81,6 +84,8 @@ import '../utils/battery_utils.dart';
 import '../utils/platform_info.dart';
 import 'meshcore_uuids.dart';
 import 'meshcore_protocol.dart';
+
+part 'connector_message_filter.dart';
 
 class DirectRepeater {
   static const int maxAgeMinutes = 30; // Max age for direct repeater info
@@ -364,6 +369,11 @@ class MeshCoreConnector extends ChangeNotifier {
   // frames (chunks of one image arrive in separate GRP_DATA frames, and via the
   // firmware offline queue they may be minutes apart).
   ImageChunkTransport? _imageTransport;
+  MessageFilterService? _messageFilterService;
+
+  /// The filter rules revision last applied to stored messages (see
+  /// [_ConnectorMessageFilter._onMessageFilterChanged]).
+  int _appliedFilterRulesRevision = 0;
   void Function(ImageChunkOutcome outcome)? _onImageChunk;
   void Function(int senderPrefix)? _onImageSenderPrefix;
   // Intentionally global (not per-contact): tracks overall network activity.
@@ -1142,6 +1152,127 @@ class MeshCoreConnector extends ChangeNotifier {
     return olderMessages;
   }
 
+  // ---- message filter ------------------------------------------------------
+
+  /// The id the message filter uses for [channel]: its key, so per-channel
+  /// exclusions and "Not spam" exemptions follow the channel between slots.
+  static String messageFilterChannelId(Channel channel) =>
+      'psk:${channel.pskHex}';
+
+  /// Returns [message] tagged with [verdict], or unchanged when it is null.
+  @visibleForTesting
+  static ChannelMessage applyFilterVerdict(
+    ChannelMessage message,
+    FilterVerdict? verdict,
+  ) {
+    if (verdict == null) return message;
+    return message.copyWith(
+      filterReason: filterReasonToJson(verdict.reason),
+      filterDetail: verdict.detail,
+    );
+  }
+
+  /// The shared message filter, when the app set one up.
+  MessageFilterService? get messageFilterService => _messageFilterService;
+
+  /// Whether [message] in [channel] is hidden right now: tagged by the
+  /// filter, and filtering is on for that channel.
+  bool isChannelMessageHidden(Channel channel, ChannelMessage message) =>
+      message.isFiltered &&
+      (_messageFilterService?.isChannelFiltered(
+            messageFilterChannelId(channel),
+          ) ??
+          false);
+
+  /// User marked [message] in [channel] as spam: hide it and teach the
+  /// filter.
+  Future<void> markChannelMessageSpam(
+    Channel channel,
+    ChannelMessage message,
+  ) => markChannelMessagesSpam([(channel, message)]);
+
+  /// Bulk "Spam": hides every message and teaches the filter once.
+  Future<void> markChannelMessagesSpam(
+    List<(Channel channel, ChannelMessage message)> items,
+  ) async {
+    if (items.isEmpty) return;
+    for (final (channel, message) in items) {
+      _updateLoadedChannelMessageById(
+        channel,
+        message.messageId,
+        (existing) => existing
+            .copyWith(clearFilter: true)
+            .copyWith(filterReason: filterReasonToJson(FilterReason.manual)),
+      );
+    }
+    notifyListeners();
+    await _messageFilterService?.markSpamMany([
+      for (final (_, message) in items)
+        (
+          sender: message.senderName,
+          text: _ConnectorMessageFilter._messageFilterText(message),
+        ),
+    ]);
+  }
+
+  /// User marked [message] in [channel] as not spam: show it again and
+  /// teach the filter.
+  Future<void> markChannelMessageNotSpam(
+    Channel channel,
+    ChannelMessage message,
+  ) => markChannelMessagesNotSpam([(channel, message)]);
+
+  /// Bulk "Not spam": shows every message again and teaches the filter once.
+  Future<void> markChannelMessagesNotSpam(
+    List<(Channel channel, ChannelMessage message)> items,
+  ) async {
+    if (items.isEmpty) return;
+    for (final (channel, message) in items) {
+      _updateLoadedChannelMessageById(
+        channel,
+        message.messageId,
+        (existing) => existing.copyWith(clearFilter: true),
+      );
+    }
+    notifyListeners();
+    final service = _messageFilterService;
+    if (service == null) return;
+    await service.markNotSpamMany([
+      for (final (channel, message) in items)
+        (
+          channelId: messageFilterChannelId(channel),
+          sender: message.senderName,
+          text: _ConnectorMessageFilter._messageFilterText(message),
+        ),
+    ]);
+  }
+
+  /// Filtered messages across all loaded channels, newest first.
+  List<(Channel channel, ChannelMessage message)>
+  recentFilteredChannelMessages({int limit = 200}) {
+    final result = <(Channel, ChannelMessage)>[];
+    for (final entry in _channelMessages.entries) {
+      final channel = _findChannelByIndex(entry.key);
+      if (channel == null) continue;
+      for (final message in entry.value) {
+        if (message.isFiltered) result.add((channel, message));
+      }
+    }
+    result.sort((a, b) => b.$2.timestamp.compareTo(a.$2.timestamp));
+    return result.length > limit ? result.sublist(0, limit) : result;
+  }
+
+  /// Newest message in [channel] the filter did not hide, for channel-list
+  /// previews.
+  ChannelMessage? latestVisibleChannelMessage(Channel channel) {
+    final messages = getChannelMessages(channel);
+    for (var i = messages.length - 1; i >= 0; i--) {
+      if (!isChannelMessageHidden(channel, messages[i])) return messages[i];
+    }
+    return null;
+  }
+
+
   List<ChannelMessage> getChannelMessages(Channel channel) {
     return _channelMessages[channel.index] ?? [];
   }
@@ -1600,6 +1731,7 @@ class MeshCoreConnector extends ChangeNotifier {
     TimeoutPredictionService? timeoutPredictionService,
     ImageCodecService? imageCodecService,
     ImageChunkTransport? imageTransport,
+    MessageFilterService? messageFilterService,
     void Function(ImageChunkOutcome outcome)? onImageChunk,
     void Function(int senderPrefix)? onImageSenderPrefix,
   }) {
@@ -1607,6 +1739,10 @@ class MeshCoreConnector extends ChangeNotifier {
     _pathHistoryService = pathHistoryService;
     _appSettingsService = appSettingsService;
     _translationService = translationService;
+    _messageFilterService?.removeListener(_onMessageFilterChanged);
+    _messageFilterService = messageFilterService;
+    _appliedFilterRulesRevision = messageFilterService?.rulesRevision ?? 0;
+    messageFilterService?.addListener(_onMessageFilterChanged);
     _imageCodecService = imageCodecService;
     _imageTransport = imageTransport;
     _onImageChunk = onImageChunk;
@@ -5715,6 +5851,21 @@ class MeshCoreConnector extends ChangeNotifier {
     ..clear()
     ..addAll(contacts);
 
+  /// Feeds a CHANNEL_MSG_RECV frame in as if the radio sent it.
+  @visibleForTesting
+  void debugHandleIncomingChannelFrame(Uint8List frame) =>
+      _handleIncomingChannelMessage(frame);
+
+  /// Uses [service] as the message filter, as [initialize] would.
+  @visibleForTesting
+  void debugUseMessageFilter(MessageFilterService service) {
+    _messageFilterService?.removeListener(_onMessageFilterChanged);
+    _messageFilterService = service;
+    _appliedFilterRulesRevision = service.rulesRevision;
+    service.addListener(_onMessageFilterChanged);
+  }
+
+
   @visibleForTesting
   void debugSetChannels(List<Channel> channels) => _channels
     ..clear()
@@ -7304,6 +7455,7 @@ class MeshCoreConnector extends ChangeNotifier {
     final label = channelName ?? _channelDisplayName(channelIndex);
     if (_appSettingsService!.isChannelMuted(label)) return;
     if (_isBlockedChannelSender(message)) return;
+    if (_isHiddenByFilter(message)) return;
     if (!_receivedChannelMessagesController.isClosed) {
       _receivedChannelMessagesController.add(
         ReceivedChannelMessage(message, label),
@@ -7374,13 +7526,14 @@ class MeshCoreConnector extends ChangeNotifier {
       final isNew = _addChannelMessage(message.channelIndex!, message);
       _maybeIncrementChannelUnread(message, isNew: isNew);
       notifyListeners();
+      final hidden = isNew && _isHiddenByFilter(message);
       if (isNew && !message.isOutgoing) {
         unawaited(_claimHeldSignature(message));
-        if (!_radioChannelMessagesController.isClosed) {
+        if (!hidden && !_radioChannelMessagesController.isClosed) {
           _radioChannelMessagesController.add(message);
         }
       }
-      if (isNew && !message.isOutgoing) {
+      if (isNew && !message.isOutgoing && !hidden) {
         final msg = message; // capture for closure
         unawaited(() async {
           final translationResult = await translateChannelMessage(
@@ -7758,7 +7911,7 @@ class MeshCoreConnector extends ChangeNotifier {
           final isNew = _addChannelMessage(channel.index, message);
           _maybeIncrementChannelUnread(message, isNew: isNew);
           notifyListeners();
-          if (isNew) {
+          if (isNew && !_isHiddenByFilter(message)) {
             // Run translation + notification asynchronously to avoid blocking
             unawaited(() async {
               final translationResult = await translateChannelMessage(
@@ -8119,6 +8272,7 @@ class MeshCoreConnector extends ChangeNotifier {
     required bool isNew,
   }) {
     if (_isBlockedChannelSender(message)) return;
+    if (_isHiddenByFilter(message)) return;
     if (!isNew || message.isOutgoing) {
       _appDebugLogService?.info(
         'Skip unread increment: isNew=$isNew, isOutgoing=${message.isOutgoing}',
@@ -8615,6 +8769,8 @@ class MeshCoreConnector extends ChangeNotifier {
           replyToSenderName: originalMessage.senderName,
           replyToText: originalMessage.text,
           viaMqtt: message.viaMqtt,
+          filterReason: message.filterReason,
+          filterDetail: message.filterDetail,
         );
       }
     }
@@ -8674,7 +8830,9 @@ class MeshCoreConnector extends ChangeNotifier {
         _pendingChannelSentQueue.remove(existing.messageId);
       }
     } else {
-      messages.add(processedMessage);
+      final filtered = _applyMessageFilter(channelIndex, processedMessage);
+      messages.add(filtered);
+      _recordCleanChannelMessage(channelIndex, filtered);
     }
 
     // Save to persistent storage

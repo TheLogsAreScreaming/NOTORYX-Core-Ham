@@ -10,6 +10,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart' hide TextDirection;
 import 'package:provider/provider.dart';
 
+import '../models/message_filter.dart';
+import '../services/message_filter/message_filter_service.dart';
+import '../widgets/filtered_message_ghost.dart';
 import '../storage/draft_store.dart';
 import '../connector/meshcore_connector.dart';
 import '../models/channel_mentions.dart';
@@ -117,6 +120,29 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
   DateTime? _lastChannelSendAt;
   bool _channelSkipNextBottomSnap = false;
   String? _unreadDividerMessageId;
+
+  /// Filtered messages tapped open on this screen (session only).
+  final Set<String> _revealedFilteredIds = <String>{};
+
+  /// The shared message filter, or null where none is provided (tests).
+  MessageFilterService? _watchMessageFilter(BuildContext context) {
+    try {
+      return context.watch<MessageFilterService>();
+    } on ProviderNotFoundException {
+      return null;
+    }
+  }
+
+  MessageFilterService? _readMessageFilter(BuildContext context) {
+    try {
+      return context.read<MessageFilterService>();
+    } on ProviderNotFoundException {
+      return null;
+    }
+  }
+
+  String get _messageFilterChannelId =>
+      MeshCoreConnector.messageFilterChannelId(widget.channel);
 
   String? _cachedFormatLocale;
   late DateFormat _hmFormat;
@@ -396,9 +422,24 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
               onSelected: (value) {
                 if (value == 'clearChat') {
                   _confirmClearChat();
+                } else if (value == 'messageFilter') {
+                  final filter = context.read<MessageFilterService>();
+                  unawaited(
+                    filter.setChannelExcluded(
+                      _messageFilterChannelId,
+                      filter.isChannelFiltered(_messageFilterChannelId),
+                    ),
+                  );
                 }
               },
               itemBuilder: (context) => [
+                if (_readMessageFilter(context) case final filter?
+                    when filter.settings.enabled)
+                  CheckedPopupMenuItem(
+                    value: 'messageFilter',
+                    checked: filter.isChannelFiltered(_messageFilterChannelId),
+                    child: Text(context.l10n.messageFilter_channelToggle),
+                  ),
                 PopupMenuItem(
                   value: 'clearChat',
                   child: Row(
@@ -435,7 +476,20 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                           .watch<AppSettingsService>()
                           .settings
                           .blockedSenders,
-                    );
+                    ).toList();
+                    final filter = _watchMessageFilter(context);
+                    final filterActive =
+                        filter?.isChannelFiltered(_messageFilterChannelId) ??
+                        false;
+                    if (filterActive &&
+                        filter!.settings.displayMode ==
+                            FilterDisplayMode.hide) {
+                      messages.removeWhere(
+                        (m) =>
+                            m.isFiltered &&
+                            !_revealedFilteredIds.contains(m.messageId),
+                      );
+                    }
                     final imageRows = _receivedImageRows(context);
 
                     if (messages.isEmpty && imageRows.isEmpty) {
@@ -543,16 +597,72 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                                           (service) => service.scale,
                                         );
                                     final message = row.message;
-                                    final bubble = message != null
-                                        ? _buildMessageBubble(
+                                    final hidden =
+                                        filterActive &&
+                                        message != null &&
+                                        message.isFiltered;
+                                    final Widget bubble;
+                                    if (message == null) {
+                                      bubble = _buildImageBubble(
+                                        row.image!,
+                                        textScale,
+                                      );
+                                    } else if (hidden &&
+                                        !_revealedFilteredIds.contains(
+                                          message.messageId,
+                                        )) {
+                                      bubble = FilteredMessageGhost(
+                                        count: 1,
+                                        textScale: textScale,
+                                        reason: messageFilterReasonLabel(
+                                          context.l10n,
+                                          message.filterReason,
+                                          message.filterDetail,
+                                        ),
+                                        onTap: () => setState(
+                                          () => _revealedFilteredIds.add(
+                                            message.messageId,
+                                          ),
+                                        ),
+                                      );
+                                    } else if (hidden) {
+                                      bubble = Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          FilteredMessageBanner(
+                                            textScale: textScale,
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.onSurfaceVariant,
+                                            reason: messageFilterReasonLabel(
+                                              context.l10n,
+                                              message.filterReason,
+                                              message.filterDetail,
+                                            ),
+                                            onNotSpam: () =>
+                                                _markNotSpam(message),
+                                            onHide: () => setState(
+                                              () => _revealedFilteredIds.remove(
+                                                message.messageId,
+                                              ),
+                                            ),
+                                          ),
+                                          _buildMessageBubble(
                                             message,
                                             textScale,
                                             urlImagesEnabled,
-                                          )
-                                        : _buildImageBubble(
-                                            row.image!,
-                                            textScale,
-                                          );
+                                          ),
+                                        ],
+                                      );
+                                    } else {
+                                      bubble = _buildMessageBubble(
+                                        message,
+                                        textScale,
+                                        urlImagesEnabled,
+                                      );
+                                    }
                                     if (isUnreadAnchor) {
                                       return Column(
                                         mainAxisSize: MainAxisSize.min,
@@ -2447,6 +2557,30 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     );
   }
 
+  Future<void> _markSpam(ChannelMessage message) async {
+    final connector = context.read<MeshCoreConnector>();
+    final l10n = context.l10n;
+    _revealedFilteredIds.remove(message.messageId);
+    await connector.markChannelMessageSpam(widget.channel, message);
+    if (!mounted) return;
+    showDismissibleSnackBar(
+      context,
+      content: Text(l10n.messageFilter_markedSpam),
+    );
+  }
+
+  Future<void> _markNotSpam(ChannelMessage message) async {
+    final connector = context.read<MeshCoreConnector>();
+    final l10n = context.l10n;
+    _revealedFilteredIds.remove(message.messageId);
+    await connector.markChannelMessageNotSpam(widget.channel, message);
+    if (!mounted) return;
+    showDismissibleSnackBar(
+      context,
+      content: Text(l10n.messageFilter_markedNotSpam),
+    );
+  }
+
   void _showMessageActions(ChannelMessage message) {
     final translationService = context.read<TranslationService>();
     final canTranslateMessage =
@@ -2566,6 +2700,27 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                   _markAsUnread(message);
                 },
               ),
+            if (!message.isOutgoing &&
+                context.read<MeshCoreConnector>().messageFilterService != null)
+              message.isFiltered
+                  ? ListTile(
+                      key: const ValueKey('channel-not-spam'),
+                      leading: const Icon(Icons.visibility_outlined),
+                      title: Text(context.l10n.messageFilter_notSpam),
+                      onTap: () {
+                        Navigator.pop(sheetContext);
+                        unawaited(_markNotSpam(message));
+                      },
+                    )
+                  : ListTile(
+                      key: const ValueKey('channel-mark-spam'),
+                      leading: const Icon(Icons.report_gmailerrorred_outlined),
+                      title: Text(context.l10n.messageFilter_markSpam),
+                      onTap: () {
+                        Navigator.pop(sheetContext);
+                        unawaited(_markSpam(message));
+                      },
+                    ),
             if (!message.isOutgoing && message.senderName.trim().isNotEmpty)
               ListTile(
                 key: const ValueKey('channel-block-sender'),

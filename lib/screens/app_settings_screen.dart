@@ -1,3 +1,4 @@
+import 'message_filter_settings_screen.dart';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -492,6 +493,23 @@ class AppSettingsScreen extends StatelessWidget {
           ),
           trailing: const Icon(Icons.chevron_right),
           onTap: () => showBlockedSendersSheet(context),
+        ),
+        ListTile(
+          key: const ValueKey('message-filter-setting'),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 4,
+          ),
+          leading: const Icon(Icons.filter_alt_outlined, size: 20),
+          title: Text(context.l10n.messageFilter_title),
+          subtitle: Text(context.l10n.messageFilter_settingsSubtitle),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const MessageFilterSettingsScreen(),
+            ),
+          ),
         ),
       ],
     );
