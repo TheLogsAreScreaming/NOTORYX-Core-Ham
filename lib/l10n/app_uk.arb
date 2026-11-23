@@ -4455,6 +4455,8 @@
   "reactions_radioOff": "Вимк. (цей пристрій)",
   "notification_replyAction": "Відповісти",
   "notification_replyHint": "Напишіть відповідь",
+  "notification_markRead": "Позначити як прочитане",
+  "notification_you": "Ви",
   "mesh_title": "Стан мережі",
   "mesh_overallGood": "Мережа в порядку",
   "mesh_overallFair": "Мережа працює, але з проблемами",

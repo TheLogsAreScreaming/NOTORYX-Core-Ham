@@ -4480,6 +4480,8 @@
   "reactions_radioOff": "关（仅本设备）",
   "notification_replyAction": "回复",
   "notification_replyHint": "输入回复",
+  "notification_markRead": "标为已读",
+  "notification_you": "你",
   "mesh_title": "网状网络状态",
   "mesh_overallGood": "网络状态良好",
   "mesh_overallFair": "网络可用，但有些问题",

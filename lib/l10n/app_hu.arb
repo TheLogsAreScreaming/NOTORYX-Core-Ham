@@ -4513,6 +4513,8 @@
   "reactions_radioOff": "Ki (ez az eszköz)",
   "notification_replyAction": "Válasz",
   "notification_replyHint": "Írj választ",
+  "notification_markRead": "Megjelölés olvasottként",
+  "notification_you": "Ön",
   "mesh_title": "Háló állapota",
   "mesh_overallGood": "A háló rendben van",
   "mesh_overallFair": "A háló működik, de vannak gondok",

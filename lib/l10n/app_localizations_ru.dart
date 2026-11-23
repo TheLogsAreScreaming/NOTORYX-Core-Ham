@@ -11224,6 +11224,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get notification_replyHint => 'Напишите ответ';
 
   @override
+  String get notification_markRead => 'Отметить как прочитанное';
+
+  @override
+  String get notification_you => 'Вы';
+
+  @override
   String get mesh_title => 'Состояние сети';
 
   @override

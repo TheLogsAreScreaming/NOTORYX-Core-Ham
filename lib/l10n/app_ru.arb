@@ -3778,6 +3778,8 @@
   "reactions_radioOff": "Выкл. (это устройство)",
   "notification_replyAction": "Ответить",
   "notification_replyHint": "Напишите ответ",
+  "notification_markRead": "Отметить как прочитанное",
+  "notification_you": "Вы",
   "mesh_title": "Состояние сети",
   "mesh_overallGood": "Сеть в порядке",
   "mesh_overallFair": "Сеть работает, но с проблемами",

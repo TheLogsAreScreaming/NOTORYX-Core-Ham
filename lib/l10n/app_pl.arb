@@ -4513,6 +4513,8 @@
   "reactions_radioOff": "Wył. (to urządzenie)",
   "notification_replyAction": "Odpowiedz",
   "notification_replyHint": "Napisz odpowiedź",
+  "notification_markRead": "Oznacz jako przeczytane",
+  "notification_you": "Ty",
   "mesh_title": "Stan sieci",
   "mesh_overallGood": "Sieć wygląda dobrze",
   "mesh_overallFair": "Sieć działa, ale z problemami",

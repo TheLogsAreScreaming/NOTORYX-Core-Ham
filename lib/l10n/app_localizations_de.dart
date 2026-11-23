@@ -11190,6 +11190,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get notification_replyHint => 'Antwort schreiben';
 
   @override
+  String get notification_markRead => 'Als gelesen markieren';
+
+  @override
+  String get notification_you => 'Sie';
+
+  @override
   String get mesh_title => 'Mesh-Zustand';
 
   @override

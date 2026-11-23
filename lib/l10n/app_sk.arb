@@ -4475,6 +4475,8 @@
   "reactions_radioOff": "Vyp. (toto zariadenie)",
   "notification_replyAction": "Odpovedať",
   "notification_replyHint": "Napíšte odpoveď",
+  "notification_markRead": "Označiť ako prečítané",
+  "notification_you": "Vy",
   "mesh_title": "Stav siete",
   "mesh_overallGood": "Sieť vyzerá v poriadku",
   "mesh_overallFair": "Sieť funguje, ale s problémami",

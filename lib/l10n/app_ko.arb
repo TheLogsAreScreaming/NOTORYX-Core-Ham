@@ -4609,6 +4609,8 @@
   "reactions_radioOff": "끄기(이 기기)",
   "notification_replyAction": "답장",
   "notification_replyHint": "답장 입력",
+  "notification_markRead": "읽음으로 표시",
+  "notification_you": "나",
   "mesh_title": "메시 상태",
   "mesh_overallGood": "메시가 양호합니다",
   "mesh_overallFair": "메시가 작동하지만 문제가 있습니다",

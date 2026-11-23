@@ -11092,6 +11092,12 @@ class AppLocalizationsSv extends AppLocalizations {
   String get notification_replyHint => 'Skriv ett svar';
 
   @override
+  String get notification_markRead => 'Markera som läst';
+
+  @override
+  String get notification_you => 'Du';
+
+  @override
   String get mesh_title => 'Meshhälsa';
 
   @override

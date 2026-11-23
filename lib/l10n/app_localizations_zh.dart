@@ -10435,6 +10435,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get notification_replyHint => '输入回复';
 
   @override
+  String get notification_markRead => '标为已读';
+
+  @override
+  String get notification_you => '你';
+
+  @override
   String get mesh_title => '网状网络状态';
 
   @override

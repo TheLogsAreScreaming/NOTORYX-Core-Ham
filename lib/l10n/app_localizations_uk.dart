@@ -11223,6 +11223,12 @@ class AppLocalizationsUk extends AppLocalizations {
   String get notification_replyHint => 'Напишіть відповідь';
 
   @override
+  String get notification_markRead => 'Позначити як прочитане';
+
+  @override
+  String get notification_you => 'Ви';
+
+  @override
   String get mesh_title => 'Стан мережі';
 
   @override

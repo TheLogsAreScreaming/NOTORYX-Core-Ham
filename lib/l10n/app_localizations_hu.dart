@@ -11164,6 +11164,12 @@ class AppLocalizationsHu extends AppLocalizations {
   String get notification_replyHint => 'Írj választ';
 
   @override
+  String get notification_markRead => 'Megjelölés olvasottként';
+
+  @override
+  String get notification_you => 'Ön';
+
+  @override
   String get mesh_title => 'Háló állapota';
 
   @override

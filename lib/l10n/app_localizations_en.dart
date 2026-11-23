@@ -11045,6 +11045,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notification_replyHint => 'Write a reply';
 
   @override
+  String get notification_markRead => 'Mark as read';
+
+  @override
+  String get notification_you => 'You';
+
+  @override
   String get mesh_title => 'Mesh health';
 
   @override

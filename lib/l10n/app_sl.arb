@@ -4475,6 +4475,8 @@
   "reactions_radioOff": "Izklop (ta naprava)",
   "notification_replyAction": "Odgovori",
   "notification_replyHint": "Napišite odgovor",
+  "notification_markRead": "Označi kot prebrano",
+  "notification_you": "Vi",
   "mesh_title": "Stanje mreže",
   "mesh_overallGood": "Mreža je videti zdrava",
   "mesh_overallFair": "Mreža deluje, a s težavami",

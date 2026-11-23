@@ -4475,6 +4475,8 @@
   "reactions_radioOff": "Av (den här enheten)",
   "notification_replyAction": "Svara",
   "notification_replyHint": "Skriv ett svar",
+  "notification_markRead": "Markera som läst",
+  "notification_you": "Du",
   "mesh_title": "Meshhälsa",
   "mesh_overallGood": "Meshen ser frisk ut",
   "mesh_overallFair": "Meshen fungerar, med vissa problem",

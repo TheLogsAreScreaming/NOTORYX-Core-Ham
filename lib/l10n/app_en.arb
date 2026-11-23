@@ -6854,6 +6854,8 @@
   "reactions_radioOff": "Off (this device)",
   "notification_replyAction": "Reply",
   "notification_replyHint": "Write a reply",
+  "notification_markRead": "Mark as read",
+  "notification_you": "You",
   "mesh_title": "Mesh health",
   "mesh_overallGood": "The mesh looks healthy",
   "mesh_overallFair": "The mesh works, with some trouble",

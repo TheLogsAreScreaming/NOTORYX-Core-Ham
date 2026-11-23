@@ -4609,6 +4609,8 @@
   "reactions_radioOff": "No (questo dispositivo)",
   "notification_replyAction": "Rispondi",
   "notification_replyHint": "Scrivi una risposta",
+  "notification_markRead": "Segna come letto",
+  "notification_you": "Tu",
   "mesh_title": "Salute della rete",
   "mesh_overallGood": "La rete sembra in salute",
   "mesh_overallFair": "La rete funziona, con qualche problema",

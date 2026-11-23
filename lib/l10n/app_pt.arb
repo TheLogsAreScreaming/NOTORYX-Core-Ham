@@ -4475,6 +4475,8 @@
   "reactions_radioOff": "Desligado (este dispositivo)",
   "notification_replyAction": "Responder",
   "notification_replyHint": "Escreve uma resposta",
+  "notification_markRead": "Marcar como lida",
+  "notification_you": "Você",
   "mesh_title": "Saúde da rede",
   "mesh_overallGood": "A rede parece saudável",
   "mesh_overallFair": "A rede funciona, com alguns problemas",

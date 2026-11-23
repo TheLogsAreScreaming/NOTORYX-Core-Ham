@@ -60,6 +60,16 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/notoryx_widget_info" />
         </receiver>
+        <!-- Runs Reply and Mark-as-read from a notification without opening
+             the app (notification shade, watches, Android Auto). -->
+        <receiver
+            android:exported="false"
+            android:name="com.dexterous.flutterlocalnotifications.ActionBroadcastReceiver" />
+        <!-- Android Auto: message notifications can be read aloud and
+             answered by voice. -->
+        <meta-data
+            android:name="com.google.android.gms.car.application"
+            android:resource="@xml/automotive_app_desc" />
         <!-- Delivers scheduled notifications (trip check-in reminders). -->
         <receiver
             android:exported="false"
