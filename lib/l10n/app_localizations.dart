@@ -20635,6 +20635,500 @@ abstract class AppLocalizations {
   /// **'Your position isn\'t known yet, so range rings can\'t be drawn.'**
   String get rangeRings_noPosition;
 
+  /// No description provided for @channelConflict_banner.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 channel on the radio differs from the app} other{{count} channels on the radio differ from the app}}'**
+  String channelConflict_banner(int count);
+
+  /// No description provided for @channelConflict_review.
+  ///
+  /// In en, this message translates to:
+  /// **'Review'**
+  String get channelConflict_review;
+
+  /// No description provided for @channelConflict_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Channel differences'**
+  String get channelConflict_title;
+
+  /// No description provided for @channelConflict_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'The radio holds a different name or key in these slots than the app saved. Someone may have changed them with another app, or the app\'s copy is old. Choose which version to keep for each slot.'**
+  String get channelConflict_hint;
+
+  /// No description provided for @channelConflict_allResolved.
+  ///
+  /// In en, this message translates to:
+  /// **'All slots match now.'**
+  String get channelConflict_allResolved;
+
+  /// No description provided for @channelConflict_slot.
+  ///
+  /// In en, this message translates to:
+  /// **'Slot {index}'**
+  String channelConflict_slot(int index);
+
+  /// No description provided for @channelConflict_onRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'On the radio'**
+  String get channelConflict_onRadio;
+
+  /// No description provided for @channelConflict_inApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved in the app'**
+  String get channelConflict_inApp;
+
+  /// No description provided for @channelConflict_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Empty'**
+  String get channelConflict_empty;
+
+  /// No description provided for @channelConflict_key.
+  ///
+  /// In en, this message translates to:
+  /// **'key {fingerprint}'**
+  String channelConflict_key(String fingerprint);
+
+  /// No description provided for @channelConflict_nameDiffers.
+  ///
+  /// In en, this message translates to:
+  /// **'Name differs'**
+  String get channelConflict_nameDiffers;
+
+  /// No description provided for @channelConflict_keyDiffers.
+  ///
+  /// In en, this message translates to:
+  /// **'Key differs'**
+  String get channelConflict_keyDiffers;
+
+  /// No description provided for @channelConflict_keepRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep radio\'s'**
+  String get channelConflict_keepRadio;
+
+  /// No description provided for @channelConflict_useApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Write app\'s to radio'**
+  String get channelConflict_useApp;
+
+  /// No description provided for @channelConflict_keptRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'Kept the radio\'s version of slot {index}'**
+  String channelConflict_keptRadio(int index);
+
+  /// No description provided for @channelConflict_usedApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrote the app\'s version to slot {index}'**
+  String channelConflict_usedApp(int index);
+
+  /// No description provided for @history_window24h.
+  ///
+  /// In en, this message translates to:
+  /// **'24 h'**
+  String get history_window24h;
+
+  /// No description provided for @history_window7d.
+  ///
+  /// In en, this message translates to:
+  /// **'7 days'**
+  String get history_window7d;
+
+  /// No description provided for @history_window30d.
+  ///
+  /// In en, this message translates to:
+  /// **'30 days'**
+  String get history_window30d;
+
+  /// No description provided for @statusHistory_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Status history'**
+  String get statusHistory_title;
+
+  /// No description provided for @statusHistory_battery.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery'**
+  String get statusHistory_battery;
+
+  /// No description provided for @statusHistory_rssi.
+  ///
+  /// In en, this message translates to:
+  /// **'RSSI'**
+  String get statusHistory_rssi;
+
+  /// No description provided for @statusHistory_snr.
+  ///
+  /// In en, this message translates to:
+  /// **'SNR'**
+  String get statusHistory_snr;
+
+  /// No description provided for @statusHistory_noiseFloor.
+  ///
+  /// In en, this message translates to:
+  /// **'Noise floor'**
+  String get statusHistory_noiseFloor;
+
+  /// No description provided for @statusHistory_errors.
+  ///
+  /// In en, this message translates to:
+  /// **'Errors'**
+  String get statusHistory_errors;
+
+  /// No description provided for @statusHistory_uptime.
+  ///
+  /// In en, this message translates to:
+  /// **'Uptime'**
+  String get statusHistory_uptime;
+
+  /// No description provided for @statusHistory_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Each status check you run is saved here, so you can see how this repeater changes over time.'**
+  String get statusHistory_empty;
+
+  /// No description provided for @statusHistory_noneInWindow.
+  ///
+  /// In en, this message translates to:
+  /// **'No {metric} readings in this time range.'**
+  String statusHistory_noneInWindow(String metric);
+
+  /// No description provided for @statusHistory_chartLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{metric} chart, {count} readings, from {low} to {high}'**
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  );
+
+  /// No description provided for @statusHistory_count.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No saved checks} =1{1 saved check} other{{count} saved checks}}'**
+  String statusHistory_count(int count);
+
+  /// No description provided for @statusHistory_clear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear history'**
+  String get statusHistory_clear;
+
+  /// No description provided for @statusHistory_clearTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear this repeater\'s history?'**
+  String get statusHistory_clearTitle;
+
+  /// No description provided for @statusHistory_clearBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved status checks and neighbour SNR readings for this repeater are removed from this phone.'**
+  String get statusHistory_clearBody;
+
+  /// No description provided for @snrHistory_trendLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'SNR trend for {name}, {count} readings. Tap for the chart.'**
+  String snrHistory_trendLabel(String name, int count);
+
+  /// No description provided for @snrHistory_title.
+  ///
+  /// In en, this message translates to:
+  /// **'SNR of {name}'**
+  String snrHistory_title(String name);
+
+  /// No description provided for @snrHistory_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'How well this repeater heard the neighbour each time you asked, kept on this phone.'**
+  String get snrHistory_hint;
+
+  /// No description provided for @snrHistory_summary.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} readings · low {low} · average {avg} · high {high}'**
+  String snrHistory_summary(int count, String low, String avg, String high);
+
+  /// No description provided for @follow_menu.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow for 15 min'**
+  String get follow_menu;
+
+  /// No description provided for @follow_menuHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Asks for its position every few minutes and draws its trail'**
+  String get follow_menuHint;
+
+  /// No description provided for @follow_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Following {name}'**
+  String follow_title(String name);
+
+  /// No description provided for @follow_askNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask for position now'**
+  String get follow_askNow;
+
+  /// No description provided for @follow_fromYou.
+  ///
+  /// In en, this message translates to:
+  /// **'{distance} {direction} ({degrees}°) from you'**
+  String follow_fromYou(String distance, String direction, int degrees);
+
+  /// No description provided for @follow_waiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for a position…'**
+  String get follow_waiting;
+
+  /// No description provided for @follow_noOwnPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Your own position isn\'t known, so distance and bearing can\'t be shown.'**
+  String get follow_noOwnPosition;
+
+  /// No description provided for @follow_timeLeftLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes, plural, =1{About 1 minute left} other{About {minutes} minutes left}}'**
+  String follow_timeLeftLabel(int minutes);
+
+  /// No description provided for @follow_lastFix.
+  ///
+  /// In en, this message translates to:
+  /// **'last position {ago}'**
+  String follow_lastFix(String ago);
+
+  /// No description provided for @follow_secondsAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} s ago'**
+  String follow_secondsAgo(int n);
+
+  /// No description provided for @follow_minutesAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} min ago'**
+  String follow_minutesAgo(int n);
+
+  /// No description provided for @follow_answers.
+  ///
+  /// In en, this message translates to:
+  /// **'{answered}/{asked} requests answered'**
+  String follow_answers(int answered, int asked);
+
+  /// No description provided for @follow_points.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 point} other{{count} points}}'**
+  String follow_points(int count);
+
+  /// No description provided for @follow_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Stops by itself after 15 minutes. The contact must allow location in its telemetry settings, or it only moves when it sends an advert.'**
+  String get follow_hint;
+
+  /// No description provided for @follow_stop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop'**
+  String get follow_stop;
+
+  /// No description provided for @follow_stopped.
+  ///
+  /// In en, this message translates to:
+  /// **'Not following. Start again to ask for its position for another 15 minutes.'**
+  String get follow_stopped;
+
+  /// No description provided for @follow_start.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow 15 min'**
+  String get follow_start;
+
+  /// No description provided for @follow_you.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get follow_you;
+
+  /// No description provided for @sensorHistory_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Sensor history'**
+  String get sensorHistory_title;
+
+  /// No description provided for @sensorHistory_menuHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Charts for the last hour to day, and alerts'**
+  String get sensorHistory_menuHint;
+
+  /// No description provided for @sensorHistory_readNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Read now'**
+  String get sensorHistory_readNow;
+
+  /// No description provided for @sensorHistory_window1h.
+  ///
+  /// In en, this message translates to:
+  /// **'1 h'**
+  String get sensorHistory_window1h;
+
+  /// No description provided for @sensorHistory_window6h.
+  ///
+  /// In en, this message translates to:
+  /// **'6 h'**
+  String get sensorHistory_window6h;
+
+  /// No description provided for @sensorHistory_window24h.
+  ///
+  /// In en, this message translates to:
+  /// **'24 h'**
+  String get sensorHistory_window24h;
+
+  /// No description provided for @sensorHistory_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No readings yet. Tap Read now, or turn on live updates or auto refresh in Telemetry; every reading is kept here for a day.'**
+  String get sensorHistory_empty;
+
+  /// No description provided for @sensorHistory_updated.
+  ///
+  /// In en, this message translates to:
+  /// **'Updated {time}'**
+  String sensorHistory_updated(String time);
+
+  /// No description provided for @sensorHistory_noneInWindow.
+  ///
+  /// In en, this message translates to:
+  /// **'No readings in this time range.'**
+  String get sensorHistory_noneInWindow;
+
+  /// No description provided for @sensorHistory_chartLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{metric} chart, {count} readings, from {low} to {high}'**
+  String sensorHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  );
+
+  /// No description provided for @sensorHistory_noAlert.
+  ///
+  /// In en, this message translates to:
+  /// **'No alert'**
+  String get sensorHistory_noAlert;
+
+  /// No description provided for @sensorHistory_alertWhenAbove.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert above {value}'**
+  String sensorHistory_alertWhenAbove(String value);
+
+  /// No description provided for @sensorHistory_alertWhenBelow.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert below {value}'**
+  String sensorHistory_alertWhenBelow(String value);
+
+  /// No description provided for @sensorHistory_setAlert.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert…'**
+  String get sensorHistory_setAlert;
+
+  /// No description provided for @sensorHistory_alertDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert on this value'**
+  String get sensorHistory_alertDialogTitle;
+
+  /// No description provided for @sensorHistory_alertDialogHint.
+  ///
+  /// In en, this message translates to:
+  /// **'You get a notification when a new reading crosses a limit. Leave a field empty to not use it.'**
+  String get sensorHistory_alertDialogHint;
+
+  /// No description provided for @sensorHistory_above.
+  ///
+  /// In en, this message translates to:
+  /// **'Above'**
+  String get sensorHistory_above;
+
+  /// No description provided for @sensorHistory_below.
+  ///
+  /// In en, this message translates to:
+  /// **'Below'**
+  String get sensorHistory_below;
+
+  /// No description provided for @sensorHistory_belowMustBeLower.
+  ///
+  /// In en, this message translates to:
+  /// **'Must be lower than the upper limit'**
+  String get sensorHistory_belowMustBeLower;
+
+  /// No description provided for @sensorHistory_removeAlert.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get sensorHistory_removeAlert;
+
+  /// No description provided for @sensorHistory_alertTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sensor alert'**
+  String get sensorHistory_alertTitle;
+
+  /// No description provided for @sensorHistory_alertAbove.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}: {what} is {value}, above {limit}'**
+  String sensorHistory_alertAbove(
+    String name,
+    String what,
+    String value,
+    String limit,
+  );
+
+  /// No description provided for @sensorHistory_alertBelow.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}: {what} is {value}, below {limit}'**
+  String sensorHistory_alertBelow(
+    String name,
+    String what,
+    String value,
+    String limit,
+  );
+
+  /// No description provided for @sensorHistory_unknownNode.
+  ///
+  /// In en, this message translates to:
+  /// **'A sensor'**
+  String get sensorHistory_unknownNode;
+
   /// No description provided for @coverageHex_notoryxTitle.
   ///
   /// In en, this message translates to:

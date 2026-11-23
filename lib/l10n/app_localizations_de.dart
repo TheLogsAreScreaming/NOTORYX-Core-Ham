@@ -12493,6 +12493,351 @@ class AppLocalizationsDe extends AppLocalizations {
       'Ihre Position ist noch unbekannt, daher können keine Entfernungsringe gezeichnet werden.';
 
   @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count Kanäle im Funkgerät weichen von der App ab',
+      one: '1 Kanal im Funkgerät weicht von der App ab',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Prüfen';
+
+  @override
+  String get channelConflict_title => 'Kanalunterschiede';
+
+  @override
+  String get channelConflict_hint =>
+      'Das Funkgerät hat in diesen Plätzen einen anderen Namen oder Schlüssel als die App gespeichert hat. Vielleicht wurden sie mit einer anderen App geändert, oder die Kopie der App ist veraltet. Wähle für jeden Platz, welche Version bleibt.';
+
+  @override
+  String get channelConflict_allResolved =>
+      'Alle Plätze stimmen jetzt überein.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'Platz $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'Im Funkgerät';
+
+  @override
+  String get channelConflict_inApp => 'In der App gespeichert';
+
+  @override
+  String get channelConflict_empty => 'Leer';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'Schlüssel $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'Name weicht ab';
+
+  @override
+  String get channelConflict_keyDiffers => 'Schlüssel weicht ab';
+
+  @override
+  String get channelConflict_keepRadio => 'Funkgerät behalten';
+
+  @override
+  String get channelConflict_useApp => 'App-Version schreiben';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'Version des Funkgeräts für Platz $index behalten';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'App-Version in Platz $index geschrieben';
+  }
+
+  @override
+  String get history_window24h => '24 h';
+
+  @override
+  String get history_window7d => '7 Tage';
+
+  @override
+  String get history_window30d => '30 Tage';
+
+  @override
+  String get statusHistory_title => 'Statusverlauf';
+
+  @override
+  String get statusHistory_battery => 'Akku';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Grundrauschen';
+
+  @override
+  String get statusHistory_errors => 'Fehler';
+
+  @override
+  String get statusHistory_uptime => 'Laufzeit';
+
+  @override
+  String get statusHistory_empty =>
+      'Jede Statusabfrage wird hier gespeichert, damit du siehst, wie sich dieser Repeater mit der Zeit verändert.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'Keine Werte für $metric in diesem Zeitraum.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Diagramm $metric, $count Werte, von $low bis $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count gespeicherte Abfragen',
+      one: '1 gespeicherte Abfrage',
+      zero: 'Keine gespeicherten Abfragen',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Verlauf löschen';
+
+  @override
+  String get statusHistory_clearTitle => 'Verlauf dieses Repeaters löschen?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'Gespeicherte Statusabfragen und Nachbar-SNR-Werte dieses Repeaters werden von diesem Telefon gelöscht.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return 'SNR-Verlauf für $name, $count Werte. Tippen für Diagramm.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return 'SNR von $name';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'Wie gut dieser Repeater den Nachbarn bei jeder Abfrage gehört hat, auf diesem Telefon gespeichert.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count Werte · Min. $low · Mittel $avg · Max. $high';
+  }
+
+  @override
+  String get follow_menu => '15 Min. folgen';
+
+  @override
+  String get follow_menuHint =>
+      'Fragt alle paar Minuten die Position ab und zeichnet die Spur';
+
+  @override
+  String follow_title(String name) {
+    return '$name folgen';
+  }
+
+  @override
+  String get follow_askNow => 'Position jetzt abfragen';
+
+  @override
+  String follow_fromYou(String distance, String direction, int degrees) {
+    return '$distance $direction ($degrees°) von dir';
+  }
+
+  @override
+  String get follow_waiting => 'Warte auf eine Position…';
+
+  @override
+  String get follow_noOwnPosition =>
+      'Deine eigene Position ist unbekannt, daher keine Entfernung und Richtung.';
+
+  @override
+  String follow_timeLeftLabel(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Noch etwa $minutes Minuten',
+      one: 'Noch etwa 1 Minute',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String follow_lastFix(String ago) {
+    return 'letzte Position $ago';
+  }
+
+  @override
+  String follow_secondsAgo(int n) {
+    return 'vor $n s';
+  }
+
+  @override
+  String follow_minutesAgo(int n) {
+    return 'vor $n Min.';
+  }
+
+  @override
+  String follow_answers(int answered, int asked) {
+    return '$answered/$asked Anfragen beantwortet';
+  }
+
+  @override
+  String follow_points(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count Punkte',
+      one: '1 Punkt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get follow_hint =>
+      'Endet nach 15 Minuten von selbst. Der Kontakt muss den Standort in seinen Telemetrie-Einstellungen freigeben, sonst bewegt er sich nur bei Adverts.';
+
+  @override
+  String get follow_stop => 'Stopp';
+
+  @override
+  String get follow_stopped =>
+      'Folgen beendet. Starte erneut, um weitere 15 Minuten die Position abzufragen.';
+
+  @override
+  String get follow_start => '15 Min. folgen';
+
+  @override
+  String get follow_you => 'Du';
+
+  @override
+  String get sensorHistory_title => 'Sensorverlauf';
+
+  @override
+  String get sensorHistory_menuHint =>
+      'Diagramme der letzten Stunde bis 24 h und Alarme';
+
+  @override
+  String get sensorHistory_readNow => 'Jetzt lesen';
+
+  @override
+  String get sensorHistory_window1h => '1 h';
+
+  @override
+  String get sensorHistory_window6h => '6 h';
+
+  @override
+  String get sensorHistory_window24h => '24 h';
+
+  @override
+  String get sensorHistory_empty =>
+      'Noch keine Werte. Tippe auf Jetzt lesen oder schalte Live-Updates bzw. automatisches Aktualisieren in der Telemetrie ein; jeder Wert bleibt hier einen Tag.';
+
+  @override
+  String sensorHistory_updated(String time) {
+    return 'Aktualisiert $time';
+  }
+
+  @override
+  String get sensorHistory_noneInWindow => 'Keine Werte in diesem Zeitraum.';
+
+  @override
+  String sensorHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Diagramm $metric, $count Werte, von $low bis $high';
+  }
+
+  @override
+  String get sensorHistory_noAlert => 'Kein Alarm';
+
+  @override
+  String sensorHistory_alertWhenAbove(String value) {
+    return 'Alarm über $value';
+  }
+
+  @override
+  String sensorHistory_alertWhenBelow(String value) {
+    return 'Alarm unter $value';
+  }
+
+  @override
+  String get sensorHistory_setAlert => 'Alarm…';
+
+  @override
+  String get sensorHistory_alertDialogTitle => 'Alarm für diesen Wert';
+
+  @override
+  String get sensorHistory_alertDialogHint =>
+      'Du bekommst eine Benachrichtigung, wenn ein neuer Wert eine Grenze überschreitet. Leere Felder werden nicht genutzt.';
+
+  @override
+  String get sensorHistory_above => 'Über';
+
+  @override
+  String get sensorHistory_below => 'Unter';
+
+  @override
+  String get sensorHistory_belowMustBeLower =>
+      'Muss unter der oberen Grenze liegen';
+
+  @override
+  String get sensorHistory_removeAlert => 'Entfernen';
+
+  @override
+  String get sensorHistory_alertTitle => 'Sensoralarm';
+
+  @override
+  String sensorHistory_alertAbove(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what ist $value, über $limit';
+  }
+
+  @override
+  String sensorHistory_alertBelow(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what ist $value, unter $limit';
+  }
+
+  @override
+  String get sensorHistory_unknownNode => 'Ein Sensor';
+
+  @override
   String get coverageHex_notoryxTitle => 'NOTORYX-Abdeckungskarte';
 
   @override

@@ -12455,6 +12455,346 @@ class AppLocalizationsSk extends AppLocalizations {
       'Vaša poloha ešte nie je známa, preto nie je možné nakresliť kruhy vzdialenosti.';
 
   @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Kanály v rádiu, ktoré sa líšia od aplikácie: $count',
+      one: '1 kanál v rádiu sa líši od aplikácie',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Skontrolovať';
+
+  @override
+  String get channelConflict_title => 'Rozdiely kanálov';
+
+  @override
+  String get channelConflict_hint =>
+      'Rádio má v týchto slotoch iný názov alebo kľúč, než aký uložila aplikácia. Niekto ich mohol zmeniť inou aplikáciou, alebo je kópia v aplikácii stará. Pre každý slot vyberte, ktorú verziu ponechať.';
+
+  @override
+  String get channelConflict_allResolved => 'Všetky sloty sa teraz zhodujú.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'Slot $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'V rádiu';
+
+  @override
+  String get channelConflict_inApp => 'Uložené v aplikácii';
+
+  @override
+  String get channelConflict_empty => 'Prázdny';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'kľúč $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'Iný názov';
+
+  @override
+  String get channelConflict_keyDiffers => 'Iný kľúč';
+
+  @override
+  String get channelConflict_keepRadio => 'Ponechať z rádia';
+
+  @override
+  String get channelConflict_useApp => 'Zapísať z aplikácie';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'Ponechaná verzia z rádia v slote $index';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'Verzia z aplikácie zapísaná do slotu $index';
+  }
+
+  @override
+  String get history_window24h => '24 h';
+
+  @override
+  String get history_window7d => '7 dní';
+
+  @override
+  String get history_window30d => '30 dní';
+
+  @override
+  String get statusHistory_title => 'História stavu';
+
+  @override
+  String get statusHistory_battery => 'Batéria';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Úroveň šumu';
+
+  @override
+  String get statusHistory_errors => 'Chyby';
+
+  @override
+  String get statusHistory_uptime => 'Doba behu';
+
+  @override
+  String get statusHistory_empty =>
+      'Každá kontrola stavu sa uloží sem, aby ste videli, ako sa opakovač mení v čase.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'V tomto období nie sú údaje $metric.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Graf $metric, údaje: $count, od $low do $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Uložené kontroly: $count',
+      zero: 'Žiadne uložené kontroly',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Vymazať históriu';
+
+  @override
+  String get statusHistory_clearTitle => 'Vymazať históriu tohto opakovača?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'Uložené kontroly stavu a hodnoty SNR susedov tohto opakovača sa z telefónu odstránia.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return 'Trend SNR pre $name, údaje: $count. Ťuknite pre graf.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return 'SNR: $name';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'Ako dobre opakovač počul suseda pri každej požiadavke; uložené v telefóne.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return 'Údaje: $count · min. $low · priem. $avg · max. $high';
+  }
+
+  @override
+  String get follow_menu => 'Sledovať 15 min';
+
+  @override
+  String get follow_menuHint =>
+      'Každých pár minút požiada o polohu a nakreslí stopu';
+
+  @override
+  String follow_title(String name) {
+    return 'Sledovanie: $name';
+  }
+
+  @override
+  String get follow_askNow => 'Požiadať o polohu teraz';
+
+  @override
+  String follow_fromYou(String distance, String direction, int degrees) {
+    return '$distance na $direction ($degrees°) od vás';
+  }
+
+  @override
+  String get follow_waiting => 'Čaká sa na polohu…';
+
+  @override
+  String get follow_noOwnPosition =>
+      'Vaša poloha nie je známa, preto nie je vzdialenosť ani smer.';
+
+  @override
+  String follow_timeLeftLabel(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Zostáva asi $minutes min',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String follow_lastFix(String ago) {
+    return 'posledná poloha $ago';
+  }
+
+  @override
+  String follow_secondsAgo(int n) {
+    return 'pred $n s';
+  }
+
+  @override
+  String follow_minutesAgo(int n) {
+    return 'pred $n min';
+  }
+
+  @override
+  String follow_answers(int answered, int asked) {
+    return 'odpovede: $answered/$asked';
+  }
+
+  @override
+  String follow_points(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'body: $count',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get follow_hint =>
+      'Po 15 minútach sa zastaví samo. Kontakt musí povoliť polohu v telemetrii, inak sa poloha mení len pri ohláseniach.';
+
+  @override
+  String get follow_stop => 'Zastaviť';
+
+  @override
+  String get follow_stopped =>
+      'Sledovanie je zastavené. Spustite znova na ďalších 15 minút.';
+
+  @override
+  String get follow_start => 'Sledovať 15 min';
+
+  @override
+  String get follow_you => 'Vy';
+
+  @override
+  String get sensorHistory_title => 'História senzora';
+
+  @override
+  String get sensorHistory_menuHint => 'Grafy za hodinu až deň a upozornenia';
+
+  @override
+  String get sensorHistory_readNow => 'Načítať teraz';
+
+  @override
+  String get sensorHistory_window1h => '1 h';
+
+  @override
+  String get sensorHistory_window6h => '6 h';
+
+  @override
+  String get sensorHistory_window24h => '24 h';
+
+  @override
+  String get sensorHistory_empty =>
+      'Zatiaľ žiadne údaje. Ťuknite na Načítať teraz alebo zapnite živé aktualizácie či automatické obnovovanie v telemetrii; každý údaj sa tu uchová deň.';
+
+  @override
+  String sensorHistory_updated(String time) {
+    return 'Aktualizované $time';
+  }
+
+  @override
+  String get sensorHistory_noneInWindow => 'V tomto období nie sú údaje.';
+
+  @override
+  String sensorHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Graf $metric, údaje: $count, od $low do $high';
+  }
+
+  @override
+  String get sensorHistory_noAlert => 'Bez upozornenia';
+
+  @override
+  String sensorHistory_alertWhenAbove(String value) {
+    return 'Upozornenie nad $value';
+  }
+
+  @override
+  String sensorHistory_alertWhenBelow(String value) {
+    return 'Upozornenie pod $value';
+  }
+
+  @override
+  String get sensorHistory_setAlert => 'Upozornenie…';
+
+  @override
+  String get sensorHistory_alertDialogTitle => 'Upozornenie na túto hodnotu';
+
+  @override
+  String get sensorHistory_alertDialogHint =>
+      'Upozornenie dostanete, keď nový údaj prekročí hranicu. Prázdne pole sa nepoužije.';
+
+  @override
+  String get sensorHistory_above => 'Nad';
+
+  @override
+  String get sensorHistory_below => 'Pod';
+
+  @override
+  String get sensorHistory_belowMustBeLower =>
+      'Musí byť nižšie ako horná hranica';
+
+  @override
+  String get sensorHistory_removeAlert => 'Odstrániť';
+
+  @override
+  String get sensorHistory_alertTitle => 'Upozornenie senzora';
+
+  @override
+  String sensorHistory_alertAbove(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what je $value, nad $limit';
+  }
+
+  @override
+  String sensorHistory_alertBelow(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what je $value, pod $limit';
+  }
+
+  @override
+  String get sensorHistory_unknownNode => 'Senzor';
+
+  @override
   String get coverageHex_notoryxTitle => 'Mapa pokrytia NOTORYX';
 
   @override

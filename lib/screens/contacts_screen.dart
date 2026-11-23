@@ -43,7 +43,9 @@ import '../widgets/node_avatar.dart';
 import '../widgets/node_look_sheet.dart';
 import 'chat_screen.dart';
 import 'discovery_screen.dart';
+import 'follow_contact_screen.dart';
 import 'node_compass_screen.dart';
+import 'sensor_history_screen.dart';
 import 'repeater_hub_screen.dart';
 import 'settings_screen.dart';
 import '../widgets/ui/mesh_states.dart';
@@ -1519,6 +1521,16 @@ class _ContactsScreenState extends State<ContactsScreen>
                   },
                 ),
             ],
+            if (contact.type == advTypeSensor)
+              ListTile(
+                leading: const Icon(Icons.show_chart),
+                title: Text(context.l10n.sensorHistory_title),
+                subtitle: Text(context.l10n.sensorHistory_menuHint),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  openSensorHistory(context, contact);
+                },
+              ),
             if (contact.hasLocation)
               ListTile(
                 leading: const Icon(Icons.explore_outlined),
@@ -1526,6 +1538,16 @@ class _ContactsScreenState extends State<ContactsScreen>
                 onTap: () {
                   Navigator.pop(sheetContext);
                   openNodeCompass(context, contact);
+                },
+              ),
+            if (contact.hasLocation)
+              ListTile(
+                leading: const Icon(Icons.radar),
+                title: Text(context.l10n.follow_menu),
+                subtitle: Text(context.l10n.follow_menuHint),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  followContact(context, contact);
                 },
               ),
             ListTile(

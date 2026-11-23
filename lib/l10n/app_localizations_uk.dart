@@ -12519,6 +12519,346 @@ class AppLocalizationsUk extends AppLocalizations {
       'Ваша позиція ще невідома, тому кільця відстані не можна намалювати.';
 
   @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Каналів у радіо, що відрізняються від застосунку: $count',
+      one: '1 канал у радіо відрізняється від застосунку',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Переглянути';
+
+  @override
+  String get channelConflict_title => 'Розбіжності каналів';
+
+  @override
+  String get channelConflict_hint =>
+      'У цих слотах радіо має іншу назву або ключ, ніж зберіг застосунок. Можливо, їх змінили іншим застосунком, або копія в застосунку застаріла. Оберіть, яку версію залишити для кожного слота.';
+
+  @override
+  String get channelConflict_allResolved => 'Тепер усі слоти збігаються.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'Слот $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'У радіо';
+
+  @override
+  String get channelConflict_inApp => 'Збережено в застосунку';
+
+  @override
+  String get channelConflict_empty => 'Порожньо';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'ключ $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'Назва відрізняється';
+
+  @override
+  String get channelConflict_keyDiffers => 'Ключ відрізняється';
+
+  @override
+  String get channelConflict_keepRadio => 'Залишити з радіо';
+
+  @override
+  String get channelConflict_useApp => 'Записати із застосунку';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'Залишено версію радіо в слоті $index';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'Версію застосунку записано в слот $index';
+  }
+
+  @override
+  String get history_window24h => '24 год';
+
+  @override
+  String get history_window7d => '7 днів';
+
+  @override
+  String get history_window30d => '30 днів';
+
+  @override
+  String get statusHistory_title => 'Історія стану';
+
+  @override
+  String get statusHistory_battery => 'Батарея';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Рівень шуму';
+
+  @override
+  String get statusHistory_errors => 'Помилки';
+
+  @override
+  String get statusHistory_uptime => 'Час роботи';
+
+  @override
+  String get statusHistory_empty =>
+      'Кожна перевірка стану зберігається тут, щоб бачити, як змінюється ретранслятор з часом.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'Немає значень «$metric» за цей період.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Графік «$metric», значень: $count, від $low до $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Збережено перевірок: $count',
+      zero: 'Немає збережених перевірок',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Очистити історію';
+
+  @override
+  String get statusHistory_clearTitle =>
+      'Очистити історію цього ретранслятора?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'Збережені перевірки стану та SNR сусідів цього ретранслятора буде видалено з телефона.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return 'Тренд SNR для $name, значень: $count. Торкніться для графіка.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return 'SNR: $name';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'Наскільки добре ретранслятор чув сусіда під час кожного запиту; зберігається на цьому телефоні.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return 'Значень: $count · мін. $low · сер. $avg · макс. $high';
+  }
+
+  @override
+  String get follow_menu => 'Стежити 15 хв';
+
+  @override
+  String get follow_menuHint =>
+      'Запитує позицію кожні кілька хвилин і малює слід';
+
+  @override
+  String follow_title(String name) {
+    return 'Стеження: $name';
+  }
+
+  @override
+  String get follow_askNow => 'Запитати позицію зараз';
+
+  @override
+  String follow_fromYou(String distance, String direction, int degrees) {
+    return '$distance на $direction ($degrees°) від вас';
+  }
+
+  @override
+  String get follow_waiting => 'Очікування позиції…';
+
+  @override
+  String get follow_noOwnPosition =>
+      'Ваша позиція невідома, тому відстань і напрямок недоступні.';
+
+  @override
+  String follow_timeLeftLabel(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Залишилося близько $minutes хв',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String follow_lastFix(String ago) {
+    return 'остання позиція $ago';
+  }
+
+  @override
+  String follow_secondsAgo(int n) {
+    return '$n с тому';
+  }
+
+  @override
+  String follow_minutesAgo(int n) {
+    return '$n хв тому';
+  }
+
+  @override
+  String follow_answers(int answered, int asked) {
+    return 'відповідей: $answered/$asked';
+  }
+
+  @override
+  String follow_points(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'точок: $count',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get follow_hint =>
+      'Зупиняється сам через 15 хвилин. Контакт має дозволити місцезнаходження в телеметрії, інакше позиція оновиться лише з його оголошень.';
+
+  @override
+  String get follow_stop => 'Стоп';
+
+  @override
+  String get follow_stopped =>
+      'Стеження зупинено. Запустіть знову, щоб запитувати позицію ще 15 хвилин.';
+
+  @override
+  String get follow_start => 'Стежити 15 хв';
+
+  @override
+  String get follow_you => 'Ви';
+
+  @override
+  String get sensorHistory_title => 'Історія датчика';
+
+  @override
+  String get sensorHistory_menuHint => 'Графіки за годину–добу та сповіщення';
+
+  @override
+  String get sensorHistory_readNow => 'Зчитати зараз';
+
+  @override
+  String get sensorHistory_window1h => '1 год';
+
+  @override
+  String get sensorHistory_window6h => '6 год';
+
+  @override
+  String get sensorHistory_window24h => '24 год';
+
+  @override
+  String get sensorHistory_empty =>
+      'Даних поки немає. Натисніть «Зчитати зараз» або увімкніть живі оновлення чи автооновлення в телеметрії; кожне значення зберігається тут добу.';
+
+  @override
+  String sensorHistory_updated(String time) {
+    return 'Оновлено $time';
+  }
+
+  @override
+  String get sensorHistory_noneInWindow => 'Немає даних за цей період.';
+
+  @override
+  String sensorHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Графік «$metric», значень: $count, від $low до $high';
+  }
+
+  @override
+  String get sensorHistory_noAlert => 'Без сповіщення';
+
+  @override
+  String sensorHistory_alertWhenAbove(String value) {
+    return 'Сповіщення вище $value';
+  }
+
+  @override
+  String sensorHistory_alertWhenBelow(String value) {
+    return 'Сповіщення нижче $value';
+  }
+
+  @override
+  String get sensorHistory_setAlert => 'Сповіщення…';
+
+  @override
+  String get sensorHistory_alertDialogTitle => 'Сповіщення для значення';
+
+  @override
+  String get sensorHistory_alertDialogHint =>
+      'Сповіщення надійде, коли нове значення перетне межу. Залиште поле порожнім, щоб не використовувати його.';
+
+  @override
+  String get sensorHistory_above => 'Вище';
+
+  @override
+  String get sensorHistory_below => 'Нижче';
+
+  @override
+  String get sensorHistory_belowMustBeLower => 'Має бути нижче верхньої межі';
+
+  @override
+  String get sensorHistory_removeAlert => 'Прибрати';
+
+  @override
+  String get sensorHistory_alertTitle => 'Сповіщення датчика';
+
+  @override
+  String sensorHistory_alertAbove(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what = $value, вище $limit';
+  }
+
+  @override
+  String sensorHistory_alertBelow(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what = $value, нижче $limit';
+  }
+
+  @override
+  String get sensorHistory_unknownNode => 'Датчик';
+
+  @override
   String get coverageHex_notoryxTitle => 'Карта покриття NOTORYX';
 
   @override

@@ -11686,6 +11686,336 @@ class AppLocalizationsZh extends AppLocalizations {
   String get rangeRings_noPosition => '你的位置尚未知，无法绘制距离圈。';
 
   @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '电台上有 $count 个频道与应用不一致',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => '查看';
+
+  @override
+  String get channelConflict_title => '频道差异';
+
+  @override
+  String get channelConflict_hint =>
+      '这些槽位中电台的名称或密钥与应用保存的不同。可能有人用其他应用修改过，或应用中的副本已过时。请为每个槽位选择要保留的版本。';
+
+  @override
+  String get channelConflict_allResolved => '所有槽位现已一致。';
+
+  @override
+  String channelConflict_slot(int index) {
+    return '槽位 $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => '电台上';
+
+  @override
+  String get channelConflict_inApp => '应用中保存';
+
+  @override
+  String get channelConflict_empty => '空';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return '密钥 $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => '名称不同';
+
+  @override
+  String get channelConflict_keyDiffers => '密钥不同';
+
+  @override
+  String get channelConflict_keepRadio => '保留电台的';
+
+  @override
+  String get channelConflict_useApp => '写入应用的';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return '槽位 $index 已保留电台版本';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return '已将应用版本写入槽位 $index';
+  }
+
+  @override
+  String get history_window24h => '24 小时';
+
+  @override
+  String get history_window7d => '7 天';
+
+  @override
+  String get history_window30d => '30 天';
+
+  @override
+  String get statusHistory_title => '状态历史';
+
+  @override
+  String get statusHistory_battery => '电池';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => '底噪';
+
+  @override
+  String get statusHistory_errors => '错误';
+
+  @override
+  String get statusHistory_uptime => '运行时间';
+
+  @override
+  String get statusHistory_empty => '每次状态查询都会保存在这里，便于查看此中继器随时间的变化。';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return '此时间段内没有$metric数据。';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metric图表，$count 条，$low 至 $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '已保存 $count 次查询',
+      zero: '没有已保存的查询',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => '清除历史';
+
+  @override
+  String get statusHistory_clearTitle => '清除此中继器的历史？';
+
+  @override
+  String get statusHistory_clearBody => '将从此手机删除该中继器已保存的状态查询和邻居 SNR 记录。';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return '$name 的 SNR 趋势，$count 条。点按查看图表。';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return '$name 的 SNR';
+  }
+
+  @override
+  String get snrHistory_hint => '每次查询时该中继器收到此邻居的信号质量，保存在本机。';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count 条 · 最低 $low · 平均 $avg · 最高 $high';
+  }
+
+  @override
+  String get follow_menu => '跟随 15 分钟';
+
+  @override
+  String get follow_menuHint => '每隔几分钟请求一次位置并绘制轨迹';
+
+  @override
+  String follow_title(String name) {
+    return '正在跟随 $name';
+  }
+
+  @override
+  String get follow_askNow => '立即请求位置';
+
+  @override
+  String follow_fromYou(String distance, String direction, int degrees) {
+    return '距你 $distance，方位 $direction（$degrees°）';
+  }
+
+  @override
+  String get follow_waiting => '正在等待位置…';
+
+  @override
+  String get follow_noOwnPosition => '未知你自己的位置，无法显示距离和方位。';
+
+  @override
+  String follow_timeLeftLabel(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: '剩余约 $minutes 分钟',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String follow_lastFix(String ago) {
+    return '最后位置 $ago';
+  }
+
+  @override
+  String follow_secondsAgo(int n) {
+    return '$n 秒前';
+  }
+
+  @override
+  String follow_minutesAgo(int n) {
+    return '$n 分钟前';
+  }
+
+  @override
+  String follow_answers(int answered, int asked) {
+    return '已应答 $answered/$asked 次请求';
+  }
+
+  @override
+  String follow_points(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 个点',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get follow_hint => '15 分钟后自动停止。对方需在遥测设置中允许位置，否则只有在发送广播时才会更新。';
+
+  @override
+  String get follow_stop => '停止';
+
+  @override
+  String get follow_stopped => '未在跟随。重新开始可再请求 15 分钟位置。';
+
+  @override
+  String get follow_start => '跟随 15 分钟';
+
+  @override
+  String get follow_you => '你';
+
+  @override
+  String get sensorHistory_title => '传感器历史';
+
+  @override
+  String get sensorHistory_menuHint => '最近 1 小时至 24 小时的图表和提醒';
+
+  @override
+  String get sensorHistory_readNow => '立即读取';
+
+  @override
+  String get sensorHistory_window1h => '1 小时';
+
+  @override
+  String get sensorHistory_window6h => '6 小时';
+
+  @override
+  String get sensorHistory_window24h => '24 小时';
+
+  @override
+  String get sensorHistory_empty =>
+      '暂无读数。点按“立即读取”，或在遥测中开启实时更新或自动刷新；每个读数在此保存一天。';
+
+  @override
+  String sensorHistory_updated(String time) {
+    return '更新于 $time';
+  }
+
+  @override
+  String get sensorHistory_noneInWindow => '此时间段内没有读数。';
+
+  @override
+  String sensorHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metric图表，$count 条，$low 至 $high';
+  }
+
+  @override
+  String get sensorHistory_noAlert => '无提醒';
+
+  @override
+  String sensorHistory_alertWhenAbove(String value) {
+    return '高于 $value 时提醒';
+  }
+
+  @override
+  String sensorHistory_alertWhenBelow(String value) {
+    return '低于 $value 时提醒';
+  }
+
+  @override
+  String get sensorHistory_setAlert => '提醒…';
+
+  @override
+  String get sensorHistory_alertDialogTitle => '此数值的提醒';
+
+  @override
+  String get sensorHistory_alertDialogHint => '新读数越过限值时会通知你。留空的项不使用。';
+
+  @override
+  String get sensorHistory_above => '高于';
+
+  @override
+  String get sensorHistory_below => '低于';
+
+  @override
+  String get sensorHistory_belowMustBeLower => '必须低于上限';
+
+  @override
+  String get sensorHistory_removeAlert => '移除';
+
+  @override
+  String get sensorHistory_alertTitle => '传感器提醒';
+
+  @override
+  String sensorHistory_alertAbove(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name：$what为 $value，高于 $limit';
+  }
+
+  @override
+  String sensorHistory_alertBelow(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name：$what为 $value，低于 $limit';
+  }
+
+  @override
+  String get sensorHistory_unknownNode => '某传感器';
+
+  @override
   String get coverageHex_notoryxTitle => 'NOTORYX 覆盖地图';
 
   @override

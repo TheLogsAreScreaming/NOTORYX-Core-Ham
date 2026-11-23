@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import '../models/channel.dart';
+import '../models/channel_conflict.dart';
 import '../utils/app_logger.dart';
 import 'secure_prefs.dart';
 
@@ -56,6 +57,35 @@ class ChannelStore {
     }
     final jsonList = channels.map(_toJson).toList();
     await SecurePrefs.setString(keyFor, jsonEncode(jsonList));
+  }
+
+  String get _conflictKey => 'channel_conflicts_v1_$publicKeyHex';
+
+  /// Slots where the radio and the app disagree and the user hasn't chosen
+  /// yet. Holds channel keys, so it lives with the other sensitive values.
+  List<ChannelConflict> loadConflicts() {
+    if (publicKeyHex.isEmpty) return [];
+    final raw = SecurePrefs.getString(_conflictKey);
+    if (raw == null || raw.isEmpty) return [];
+    try {
+      final list = jsonDecode(raw);
+      if (list is! List) return [];
+      return [for (final item in list) ?ChannelConflict.fromJson(item)];
+    } on FormatException {
+      return [];
+    }
+  }
+
+  Future<void> saveConflicts(List<ChannelConflict> conflicts) async {
+    if (publicKeyHex.isEmpty) return;
+    if (conflicts.isEmpty) {
+      await SecurePrefs.remove(_conflictKey);
+      return;
+    }
+    await SecurePrefs.setString(
+      _conflictKey,
+      jsonEncode([for (final c in conflicts) c.toJson()]),
+    );
   }
 
   Map<String, dynamic> _toJson(Channel channel) {
