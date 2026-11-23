@@ -29,6 +29,7 @@ import '../widgets/telemetry_location_map.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/sensor_live_card.dart';
+import 'sensor_history_screen.dart';
 
 class TelemetryScreen extends StatefulWidget {
   final Contact contact;
@@ -404,6 +405,11 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
         centerTitle: true,
         bottom: const SyncProgressAppBarBottom(),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.show_chart),
+            tooltip: l10n.sensorHistory_title,
+            onPressed: () => openSensorHistory(context, widget.contact),
+          ),
           IconButton(
             icon: Icon(isFloodMode ? Icons.waves : Icons.route),
             tooltip: l10n.repeater_routingMode,

@@ -11914,4 +11914,104 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get follow_you => '你';
+
+  @override
+  String get sensorHistory_title => '传感器历史';
+
+  @override
+  String get sensorHistory_menuHint => '最近 1 小时至 24 小时的图表和提醒';
+
+  @override
+  String get sensorHistory_readNow => '立即读取';
+
+  @override
+  String get sensorHistory_window1h => '1 小时';
+
+  @override
+  String get sensorHistory_window6h => '6 小时';
+
+  @override
+  String get sensorHistory_window24h => '24 小时';
+
+  @override
+  String get sensorHistory_empty =>
+      '暂无读数。点按“立即读取”，或在遥测中开启实时更新或自动刷新；每个读数在此保存一天。';
+
+  @override
+  String sensorHistory_updated(String time) {
+    return '更新于 $time';
+  }
+
+  @override
+  String get sensorHistory_noneInWindow => '此时间段内没有读数。';
+
+  @override
+  String sensorHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metric图表，$count 条，$low 至 $high';
+  }
+
+  @override
+  String get sensorHistory_noAlert => '无提醒';
+
+  @override
+  String sensorHistory_alertWhenAbove(String value) {
+    return '高于 $value 时提醒';
+  }
+
+  @override
+  String sensorHistory_alertWhenBelow(String value) {
+    return '低于 $value 时提醒';
+  }
+
+  @override
+  String get sensorHistory_setAlert => '提醒…';
+
+  @override
+  String get sensorHistory_alertDialogTitle => '此数值的提醒';
+
+  @override
+  String get sensorHistory_alertDialogHint => '新读数越过限值时会通知你。留空的项不使用。';
+
+  @override
+  String get sensorHistory_above => '高于';
+
+  @override
+  String get sensorHistory_below => '低于';
+
+  @override
+  String get sensorHistory_belowMustBeLower => '必须低于上限';
+
+  @override
+  String get sensorHistory_removeAlert => '移除';
+
+  @override
+  String get sensorHistory_alertTitle => '传感器提醒';
+
+  @override
+  String sensorHistory_alertAbove(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name：$what为 $value，高于 $limit';
+  }
+
+  @override
+  String sensorHistory_alertBelow(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name：$what为 $value，低于 $limit';
+  }
+
+  @override
+  String get sensorHistory_unknownNode => '某传感器';
 }

@@ -329,6 +329,36 @@ class NotificationService {
     }
   }
 
+  /// A sensor value crossed the alert line the user set for it.
+  Future<bool> showSensorAlert({
+    required String id,
+    required String body,
+  }) async {
+    if (_suppressNotifications || !await _ensureCanNotify()) return false;
+    try {
+      await _notifications.show(
+        id: 'sensor_alert:$id'.hashCode,
+        title: _l10n.sensorHistory_alertTitle,
+        body: body,
+        notificationDetails: const NotificationDetails(
+          android: AndroidNotificationDetails(
+            'notoryx_sensor_alerts',
+            'Sensor alerts',
+            channelDescription: 'A sensor value went past a limit you set',
+            importance: Importance.high,
+            priority: Priority.high,
+            icon: '@mipmap/ic_launcher',
+          ),
+          iOS: DarwinNotificationDetails(),
+          macOS: DarwinNotificationDetails(),
+        ),
+      );
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
   Future<bool> showFieldAlert(String message) async {
     if (!await _ensureCanNotify()) return false;
     try {

@@ -12717,4 +12717,107 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get follow_you => 'Vi';
+
+  @override
+  String get sensorHistory_title => 'Zgodovina senzorja';
+
+  @override
+  String get sensorHistory_menuHint =>
+      'Grafi za zadnjo uro do dneva in opozorila';
+
+  @override
+  String get sensorHistory_readNow => 'Preberi zdaj';
+
+  @override
+  String get sensorHistory_window1h => '1 h';
+
+  @override
+  String get sensorHistory_window6h => '6 h';
+
+  @override
+  String get sensorHistory_window24h => '24 h';
+
+  @override
+  String get sensorHistory_empty =>
+      'Še ni meritev. Tapnite Preberi zdaj ali v telemetriji vklopite posodobitve v živo ali samodejno osveževanje; vsaka meritev ostane tukaj en dan.';
+
+  @override
+  String sensorHistory_updated(String time) {
+    return 'Posodobljeno $time';
+  }
+
+  @override
+  String get sensorHistory_noneInWindow => 'V tem obdobju ni meritev.';
+
+  @override
+  String sensorHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Graf $metric, meritve: $count, od $low do $high';
+  }
+
+  @override
+  String get sensorHistory_noAlert => 'Brez opozorila';
+
+  @override
+  String sensorHistory_alertWhenAbove(String value) {
+    return 'Opozorilo nad $value';
+  }
+
+  @override
+  String sensorHistory_alertWhenBelow(String value) {
+    return 'Opozorilo pod $value';
+  }
+
+  @override
+  String get sensorHistory_setAlert => 'Opozorilo…';
+
+  @override
+  String get sensorHistory_alertDialogTitle => 'Opozorilo za to vrednost';
+
+  @override
+  String get sensorHistory_alertDialogHint =>
+      'Obvestilo dobite, ko nova meritev prestopi mejo. Prazno polje se ne uporabi.';
+
+  @override
+  String get sensorHistory_above => 'Nad';
+
+  @override
+  String get sensorHistory_below => 'Pod';
+
+  @override
+  String get sensorHistory_belowMustBeLower =>
+      'Mora biti nižje od zgornje meje';
+
+  @override
+  String get sensorHistory_removeAlert => 'Odstrani';
+
+  @override
+  String get sensorHistory_alertTitle => 'Opozorilo senzorja';
+
+  @override
+  String sensorHistory_alertAbove(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what je $value, nad $limit';
+  }
+
+  @override
+  String sensorHistory_alertBelow(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what je $value, pod $limit';
+  }
+
+  @override
+  String get sensorHistory_unknownNode => 'Senzor';
 }

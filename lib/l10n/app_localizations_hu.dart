@@ -12698,4 +12698,107 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get follow_you => 'Te';
+
+  @override
+  String get sensorHistory_title => 'Szenzorelőzmények';
+
+  @override
+  String get sensorHistory_menuHint =>
+      'Grafikonok az utolsó órától 24 óráig, és riasztások';
+
+  @override
+  String get sensorHistory_readNow => 'Olvasás most';
+
+  @override
+  String get sensorHistory_window1h => '1 ó';
+
+  @override
+  String get sensorHistory_window6h => '6 ó';
+
+  @override
+  String get sensorHistory_window24h => '24 ó';
+
+  @override
+  String get sensorHistory_empty =>
+      'Még nincs adat. Koppints az Olvasás most gombra, vagy kapcsold be az élő frissítést vagy az automatikus frissítést a Telemetriában; minden adat egy napig itt marad.';
+
+  @override
+  String sensorHistory_updated(String time) {
+    return 'Frissítve: $time';
+  }
+
+  @override
+  String get sensorHistory_noneInWindow => 'Nincs adat ebben az időszakban.';
+
+  @override
+  String sensorHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metric grafikon, $count adat, $low és $high között';
+  }
+
+  @override
+  String get sensorHistory_noAlert => 'Nincs riasztás';
+
+  @override
+  String sensorHistory_alertWhenAbove(String value) {
+    return 'Riasztás $value felett';
+  }
+
+  @override
+  String sensorHistory_alertWhenBelow(String value) {
+    return 'Riasztás $value alatt';
+  }
+
+  @override
+  String get sensorHistory_setAlert => 'Riasztás…';
+
+  @override
+  String get sensorHistory_alertDialogTitle => 'Riasztás erre az értékre';
+
+  @override
+  String get sensorHistory_alertDialogHint =>
+      'Értesítést kapsz, ha egy új adat átlépi a határt. Az üres mezőt nem használjuk.';
+
+  @override
+  String get sensorHistory_above => 'Felett';
+
+  @override
+  String get sensorHistory_below => 'Alatt';
+
+  @override
+  String get sensorHistory_belowMustBeLower =>
+      'Kisebbnek kell lennie a felső határnál';
+
+  @override
+  String get sensorHistory_removeAlert => 'Eltávolítás';
+
+  @override
+  String get sensorHistory_alertTitle => 'Szenzorriasztás';
+
+  @override
+  String sensorHistory_alertAbove(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what értéke $value, $limit felett';
+  }
+
+  @override
+  String sensorHistory_alertBelow(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what értéke $value, $limit alatt';
+  }
+
+  @override
+  String get sensorHistory_unknownNode => 'Egy szenzor';
 }

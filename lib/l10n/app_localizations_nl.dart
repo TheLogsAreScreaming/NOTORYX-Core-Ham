@@ -12678,4 +12678,107 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get follow_you => 'Jij';
+
+  @override
+  String get sensorHistory_title => 'Sensorgeschiedenis';
+
+  @override
+  String get sensorHistory_menuHint =>
+      'Grafieken van het laatste uur tot een dag, en meldingen';
+
+  @override
+  String get sensorHistory_readNow => 'Nu lezen';
+
+  @override
+  String get sensorHistory_window1h => '1 h';
+
+  @override
+  String get sensorHistory_window6h => '6 h';
+
+  @override
+  String get sensorHistory_window24h => '24 h';
+
+  @override
+  String get sensorHistory_empty =>
+      'Nog geen metingen. Tik op Nu lezen of zet live-updates of automatisch vernieuwen aan in Telemetrie; elke meting blijft hier een dag.';
+
+  @override
+  String sensorHistory_updated(String time) {
+    return 'Bijgewerkt $time';
+  }
+
+  @override
+  String get sensorHistory_noneInWindow => 'Geen metingen in deze periode.';
+
+  @override
+  String sensorHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metric-grafiek, $count metingen, van $low tot $high';
+  }
+
+  @override
+  String get sensorHistory_noAlert => 'Geen melding';
+
+  @override
+  String sensorHistory_alertWhenAbove(String value) {
+    return 'Melding boven $value';
+  }
+
+  @override
+  String sensorHistory_alertWhenBelow(String value) {
+    return 'Melding onder $value';
+  }
+
+  @override
+  String get sensorHistory_setAlert => 'Melding…';
+
+  @override
+  String get sensorHistory_alertDialogTitle => 'Melding voor deze waarde';
+
+  @override
+  String get sensorHistory_alertDialogHint =>
+      'Je krijgt een melding als een nieuwe meting een grens passeert. Laat een veld leeg om het niet te gebruiken.';
+
+  @override
+  String get sensorHistory_above => 'Boven';
+
+  @override
+  String get sensorHistory_below => 'Onder';
+
+  @override
+  String get sensorHistory_belowMustBeLower =>
+      'Moet lager zijn dan de bovengrens';
+
+  @override
+  String get sensorHistory_removeAlert => 'Verwijderen';
+
+  @override
+  String get sensorHistory_alertTitle => 'Sensormelding';
+
+  @override
+  String sensorHistory_alertAbove(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what is $value, boven $limit';
+  }
+
+  @override
+  String sensorHistory_alertBelow(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what is $value, onder $limit';
+  }
+
+  @override
+  String get sensorHistory_unknownNode => 'Een sensor';
 }

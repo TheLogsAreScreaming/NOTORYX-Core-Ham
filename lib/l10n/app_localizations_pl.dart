@@ -12759,4 +12759,105 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get follow_you => 'Ty';
+
+  @override
+  String get sensorHistory_title => 'Historia czujnika';
+
+  @override
+  String get sensorHistory_menuHint => 'Wykresy od godziny do doby i alerty';
+
+  @override
+  String get sensorHistory_readNow => 'Odczytaj teraz';
+
+  @override
+  String get sensorHistory_window1h => '1 godz.';
+
+  @override
+  String get sensorHistory_window6h => '6 godz.';
+
+  @override
+  String get sensorHistory_window24h => '24 godz.';
+
+  @override
+  String get sensorHistory_empty =>
+      'Brak odczytów. Dotknij Odczytaj teraz albo włącz aktualizacje na żywo lub auto-odświeżanie w telemetrii; każdy odczyt jest tu trzymany przez dobę.';
+
+  @override
+  String sensorHistory_updated(String time) {
+    return 'Zaktualizowano $time';
+  }
+
+  @override
+  String get sensorHistory_noneInWindow => 'Brak odczytów w tym okresie.';
+
+  @override
+  String sensorHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Wykres $metric, odczyty: $count, od $low do $high';
+  }
+
+  @override
+  String get sensorHistory_noAlert => 'Brak alertu';
+
+  @override
+  String sensorHistory_alertWhenAbove(String value) {
+    return 'Alert powyżej $value';
+  }
+
+  @override
+  String sensorHistory_alertWhenBelow(String value) {
+    return 'Alert poniżej $value';
+  }
+
+  @override
+  String get sensorHistory_setAlert => 'Alert…';
+
+  @override
+  String get sensorHistory_alertDialogTitle => 'Alert dla tej wartości';
+
+  @override
+  String get sensorHistory_alertDialogHint =>
+      'Dostaniesz powiadomienie, gdy nowy odczyt przekroczy próg. Zostaw pole puste, by go nie używać.';
+
+  @override
+  String get sensorHistory_above => 'Powyżej';
+
+  @override
+  String get sensorHistory_below => 'Poniżej';
+
+  @override
+  String get sensorHistory_belowMustBeLower => 'Musi być niższe niż górny próg';
+
+  @override
+  String get sensorHistory_removeAlert => 'Usuń';
+
+  @override
+  String get sensorHistory_alertTitle => 'Alert czujnika';
+
+  @override
+  String sensorHistory_alertAbove(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what = $value, powyżej $limit';
+  }
+
+  @override
+  String sensorHistory_alertBelow(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what = $value, poniżej $limit';
+  }
+
+  @override
+  String get sensorHistory_unknownNode => 'Czujnik';
 }
