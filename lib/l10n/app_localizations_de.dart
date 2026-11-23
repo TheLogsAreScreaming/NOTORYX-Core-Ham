@@ -12836,4 +12836,65 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get sensorHistory_unknownNode => 'Ein Sensor';
+
+  @override
+  String get coverageHex_notoryxTitle => 'NOTORYX-Abdeckungskarte';
+
+  @override
+  String get coverageHex_notoryxShare =>
+      'Mit der NOTORYX-Abdeckungskarte teilen';
+
+  @override
+  String get coverageHex_notoryxShareHint =>
+      'Eine öffentliche Karte der echten MeshCore-Abdeckung. Nichts wird gesendet, bevor du zustimmst.';
+
+  @override
+  String get coverageHex_notoryxConsent =>
+      'Dein Telefon sendet, was das Funkgerät in jedem Sechseck (ca. 0,9 km breit) gehört hat: Signalstärke, Paketanzahl, direkt gehörte Repeater und ein 15-Minuten-Zeitfenster. Es sendet nie deinen GPS-Track oder deine genaue Position. Es sendet auch die öffentlichen Adverts der Repeater (Name und Position), damit die Karte sie benennen kann. Uploads werden mit einem Abdeckungsschlüssel signiert, der von deinem Funkgerät getrennt ist, damit du sie später löschen kannst.';
+
+  @override
+  String get coverageHex_notoryxAnonymousNote =>
+      'Anonyme Uploads können später nicht gelöscht werden.';
+
+  @override
+  String get coverageHex_mapperName => 'Mapper-Name (optional)';
+
+  @override
+  String get coverageHex_mapperNameHint =>
+      'Nur für NOTORYX-Mitglieder sichtbar. Leer lassen, um namenlos zu bleiben.';
+
+  @override
+  String get coverageHex_shareAction => 'Teilen';
+
+  @override
+  String get coverageHex_notNow => 'Nicht jetzt';
+
+  @override
+  String get coverageHex_stopSharing => 'Teilen beenden';
+
+  @override
+  String get coverageHex_eraseUploads => 'Meine Uploads löschen';
+
+  @override
+  String get coverageHex_eraseConfirm =>
+      'Alles löschen, was dieses Telefon auf die NOTORYX-Abdeckungskarte hochgeladen hat? Das kann nicht rückgängig gemacht werden.';
+
+  @override
+  String coverageHex_erased(String count) {
+    return '$count Messungen von der Karte gelöscht.';
+  }
+
+  @override
+  String get coverageHex_eraseFailed =>
+      'Löschen fehlgeschlagen. Prüfe deine Verbindung und versuche es erneut.';
+
+  @override
+  String get coverageHex_openMap => 'Abdeckungskarte öffnen';
+
+  @override
+  String get coverageHex_trimDrives => 'Anfang und Ende jeder Fahrt verbergen';
+
+  @override
+  String get coverageHex_trimDrivesHint =>
+      'Die ersten und letzten 2 Sechsecke jeder Kartierung bleiben auf diesem Telefon, damit Karten nicht zeigen, wo du wohnst oder parkst.';
 }

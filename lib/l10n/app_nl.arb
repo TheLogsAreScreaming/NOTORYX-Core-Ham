@@ -4825,5 +4825,22 @@
   "sensorHistory_alertTitle": "Sensormelding",
   "sensorHistory_alertAbove": "{name}: {what} is {value}, boven {limit}",
   "sensorHistory_alertBelow": "{name}: {what} is {value}, onder {limit}",
-  "sensorHistory_unknownNode": "Een sensor"
+  "sensorHistory_unknownNode": "Een sensor",
+  "coverageHex_notoryxTitle": "NOTORYX-dekkingskaart",
+  "coverageHex_notoryxShare": "Delen met de NOTORYX-dekkingskaart",
+  "coverageHex_notoryxShareHint": "Een openbare kaart van echte MeshCore-dekking. Er wordt niets verstuurd tot je akkoord gaat.",
+  "coverageHex_notoryxConsent": "Je telefoon stuurt wat de radio in elke zeshoek (ongeveer 0,9 km) hoorde: signaalsterkte, aantal pakketten, de direct gehoorde repeaters en een tijdvak van 15 minuten. Je GPS-spoor of exacte positie wordt nooit verstuurd. Ook de eigen openbare adverts van repeaters (naam en positie) worden verstuurd, zodat de kaart ze kan benoemen. Uploads worden ondertekend met een dekkingssleutel los van je radio, zodat je ze later kunt wissen.",
+  "coverageHex_notoryxAnonymousNote": "Anonieme uploads kunnen later niet worden gewist.",
+  "coverageHex_mapperName": "Mappernaam (optioneel)",
+  "coverageHex_mapperNameHint": "Alleen zichtbaar voor NOTORYX-leden. Laat leeg om naamloos te blijven.",
+  "coverageHex_shareAction": "Delen",
+  "coverageHex_notNow": "Niet nu",
+  "coverageHex_stopSharing": "Stoppen met delen",
+  "coverageHex_eraseUploads": "Mijn uploads wissen",
+  "coverageHex_eraseConfirm": "Alles verwijderen wat deze telefoon naar de NOTORYX-dekkingskaart heeft geüpload? Dit kan niet ongedaan worden gemaakt.",
+  "coverageHex_erased": "{count} metingen van de kaart gewist.",
+  "coverageHex_eraseFailed": "Wissen mislukt. Controleer je verbinding en probeer het opnieuw.",
+  "coverageHex_openMap": "Dekkingskaart openen",
+  "coverageHex_trimDrives": "Begin en einde van elke rit verbergen",
+  "coverageHex_trimDrivesHint": "De eerste en laatste 2 zeshoeken van elke sessie blijven op deze telefoon, zodat kaarten niet tonen waar je woont of parkeert."
 }

@@ -21128,6 +21128,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'A sensor'**
   String get sensorHistory_unknownNode;
+
+  /// No description provided for @coverageHex_notoryxTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'NOTORYX coverage map'**
+  String get coverageHex_notoryxTitle;
+
+  /// No description provided for @coverageHex_notoryxShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Share with the NOTORYX coverage map'**
+  String get coverageHex_notoryxShare;
+
+  /// No description provided for @coverageHex_notoryxShareHint.
+  ///
+  /// In en, this message translates to:
+  /// **'A public map of real MeshCore coverage. Nothing is sent until you agree.'**
+  String get coverageHex_notoryxShareHint;
+
+  /// No description provided for @coverageHex_notoryxConsent.
+  ///
+  /// In en, this message translates to:
+  /// **'Your phone sends what the radio heard in each hexagon (about 0.9 km across): signal strength, packet counts, the repeaters heard directly and a 15-minute time slot. It never sends your GPS track or exact position. It also sends repeaters\' own public adverts (name and position) so the map can name them. Uploads are signed with a coverage key that is separate from your radio, so you can erase them later.'**
+  String get coverageHex_notoryxConsent;
+
+  /// No description provided for @coverageHex_notoryxAnonymousNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Anonymous uploads can\'t be erased later.'**
+  String get coverageHex_notoryxAnonymousNote;
+
+  /// No description provided for @coverageHex_mapperName.
+  ///
+  /// In en, this message translates to:
+  /// **'Mapper name (optional)'**
+  String get coverageHex_mapperName;
+
+  /// No description provided for @coverageHex_mapperNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Shown only to NOTORYX members. Leave empty to stay unnamed.'**
+  String get coverageHex_mapperNameHint;
+
+  /// No description provided for @coverageHex_shareAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get coverageHex_shareAction;
+
+  /// No description provided for @coverageHex_notNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Not now'**
+  String get coverageHex_notNow;
+
+  /// No description provided for @coverageHex_stopSharing.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop sharing'**
+  String get coverageHex_stopSharing;
+
+  /// No description provided for @coverageHex_eraseUploads.
+  ///
+  /// In en, this message translates to:
+  /// **'Erase my uploads'**
+  String get coverageHex_eraseUploads;
+
+  /// No description provided for @coverageHex_eraseConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete everything this phone uploaded to the NOTORYX coverage map? This can\'t be undone.'**
+  String get coverageHex_eraseConfirm;
+
+  /// No description provided for @coverageHex_erased.
+  ///
+  /// In en, this message translates to:
+  /// **'Erased {count} readings from the map.'**
+  String coverageHex_erased(String count);
+
+  /// No description provided for @coverageHex_eraseFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t erase. Check your connection and try again.'**
+  String get coverageHex_eraseFailed;
+
+  /// No description provided for @coverageHex_openMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the coverage map'**
+  String get coverageHex_openMap;
+
+  /// No description provided for @coverageHex_trimDrives.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide the start and end of each drive'**
+  String get coverageHex_trimDrives;
+
+  /// No description provided for @coverageHex_trimDrivesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'The first and last 2 hexagons of every mapping session stay on this phone, so maps can\'t show where you live or park.'**
+  String get coverageHex_trimDrivesHint;
 }
 
 class _AppLocalizationsDelegate

@@ -12807,4 +12807,66 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get sensorHistory_unknownNode => 'Um sensor';
+
+  @override
+  String get coverageHex_notoryxTitle => 'Mapa de cobertura NOTORYX';
+
+  @override
+  String get coverageHex_notoryxShare =>
+      'Partilhar com o mapa de cobertura NOTORYX';
+
+  @override
+  String get coverageHex_notoryxShareHint =>
+      'Um mapa público da cobertura real da MeshCore. Nada é enviado até concordar.';
+
+  @override
+  String get coverageHex_notoryxConsent =>
+      'O telemóvel envia o que o rádio ouviu em cada hexágono (cerca de 0,9 km): intensidade do sinal, número de pacotes, repetidores ouvidos diretamente e um intervalo de 15 minutos. Nunca envia o seu trajeto GPS nem a posição exata. Envia também os anúncios públicos dos repetidores (nome e posição) para que o mapa os possa identificar. Os envios são assinados com uma chave de cobertura separada do rádio, por isso pode apagá-los mais tarde.';
+
+  @override
+  String get coverageHex_notoryxAnonymousNote =>
+      'Os envios anónimos não podem ser apagados depois.';
+
+  @override
+  String get coverageHex_mapperName => 'Nome do mapeador (opcional)';
+
+  @override
+  String get coverageHex_mapperNameHint =>
+      'Visível apenas para membros NOTORYX. Deixe vazio para ficar sem nome.';
+
+  @override
+  String get coverageHex_shareAction => 'Partilhar';
+
+  @override
+  String get coverageHex_notNow => 'Agora não';
+
+  @override
+  String get coverageHex_stopSharing => 'Parar de partilhar';
+
+  @override
+  String get coverageHex_eraseUploads => 'Apagar os meus envios';
+
+  @override
+  String get coverageHex_eraseConfirm =>
+      'Apagar tudo o que este telemóvel enviou para o mapa de cobertura NOTORYX? Não é possível anular.';
+
+  @override
+  String coverageHex_erased(String count) {
+    return 'Foram apagadas $count leituras do mapa.';
+  }
+
+  @override
+  String get coverageHex_eraseFailed =>
+      'Não foi possível apagar. Verifique a ligação e tente novamente.';
+
+  @override
+  String get coverageHex_openMap => 'Abrir o mapa de cobertura';
+
+  @override
+  String get coverageHex_trimDrives =>
+      'Ocultar o início e o fim de cada percurso';
+
+  @override
+  String get coverageHex_trimDrivesHint =>
+      'Os primeiros e últimos 2 hexágonos de cada sessão ficam neste telemóvel, para que os mapas não mostrem onde vive ou estaciona.';
 }

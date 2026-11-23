@@ -4128,5 +4128,22 @@
   "sensorHistory_alertTitle": "Оповещение датчика",
   "sensorHistory_alertAbove": "{name}: {what} = {value}, выше {limit}",
   "sensorHistory_alertBelow": "{name}: {what} = {value}, ниже {limit}",
-  "sensorHistory_unknownNode": "Датчик"
+  "sensorHistory_unknownNode": "Датчик",
+  "coverageHex_notoryxTitle": "Карта покрытия NOTORYX",
+  "coverageHex_notoryxShare": "Делиться с картой покрытия NOTORYX",
+  "coverageHex_notoryxShareHint": "Публичная карта реального покрытия MeshCore. Ничего не отправляется, пока вы не согласитесь.",
+  "coverageHex_notoryxConsent": "Телефон отправляет то, что радио услышало в каждом шестиугольнике (около 0,9 км): силу сигнала, число пакетов, напрямую услышанные ретрансляторы и 15-минутный интервал. Он никогда не отправляет ваш GPS-трек или точное местоположение. Также отправляются публичные объявления самих ретрансляторов (имя и позиция), чтобы карта могла их назвать. Загрузки подписываются ключом покрытия, отдельным от радио, поэтому их можно стереть позже.",
+  "coverageHex_notoryxAnonymousNote": "Анонимные загрузки нельзя стереть позже.",
+  "coverageHex_mapperName": "Имя картографа (необязательно)",
+  "coverageHex_mapperNameHint": "Видно только участникам NOTORYX. Оставьте пустым, чтобы остаться без имени.",
+  "coverageHex_shareAction": "Делиться",
+  "coverageHex_notNow": "Не сейчас",
+  "coverageHex_stopSharing": "Перестать делиться",
+  "coverageHex_eraseUploads": "Стереть мои загрузки",
+  "coverageHex_eraseConfirm": "Удалить всё, что этот телефон загрузил на карту покрытия NOTORYX? Это нельзя отменить.",
+  "coverageHex_erased": "С карты стёрто измерений: {count}.",
+  "coverageHex_eraseFailed": "Не удалось стереть. Проверьте подключение и попробуйте снова.",
+  "coverageHex_openMap": "Открыть карту покрытия",
+  "coverageHex_trimDrives": "Скрывать начало и конец каждой поездки",
+  "coverageHex_trimDrivesHint": "Первые и последние 2 шестиугольника каждой сессии остаются на телефоне, поэтому карты не покажут, где вы живёте или паркуетесь."
 }

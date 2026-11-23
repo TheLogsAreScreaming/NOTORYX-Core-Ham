@@ -12014,4 +12014,60 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get sensorHistory_unknownNode => '某传感器';
+
+  @override
+  String get coverageHex_notoryxTitle => 'NOTORYX 覆盖地图';
+
+  @override
+  String get coverageHex_notoryxShare => '共享到 NOTORYX 覆盖地图';
+
+  @override
+  String get coverageHex_notoryxShareHint =>
+      '真实 MeshCore 覆盖范围的公开地图。在你同意之前不会发送任何内容。';
+
+  @override
+  String get coverageHex_notoryxConsent =>
+      '手机会发送无线电在每个六边形（约 0.9 公里）内收到的内容：信号强度、数据包数量、直接收到的中继器以及 15 分钟时间段。绝不会发送你的 GPS 轨迹或精确位置。它还会发送中继器自身的公开广播（名称和位置），以便地图为其命名。上传内容使用独立于电台的覆盖密钥签名，因此你以后可以删除它们。';
+
+  @override
+  String get coverageHex_notoryxAnonymousNote => '匿名上传以后无法删除。';
+
+  @override
+  String get coverageHex_mapperName => '测绘者名称（可选）';
+
+  @override
+  String get coverageHex_mapperNameHint => '仅 NOTORYX 成员可见。留空则不显示名称。';
+
+  @override
+  String get coverageHex_shareAction => '共享';
+
+  @override
+  String get coverageHex_notNow => '暂不';
+
+  @override
+  String get coverageHex_stopSharing => '停止共享';
+
+  @override
+  String get coverageHex_eraseUploads => '删除我的上传';
+
+  @override
+  String get coverageHex_eraseConfirm => '删除此手机上传到 NOTORYX 覆盖地图的所有内容？此操作无法撤销。';
+
+  @override
+  String coverageHex_erased(String count) {
+    return '已从地图删除 $count 条读数。';
+  }
+
+  @override
+  String get coverageHex_eraseFailed => '无法删除。请检查网络连接后重试。';
+
+  @override
+  String get coverageHex_openMap => '打开覆盖地图';
+
+  @override
+  String get coverageHex_trimDrives => '隐藏每次行程的起点和终点';
+
+  @override
+  String get coverageHex_trimDrivesHint =>
+      '每次测绘的前 2 个和最后 2 个六边形只保留在此手机上，因此地图不会显示你住在哪里或停车的位置。';
 }

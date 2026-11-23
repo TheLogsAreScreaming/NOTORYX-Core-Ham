@@ -12259,4 +12259,62 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get sensorHistory_unknownNode => '센서';
+
+  @override
+  String get coverageHex_notoryxTitle => 'NOTORYX 커버리지 지도';
+
+  @override
+  String get coverageHex_notoryxShare => 'NOTORYX 커버리지 지도에 공유';
+
+  @override
+  String get coverageHex_notoryxShareHint =>
+      '실제 MeshCore 커버리지를 보여 주는 공개 지도입니다. 동의하기 전에는 아무것도 전송되지 않습니다.';
+
+  @override
+  String get coverageHex_notoryxConsent =>
+      '휴대폰은 각 육각형(약 0.9km)에서 무전기가 수신한 내용을 보냅니다: 신호 세기, 패킷 수, 직접 수신한 리피터, 15분 단위 시간대. GPS 경로나 정확한 위치는 절대 보내지 않습니다. 지도가 리피터 이름을 표시할 수 있도록 리피터의 공개 광고(이름과 위치)도 보냅니다. 업로드는 무전기와 별개인 커버리지 키로 서명되므로 나중에 삭제할 수 있습니다.';
+
+  @override
+  String get coverageHex_notoryxAnonymousNote => '익명 업로드는 나중에 삭제할 수 없습니다.';
+
+  @override
+  String get coverageHex_mapperName => '매퍼 이름(선택)';
+
+  @override
+  String get coverageHex_mapperNameHint =>
+      'NOTORYX 회원에게만 표시됩니다. 이름 없이 하려면 비워 두세요.';
+
+  @override
+  String get coverageHex_shareAction => '공유';
+
+  @override
+  String get coverageHex_notNow => '나중에';
+
+  @override
+  String get coverageHex_stopSharing => '공유 중지';
+
+  @override
+  String get coverageHex_eraseUploads => '내 업로드 삭제';
+
+  @override
+  String get coverageHex_eraseConfirm =>
+      '이 휴대폰이 NOTORYX 커버리지 지도에 업로드한 모든 것을 삭제할까요? 되돌릴 수 없습니다.';
+
+  @override
+  String coverageHex_erased(String count) {
+    return '지도에서 측정값 $count개를 삭제했습니다.';
+  }
+
+  @override
+  String get coverageHex_eraseFailed => '삭제하지 못했습니다. 연결을 확인하고 다시 시도하세요.';
+
+  @override
+  String get coverageHex_openMap => '커버리지 지도 열기';
+
+  @override
+  String get coverageHex_trimDrives => '각 주행의 시작과 끝 숨기기';
+
+  @override
+  String get coverageHex_trimDrivesHint =>
+      '매핑 세션마다 처음과 마지막 2개의 육각형은 이 휴대폰에만 남으므로 지도에 사는 곳이나 주차 위치가 나타나지 않습니다.';
 }

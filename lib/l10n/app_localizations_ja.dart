@@ -12243,4 +12243,62 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get sensorHistory_unknownNode => 'センサー';
+
+  @override
+  String get coverageHex_notoryxTitle => 'NOTORYX カバレッジマップ';
+
+  @override
+  String get coverageHex_notoryxShare => 'NOTORYX カバレッジマップに共有';
+
+  @override
+  String get coverageHex_notoryxShareHint =>
+      '実際の MeshCore カバレッジの公開マップです。同意するまで何も送信されません。';
+
+  @override
+  String get coverageHex_notoryxConsent =>
+      '電話は各六角形（約 0.9 km）で無線機が受信した内容を送信します：信号強度、パケット数、直接受信したリピーター、15 分単位の時間帯。GPS の軌跡や正確な位置は送信しません。マップがリピーター名を表示できるよう、リピーター自身の公開アドバート（名前と位置）も送信します。アップロードは無線機とは別のカバレッジ鍵で署名されるため、後で消去できます。';
+
+  @override
+  String get coverageHex_notoryxAnonymousNote => '匿名のアップロードは後で消去できません。';
+
+  @override
+  String get coverageHex_mapperName => 'マッパー名（任意）';
+
+  @override
+  String get coverageHex_mapperNameHint =>
+      'NOTORYX メンバーにのみ表示されます。名前なしにするには空欄のままにします。';
+
+  @override
+  String get coverageHex_shareAction => '共有';
+
+  @override
+  String get coverageHex_notNow => '今はしない';
+
+  @override
+  String get coverageHex_stopSharing => '共有をやめる';
+
+  @override
+  String get coverageHex_eraseUploads => '自分のアップロードを消去';
+
+  @override
+  String get coverageHex_eraseConfirm =>
+      'この電話が NOTORYX カバレッジマップにアップロードしたすべてを削除しますか？元に戻せません。';
+
+  @override
+  String coverageHex_erased(String count) {
+    return 'マップから $count 件の測定を消去しました。';
+  }
+
+  @override
+  String get coverageHex_eraseFailed => '消去できませんでした。接続を確認して、もう一度お試しください。';
+
+  @override
+  String get coverageHex_openMap => 'カバレッジマップを開く';
+
+  @override
+  String get coverageHex_trimDrives => '各移動の開始と終了を隠す';
+
+  @override
+  String get coverageHex_trimDrivesHint =>
+      '各マッピングの最初と最後の 2 つの六角形はこの電話に残るため、マップに自宅や駐車場所が表示されません。';
 }

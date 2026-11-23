@@ -12685,4 +12685,64 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sensorHistory_unknownNode => 'A sensor';
+
+  @override
+  String get coverageHex_notoryxTitle => 'NOTORYX coverage map';
+
+  @override
+  String get coverageHex_notoryxShare => 'Share with the NOTORYX coverage map';
+
+  @override
+  String get coverageHex_notoryxShareHint =>
+      'A public map of real MeshCore coverage. Nothing is sent until you agree.';
+
+  @override
+  String get coverageHex_notoryxConsent =>
+      'Your phone sends what the radio heard in each hexagon (about 0.9 km across): signal strength, packet counts, the repeaters heard directly and a 15-minute time slot. It never sends your GPS track or exact position. It also sends repeaters\' own public adverts (name and position) so the map can name them. Uploads are signed with a coverage key that is separate from your radio, so you can erase them later.';
+
+  @override
+  String get coverageHex_notoryxAnonymousNote =>
+      'Anonymous uploads can\'t be erased later.';
+
+  @override
+  String get coverageHex_mapperName => 'Mapper name (optional)';
+
+  @override
+  String get coverageHex_mapperNameHint =>
+      'Shown only to NOTORYX members. Leave empty to stay unnamed.';
+
+  @override
+  String get coverageHex_shareAction => 'Share';
+
+  @override
+  String get coverageHex_notNow => 'Not now';
+
+  @override
+  String get coverageHex_stopSharing => 'Stop sharing';
+
+  @override
+  String get coverageHex_eraseUploads => 'Erase my uploads';
+
+  @override
+  String get coverageHex_eraseConfirm =>
+      'Delete everything this phone uploaded to the NOTORYX coverage map? This can\'t be undone.';
+
+  @override
+  String coverageHex_erased(String count) {
+    return 'Erased $count readings from the map.';
+  }
+
+  @override
+  String get coverageHex_eraseFailed =>
+      'Couldn\'t erase. Check your connection and try again.';
+
+  @override
+  String get coverageHex_openMap => 'Open the coverage map';
+
+  @override
+  String get coverageHex_trimDrives => 'Hide the start and end of each drive';
+
+  @override
+  String get coverageHex_trimDrivesHint =>
+      'The first and last 2 hexagons of every mapping session stay on this phone, so maps can\'t show where you live or park.';
 }

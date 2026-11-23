@@ -12868,4 +12868,66 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get sensorHistory_unknownNode => 'Un capteur';
+
+  @override
+  String get coverageHex_notoryxTitle => 'Carte de couverture NOTORYX';
+
+  @override
+  String get coverageHex_notoryxShare =>
+      'Partager avec la carte de couverture NOTORYX';
+
+  @override
+  String get coverageHex_notoryxShareHint =>
+      'Une carte publique de la couverture MeshCore réelle. Rien n’est envoyé avant votre accord.';
+
+  @override
+  String get coverageHex_notoryxConsent =>
+      'Votre téléphone envoie ce que la radio a entendu dans chaque hexagone (environ 0,9 km) : force du signal, nombre de paquets, répéteurs entendus directement et une tranche de 15 minutes. Il n’envoie jamais votre trace GPS ni votre position exacte. Il envoie aussi les annonces publiques des répéteurs (nom et position) pour que la carte puisse les nommer. Les envois sont signés avec une clé de couverture distincte de votre radio, vous pouvez donc les effacer plus tard.';
+
+  @override
+  String get coverageHex_notoryxAnonymousNote =>
+      'Les envois anonymes ne peuvent pas être effacés ensuite.';
+
+  @override
+  String get coverageHex_mapperName => 'Nom de cartographe (facultatif)';
+
+  @override
+  String get coverageHex_mapperNameHint =>
+      'Visible uniquement par les membres NOTORYX. Laissez vide pour rester sans nom.';
+
+  @override
+  String get coverageHex_shareAction => 'Partager';
+
+  @override
+  String get coverageHex_notNow => 'Pas maintenant';
+
+  @override
+  String get coverageHex_stopSharing => 'Arrêter le partage';
+
+  @override
+  String get coverageHex_eraseUploads => 'Effacer mes envois';
+
+  @override
+  String get coverageHex_eraseConfirm =>
+      'Supprimer tout ce que ce téléphone a envoyé à la carte de couverture NOTORYX ? Action irréversible.';
+
+  @override
+  String coverageHex_erased(String count) {
+    return '$count relevés effacés de la carte.';
+  }
+
+  @override
+  String get coverageHex_eraseFailed =>
+      'Effacement impossible. Vérifiez votre connexion et réessayez.';
+
+  @override
+  String get coverageHex_openMap => 'Ouvrir la carte de couverture';
+
+  @override
+  String get coverageHex_trimDrives =>
+      'Masquer le début et la fin de chaque trajet';
+
+  @override
+  String get coverageHex_trimDrivesHint =>
+      'Les 2 premiers et 2 derniers hexagones de chaque session restent sur ce téléphone, pour que les cartes ne montrent pas où vous habitez ou vous garez.';
 }

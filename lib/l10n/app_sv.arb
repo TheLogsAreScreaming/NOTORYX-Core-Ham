@@ -4825,5 +4825,22 @@
   "sensorHistory_alertTitle": "Sensorlarm",
   "sensorHistory_alertAbove": "{name}: {what} är {value}, över {limit}",
   "sensorHistory_alertBelow": "{name}: {what} är {value}, under {limit}",
-  "sensorHistory_unknownNode": "En sensor"
+  "sensorHistory_unknownNode": "En sensor",
+  "coverageHex_notoryxTitle": "NOTORYX täckningskarta",
+  "coverageHex_notoryxShare": "Dela med NOTORYX täckningskarta",
+  "coverageHex_notoryxShareHint": "En offentlig karta över verklig MeshCore-täckning. Inget skickas förrän du godkänner.",
+  "coverageHex_notoryxConsent": "Telefonen skickar vad radion hörde i varje hexagon (cirka 0,9 km): signalstyrka, antal paket, direkt hörda repeatrar och ett 15-minutersintervall. Den skickar aldrig ditt GPS-spår eller din exakta position. Den skickar också repeatrarnas egna offentliga adverts (namn och position) så att kartan kan namnge dem. Uppladdningar signeras med en täckningsnyckel som är skild från din radio, så du kan radera dem senare.",
+  "coverageHex_notoryxAnonymousNote": "Anonyma uppladdningar kan inte raderas senare.",
+  "coverageHex_mapperName": "Kartläggarnamn (valfritt)",
+  "coverageHex_mapperNameHint": "Visas bara för NOTORYX-medlemmar. Lämna tomt för att vara namnlös.",
+  "coverageHex_shareAction": "Dela",
+  "coverageHex_notNow": "Inte nu",
+  "coverageHex_stopSharing": "Sluta dela",
+  "coverageHex_eraseUploads": "Radera mina uppladdningar",
+  "coverageHex_eraseConfirm": "Radera allt som den här telefonen laddat upp till NOTORYX täckningskarta? Det går inte att ångra.",
+  "coverageHex_erased": "Raderade {count} mätningar från kartan.",
+  "coverageHex_eraseFailed": "Det gick inte att radera. Kontrollera anslutningen och försök igen.",
+  "coverageHex_openMap": "Öppna täckningskartan",
+  "coverageHex_trimDrives": "Dölj början och slutet av varje tur",
+  "coverageHex_trimDrivesHint": "De första och sista 2 hexagonerna i varje kartläggning stannar på telefonen, så kartor kan inte visa var du bor eller parkerar."
 }

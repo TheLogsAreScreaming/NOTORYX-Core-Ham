@@ -12839,4 +12839,66 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get sensorHistory_unknownNode => 'Un sensore';
+
+  @override
+  String get coverageHex_notoryxTitle => 'Mappa di copertura NOTORYX';
+
+  @override
+  String get coverageHex_notoryxShare =>
+      'Condividi con la mappa di copertura NOTORYX';
+
+  @override
+  String get coverageHex_notoryxShareHint =>
+      'Una mappa pubblica della copertura MeshCore reale. Non viene inviato nulla finché non accetti.';
+
+  @override
+  String get coverageHex_notoryxConsent =>
+      'Il telefono invia ciò che la radio ha sentito in ogni esagono (circa 0,9 km): intensità del segnale, numero di pacchetti, ripetitori sentiti direttamente e una fascia di 15 minuti. Non invia mai la traccia GPS né la posizione esatta. Invia anche gli annunci pubblici dei ripetitori (nome e posizione) perché la mappa possa nominarli. I caricamenti sono firmati con una chiave di copertura separata dalla radio, così puoi cancellarli in seguito.';
+
+  @override
+  String get coverageHex_notoryxAnonymousNote =>
+      'I caricamenti anonimi non si possono cancellare in seguito.';
+
+  @override
+  String get coverageHex_mapperName => 'Nome del mappatore (facoltativo)';
+
+  @override
+  String get coverageHex_mapperNameHint =>
+      'Visibile solo ai membri NOTORYX. Lascia vuoto per restare senza nome.';
+
+  @override
+  String get coverageHex_shareAction => 'Condividi';
+
+  @override
+  String get coverageHex_notNow => 'Non ora';
+
+  @override
+  String get coverageHex_stopSharing => 'Interrompi condivisione';
+
+  @override
+  String get coverageHex_eraseUploads => 'Cancella i miei caricamenti';
+
+  @override
+  String get coverageHex_eraseConfirm =>
+      'Eliminare tutto ciò che questo telefono ha caricato sulla mappa di copertura NOTORYX? Non si può annullare.';
+
+  @override
+  String coverageHex_erased(String count) {
+    return '$count rilevamenti cancellati dalla mappa.';
+  }
+
+  @override
+  String get coverageHex_eraseFailed =>
+      'Impossibile cancellare. Controlla la connessione e riprova.';
+
+  @override
+  String get coverageHex_openMap => 'Apri la mappa di copertura';
+
+  @override
+  String get coverageHex_trimDrives =>
+      'Nascondi inizio e fine di ogni percorso';
+
+  @override
+  String get coverageHex_trimDrivesHint =>
+      'I primi e gli ultimi 2 esagoni di ogni sessione restano su questo telefono, così le mappe non mostrano dove abiti o parcheggi.';
 }

@@ -12857,4 +12857,65 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get sensorHistory_unknownNode => 'Датчик';
+
+  @override
+  String get coverageHex_notoryxTitle => 'Карта покриття NOTORYX';
+
+  @override
+  String get coverageHex_notoryxShare => 'Ділитися з картою покриття NOTORYX';
+
+  @override
+  String get coverageHex_notoryxShareHint =>
+      'Публічна карта реального покриття MeshCore. Нічого не надсилається, доки ви не погодитеся.';
+
+  @override
+  String get coverageHex_notoryxConsent =>
+      'Телефон надсилає те, що радіо почуло в кожному шестикутнику (близько 0,9 км): силу сигналу, кількість пакетів, безпосередньо почуті ретранслятори і 15-хвилинний проміжок. Він ніколи не надсилає ваш GPS-трек чи точне місце. Також надсилаються публічні оголошення самих ретрансляторів (назва й позиція), щоб карта могла їх назвати. Завантаження підписуються ключем покриття, окремим від радіо, тож ви зможете стерти їх пізніше.';
+
+  @override
+  String get coverageHex_notoryxAnonymousNote =>
+      'Анонімні завантаження не можна стерти пізніше.';
+
+  @override
+  String get coverageHex_mapperName => 'Ім\'я картографа (необов\'язково)';
+
+  @override
+  String get coverageHex_mapperNameHint =>
+      'Бачать лише учасники NOTORYX. Залиште порожнім, щоб лишитися без імені.';
+
+  @override
+  String get coverageHex_shareAction => 'Ділитися';
+
+  @override
+  String get coverageHex_notNow => 'Не зараз';
+
+  @override
+  String get coverageHex_stopSharing => 'Припинити ділитися';
+
+  @override
+  String get coverageHex_eraseUploads => 'Стерти мої завантаження';
+
+  @override
+  String get coverageHex_eraseConfirm =>
+      'Видалити все, що цей телефон завантажив на карту покриття NOTORYX? Це не можна скасувати.';
+
+  @override
+  String coverageHex_erased(String count) {
+    return 'З карти стерто вимірювань: $count.';
+  }
+
+  @override
+  String get coverageHex_eraseFailed =>
+      'Не вдалося стерти. Перевірте з\'єднання і спробуйте знову.';
+
+  @override
+  String get coverageHex_openMap => 'Відкрити карту покриття';
+
+  @override
+  String get coverageHex_trimDrives =>
+      'Приховувати початок і кінець кожної поїздки';
+
+  @override
+  String get coverageHex_trimDrivesHint =>
+      'Перші й останні 2 шестикутники кожного сеансу залишаються на телефоні, тож карти не покажуть, де ви живете чи паркуєтеся.';
 }

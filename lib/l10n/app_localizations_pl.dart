@@ -12860,4 +12860,64 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get sensorHistory_unknownNode => 'Czujnik';
+
+  @override
+  String get coverageHex_notoryxTitle => 'Mapa zasięgu NOTORYX';
+
+  @override
+  String get coverageHex_notoryxShare => 'Udostępniaj mapie zasięgu NOTORYX';
+
+  @override
+  String get coverageHex_notoryxShareHint =>
+      'Publiczna mapa rzeczywistego zasięgu MeshCore. Nic nie zostanie wysłane, dopóki się nie zgodzisz.';
+
+  @override
+  String get coverageHex_notoryxConsent =>
+      'Telefon wysyła to, co radio usłyszało w każdym sześciokącie (ok. 0,9 km): siłę sygnału, liczbę pakietów, bezpośrednio słyszane przemienniki i 15-minutowy przedział czasu. Nigdy nie wysyła Twojej ścieżki GPS ani dokładnej pozycji. Wysyła też publiczne ogłoszenia przemienników (nazwę i pozycję), aby mapa mogła je nazwać. Przesyłki są podpisane kluczem zasięgu niezależnym od radia, więc możesz je później usunąć.';
+
+  @override
+  String get coverageHex_notoryxAnonymousNote =>
+      'Anonimowych przesyłek nie można później usunąć.';
+
+  @override
+  String get coverageHex_mapperName => 'Nazwa mapującego (opcjonalnie)';
+
+  @override
+  String get coverageHex_mapperNameHint =>
+      'Widoczna tylko dla członków NOTORYX. Zostaw puste, aby pozostać bez nazwy.';
+
+  @override
+  String get coverageHex_shareAction => 'Udostępnij';
+
+  @override
+  String get coverageHex_notNow => 'Nie teraz';
+
+  @override
+  String get coverageHex_stopSharing => 'Przestań udostępniać';
+
+  @override
+  String get coverageHex_eraseUploads => 'Usuń moje przesyłki';
+
+  @override
+  String get coverageHex_eraseConfirm =>
+      'Usunąć wszystko, co ten telefon przesłał na mapę zasięgu NOTORYX? Tego nie można cofnąć.';
+
+  @override
+  String coverageHex_erased(String count) {
+    return 'Usunięto z mapy $count pomiarów.';
+  }
+
+  @override
+  String get coverageHex_eraseFailed =>
+      'Nie udało się usunąć. Sprawdź połączenie i spróbuj ponownie.';
+
+  @override
+  String get coverageHex_openMap => 'Otwórz mapę zasięgu';
+
+  @override
+  String get coverageHex_trimDrives => 'Ukrywaj początek i koniec każdej trasy';
+
+  @override
+  String get coverageHex_trimDrivesHint =>
+      'Pierwsze i ostatnie 2 sześciokąty każdej sesji zostają w tym telefonie, więc mapy nie pokażą, gdzie mieszkasz lub parkujesz.';
 }
