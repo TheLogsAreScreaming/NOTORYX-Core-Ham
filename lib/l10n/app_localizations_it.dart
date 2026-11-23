@@ -8341,6 +8341,13 @@ class AppLocalizationsIt extends AppLocalizations {
   String get scanner_tcpHint => 'Una radio con firmware Wi‑Fi sulla tua rete.';
 
   @override
+  String get scanner_tryDemo => 'Prova una demo';
+
+  @override
+  String get scanner_tryDemoHint =>
+      'Una radio e una rete simulate. Non viene inviato nulla.';
+
+  @override
   String get scanner_otherWays => 'Altri modi per connettersi';
 
   @override

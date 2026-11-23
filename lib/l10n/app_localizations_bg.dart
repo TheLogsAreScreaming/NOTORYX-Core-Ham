@@ -8316,6 +8316,13 @@ class AppLocalizationsBg extends AppLocalizations {
   String get scanner_tcpHint => 'Радио с Wi‑Fi фърмуер във вашата мрежа.';
 
   @override
+  String get scanner_tryDemo => 'Пробвайте демо';
+
+  @override
+  String get scanner_tryDemoHint =>
+      'Измислено радио и мрежа. Нищо не се изпраща.';
+
+  @override
   String get scanner_otherWays => 'Други начини за свързване';
 
   @override

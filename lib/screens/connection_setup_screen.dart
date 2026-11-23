@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../connector/demo_companion.dart';
+import '../connector/meshcore_connector.dart';
 import '../l10n/l10n.dart';
+import '../utils/app_logger.dart';
 import '../utils/platform_info.dart';
 import '../widgets/connect_ui.dart';
 import 'connection_dashboard_screen.dart';
 import 'scanner_screen.dart';
 import 'usb_screen.dart';
 
-enum SetupConnection { bluetooth, usb }
+enum SetupConnection { bluetooth, usb, demo }
 
 /// Opens guidance without scanning, flashing firmware, or changing radio settings.
 Future<void> openConnectionSetup(BuildContext context) async {
@@ -20,6 +24,16 @@ Future<void> openConnectionSetup(BuildContext context) async {
     ),
   );
   if (!context.mounted || choice == null) return;
+  if (choice == SetupConnection.demo) {
+    final connector = context.read<MeshCoreConnector>();
+    if (connector.state != MeshCoreConnectionState.disconnected) return;
+    try {
+      await connector.connectTcp(host: demoRadioHost, port: 1);
+    } catch (error) {
+      appLogger.warn('Demo radio failed: $error', tag: 'ConnectionSetup');
+    }
+    return;
+  }
   await Navigator.of(context).push<void>(
     MaterialPageRoute(
       builder: (_) => choice == SetupConnection.usb
@@ -100,6 +114,16 @@ class _ConnectionSetupScreenState extends State<ConnectionSetupScreen> {
                     ? () => setState(() => _choice = SetupConnection.usb)
                     : null,
               ),
+              if (!PlatformInfo.isWeb) ...[
+                const SizedBox(height: 10),
+                TransportTile(
+                  key: const Key('setup-try-demo'),
+                  icon: Icons.play_circle_outline_rounded,
+                  title: l10n.scanner_tryDemo,
+                  subtitle: l10n.scanner_tryDemoHint,
+                  onTap: () => Navigator.of(context).pop(SetupConnection.demo),
+                ),
+              ],
             ] else ...[
               Text(
                 choice == SetupConnection.bluetooth

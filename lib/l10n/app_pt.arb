@@ -3703,6 +3703,8 @@
   "scanner_lastRadio": "Último rádio",
   "scanner_reconnect": "Reconectar",
   "scanner_tcpHint": "Um rádio com firmware Wi‑Fi na sua rede.",
+  "scanner_tryDemo": "Experimentar uma demo",
+  "scanner_tryDemoHint": "Um rádio e uma malha fictícios. Nada é enviado.",
   "scanner_otherWays": "Outras formas de conectar",
   "scanner_radiosFound": "{count, plural, =1{1 rádio por perto} other{{count} rádios por perto}}",
   "scanner_searchingTitle": "Procurando rádios…",

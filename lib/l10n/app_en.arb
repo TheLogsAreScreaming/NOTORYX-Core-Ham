@@ -4975,6 +4975,8 @@
   "scanner_lastRadio": "Last radio",
   "scanner_reconnect": "Reconnect",
   "scanner_tcpHint": "A radio with Wi‑Fi firmware on your network.",
+  "scanner_tryDemo": "Try a demo",
+  "scanner_tryDemoHint": "A pretend radio and mesh. Nothing is sent.",
   "scanner_otherWays": "Other ways to connect",
   "scanner_radiosFound": "{count, plural, =1{1 radio nearby} other{{count} radios nearby}}",
   "@scanner_radiosFound": {

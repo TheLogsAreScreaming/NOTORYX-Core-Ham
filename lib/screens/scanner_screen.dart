@@ -8,6 +8,7 @@ import '../utils/platform_info.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:provider/provider.dart';
 
+import '../connector/demo_companion.dart';
 import '../connector/meshcore_connector.dart';
 import '../models/saved_radio.dart';
 import '../l10n/l10n.dart';
@@ -341,6 +342,14 @@ class _ScannerScreenState extends State<ScannerScreen> {
             context,
           ).push(MaterialPageRoute(builder: (_) => const TcpScreen())),
         ),
+      if (!PlatformInfo.isWeb)
+        TransportTile(
+          key: const Key('scanner-try-demo'),
+          icon: Icons.play_circle_outline_rounded,
+          title: l10n.scanner_tryDemo,
+          subtitle: l10n.scanner_tryDemoHint,
+          onTap: () => _openDemo(context),
+        ),
     ];
     if (tiles.isEmpty) return const [];
     return [
@@ -348,6 +357,26 @@ class _ScannerScreenState extends State<ScannerScreen> {
       ConsoleKicker(l10n.scanner_otherWays),
       ResponsiveTilePair(children: tiles),
     ];
+  }
+
+  Future<void> _openDemo(BuildContext context) async {
+    if (_connector.state != MeshCoreConnectionState.disconnected) return;
+    final navigator = Navigator.of(context);
+    try {
+      await _connector.connectTcp(host: demoRadioHost, port: 1);
+    } catch (error) {
+      appLogger.warn('Demo radio failed: $error', tag: 'ScannerScreen');
+      return;
+    }
+    if (!mounted || _changedNavigation) return;
+    _changedNavigation = true;
+    unawaited(
+      navigator.pushReplacement(
+        MaterialPageRoute(
+          builder: (_) => const ChannelsScreen(hideBackButton: true),
+        ),
+      ),
+    );
   }
 
   Future<void> _connectToDevice(
