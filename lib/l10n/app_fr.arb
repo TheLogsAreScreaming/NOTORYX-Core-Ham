@@ -4880,5 +4880,21 @@
   "stale_badge": "inactif · {age}",
   "rangeRings_toggle": "Cercles de distance",
   "rangeRings_hint": "Cercles de distance autour de votre position, adaptés à la vue",
-  "rangeRings_noPosition": "Votre position est encore inconnue, les cercles de distance ne peuvent donc pas être tracés."
+  "rangeRings_noPosition": "Votre position est encore inconnue, les cercles de distance ne peuvent donc pas être tracés.",
+  "channelConflict_banner": "{count, plural, =1{1 canal de la radio diffère de l'appli} other{{count} canaux de la radio diffèrent de l'appli}}",
+  "channelConflict_review": "Vérifier",
+  "channelConflict_title": "Différences de canaux",
+  "channelConflict_hint": "La radio contient un nom ou une clé différents de ceux enregistrés par l'appli dans ces emplacements. Quelqu'un les a peut-être changés avec une autre appli, ou la copie de l'appli est ancienne. Choisissez la version à garder pour chaque emplacement.",
+  "channelConflict_allResolved": "Tous les emplacements correspondent maintenant.",
+  "channelConflict_slot": "Emplacement {index}",
+  "channelConflict_onRadio": "Sur la radio",
+  "channelConflict_inApp": "Enregistré dans l'appli",
+  "channelConflict_empty": "Vide",
+  "channelConflict_key": "clé {fingerprint}",
+  "channelConflict_nameDiffers": "Nom différent",
+  "channelConflict_keyDiffers": "Clé différente",
+  "channelConflict_keepRadio": "Garder celle de la radio",
+  "channelConflict_useApp": "Écrire celle de l'appli",
+  "channelConflict_keptRadio": "Version de la radio gardée pour l'emplacement {index}",
+  "channelConflict_usedApp": "Version de l'appli écrite dans l'emplacement {index}"
 }

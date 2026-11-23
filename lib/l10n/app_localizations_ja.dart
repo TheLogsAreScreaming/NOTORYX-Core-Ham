@@ -11910,4 +11910,68 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get rangeRings_noPosition => '現在地がまだ不明なため、距離リングを描けません。';
+
+  @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '無線機の$count件のチャンネルがアプリと異なります',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => '確認';
+
+  @override
+  String get channelConflict_title => 'チャンネルの相違';
+
+  @override
+  String get channelConflict_hint =>
+      'これらのスロットでは、無線機の名前またはキーがアプリの保存内容と異なります。別のアプリで変更されたか、アプリのコピーが古い可能性があります。スロットごとに残すバージョンを選んでください。';
+
+  @override
+  String get channelConflict_allResolved => 'すべてのスロットが一致しました。';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'スロット $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => '無線機';
+
+  @override
+  String get channelConflict_inApp => 'アプリに保存';
+
+  @override
+  String get channelConflict_empty => '空';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'キー $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => '名前が異なる';
+
+  @override
+  String get channelConflict_keyDiffers => 'キーが異なる';
+
+  @override
+  String get channelConflict_keepRadio => '無線機の方を残す';
+
+  @override
+  String get channelConflict_useApp => 'アプリの方を書き込む';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'スロット $index は無線機の方を残しました';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'スロット $index にアプリの方を書き込みました';
+  }
 }

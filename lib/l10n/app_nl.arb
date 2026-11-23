@@ -4746,5 +4746,21 @@
   "stale_badge": "verouderd · {age}",
   "rangeRings_toggle": "Afstandsringen",
   "rangeRings_hint": "Afstandsringen rond je positie, passend bij het beeld",
-  "rangeRings_noPosition": "Je positie is nog niet bekend, dus afstandsringen kunnen niet getekend worden."
+  "rangeRings_noPosition": "Je positie is nog niet bekend, dus afstandsringen kunnen niet getekend worden.",
+  "channelConflict_banner": "{count, plural, =1{1 kanaal op de radio wijkt af van de app} other{{count} kanalen op de radio wijken af van de app}}",
+  "channelConflict_review": "Bekijken",
+  "channelConflict_title": "Kanaalverschillen",
+  "channelConflict_hint": "De radio heeft in deze plaatsen een andere naam of sleutel dan de app heeft opgeslagen. Iemand heeft ze misschien met een andere app gewijzigd, of de kopie van de app is oud. Kies per plaats welke versie blijft.",
+  "channelConflict_allResolved": "Alle plaatsen komen nu overeen.",
+  "channelConflict_slot": "Plaats {index}",
+  "channelConflict_onRadio": "Op de radio",
+  "channelConflict_inApp": "Opgeslagen in de app",
+  "channelConflict_empty": "Leeg",
+  "channelConflict_key": "sleutel {fingerprint}",
+  "channelConflict_nameDiffers": "Naam wijkt af",
+  "channelConflict_keyDiffers": "Sleutel wijkt af",
+  "channelConflict_keepRadio": "Die van de radio houden",
+  "channelConflict_useApp": "Die van de app schrijven",
+  "channelConflict_keptRadio": "Versie van de radio behouden in plaats {index}",
+  "channelConflict_usedApp": "Versie van de app geschreven naar plaats {index}"
 }

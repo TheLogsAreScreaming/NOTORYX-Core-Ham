@@ -4726,5 +4726,21 @@
   "stale_badge": "застарілий · {age}",
   "rangeRings_toggle": "Кільця відстані",
   "rangeRings_hint": "Кільця відстані навколо вашої позиції, за розміром огляду",
-  "rangeRings_noPosition": "Ваша позиція ще невідома, тому кільця відстані не можна намалювати."
+  "rangeRings_noPosition": "Ваша позиція ще невідома, тому кільця відстані не можна намалювати.",
+  "channelConflict_banner": "{count, plural, =1{1 канал у радіо відрізняється від застосунку} other{Каналів у радіо, що відрізняються від застосунку: {count}}}",
+  "channelConflict_review": "Переглянути",
+  "channelConflict_title": "Розбіжності каналів",
+  "channelConflict_hint": "У цих слотах радіо має іншу назву або ключ, ніж зберіг застосунок. Можливо, їх змінили іншим застосунком, або копія в застосунку застаріла. Оберіть, яку версію залишити для кожного слота.",
+  "channelConflict_allResolved": "Тепер усі слоти збігаються.",
+  "channelConflict_slot": "Слот {index}",
+  "channelConflict_onRadio": "У радіо",
+  "channelConflict_inApp": "Збережено в застосунку",
+  "channelConflict_empty": "Порожньо",
+  "channelConflict_key": "ключ {fingerprint}",
+  "channelConflict_nameDiffers": "Назва відрізняється",
+  "channelConflict_keyDiffers": "Ключ відрізняється",
+  "channelConflict_keepRadio": "Залишити з радіо",
+  "channelConflict_useApp": "Записати із застосунку",
+  "channelConflict_keptRadio": "Залишено версію радіо в слоті {index}",
+  "channelConflict_usedApp": "Версію застосунку записано в слот {index}"
 }

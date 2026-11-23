@@ -4880,5 +4880,21 @@
   "stale_badge": "inattivo · {age}",
   "rangeRings_toggle": "Anelli di distanza",
   "rangeRings_hint": "Anelli di distanza attorno alla tua posizione, adattati alla vista",
-  "rangeRings_noPosition": "La tua posizione non è ancora nota, quindi gli anelli di distanza non possono essere disegnati."
+  "rangeRings_noPosition": "La tua posizione non è ancora nota, quindi gli anelli di distanza non possono essere disegnati.",
+  "channelConflict_banner": "{count, plural, =1{1 canale della radio è diverso dall'app} other{{count} canali della radio sono diversi dall'app}}",
+  "channelConflict_review": "Controlla",
+  "channelConflict_title": "Differenze tra canali",
+  "channelConflict_hint": "La radio ha un nome o una chiave diversi da quelli salvati dall'app in questi slot. Forse sono stati cambiati con un'altra app, oppure la copia dell'app è vecchia. Scegli quale versione tenere per ogni slot.",
+  "channelConflict_allResolved": "Ora tutti gli slot coincidono.",
+  "channelConflict_slot": "Slot {index}",
+  "channelConflict_onRadio": "Sulla radio",
+  "channelConflict_inApp": "Salvato nell'app",
+  "channelConflict_empty": "Vuoto",
+  "channelConflict_key": "chiave {fingerprint}",
+  "channelConflict_nameDiffers": "Nome diverso",
+  "channelConflict_keyDiffers": "Chiave diversa",
+  "channelConflict_keepRadio": "Tieni quella della radio",
+  "channelConflict_useApp": "Scrivi quella dell'app",
+  "channelConflict_keptRadio": "Tenuta la versione della radio nello slot {index}",
+  "channelConflict_usedApp": "Scritta la versione dell'app nello slot {index}"
 }

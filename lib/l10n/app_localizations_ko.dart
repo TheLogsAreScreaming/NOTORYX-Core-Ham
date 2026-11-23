@@ -11926,4 +11926,68 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get rangeRings_noPosition => '아직 위치를 알 수 없어 거리 링을 그릴 수 없습니다.';
+
+  @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '무전기의 채널 $count개가 앱과 다릅니다',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => '검토';
+
+  @override
+  String get channelConflict_title => '채널 차이';
+
+  @override
+  String get channelConflict_hint =>
+      '이 슬롯에서 무전기의 이름이나 키가 앱에 저장된 것과 다릅니다. 다른 앱으로 변경되었거나 앱의 사본이 오래되었을 수 있습니다. 슬롯마다 유지할 버전을 선택하세요.';
+
+  @override
+  String get channelConflict_allResolved => '이제 모든 슬롯이 일치합니다.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return '슬롯 $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => '무전기';
+
+  @override
+  String get channelConflict_inApp => '앱에 저장됨';
+
+  @override
+  String get channelConflict_empty => '비어 있음';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return '키 $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => '이름 다름';
+
+  @override
+  String get channelConflict_keyDiffers => '키 다름';
+
+  @override
+  String get channelConflict_keepRadio => '무전기 것 유지';
+
+  @override
+  String get channelConflict_useApp => '앱 것을 무전기에 쓰기';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return '슬롯 $index에 무전기 버전을 유지했습니다';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return '슬롯 $index에 앱 버전을 썼습니다';
+  }
 }

@@ -12517,4 +12517,69 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'Ваша позиція ще невідома, тому кільця відстані не можна намалювати.';
+
+  @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Каналів у радіо, що відрізняються від застосунку: $count',
+      one: '1 канал у радіо відрізняється від застосунку',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Переглянути';
+
+  @override
+  String get channelConflict_title => 'Розбіжності каналів';
+
+  @override
+  String get channelConflict_hint =>
+      'У цих слотах радіо має іншу назву або ключ, ніж зберіг застосунок. Можливо, їх змінили іншим застосунком, або копія в застосунку застаріла. Оберіть, яку версію залишити для кожного слота.';
+
+  @override
+  String get channelConflict_allResolved => 'Тепер усі слоти збігаються.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'Слот $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'У радіо';
+
+  @override
+  String get channelConflict_inApp => 'Збережено в застосунку';
+
+  @override
+  String get channelConflict_empty => 'Порожньо';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'ключ $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'Назва відрізняється';
+
+  @override
+  String get channelConflict_keyDiffers => 'Ключ відрізняється';
+
+  @override
+  String get channelConflict_keepRadio => 'Залишити з радіо';
+
+  @override
+  String get channelConflict_useApp => 'Записати із застосунку';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'Залишено версію радіо в слоті $index';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'Версію застосунку записано в слот $index';
+  }
 }
