@@ -12343,6 +12343,247 @@ class AppLocalizationsEn extends AppLocalizations {
       'Your position isn\'t known yet, so range rings can\'t be drawn.';
 
   @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count channels on the radio differ from the app',
+      one: '1 channel on the radio differs from the app',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Review';
+
+  @override
+  String get channelConflict_title => 'Channel differences';
+
+  @override
+  String get channelConflict_hint =>
+      'The radio holds a different name or key in these slots than the app saved. Someone may have changed them with another app, or the app\'s copy is old. Choose which version to keep for each slot.';
+
+  @override
+  String get channelConflict_allResolved => 'All slots match now.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'Slot $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'On the radio';
+
+  @override
+  String get channelConflict_inApp => 'Saved in the app';
+
+  @override
+  String get channelConflict_empty => 'Empty';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'key $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'Name differs';
+
+  @override
+  String get channelConflict_keyDiffers => 'Key differs';
+
+  @override
+  String get channelConflict_keepRadio => 'Keep radio\'s';
+
+  @override
+  String get channelConflict_useApp => 'Write app\'s to radio';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'Kept the radio\'s version of slot $index';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'Wrote the app\'s version to slot $index';
+  }
+
+  @override
+  String get history_window24h => '24 h';
+
+  @override
+  String get history_window7d => '7 days';
+
+  @override
+  String get history_window30d => '30 days';
+
+  @override
+  String get statusHistory_title => 'Status history';
+
+  @override
+  String get statusHistory_battery => 'Battery';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Noise floor';
+
+  @override
+  String get statusHistory_errors => 'Errors';
+
+  @override
+  String get statusHistory_uptime => 'Uptime';
+
+  @override
+  String get statusHistory_empty =>
+      'Each status check you run is saved here, so you can see how this repeater changes over time.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'No $metric readings in this time range.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metric chart, $count readings, from $low to $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count saved checks',
+      one: '1 saved check',
+      zero: 'No saved checks',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Clear history';
+
+  @override
+  String get statusHistory_clearTitle => 'Clear this repeater\'s history?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'Saved status checks and neighbour SNR readings for this repeater are removed from this phone.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return 'SNR trend for $name, $count readings. Tap for the chart.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return 'SNR of $name';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'How well this repeater heard the neighbour each time you asked, kept on this phone.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count readings · low $low · average $avg · high $high';
+  }
+
+  @override
+  String get follow_menu => 'Follow for 15 min';
+
+  @override
+  String get follow_menuHint =>
+      'Asks for its position every few minutes and draws its trail';
+
+  @override
+  String follow_title(String name) {
+    return 'Following $name';
+  }
+
+  @override
+  String get follow_askNow => 'Ask for position now';
+
+  @override
+  String follow_fromYou(String distance, String direction, int degrees) {
+    return '$distance $direction ($degrees°) from you';
+  }
+
+  @override
+  String get follow_waiting => 'Waiting for a position…';
+
+  @override
+  String get follow_noOwnPosition =>
+      'Your own position isn\'t known, so distance and bearing can\'t be shown.';
+
+  @override
+  String follow_timeLeftLabel(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'About $minutes minutes left',
+      one: 'About 1 minute left',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String follow_lastFix(String ago) {
+    return 'last position $ago';
+  }
+
+  @override
+  String follow_secondsAgo(int n) {
+    return '$n s ago';
+  }
+
+  @override
+  String follow_minutesAgo(int n) {
+    return '$n min ago';
+  }
+
+  @override
+  String follow_answers(int answered, int asked) {
+    return '$answered/$asked requests answered';
+  }
+
+  @override
+  String follow_points(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count points',
+      one: '1 point',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get follow_hint =>
+      'Stops by itself after 15 minutes. The contact must allow location in its telemetry settings, or it only moves when it sends an advert.';
+
+  @override
+  String get follow_stop => 'Stop';
+
+  @override
+  String get follow_stopped =>
+      'Not following. Start again to ask for its position for another 15 minutes.';
+
+  @override
+  String get follow_start => 'Follow 15 min';
+
+  @override
+  String get follow_you => 'You';
+
+  @override
   String get sensorHistory_title => 'Sensor history';
 
   @override

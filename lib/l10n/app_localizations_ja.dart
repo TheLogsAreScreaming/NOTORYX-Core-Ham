@@ -11912,6 +11912,238 @@ class AppLocalizationsJa extends AppLocalizations {
   String get rangeRings_noPosition => '現在地がまだ不明なため、距離リングを描けません。';
 
   @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '無線機の$count件のチャンネルがアプリと異なります',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => '確認';
+
+  @override
+  String get channelConflict_title => 'チャンネルの相違';
+
+  @override
+  String get channelConflict_hint =>
+      'これらのスロットでは、無線機の名前またはキーがアプリの保存内容と異なります。別のアプリで変更されたか、アプリのコピーが古い可能性があります。スロットごとに残すバージョンを選んでください。';
+
+  @override
+  String get channelConflict_allResolved => 'すべてのスロットが一致しました。';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'スロット $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => '無線機';
+
+  @override
+  String get channelConflict_inApp => 'アプリに保存';
+
+  @override
+  String get channelConflict_empty => '空';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'キー $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => '名前が異なる';
+
+  @override
+  String get channelConflict_keyDiffers => 'キーが異なる';
+
+  @override
+  String get channelConflict_keepRadio => '無線機の方を残す';
+
+  @override
+  String get channelConflict_useApp => 'アプリの方を書き込む';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'スロット $index は無線機の方を残しました';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'スロット $index にアプリの方を書き込みました';
+  }
+
+  @override
+  String get history_window24h => '24時間';
+
+  @override
+  String get history_window7d => '7日';
+
+  @override
+  String get history_window30d => '30日';
+
+  @override
+  String get statusHistory_title => 'ステータス履歴';
+
+  @override
+  String get statusHistory_battery => 'バッテリー';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'ノイズフロア';
+
+  @override
+  String get statusHistory_errors => 'エラー';
+
+  @override
+  String get statusHistory_uptime => '稼働時間';
+
+  @override
+  String get statusHistory_empty => 'ステータス確認の結果はここに保存され、このリピーターの変化を確認できます。';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'この期間の$metricデータはありません。';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metricのグラフ、$count件、$low〜$high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '保存された確認 $count件',
+      zero: '保存された確認なし',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => '履歴を消去';
+
+  @override
+  String get statusHistory_clearTitle => 'このリピーターの履歴を消去しますか?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'このリピーターの保存済みステータスと隣接ノードのSNRがこの端末から削除されます。';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return '$nameのSNR推移、$count件。タップでグラフ表示。';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return '$nameのSNR';
+  }
+
+  @override
+  String get snrHistory_hint => '問い合わせのたびにリピーターがこの隣接ノードをどれだけ良く受信したか。この端末に保存。';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count件 · 最低 $low · 平均 $avg · 最高 $high';
+  }
+
+  @override
+  String get follow_menu => '15分間追跡';
+
+  @override
+  String get follow_menuHint => '数分ごとに位置を問い合わせ、軌跡を描きます';
+
+  @override
+  String follow_title(String name) {
+    return '$nameを追跡中';
+  }
+
+  @override
+  String get follow_askNow => '今すぐ位置を問い合わせ';
+
+  @override
+  String follow_fromYou(String distance, String direction, int degrees) {
+    return 'あなたから$direction（$degrees°）へ$distance';
+  }
+
+  @override
+  String get follow_waiting => '位置を待っています…';
+
+  @override
+  String get follow_noOwnPosition => '自分の位置が不明なため、距離と方位は表示できません。';
+
+  @override
+  String follow_timeLeftLabel(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: '残り約$minutes分',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String follow_lastFix(String ago) {
+    return '最終位置 $ago';
+  }
+
+  @override
+  String follow_secondsAgo(int n) {
+    return '$n秒前';
+  }
+
+  @override
+  String follow_minutesAgo(int n) {
+    return '$n分前';
+  }
+
+  @override
+  String follow_answers(int answered, int asked) {
+    return '$asked件中$answered件に応答';
+  }
+
+  @override
+  String follow_points(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count地点',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get follow_hint =>
+      '15分後に自動で停止します。相手がテレメトリで位置の共有を許可していない場合、アドバート送信時のみ更新されます。';
+
+  @override
+  String get follow_stop => '停止';
+
+  @override
+  String get follow_stopped => '追跡していません。もう一度開始すると、さらに15分間位置を問い合わせます。';
+
+  @override
+  String get follow_start => '15分追跡';
+
+  @override
+  String get follow_you => 'あなた';
+
+  @override
   String get sensorHistory_title => 'センサー履歴';
 
   @override

@@ -12495,6 +12495,248 @@ class AppLocalizationsIt extends AppLocalizations {
       'La tua posizione non è ancora nota, quindi gli anelli di distanza non possono essere disegnati.';
 
   @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count canali della radio sono diversi dall\'app',
+      one: '1 canale della radio è diverso dall\'app',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Controlla';
+
+  @override
+  String get channelConflict_title => 'Differenze tra canali';
+
+  @override
+  String get channelConflict_hint =>
+      'La radio ha un nome o una chiave diversi da quelli salvati dall\'app in questi slot. Forse sono stati cambiati con un\'altra app, oppure la copia dell\'app è vecchia. Scegli quale versione tenere per ogni slot.';
+
+  @override
+  String get channelConflict_allResolved => 'Ora tutti gli slot coincidono.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'Slot $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'Sulla radio';
+
+  @override
+  String get channelConflict_inApp => 'Salvato nell\'app';
+
+  @override
+  String get channelConflict_empty => 'Vuoto';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'chiave $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'Nome diverso';
+
+  @override
+  String get channelConflict_keyDiffers => 'Chiave diversa';
+
+  @override
+  String get channelConflict_keepRadio => 'Tieni quella della radio';
+
+  @override
+  String get channelConflict_useApp => 'Scrivi quella dell\'app';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'Tenuta la versione della radio nello slot $index';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'Scritta la versione dell\'app nello slot $index';
+  }
+
+  @override
+  String get history_window24h => '24 h';
+
+  @override
+  String get history_window7d => '7 giorni';
+
+  @override
+  String get history_window30d => '30 giorni';
+
+  @override
+  String get statusHistory_title => 'Cronologia stato';
+
+  @override
+  String get statusHistory_battery => 'Batteria';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Rumore di fondo';
+
+  @override
+  String get statusHistory_errors => 'Errori';
+
+  @override
+  String get statusHistory_uptime => 'Tempo attivo';
+
+  @override
+  String get statusHistory_empty =>
+      'Ogni controllo di stato viene salvato qui, così puoi vedere come cambia questo ripetitore nel tempo.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'Nessuna lettura di $metric in questo intervallo.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Grafico $metric, $count letture, da $low a $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count controlli salvati',
+      one: '1 controllo salvato',
+      zero: 'Nessun controllo salvato',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Cancella cronologia';
+
+  @override
+  String get statusHistory_clearTitle =>
+      'Cancellare la cronologia di questo ripetitore?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'I controlli di stato e le letture SNR dei vicini di questo ripetitore vengono rimossi da questo telefono.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return 'Andamento SNR di $name, $count letture. Tocca per il grafico.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return 'SNR di $name';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'Quanto bene questo ripetitore ha sentito il vicino ogni volta che hai chiesto, salvato su questo telefono.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count letture · min $low · media $avg · max $high';
+  }
+
+  @override
+  String get follow_menu => 'Segui per 15 min';
+
+  @override
+  String get follow_menuHint =>
+      'Chiede la posizione ogni pochi minuti e disegna la traccia';
+
+  @override
+  String follow_title(String name) {
+    return 'Seguendo $name';
+  }
+
+  @override
+  String get follow_askNow => 'Chiedi la posizione ora';
+
+  @override
+  String follow_fromYou(String distance, String direction, int degrees) {
+    return 'A $distance $direction ($degrees°) da te';
+  }
+
+  @override
+  String get follow_waiting => 'In attesa di una posizione…';
+
+  @override
+  String get follow_noOwnPosition =>
+      'La tua posizione non è nota, quindi distanza e direzione non sono disponibili.';
+
+  @override
+  String follow_timeLeftLabel(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Circa $minutes minuti rimasti',
+      one: 'Circa 1 minuto rimasto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String follow_lastFix(String ago) {
+    return 'ultima posizione $ago';
+  }
+
+  @override
+  String follow_secondsAgo(int n) {
+    return '$n s fa';
+  }
+
+  @override
+  String follow_minutesAgo(int n) {
+    return '$n min fa';
+  }
+
+  @override
+  String follow_answers(int answered, int asked) {
+    return '$answered/$asked richieste con risposta';
+  }
+
+  @override
+  String follow_points(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count punti',
+      one: '1 punto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get follow_hint =>
+      'Si ferma da solo dopo 15 minuti. Il contatto deve consentire la posizione nella telemetria, altrimenti si muove solo con gli annunci.';
+
+  @override
+  String get follow_stop => 'Ferma';
+
+  @override
+  String get follow_stopped =>
+      'Non lo segui. Riavvia per chiedere la posizione per altri 15 minuti.';
+
+  @override
+  String get follow_start => 'Segui 15 min';
+
+  @override
+  String get follow_you => 'Tu';
+
+  @override
   String get sensorHistory_title => 'Cronologia sensore';
 
   @override

@@ -12389,6 +12389,247 @@ class AppLocalizationsSv extends AppLocalizations {
       'Din position är inte känd än, så avståndsringar kan inte ritas.';
 
   @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count kanaler i radion skiljer sig från appen',
+      one: '1 kanal i radion skiljer sig från appen',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Granska';
+
+  @override
+  String get channelConflict_title => 'Kanalskillnader';
+
+  @override
+  String get channelConflict_hint =>
+      'Radion har ett annat namn eller en annan nyckel i dessa platser än appen sparade. Någon kan ha ändrat dem med en annan app, eller så är appens kopia gammal. Välj vilken version som ska behållas för varje plats.';
+
+  @override
+  String get channelConflict_allResolved => 'Alla platser stämmer nu.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'Plats $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'I radion';
+
+  @override
+  String get channelConflict_inApp => 'Sparad i appen';
+
+  @override
+  String get channelConflict_empty => 'Tom';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'nyckel $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'Namnet skiljer sig';
+
+  @override
+  String get channelConflict_keyDiffers => 'Nyckeln skiljer sig';
+
+  @override
+  String get channelConflict_keepRadio => 'Behåll radions';
+
+  @override
+  String get channelConflict_useApp => 'Skriv appens till radion';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'Behöll radions version på plats $index';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'Skrev appens version till plats $index';
+  }
+
+  @override
+  String get history_window24h => '24 h';
+
+  @override
+  String get history_window7d => '7 dagar';
+
+  @override
+  String get history_window30d => '30 dagar';
+
+  @override
+  String get statusHistory_title => 'Statushistorik';
+
+  @override
+  String get statusHistory_battery => 'Batteri';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Brusgolv';
+
+  @override
+  String get statusHistory_errors => 'Fel';
+
+  @override
+  String get statusHistory_uptime => 'Drifttid';
+
+  @override
+  String get statusHistory_empty =>
+      'Varje statuskontroll sparas här så att du ser hur repeatern förändras över tid.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'Inga $metric-värden under den här perioden.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metric-diagram, $count värden, från $low till $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count sparade kontroller',
+      one: '1 sparad kontroll',
+      zero: 'Inga sparade kontroller',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Rensa historik';
+
+  @override
+  String get statusHistory_clearTitle => 'Rensa repeaterns historik?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'Sparade statuskontroller och grannars SNR-värden för repeatern tas bort från telefonen.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return 'SNR-trend för $name, $count värden. Tryck för diagram.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return 'SNR för $name';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'Hur bra repeatern hörde grannen varje gång du frågade, sparat på telefonen.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count värden · lägst $low · snitt $avg · högst $high';
+  }
+
+  @override
+  String get follow_menu => 'Följ i 15 min';
+
+  @override
+  String get follow_menuHint =>
+      'Frågar efter positionen med några minuters mellanrum och ritar spåret';
+
+  @override
+  String follow_title(String name) {
+    return 'Följer $name';
+  }
+
+  @override
+  String get follow_askNow => 'Fråga efter position nu';
+
+  @override
+  String follow_fromYou(String distance, String direction, int degrees) {
+    return '$distance $direction ($degrees°) från dig';
+  }
+
+  @override
+  String get follow_waiting => 'Väntar på en position…';
+
+  @override
+  String get follow_noOwnPosition =>
+      'Din egen position är okänd, så avstånd och riktning kan inte visas.';
+
+  @override
+  String follow_timeLeftLabel(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Ungefär $minutes minuter kvar',
+      one: 'Ungefär 1 minut kvar',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String follow_lastFix(String ago) {
+    return 'senaste position $ago';
+  }
+
+  @override
+  String follow_secondsAgo(int n) {
+    return '$n s sedan';
+  }
+
+  @override
+  String follow_minutesAgo(int n) {
+    return '$n min sedan';
+  }
+
+  @override
+  String follow_answers(int answered, int asked) {
+    return '$answered/$asked förfrågningar besvarade';
+  }
+
+  @override
+  String follow_points(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count punkter',
+      one: '1 punkt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get follow_hint =>
+      'Stoppar av sig själv efter 15 minuter. Kontakten måste tillåta position i telemetrin, annars flyttar den sig bara vid annonser.';
+
+  @override
+  String get follow_stop => 'Stoppa';
+
+  @override
+  String get follow_stopped =>
+      'Följer inte. Starta igen för att fråga efter positionen i 15 minuter till.';
+
+  @override
+  String get follow_start => 'Följ 15 min';
+
+  @override
+  String get follow_you => 'Du';
+
+  @override
   String get sensorHistory_title => 'Sensorhistorik';
 
   @override

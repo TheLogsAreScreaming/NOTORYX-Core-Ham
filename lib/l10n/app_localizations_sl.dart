@@ -12481,6 +12481,244 @@ class AppLocalizationsSl extends AppLocalizations {
       'Vaš položaj še ni znan, zato krogov razdalje ni mogoče narisati.';
 
   @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Kanali v radiu, ki se razlikujejo od aplikacije: $count',
+      one: '1 kanal v radiu se razlikuje od aplikacije',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Preglej';
+
+  @override
+  String get channelConflict_title => 'Razlike kanalov';
+
+  @override
+  String get channelConflict_hint =>
+      'Radio ima v teh mestih drugačno ime ali ključ, kot ga je shranila aplikacija. Morda jih je nekdo spremenil z drugo aplikacijo ali pa je kopija v aplikaciji stara. Za vsako mesto izberite, katero različico obdržati.';
+
+  @override
+  String get channelConflict_allResolved => 'Vsa mesta se zdaj ujemajo.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'Mesto $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'V radiu';
+
+  @override
+  String get channelConflict_inApp => 'Shranjeno v aplikaciji';
+
+  @override
+  String get channelConflict_empty => 'Prazno';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'ključ $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'Ime se razlikuje';
+
+  @override
+  String get channelConflict_keyDiffers => 'Ključ se razlikuje';
+
+  @override
+  String get channelConflict_keepRadio => 'Obdrži iz radia';
+
+  @override
+  String get channelConflict_useApp => 'Zapiši iz aplikacije';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'Obdržana različica iz radia na mestu $index';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'Različica iz aplikacije zapisana na mesto $index';
+  }
+
+  @override
+  String get history_window24h => '24 h';
+
+  @override
+  String get history_window7d => '7 dni';
+
+  @override
+  String get history_window30d => '30 dni';
+
+  @override
+  String get statusHistory_title => 'Zgodovina stanja';
+
+  @override
+  String get statusHistory_battery => 'Baterija';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Raven šuma';
+
+  @override
+  String get statusHistory_errors => 'Napake';
+
+  @override
+  String get statusHistory_uptime => 'Čas delovanja';
+
+  @override
+  String get statusHistory_empty =>
+      'Vsako preverjanje stanja se shrani tukaj, da vidite, kako se repetitor spreminja.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'V tem obdobju ni meritev $metric.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Graf $metric, meritve: $count, od $low do $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Shranjena preverjanja: $count',
+      zero: 'Ni shranjenih preverjanj',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Počisti zgodovino';
+
+  @override
+  String get statusHistory_clearTitle => 'Počistim zgodovino tega repetitorja?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'Shranjena preverjanja stanja in meritve SNR sosedov tega repetitorja bodo odstranjene s telefona.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return 'Trend SNR za $name, meritve: $count. Tapnite za graf.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return 'SNR: $name';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'Kako dobro je repetitor slišal soseda ob vsakem vprašanju; shranjeno na telefonu.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return 'Meritve: $count · min. $low · povp. $avg · maks. $high';
+  }
+
+  @override
+  String get follow_menu => 'Sledi 15 min';
+
+  @override
+  String get follow_menuHint =>
+      'Vsakih nekaj minut vpraša za položaj in nariše sled';
+
+  @override
+  String follow_title(String name) {
+    return 'Sledenje: $name';
+  }
+
+  @override
+  String get follow_askNow => 'Vprašaj za položaj zdaj';
+
+  @override
+  String follow_fromYou(String distance, String direction, int degrees) {
+    return '$distance proti $direction ($degrees°) od vas';
+  }
+
+  @override
+  String get follow_waiting => 'Čakam na položaj…';
+
+  @override
+  String get follow_noOwnPosition =>
+      'Vaš položaj ni znan, zato razdalje in smeri ni mogoče prikazati.';
+
+  @override
+  String follow_timeLeftLabel(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Še približno $minutes min',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String follow_lastFix(String ago) {
+    return 'zadnji položaj $ago';
+  }
+
+  @override
+  String follow_secondsAgo(int n) {
+    return 'pred $n s';
+  }
+
+  @override
+  String follow_minutesAgo(int n) {
+    return 'pred $n min';
+  }
+
+  @override
+  String follow_answers(int answered, int asked) {
+    return 'odgovori: $answered/$asked';
+  }
+
+  @override
+  String follow_points(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'točke: $count',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get follow_hint =>
+      'Po 15 minutah se ustavi samo. Stik mora v telemetriji dovoliti lokacijo, sicer se položaj spremeni le ob oglasu.';
+
+  @override
+  String get follow_stop => 'Ustavi';
+
+  @override
+  String get follow_stopped =>
+      'Sledenje je ustavljeno. Začnite znova za nadaljnjih 15 minut.';
+
+  @override
+  String get follow_start => 'Sledi 15 min';
+
+  @override
+  String get follow_you => 'Vi';
+
+  @override
   String get sensorHistory_title => 'Zgodovina senzorja';
 
   @override

@@ -17,7 +17,7 @@ Future<MessageDb?> openMessageDb() async {
     final prefs = await SharedPreferences.getInstance();
     return await openMessageDbFile(
       '${dir.path}${Platform.pathSeparator}messages.db',
-      wantEncrypted: prefs.getBool(MessageDb.encryptPrefKey) ?? false,
+      wantEncrypted: MessageDb.wantsEncryption(prefs),
       vault: SecureMessageDbKeyVault(),
     );
   } catch (e) {

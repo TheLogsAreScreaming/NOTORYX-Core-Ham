@@ -12438,6 +12438,248 @@ class AppLocalizationsNl extends AppLocalizations {
       'Je positie is nog niet bekend, dus afstandsringen kunnen niet getekend worden.';
 
   @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count kanalen op de radio wijken af van de app',
+      one: '1 kanaal op de radio wijkt af van de app',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Bekijken';
+
+  @override
+  String get channelConflict_title => 'Kanaalverschillen';
+
+  @override
+  String get channelConflict_hint =>
+      'De radio heeft in deze plaatsen een andere naam of sleutel dan de app heeft opgeslagen. Iemand heeft ze misschien met een andere app gewijzigd, of de kopie van de app is oud. Kies per plaats welke versie blijft.';
+
+  @override
+  String get channelConflict_allResolved => 'Alle plaatsen komen nu overeen.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'Plaats $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'Op de radio';
+
+  @override
+  String get channelConflict_inApp => 'Opgeslagen in de app';
+
+  @override
+  String get channelConflict_empty => 'Leeg';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'sleutel $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'Naam wijkt af';
+
+  @override
+  String get channelConflict_keyDiffers => 'Sleutel wijkt af';
+
+  @override
+  String get channelConflict_keepRadio => 'Die van de radio houden';
+
+  @override
+  String get channelConflict_useApp => 'Die van de app schrijven';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'Versie van de radio behouden in plaats $index';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'Versie van de app geschreven naar plaats $index';
+  }
+
+  @override
+  String get history_window24h => '24 h';
+
+  @override
+  String get history_window7d => '7 dagen';
+
+  @override
+  String get history_window30d => '30 dagen';
+
+  @override
+  String get statusHistory_title => 'Statusgeschiedenis';
+
+  @override
+  String get statusHistory_battery => 'Accu';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Ruisvloer';
+
+  @override
+  String get statusHistory_errors => 'Fouten';
+
+  @override
+  String get statusHistory_uptime => 'Uptime';
+
+  @override
+  String get statusHistory_empty =>
+      'Elke statuscontrole wordt hier bewaard, zodat je ziet hoe deze repeater verandert.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'Geen $metric-metingen in deze periode.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metric-grafiek, $count metingen, van $low tot $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count bewaarde controles',
+      one: '1 bewaarde controle',
+      zero: 'Geen bewaarde controles',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Geschiedenis wissen';
+
+  @override
+  String get statusHistory_clearTitle =>
+      'Geschiedenis van deze repeater wissen?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'Bewaarde statuscontroles en SNR-metingen van buren voor deze repeater worden van deze telefoon verwijderd.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return 'SNR-verloop voor $name, $count metingen. Tik voor de grafiek.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return 'SNR van $name';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'Hoe goed deze repeater de buur hoorde bij elke vraag, bewaard op deze telefoon.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count metingen · laag $low · gemiddeld $avg · hoog $high';
+  }
+
+  @override
+  String get follow_menu => '15 min volgen';
+
+  @override
+  String get follow_menuHint =>
+      'Vraagt elke paar minuten de positie en tekent het spoor';
+
+  @override
+  String follow_title(String name) {
+    return '$name volgen';
+  }
+
+  @override
+  String get follow_askNow => 'Nu positie vragen';
+
+  @override
+  String follow_fromYou(String distance, String direction, int degrees) {
+    return '$distance $direction ($degrees°) van jou';
+  }
+
+  @override
+  String get follow_waiting => 'Wachten op een positie…';
+
+  @override
+  String get follow_noOwnPosition =>
+      'Je eigen positie is onbekend, dus afstand en richting ontbreken.';
+
+  @override
+  String follow_timeLeftLabel(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Nog ongeveer $minutes minuten',
+      one: 'Nog ongeveer 1 minuut',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String follow_lastFix(String ago) {
+    return 'laatste positie $ago';
+  }
+
+  @override
+  String follow_secondsAgo(int n) {
+    return '$n s geleden';
+  }
+
+  @override
+  String follow_minutesAgo(int n) {
+    return '$n min geleden';
+  }
+
+  @override
+  String follow_answers(int answered, int asked) {
+    return '$answered/$asked verzoeken beantwoord';
+  }
+
+  @override
+  String follow_points(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count punten',
+      one: '1 punt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get follow_hint =>
+      'Stopt na 15 minuten vanzelf. Het contact moet locatie toestaan in de telemetrie, anders beweegt het alleen bij een advert.';
+
+  @override
+  String get follow_stop => 'Stoppen';
+
+  @override
+  String get follow_stopped =>
+      'Niet aan het volgen. Start opnieuw om nog 15 minuten de positie te vragen.';
+
+  @override
+  String get follow_start => '15 min volgen';
+
+  @override
+  String get follow_you => 'Jij';
+
+  @override
   String get sensorHistory_title => 'Sensorgeschiedenis';
 
   @override

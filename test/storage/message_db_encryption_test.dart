@@ -1,9 +1,11 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:meshcore_open/storage/db/message_db.dart';
 import 'package:meshcore_open/storage/db/message_db_key.dart';
 import 'package:meshcore_open/storage/db/message_db_native.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class _Vault implements MessageDbKeyVault {
   String? key;
@@ -115,5 +117,21 @@ void main() {
     expect(MessageDb.encryptionState, MessageDbEncryption.failed);
     expect(read(db), ['secret-text-marker']);
     db.close();
+  });
+
+  test('phones and Macs encrypt by default unless switched off', () async {
+    SharedPreferences.setMockInitialValues({});
+    final prefs = await SharedPreferences.getInstance();
+    bool on(TargetPlatform p) => MessageDb.wantsEncryption(prefs, platform: p);
+    expect(on(TargetPlatform.android), isTrue);
+    expect(on(TargetPlatform.iOS), isTrue);
+    expect(on(TargetPlatform.macOS), isTrue);
+    expect(on(TargetPlatform.linux), isFalse);
+    expect(on(TargetPlatform.windows), isFalse);
+
+    await prefs.setBool(MessageDb.encryptPrefKey, false);
+    expect(on(TargetPlatform.android), isFalse);
+    await prefs.setBool(MessageDb.encryptPrefKey, true);
+    expect(on(TargetPlatform.linux), isTrue);
   });
 }
