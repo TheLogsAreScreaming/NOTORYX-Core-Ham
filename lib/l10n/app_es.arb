@@ -4880,5 +4880,21 @@
   "stale_badge": "inactivo · {age}",
   "rangeRings_toggle": "Anillos de distancia",
   "rangeRings_hint": "Anillos de distancia alrededor de tu posición, ajustados a la vista",
-  "rangeRings_noPosition": "Aún no se conoce tu posición, así que no se pueden dibujar los anillos de distancia."
+  "rangeRings_noPosition": "Aún no se conoce tu posición, así que no se pueden dibujar los anillos de distancia.",
+  "channelConflict_banner": "{count, plural, =1{1 canal de la radio no coincide con la app} other{{count} canales de la radio no coinciden con la app}}",
+  "channelConflict_review": "Revisar",
+  "channelConflict_title": "Diferencias de canales",
+  "channelConflict_hint": "La radio tiene un nombre o clave distinto en estas ranuras al que guardó la app. Puede que alguien los cambiara con otra app, o la copia de la app es antigua. Elige qué versión conservar en cada ranura.",
+  "channelConflict_allResolved": "Ya coinciden todas las ranuras.",
+  "channelConflict_slot": "Ranura {index}",
+  "channelConflict_onRadio": "En la radio",
+  "channelConflict_inApp": "Guardado en la app",
+  "channelConflict_empty": "Vacía",
+  "channelConflict_key": "clave {fingerprint}",
+  "channelConflict_nameDiffers": "El nombre difiere",
+  "channelConflict_keyDiffers": "La clave difiere",
+  "channelConflict_keepRadio": "Mantener la de la radio",
+  "channelConflict_useApp": "Escribir la de la app",
+  "channelConflict_keptRadio": "Se mantuvo la versión de la radio en la ranura {index}",
+  "channelConflict_usedApp": "Se escribió la versión de la app en la ranura {index}"
 }

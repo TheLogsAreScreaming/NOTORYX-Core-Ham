@@ -4784,5 +4784,21 @@
   "stale_badge": "elavult · {age}",
   "rangeRings_toggle": "Távolsággyűrűk",
   "rangeRings_hint": "Távolsággyűrűk a pozíciód körül, a nézethez igazítva",
-  "rangeRings_noPosition": "A pozíciód még nem ismert, ezért a távolsággyűrűk nem rajzolhatók meg."
+  "rangeRings_noPosition": "A pozíciód még nem ismert, ezért a távolsággyűrűk nem rajzolhatók meg.",
+  "channelConflict_banner": "{count, plural, =1{1 csatorna eltér a rádióban és az alkalmazásban} other{{count} csatorna eltér a rádióban és az alkalmazásban}}",
+  "channelConflict_review": "Áttekintés",
+  "channelConflict_title": "Csatornaeltérések",
+  "channelConflict_hint": "A rádió ezekben a helyekben más nevet vagy kulcsot tárol, mint amit az alkalmazás mentett. Lehet, hogy valaki egy másik alkalmazással módosította, vagy az alkalmazás másolata régi. Válaszd ki, melyik változat maradjon az egyes helyeken.",
+  "channelConflict_allResolved": "Most már minden hely egyezik.",
+  "channelConflict_slot": "{index}. hely",
+  "channelConflict_onRadio": "A rádióban",
+  "channelConflict_inApp": "Az alkalmazásban mentve",
+  "channelConflict_empty": "Üres",
+  "channelConflict_key": "kulcs {fingerprint}",
+  "channelConflict_nameDiffers": "Eltérő név",
+  "channelConflict_keyDiffers": "Eltérő kulcs",
+  "channelConflict_keepRadio": "A rádióé marad",
+  "channelConflict_useApp": "Az alkalmazásé kerüljön a rádióba",
+  "channelConflict_keptRadio": "A rádió változata maradt a(z) {index}. helyen",
+  "channelConflict_usedApp": "Az alkalmazás változata a(z) {index}. helyre írva"
 }

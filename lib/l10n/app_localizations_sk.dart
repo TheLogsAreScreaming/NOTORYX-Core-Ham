@@ -12453,4 +12453,69 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get rangeRings_noPosition =>
       'Vaša poloha ešte nie je známa, preto nie je možné nakresliť kruhy vzdialenosti.';
+
+  @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Kanály v rádiu, ktoré sa líšia od aplikácie: $count',
+      one: '1 kanál v rádiu sa líši od aplikácie',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Skontrolovať';
+
+  @override
+  String get channelConflict_title => 'Rozdiely kanálov';
+
+  @override
+  String get channelConflict_hint =>
+      'Rádio má v týchto slotoch iný názov alebo kľúč, než aký uložila aplikácia. Niekto ich mohol zmeniť inou aplikáciou, alebo je kópia v aplikácii stará. Pre každý slot vyberte, ktorú verziu ponechať.';
+
+  @override
+  String get channelConflict_allResolved => 'Všetky sloty sa teraz zhodujú.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'Slot $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'V rádiu';
+
+  @override
+  String get channelConflict_inApp => 'Uložené v aplikácii';
+
+  @override
+  String get channelConflict_empty => 'Prázdny';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'kľúč $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'Iný názov';
+
+  @override
+  String get channelConflict_keyDiffers => 'Iný kľúč';
+
+  @override
+  String get channelConflict_keepRadio => 'Ponechať z rádia';
+
+  @override
+  String get channelConflict_useApp => 'Zapísať z aplikácie';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'Ponechaná verzia z rádia v slote $index';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'Verzia z aplikácie zapísaná do slotu $index';
+  }
 }

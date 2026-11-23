@@ -11684,4 +11684,68 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get rangeRings_noPosition => '你的位置尚未知，无法绘制距离圈。';
+
+  @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '电台上有 $count 个频道与应用不一致',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => '查看';
+
+  @override
+  String get channelConflict_title => '频道差异';
+
+  @override
+  String get channelConflict_hint =>
+      '这些槽位中电台的名称或密钥与应用保存的不同。可能有人用其他应用修改过，或应用中的副本已过时。请为每个槽位选择要保留的版本。';
+
+  @override
+  String get channelConflict_allResolved => '所有槽位现已一致。';
+
+  @override
+  String channelConflict_slot(int index) {
+    return '槽位 $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => '电台上';
+
+  @override
+  String get channelConflict_inApp => '应用中保存';
+
+  @override
+  String get channelConflict_empty => '空';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return '密钥 $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => '名称不同';
+
+  @override
+  String get channelConflict_keyDiffers => '密钥不同';
+
+  @override
+  String get channelConflict_keepRadio => '保留电台的';
+
+  @override
+  String get channelConflict_useApp => '写入应用的';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return '槽位 $index 已保留电台版本';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return '已将应用版本写入槽位 $index';
+  }
 }

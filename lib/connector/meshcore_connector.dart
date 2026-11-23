@@ -17,6 +17,7 @@ import '../models/region_setup.dart' show parseRegionTrees;
 import '../models/region_scope.dart';
 import '../models/advert_signature.dart';
 import '../models/channel.dart';
+import '../models/channel_conflict.dart';
 import '../models/channel_message.dart';
 import '../models/companion_radio_stats.dart';
 import '../models/mesh_health.dart';
@@ -484,6 +485,11 @@ class MeshCoreConnector extends ChangeNotifier {
   final ChannelStore _channelStore = ChannelStore();
   final UnreadStore _unreadStore = UnreadStore();
   List<Channel> _cachedChannels = [];
+  List<ChannelConflict> _channelConflicts = [];
+
+  /// Slots this app wrote since the last full channel sync; a difference
+  /// there is the app's own edit, not a conflict.
+  final Set<int> _appChannelEdits = {};
   final Map<int, bool> _channelSmazEnabled = {};
   final Map<int, bool> _channelCyr2LatEnabled = {};
   final Map<int, bool> _channelUrlImagesEnabled = {};
@@ -649,6 +655,11 @@ class MeshCoreConnector extends ChangeNotifier {
   }
 
   List<Channel> get channels => List.unmodifiable(_channels);
+
+  /// Slots where the radio's channel differs from the app's saved copy and
+  /// the user hasn't chosen which to keep.
+  List<ChannelConflict> get channelConflicts =>
+      List.unmodifiable(_channelConflicts);
   bool get isConnected => _state == MeshCoreConnectionState.connected;
   bool get isLoadingContacts => _isLoadingContacts;
   bool get hasLoadedContacts => _hasLoadedContacts;
@@ -1226,6 +1237,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
   Future<void> loadCachedChannels() async {
     _cachedChannels = await _channelStore.loadChannels();
+    _channelConflicts = _channelStore.loadConflicts();
     _recalculateCachedChannelsUnreadTotal();
   }
 
@@ -5475,6 +5487,17 @@ class MeshCoreConnector extends ChangeNotifier {
       '[ChannelSync] Sync complete: received ${_channels.length}/$_totalChannelsToRequest channels',
     );
 
+    // Compare before cleanup resets the slot count.
+    _channelConflicts = findChannelConflicts(
+      app: _cachedChannels,
+      radio: _channels,
+      slots: _totalChannelsToRequest,
+      skip: _appChannelEdits,
+      pending: _channelConflicts,
+    );
+    _appChannelEdits.clear();
+    unawaited(_channelStore.saveConflicts(_channelConflicts));
+
     _cleanupChannelSync(completed: true);
 
     // Cache channels for offline use
@@ -5529,15 +5552,47 @@ class MeshCoreConnector extends ChangeNotifier {
   Future<void> setChannel(int index, String name, Uint8List psk) async {
     if (!isConnected) return;
 
+    _appChannelEdits.add(index);
+    _dropChannelConflict(index);
     await sendFrame(buildSetChannelFrame(index, name, psk));
     // Refresh channels after setting
     await getChannels(force: true);
+  }
+
+  /// Keeps the radio's version of a conflicting slot; the app forgets its
+  /// old copy.
+  Future<void> keepRadioChannel(int index) async {
+    _dropChannelConflict(index);
+    notifyListeners();
+  }
+
+  /// Writes the app's saved copy of a conflicting slot back to the radio.
+  Future<void> restoreAppChannel(int index) async {
+    final conflict = _channelConflicts.cast<ChannelConflict?>().firstWhere(
+      (c) => c!.index == index,
+      orElse: () => null,
+    );
+    if (conflict == null || !isConnected) return;
+    await setChannel(index, conflict.app.name, conflict.app.psk);
+  }
+
+  void _dropChannelConflict(int index) {
+    final before = _channelConflicts.length;
+    _channelConflicts = [
+      for (final c in _channelConflicts)
+        if (c.index != index) c,
+    ];
+    if (_channelConflicts.length != before) {
+      unawaited(_channelStore.saveConflicts(_channelConflicts));
+    }
   }
 
   Future<void> deleteChannel(int index) async {
     if (!isConnected) return;
 
     // Delete by setting empty name and zero PSK
+    _appChannelEdits.add(index);
+    _dropChannelConflict(index);
     await sendFrame(buildSetChannelFrame(index, '', Uint8List(16)));
     // Clear stored messages for this channel
     await _channelMessageStore.clearChannelMessages(index);

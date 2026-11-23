@@ -4746,5 +4746,21 @@
   "stale_badge": "остарял · {age}",
   "rangeRings_toggle": "Кръгове на разстояние",
   "rangeRings_hint": "Кръгове на разстояние около вашата позиция, според изгледа",
-  "rangeRings_noPosition": "Позицията ви още не е известна, затова кръговете на разстояние не могат да се начертаят."
+  "rangeRings_noPosition": "Позицията ви още не е известна, затова кръговете на разстояние не могат да се начертаят.",
+  "channelConflict_banner": "{count, plural, =1{1 канал в радиото се различава от приложението} other{{count} канала в радиото се различават от приложението}}",
+  "channelConflict_review": "Преглед",
+  "channelConflict_title": "Разлики в каналите",
+  "channelConflict_hint": "Радиото пази различно име или ключ в тези слотове от запазеното в приложението. Може някой да ги е сменил с друго приложение или копието в приложението е старо. Изберете коя версия да остане за всеки слот.",
+  "channelConflict_allResolved": "Всички слотове вече съвпадат.",
+  "channelConflict_slot": "Слот {index}",
+  "channelConflict_onRadio": "В радиото",
+  "channelConflict_inApp": "Запазено в приложението",
+  "channelConflict_empty": "Празно",
+  "channelConflict_key": "ключ {fingerprint}",
+  "channelConflict_nameDiffers": "Името се различава",
+  "channelConflict_keyDiffers": "Ключът се различава",
+  "channelConflict_keepRadio": "Запази от радиото",
+  "channelConflict_useApp": "Запиши от приложението",
+  "channelConflict_keptRadio": "Запазена е версията на радиото в слот {index}",
+  "channelConflict_usedApp": "Версията на приложението е записана в слот {index}"
 }

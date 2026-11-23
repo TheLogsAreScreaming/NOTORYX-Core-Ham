@@ -4746,5 +4746,21 @@
   "stale_badge": "zastarelo · {age}",
   "rangeRings_toggle": "Krogi razdalje",
   "rangeRings_hint": "Krogi razdalje okoli vašega položaja, prilagojeni pogledu",
-  "rangeRings_noPosition": "Vaš položaj še ni znan, zato krogov razdalje ni mogoče narisati."
+  "rangeRings_noPosition": "Vaš položaj še ni znan, zato krogov razdalje ni mogoče narisati.",
+  "channelConflict_banner": "{count, plural, =1{1 kanal v radiu se razlikuje od aplikacije} other{Kanali v radiu, ki se razlikujejo od aplikacije: {count}}}",
+  "channelConflict_review": "Preglej",
+  "channelConflict_title": "Razlike kanalov",
+  "channelConflict_hint": "Radio ima v teh mestih drugačno ime ali ključ, kot ga je shranila aplikacija. Morda jih je nekdo spremenil z drugo aplikacijo ali pa je kopija v aplikaciji stara. Za vsako mesto izberite, katero različico obdržati.",
+  "channelConflict_allResolved": "Vsa mesta se zdaj ujemajo.",
+  "channelConflict_slot": "Mesto {index}",
+  "channelConflict_onRadio": "V radiu",
+  "channelConflict_inApp": "Shranjeno v aplikaciji",
+  "channelConflict_empty": "Prazno",
+  "channelConflict_key": "ključ {fingerprint}",
+  "channelConflict_nameDiffers": "Ime se razlikuje",
+  "channelConflict_keyDiffers": "Ključ se razlikuje",
+  "channelConflict_keepRadio": "Obdrži iz radia",
+  "channelConflict_useApp": "Zapiši iz aplikacije",
+  "channelConflict_keptRadio": "Obdržana različica iz radia na mestu {index}",
+  "channelConflict_usedApp": "Različica iz aplikacije zapisana na mesto {index}"
 }
