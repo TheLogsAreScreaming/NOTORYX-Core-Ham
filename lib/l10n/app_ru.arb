@@ -4036,6 +4036,7 @@
   "traffic_filterTitle": "Показываемые типы пакетов",
   "traffic_listening": "Ожидание пакетов…",
   "traffic_heardFrom": "Принято от {name} · {snr} дБ",
+  "traffic_lastHop": "Последний переход {name} · {snr} дБ",
   "traffic_flood": "Flood {hops}",
   "traffic_direct": "Напрямую",
   "traffic_snr": "SNR {snr}",

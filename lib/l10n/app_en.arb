@@ -7630,6 +7630,8 @@
       }
     }
   },
+  "traffic_lastHop": "Last hop {name} · {snr} dB",
+  "@traffic_lastHop": {"placeholders": {"name": {"type": "String"}, "snr": {"type": "String"}}},
   "traffic_flood": "Flood {hops}",
   "@traffic_flood": {
     "placeholders": {

@@ -4733,6 +4733,7 @@
   "traffic_filterTitle": "Pakkettypes om te tonen",
   "traffic_listening": "Wachten op pakketten…",
   "traffic_heardFrom": "Gehoord van {name} · {snr} dB",
+  "traffic_lastHop": "Laatste hop {name} · {snr} dB",
   "traffic_flood": "Flood {hops}",
   "traffic_direct": "Direct",
   "traffic_snr": "SNR {snr}",

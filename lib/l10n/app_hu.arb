@@ -4771,6 +4771,7 @@
   "traffic_filterTitle": "Megjelenített csomagtípusok",
   "traffic_listening": "Csomagokra vár…",
   "traffic_heardFrom": "Hallva innen: {name} · {snr} dB",
+  "traffic_lastHop": "Utolsó ugrás {name} · {snr} dB",
   "traffic_flood": "Flood {hops}",
   "traffic_direct": "Közvetlen",
   "traffic_snr": "SNR {snr}",

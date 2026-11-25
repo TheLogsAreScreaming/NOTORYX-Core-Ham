@@ -4713,6 +4713,7 @@
   "traffic_filterTitle": "Типи пакетів для показу",
   "traffic_listening": "Очікування пакетів…",
   "traffic_heardFrom": "Прийнято від {name} · {snr} дБ",
+  "traffic_lastHop": "Останній перехід {name} · {snr} дБ",
   "traffic_flood": "Flood {hops}",
   "traffic_direct": "Напряму",
   "traffic_snr": "SNR {snr}",

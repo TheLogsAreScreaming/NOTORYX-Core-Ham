@@ -4733,6 +4733,7 @@
   "traffic_filterTitle": "Pakettyper som visas",
   "traffic_listening": "Lyssnar efter paket…",
   "traffic_heardFrom": "Hörd från {name} · {snr} dB",
+  "traffic_lastHop": "Sista hopp {name} · {snr} dB",
   "traffic_flood": "Flood {hops}",
   "traffic_direct": "Direkt",
   "traffic_snr": "SNR {snr}",

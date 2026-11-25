@@ -4733,6 +4733,7 @@
   "traffic_filterTitle": "Tipos de pacote a mostrar",
   "traffic_listening": "À espera de pacotes…",
   "traffic_heardFrom": "Ouvido de {name} · {snr} dB",
+  "traffic_lastHop": "Último salto {name} · {snr} dB",
   "traffic_flood": "Inundação {hops}",
   "traffic_direct": "Direto",
   "traffic_snr": "SNR {snr}",

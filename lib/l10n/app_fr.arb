@@ -4867,6 +4867,7 @@
   "traffic_filterTitle": "Types de paquets affichés",
   "traffic_listening": "En attente de paquets…",
   "traffic_heardFrom": "Reçu de {name} · {snr} dB",
+  "traffic_lastHop": "Dernier saut {name} · {snr} dB",
   "traffic_flood": "Diffusion {hops}",
   "traffic_direct": "Direct",
   "traffic_snr": "SNR {snr}",

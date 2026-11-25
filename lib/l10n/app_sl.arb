@@ -4733,6 +4733,7 @@
   "traffic_filterTitle": "Prikazane vrste paketov",
   "traffic_listening": "Čakanje na pakete…",
   "traffic_heardFrom": "Slišano od {name} · {snr} dB",
+  "traffic_lastHop": "Zadnji skok {name} · {snr} dB",
   "traffic_flood": "Flood {hops}",
   "traffic_direct": "Neposredno",
   "traffic_snr": "SNR {snr}",

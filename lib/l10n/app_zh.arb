@@ -4738,6 +4738,7 @@
   "traffic_filterTitle": "显示的数据包类型",
   "traffic_listening": "正在监听数据包…",
   "traffic_heardFrom": "来自 {name} · {snr} dB",
+  "traffic_lastHop": "最后一跳 {name} · {snr} dB",
   "traffic_flood": "泛洪 {hops}",
   "traffic_direct": "直连",
   "traffic_snr": "SNR {snr}",

@@ -4867,6 +4867,7 @@
   "traffic_filterTitle": "표시할 패킷 유형",
   "traffic_listening": "패킷 수신 대기 중…",
   "traffic_heardFrom": "{name}에서 수신 · {snr} dB",
+  "traffic_lastHop": "마지막 홉 {name} · {snr} dB",
   "traffic_flood": "플러드 {hops}",
   "traffic_direct": "직접",
   "traffic_snr": "SNR {snr}",

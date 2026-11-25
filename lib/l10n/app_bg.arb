@@ -4733,6 +4733,7 @@
   "traffic_filterTitle": "Показвани типове пакети",
   "traffic_listening": "Изчакване на пакети…",
   "traffic_heardFrom": "Чуто от {name} · {snr} dB",
+  "traffic_lastHop": "Последен скок {name} · {snr} dB",
   "traffic_flood": "Flood {hops}",
   "traffic_direct": "Директно",
   "traffic_snr": "SNR {snr}",

@@ -12412,6 +12412,11 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String traffic_lastHop(String name, String snr) {
+    return 'Último salto $name · $snr dB';
+  }
+
+  @override
   String traffic_flood(int hops) {
     return 'Inundación $hops';
   }

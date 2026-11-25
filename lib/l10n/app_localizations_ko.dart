@@ -11857,6 +11857,11 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
+  String traffic_lastHop(String name, String snr) {
+    return '마지막 홉 $name · $snr dB';
+  }
+
+  @override
   String traffic_flood(int hops) {
     return '플러드 $hops';
   }

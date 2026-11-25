@@ -4867,6 +4867,7 @@
   "traffic_filterTitle": "Angezeigte Pakettypen",
   "traffic_listening": "Warte auf Pakete…",
   "traffic_heardFrom": "Gehört von {name} · {snr} dB",
+  "traffic_lastHop": "Letzter Hop {name} · {snr} dB",
   "traffic_flood": "Flood {hops}",
   "traffic_direct": "Direkt",
   "traffic_snr": "SNR {snr}",

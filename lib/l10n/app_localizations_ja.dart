@@ -11841,6 +11841,11 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String traffic_lastHop(String name, String snr) {
+    return '最終ホップ $name · $snr dB';
+  }
+
+  @override
   String traffic_flood(int hops) {
     return 'フラッド $hops';
   }

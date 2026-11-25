@@ -4867,6 +4867,7 @@
   "traffic_filterTitle": "表示するパケットの種類",
   "traffic_listening": "パケットを待機中…",
   "traffic_heardFrom": "{name} から受信 · {snr} dB",
+  "traffic_lastHop": "最終ホップ {name} · {snr} dB",
   "traffic_flood": "フラッド {hops}",
   "traffic_direct": "ダイレクト",
   "traffic_snr": "SNR {snr}",

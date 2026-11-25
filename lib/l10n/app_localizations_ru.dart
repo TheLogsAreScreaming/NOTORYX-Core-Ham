@@ -12451,6 +12451,11 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
+  String traffic_lastHop(String name, String snr) {
+    return 'Последний переход $name · $snr дБ';
+  }
+
+  @override
   String traffic_flood(int hops) {
     return 'Flood $hops';
   }

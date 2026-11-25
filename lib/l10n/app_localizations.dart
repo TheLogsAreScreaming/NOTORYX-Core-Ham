@@ -20551,6 +20551,12 @@ abstract class AppLocalizations {
   /// **'Heard from {name} · {snr} dB'**
   String traffic_heardFrom(String name, String snr);
 
+  /// No description provided for @traffic_lastHop.
+  ///
+  /// In en, this message translates to:
+  /// **'Last hop {name} · {snr} dB'**
+  String traffic_lastHop(String name, String snr);
+
   /// No description provided for @traffic_flood.
   ///
   /// In en, this message translates to:

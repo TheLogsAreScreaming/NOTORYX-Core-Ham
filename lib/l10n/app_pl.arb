@@ -4771,6 +4771,7 @@
   "traffic_filterTitle": "Pokazywane typy pakietów",
   "traffic_listening": "Nasłuchiwanie pakietów…",
   "traffic_heardFrom": "Odebrano od {name} · {snr} dB",
+  "traffic_lastHop": "Ostatni skok {name} · {snr} dB",
   "traffic_flood": "Flood {hops}",
   "traffic_direct": "Bezpośrednio",
   "traffic_snr": "SNR {snr}",
