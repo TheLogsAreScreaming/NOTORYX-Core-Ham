@@ -49,7 +49,8 @@ class _FakeConnector extends MeshCoreConnector {
   int? get lastRxRssi => -92;
 
   @override
-  Future<void> reconnectSavedRadio() async => reconnectCalls++;
+  Future<void> reconnectSavedRadio({bool automatic = false}) async =>
+      reconnectCalls++;
   @override
   Future<void> forgetSavedRadio() async => forgetCalls++;
 }

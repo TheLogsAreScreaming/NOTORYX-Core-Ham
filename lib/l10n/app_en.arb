@@ -1612,6 +1612,12 @@
     }
   },
   "login_failedMessage": "Login failed. Either the password is incorrect or the repeater is unreachable.",
+  "login_failRadioOffline": "Your radio isn't connected, so the login wasn't sent. Connect your radio and try again.",
+  "login_failSend": "Your radio didn't accept the login request. Reconnect it and try again.",
+  "login_failNoAnswerPath": "No answer over the saved path ({hops} hops). The path may be out of date: turn on “{option}” under {section} and try again. A wrong password also gets no answer.",
+  "@login_failNoAnswerPath": {"placeholders": {"hops": {"type": "int"}, "option": {"type": "String"}, "section": {"type": "String"}}},
+  "login_failRejected": "The repeater answered and refused the password.",
+  "login_failNoAnswerFlood": "No answer by flood. The repeater may be out of range, off or busy, or the password may be wrong (repeaters don't answer a wrong one). Try again from closer.",
   "common_reload": "Reload",
   "common_clear": "Clear",
   "path_currentPathLabel": "Current path",
@@ -1810,6 +1816,11 @@
   },
   "repeater_confirm": "Confirm",
   "repeater_settingsSaved": "Settings saved successfully",
+  "repeater_settingsConfirmed": "Settings saved and confirmed by the repeater",
+  "repeater_settingsUnconfirmed": "Settings saved, but {count} could not be read back to confirm",
+  "@repeater_settingsUnconfirmed": {"placeholders": {"count": {"type": "int"}}},
+  "repeater_readBackMismatch": "{key} reads back as {value}",
+  "@repeater_readBackMismatch": {"placeholders": {"key": {"type": "String"}, "value": {"type": "String"}}},
   "repeater_rxGain": "Boosted RX gain",
   "repeater_rxGainHelper": "Higher sensitivity, more current draw (SX1262/SX1268 only)",
   "repeater_refreshRxGain": "Refresh boosted RX gain",
@@ -4076,6 +4087,13 @@
   "bastionSetup_tripTools": "Trip and readiness tools",
   "bastionDiag_title": "Diagnostics",
   "bastionDiag_export": "Export diagnostics",
+  "diagTimeline_title": "Connection timeline",
+  "diagTimeline_empty": "No connection changes since the app started.",
+  "diagTimeline_causeUser": "you asked",
+  "diagTimeline_causeLinkLost": "link dropped",
+  "diagTimeline_causeReconnect": "automatic retry",
+  "diagTimeline_causeAutoConnect": "connected automatically",
+  "diagTimeline_causeApp": "closed by the app",
   "bastionDiag_channels": "Channels",
   "bastionDiag_radio": "Radio",
   "bastionDiag_frequency": "Frequency",
@@ -4518,6 +4536,8 @@
     }
   },
   "shortcuts_checkIn": "Check in",
+  "qsTile_unread": "{status} · {count} unread",
+  "@qsTile_unread": {"placeholders": {"status": {"type": "String"}, "count": {"type": "int"}}},
   "shortcuts_trip": "Trip",
   "shortcuts_chats": "Chats",
   "shortcuts_map": "Map",
@@ -7766,6 +7786,27 @@
   "history_window7d": "7 days",
   "history_window30d": "30 days",
   "statusHistory_title": "Status history",
+  "reportCard_title": "Report card",
+  "reportCard_hint": "Built only from status checks you ran and kept on this phone. Nothing extra is sent.",
+  "reportCard_empty": "No status checks kept yet. Each Status check you run adds to this report.",
+  "reportCard_checks": "Checks",
+  "reportCard_restarts": "Restarts seen",
+  "reportCard_longestUptime": "Longest uptime",
+  "reportCard_battery": "Battery",
+  "reportCard_noise": "Noise floor",
+  "reportCard_errors": "New errors",
+  "reportCard_neighbours": "Neighbours",
+  "reportCard_exportCsv": "Export CSV",
+  "reportCard_checksValue": "{count} over {days} days",
+  "@reportCard_checksValue": {"placeholders": {"count": {"type": "int"}, "days": {"type": "int"}}},
+  "reportCard_batteryValue": "{now} now · lowest {low}",
+  "@reportCard_batteryValue": {"placeholders": {"now": {"type": "String"}, "low": {"type": "String"}}},
+  "reportCard_batteryTrend": "{change} per week",
+  "@reportCard_batteryTrend": {"placeholders": {"change": {"type": "String"}}},
+  "reportCard_noiseValue": "average {avg} dBm · worst {worst} dBm",
+  "@reportCard_noiseValue": {"placeholders": {"avg": {"type": "String"}, "worst": {"type": "String"}}},
+  "reportCard_neighboursValue": "{total} heard · {fresh} new this week · {gone} not heard this week",
+  "@reportCard_neighboursValue": {"placeholders": {"total": {"type": "int"}, "fresh": {"type": "int"}, "gone": {"type": "int"}}},
   "statusHistory_battery": "Battery",
   "statusHistory_rssi": "RSSI",
   "statusHistory_snr": "SNR",
@@ -8385,6 +8426,18 @@
   "messageFilter_ghostIconTooltip": "Hidden by your message filter",
   "@messageFilter_ghostIconTooltip": {
     "description": "Message filter: Hidden by your message filter"
+  },
+  "ping_noReplyNote": "No reply isn't proof the repeater is down. The probe or its answer can be lost to noise or a collision, so try again or test from another spot.",
+  "traffic_lastHop": "Last hop {name} · {snr} dB",
+  "@traffic_lastHop": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "snr": {
+        "type": "String"
+      }
+    }
   },
   "contacts_fullWarning": "This radio's contact list is full, so it can't add new nodes. Remove some contacts to make room."
 }

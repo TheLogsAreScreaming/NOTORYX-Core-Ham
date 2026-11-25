@@ -2742,6 +2742,25 @@ class AppLocalizationsJa extends AppLocalizations {
       'ログインに失敗しました。パスワードが間違っているか、または接続が確立されていません。';
 
   @override
+  String get login_failRadioOffline =>
+      '無線機が接続されていないため、ログインは送信されませんでした。接続してからもう一度お試しください。';
+
+  @override
+  String get login_failSend => '無線機がログイン要求を受け付けませんでした。再接続してもう一度お試しください。';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return '保存済みの経路（$hops ホップ）で応答がありません。経路が古い可能性があります。$sectionで「$option」をオンにして再試行してください。パスワードが違う場合も応答はありません。';
+  }
+
+  @override
+  String get login_failRejected => 'リピーターが応答し、パスワードを拒否しました。';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'フラッドで応答がありません。リピーターが圏外・停止中・混雑中か、パスワードが違う可能性があります（違う場合は応答しません）。近くから再試行してください。';
+
+  @override
   String get common_reload => '再読み込み';
 
   @override
@@ -3061,6 +3080,19 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => '設定が正常に保存されました';
+
+  @override
+  String get repeater_settingsConfirmed => '設定を保存し、リピーターで確認しました';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return '設定を保存しましたが、$count 件は確認のための読み戻しができませんでした';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key の読み戻し値は $value';
+  }
 
   @override
   String get repeater_rxGain => 'RX ゲインの向上';
@@ -6564,6 +6596,27 @@ class AppLocalizationsJa extends AppLocalizations {
   String get bastionDiag_export => '診断をエクスポート';
 
   @override
+  String get diagTimeline_title => '接続の履歴';
+
+  @override
+  String get diagTimeline_empty => 'アプリ起動後、接続の変化はありません。';
+
+  @override
+  String get diagTimeline_causeUser => 'ユーザー操作';
+
+  @override
+  String get diagTimeline_causeLinkLost => 'リンク切断';
+
+  @override
+  String get diagTimeline_causeReconnect => '自動再試行';
+
+  @override
+  String get diagTimeline_causeAutoConnect => '自動接続';
+
+  @override
+  String get diagTimeline_causeApp => 'アプリが切断';
+
+  @override
   String get bastionDiag_channels => 'チャンネル';
 
   @override
@@ -7245,6 +7298,11 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get shortcuts_checkIn => 'チェックイン';
+
+  @override
+  String qsTile_unread(String status, int count) {
+    return '$status · 未読 $count';
+  }
 
   @override
   String get shortcuts_trip => '行程';
@@ -12000,6 +12058,64 @@ class AppLocalizationsJa extends AppLocalizations {
   String get statusHistory_title => 'ステータス履歴';
 
   @override
+  String get reportCard_title => 'レポート';
+
+  @override
+  String get reportCard_hint => '実行したステータス確認（この端末に保存）だけから作成します。追加の送信はありません。';
+
+  @override
+  String get reportCard_empty => 'まだ確認結果がありません。ステータス確認を行うたびにこのレポートに追加されます。';
+
+  @override
+  String get reportCard_checks => '確認回数';
+
+  @override
+  String get reportCard_restarts => '検出した再起動';
+
+  @override
+  String get reportCard_longestUptime => '最長稼働時間';
+
+  @override
+  String get reportCard_battery => 'バッテリー';
+
+  @override
+  String get reportCard_noise => 'ノイズフロア';
+
+  @override
+  String get reportCard_errors => '新しいエラー';
+
+  @override
+  String get reportCard_neighbours => '近隣ノード';
+
+  @override
+  String get reportCard_exportCsv => 'CSV を書き出す';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$days 日間で $count 回';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '現在 $now · 最低 $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '週あたり $change';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return '平均 $avg dBm · 最悪 $worst dBm';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return '受信 $total · 今週新規 $fresh · 今週未受信 $gone';
+  }
+
+  @override
   String get statusHistory_battery => 'バッテリー';
 
   @override
@@ -12587,6 +12703,15 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get messageFilter_ghostIconTooltip => 'メッセージフィルターで隠されました';
+
+  @override
+  String get ping_noReplyNote =>
+      '応答がなくてもリピーターが停止しているとは限りません。プローブや応答はノイズや衝突で失われることがあります。もう一度試すか、別の場所からテストしてください。';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return '最終ホップ $name · $snr dB';
+  }
 
   @override
   String get contacts_fullWarning =>

@@ -2859,6 +2859,27 @@ class AppLocalizationsHu extends AppLocalizations {
       'Sikertelen bejelentkezés. Vagy hibás a jelszó, vagy az átjátszó nem érhető el.';
 
   @override
+  String get login_failRadioOffline =>
+      'A rádió nincs csatlakoztatva, ezért a bejelentkezés nem ment el. Csatlakoztassa, és próbálja újra.';
+
+  @override
+  String get login_failSend =>
+      'A rádió nem fogadta a bejelentkezési kérést. Csatlakoztassa újra, és próbálja meg ismét.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return 'Nincs válasz a mentett útvonalon ($hops ugrás). Lehet, hogy elavult: kapcsolja be ezt: $section → $option, és próbálja újra. Hibás jelszóra sem jön válasz.';
+  }
+
+  @override
+  String get login_failRejected =>
+      'Az átjátszó válaszolt, és elutasította a jelszót.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'Nincs válasz floodon. Az átjátszó hatótávon kívül, kikapcsolva vagy elfoglalt lehet, vagy hibás a jelszó (arra nem válaszol). Próbálja közelebbről.';
+
+  @override
   String get common_reload => 'Újratöltés';
 
   @override
@@ -3194,6 +3215,20 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => 'A beállítások sikeresen elmentve';
+
+  @override
+  String get repeater_settingsConfirmed =>
+      'A beállítások mentve, az átjátszó megerősítette';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return 'A beállítások mentve, de $count visszaolvasása nem sikerült';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key visszaolvasva: $value';
+  }
 
   @override
   String get repeater_rxGain => 'Megnövelt RX nyereség';
@@ -6901,6 +6936,28 @@ class AppLocalizationsHu extends AppLocalizations {
   String get bastionDiag_export => 'Diagnosztika exportálása';
 
   @override
+  String get diagTimeline_title => 'Kapcsolati előzmények';
+
+  @override
+  String get diagTimeline_empty =>
+      'Az alkalmazás indulása óta nem változott a kapcsolat.';
+
+  @override
+  String get diagTimeline_causeUser => 'Ön kérte';
+
+  @override
+  String get diagTimeline_causeLinkLost => 'a kapcsolat megszakadt';
+
+  @override
+  String get diagTimeline_causeReconnect => 'automatikus újrapróbálás';
+
+  @override
+  String get diagTimeline_causeAutoConnect => 'automatikusan csatlakozott';
+
+  @override
+  String get diagTimeline_causeApp => 'az alkalmazás zárta le';
+
+  @override
   String get bastionDiag_channels => 'Csatornák';
 
   @override
@@ -7602,6 +7659,11 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get shortcuts_checkIn => 'Bejelentkezés';
+
+  @override
+  String qsTile_unread(String status, int count) {
+    return '$status · $count olvasatlan';
+  }
 
   @override
   String get shortcuts_trip => 'Túra';
@@ -12553,6 +12615,66 @@ class AppLocalizationsHu extends AppLocalizations {
   String get statusHistory_title => 'Állapotelőzmények';
 
   @override
+  String get reportCard_title => 'Összesítő';
+
+  @override
+  String get reportCard_hint =>
+      'Csak az Ön által futtatott, ezen a telefonon tárolt állapotlekérdezésekből készül. Semmi extra nem kerül elküldésre.';
+
+  @override
+  String get reportCard_empty =>
+      'Még nincs tárolt lekérdezés. Minden állapotlekérdezés bővíti az összesítőt.';
+
+  @override
+  String get reportCard_checks => 'Lekérdezések';
+
+  @override
+  String get reportCard_restarts => 'Észlelt újraindítások';
+
+  @override
+  String get reportCard_longestUptime => 'Leghosszabb üzemidő';
+
+  @override
+  String get reportCard_battery => 'Akkumulátor';
+
+  @override
+  String get reportCard_noise => 'Zajszint';
+
+  @override
+  String get reportCard_errors => 'Új hibák';
+
+  @override
+  String get reportCard_neighbours => 'Szomszédok';
+
+  @override
+  String get reportCard_exportCsv => 'CSV exportálása';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$count / $days nap';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '$now most · legalacsonyabb $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '$change hetente';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return 'átlag $avg dBm · legrosszabb $worst dBm';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return '$total hallott · $fresh új a héten · $gone nem hallott a héten';
+  }
+
+  @override
   String get statusHistory_battery => 'Akku';
 
   @override
@@ -13161,6 +13283,15 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get messageFilter_ghostIconTooltip => 'Az üzenetszűrő elrejtette';
+
+  @override
+  String get ping_noReplyNote =>
+      'A válasz hiánya nem bizonyítja, hogy az átjátszó nem működik. A próba vagy a válasz elveszhet zaj vagy ütközés miatt; próbálja újra, vagy teszteljen máshonnan.';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return 'Utolsó ugrás $name · $snr dB';
+  }
 
   @override
   String get contacts_fullWarning =>

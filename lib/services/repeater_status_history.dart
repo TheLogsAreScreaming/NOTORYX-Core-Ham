@@ -154,6 +154,16 @@ class RepeaterStatusHistory extends ChangeNotifier {
             const [],
       );
 
+  /// Every neighbour [repeaterKey] has reported, by key prefix, with its
+  /// SNR readings.
+  Map<String, List<SnrSample>> neighboursOf(String repeaterKey) => {
+    for (final e
+        in (_snr[repeaterKey.toLowerCase()] ??
+                const <String, List<SnrSample>>{})
+            .entries)
+      e.key: List.unmodifiable(e.value),
+  };
+
   /// Switches to the history of the radio with public key [key].
   void setScope(String key) {
     key = key.toLowerCase();

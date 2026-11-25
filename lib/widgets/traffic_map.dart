@@ -370,10 +370,13 @@ class _TrafficRouteCardState extends State<TrafficRouteCard> {
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
-                  l10n.traffic_heardFrom(
-                    heard?.label ?? l10n.traffic_unknown,
-                    snr,
-                  ),
+                  // A relay's SNR is only the last leg, not the sender's.
+                  heard?.role == TrafficHopRole.repeater
+                      ? l10n.traffic_lastHop(heard!.label, snr)
+                      : l10n.traffic_heardFrom(
+                          heard?.label ?? l10n.traffic_unknown,
+                          snr,
+                        ),
                   maxLines: 1,
                   overflow: TextOverflow.fade,
                   softWrap: false,

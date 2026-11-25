@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -10,6 +12,11 @@ import 'package:share_plus/share_plus.dart';
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../l10n/l10n.dart';
+import '../l10n/app_localizations.dart';
+import '../services/app_debug_log_service.dart';
+import '../services/connection_timeline.dart';
+import '../services/operator_profile_service.dart';
+import '../services/support_bundle.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/ember_backdrop.dart';
 import '../widgets/instrument.dart';
@@ -41,52 +48,75 @@ class BastionDiagnosticsScreen extends StatelessWidget {
 
   Future<void> _export(BuildContext context, MeshCoreConnector c) async {
     final s = c.latestRadioStats;
-    final now = DateTime.now().toIso8601String();
-    final lines = <String>[
-      'NOTORYX Core Ham Diagnostics',
-      'Generated: $now',
-      '',
-      'Connection',
-      'Connected: ${c.isConnected}',
-      'Transport: ${c.activeTransport.name}',
-      'Device: ${c.deviceDisplayName}',
-      'Manufacturer: ${_value(c.manufacturerName)}',
-      'Firmware: ${_value(c.firmwareVersionString)}',
-      'Battery: ${_battery(c.batteryMillivolts)}',
-      '',
-      'Mesh',
-      'Contacts: ${c.contacts.length}',
-      'Channels: ${c.channels.length}',
-      'Direct repeaters: ${c.directRepeaters.length}',
-      'GPS: ${c.selfLatitude == null || c.selfLongitude == null ? '—' : '${c.selfLatitude}, ${c.selfLongitude}'}',
-      '',
-      'Radio',
-      'Frequency: ${_mhz(c.currentFreqHz)}',
-      'Bandwidth: ${c.currentBwHz == null ? '—' : '${c.currentBwHz} Hz'}',
-      'Spreading factor: ${_value(c.currentSf)}',
-      'Coding rate: ${_value(c.currentCr)}',
-      'TX power: ${c.currentTxPower == null ? '—' : '${c.currentTxPower} dBm'}',
-      'RSSI: ${s == null ? '—' : '${s.lastRssiDbm} dBm'}',
-      'SNR: ${s == null ? '—' : '${s.lastSnrDb.toStringAsFixed(1)} dB'}',
-      'Noise floor: ${s == null ? '—' : '${s.noiseFloorDbm} dBm'}',
-      'TX airtime: ${s == null ? '—' : '${s.txAirSecs} s'}',
-      'RX airtime: ${s == null ? '—' : '${s.rxAirSecs} s'}',
-      '',
-      'Storage',
-      'Used: ${c.storageUsedKb == null ? '—' : '${c.storageUsedKb} KB'}',
-      'Total: ${c.storageTotalKb == null ? '—' : '${c.storageTotalKb} KB'}',
-    ];
+    final appLog = context.read<AppDebugLogService?>();
+    String? callsign;
+    try {
+      callsign = context.read<OperatorProfileService>().profile.callsign;
+    } on ProviderNotFoundException {
+      callsign = null;
+    }
+    final info = await PackageInfo.fromPlatform();
+    final redactor = SupportRedactor([
+      ?c.selfName,
+      if (callsign != null && callsign.isNotEmpty) callsign,
+      c.deviceDisplayName,
+      for (final x in c.allContactsUnfiltered) x.name,
+      for (final ch in c.channels) ch.name,
+    ]);
+    final hasGps =
+        c.selfLatitude != null &&
+        c.selfLongitude != null &&
+        (c.selfLatitude != 0 || c.selfLongitude != 0);
+    final text = buildSupportBundle(
+      generatedAt: DateTime.now(),
+      appVersion: '${info.version} (${info.buildNumber})',
+      platform: kIsWeb
+          ? 'web'
+          : '${Platform.operatingSystem} ${Platform.operatingSystemVersion}',
+      radio: {
+        'Connected': '${c.isConnected}',
+        'Transport': c.activeTransport.name,
+        'Device': c.deviceDisplayName,
+        'Manufacturer': _value(c.manufacturerName),
+        'Firmware': _value(c.firmwareVersionString),
+        'Battery': _battery(c.batteryMillivolts),
+        'Contacts': '${c.contacts.length}',
+        'Channels': '${c.channels.length}',
+        'Direct repeaters': '${c.directRepeaters.length}',
+        'GPS': hasGps ? 'set' : 'not set',
+        'Frequency': _mhz(c.currentFreqHz),
+        'Bandwidth': c.currentBwHz == null ? '—' : '${c.currentBwHz} Hz',
+        'Spreading factor': _value(c.currentSf),
+        'Coding rate': _value(c.currentCr),
+        'TX power': c.currentTxPower == null ? '—' : '${c.currentTxPower} dBm',
+        'RSSI': s == null ? '—' : '${s.lastRssiDbm} dBm',
+        'SNR': s == null ? '—' : '${s.lastSnrDb.toStringAsFixed(1)} dB',
+        'Noise floor': s == null ? '—' : '${s.noiseFloorDbm} dBm',
+        'TX airtime': s == null ? '—' : '${s.txAirSecs} s',
+        'RX airtime': s == null ? '—' : '${s.rxAirSecs} s',
+        'Storage': c.storageUsedKb == null || c.storageTotalKb == null
+            ? '—'
+            : '${c.storageUsedKb} / ${c.storageTotalKb} KB',
+      },
+      timeline: c.connectionTimeline.events,
+      appLog: [
+        for (final e in appLog?.entries ?? const <AppDebugLogEntry>[])
+          '${e.timestamp.toIso8601String()} ${e.levelLabel} [${e.tag}] '
+              '${e.message}',
+      ],
+      redactor: redactor,
+    );
 
     final dir = await getTemporaryDirectory();
     final file = File(
-      '${dir.path}/bastion-diagnostics-${DateTime.now().millisecondsSinceEpoch}.txt',
+      '${dir.path}/notoryx-support-${DateTime.now().millisecondsSinceEpoch}.txt',
     );
-    await file.writeAsString(lines.join('\n'));
+    await file.writeAsString(text);
     if (!context.mounted) return;
     await SharePlus.instance.share(
       ShareParams(
-        subject: 'NOTORYX Core Ham Diagnostics',
-        text: 'NOTORYX Core Ham diagnostics export',
+        subject: 'NOTORYX Core Ham support bundle',
+        text: 'NOTORYX Core Ham support bundle',
         files: [XFile(file.path)],
       ),
     );
@@ -155,6 +185,92 @@ class BastionDiagnosticsScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  static String _causeLabel(AppLocalizations l10n, ConnectionCause cause) =>
+      switch (cause) {
+        ConnectionCause.user => l10n.diagTimeline_causeUser,
+        ConnectionCause.linkLost => l10n.diagTimeline_causeLinkLost,
+        ConnectionCause.reconnect => l10n.diagTimeline_causeReconnect,
+        ConnectionCause.autoConnect => l10n.diagTimeline_causeAutoConnect,
+        ConnectionCause.app => l10n.diagTimeline_causeApp,
+        ConnectionCause.unknown => '',
+      };
+
+  static String _stateLabel(
+    AppLocalizations l10n,
+    MeshCoreConnectionState state,
+  ) => switch (state) {
+    MeshCoreConnectionState.connected => l10n.connections_statusConnected,
+    MeshCoreConnectionState.connecting => l10n.connections_statusConnecting,
+    MeshCoreConnectionState.disconnecting =>
+      l10n.connections_statusDisconnecting,
+    MeshCoreConnectionState.scanning => l10n.connections_statusScanning,
+    MeshCoreConnectionState.disconnected => l10n.connections_statusNotConnected,
+  };
+
+  /// The last few link changes, newest first, each with why it happened.
+  Widget _timeline(BuildContext context, MeshCoreConnector c) {
+    final l10n = context.l10n;
+    final events = c.connectionTimeline.events.reversed.take(8).toList();
+    String hhmmss(DateTime t) =>
+        '${t.hour.toString().padLeft(2, '0')}:'
+        '${t.minute.toString().padLeft(2, '0')}:'
+        '${t.second.toString().padLeft(2, '0')}';
+    return Column(
+      key: const ValueKey('diag-timeline'),
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        InstrumentLabel(l10n.diagTimeline_title),
+        MeshCard(
+          child: events.isEmpty
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 7),
+                  child: Text(
+                    l10n.diagTimeline_empty,
+                    style: TextStyle(color: MeshPalette.ink3, fontSize: 13),
+                  ),
+                )
+              : Column(
+                  children: [
+                    for (final e in events)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        child: Row(
+                          children: [
+                            Text(
+                              hhmmss(e.at),
+                              style: TextStyle(
+                                color: MeshPalette.ink3,
+                                fontSize: 12.5,
+                                fontFeatures: const [
+                                  FontFeature.tabularFigures(),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Text(
+                                [
+                                  _stateLabel(l10n, e.state),
+                                  _causeLabel(l10n, e.cause),
+                                ].where((x) => x.isNotEmpty).join(' · '),
+                                style: TextStyle(
+                                  color: e.cause == ConnectionCause.linkLost
+                                      ? MeshPalette.warn
+                                      : MeshPalette.ink,
+                                  fontSize: 13,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                  ],
+                ),
+        ),
+      ],
     );
   }
 
@@ -377,6 +493,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
                       : null,
                 ),
               ]),
+              _timeline(context, c),
               InstrumentLabel(l10n.bastionDiag_deepTools),
               for (final (icon, title, subtitle, page) in [
                 (

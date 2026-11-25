@@ -39,6 +39,7 @@ import '../helpers/reaction_helper.dart';
 import '../helpers/cyr2lat.dart';
 import '../helpers/smaz.dart';
 import '../services/app_debug_log_service.dart';
+import '../services/connection_timeline.dart';
 import '../services/ble_debug_log_service.dart';
 import '../services/linux_ble_error_classifier.dart';
 import '../services/linux_ble_pairing_service_stub.dart'
@@ -254,6 +255,17 @@ class MeshCoreConnector extends ChangeNotifier {
   Future<void>? _discoveredCacheLoad;
 
   MeshCoreConnectionState _state = MeshCoreConnectionState.disconnected;
+
+  /// Recent connection state changes with their cause, for diagnostics and
+  /// the support bundle. Memory only.
+  final ConnectionTimeline connectionTimeline = ConnectionTimeline();
+
+  /// Cause stamped on the next recorded state change.
+  ConnectionCause _nextCause = ConnectionCause.unknown;
+
+  /// Set while [reconnectSavedRadio] runs on its own, so the connect it
+  /// starts isn't recorded as the user's.
+  ConnectionCause? _connectCauseOverride;
   BluetoothDevice? _device;
   BluetoothCharacteristic? _rxCharacteristic;
   BluetoothCharacteristic? _txCharacteristic;
@@ -2479,6 +2491,9 @@ class MeshCoreConnector extends ChangeNotifier {
     _beginWiredConnect(automaticReconnect);
     _resetConnectionHandshakeState();
     _activeTransport = MeshCoreTransportType.usb;
+    _nextCause =
+        _connectCauseOverride ??
+        (automaticReconnect ? ConnectionCause.reconnect : ConnectionCause.user);
     _setState(MeshCoreConnectionState.connecting);
 
     try {
@@ -2602,6 +2617,9 @@ class MeshCoreConnector extends ChangeNotifier {
     _beginWiredConnect(automaticReconnect);
     _resetConnectionHandshakeState();
     _activeTransport = MeshCoreTransportType.tcp;
+    _nextCause =
+        _connectCauseOverride ??
+        (automaticReconnect ? ConnectionCause.reconnect : ConnectionCause.user);
     _setState(MeshCoreConnectionState.connecting);
 
     try {
@@ -2776,6 +2794,9 @@ class MeshCoreConnector extends ChangeNotifier {
     _activeTransport = MeshCoreTransportType.bluetooth;
 
     await stopScan();
+    _nextCause =
+        _connectCauseOverride ??
+        (automaticReconnect ? ConnectionCause.reconnect : ConnectionCause.user);
     _setState(MeshCoreConnectionState.connecting);
     _device = device;
     _deviceId = targetId;
@@ -3701,9 +3722,20 @@ class MeshCoreConnector extends ChangeNotifier {
 
   /// Connects to the saved radio, and only that one. Does nothing when no
   /// radio is saved.
-  Future<void> reconnectSavedRadio() async {
+  /// Connects the saved radio. [automatic] marks a connect the app started
+  /// on its own ("Connect to my radio automatically"), not a tap.
+  Future<void> reconnectSavedRadio({bool automatic = false}) async {
     final saved = savedRadio;
     if (saved == null) return;
+    _connectCauseOverride = automatic ? ConnectionCause.autoConnect : null;
+    try {
+      await _connectSaved(saved);
+    } finally {
+      _connectCauseOverride = null;
+    }
+  }
+
+  Future<void> _connectSaved(SavedRadio saved) async {
     switch (saved.transport) {
       case SavedRadioTransport.bluetooth:
         await connect(
@@ -3849,6 +3881,7 @@ class MeshCoreConnector extends ChangeNotifier {
     } else {
       _manualDisconnect = false;
     }
+    _nextCause = manual ? ConnectionCause.user : ConnectionCause.app;
     _setState(MeshCoreConnectionState.disconnecting);
     _stopBatteryPolling();
     _stopRadioStatsPolling();
@@ -9040,6 +9073,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _pendingGenericAckQueue.clear();
     _reactionSendQueueSequence = 0;
 
+    _nextCause = ConnectionCause.linkLost;
     _setState(MeshCoreConnectionState.disconnected);
     _scheduleReconnect();
   }
@@ -9144,6 +9178,11 @@ class MeshCoreConnector extends ChangeNotifier {
 
   void _setState(MeshCoreConnectionState newState) {
     if (_state != newState) {
+      // Scans start and stop all the time; only real link changes count.
+      if (newState != MeshCoreConnectionState.scanning &&
+          _state != MeshCoreConnectionState.scanning) {
+        connectionTimeline.record(newState, _activeTransport, _nextCause);
+      }
       _state = newState;
       notifyListeners();
     }

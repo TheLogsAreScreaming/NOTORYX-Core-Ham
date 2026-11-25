@@ -2852,6 +2852,26 @@ class AppLocalizationsSk extends AppLocalizations {
       'Prihlásenie zlyhalo. Heslo je nesprávne alebo je opakovač nedostupný.';
 
   @override
+  String get login_failRadioOffline =>
+      'Rádio nie je pripojené, preto sa prihlásenie neodoslalo. Pripojte rádio a skúste znova.';
+
+  @override
+  String get login_failSend =>
+      'Rádio neprijalo žiadosť o prihlásenie. Pripojte ho znova a skúste to ešte raz.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return 'Žiadna odpoveď cez uloženú cestu ($hops skokov). Môže byť zastaraná: zapnite $section → $option a skúste znova. Na nesprávne heslo tiež nepríde odpoveď.';
+  }
+
+  @override
+  String get login_failRejected => 'Opakovač odpovedal a heslo odmietol.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'Žiadna odpoveď cez flood. Opakovač môže byť mimo dosahu, vypnutý alebo zaneprázdnený, alebo je heslo nesprávne (naň neodpovedá). Skúste to bližšie.';
+
+  @override
   String get common_reload => 'Načítať';
 
   @override
@@ -3183,6 +3203,20 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => 'Nastavenia boli uložené úspešne.';
+
+  @override
+  String get repeater_settingsConfirmed =>
+      'Nastavenia uložené a potvrdené opakovačom';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return 'Nastavenia uložené, ale $count sa nepodarilo spätne načítať na potvrdenie';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key sa spätne číta ako $value';
+  }
 
   @override
   String get repeater_rxGain => 'Zvýšený zisk RX';
@@ -6898,6 +6932,28 @@ class AppLocalizationsSk extends AppLocalizations {
   String get bastionDiag_export => 'Exportovať diagnostiku';
 
   @override
+  String get diagTimeline_title => 'História pripojenia';
+
+  @override
+  String get diagTimeline_empty =>
+      'Od spustenia aplikácie sa pripojenie nezmenilo.';
+
+  @override
+  String get diagTimeline_causeUser => 'na vašu žiadosť';
+
+  @override
+  String get diagTimeline_causeLinkLost => 'spojenie prerušené';
+
+  @override
+  String get diagTimeline_causeReconnect => 'automatický nový pokus';
+
+  @override
+  String get diagTimeline_causeAutoConnect => 'pripojené automaticky';
+
+  @override
+  String get diagTimeline_causeApp => 'zatvorené aplikáciou';
+
+  @override
   String get bastionDiag_channels => 'Kanály';
 
   @override
@@ -7602,6 +7658,11 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get shortcuts_checkIn => 'Nahlásiť sa';
+
+  @override
+  String qsTile_unread(String status, int count) {
+    return '$status · neprečítané: $count';
+  }
 
   @override
   String get shortcuts_trip => 'Túra';
@@ -12545,6 +12606,66 @@ class AppLocalizationsSk extends AppLocalizations {
   String get statusHistory_title => 'História stavu';
 
   @override
+  String get reportCard_title => 'Prehľad';
+
+  @override
+  String get reportCard_hint =>
+      'Zostavené iba z kontrol stavu, ktoré ste spustili, uložených v tomto telefóne. Nič navyše sa neodosiela.';
+
+  @override
+  String get reportCard_empty =>
+      'Zatiaľ žiadne uložené kontroly. Každá kontrola stavu dopĺňa tento prehľad.';
+
+  @override
+  String get reportCard_checks => 'Kontroly';
+
+  @override
+  String get reportCard_restarts => 'Zistené reštarty';
+
+  @override
+  String get reportCard_longestUptime => 'Najdlhšia doba behu';
+
+  @override
+  String get reportCard_battery => 'Batéria';
+
+  @override
+  String get reportCard_noise => 'Úroveň šumu';
+
+  @override
+  String get reportCard_errors => 'Nové chyby';
+
+  @override
+  String get reportCard_neighbours => 'Susedia';
+
+  @override
+  String get reportCard_exportCsv => 'Exportovať CSV';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$count za $days dní';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '$now teraz · najnižšie $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '$change za týždeň';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return 'priemer $avg dBm · najhoršie $worst dBm';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return 'počutých: $total · nových tento týždeň: $fresh · nepočutých tento týždeň: $gone';
+  }
+
+  @override
   String get statusHistory_battery => 'Batéria';
 
   @override
@@ -13158,6 +13279,15 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get messageFilter_ghostIconTooltip => 'Skryté vaším filtrom správ';
+
+  @override
+  String get ping_noReplyNote =>
+      'Žiadna odpoveď nedokazuje, že opakovač nefunguje. Sonda alebo odpoveď sa môžu stratiť pre šum alebo kolíziu; skúste znova alebo z iného miesta.';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return 'Posledný skok $name · $snr dB';
+  }
 
   @override
   String get contacts_fullWarning =>

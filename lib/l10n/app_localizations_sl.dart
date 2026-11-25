@@ -2851,6 +2851,26 @@ class AppLocalizationsSl extends AppLocalizations {
       'Prijava je bila neuspešna. Geslo je napačno ali pa je repetitor nedosegljiv.';
 
   @override
+  String get login_failRadioOffline =>
+      'Radio ni povezan, zato prijava ni bila poslana. Povežite radio in poskusite znova.';
+
+  @override
+  String get login_failSend =>
+      'Radio ni sprejel zahteve za prijavo. Ponovno ga povežite in poskusite znova.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return 'Ni odgovora po shranjeni poti ($hops skokov). Morda je zastarela: vklopite $section → $option in poskusite znova. Na napačno geslo tudi ni odgovora.';
+  }
+
+  @override
+  String get login_failRejected => 'Repetitor je odgovoril in zavrnil geslo.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'Ni odgovora prek flooda. Repetitor je morda zunaj dosega, izklopljen ali zaseden, ali pa je geslo napačno (nanj ne odgovori). Poskusite bližje.';
+
+  @override
   String get common_reload => 'Ponovno naloži';
 
   @override
@@ -3184,6 +3204,20 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => 'Nastavitve so shranjene uspešno.';
+
+  @override
+  String get repeater_settingsConfirmed =>
+      'Nastavitve shranjene in potrjene s strani repetitorja';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return 'Nastavitve shranjene, vendar $count ni bilo mogoče prebrati nazaj za potrditev';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key se prebere kot $value';
+  }
 
   @override
   String get repeater_rxGain => 'Povečana dobitka RX';
@@ -6903,6 +6937,28 @@ class AppLocalizationsSl extends AppLocalizations {
   String get bastionDiag_export => 'Izvozi diagnostiko';
 
   @override
+  String get diagTimeline_title => 'Zgodovina povezave';
+
+  @override
+  String get diagTimeline_empty =>
+      'Od zagona aplikacije se povezava ni spremenila.';
+
+  @override
+  String get diagTimeline_causeUser => 'na vašo zahtevo';
+
+  @override
+  String get diagTimeline_causeLinkLost => 'povezava prekinjena';
+
+  @override
+  String get diagTimeline_causeReconnect => 'samodejni ponovni poskus';
+
+  @override
+  String get diagTimeline_causeAutoConnect => 'samodejno povezano';
+
+  @override
+  String get diagTimeline_causeApp => 'zaprla aplikacija';
+
+  @override
   String get bastionDiag_channels => 'Kanali';
 
   @override
@@ -7607,6 +7663,11 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get shortcuts_checkIn => 'Javi se';
+
+  @override
+  String qsTile_unread(String status, int count) {
+    return '$status · neprebrano: $count';
+  }
 
   @override
   String get shortcuts_trip => 'Tura';
@@ -12571,6 +12632,66 @@ class AppLocalizationsSl extends AppLocalizations {
   String get statusHistory_title => 'Zgodovina stanja';
 
   @override
+  String get reportCard_title => 'Poročilo';
+
+  @override
+  String get reportCard_hint =>
+      'Sestavljeno le iz preverjanj stanja, ki ste jih zagnali in so shranjena na tem telefonu. Nič dodatnega se ne pošlje.';
+
+  @override
+  String get reportCard_empty =>
+      'Še ni shranjenih preverjanj. Vsako preverjanje stanja dopolni to poročilo.';
+
+  @override
+  String get reportCard_checks => 'Preverjanja';
+
+  @override
+  String get reportCard_restarts => 'Zaznani ponovni zagoni';
+
+  @override
+  String get reportCard_longestUptime => 'Najdaljši čas delovanja';
+
+  @override
+  String get reportCard_battery => 'Baterija';
+
+  @override
+  String get reportCard_noise => 'Raven šuma';
+
+  @override
+  String get reportCard_errors => 'Nove napake';
+
+  @override
+  String get reportCard_neighbours => 'Sosedi';
+
+  @override
+  String get reportCard_exportCsv => 'Izvozi CSV';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$count v $days dneh';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '$now zdaj · najnižje $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '$change na teden';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return 'povprečje $avg dBm · najslabše $worst dBm';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return 'slišanih: $total · novih ta teden: $fresh · neslišanih ta teden: $gone';
+  }
+
+  @override
   String get statusHistory_battery => 'Baterija';
 
   @override
@@ -13189,6 +13310,15 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get messageFilter_ghostIconTooltip =>
       'Skrito z vašim filtrom sporočil';
+
+  @override
+  String get ping_noReplyNote =>
+      'Brez odgovora še ne pomeni, da repetitor ne deluje. Poizvedba ali odgovor se lahko izgubita zaradi šuma ali trka; poskusite znova ali z drugega mesta.';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return 'Zadnji skok $name · $snr dB';
+  }
 
   @override
   String get contacts_fullWarning =>

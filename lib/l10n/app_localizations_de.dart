@@ -2872,6 +2872,27 @@ class AppLocalizationsDe extends AppLocalizations {
       'Anmeldung fehlgeschlagen. Entweder ist das Passwort falsch oder der Repeater ist nicht erreichbar.';
 
   @override
+  String get login_failRadioOffline =>
+      'Dein Funkgerät ist nicht verbunden, daher wurde die Anmeldung nicht gesendet. Verbinde es und versuche es erneut.';
+
+  @override
+  String get login_failSend =>
+      'Dein Funkgerät hat die Anmeldeanfrage nicht angenommen. Verbinde es neu und versuche es erneut.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return 'Keine Antwort über den gespeicherten Pfad ($hops Hops). Der Pfad ist vielleicht veraltet: Schalte unter $section „$option“ ein und versuche es erneut. Auch ein falsches Passwort bleibt unbeantwortet.';
+  }
+
+  @override
+  String get login_failRejected =>
+      'Der Repeater hat geantwortet und das Passwort abgelehnt.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'Keine Antwort per Flood. Der Repeater ist vielleicht außer Reichweite, aus oder beschäftigt, oder das Passwort ist falsch (darauf antworten Repeater nicht). Versuche es näher dran erneut.';
+
+  @override
   String get common_reload => 'Neu laden';
 
   @override
@@ -3204,6 +3225,20 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => 'Einstellungen erfolgreich gespeichert';
+
+  @override
+  String get repeater_settingsConfirmed =>
+      'Einstellungen gespeichert und vom Repeater bestätigt';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return 'Einstellungen gespeichert, aber $count ließen sich nicht zur Bestätigung zurücklesen';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key wird als $value zurückgelesen';
+  }
 
   @override
   String get repeater_rxGain => 'Verstärkter RX-Gewinn';
@@ -6923,6 +6958,28 @@ class AppLocalizationsDe extends AppLocalizations {
   String get bastionDiag_export => 'Diagnose exportieren';
 
   @override
+  String get diagTimeline_title => 'Verbindungsverlauf';
+
+  @override
+  String get diagTimeline_empty =>
+      'Seit dem App-Start keine Verbindungsänderungen.';
+
+  @override
+  String get diagTimeline_causeUser => 'von dir angefordert';
+
+  @override
+  String get diagTimeline_causeLinkLost => 'Verbindung abgebrochen';
+
+  @override
+  String get diagTimeline_causeReconnect => 'automatischer Neuversuch';
+
+  @override
+  String get diagTimeline_causeAutoConnect => 'automatisch verbunden';
+
+  @override
+  String get diagTimeline_causeApp => 'von der App geschlossen';
+
+  @override
   String get bastionDiag_channels => 'Kanäle';
 
   @override
@@ -7623,6 +7680,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get shortcuts_checkIn => 'Einchecken';
+
+  @override
+  String qsTile_unread(String status, int count) {
+    return '$status · $count ungelesen';
+  }
 
   @override
   String get shortcuts_trip => 'Tour';
@@ -12584,6 +12646,66 @@ class AppLocalizationsDe extends AppLocalizations {
   String get statusHistory_title => 'Statusverlauf';
 
   @override
+  String get reportCard_title => 'Zeugnis';
+
+  @override
+  String get reportCard_hint =>
+      'Nur aus deinen eigenen Statusabfragen auf diesem Telefon erstellt. Es wird nichts zusätzlich gesendet.';
+
+  @override
+  String get reportCard_empty =>
+      'Noch keine Statusabfragen gespeichert. Jede Statusabfrage ergänzt diesen Bericht.';
+
+  @override
+  String get reportCard_checks => 'Abfragen';
+
+  @override
+  String get reportCard_restarts => 'Erkannte Neustarts';
+
+  @override
+  String get reportCard_longestUptime => 'Längste Laufzeit';
+
+  @override
+  String get reportCard_battery => 'Akku';
+
+  @override
+  String get reportCard_noise => 'Grundrauschen';
+
+  @override
+  String get reportCard_errors => 'Neue Fehler';
+
+  @override
+  String get reportCard_neighbours => 'Nachbarn';
+
+  @override
+  String get reportCard_exportCsv => 'CSV exportieren';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$count in $days Tagen';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '$now jetzt · niedrigster $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '$change pro Woche';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return 'Mittel $avg dBm · schlechtester $worst dBm';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return '$total gehört · $fresh neu diese Woche · $gone diese Woche nicht gehört';
+  }
+
+  @override
   String get statusHistory_battery => 'Akku';
 
   @override
@@ -13201,6 +13323,15 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get messageFilter_ghostIconTooltip =>
       'Von Ihrem Nachrichtenfilter ausgeblendet';
+
+  @override
+  String get ping_noReplyNote =>
+      'Keine Antwort beweist nicht, dass der Repeater ausgefallen ist. Die Anfrage oder ihre Antwort kann durch Rauschen oder eine Kollision verloren gehen. Versuche es erneut oder teste von einem anderen Ort.';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return 'Letzter Hop $name · $snr dB';
+  }
 
   @override
   String get contacts_fullWarning =>

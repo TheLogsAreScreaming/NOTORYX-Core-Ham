@@ -2873,6 +2873,26 @@ class AppLocalizationsRu extends AppLocalizations {
       'Не удалось войти. Либо пароль неверен, либо репитер недоступен.';
 
   @override
+  String get login_failRadioOffline =>
+      'Радио не подключено, поэтому вход не отправлен. Подключите радио и повторите попытку.';
+
+  @override
+  String get login_failSend =>
+      'Радио не приняло запрос на вход. Переподключите его и повторите попытку.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return 'Нет ответа по сохранённому пути ($hops переходов). Возможно, он устарел: включите $section → $option и повторите. На неверный пароль ответа тоже нет.';
+  }
+
+  @override
+  String get login_failRejected => 'Ретранслятор ответил и отклонил пароль.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'Нет ответа по флуду. Ретранслятор может быть вне зоны, выключен или занят, либо пароль неверный (на него ретрансляторы не отвечают). Попробуйте ближе.';
+
+  @override
   String get common_reload => 'Обновить';
 
   @override
@@ -3209,6 +3229,20 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => 'Настройки успешно сохранены';
+
+  @override
+  String get repeater_settingsConfirmed =>
+      'Настройки сохранены и подтверждены ретранслятором';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return 'Настройки сохранены, но $count не удалось прочитать обратно для проверки';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key читается как $value';
+  }
 
   @override
   String get repeater_rxGain => 'Увеличенная эффективность RX';
@@ -6946,6 +6980,28 @@ class AppLocalizationsRu extends AppLocalizations {
   String get bastionDiag_export => 'Экспортировать диагностику';
 
   @override
+  String get diagTimeline_title => 'История подключения';
+
+  @override
+  String get diagTimeline_empty =>
+      'С момента запуска приложения подключение не менялось.';
+
+  @override
+  String get diagTimeline_causeUser => 'по вашему запросу';
+
+  @override
+  String get diagTimeline_causeLinkLost => 'связь потеряна';
+
+  @override
+  String get diagTimeline_causeReconnect => 'автоматический повтор';
+
+  @override
+  String get diagTimeline_causeAutoConnect => 'подключено автоматически';
+
+  @override
+  String get diagTimeline_causeApp => 'закрыто приложением';
+
+  @override
   String get bastionDiag_channels => 'Каналы';
 
   @override
@@ -7650,6 +7706,11 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get shortcuts_checkIn => 'Отметиться';
+
+  @override
+  String qsTile_unread(String status, int count) {
+    return '$status · непрочитанных: $count';
+  }
 
   @override
   String get shortcuts_trip => 'Поход';
@@ -12613,6 +12674,66 @@ class AppLocalizationsRu extends AppLocalizations {
   String get statusHistory_title => 'История состояния';
 
   @override
+  String get reportCard_title => 'Сводка';
+
+  @override
+  String get reportCard_hint =>
+      'Составлено только из ваших проверок статуса, сохранённых на этом телефоне. Ничего дополнительно не отправляется.';
+
+  @override
+  String get reportCard_empty =>
+      'Проверок пока нет. Каждая проверка статуса дополняет эту сводку.';
+
+  @override
+  String get reportCard_checks => 'Проверки';
+
+  @override
+  String get reportCard_restarts => 'Замечено перезапусков';
+
+  @override
+  String get reportCard_longestUptime => 'Наибольшее время работы';
+
+  @override
+  String get reportCard_battery => 'Батарея';
+
+  @override
+  String get reportCard_noise => 'Уровень шума';
+
+  @override
+  String get reportCard_errors => 'Новые ошибки';
+
+  @override
+  String get reportCard_neighbours => 'Соседи';
+
+  @override
+  String get reportCard_exportCsv => 'Экспорт CSV';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$count за $days дн.';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '$now сейчас · минимум $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '$change в неделю';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return 'среднее $avg дБм · худшее $worst дБм';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return 'слышно: $total · новых за неделю: $fresh · не слышно за неделю: $gone';
+  }
+
+  @override
   String get statusHistory_battery => 'Батарея';
 
   @override
@@ -13234,6 +13355,15 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get messageFilter_ghostIconTooltip =>
       'Скрыто вашим фильтром сообщений';
+
+  @override
+  String get ping_noReplyNote =>
+      'Отсутствие ответа не доказывает, что ретранслятор не работает. Запрос или ответ могут потеряться из-за шума или коллизии; повторите попытку или проверьте из другого места.';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return 'Последний переход $name · $snr дБ';
+  }
 
   @override
   String get contacts_fullWarning =>
