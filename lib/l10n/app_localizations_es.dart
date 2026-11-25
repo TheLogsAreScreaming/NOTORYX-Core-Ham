@@ -6919,6 +6919,25 @@ class AppLocalizationsEs extends AppLocalizations {
   String get bastionDiag_export => 'Exportar diagnóstico';
 
   @override
+  String get diagTimeline_title => 'Historial de conexión';
+
+  @override
+  String get diagTimeline_empty =>
+      'Sin cambios de conexión desde que se abrió la app.';
+
+  @override
+  String get diagTimeline_causeUser => 'lo pediste tú';
+
+  @override
+  String get diagTimeline_causeLinkLost => 'enlace perdido';
+
+  @override
+  String get diagTimeline_causeReconnect => 'reintento automático';
+
+  @override
+  String get diagTimeline_causeApp => 'cerrado por la app';
+
+  @override
   String get bastionDiag_channels => 'Canales';
 
   @override

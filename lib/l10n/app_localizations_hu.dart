@@ -6901,6 +6901,25 @@ class AppLocalizationsHu extends AppLocalizations {
   String get bastionDiag_export => 'Diagnosztika exportálása';
 
   @override
+  String get diagTimeline_title => 'Kapcsolati előzmények';
+
+  @override
+  String get diagTimeline_empty =>
+      'Az alkalmazás indulása óta nem változott a kapcsolat.';
+
+  @override
+  String get diagTimeline_causeUser => 'Ön kérte';
+
+  @override
+  String get diagTimeline_causeLinkLost => 'a kapcsolat megszakadt';
+
+  @override
+  String get diagTimeline_causeReconnect => 'automatikus újrapróbálás';
+
+  @override
+  String get diagTimeline_causeApp => 'az alkalmazás zárta le';
+
+  @override
   String get bastionDiag_channels => 'Csatornák';
 
   @override

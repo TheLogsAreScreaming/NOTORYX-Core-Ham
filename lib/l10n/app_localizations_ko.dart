@@ -6577,6 +6577,24 @@ class AppLocalizationsKo extends AppLocalizations {
   String get bastionDiag_export => '진단 내보내기';
 
   @override
+  String get diagTimeline_title => '연결 기록';
+
+  @override
+  String get diagTimeline_empty => '앱을 시작한 후 연결 변경이 없습니다.';
+
+  @override
+  String get diagTimeline_causeUser => '사용자 요청';
+
+  @override
+  String get diagTimeline_causeLinkLost => '연결 끊김';
+
+  @override
+  String get diagTimeline_causeReconnect => '자동 재시도';
+
+  @override
+  String get diagTimeline_causeApp => '앱이 닫음';
+
+  @override
   String get bastionDiag_channels => '채널';
 
   @override

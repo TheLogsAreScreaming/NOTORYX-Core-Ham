@@ -6946,6 +6946,25 @@ class AppLocalizationsRu extends AppLocalizations {
   String get bastionDiag_export => 'Экспортировать диагностику';
 
   @override
+  String get diagTimeline_title => 'История подключения';
+
+  @override
+  String get diagTimeline_empty =>
+      'С момента запуска приложения подключение не менялось.';
+
+  @override
+  String get diagTimeline_causeUser => 'по вашему запросу';
+
+  @override
+  String get diagTimeline_causeLinkLost => 'связь потеряна';
+
+  @override
+  String get diagTimeline_causeReconnect => 'автоматический повтор';
+
+  @override
+  String get diagTimeline_causeApp => 'закрыто приложением';
+
+  @override
   String get bastionDiag_channels => 'Каналы';
 
   @override

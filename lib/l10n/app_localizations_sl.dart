@@ -6903,6 +6903,25 @@ class AppLocalizationsSl extends AppLocalizations {
   String get bastionDiag_export => 'Izvozi diagnostiko';
 
   @override
+  String get diagTimeline_title => 'Zgodovina povezave';
+
+  @override
+  String get diagTimeline_empty =>
+      'Od zagona aplikacije se povezava ni spremenila.';
+
+  @override
+  String get diagTimeline_causeUser => 'na vašo zahtevo';
+
+  @override
+  String get diagTimeline_causeLinkLost => 'povezava prekinjena';
+
+  @override
+  String get diagTimeline_causeReconnect => 'samodejni ponovni poskus';
+
+  @override
+  String get diagTimeline_causeApp => 'zaprla aplikacija';
+
+  @override
   String get bastionDiag_channels => 'Kanali';
 
   @override

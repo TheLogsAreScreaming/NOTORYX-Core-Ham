@@ -6945,6 +6945,25 @@ class AppLocalizationsPl extends AppLocalizations {
   String get bastionDiag_export => 'Eksportuj diagnostykę';
 
   @override
+  String get diagTimeline_title => 'Historia połączenia';
+
+  @override
+  String get diagTimeline_empty =>
+      'Brak zmian połączenia od uruchomienia aplikacji.';
+
+  @override
+  String get diagTimeline_causeUser => 'na Twoją prośbę';
+
+  @override
+  String get diagTimeline_causeLinkLost => 'połączenie zerwane';
+
+  @override
+  String get diagTimeline_causeReconnect => 'automatyczna ponowna próba';
+
+  @override
+  String get diagTimeline_causeApp => 'zamknięte przez aplikację';
+
+  @override
   String get bastionDiag_channels => 'Kanały';
 
   @override

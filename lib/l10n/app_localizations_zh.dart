@@ -6426,6 +6426,24 @@ class AppLocalizationsZh extends AppLocalizations {
   String get bastionDiag_export => '导出诊断';
 
   @override
+  String get diagTimeline_title => '连接时间线';
+
+  @override
+  String get diagTimeline_empty => '应用启动以来连接没有变化。';
+
+  @override
+  String get diagTimeline_causeUser => '由你操作';
+
+  @override
+  String get diagTimeline_causeLinkLost => '链路断开';
+
+  @override
+  String get diagTimeline_causeReconnect => '自动重试';
+
+  @override
+  String get diagTimeline_causeApp => '由应用关闭';
+
+  @override
   String get bastionDiag_channels => '频道';
 
   @override

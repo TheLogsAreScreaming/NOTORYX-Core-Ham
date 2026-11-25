@@ -6564,6 +6564,24 @@ class AppLocalizationsJa extends AppLocalizations {
   String get bastionDiag_export => '診断をエクスポート';
 
   @override
+  String get diagTimeline_title => '接続の履歴';
+
+  @override
+  String get diagTimeline_empty => 'アプリ起動後、接続の変化はありません。';
+
+  @override
+  String get diagTimeline_causeUser => 'ユーザー操作';
+
+  @override
+  String get diagTimeline_causeLinkLost => 'リンク切断';
+
+  @override
+  String get diagTimeline_causeReconnect => '自動再試行';
+
+  @override
+  String get diagTimeline_causeApp => 'アプリが切断';
+
+  @override
   String get bastionDiag_channels => 'チャンネル';
 
   @override

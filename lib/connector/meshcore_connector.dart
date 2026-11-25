@@ -39,6 +39,7 @@ import '../helpers/reaction_helper.dart';
 import '../helpers/cyr2lat.dart';
 import '../helpers/smaz.dart';
 import '../services/app_debug_log_service.dart';
+import '../services/connection_timeline.dart';
 import '../services/ble_debug_log_service.dart';
 import '../services/linux_ble_error_classifier.dart';
 import '../services/linux_ble_pairing_service_stub.dart'
@@ -254,6 +255,13 @@ class MeshCoreConnector extends ChangeNotifier {
   Future<void>? _discoveredCacheLoad;
 
   MeshCoreConnectionState _state = MeshCoreConnectionState.disconnected;
+
+  /// Recent connection state changes with their cause, for diagnostics and
+  /// the support bundle. Memory only.
+  final ConnectionTimeline connectionTimeline = ConnectionTimeline();
+
+  /// Cause stamped on the next recorded state change.
+  ConnectionCause _nextCause = ConnectionCause.unknown;
   BluetoothDevice? _device;
   BluetoothCharacteristic? _rxCharacteristic;
   BluetoothCharacteristic? _txCharacteristic;
@@ -2474,6 +2482,9 @@ class MeshCoreConnector extends ChangeNotifier {
     _beginWiredConnect(automaticReconnect);
     _resetConnectionHandshakeState();
     _activeTransport = MeshCoreTransportType.usb;
+    _nextCause = automaticReconnect
+        ? ConnectionCause.reconnect
+        : ConnectionCause.user;
     _setState(MeshCoreConnectionState.connecting);
 
     try {
@@ -2597,6 +2608,9 @@ class MeshCoreConnector extends ChangeNotifier {
     _beginWiredConnect(automaticReconnect);
     _resetConnectionHandshakeState();
     _activeTransport = MeshCoreTransportType.tcp;
+    _nextCause = automaticReconnect
+        ? ConnectionCause.reconnect
+        : ConnectionCause.user;
     _setState(MeshCoreConnectionState.connecting);
 
     try {
@@ -2771,6 +2785,9 @@ class MeshCoreConnector extends ChangeNotifier {
     _activeTransport = MeshCoreTransportType.bluetooth;
 
     await stopScan();
+    _nextCause = automaticReconnect
+        ? ConnectionCause.reconnect
+        : ConnectionCause.user;
     _setState(MeshCoreConnectionState.connecting);
     _device = device;
     _deviceId = targetId;
@@ -3843,6 +3860,7 @@ class MeshCoreConnector extends ChangeNotifier {
     } else {
       _manualDisconnect = false;
     }
+    _nextCause = manual ? ConnectionCause.user : ConnectionCause.app;
     _setState(MeshCoreConnectionState.disconnecting);
     _stopBatteryPolling();
     _stopRadioStatsPolling();
@@ -9021,6 +9039,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _pendingGenericAckQueue.clear();
     _reactionSendQueueSequence = 0;
 
+    _nextCause = ConnectionCause.linkLost;
     _setState(MeshCoreConnectionState.disconnected);
     _scheduleReconnect();
   }
@@ -9125,6 +9144,11 @@ class MeshCoreConnector extends ChangeNotifier {
 
   void _setState(MeshCoreConnectionState newState) {
     if (_state != newState) {
+      // Scans start and stop all the time; only real link changes count.
+      if (newState != MeshCoreConnectionState.scanning &&
+          _state != MeshCoreConnectionState.scanning) {
+        connectionTimeline.record(newState, _activeTransport, _nextCause);
+      }
       _state = newState;
       notifyListeners();
     }

@@ -6898,6 +6898,25 @@ class AppLocalizationsSk extends AppLocalizations {
   String get bastionDiag_export => 'Exportovať diagnostiku';
 
   @override
+  String get diagTimeline_title => 'História pripojenia';
+
+  @override
+  String get diagTimeline_empty =>
+      'Od spustenia aplikácie sa pripojenie nezmenilo.';
+
+  @override
+  String get diagTimeline_causeUser => 'na vašu žiadosť';
+
+  @override
+  String get diagTimeline_causeLinkLost => 'spojenie prerušené';
+
+  @override
+  String get diagTimeline_causeReconnect => 'automatický nový pokus';
+
+  @override
+  String get diagTimeline_causeApp => 'zatvorené aplikáciou';
+
+  @override
   String get bastionDiag_channels => 'Kanály';
 
   @override

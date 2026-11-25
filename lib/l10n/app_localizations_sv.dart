@@ -6855,6 +6855,25 @@ class AppLocalizationsSv extends AppLocalizations {
   String get bastionDiag_export => 'Exportera diagnostik';
 
   @override
+  String get diagTimeline_title => 'Anslutningshistorik';
+
+  @override
+  String get diagTimeline_empty =>
+      'Inga anslutningsändringar sedan appen startade.';
+
+  @override
+  String get diagTimeline_causeUser => 'du bad om det';
+
+  @override
+  String get diagTimeline_causeLinkLost => 'länken föll bort';
+
+  @override
+  String get diagTimeline_causeReconnect => 'automatiskt nytt försök';
+
+  @override
+  String get diagTimeline_causeApp => 'stängd av appen';
+
+  @override
   String get bastionDiag_channels => 'Kanaler';
 
   @override

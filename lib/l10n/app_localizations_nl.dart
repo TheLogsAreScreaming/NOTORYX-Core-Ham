@@ -6884,6 +6884,25 @@ class AppLocalizationsNl extends AppLocalizations {
   String get bastionDiag_export => 'Diagnose exporteren';
 
   @override
+  String get diagTimeline_title => 'Verbindingstijdlijn';
+
+  @override
+  String get diagTimeline_empty =>
+      'Geen verbindingswijzigingen sinds de app is gestart.';
+
+  @override
+  String get diagTimeline_causeUser => 'op jouw verzoek';
+
+  @override
+  String get diagTimeline_causeLinkLost => 'verbinding weggevallen';
+
+  @override
+  String get diagTimeline_causeReconnect => 'automatische nieuwe poging';
+
+  @override
+  String get diagTimeline_causeApp => 'door de app gesloten';
+
+  @override
   String get bastionDiag_channels => 'Kanalen';
 
   @override

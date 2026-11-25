@@ -6911,6 +6911,25 @@ class AppLocalizationsBg extends AppLocalizations {
   String get bastionDiag_export => 'Експорт на диагностика';
 
   @override
+  String get diagTimeline_title => 'История на връзката';
+
+  @override
+  String get diagTimeline_empty =>
+      'Няма промени във връзката от стартирането на приложението.';
+
+  @override
+  String get diagTimeline_causeUser => 'по ваша заявка';
+
+  @override
+  String get diagTimeline_causeLinkLost => 'връзката прекъсна';
+
+  @override
+  String get diagTimeline_causeReconnect => 'автоматичен повторен опит';
+
+  @override
+  String get diagTimeline_causeApp => 'затворено от приложението';
+
+  @override
   String get bastionDiag_channels => 'Канали';
 
   @override

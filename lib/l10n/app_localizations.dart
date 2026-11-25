@@ -11570,6 +11570,42 @@ abstract class AppLocalizations {
   /// **'Export diagnostics'**
   String get bastionDiag_export;
 
+  /// No description provided for @diagTimeline_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Connection timeline'**
+  String get diagTimeline_title;
+
+  /// No description provided for @diagTimeline_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No connection changes since the app started.'**
+  String get diagTimeline_empty;
+
+  /// No description provided for @diagTimeline_causeUser.
+  ///
+  /// In en, this message translates to:
+  /// **'you asked'**
+  String get diagTimeline_causeUser;
+
+  /// No description provided for @diagTimeline_causeLinkLost.
+  ///
+  /// In en, this message translates to:
+  /// **'link dropped'**
+  String get diagTimeline_causeLinkLost;
+
+  /// No description provided for @diagTimeline_causeReconnect.
+  ///
+  /// In en, this message translates to:
+  /// **'automatic retry'**
+  String get diagTimeline_causeReconnect;
+
+  /// No description provided for @diagTimeline_causeApp.
+  ///
+  /// In en, this message translates to:
+  /// **'closed by the app'**
+  String get diagTimeline_causeApp;
+
   /// No description provided for @bastionDiag_channels.
   ///
   /// In en, this message translates to:
