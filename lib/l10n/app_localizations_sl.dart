@@ -2923,6 +2923,34 @@ class AppLocalizationsSl extends AppLocalizations {
       'Samodejno po uspešnem vstopu pošljite obvestilo o sinhronizaciji časa.';
 
   @override
+  String repeater_cliLateReply(String command, String reply) {
+    return 'Zapoznel odgovor na »$command«: $reply';
+  }
+
+  @override
+  String repeater_clockWrongNotice(String name) {
+    return 'Ura na $name je napačna. Njegova obvestila bodo videti stara.';
+  }
+
+  @override
+  String get repeater_clockSyncAction => 'Sinhroniziraj';
+
+  @override
+  String repeater_clockSyncDone(String name) {
+    return 'Ura na $name se zdaj ujema s telefonom.';
+  }
+
+  @override
+  String repeater_clockAhead(String name) {
+    return 'Ura na $name prehiteva telefon in je ni mogoče prestaviti nazaj.';
+  }
+
+  @override
+  String repeater_clockSyncFailed(String name) {
+    return 'Ure na $name ni bilo mogoče nastaviti. Poskusite Nastavitve → Sinerizirajte uro zdaj.';
+  }
+
+  @override
   String get repeater_statusTitle => 'Status ponovitelja';
 
   @override

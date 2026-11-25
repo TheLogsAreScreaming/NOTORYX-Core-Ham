@@ -2909,6 +2909,34 @@ class AppLocalizationsSv extends AppLocalizations {
       'Automatiskt skicka \"klocksynkronisering\" efter en lyckad inloggning.';
 
   @override
+  String repeater_cliLateReply(String command, String reply) {
+    return 'Sent svar på ”$command”: $reply';
+  }
+
+  @override
+  String repeater_clockWrongNotice(String name) {
+    return 'Klockan i $name går fel. Dess annonser kommer att se gamla ut.';
+  }
+
+  @override
+  String get repeater_clockSyncAction => 'Synka';
+
+  @override
+  String repeater_clockSyncDone(String name) {
+    return 'Klockan i $name stämmer nu med din telefon.';
+  }
+
+  @override
+  String repeater_clockAhead(String name) {
+    return 'Klockan i $name går före din telefon och kan inte ställas tillbaka.';
+  }
+
+  @override
+  String repeater_clockSyncFailed(String name) {
+    return 'Kunde inte ställa klockan i $name. Prova Inställningar → Synkronisera klockan nu.';
+  }
+
+  @override
   String get repeater_statusTitle => 'Repeaterstatus';
 
   @override

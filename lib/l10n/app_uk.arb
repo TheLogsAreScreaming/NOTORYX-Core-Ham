@@ -2286,6 +2286,12 @@
     "description": "Repeater setting subtitle: describes the clock sync after login behavior"
   },
   "repeater_clockSyncAfterLoginSubtitle": "Автоматично надсилати повідомлення \"синхронізація годин\" після успішного входу.",
+  "repeater_cliLateReply": "Запізніла відповідь на «{command}»: {reply}",
+  "repeater_clockWrongNotice": "Годинник {name} іде неправильно. Його оголошення виглядатимуть старими.",
+  "repeater_clockSyncAction": "Синхронізувати",
+  "repeater_clockSyncDone": "Годинник {name} тепер збігається з вашим телефоном.",
+  "repeater_clockAhead": "Годинник {name} поспішає відносно телефона, і його не можна перевести назад.",
+  "repeater_clockSyncFailed": "Не вдалося налаштувати годинник {name}. Спробуйте Налаштування → Синхронізувати годинник зараз.",
   "repeater_clockSyncAfterLogin": "Синхронізація годин після входу",
   "repeater_guestTools": "Гостьові інструменти",
   "repeater_guest": "Інформація про ретранслятор",

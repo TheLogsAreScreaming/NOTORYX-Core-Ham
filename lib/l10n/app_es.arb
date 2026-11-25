@@ -2404,6 +2404,12 @@
     "description": "Repeater setting subtitle: describes the clock sync after login behavior"
   },
   "repeater_clockSyncAfterLoginSubtitle": "Enviar automáticamente la función de \"sincronización de reloj\" después de un inicio de sesión exitoso.",
+  "repeater_cliLateReply": "Respuesta tardía a «{command}»: {reply}",
+  "repeater_clockWrongNotice": "El reloj de {name} está mal. Sus anuncios parecerán antiguos.",
+  "repeater_clockSyncAction": "Sincronizar",
+  "repeater_clockSyncDone": "El reloj de {name} ya coincide con tu teléfono.",
+  "repeater_clockAhead": "El reloj de {name} va adelantado respecto a tu teléfono y no se puede atrasar.",
+  "repeater_clockSyncFailed": "No se pudo ajustar el reloj de {name}. Prueba Ajustes → Sincronizar reloj ahora.",
   "repeater_clockSyncAfterLogin": "Sincronización del reloj después de iniciar sesión",
   "repeater_guest": "Información sobre repetidores",
   "chat_sendMessage": "Enviar mensaje",

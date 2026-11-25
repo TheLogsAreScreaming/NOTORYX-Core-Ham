@@ -221,7 +221,7 @@ class _ContactTableSheetState extends State<_ContactTableSheet> {
                         ),
                         subtitle: Text(
                           l10n.contactTable_lastHeard(
-                            lastHeardText(context, contact.lastSeen),
+                            lastHeardText(context, contact.lastHeard),
                           ),
                         ),
                       );

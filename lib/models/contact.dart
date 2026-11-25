@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:meshcore_open/utils/app_logger.dart';
 
 import '../connector/meshcore_protocol.dart';
+import 'node_staleness.dart';
 
 class Contact {
   final Uint8List publicKey;
@@ -43,6 +44,24 @@ class Contact {
   }) : lastMessageAt = lastMessageAt ?? lastSeen;
 
   String get publicKeyHex => pubKeyToHex(publicKey);
+
+  /// When this node was last heard, for "last heard", stale badges, sorting
+  /// and freeing space. [lastSeen] is the time on the node's own advert, by
+  /// the node's clock, so a node whose clock is wrong looks long gone even
+  /// when it was just heard. [lastModified] is when our radio last heard
+  /// (or updated) it, by the radio's clock. This takes the later of the two,
+  /// ignoring either when it can't be right (see [knownLastHeard]).
+  /// [lastSeen] itself stays the advert time the radio checks adverts against.
+  DateTime lastHeardAt(DateTime now) {
+    final advert = knownLastHeard(lastSeen, now);
+    final radio = knownLastHeard(lastModified, now);
+    if (advert == null) return radio ?? lastSeen;
+    if (radio == null) return advert;
+    return radio.isAfter(advert) ? radio : advert;
+  }
+
+  /// [lastHeardAt] for now.
+  DateTime get lastHeard => lastHeardAt(DateTime.now());
 
   /// Non-localized type label, intended for logs and non-UI exports
   /// (e.g. GPX). For UI use the `typeLabel(l10n)` extension in

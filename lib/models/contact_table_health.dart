@@ -55,7 +55,7 @@ List<Contact> contactRemovalSuggestions(Iterable<Contact> contacts) {
       if (!c.isFavorite) c,
   ];
   candidates.sort((a, b) {
-    final byHeard = a.lastSeen.compareTo(b.lastSeen);
+    final byHeard = a.lastHeard.compareTo(b.lastHeard);
     if (byHeard != 0) return byHeard;
     return a.name.toLowerCase().compareTo(b.name.toLowerCase());
   });

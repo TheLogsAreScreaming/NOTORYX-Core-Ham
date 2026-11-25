@@ -2931,6 +2931,34 @@ class AppLocalizationsHu extends AppLocalizations {
       '„Óraszinkronizálás” automatikus küldése sikeres bejelentkezés után';
 
   @override
+  String repeater_cliLateReply(String command, String reply) {
+    return 'Késve érkezett válasz erre: „$command”: $reply';
+  }
+
+  @override
+  String repeater_clockWrongNotice(String name) {
+    return '$name órája rosszul jár. A hirdetései régieknek fognak tűnni.';
+  }
+
+  @override
+  String get repeater_clockSyncAction => 'Szinkronizálás';
+
+  @override
+  String repeater_clockSyncDone(String name) {
+    return '$name órája most egyezik a telefonjával.';
+  }
+
+  @override
+  String repeater_clockAhead(String name) {
+    return '$name órája siet a telefonjához képest, és nem állítható vissza.';
+  }
+
+  @override
+  String repeater_clockSyncFailed(String name) {
+    return 'Nem sikerült beállítani $name óráját. Próbálja: Beállítások → Óra szinkronizálása most.';
+  }
+
+  @override
   String get repeater_statusTitle => 'Repeater állapota';
 
   @override

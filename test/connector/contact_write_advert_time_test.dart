@@ -64,6 +64,34 @@ void main() {
     radio.dispose();
   });
 
+  test('a path write keeps the radio last-heard time and position', () async {
+    final radio = _Radio();
+    final heard = DateTime.fromMillisecondsSinceEpoch(1700000500 * 1000);
+    radio.debugSetContacts([
+      Contact(
+        publicKey: _node().publicKey,
+        name: 'Node A',
+        type: advTypeRepeater,
+        pathLength: -1,
+        path: Uint8List(0),
+        lastSeen: _advert,
+        lastModified: heard,
+        latitude: 41.5,
+        longitude: -73.25,
+      ),
+    ]);
+
+    await radio.setContactPath(_node(), Uint8List.fromList([0xAB]), 1);
+
+    final frame = radio.contactWrites.single;
+    const tail = 1 + pubKeySize + 3 + maxPathSize + maxNameSize + 4;
+    final data = ByteData.sublistView(frame);
+    expect(data.getInt32(tail, Endian.little), 41500000);
+    expect(data.getInt32(tail + 4, Endian.little), -73250000);
+    expect(data.getUint32(tail + 8, Endian.little), 1700000500);
+    radio.dispose();
+  });
+
   test('a flag write keeps the advert time, not the phone clock', () async {
     final radio = _Radio();
     final node = _node();

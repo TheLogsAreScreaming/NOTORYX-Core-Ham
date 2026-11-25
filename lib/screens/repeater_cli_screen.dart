@@ -72,8 +72,21 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
     _commandService = RepeaterCommandService(
       connector,
       txtType: widget.companion ? txtTypeCliCommand : txtTypeCliData,
+      onLateReply: _showLateReply,
     );
     _setupMessageListener();
+  }
+
+  /// A reply that came after its command timed out: shown, not lost.
+  void _showLateReply(String command, String reply) {
+    if (!mounted) return;
+    setState(() {
+      _commandHistory.add({
+        'type': 'response',
+        'text': context.l10n.repeater_cliLateReply(command, reply),
+        'timestamp': DateTime.now().toString(),
+      });
+    });
   }
 
   @override

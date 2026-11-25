@@ -2920,6 +2920,34 @@ class AppLocalizationsNl extends AppLocalizations {
       'Automatisch een \"klok synchroniseren\" bericht versturen na een succesvolle inlog.';
 
   @override
+  String repeater_cliLateReply(String command, String reply) {
+    return 'Late reactie op ‘$command’: $reply';
+  }
+
+  @override
+  String repeater_clockWrongNotice(String name) {
+    return 'De klok van $name loopt verkeerd. Zijn adverts lijken daardoor oud.';
+  }
+
+  @override
+  String get repeater_clockSyncAction => 'Synchroniseren';
+
+  @override
+  String repeater_clockSyncDone(String name) {
+    return 'De klok van $name komt nu overeen met je telefoon.';
+  }
+
+  @override
+  String repeater_clockAhead(String name) {
+    return 'De klok van $name loopt voor op je telefoon en kan niet worden teruggezet.';
+  }
+
+  @override
+  String repeater_clockSyncFailed(String name) {
+    return 'Kon de klok van $name niet instellen. Probeer Instellingen → Synchroniseer klok nu.';
+  }
+
+  @override
   String get repeater_statusTitle => 'Status repeater';
 
   @override

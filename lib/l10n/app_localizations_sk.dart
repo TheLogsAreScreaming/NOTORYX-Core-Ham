@@ -2923,6 +2923,34 @@ class AppLocalizationsSk extends AppLocalizations {
       'Automaticky posielajte notifikáciu \"synchronizácia času\" po úspešnom prihládení.';
 
   @override
+  String repeater_cliLateReply(String command, String reply) {
+    return 'Oneskorená odpoveď na „$command“: $reply';
+  }
+
+  @override
+  String repeater_clockWrongNotice(String name) {
+    return 'Hodiny $name sú zle nastavené. Jeho oznámenia budú vyzerať staré.';
+  }
+
+  @override
+  String get repeater_clockSyncAction => 'Synchronizovať';
+
+  @override
+  String repeater_clockSyncDone(String name) {
+    return 'Hodiny $name sa teraz zhodujú s telefónom.';
+  }
+
+  @override
+  String repeater_clockAhead(String name) {
+    return 'Hodiny $name idú dopredu oproti telefónu a nedajú sa vrátiť späť.';
+  }
+
+  @override
+  String repeater_clockSyncFailed(String name) {
+    return 'Hodiny $name sa nepodarilo nastaviť. Skúste Nastavenia → Synchronizujte hodiny teraz.';
+  }
+
+  @override
   String get repeater_statusTitle => 'Status opakého zboru';
 
   @override

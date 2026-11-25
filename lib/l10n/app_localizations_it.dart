@@ -2941,6 +2941,34 @@ class AppLocalizationsIt extends AppLocalizations {
       'Invia automaticamente il comando \"sincronizzazione dell\'orologio\" dopo un login riuscito.';
 
   @override
+  String repeater_cliLateReply(String command, String reply) {
+    return 'Risposta in ritardo a «$command»: $reply';
+  }
+
+  @override
+  String repeater_clockWrongNotice(String name) {
+    return 'L\'orologio di $name è sbagliato. I suoi annunci sembreranno vecchi.';
+  }
+
+  @override
+  String get repeater_clockSyncAction => 'Sincronizza';
+
+  @override
+  String repeater_clockSyncDone(String name) {
+    return 'L\'orologio di $name ora corrisponde al tuo telefono.';
+  }
+
+  @override
+  String repeater_clockAhead(String name) {
+    return 'L\'orologio di $name è avanti rispetto al tuo telefono e non può essere riportato indietro.';
+  }
+
+  @override
+  String repeater_clockSyncFailed(String name) {
+    return 'Impossibile impostare l\'orologio di $name. Prova Impostazioni → Sincronizza l\'orologio ora.';
+  }
+
+  @override
   String get repeater_statusTitle => 'Stato del ripetitore';
 
   @override

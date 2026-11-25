@@ -2808,6 +2808,34 @@ class AppLocalizationsJa extends AppLocalizations {
   String get repeater_clockSyncAfterLoginSubtitle => 'ログイン成功時に自動で時刻同期を送信します';
 
   @override
+  String repeater_cliLateReply(String command, String reply) {
+    return '「$command」への遅れた応答: $reply';
+  }
+
+  @override
+  String repeater_clockWrongNotice(String name) {
+    return '$name の時計がずれています。アドバートが古く見えます。';
+  }
+
+  @override
+  String get repeater_clockSyncAction => '同期';
+
+  @override
+  String repeater_clockSyncDone(String name) {
+    return '$name の時計がスマートフォンと一致しました。';
+  }
+
+  @override
+  String repeater_clockAhead(String name) {
+    return '$name の時計はスマートフォンより進んでおり、戻すことはできません。';
+  }
+
+  @override
+  String repeater_clockSyncFailed(String name) {
+    return '$name の時計を設定できませんでした。設定 → 時刻を同期 をお試しください。';
+  }
+
+  @override
   String get repeater_statusTitle => '再送ステータス';
 
   @override

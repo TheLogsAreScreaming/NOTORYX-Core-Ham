@@ -2944,6 +2944,34 @@ class AppLocalizationsBg extends AppLocalizations {
       'Автоматично изпращайте съобщение \"синхронизиране на часовника\" след успешно влизане.';
 
   @override
+  String repeater_cliLateReply(String command, String reply) {
+    return 'Закъснял отговор на „$command“: $reply';
+  }
+
+  @override
+  String repeater_clockWrongNotice(String name) {
+    return 'Часовникът на $name е грешен. Обявите му ще изглеждат стари.';
+  }
+
+  @override
+  String get repeater_clockSyncAction => 'Синхронизиране';
+
+  @override
+  String repeater_clockSyncDone(String name) {
+    return 'Часовникът на $name вече съвпада с телефона ви.';
+  }
+
+  @override
+  String repeater_clockAhead(String name) {
+    return 'Часовникът на $name избързва спрямо телефона ви и не може да се върне назад.';
+  }
+
+  @override
+  String repeater_clockSyncFailed(String name) {
+    return 'Часовникът на $name не можа да се настрои. Опитайте Настройки → Синхронизирай часовника сега.';
+  }
+
+  @override
   String get repeater_statusTitle => 'Статус на повтарянето';
 
   @override
