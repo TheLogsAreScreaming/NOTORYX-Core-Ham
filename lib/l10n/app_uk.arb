@@ -3180,6 +3180,7 @@
   "diagTimeline_causeUser": "на ваш запит",
   "diagTimeline_causeLinkLost": "зв'язок втрачено",
   "diagTimeline_causeReconnect": "автоматична повторна спроба",
+  "diagTimeline_causeAutoConnect": "підключено автоматично",
   "diagTimeline_causeApp": "закрито застосунком",
   "bastionDiag_channels": "Канали",
   "bastionDiag_radio": "Радіо",

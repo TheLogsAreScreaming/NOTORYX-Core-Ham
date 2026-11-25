@@ -6927,6 +6927,9 @@ class AppLocalizationsBg extends AppLocalizations {
   String get diagTimeline_causeReconnect => 'автоматичен повторен опит';
 
   @override
+  String get diagTimeline_causeAutoConnect => 'свързано автоматично';
+
+  @override
   String get diagTimeline_causeApp => 'затворено от приложението';
 
   @override

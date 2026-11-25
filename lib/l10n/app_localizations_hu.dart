@@ -6917,6 +6917,9 @@ class AppLocalizationsHu extends AppLocalizations {
   String get diagTimeline_causeReconnect => 'automatikus újrapróbálás';
 
   @override
+  String get diagTimeline_causeAutoConnect => 'automatikusan csatlakozott';
+
+  @override
   String get diagTimeline_causeApp => 'az alkalmazás zárta le';
 
   @override

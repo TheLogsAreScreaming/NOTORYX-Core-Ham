@@ -49,13 +49,13 @@ class BastionDiagnosticsScreen extends StatelessWidget {
   Future<void> _export(BuildContext context, MeshCoreConnector c) async {
     final s = c.latestRadioStats;
     final appLog = context.read<AppDebugLogService?>();
-    final info = await PackageInfo.fromPlatform();
     String? callsign;
     try {
       callsign = context.read<OperatorProfileService>().profile.callsign;
     } on ProviderNotFoundException {
       callsign = null;
     }
+    final info = await PackageInfo.fromPlatform();
     final redactor = SupportRedactor([
       ?c.selfName,
       if (callsign != null && callsign.isNotEmpty) callsign,
@@ -193,6 +193,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
         ConnectionCause.user => l10n.diagTimeline_causeUser,
         ConnectionCause.linkLost => l10n.diagTimeline_causeLinkLost,
         ConnectionCause.reconnect => l10n.diagTimeline_causeReconnect,
+        ConnectionCause.autoConnect => l10n.diagTimeline_causeAutoConnect,
         ConnectionCause.app => l10n.diagTimeline_causeApp,
         ConnectionCause.unknown => '',
       };

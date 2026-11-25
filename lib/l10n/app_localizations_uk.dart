@@ -6961,6 +6961,9 @@ class AppLocalizationsUk extends AppLocalizations {
   String get diagTimeline_causeReconnect => 'автоматична повторна спроба';
 
   @override
+  String get diagTimeline_causeAutoConnect => 'підключено автоматично';
+
+  @override
   String get diagTimeline_causeApp => 'закрито застосунком';
 
   @override

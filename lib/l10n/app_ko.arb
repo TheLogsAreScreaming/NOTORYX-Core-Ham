@@ -3334,6 +3334,7 @@
   "diagTimeline_causeUser": "사용자 요청",
   "diagTimeline_causeLinkLost": "연결 끊김",
   "diagTimeline_causeReconnect": "자동 재시도",
+  "diagTimeline_causeAutoConnect": "자동 연결",
   "diagTimeline_causeApp": "앱이 닫음",
   "bastionDiag_channels": "채널",
   "bastionDiag_radio": "무선",

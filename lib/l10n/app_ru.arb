@@ -2503,6 +2503,7 @@
   "diagTimeline_causeUser": "по вашему запросу",
   "diagTimeline_causeLinkLost": "связь потеряна",
   "diagTimeline_causeReconnect": "автоматический повтор",
+  "diagTimeline_causeAutoConnect": "подключено автоматически",
   "diagTimeline_causeApp": "закрыто приложением",
   "bastionDiag_channels": "Каналы",
   "bastionDiag_radio": "Радио",

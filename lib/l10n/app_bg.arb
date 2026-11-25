@@ -3200,6 +3200,7 @@
   "diagTimeline_causeUser": "по ваша заявка",
   "diagTimeline_causeLinkLost": "връзката прекъсна",
   "diagTimeline_causeReconnect": "автоматичен повторен опит",
+  "diagTimeline_causeAutoConnect": "свързано автоматично",
   "diagTimeline_causeApp": "затворено от приложението",
   "bastionDiag_channels": "Канали",
   "bastionDiag_radio": "Радио",

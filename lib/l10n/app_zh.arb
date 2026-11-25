@@ -3205,6 +3205,7 @@
   "diagTimeline_causeUser": "由你操作",
   "diagTimeline_causeLinkLost": "链路断开",
   "diagTimeline_causeReconnect": "自动重试",
+  "diagTimeline_causeAutoConnect": "自动连接",
   "diagTimeline_causeApp": "由应用关闭",
   "bastionDiag_channels": "频道",
   "bastionDiag_radio": "电台",

@@ -6914,6 +6914,9 @@ class AppLocalizationsSk extends AppLocalizations {
   String get diagTimeline_causeReconnect => 'automatický nový pokus';
 
   @override
+  String get diagTimeline_causeAutoConnect => 'pripojené automaticky';
+
+  @override
   String get diagTimeline_causeApp => 'zatvorené aplikáciou';
 
   @override

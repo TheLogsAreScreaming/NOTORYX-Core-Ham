@@ -3200,6 +3200,7 @@
   "diagTimeline_causeUser": "op jouw verzoek",
   "diagTimeline_causeLinkLost": "verbinding weggevallen",
   "diagTimeline_causeReconnect": "automatische nieuwe poging",
+  "diagTimeline_causeAutoConnect": "automatisch verbonden",
   "diagTimeline_causeApp": "door de app gesloten",
   "bastionDiag_channels": "Kanalen",
   "bastionDiag_radio": "Radio",

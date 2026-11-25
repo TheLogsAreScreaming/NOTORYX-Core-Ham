@@ -6871,6 +6871,9 @@ class AppLocalizationsSv extends AppLocalizations {
   String get diagTimeline_causeReconnect => 'automatiskt nytt försök';
 
   @override
+  String get diagTimeline_causeAutoConnect => 'ansluten automatiskt';
+
+  @override
   String get diagTimeline_causeApp => 'stängd av appen';
 
   @override

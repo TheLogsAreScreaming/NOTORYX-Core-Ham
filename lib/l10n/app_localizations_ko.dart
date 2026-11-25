@@ -6592,6 +6592,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get diagTimeline_causeReconnect => '자동 재시도';
 
   @override
+  String get diagTimeline_causeAutoConnect => '자동 연결';
+
+  @override
   String get diagTimeline_causeApp => '앱이 닫음';
 
   @override

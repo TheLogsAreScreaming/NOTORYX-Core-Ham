@@ -3334,6 +3334,7 @@
   "diagTimeline_causeUser": "ユーザー操作",
   "diagTimeline_causeLinkLost": "リンク切断",
   "diagTimeline_causeReconnect": "自動再試行",
+  "diagTimeline_causeAutoConnect": "自動接続",
   "diagTimeline_causeApp": "アプリが切断",
   "bastionDiag_channels": "チャンネル",
   "bastionDiag_radio": "無線",

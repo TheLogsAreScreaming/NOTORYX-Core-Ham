@@ -3238,6 +3238,7 @@
   "diagTimeline_causeUser": "Ön kérte",
   "diagTimeline_causeLinkLost": "a kapcsolat megszakadt",
   "diagTimeline_causeReconnect": "automatikus újrapróbálás",
+  "diagTimeline_causeAutoConnect": "automatikusan csatlakozott",
   "diagTimeline_causeApp": "az alkalmazás zárta le",
   "bastionDiag_channels": "Csatornák",
   "bastionDiag_radio": "Rádió",

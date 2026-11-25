@@ -3200,6 +3200,7 @@
   "diagTimeline_causeUser": "na vašu žiadosť",
   "diagTimeline_causeLinkLost": "spojenie prerušené",
   "diagTimeline_causeReconnect": "automatický nový pokus",
+  "diagTimeline_causeAutoConnect": "pripojené automaticky",
   "diagTimeline_causeApp": "zatvorené aplikáciou",
   "bastionDiag_channels": "Kanály",
   "bastionDiag_radio": "Rádio",

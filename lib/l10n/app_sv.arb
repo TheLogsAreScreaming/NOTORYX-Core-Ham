@@ -3201,6 +3201,7 @@
   "diagTimeline_causeUser": "du bad om det",
   "diagTimeline_causeLinkLost": "länken föll bort",
   "diagTimeline_causeReconnect": "automatiskt nytt försök",
+  "diagTimeline_causeAutoConnect": "ansluten automatiskt",
   "diagTimeline_causeApp": "stängd av appen",
   "bastionDiag_channels": "Kanaler",
   "bastionDiag_radio": "Radio",

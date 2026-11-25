@@ -6579,6 +6579,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get diagTimeline_causeReconnect => '自動再試行';
 
   @override
+  String get diagTimeline_causeAutoConnect => '自動接続';
+
+  @override
   String get diagTimeline_causeApp => 'アプリが切断';
 
   @override

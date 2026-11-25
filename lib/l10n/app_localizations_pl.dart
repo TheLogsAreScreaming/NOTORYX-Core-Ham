@@ -6961,6 +6961,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get diagTimeline_causeReconnect => 'automatyczna ponowna próba';
 
   @override
+  String get diagTimeline_causeAutoConnect => 'połączono automatycznie';
+
+  @override
   String get diagTimeline_causeApp => 'zamknięte przez aplikację';
 
   @override

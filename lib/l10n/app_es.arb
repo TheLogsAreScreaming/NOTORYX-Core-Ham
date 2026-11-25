@@ -3334,6 +3334,7 @@
   "diagTimeline_causeUser": "lo pediste tú",
   "diagTimeline_causeLinkLost": "enlace perdido",
   "diagTimeline_causeReconnect": "reintento automático",
+  "diagTimeline_causeAutoConnect": "conectado automáticamente",
   "diagTimeline_causeApp": "cerrado por la app",
   "bastionDiag_channels": "Canales",
   "bastionDiag_radio": "Radio",

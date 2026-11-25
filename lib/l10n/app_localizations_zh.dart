@@ -6441,6 +6441,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get diagTimeline_causeReconnect => '自动重试';
 
   @override
+  String get diagTimeline_causeAutoConnect => '自动连接';
+
+  @override
   String get diagTimeline_causeApp => '由应用关闭';
 
   @override

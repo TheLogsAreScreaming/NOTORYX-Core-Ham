@@ -4081,6 +4081,7 @@
   "diagTimeline_causeUser": "you asked",
   "diagTimeline_causeLinkLost": "link dropped",
   "diagTimeline_causeReconnect": "automatic retry",
+  "diagTimeline_causeAutoConnect": "connected automatically",
   "diagTimeline_causeApp": "closed by the app",
   "bastionDiag_channels": "Channels",
   "bastionDiag_radio": "Radio",

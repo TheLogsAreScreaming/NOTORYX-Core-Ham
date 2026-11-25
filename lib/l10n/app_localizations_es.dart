@@ -6935,6 +6935,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get diagTimeline_causeReconnect => 'reintento automático';
 
   @override
+  String get diagTimeline_causeAutoConnect => 'conectado automáticamente';
+
+  @override
   String get diagTimeline_causeApp => 'cerrado por la app';
 
   @override

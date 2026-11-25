@@ -6962,6 +6962,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get diagTimeline_causeReconnect => 'автоматический повтор';
 
   @override
+  String get diagTimeline_causeAutoConnect => 'подключено автоматически';
+
+  @override
   String get diagTimeline_causeApp => 'закрыто приложением';
 
   @override

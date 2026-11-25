@@ -3200,6 +3200,7 @@
   "diagTimeline_causeUser": "a seu pedido",
   "diagTimeline_causeLinkLost": "ligação perdida",
   "diagTimeline_causeReconnect": "nova tentativa automática",
+  "diagTimeline_causeAutoConnect": "ligado automaticamente",
   "diagTimeline_causeApp": "fechado pela app",
   "bastionDiag_channels": "Canais",
   "bastionDiag_radio": "Rádio",

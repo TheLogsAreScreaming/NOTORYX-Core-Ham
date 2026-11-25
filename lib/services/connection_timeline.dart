@@ -12,6 +12,10 @@ enum ConnectionCause {
   /// The app is trying again after a drop.
   reconnect,
 
+  /// "Connect to my radio automatically" connected the saved radio, for
+  /// example when the app started.
+  autoConnect,
+
   /// The app closed the link itself, for example after a failed handshake.
   app,
 

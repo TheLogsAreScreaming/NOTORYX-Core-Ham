@@ -11600,6 +11600,12 @@ abstract class AppLocalizations {
   /// **'automatic retry'**
   String get diagTimeline_causeReconnect;
 
+  /// No description provided for @diagTimeline_causeAutoConnect.
+  ///
+  /// In en, this message translates to:
+  /// **'connected automatically'**
+  String get diagTimeline_causeAutoConnect;
+
   /// No description provided for @diagTimeline_causeApp.
   ///
   /// In en, this message translates to:

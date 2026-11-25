@@ -3238,6 +3238,7 @@
   "diagTimeline_causeUser": "na Twoją prośbę",
   "diagTimeline_causeLinkLost": "połączenie zerwane",
   "diagTimeline_causeReconnect": "automatyczna ponowna próba",
+  "diagTimeline_causeAutoConnect": "połączono automatycznie",
   "diagTimeline_causeApp": "zamknięte przez aplikację",
   "bastionDiag_channels": "Kanały",
   "bastionDiag_radio": "Radio",
