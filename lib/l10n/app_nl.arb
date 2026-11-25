@@ -4919,5 +4919,6 @@
   "messageFilter_filterSenderConfirm": "Alle berichten van „{name}” verbergen?",
   "messageFilter_filterLikeThis": "Berichten zoals dit filteren…",
   "messageFilter_channelToggle": "Berichten in dit kanaal filteren",
-  "messageFilter_ghostIconTooltip": "Verborgen door je berichtenfilter"
+  "messageFilter_ghostIconTooltip": "Verborgen door je berichtenfilter",
+  "contacts_fullWarning": "De contactenlijst van deze radio is vol, dus er kunnen geen nieuwe nodes bij. Verwijder enkele contacten om ruimte te maken."
 }

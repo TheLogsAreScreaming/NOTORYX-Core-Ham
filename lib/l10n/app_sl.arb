@@ -4919,5 +4919,6 @@
   "messageFilter_filterSenderConfirm": "Skrijem vsa sporočila od „{name}“?",
   "messageFilter_filterLikeThis": "Filtriraj podobna sporočila…",
   "messageFilter_channelToggle": "Filtriraj sporočila v tem kanalu",
-  "messageFilter_ghostIconTooltip": "Skrito z vašim filtrom sporočil"
+  "messageFilter_ghostIconTooltip": "Skrito z vašim filtrom sporočil",
+  "contacts_fullWarning": "Seznam stikov tega radia je poln, zato ne more dodajati novih vozlišč. Odstranite nekaj stikov, da sprostite prostor."
 }

@@ -13168,4 +13168,8 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get messageFilter_ghostIconTooltip =>
       'Oculta pelo seu filtro de mensagens';
+
+  @override
+  String get contacts_fullWarning =>
+      'A lista de contatos deste rádio está cheia, então ele não pode adicionar novos nós. Remova alguns contatos para liberar espaço.';
 }

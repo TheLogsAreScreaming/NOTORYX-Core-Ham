@@ -13201,4 +13201,8 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get messageFilter_ghostIconTooltip =>
       'Von Ihrem Nachrichtenfilter ausgeblendet';
+
+  @override
+  String get contacts_fullWarning =>
+      'Die Kontaktliste dieses Funkgeräts ist voll, daher kann es keine neuen Knoten hinzufügen. Entferne einige Kontakte, um Platz zu schaffen.';
 }

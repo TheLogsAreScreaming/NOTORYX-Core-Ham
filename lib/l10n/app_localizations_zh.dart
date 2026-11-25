@@ -12350,4 +12350,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get messageFilter_ghostIconTooltip => '已被你的消息过滤隐藏';
+
+  @override
+  String get contacts_fullWarning => '此电台的联系人列表已满，无法添加新节点。请删除一些联系人以腾出空间。';
 }

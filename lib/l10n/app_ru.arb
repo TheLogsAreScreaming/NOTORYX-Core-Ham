@@ -4222,5 +4222,6 @@
   "messageFilter_filterSenderConfirm": "Скрывать все сообщения от «{name}»?",
   "messageFilter_filterLikeThis": "Фильтровать похожие сообщения…",
   "messageFilter_channelToggle": "Фильтровать сообщения в этом канале",
-  "messageFilter_ghostIconTooltip": "Скрыто вашим фильтром сообщений"
+  "messageFilter_ghostIconTooltip": "Скрыто вашим фильтром сообщений",
+  "contacts_fullWarning": "Список контактов этой рации заполнен, поэтому она не может добавлять новые узлы. Удалите несколько контактов, чтобы освободить место."
 }

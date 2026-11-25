@@ -13161,4 +13161,8 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get messageFilter_ghostIconTooltip => 'Az üzenetszűrő elrejtette';
+
+  @override
+  String get contacts_fullWarning =>
+      'A rádió névjegylistája megtelt, ezért nem tud új node-okat felvenni. Törölj néhány névjegyet, hogy legyen hely.';
 }

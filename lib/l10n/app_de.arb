@@ -5053,5 +5053,6 @@
   "messageFilter_filterSenderConfirm": "Alle Nachrichten von „{name}“ ausblenden?",
   "messageFilter_filterLikeThis": "Ähnliche Nachrichten filtern…",
   "messageFilter_channelToggle": "Nachrichten in diesem Kanal filtern",
-  "messageFilter_ghostIconTooltip": "Von Ihrem Nachrichtenfilter ausgeblendet"
+  "messageFilter_ghostIconTooltip": "Von Ihrem Nachrichtenfilter ausgeblendet",
+  "contacts_fullWarning": "Die Kontaktliste dieses Funkgeräts ist voll, daher kann es keine neuen Knoten hinzufügen. Entferne einige Kontakte, um Platz zu schaffen."
 }

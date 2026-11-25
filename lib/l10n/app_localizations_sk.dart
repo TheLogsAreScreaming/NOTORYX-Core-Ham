@@ -13158,4 +13158,8 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get messageFilter_ghostIconTooltip => 'Skryté vaším filtrom správ';
+
+  @override
+  String get contacts_fullWarning =>
+      'Zoznam kontaktov tohto rádia je plný, takže nemôže pridávať nové uzly. Odstráňte niekoľko kontaktov, aby ste uvoľnili miesto.';
 }

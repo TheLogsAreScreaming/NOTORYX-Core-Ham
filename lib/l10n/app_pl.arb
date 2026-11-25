@@ -4957,5 +4957,6 @@
   "messageFilter_filterSenderConfirm": "Ukryć wszystkie wiadomości od „{name}”?",
   "messageFilter_filterLikeThis": "Filtruj podobne wiadomości…",
   "messageFilter_channelToggle": "Filtruj wiadomości na tym kanale",
-  "messageFilter_ghostIconTooltip": "Ukryte przez Twój filtr wiadomości"
+  "messageFilter_ghostIconTooltip": "Ukryte przez Twój filtr wiadomości",
+  "contacts_fullWarning": "Lista kontaktów tego radia jest pełna, więc nie może dodawać nowych węzłów. Usuń kilka kontaktów, aby zrobić miejsce."
 }

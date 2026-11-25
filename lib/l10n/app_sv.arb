@@ -4919,5 +4919,6 @@
   "messageFilter_filterSenderConfirm": "Dölja alla meddelanden från ”{name}”?",
   "messageFilter_filterLikeThis": "Filtrera meddelanden som detta…",
   "messageFilter_channelToggle": "Filtrera meddelanden i den här kanalen",
-  "messageFilter_ghostIconTooltip": "Dolt av ditt meddelandefilter"
+  "messageFilter_ghostIconTooltip": "Dolt av ditt meddelandefilter",
+  "contacts_fullWarning": "Radions kontaktlista är full, så den kan inte lägga till nya noder. Ta bort några kontakter för att frigöra plats."
 }

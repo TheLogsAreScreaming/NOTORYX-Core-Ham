@@ -4919,5 +4919,6 @@
   "messageFilter_filterSenderConfirm": "Да се скрият ли всички съобщения от „{name}“?",
   "messageFilter_filterLikeThis": "Филтрирай съобщения като това…",
   "messageFilter_channelToggle": "Филтрирай съобщенията в този канал",
-  "messageFilter_ghostIconTooltip": "Скрито от твоя филтър за съобщения"
+  "messageFilter_ghostIconTooltip": "Скрито от твоя филтър за съобщения",
+  "contacts_fullWarning": "Списъкът с контакти на това радио е пълен и не може да добавя нови възли. Премахнете някои контакти, за да освободите място."
 }

@@ -13091,4 +13091,8 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get messageFilter_ghostIconTooltip => 'Dolt av ditt meddelandefilter';
+
+  @override
+  String get contacts_fullWarning =>
+      'Radions kontaktlista är full, så den kan inte lägga till nya noder. Ta bort några kontakter för att frigöra plats.';
 }

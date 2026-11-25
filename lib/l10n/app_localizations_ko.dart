@@ -12600,4 +12600,8 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get messageFilter_ghostIconTooltip => '메시지 필터로 숨겨짐';
+
+  @override
+  String get contacts_fullWarning =>
+      '이 무전기의 연락처 목록이 가득 차서 새 노드를 추가할 수 없습니다. 연락처를 일부 삭제해 공간을 확보하세요.';
 }

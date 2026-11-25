@@ -4919,5 +4919,6 @@
   "messageFilter_filterSenderConfirm": "Ocultar todas as mensagens de \"{name}\"?",
   "messageFilter_filterLikeThis": "Filtrar mensagens como esta…",
   "messageFilter_channelToggle": "Filtrar mensagens neste canal",
-  "messageFilter_ghostIconTooltip": "Oculta pelo seu filtro de mensagens"
+  "messageFilter_ghostIconTooltip": "Oculta pelo seu filtro de mensagens",
+  "contacts_fullWarning": "A lista de contatos deste rádio está cheia, então ele não pode adicionar novos nós. Remova alguns contatos para liberar espaço."
 }

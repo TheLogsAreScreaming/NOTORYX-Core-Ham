@@ -5053,5 +5053,6 @@
   "messageFilter_filterSenderConfirm": "\"{name}\"의 모든 메시지를 숨길까요?",
   "messageFilter_filterLikeThis": "이와 비슷한 메시지 필터링…",
   "messageFilter_channelToggle": "이 채널에서 메시지 필터링",
-  "messageFilter_ghostIconTooltip": "메시지 필터로 숨겨짐"
+  "messageFilter_ghostIconTooltip": "메시지 필터로 숨겨짐",
+  "contacts_fullWarning": "이 무전기의 연락처 목록이 가득 차서 새 노드를 추가할 수 없습니다. 연락처를 일부 삭제해 공간을 확보하세요."
 }

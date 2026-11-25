@@ -13175,4 +13175,8 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get messageFilter_ghostIconTooltip =>
       'Скрито от твоя филтър за съобщения';
+
+  @override
+  String get contacts_fullWarning =>
+      'Списъкът с контакти на това радио е пълен и не може да добавя нови възли. Премахнете някои контакти, за да освободите място.';
 }

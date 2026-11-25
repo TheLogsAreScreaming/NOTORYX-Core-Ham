@@ -4957,5 +4957,6 @@
   "messageFilter_filterSenderConfirm": "Elrejti a(z) „{name}” összes üzenetét?",
   "messageFilter_filterLikeThis": "Ehhez hasonló üzenetek szűrése…",
   "messageFilter_channelToggle": "Üzenetek szűrése ezen a csatornán",
-  "messageFilter_ghostIconTooltip": "Az üzenetszűrő elrejtette"
+  "messageFilter_ghostIconTooltip": "Az üzenetszűrő elrejtette",
+  "contacts_fullWarning": "A rádió névjegylistája megtelt, ezért nem tud új node-okat felvenni. Törölj néhány névjegyet, hogy legyen hely."
 }

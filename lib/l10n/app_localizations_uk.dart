@@ -13233,4 +13233,8 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get messageFilter_ghostIconTooltip =>
       'Приховано вашим фільтром повідомлень';
+
+  @override
+  String get contacts_fullWarning =>
+      'Список контактів цієї рації заповнений, тому вона не може додавати нові вузли. Видаліть кілька контактів, щоб звільнити місце.';
 }

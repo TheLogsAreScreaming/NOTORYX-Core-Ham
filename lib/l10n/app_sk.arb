@@ -4919,5 +4919,6 @@
   "messageFilter_filterSenderConfirm": "Skryť všetky správy od „{name}“?",
   "messageFilter_filterLikeThis": "Filtrovať podobné správy…",
   "messageFilter_channelToggle": "Filtrovať správy v tomto kanáli",
-  "messageFilter_ghostIconTooltip": "Skryté vaším filtrom správ"
+  "messageFilter_ghostIconTooltip": "Skryté vaším filtrom správ",
+  "contacts_fullWarning": "Zoznam kontaktov tohto rádia je plný, takže nemôže pridávať nové uzly. Odstráňte niekoľko kontaktov, aby ste uvoľnili miesto."
 }

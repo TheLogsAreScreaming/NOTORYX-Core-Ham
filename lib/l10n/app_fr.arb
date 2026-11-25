@@ -5053,5 +5053,6 @@
   "messageFilter_filterSenderConfirm": "Masquer tous les messages de « {name} » ?",
   "messageFilter_filterLikeThis": "Filtrer les messages comme celui-ci…",
   "messageFilter_channelToggle": "Filtrer les messages de ce canal",
-  "messageFilter_ghostIconTooltip": "Masqué par votre filtre de messages"
+  "messageFilter_ghostIconTooltip": "Masqué par votre filtre de messages",
+  "contacts_fullWarning": "La liste de contacts de cette radio est pleine : elle ne peut plus ajouter de nouveaux nœuds. Supprimez des contacts pour faire de la place."
 }

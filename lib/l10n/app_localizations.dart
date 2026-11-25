@@ -21692,6 +21692,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hidden by your message filter'**
   String get messageFilter_ghostIconTooltip;
+
+  /// No description provided for @contacts_fullWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'This radio\'s contact list is full, so it can\'t add new nodes. Remove some contacts to make room.'**
+  String get contacts_fullWarning;
 }
 
 class _AppLocalizationsDelegate

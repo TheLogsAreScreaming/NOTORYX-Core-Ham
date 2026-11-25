@@ -13142,4 +13142,8 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get messageFilter_ghostIconTooltip =>
       'Verborgen door je berichtenfilter';
+
+  @override
+  String get contacts_fullWarning =>
+      'De contactenlijst van deze radio is vol, dus er kunnen geen nieuwe nodes bij. Verwijder enkele contacten om ruimte te maken.';
 }

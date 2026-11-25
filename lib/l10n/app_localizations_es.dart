@@ -13189,4 +13189,8 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get messageFilter_ghostIconTooltip =>
       'Oculto por tu filtro de mensajes';
+
+  @override
+  String get contacts_fullWarning =>
+      'La lista de contactos de esta radio está llena, así que no puede añadir nodos nuevos. Elimina algunos contactos para hacer espacio.';
 }

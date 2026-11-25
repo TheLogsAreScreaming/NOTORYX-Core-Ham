@@ -5053,5 +5053,6 @@
   "messageFilter_filterSenderConfirm": "「{name}」からのメッセージをすべて隠しますか？",
   "messageFilter_filterLikeThis": "このようなメッセージをフィルター…",
   "messageFilter_channelToggle": "このチャンネルでメッセージをフィルター",
-  "messageFilter_ghostIconTooltip": "メッセージフィルターで隠されました"
+  "messageFilter_ghostIconTooltip": "メッセージフィルターで隠されました",
+  "contacts_fullWarning": "この無線機の連絡先リストがいっぱいのため、新しいノードを追加できません。連絡先をいくつか削除して空きを作ってください。"
 }

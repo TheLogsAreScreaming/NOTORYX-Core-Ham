@@ -13189,4 +13189,8 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get messageFilter_ghostIconTooltip =>
       'Skrito z vašim filtrom sporočil';
+
+  @override
+  String get contacts_fullWarning =>
+      'Seznam stikov tega radia je poln, zato ne more dodajati novih vozlišč. Odstranite nekaj stikov, da sprostite prostor.';
 }

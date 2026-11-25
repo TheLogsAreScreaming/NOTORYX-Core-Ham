@@ -4924,5 +4924,6 @@
   "messageFilter_filterSenderConfirm": "要隐藏来自“{name}”的所有消息吗？",
   "messageFilter_filterLikeThis": "过滤类似的消息…",
   "messageFilter_channelToggle": "过滤此频道中的消息",
-  "messageFilter_ghostIconTooltip": "已被你的消息过滤隐藏"
+  "messageFilter_ghostIconTooltip": "已被你的消息过滤隐藏",
+  "contacts_fullWarning": "此电台的联系人列表已满，无法添加新节点。请删除一些联系人以腾出空间。"
 }
