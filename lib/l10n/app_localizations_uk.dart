@@ -2953,6 +2953,34 @@ class AppLocalizationsUk extends AppLocalizations {
       'Автоматично надсилати повідомлення \"синхронізація годин\" після успішного входу.';
 
   @override
+  String repeater_cliLateReply(String command, String reply) {
+    return 'Запізніла відповідь на «$command»: $reply';
+  }
+
+  @override
+  String repeater_clockWrongNotice(String name) {
+    return 'Годинник $name іде неправильно. Його оголошення виглядатимуть старими.';
+  }
+
+  @override
+  String get repeater_clockSyncAction => 'Синхронізувати';
+
+  @override
+  String repeater_clockSyncDone(String name) {
+    return 'Годинник $name тепер збігається з вашим телефоном.';
+  }
+
+  @override
+  String repeater_clockAhead(String name) {
+    return 'Годинник $name поспішає відносно телефона, і його не можна перевести назад.';
+  }
+
+  @override
+  String repeater_clockSyncFailed(String name) {
+    return 'Не вдалося налаштувати годинник $name. Спробуйте Налаштування → Синхронізувати годинник зараз.';
+  }
+
+  @override
   String get repeater_statusTitle => 'Статус ретранслятора';
 
   @override

@@ -2972,6 +2972,34 @@ class AppLocalizationsPl extends AppLocalizations {
       'Automatycznie wysyłaj powiadomienie \"synchronizacja zegara\" po pomyślnym zalogowaniu.';
 
   @override
+  String repeater_cliLateReply(String command, String reply) {
+    return 'Spóźniona odpowiedź na „$command”: $reply';
+  }
+
+  @override
+  String repeater_clockWrongNotice(String name) {
+    return 'Zegar $name jest źle ustawiony. Jego ogłoszenia będą wyglądać na stare.';
+  }
+
+  @override
+  String get repeater_clockSyncAction => 'Synchronizuj';
+
+  @override
+  String repeater_clockSyncDone(String name) {
+    return 'Zegar $name zgadza się teraz z telefonem.';
+  }
+
+  @override
+  String repeater_clockAhead(String name) {
+    return 'Zegar $name spieszy się względem telefonu i nie można go cofnąć.';
+  }
+
+  @override
+  String repeater_clockSyncFailed(String name) {
+    return 'Nie udało się ustawić zegara $name. Spróbuj Ustawienia → Synchronizuj zegar.';
+  }
+
+  @override
   String get repeater_statusTitle => 'Status przekaźnika';
 
   @override

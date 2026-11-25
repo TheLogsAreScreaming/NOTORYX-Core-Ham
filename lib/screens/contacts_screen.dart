@@ -994,7 +994,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                             pathHashByteWidth: connector.pathHashByteWidth,
                             lastSeen: _resolveLastSeen(contact),
                             stale: isStale(
-                              contact.lastSeen,
+                              contact.lastHeard,
                               DateTime.now(),
                               staleAfter,
                             ),
@@ -1105,10 +1105,9 @@ class _ContactsScreenState extends State<ContactsScreen>
   }
 
   DateTime _resolveLastSeen(Contact contact) {
-    if (contact.type != advTypeChat) return contact.lastSeen;
-    return contact.lastMessageAt.isAfter(contact.lastSeen)
-        ? contact.lastMessageAt
-        : contact.lastSeen;
+    final heard = contact.lastHeard;
+    if (contact.type != advTypeChat) return heard;
+    return contact.lastMessageAt.isAfter(heard) ? contact.lastMessageAt : heard;
   }
 
   void _openChat(BuildContext context, Contact contact) {
@@ -1692,11 +1691,11 @@ class _ContactTile extends StatelessWidget {
     final hasUnread = unreadCount > 0;
     // What it is and when we last heard it; how far sits on the right.
     // A stale node says so in words and with an icon, not by colour alone,
-    // and its age is from its last advert.
+    // and its age is from when it was last heard.
     final subtitle = [
       contact.typeLabel(l10n),
       stale
-          ? l10n.stale_badge(_formatLastSeen(context, contact.lastSeen))
+          ? l10n.stale_badge(_formatLastSeen(context, contact.lastHeard))
           : _formatLastSeen(context, lastSeen),
     ].join(' · ');
 

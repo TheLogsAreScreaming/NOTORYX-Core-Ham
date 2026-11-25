@@ -1642,7 +1642,51 @@
   "@repeater_clockSyncAfterLogin": {
     "description": "Repeater setting: auto sync device clock after successful login"
   },
-  "repeater_clockSyncAfterLoginSubtitle": "Automatically send \"clock sync\" after a successful login",
+  "repeater_clockSyncAfterLoginSubtitle": "After login, set the repeater to your phone's time if its clock is off",
+  "repeater_cliLateReply": "Late reply to “{command}”: {reply}",
+  "@repeater_cliLateReply": {
+    "placeholders": {
+      "command": {
+        "type": "String"
+      },
+      "reply": {
+        "type": "String"
+      }
+    }
+  },
+  "repeater_clockWrongNotice": "{name}'s clock is wrong. Its adverts will look old.",
+  "@repeater_clockWrongNotice": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "repeater_clockSyncAction": "Sync",
+  "repeater_clockSyncDone": "{name}'s clock now matches your phone.",
+  "@repeater_clockSyncDone": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "repeater_clockAhead": "{name}'s clock is ahead of your phone's and can't be set back.",
+  "@repeater_clockAhead": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "repeater_clockSyncFailed": "Couldn't set {name}'s clock. Try Settings → Sync clock now.",
+  "@repeater_clockSyncFailed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "@repeater_clockSyncAfterLoginSubtitle": {
     "description": "Repeater setting subtitle: describes the clock sync after login behavior"
   },

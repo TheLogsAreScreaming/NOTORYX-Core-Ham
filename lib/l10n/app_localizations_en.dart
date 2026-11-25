@@ -2912,7 +2912,35 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get repeater_clockSyncAfterLoginSubtitle =>
-      'Automatically send \"clock sync\" after a successful login';
+      'After login, set the repeater to your phone\'s time if its clock is off';
+
+  @override
+  String repeater_cliLateReply(String command, String reply) {
+    return 'Late reply to “$command”: $reply';
+  }
+
+  @override
+  String repeater_clockWrongNotice(String name) {
+    return '$name\'s clock is wrong. Its adverts will look old.';
+  }
+
+  @override
+  String get repeater_clockSyncAction => 'Sync';
+
+  @override
+  String repeater_clockSyncDone(String name) {
+    return '$name\'s clock now matches your phone.';
+  }
+
+  @override
+  String repeater_clockAhead(String name) {
+    return '$name\'s clock is ahead of your phone\'s and can\'t be set back.';
+  }
+
+  @override
+  String repeater_clockSyncFailed(String name) {
+    return 'Couldn\'t set $name\'s clock. Try Settings → Sync clock now.';
+  }
 
   @override
   String get repeater_statusTitle => 'Repeater Status';

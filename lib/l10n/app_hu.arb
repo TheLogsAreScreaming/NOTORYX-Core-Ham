@@ -2322,6 +2322,12 @@
     "description": "Repeater setting subtitle: describes the clock sync after login behavior"
   },
   "repeater_clockSyncAfterLoginSubtitle": "„Óraszinkronizálás” automatikus küldése sikeres bejelentkezés után",
+  "repeater_cliLateReply": "Késve érkezett válasz erre: „{command}”: {reply}",
+  "repeater_clockWrongNotice": "{name} órája rosszul jár. A hirdetései régieknek fognak tűnni.",
+  "repeater_clockSyncAction": "Szinkronizálás",
+  "repeater_clockSyncDone": "{name} órája most egyezik a telefonjával.",
+  "repeater_clockAhead": "{name} órája siet a telefonjához képest, és nem állítható vissza.",
+  "repeater_clockSyncFailed": "Nem sikerült beállítani {name} óráját. Próbálja: Beállítások → Óra szinkronizálása most.",
   "repeater_clockSyncAfterLogin": "Óra szinkronizálás bejelentkezés után",
   "repeater_guestTools": "Vendégeszközök",
   "room_guest": "Szobaszerver információ",

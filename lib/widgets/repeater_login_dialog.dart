@@ -7,7 +7,7 @@ import '../l10n/app_localizations.dart';
 import '../l10n/l10n.dart';
 import '../models/contact.dart';
 import '../l10n/contact_localization.dart';
-import '../services/repeater_command_service.dart';
+import '../services/repeater_clock_sync.dart';
 import '../services/repeater_login_doctor.dart';
 import '../services/storage_service.dart';
 import '../connector/meshcore_connector.dart';
@@ -219,26 +219,18 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
           .getRepeaterAutoClockSyncAfterLoginEnabled(
             widget.repeater.publicKeyHex,
           );
-      if (autoClockSync) {
-        try {
-          final timestampSeconds =
-              DateTime.now().millisecondsSinceEpoch ~/ 1000;
-          await _connector.sendFrame(
-            buildSendCliCommandFrame(
-              repeater.publicKey,
-              normalizeRepeaterClockSyncCommand(
-                'clock sync',
-                nowSeconds: timestampSeconds,
-              ),
-              timestampSeconds: timestampSeconds,
-            ),
-          );
-        } catch (e) {
-          appLogger.warn(
-            'Auto clock sync failed for ${repeater.name}: $e',
-            tag: 'RepeaterLogin',
-          );
-        }
+      final behind = RepeaterClockSync.behindBy(
+        _connector.repeaterClockAtLogin(repeater.publicKey),
+        DateTime.now(),
+      );
+      if (mounted) {
+        _checkRepeaterClock(
+          ScaffoldMessenger.of(context),
+          context.l10n,
+          repeater,
+          enabled: autoClockSync,
+          behind: behind,
+        );
       }
 
       if (mounted) {
@@ -311,6 +303,63 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
     timer.cancel();
     await subscription.cancel();
     return (result, isAdmin);
+  }
+
+  /// After login: sends the phone's time when the repeater's clock is off
+  /// (retrying, as a single lost reply is common on busy meshes), or tells
+  /// the user about a wrong clock when they turned automatic sync off. Runs
+  /// after the dialog closes, so it never holds up the login.
+  void _checkRepeaterClock(
+    ScaffoldMessengerState messenger,
+    AppLocalizations l10n,
+    Contact repeater, {
+    required bool enabled,
+    required Duration? behind,
+  }) {
+    if (RepeaterClockSync.shouldNotify(enabled: enabled, behind: behind)) {
+      messenger.showSnackBar(
+        SnackBar(
+          content: Text(l10n.repeater_clockWrongNotice(repeater.name)),
+          action: SnackBarAction(
+            label: l10n.repeater_clockSyncAction,
+            onPressed: () => _syncRepeaterClock(messenger, l10n, repeater),
+          ),
+        ),
+      );
+      return;
+    }
+    if (RepeaterClockSync.shouldSync(enabled: enabled, behind: behind)) {
+      _syncRepeaterClock(messenger, l10n, repeater, quietIfSet: behind == null);
+    }
+  }
+
+  void _syncRepeaterClock(
+    ScaffoldMessengerState messenger,
+    AppLocalizations l10n,
+    Contact repeater, {
+    bool quietIfSet = false,
+  }) {
+    unawaited(
+      RepeaterClockSync.sync(_connector, repeater).then((result) {
+        appLogger.info(
+          'Clock sync for ${repeater.name}: ${result.name}',
+          tag: 'RepeaterLogin',
+        );
+        final text = switch (result) {
+          RepeaterClockSyncResult.set =>
+            quietIfSet ? null : l10n.repeater_clockSyncDone(repeater.name),
+          RepeaterClockSyncResult.ahead => l10n.repeater_clockAhead(
+            repeater.name,
+          ),
+          RepeaterClockSyncResult.failed => l10n.repeater_clockSyncFailed(
+            repeater.name,
+          ),
+        };
+        if (text != null && messenger.mounted) {
+          messenger.showSnackBar(SnackBar(content: Text(text)));
+        }
+      }),
+    );
   }
 
   @override

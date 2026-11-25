@@ -2285,6 +2285,12 @@
     "description": "Repeater setting subtitle: describes the clock sync after login behavior"
   },
   "repeater_clockSyncAfterLoginSubtitle": "Automatisch een \"klok synchroniseren\" bericht versturen na een succesvolle inlog.",
+  "repeater_cliLateReply": "Late reactie op ‘{command}’: {reply}",
+  "repeater_clockWrongNotice": "De klok van {name} loopt verkeerd. Zijn adverts lijken daardoor oud.",
+  "repeater_clockSyncAction": "Synchroniseren",
+  "repeater_clockSyncDone": "De klok van {name} komt nu overeen met je telefoon.",
+  "repeater_clockAhead": "De klok van {name} loopt voor op je telefoon en kan niet worden teruggezet.",
+  "repeater_clockSyncFailed": "Kon de klok van {name} niet instellen. Probeer Instellingen → Synchroniseer klok nu.",
   "repeater_clockSyncAfterLogin": "Na het inloggen, klok synchroniseren",
   "repeater_guestTools": "Gastenfuncties",
   "room_guest": "Informatie over de server",

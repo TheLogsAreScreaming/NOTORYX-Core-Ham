@@ -4520,6 +4520,11 @@ class MeshCoreConnector extends ChangeNotifier {
           flags: contact.flags,
           name: contact.name,
           lastAdvertTimestamp: _knownAdvertSeconds(contact),
+          // Without these the radio stamps "last heard" as now on every
+          // path change, so the node would always look just heard.
+          lat: _knownContact(contact).latitude,
+          lon: _knownContact(contact).longitude,
+          lastModified: _knownContact(contact).lastModified,
         ),
       );
       // USB writes return instantly (no BLE flow control), so give the firmware
@@ -4551,13 +4556,13 @@ class MeshCoreConnector extends ChangeNotifier {
 
   /// The advert time the radio holds for [contact], from our copy of its
   /// contact list (a screen may pass an older copy of the contact).
-  int _knownAdvertSeconds(Contact contact) => advertSeconds(
-    _contacts
-        .firstWhere(
-          (c) => c.publicKeyHex == contact.publicKeyHex,
-          orElse: () => contact,
-        )
-        .lastSeen,
+  int _knownAdvertSeconds(Contact contact) =>
+      advertSeconds(_knownContact(contact).lastSeen);
+
+  /// Our copy of the radio's record for [contact], or [contact] itself.
+  Contact _knownContact(Contact contact) => _contacts.firstWhere(
+    (c) => c.publicKeyHex == contact.publicKeyHex,
+    orElse: () => contact,
   );
 
   Future<void> setContactFlags(
@@ -4611,6 +4616,10 @@ class MeshCoreConnector extends ChangeNotifier {
         flags: updatedFlags,
         name: latestContact.name,
         lastAdvertTimestamp: advertSeconds(latestContact.lastSeen),
+        // Keep the radio's "last heard" time instead of stamping it now.
+        lat: latestContact.latitude,
+        lon: latestContact.longitude,
+        lastModified: latestContact.lastModified,
       ),
     );
 

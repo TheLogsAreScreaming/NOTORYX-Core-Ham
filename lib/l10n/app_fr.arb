@@ -2404,6 +2404,12 @@
     "description": "Repeater setting subtitle: describes the clock sync after login behavior"
   },
   "repeater_clockSyncAfterLoginSubtitle": "Envoyer automatiquement une notification \"synchronisation de l'heure\" après une connexion réussie.",
+  "repeater_cliLateReply": "Réponse tardive à « {command} » : {reply}",
+  "repeater_clockWrongNotice": "L'horloge de {name} est fausse. Ses annonces paraîtront anciennes.",
+  "repeater_clockSyncAction": "Synchroniser",
+  "repeater_clockSyncDone": "L'horloge de {name} correspond maintenant à votre téléphone.",
+  "repeater_clockAhead": "L'horloge de {name} est en avance sur votre téléphone et ne peut pas être reculée.",
+  "repeater_clockSyncFailed": "Impossible de régler l'horloge de {name}. Essayez Paramètres → Synchroniser l'heure maintenant.",
   "repeater_clockSyncAfterLogin": "Synchronisation de l'horloge après la connexion",
   "repeater_guestTools": "Outils pour les invités",
   "chat_sendMessage": "Envoyer un message",

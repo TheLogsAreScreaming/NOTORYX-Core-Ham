@@ -2966,6 +2966,34 @@ class AppLocalizationsFr extends AppLocalizations {
       'Envoyer automatiquement une notification \"synchronisation de l\'heure\" après une connexion réussie.';
 
   @override
+  String repeater_cliLateReply(String command, String reply) {
+    return 'Réponse tardive à « $command » : $reply';
+  }
+
+  @override
+  String repeater_clockWrongNotice(String name) {
+    return 'L\'horloge de $name est fausse. Ses annonces paraîtront anciennes.';
+  }
+
+  @override
+  String get repeater_clockSyncAction => 'Synchroniser';
+
+  @override
+  String repeater_clockSyncDone(String name) {
+    return 'L\'horloge de $name correspond maintenant à votre téléphone.';
+  }
+
+  @override
+  String repeater_clockAhead(String name) {
+    return 'L\'horloge de $name est en avance sur votre téléphone et ne peut pas être reculée.';
+  }
+
+  @override
+  String repeater_clockSyncFailed(String name) {
+    return 'Impossible de régler l\'horloge de $name. Essayez Paramètres → Synchroniser l\'heure maintenant.';
+  }
+
+  @override
   String get repeater_statusTitle => 'État du répéteur';
 
   @override

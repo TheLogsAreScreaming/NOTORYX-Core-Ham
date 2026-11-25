@@ -2963,6 +2963,34 @@ class AppLocalizationsRu extends AppLocalizations {
       'Автоматически отправлять сообщение \"синхронизация времени\" после успешной авторизации.';
 
   @override
+  String repeater_cliLateReply(String command, String reply) {
+    return 'Запоздалый ответ на «$command»: $reply';
+  }
+
+  @override
+  String repeater_clockWrongNotice(String name) {
+    return 'Часы $name идут неверно. Его объявления будут выглядеть старыми.';
+  }
+
+  @override
+  String get repeater_clockSyncAction => 'Синхронизировать';
+
+  @override
+  String repeater_clockSyncDone(String name) {
+    return 'Часы $name теперь совпадают с вашим телефоном.';
+  }
+
+  @override
+  String repeater_clockAhead(String name) {
+    return 'Часы $name спешат относительно телефона и не могут быть переведены назад.';
+  }
+
+  @override
+  String repeater_clockSyncFailed(String name) {
+    return 'Не удалось установить часы $name. Попробуйте Настройки → Синхронизировать время сейчас.';
+  }
+
+  @override
   String get repeater_statusTitle => 'Статус репитера';
 
   @override

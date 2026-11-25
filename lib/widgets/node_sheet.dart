@@ -156,7 +156,7 @@ void showNodeSheet(BuildContext context, Contact c) {
             InstrumentRow(
               icon: contactTypeIcon(c.type),
               title: hopLabel(l10n, hopBand(c)),
-              subtitle: l10n.fieldIntel_lastHeard(agoLabel(l10n, c.lastSeen)),
+              subtitle: l10n.fieldIntel_lastHeard(agoLabel(l10n, c.lastHeard)),
               divider: false,
             ),
             if (direct != null)
@@ -279,12 +279,12 @@ void showNodeList(BuildContext context, String title, List<Contact> nodes) {
                       children: [
                         for (final c in [
                           ...nodes,
-                        ]..sort((a, b) => b.lastSeen.compareTo(a.lastSeen)))
+                        ]..sort((a, b) => b.lastHeard.compareTo(a.lastHeard)))
                           InstrumentRow(
                             icon: contactTypeIcon(c.type),
                             title: c.name,
                             subtitle:
-                                '${hopLabel(l10n, hopBand(c))} · ${agoLabel(l10n, c.lastSeen)}',
+                                '${hopLabel(l10n, hopBand(c))} · ${agoLabel(l10n, c.lastHeard)}',
                             onTap: () {
                               Navigator.pop(sheet);
                               showNodeSheet(context, c);

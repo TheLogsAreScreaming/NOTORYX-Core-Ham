@@ -5232,8 +5232,44 @@ abstract class AppLocalizations {
   /// Repeater setting subtitle: describes the clock sync after login behavior
   ///
   /// In en, this message translates to:
-  /// **'Automatically send \"clock sync\" after a successful login'**
+  /// **'After login, set the repeater to your phone\'s time if its clock is off'**
   String get repeater_clockSyncAfterLoginSubtitle;
+
+  /// No description provided for @repeater_cliLateReply.
+  ///
+  /// In en, this message translates to:
+  /// **'Late reply to “{command}”: {reply}'**
+  String repeater_cliLateReply(String command, String reply);
+
+  /// No description provided for @repeater_clockWrongNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s clock is wrong. Its adverts will look old.'**
+  String repeater_clockWrongNotice(String name);
+
+  /// No description provided for @repeater_clockSyncAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync'**
+  String get repeater_clockSyncAction;
+
+  /// No description provided for @repeater_clockSyncDone.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s clock now matches your phone.'**
+  String repeater_clockSyncDone(String name);
+
+  /// No description provided for @repeater_clockAhead.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s clock is ahead of your phone\'s and can\'t be set back.'**
+  String repeater_clockAhead(String name);
+
+  /// No description provided for @repeater_clockSyncFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t set {name}\'s clock. Try Settings → Sync clock now.'**
+  String repeater_clockSyncFailed(String name);
 
   /// No description provided for @repeater_statusTitle.
   ///

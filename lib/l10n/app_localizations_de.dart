@@ -2964,6 +2964,34 @@ class AppLocalizationsDe extends AppLocalizations {
       'Automatisch \"Uhrzeit-Synchronisierung\" nach erfolgreicher Anmeldung senden.';
 
   @override
+  String repeater_cliLateReply(String command, String reply) {
+    return 'Verspätete Antwort auf „$command“: $reply';
+  }
+
+  @override
+  String repeater_clockWrongNotice(String name) {
+    return 'Die Uhr von $name geht falsch. Seine Meldungen wirken dadurch alt.';
+  }
+
+  @override
+  String get repeater_clockSyncAction => 'Abgleichen';
+
+  @override
+  String repeater_clockSyncDone(String name) {
+    return 'Die Uhr von $name stimmt jetzt mit Ihrem Telefon überein.';
+  }
+
+  @override
+  String repeater_clockAhead(String name) {
+    return 'Die Uhr von $name geht vor und kann nicht zurückgestellt werden.';
+  }
+
+  @override
+  String repeater_clockSyncFailed(String name) {
+    return 'Die Uhr von $name konnte nicht gestellt werden. Versuchen Sie Einstellungen → Uhr jetzt synchronisieren.';
+  }
+
+  @override
   String get repeater_statusTitle => 'Repeater-Status';
 
   @override

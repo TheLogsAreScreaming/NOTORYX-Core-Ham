@@ -2284,6 +2284,12 @@
     "description": "Repeater setting subtitle: describes the clock sync after login behavior"
   },
   "repeater_clockSyncAfterLoginSubtitle": "Автоматично изпращайте съобщение \"синхронизиране на часовника\" след успешно влизане.",
+  "repeater_cliLateReply": "Закъснял отговор на „{command}“: {reply}",
+  "repeater_clockWrongNotice": "Часовникът на {name} е грешен. Обявите му ще изглеждат стари.",
+  "repeater_clockSyncAction": "Синхронизиране",
+  "repeater_clockSyncDone": "Часовникът на {name} вече съвпада с телефона ви.",
+  "repeater_clockAhead": "Часовникът на {name} избързва спрямо телефона ви и не може да се върне назад.",
+  "repeater_clockSyncFailed": "Часовникът на {name} не можа да се настрои. Опитайте Настройки → Синхронизирай часовника сега.",
   "repeater_clockSyncAfterLogin": "Синхронизиране на часовника след влизане",
   "chat_sendMessage": "Изпратете съобщение",
   "room_guest": "Информация за сървъра на стаята",

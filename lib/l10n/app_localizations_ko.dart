@@ -2830,6 +2830,34 @@ class AppLocalizationsKo extends AppLocalizations {
       '성공적인 로그인 후, 자동으로 \"시간 동기화\"를 전송합니다.';
 
   @override
+  String repeater_cliLateReply(String command, String reply) {
+    return '\'$command\'에 대한 늦은 응답: $reply';
+  }
+
+  @override
+  String repeater_clockWrongNotice(String name) {
+    return '$name의 시계가 틀렸습니다. 광고가 오래된 것처럼 보입니다.';
+  }
+
+  @override
+  String get repeater_clockSyncAction => '동기화';
+
+  @override
+  String repeater_clockSyncDone(String name) {
+    return '$name의 시계가 이제 휴대폰과 일치합니다.';
+  }
+
+  @override
+  String repeater_clockAhead(String name) {
+    return '$name의 시계가 휴대폰보다 빨라서 되돌릴 수 없습니다.';
+  }
+
+  @override
+  String repeater_clockSyncFailed(String name) {
+    return '$name의 시계를 설정하지 못했습니다. 설정 → 현재 시계 동기화를 시도하세요.';
+  }
+
+  @override
   String get repeater_statusTitle => '반복 장치 상태';
 
   @override

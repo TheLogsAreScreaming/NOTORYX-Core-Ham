@@ -2284,6 +2284,12 @@
     "description": "Repeater setting subtitle: describes the clock sync after login behavior"
   },
   "repeater_clockSyncAfterLoginSubtitle": "Samodejno po uspešnem vstopu pošljite obvestilo o sinhronizaciji časa.",
+  "repeater_cliLateReply": "Zapoznel odgovor na »{command}«: {reply}",
+  "repeater_clockWrongNotice": "Ura na {name} je napačna. Njegova obvestila bodo videti stara.",
+  "repeater_clockSyncAction": "Sinhroniziraj",
+  "repeater_clockSyncDone": "Ura na {name} se zdaj ujema s telefonom.",
+  "repeater_clockAhead": "Ura na {name} prehiteva telefon in je ni mogoče prestaviti nazaj.",
+  "repeater_clockSyncFailed": "Ure na {name} ni bilo mogoče nastaviti. Poskusite Nastavitve → Sinerizirajte uro zdaj.",
   "repeater_clockSyncAfterLogin": "Sinhronizacija ure po prijavi",
   "repeater_guest": "Informacije o ponovljalniku",
   "chat_sendMessage": "Pošlji sporočilo",

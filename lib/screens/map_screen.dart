@@ -166,7 +166,7 @@ class _MapScreenState extends State<MapScreen> {
       : Colors.black.withValues(alpha: 0.18);
 
   _NodeAge _ageOf(Contact contact) {
-    final d = DateTime.now().difference(contact.lastSeen);
+    final d = DateTime.now().difference(contact.lastHeard);
     if (d.inMinutes <= 60) return _NodeAge.online;
     if (d.inHours <= 24) return _NodeAge.recent;
     return _NodeAge.stale;
@@ -175,7 +175,7 @@ class _MapScreenState extends State<MapScreen> {
   /// Whether [contact] hasn't advertised within the "Mark nodes stale
   /// after" setting; its marker is drawn faded.
   bool _isNodeStale(Contact contact, int staleAfterHours) => isStale(
-    contact.lastSeen,
+    contact.lastHeard,
     DateTime.now(),
     staleAfterFromHours(staleAfterHours),
   );
@@ -575,7 +575,7 @@ class _MapScreenState extends State<MapScreen> {
         final filteredByTime = settings.mapTimeFilterHours == 0
             ? contacts
             : contacts.where((c) {
-                final hoursSinceLastSeen = now.difference(c.lastSeen).inHours;
+                final hoursSinceLastSeen = now.difference(c.lastHeard).inHours;
                 return hoursSinceLastSeen <= settings.mapTimeFilterHours;
               }).toList();
 
@@ -1266,7 +1266,7 @@ class _MapScreenState extends State<MapScreen> {
 
     for (final contact in allContacts) {
       if (contact.hasLocation) continue;
-      if (contact.lastSeen.isBefore(
+      if (contact.lastHeard.isBefore(
         DateTime.now().subtract(const Duration(hours: 24)),
       )) {
         continue; // skip stale contacts
@@ -2352,7 +2352,7 @@ class _MapScreenState extends State<MapScreen> {
             if (a.hasLocation != b.hasLocation) {
               return a.hasLocation ? -1 : 1;
             }
-            return b.lastSeen.compareTo(a.lastSeen);
+            return b.lastHeard.compareTo(a.lastHeard);
           });
     final results = matches.take(8).toList();
     return Container(
@@ -2717,7 +2717,7 @@ class _MapScreenState extends State<MapScreen> {
                     children: [
                       _miniMeta(
                         context.l10n.map_lastSeen,
-                        _formatLastSeen(contact.lastSeen),
+                        _formatLastSeen(contact.lastHeard),
                       ),
                       _miniMeta(
                         context.l10n.map_path,
@@ -3176,7 +3176,7 @@ class _MapScreenState extends State<MapScreen> {
                         ),
                       _buildInfoRow(
                         context.l10n.map_lastSeen,
-                        _formatLastSeen(contact.lastSeen),
+                        _formatLastSeen(contact.lastHeard),
                       ),
                       _buildInfoRow(
                         context.l10n.map_publicKey,

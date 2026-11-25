@@ -2286,6 +2286,12 @@
     "description": "Repeater setting subtitle: describes the clock sync after login behavior"
   },
   "repeater_clockSyncAfterLoginSubtitle": "Automatiskt skicka \"klocksynkronisering\" efter en lyckad inloggning.",
+  "repeater_cliLateReply": "Sent svar på ”{command}”: {reply}",
+  "repeater_clockWrongNotice": "Klockan i {name} går fel. Dess annonser kommer att se gamla ut.",
+  "repeater_clockSyncAction": "Synka",
+  "repeater_clockSyncDone": "Klockan i {name} stämmer nu med din telefon.",
+  "repeater_clockAhead": "Klockan i {name} går före din telefon och kan inte ställas tillbaka.",
+  "repeater_clockSyncFailed": "Kunde inte ställa klockan i {name}. Prova Inställningar → Synkronisera klockan nu.",
   "repeater_clockSyncAfterLogin": "Synkronisera klockan efter inloggning",
   "repeater_guest": "Repeaterinformation",
   "chat_sendMessage": "Skicka meddelande",

@@ -2794,6 +2794,34 @@ class AppLocalizationsZh extends AppLocalizations {
   String get repeater_clockSyncAfterLoginSubtitle => '在成功登录后，自动发送“时钟同步”指令。';
 
   @override
+  String repeater_cliLateReply(String command, String reply) {
+    return '“$command”的迟到回复：$reply';
+  }
+
+  @override
+  String repeater_clockWrongNotice(String name) {
+    return '$name 的时钟不准，它的广播会显得很旧。';
+  }
+
+  @override
+  String get repeater_clockSyncAction => '同步';
+
+  @override
+  String repeater_clockSyncDone(String name) {
+    return '$name 的时钟现在与你的手机一致。';
+  }
+
+  @override
+  String repeater_clockAhead(String name) {
+    return '$name 的时钟比你的手机快，无法往回调。';
+  }
+
+  @override
+  String repeater_clockSyncFailed(String name) {
+    return '无法设置 $name 的时钟。请试试 设置 → 现在同步时钟。';
+  }
+
+  @override
   String get repeater_statusTitle => '转发节点状态';
 
   @override
