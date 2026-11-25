@@ -12540,6 +12540,66 @@ class AppLocalizationsSv extends AppLocalizations {
   String get statusHistory_title => 'Statushistorik';
 
   @override
+  String get reportCard_title => 'Rapport';
+
+  @override
+  String get reportCard_hint =>
+      'Byggs bara av statuskontroller du gjort, sparade på den här telefonen. Inget extra skickas.';
+
+  @override
+  String get reportCard_empty =>
+      'Inga statuskontroller sparade än. Varje statuskontroll fyller på rapporten.';
+
+  @override
+  String get reportCard_checks => 'Kontroller';
+
+  @override
+  String get reportCard_restarts => 'Omstarter sedda';
+
+  @override
+  String get reportCard_longestUptime => 'Längsta drifttid';
+
+  @override
+  String get reportCard_battery => 'Batteri';
+
+  @override
+  String get reportCard_noise => 'Brusgolv';
+
+  @override
+  String get reportCard_errors => 'Nya fel';
+
+  @override
+  String get reportCard_neighbours => 'Grannar';
+
+  @override
+  String get reportCard_exportCsv => 'Exportera CSV';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$count på $days dagar';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '$now nu · lägst $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '$change per vecka';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return 'snitt $avg dBm · sämst $worst dBm';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return '$total hörda · $fresh nya i veckan · $gone ej hörda i veckan';
+  }
+
+  @override
   String get statusHistory_battery => 'Batteri';
 
   @override

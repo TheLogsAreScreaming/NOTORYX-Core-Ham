@@ -11831,6 +11831,64 @@ class AppLocalizationsZh extends AppLocalizations {
   String get statusHistory_title => '状态历史';
 
   @override
+  String get reportCard_title => '报告卡';
+
+  @override
+  String get reportCard_hint => '仅根据你执行并保存在此手机上的状态检查生成，不会额外发送任何内容。';
+
+  @override
+  String get reportCard_empty => '尚未保存状态检查。每次执行状态检查都会补充此报告。';
+
+  @override
+  String get reportCard_checks => '检查次数';
+
+  @override
+  String get reportCard_restarts => '检测到的重启';
+
+  @override
+  String get reportCard_longestUptime => '最长运行时间';
+
+  @override
+  String get reportCard_battery => '电池';
+
+  @override
+  String get reportCard_noise => '底噪';
+
+  @override
+  String get reportCard_errors => '新增错误';
+
+  @override
+  String get reportCard_neighbours => '邻居';
+
+  @override
+  String get reportCard_exportCsv => '导出 CSV';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$days 天内 $count 次';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '当前 $now · 最低 $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '每周 $change';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return '平均 $avg dBm · 最差 $worst dBm';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return '听到 $total · 本周新增 $fresh · 本周未听到 $gone';
+  }
+
+  @override
   String get statusHistory_battery => '电池';
 
   @override

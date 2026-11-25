@@ -12670,6 +12670,66 @@ class AppLocalizationsUk extends AppLocalizations {
   String get statusHistory_title => 'Історія стану';
 
   @override
+  String get reportCard_title => 'Зведення';
+
+  @override
+  String get reportCard_hint =>
+      'Складено лише з ваших перевірок стану, збережених на цьому телефоні. Нічого додатково не надсилається.';
+
+  @override
+  String get reportCard_empty =>
+      'Перевірок поки немає. Кожна перевірка стану доповнює це зведення.';
+
+  @override
+  String get reportCard_checks => 'Перевірки';
+
+  @override
+  String get reportCard_restarts => 'Помічено перезапусків';
+
+  @override
+  String get reportCard_longestUptime => 'Найдовший час роботи';
+
+  @override
+  String get reportCard_battery => 'Батарея';
+
+  @override
+  String get reportCard_noise => 'Рівень шуму';
+
+  @override
+  String get reportCard_errors => 'Нові помилки';
+
+  @override
+  String get reportCard_neighbours => 'Сусіди';
+
+  @override
+  String get reportCard_exportCsv => 'Експорт CSV';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$count за $days дн.';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '$now зараз · мінімум $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '$change на тиждень';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return 'середнє $avg дБм · найгірше $worst дБм';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return 'чутно: $total · нових за тиждень: $fresh · не чутно за тиждень: $gone';
+  }
+
+  @override
   String get statusHistory_battery => 'Батарея';
 
   @override

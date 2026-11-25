@@ -12674,6 +12674,66 @@ class AppLocalizationsRu extends AppLocalizations {
   String get statusHistory_title => 'История состояния';
 
   @override
+  String get reportCard_title => 'Сводка';
+
+  @override
+  String get reportCard_hint =>
+      'Составлено только из ваших проверок статуса, сохранённых на этом телефоне. Ничего дополнительно не отправляется.';
+
+  @override
+  String get reportCard_empty =>
+      'Проверок пока нет. Каждая проверка статуса дополняет эту сводку.';
+
+  @override
+  String get reportCard_checks => 'Проверки';
+
+  @override
+  String get reportCard_restarts => 'Замечено перезапусков';
+
+  @override
+  String get reportCard_longestUptime => 'Наибольшее время работы';
+
+  @override
+  String get reportCard_battery => 'Батарея';
+
+  @override
+  String get reportCard_noise => 'Уровень шума';
+
+  @override
+  String get reportCard_errors => 'Новые ошибки';
+
+  @override
+  String get reportCard_neighbours => 'Соседи';
+
+  @override
+  String get reportCard_exportCsv => 'Экспорт CSV';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$count за $days дн.';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '$now сейчас · минимум $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '$change в неделю';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return 'среднее $avg дБм · худшее $worst дБм';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return 'слышно: $total · новых за неделю: $fresh · не слышно за неделю: $gone';
+  }
+
+  @override
   String get statusHistory_battery => 'Батарея';
 
   @override

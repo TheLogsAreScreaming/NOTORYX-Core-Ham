@@ -20875,6 +20875,102 @@ abstract class AppLocalizations {
   /// **'Status history'**
   String get statusHistory_title;
 
+  /// No description provided for @reportCard_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Report card'**
+  String get reportCard_title;
+
+  /// No description provided for @reportCard_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Built only from status checks you ran and kept on this phone. Nothing extra is sent.'**
+  String get reportCard_hint;
+
+  /// No description provided for @reportCard_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No status checks kept yet. Each Status check you run adds to this report.'**
+  String get reportCard_empty;
+
+  /// No description provided for @reportCard_checks.
+  ///
+  /// In en, this message translates to:
+  /// **'Checks'**
+  String get reportCard_checks;
+
+  /// No description provided for @reportCard_restarts.
+  ///
+  /// In en, this message translates to:
+  /// **'Restarts seen'**
+  String get reportCard_restarts;
+
+  /// No description provided for @reportCard_longestUptime.
+  ///
+  /// In en, this message translates to:
+  /// **'Longest uptime'**
+  String get reportCard_longestUptime;
+
+  /// No description provided for @reportCard_battery.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery'**
+  String get reportCard_battery;
+
+  /// No description provided for @reportCard_noise.
+  ///
+  /// In en, this message translates to:
+  /// **'Noise floor'**
+  String get reportCard_noise;
+
+  /// No description provided for @reportCard_errors.
+  ///
+  /// In en, this message translates to:
+  /// **'New errors'**
+  String get reportCard_errors;
+
+  /// No description provided for @reportCard_neighbours.
+  ///
+  /// In en, this message translates to:
+  /// **'Neighbours'**
+  String get reportCard_neighbours;
+
+  /// No description provided for @reportCard_exportCsv.
+  ///
+  /// In en, this message translates to:
+  /// **'Export CSV'**
+  String get reportCard_exportCsv;
+
+  /// No description provided for @reportCard_checksValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} over {days} days'**
+  String reportCard_checksValue(int count, int days);
+
+  /// No description provided for @reportCard_batteryValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{now} now · lowest {low}'**
+  String reportCard_batteryValue(String now, String low);
+
+  /// No description provided for @reportCard_batteryTrend.
+  ///
+  /// In en, this message translates to:
+  /// **'{change} per week'**
+  String reportCard_batteryTrend(String change);
+
+  /// No description provided for @reportCard_noiseValue.
+  ///
+  /// In en, this message translates to:
+  /// **'average {avg} dBm · worst {worst} dBm'**
+  String reportCard_noiseValue(String avg, String worst);
+
+  /// No description provided for @reportCard_neighboursValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{total} heard · {fresh} new this week · {gone} not heard this week'**
+  String reportCard_neighboursValue(int total, int fresh, int gone);
+
   /// No description provided for @statusHistory_battery.
   ///
   /// In en, this message translates to:

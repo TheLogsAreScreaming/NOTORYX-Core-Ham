@@ -12632,6 +12632,66 @@ class AppLocalizationsSl extends AppLocalizations {
   String get statusHistory_title => 'Zgodovina stanja';
 
   @override
+  String get reportCard_title => 'Poročilo';
+
+  @override
+  String get reportCard_hint =>
+      'Sestavljeno le iz preverjanj stanja, ki ste jih zagnali in so shranjena na tem telefonu. Nič dodatnega se ne pošlje.';
+
+  @override
+  String get reportCard_empty =>
+      'Še ni shranjenih preverjanj. Vsako preverjanje stanja dopolni to poročilo.';
+
+  @override
+  String get reportCard_checks => 'Preverjanja';
+
+  @override
+  String get reportCard_restarts => 'Zaznani ponovni zagoni';
+
+  @override
+  String get reportCard_longestUptime => 'Najdaljši čas delovanja';
+
+  @override
+  String get reportCard_battery => 'Baterija';
+
+  @override
+  String get reportCard_noise => 'Raven šuma';
+
+  @override
+  String get reportCard_errors => 'Nove napake';
+
+  @override
+  String get reportCard_neighbours => 'Sosedi';
+
+  @override
+  String get reportCard_exportCsv => 'Izvozi CSV';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$count v $days dneh';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '$now zdaj · najnižje $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '$change na teden';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return 'povprečje $avg dBm · najslabše $worst dBm';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return 'slišanih: $total · novih ta teden: $fresh · neslišanih ta teden: $gone';
+  }
+
+  @override
   String get statusHistory_battery => 'Baterija';
 
   @override

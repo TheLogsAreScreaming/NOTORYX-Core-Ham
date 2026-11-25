@@ -12058,6 +12058,64 @@ class AppLocalizationsJa extends AppLocalizations {
   String get statusHistory_title => 'ステータス履歴';
 
   @override
+  String get reportCard_title => 'レポート';
+
+  @override
+  String get reportCard_hint => '実行したステータス確認（この端末に保存）だけから作成します。追加の送信はありません。';
+
+  @override
+  String get reportCard_empty => 'まだ確認結果がありません。ステータス確認を行うたびにこのレポートに追加されます。';
+
+  @override
+  String get reportCard_checks => '確認回数';
+
+  @override
+  String get reportCard_restarts => '検出した再起動';
+
+  @override
+  String get reportCard_longestUptime => '最長稼働時間';
+
+  @override
+  String get reportCard_battery => 'バッテリー';
+
+  @override
+  String get reportCard_noise => 'ノイズフロア';
+
+  @override
+  String get reportCard_errors => '新しいエラー';
+
+  @override
+  String get reportCard_neighbours => '近隣ノード';
+
+  @override
+  String get reportCard_exportCsv => 'CSV を書き出す';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$days 日間で $count 回';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '現在 $now · 最低 $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '週あたり $change';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return '平均 $avg dBm · 最悪 $worst dBm';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return '受信 $total · 今週新規 $fresh · 今週未受信 $gone';
+  }
+
+  @override
   String get statusHistory_battery => 'バッテリー';
 
   @override

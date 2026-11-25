@@ -12606,6 +12606,66 @@ class AppLocalizationsSk extends AppLocalizations {
   String get statusHistory_title => 'História stavu';
 
   @override
+  String get reportCard_title => 'Prehľad';
+
+  @override
+  String get reportCard_hint =>
+      'Zostavené iba z kontrol stavu, ktoré ste spustili, uložených v tomto telefóne. Nič navyše sa neodosiela.';
+
+  @override
+  String get reportCard_empty =>
+      'Zatiaľ žiadne uložené kontroly. Každá kontrola stavu dopĺňa tento prehľad.';
+
+  @override
+  String get reportCard_checks => 'Kontroly';
+
+  @override
+  String get reportCard_restarts => 'Zistené reštarty';
+
+  @override
+  String get reportCard_longestUptime => 'Najdlhšia doba behu';
+
+  @override
+  String get reportCard_battery => 'Batéria';
+
+  @override
+  String get reportCard_noise => 'Úroveň šumu';
+
+  @override
+  String get reportCard_errors => 'Nové chyby';
+
+  @override
+  String get reportCard_neighbours => 'Susedia';
+
+  @override
+  String get reportCard_exportCsv => 'Exportovať CSV';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$count za $days dní';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '$now teraz · najnižšie $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '$change za týždeň';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return 'priemer $avg dBm · najhoršie $worst dBm';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return 'počutých: $total · nových tento týždeň: $fresh · nepočutých tento týždeň: $gone';
+  }
+
+  @override
   String get statusHistory_battery => 'Batéria';
 
   @override

@@ -12677,6 +12677,66 @@ class AppLocalizationsFr extends AppLocalizations {
   String get statusHistory_title => 'Historique d\'état';
 
   @override
+  String get reportCard_title => 'Bilan';
+
+  @override
+  String get reportCard_hint =>
+      'Établi uniquement à partir de vos vérifications d\'état, gardées sur ce téléphone. Rien d\'autre n\'est envoyé.';
+
+  @override
+  String get reportCard_empty =>
+      'Aucune vérification enregistrée pour l\'instant. Chaque vérification d\'état complète ce bilan.';
+
+  @override
+  String get reportCard_checks => 'Vérifications';
+
+  @override
+  String get reportCard_restarts => 'Redémarrages vus';
+
+  @override
+  String get reportCard_longestUptime => 'Plus longue disponibilité';
+
+  @override
+  String get reportCard_battery => 'Batterie';
+
+  @override
+  String get reportCard_noise => 'Bruit de fond';
+
+  @override
+  String get reportCard_errors => 'Nouvelles erreurs';
+
+  @override
+  String get reportCard_neighbours => 'Voisins';
+
+  @override
+  String get reportCard_exportCsv => 'Exporter en CSV';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$count sur $days jours';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '$now maintenant · minimum $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '$change par semaine';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return 'moyenne $avg dBm · pire $worst dBm';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return '$total entendus · $fresh nouveaux cette semaine · $gone non entendus cette semaine';
+  }
+
+  @override
   String get statusHistory_battery => 'Batterie';
 
   @override

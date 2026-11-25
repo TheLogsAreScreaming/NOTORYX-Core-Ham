@@ -12074,6 +12074,65 @@ class AppLocalizationsKo extends AppLocalizations {
   String get statusHistory_title => '상태 기록';
 
   @override
+  String get reportCard_title => '리포트';
+
+  @override
+  String get reportCard_hint =>
+      '직접 실행해 이 휴대폰에 저장된 상태 확인만으로 만듭니다. 추가로 전송하는 것은 없습니다.';
+
+  @override
+  String get reportCard_empty => '아직 저장된 상태 확인이 없습니다. 상태 확인을 할 때마다 리포트에 추가됩니다.';
+
+  @override
+  String get reportCard_checks => '확인 횟수';
+
+  @override
+  String get reportCard_restarts => '감지된 재시작';
+
+  @override
+  String get reportCard_longestUptime => '최장 가동 시간';
+
+  @override
+  String get reportCard_battery => '배터리';
+
+  @override
+  String get reportCard_noise => '잡음 기준';
+
+  @override
+  String get reportCard_errors => '새 오류';
+
+  @override
+  String get reportCard_neighbours => '이웃';
+
+  @override
+  String get reportCard_exportCsv => 'CSV 내보내기';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$days일 동안 $count회';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '현재 $now · 최저 $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '주당 $change';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return '평균 $avg dBm · 최악 $worst dBm';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return '들림 $total · 이번 주 새로 $fresh · 이번 주 안 들림 $gone';
+  }
+
+  @override
   String get statusHistory_battery => '배터리';
 
   @override

@@ -12615,6 +12615,66 @@ class AppLocalizationsHu extends AppLocalizations {
   String get statusHistory_title => 'Állapotelőzmények';
 
   @override
+  String get reportCard_title => 'Összesítő';
+
+  @override
+  String get reportCard_hint =>
+      'Csak az Ön által futtatott, ezen a telefonon tárolt állapotlekérdezésekből készül. Semmi extra nem kerül elküldésre.';
+
+  @override
+  String get reportCard_empty =>
+      'Még nincs tárolt lekérdezés. Minden állapotlekérdezés bővíti az összesítőt.';
+
+  @override
+  String get reportCard_checks => 'Lekérdezések';
+
+  @override
+  String get reportCard_restarts => 'Észlelt újraindítások';
+
+  @override
+  String get reportCard_longestUptime => 'Leghosszabb üzemidő';
+
+  @override
+  String get reportCard_battery => 'Akkumulátor';
+
+  @override
+  String get reportCard_noise => 'Zajszint';
+
+  @override
+  String get reportCard_errors => 'Új hibák';
+
+  @override
+  String get reportCard_neighbours => 'Szomszédok';
+
+  @override
+  String get reportCard_exportCsv => 'CSV exportálása';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$count / $days nap';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '$now most · legalacsonyabb $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '$change hetente';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return 'átlag $avg dBm · legrosszabb $worst dBm';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return '$total hallott · $fresh új a héten · $gone nem hallott a héten';
+  }
+
+  @override
   String get statusHistory_battery => 'Akku';
 
   @override
