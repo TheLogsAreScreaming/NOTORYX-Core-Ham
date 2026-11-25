@@ -2874,6 +2874,27 @@ class AppLocalizationsFr extends AppLocalizations {
       'Connexion échouée. Soit le mot de passe est incorrect, soit le relais est injoignable.';
 
   @override
+  String get login_failRadioOffline =>
+      'Votre radio n\'est pas connectée, la connexion n\'a donc pas été envoyée. Connectez-la et réessayez.';
+
+  @override
+  String get login_failSend =>
+      'Votre radio n\'a pas accepté la demande de connexion. Reconnectez-la et réessayez.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return 'Aucune réponse par le chemin enregistré ($hops sauts). Il est peut-être périmé : activez “$option” dans $section et réessayez. Un mauvais mot de passe ne reçoit pas de réponse non plus.';
+  }
+
+  @override
+  String get login_failRejected =>
+      'Le relais a répondu et refusé le mot de passe.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'Aucune réponse par inondation. Le relais est peut-être hors de portée, éteint ou occupé, ou le mot de passe est faux (les relais n\'y répondent pas). Réessayez plus près.';
+
+  @override
   String get common_reload => 'Recharger';
 
   @override
@@ -3214,6 +3235,20 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get repeater_settingsSaved =>
       'Les paramètres ont été enregistrés avec succès.';
+
+  @override
+  String get repeater_settingsConfirmed =>
+      'Réglages enregistrés et confirmés par le relais';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return 'Réglages enregistrés, mais $count n\'ont pas pu être relus pour confirmation';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key se relit comme $value';
+  }
 
   @override
   String get repeater_rxGain => 'Augmentation du rendement de RX';
@@ -6941,6 +6976,28 @@ class AppLocalizationsFr extends AppLocalizations {
   String get bastionDiag_export => 'Exporter le diagnostic';
 
   @override
+  String get diagTimeline_title => 'Historique de connexion';
+
+  @override
+  String get diagTimeline_empty =>
+      'Aucun changement de connexion depuis le lancement de l\'app.';
+
+  @override
+  String get diagTimeline_causeUser => 'à votre demande';
+
+  @override
+  String get diagTimeline_causeLinkLost => 'liaison perdue';
+
+  @override
+  String get diagTimeline_causeReconnect => 'nouvelle tentative auto';
+
+  @override
+  String get diagTimeline_causeAutoConnect => 'connecté automatiquement';
+
+  @override
+  String get diagTimeline_causeApp => 'fermé par l\'app';
+
+  @override
   String get bastionDiag_channels => 'Canaux';
 
   @override
@@ -7644,6 +7701,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get shortcuts_checkIn => 'Pointer';
+
+  @override
+  String qsTile_unread(String status, int count) {
+    return '$status · $count non lus';
+  }
 
   @override
   String get shortcuts_trip => 'Sortie';
@@ -12615,6 +12677,66 @@ class AppLocalizationsFr extends AppLocalizations {
   String get statusHistory_title => 'Historique d\'état';
 
   @override
+  String get reportCard_title => 'Bilan';
+
+  @override
+  String get reportCard_hint =>
+      'Établi uniquement à partir de vos vérifications d\'état, gardées sur ce téléphone. Rien d\'autre n\'est envoyé.';
+
+  @override
+  String get reportCard_empty =>
+      'Aucune vérification enregistrée pour l\'instant. Chaque vérification d\'état complète ce bilan.';
+
+  @override
+  String get reportCard_checks => 'Vérifications';
+
+  @override
+  String get reportCard_restarts => 'Redémarrages vus';
+
+  @override
+  String get reportCard_longestUptime => 'Plus longue disponibilité';
+
+  @override
+  String get reportCard_battery => 'Batterie';
+
+  @override
+  String get reportCard_noise => 'Bruit de fond';
+
+  @override
+  String get reportCard_errors => 'Nouvelles erreurs';
+
+  @override
+  String get reportCard_neighbours => 'Voisins';
+
+  @override
+  String get reportCard_exportCsv => 'Exporter en CSV';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$count sur $days jours';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '$now maintenant · minimum $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '$change par semaine';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return 'moyenne $avg dBm · pire $worst dBm';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return '$total entendus · $fresh nouveaux cette semaine · $gone non entendus cette semaine';
+  }
+
+  @override
   String get statusHistory_battery => 'Batterie';
 
   @override
@@ -13233,4 +13355,13 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get messageFilter_ghostIconTooltip =>
       'Masqué par votre filtre de messages';
+
+  @override
+  String get ping_noReplyNote =>
+      'L\'absence de réponse ne prouve pas que le relais est hors service. La sonde ou sa réponse peut être perdue à cause du bruit ou d\'une collision : réessayez ou testez depuis un autre endroit.';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return 'Dernier saut $name · $snr dB';
+  }
 }

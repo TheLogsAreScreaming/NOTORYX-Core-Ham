@@ -20,6 +20,7 @@ import '../utils/battery_utils.dart';
 import '../widgets/admin_wait_banner.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/repeater_history_widgets.dart';
+import '../widgets/repeater_report_card_view.dart';
 import '../widgets/routing_sheet.dart';
 import '../helpers/snack_bar_builder.dart';
 
@@ -542,6 +543,7 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
             padding: EdgeInsets.only(top: 48),
             child: Center(child: CircularProgressIndicator()),
           ),
+        RepeaterReportCardView(repeaterKey: widget.repeater.publicKeyHex),
         RepeaterStatusHistoryCard(repeaterKey: widget.repeater.publicKeyHex),
       ],
     );
@@ -672,6 +674,7 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
           ]),
         ),
         const SizedBox(height: 8),
+        RepeaterReportCardView(repeaterKey: widget.repeater.publicKeyHex),
         RepeaterStatusHistoryCard(repeaterKey: widget.repeater.publicKeyHex),
       ],
     );

@@ -2862,6 +2862,26 @@ class AppLocalizationsUk extends AppLocalizations {
       'Вхід не вдався. Або пароль неправильний, або ретранслятор недосяжний.';
 
   @override
+  String get login_failRadioOffline =>
+      'Радіо не підключено, тому вхід не надіслано. Підключіть радіо й спробуйте ще раз.';
+
+  @override
+  String get login_failSend =>
+      'Радіо не прийняло запит на вхід. Перепідключіть його й спробуйте ще раз.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return 'Немає відповіді збереженим шляхом ($hops переходів). Можливо, він застарів: увімкніть $section → $option і повторіть. На неправильний пароль відповіді теж немає.';
+  }
+
+  @override
+  String get login_failRejected => 'Ретранслятор відповів і відхилив пароль.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'Немає відповіді флудом. Ретранслятор може бути поза зоною, вимкнений чи зайнятий, або пароль неправильний (на нього ретранслятори не відповідають). Спробуйте ближче.';
+
+  @override
   String get common_reload => 'Перезавантажити';
 
   @override
@@ -3203,6 +3223,20 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => 'Налаштування успішно збережено.';
+
+  @override
+  String get repeater_settingsConfirmed =>
+      'Налаштування збережено й підтверджено ретранслятором';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return 'Налаштування збережено, але $count не вдалося прочитати назад для перевірки';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key читається як $value';
+  }
 
   @override
   String get repeater_rxGain => 'Підвищена ефективність RX';
@@ -6945,6 +6979,28 @@ class AppLocalizationsUk extends AppLocalizations {
   String get bastionDiag_export => 'Експортувати діагностику';
 
   @override
+  String get diagTimeline_title => 'Історія підключення';
+
+  @override
+  String get diagTimeline_empty =>
+      'Відколи застосунок запущено, підключення не змінювалося.';
+
+  @override
+  String get diagTimeline_causeUser => 'на ваш запит';
+
+  @override
+  String get diagTimeline_causeLinkLost => 'зв\'язок втрачено';
+
+  @override
+  String get diagTimeline_causeReconnect => 'автоматична повторна спроба';
+
+  @override
+  String get diagTimeline_causeAutoConnect => 'підключено автоматично';
+
+  @override
+  String get diagTimeline_causeApp => 'закрито застосунком';
+
+  @override
   String get bastionDiag_channels => 'Канали';
 
   @override
@@ -7649,6 +7705,11 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get shortcuts_checkIn => 'Позначитися';
+
+  @override
+  String qsTile_unread(String status, int count) {
+    return '$status · непрочитаних: $count';
+  }
 
   @override
   String get shortcuts_trip => 'Похід';
@@ -12609,6 +12670,66 @@ class AppLocalizationsUk extends AppLocalizations {
   String get statusHistory_title => 'Історія стану';
 
   @override
+  String get reportCard_title => 'Зведення';
+
+  @override
+  String get reportCard_hint =>
+      'Складено лише з ваших перевірок стану, збережених на цьому телефоні. Нічого додатково не надсилається.';
+
+  @override
+  String get reportCard_empty =>
+      'Перевірок поки немає. Кожна перевірка стану доповнює це зведення.';
+
+  @override
+  String get reportCard_checks => 'Перевірки';
+
+  @override
+  String get reportCard_restarts => 'Помічено перезапусків';
+
+  @override
+  String get reportCard_longestUptime => 'Найдовший час роботи';
+
+  @override
+  String get reportCard_battery => 'Батарея';
+
+  @override
+  String get reportCard_noise => 'Рівень шуму';
+
+  @override
+  String get reportCard_errors => 'Нові помилки';
+
+  @override
+  String get reportCard_neighbours => 'Сусіди';
+
+  @override
+  String get reportCard_exportCsv => 'Експорт CSV';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$count за $days дн.';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '$now зараз · мінімум $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '$change на тиждень';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return 'середнє $avg дБм · найгірше $worst дБм';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return 'чутно: $total · нових за тиждень: $fresh · не чутно за тиждень: $gone';
+  }
+
+  @override
   String get statusHistory_battery => 'Батарея';
 
   @override
@@ -13233,4 +13354,13 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get messageFilter_ghostIconTooltip =>
       'Приховано вашим фільтром повідомлень';
+
+  @override
+  String get ping_noReplyNote =>
+      'Відсутність відповіді не доводить, що ретранслятор не працює. Запит або відповідь можуть загубитися через шум чи колізію; спробуйте ще раз або перевірте з іншого місця.';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return 'Останній перехід $name · $snr дБ';
+  }
 }

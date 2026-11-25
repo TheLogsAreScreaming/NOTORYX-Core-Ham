@@ -2744,6 +2744,25 @@ class AppLocalizationsKo extends AppLocalizations {
       '로그인에 실패했습니다. 비밀번호가 잘못되었거나, 연결이 되지 않는 것 같습니다.';
 
   @override
+  String get login_failRadioOffline =>
+      '무전기가 연결되지 않아 로그인을 보내지 못했습니다. 무전기를 연결한 뒤 다시 시도하세요.';
+
+  @override
+  String get login_failSend => '무전기가 로그인 요청을 받지 않았습니다. 다시 연결한 뒤 시도하세요.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return '저장된 경로($hops홉)로 응답이 없습니다. 경로가 오래되었을 수 있으니 $section에서 “$option”를 켜고 다시 시도하세요. 비밀번호가 틀려도 응답이 없습니다.';
+  }
+
+  @override
+  String get login_failRejected => '리피터가 응답했지만 비밀번호를 거부했습니다.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      '플러드로 응답이 없습니다. 리피터가 범위 밖이거나 꺼져 있거나 바쁠 수 있고, 비밀번호가 틀렸을 수도 있습니다(틀리면 응답하지 않음). 더 가까이에서 다시 시도하세요.';
+
+  @override
   String get common_reload => '다시 불러오기';
 
   @override
@@ -3065,6 +3084,19 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => '설정이 성공적으로 저장되었습니다.';
+
+  @override
+  String get repeater_settingsConfirmed => '설정을 저장했고 리피터가 확인했습니다';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return '설정을 저장했지만 $count개는 다시 읽어 확인하지 못했습니다';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key 값을 다시 읽으니 $value';
+  }
 
   @override
   String get repeater_rxGain => '향상된 RX 성능';
@@ -6577,6 +6609,27 @@ class AppLocalizationsKo extends AppLocalizations {
   String get bastionDiag_export => '진단 내보내기';
 
   @override
+  String get diagTimeline_title => '연결 기록';
+
+  @override
+  String get diagTimeline_empty => '앱을 시작한 후 연결 변경이 없습니다.';
+
+  @override
+  String get diagTimeline_causeUser => '사용자 요청';
+
+  @override
+  String get diagTimeline_causeLinkLost => '연결 끊김';
+
+  @override
+  String get diagTimeline_causeReconnect => '자동 재시도';
+
+  @override
+  String get diagTimeline_causeAutoConnect => '자동 연결';
+
+  @override
+  String get diagTimeline_causeApp => '앱이 닫음';
+
+  @override
   String get bastionDiag_channels => '채널';
 
   @override
@@ -7255,6 +7308,11 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get shortcuts_checkIn => '체크인';
+
+  @override
+  String qsTile_unread(String status, int count) {
+    return '$status · 읽지 않음 $count';
+  }
 
   @override
   String get shortcuts_trip => '여정';
@@ -12016,6 +12074,65 @@ class AppLocalizationsKo extends AppLocalizations {
   String get statusHistory_title => '상태 기록';
 
   @override
+  String get reportCard_title => '리포트';
+
+  @override
+  String get reportCard_hint =>
+      '직접 실행해 이 휴대폰에 저장된 상태 확인만으로 만듭니다. 추가로 전송하는 것은 없습니다.';
+
+  @override
+  String get reportCard_empty => '아직 저장된 상태 확인이 없습니다. 상태 확인을 할 때마다 리포트에 추가됩니다.';
+
+  @override
+  String get reportCard_checks => '확인 횟수';
+
+  @override
+  String get reportCard_restarts => '감지된 재시작';
+
+  @override
+  String get reportCard_longestUptime => '최장 가동 시간';
+
+  @override
+  String get reportCard_battery => '배터리';
+
+  @override
+  String get reportCard_noise => '잡음 기준';
+
+  @override
+  String get reportCard_errors => '새 오류';
+
+  @override
+  String get reportCard_neighbours => '이웃';
+
+  @override
+  String get reportCard_exportCsv => 'CSV 내보내기';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$days일 동안 $count회';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '현재 $now · 최저 $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '주당 $change';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return '평균 $avg dBm · 최악 $worst dBm';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return '들림 $total · 이번 주 새로 $fresh · 이번 주 안 들림 $gone';
+  }
+
+  @override
   String get statusHistory_battery => '배터리';
 
   @override
@@ -12600,4 +12717,13 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get messageFilter_ghostIconTooltip => '메시지 필터로 숨겨짐';
+
+  @override
+  String get ping_noReplyNote =>
+      '응답이 없다고 해서 리피터가 꺼졌다는 증거는 아닙니다. 프로브나 응답이 잡음이나 충돌로 사라질 수 있으니 다시 시도하거나 다른 위치에서 테스트하세요.';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return '마지막 홉 $name · $snr dB';
+  }
 }

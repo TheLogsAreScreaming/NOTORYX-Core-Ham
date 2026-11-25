@@ -2710,6 +2710,24 @@ class AppLocalizationsZh extends AppLocalizations {
   String get login_failedMessage => '登录失败。可能是密码错误或无法连接到服务器。';
 
   @override
+  String get login_failRadioOffline => '电台未连接，登录未发送。请连接电台后重试。';
+
+  @override
+  String get login_failSend => '电台未接受登录请求。请重新连接后重试。';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return '通过已保存路径（$hops 跳）没有回复。路径可能已过时：请在$section中开启“$option”后重试。密码错误时同样不会回复。';
+  }
+
+  @override
+  String get login_failRejected => '中继器已回复并拒绝了密码。';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      '泛洪没有回复。中继器可能超出范围、已关闭或繁忙，也可能密码错误（密码错误时中继器不回复）。请靠近后重试。';
+
+  @override
   String get common_reload => '重新加载';
 
   @override
@@ -3027,6 +3045,19 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => '设置保存成功';
+
+  @override
+  String get repeater_settingsConfirmed => '设置已保存并经中继器确认';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return '设置已保存，但有 $count 项无法回读确认';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key 回读为 $value';
+  }
 
   @override
   String get repeater_rxGain => '增强的 RX 增益';
@@ -6426,6 +6457,27 @@ class AppLocalizationsZh extends AppLocalizations {
   String get bastionDiag_export => '导出诊断';
 
   @override
+  String get diagTimeline_title => '连接时间线';
+
+  @override
+  String get diagTimeline_empty => '应用启动以来连接没有变化。';
+
+  @override
+  String get diagTimeline_causeUser => '由你操作';
+
+  @override
+  String get diagTimeline_causeLinkLost => '链路断开';
+
+  @override
+  String get diagTimeline_causeReconnect => '自动重试';
+
+  @override
+  String get diagTimeline_causeAutoConnect => '自动连接';
+
+  @override
+  String get diagTimeline_causeApp => '由应用关闭';
+
+  @override
   String get bastionDiag_channels => '频道';
 
   @override
@@ -7095,6 +7147,11 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get shortcuts_checkIn => '报到';
+
+  @override
+  String qsTile_unread(String status, int count) {
+    return '$status · $count 条未读';
+  }
 
   @override
   String get shortcuts_trip => '行程';
@@ -11774,6 +11831,64 @@ class AppLocalizationsZh extends AppLocalizations {
   String get statusHistory_title => '状态历史';
 
   @override
+  String get reportCard_title => '报告卡';
+
+  @override
+  String get reportCard_hint => '仅根据你执行并保存在此手机上的状态检查生成，不会额外发送任何内容。';
+
+  @override
+  String get reportCard_empty => '尚未保存状态检查。每次执行状态检查都会补充此报告。';
+
+  @override
+  String get reportCard_checks => '检查次数';
+
+  @override
+  String get reportCard_restarts => '检测到的重启';
+
+  @override
+  String get reportCard_longestUptime => '最长运行时间';
+
+  @override
+  String get reportCard_battery => '电池';
+
+  @override
+  String get reportCard_noise => '底噪';
+
+  @override
+  String get reportCard_errors => '新增错误';
+
+  @override
+  String get reportCard_neighbours => '邻居';
+
+  @override
+  String get reportCard_exportCsv => '导出 CSV';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$days 天内 $count 次';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '当前 $now · 最低 $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '每周 $change';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return '平均 $avg dBm · 最差 $worst dBm';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return '听到 $total · 本周新增 $fresh · 本周未听到 $gone';
+  }
+
+  @override
   String get statusHistory_battery => '电池';
 
   @override
@@ -12350,4 +12465,13 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get messageFilter_ghostIconTooltip => '已被你的消息过滤隐藏';
+
+  @override
+  String get ping_noReplyNote =>
+      '没有回复并不能证明中继器已离线。探测或其回复可能因噪声或冲突而丢失，请重试或换个位置测试。';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return '最后一跳 $name · $snr dB';
+  }
 }
