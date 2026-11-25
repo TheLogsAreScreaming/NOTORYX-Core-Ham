@@ -13233,4 +13233,13 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get messageFilter_ghostIconTooltip =>
       'Приховано вашим фільтром повідомлень';
+
+  @override
+  String get ping_noReplyNote =>
+      'Відсутність відповіді не доводить, що ретранслятор не працює. Запит або відповідь можуть загубитися через шум чи колізію; спробуйте ще раз або перевірте з іншого місця.';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return 'Останній перехід $name · $snr дБ';
+  }
 }

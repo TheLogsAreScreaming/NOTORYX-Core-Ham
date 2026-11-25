@@ -12587,4 +12587,13 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get messageFilter_ghostIconTooltip => 'メッセージフィルターで隠されました';
+
+  @override
+  String get ping_noReplyNote =>
+      '応答がなくてもリピーターが停止しているとは限りません。プローブや応答はノイズや衝突で失われることがあります。もう一度試すか、別の場所からテストしてください。';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return '最終ホップ $name · $snr dB';
+  }
 }

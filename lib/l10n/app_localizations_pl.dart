@@ -13229,4 +13229,13 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get messageFilter_ghostIconTooltip =>
       'Ukryte przez Twój filtr wiadomości';
+
+  @override
+  String get ping_noReplyNote =>
+      'Brak odpowiedzi nie dowodzi, że przekaźnik nie działa. Sonda lub odpowiedź mogą zginąć przez szum lub kolizję; spróbuj ponownie albo z innego miejsca.';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return 'Ostatni skok $name · $snr dB';
+  }
 }

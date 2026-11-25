@@ -13233,4 +13233,13 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get messageFilter_ghostIconTooltip =>
       'Masqué par votre filtre de messages';
+
+  @override
+  String get ping_noReplyNote =>
+      'L\'absence de réponse ne prouve pas que le relais est hors service. La sonde ou sa réponse peut être perdue à cause du bruit ou d\'une collision : réessayez ou testez depuis un autre endroit.';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return 'Dernier saut $name · $snr dB';
+  }
 }

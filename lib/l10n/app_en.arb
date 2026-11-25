@@ -8385,5 +8385,17 @@
   "messageFilter_ghostIconTooltip": "Hidden by your message filter",
   "@messageFilter_ghostIconTooltip": {
     "description": "Message filter: Hidden by your message filter"
+  },
+  "ping_noReplyNote": "No reply isn't proof the repeater is down. The probe or its answer can be lost to noise or a collision, so try again or test from another spot.",
+  "traffic_lastHop": "Last hop {name} · {snr} dB",
+  "@traffic_lastHop": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "snr": {
+        "type": "String"
+      }
+    }
   }
 }

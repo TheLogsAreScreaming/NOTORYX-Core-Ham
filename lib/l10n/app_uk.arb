@@ -4899,5 +4899,7 @@
   "messageFilter_filterSenderConfirm": "Приховати всі повідомлення від «{name}»?",
   "messageFilter_filterLikeThis": "Фільтрувати повідомлення, схожі на це…",
   "messageFilter_channelToggle": "Фільтрувати повідомлення в цьому каналі",
-  "messageFilter_ghostIconTooltip": "Приховано вашим фільтром повідомлень"
+  "messageFilter_ghostIconTooltip": "Приховано вашим фільтром повідомлень",
+  "ping_noReplyNote": "Відсутність відповіді не доводить, що ретранслятор не працює. Запит або відповідь можуть загубитися через шум чи колізію; спробуйте ще раз або перевірте з іншого місця.",
+  "traffic_lastHop": "Останній перехід {name} · {snr} дБ"
 }

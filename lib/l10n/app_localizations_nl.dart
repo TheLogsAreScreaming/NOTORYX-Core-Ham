@@ -13142,4 +13142,13 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get messageFilter_ghostIconTooltip =>
       'Verborgen door je berichtenfilter';
+
+  @override
+  String get ping_noReplyNote =>
+      'Geen antwoord bewijst niet dat de repeater uit is. De test of het antwoord kan verloren gaan door ruis of een botsing; probeer opnieuw of test vanaf een andere plek.';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return 'Laatste hop $name · $snr dB';
+  }
 }

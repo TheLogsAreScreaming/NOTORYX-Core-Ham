@@ -4919,5 +4919,7 @@
   "messageFilter_filterSenderConfirm": "Dölja alla meddelanden från ”{name}”?",
   "messageFilter_filterLikeThis": "Filtrera meddelanden som detta…",
   "messageFilter_channelToggle": "Filtrera meddelanden i den här kanalen",
-  "messageFilter_ghostIconTooltip": "Dolt av ditt meddelandefilter"
+  "messageFilter_ghostIconTooltip": "Dolt av ditt meddelandefilter",
+  "ping_noReplyNote": "Inget svar bevisar inte att repeatern är nere. Förfrågan eller svaret kan försvinna i brus eller en kollision, så försök igen eller testa från en annan plats.",
+  "traffic_lastHop": "Sista hopp {name} · {snr} dB"
 }

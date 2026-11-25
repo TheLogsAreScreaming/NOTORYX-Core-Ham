@@ -5053,5 +5053,7 @@
   "messageFilter_filterSenderConfirm": "「{name}」からのメッセージをすべて隠しますか？",
   "messageFilter_filterLikeThis": "このようなメッセージをフィルター…",
   "messageFilter_channelToggle": "このチャンネルでメッセージをフィルター",
-  "messageFilter_ghostIconTooltip": "メッセージフィルターで隠されました"
+  "messageFilter_ghostIconTooltip": "メッセージフィルターで隠されました",
+  "ping_noReplyNote": "応答がなくてもリピーターが停止しているとは限りません。プローブや応答はノイズや衝突で失われることがあります。もう一度試すか、別の場所からテストしてください。",
+  "traffic_lastHop": "最終ホップ {name} · {snr} dB"
 }

@@ -13175,4 +13175,13 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get messageFilter_ghostIconTooltip =>
       'Скрито от твоя филтър за съобщения';
+
+  @override
+  String get ping_noReplyNote =>
+      'Липсата на отговор не доказва, че ретранслаторът не работи. Заявката или отговорът могат да се загубят заради шум или сблъсък; опитайте отново или от друго място.';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return 'Последен скок $name · $snr dB';
+  }
 }

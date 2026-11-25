@@ -13234,4 +13234,13 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get messageFilter_ghostIconTooltip =>
       'Скрыто вашим фильтром сообщений';
+
+  @override
+  String get ping_noReplyNote =>
+      'Отсутствие ответа не доказывает, что ретранслятор не работает. Запрос или ответ могут потеряться из-за шума или коллизии; повторите попытку или проверьте из другого места.';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return 'Последний переход $name · $snr дБ';
+  }
 }

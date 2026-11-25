@@ -4222,5 +4222,7 @@
   "messageFilter_filterSenderConfirm": "Скрывать все сообщения от «{name}»?",
   "messageFilter_filterLikeThis": "Фильтровать похожие сообщения…",
   "messageFilter_channelToggle": "Фильтровать сообщения в этом канале",
-  "messageFilter_ghostIconTooltip": "Скрыто вашим фильтром сообщений"
+  "messageFilter_ghostIconTooltip": "Скрыто вашим фильтром сообщений",
+  "ping_noReplyNote": "Отсутствие ответа не доказывает, что ретранслятор не работает. Запрос или ответ могут потеряться из-за шума или коллизии; повторите попытку или проверьте из другого места.",
+  "traffic_lastHop": "Последний переход {name} · {snr} дБ"
 }

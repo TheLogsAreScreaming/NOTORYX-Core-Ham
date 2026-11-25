@@ -5053,5 +5053,7 @@
   "messageFilter_filterSenderConfirm": "¿Ocultar todos los mensajes de \"{name}\"?",
   "messageFilter_filterLikeThis": "Filtrar mensajes como este…",
   "messageFilter_channelToggle": "Filtrar mensajes en este canal",
-  "messageFilter_ghostIconTooltip": "Oculto por tu filtro de mensajes"
+  "messageFilter_ghostIconTooltip": "Oculto por tu filtro de mensajes",
+  "ping_noReplyNote": "Que no haya respuesta no prueba que el repetidor esté caído. La sonda o su respuesta pueden perderse por ruido o una colisión; inténtalo de nuevo o prueba desde otro lugar.",
+  "traffic_lastHop": "Último salto {name} · {snr} dB"
 }

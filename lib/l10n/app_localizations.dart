@@ -21692,6 +21692,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hidden by your message filter'**
   String get messageFilter_ghostIconTooltip;
+
+  /// No description provided for @ping_noReplyNote.
+  ///
+  /// In en, this message translates to:
+  /// **'No reply isn\'t proof the repeater is down. The probe or its answer can be lost to noise or a collision, so try again or test from another spot.'**
+  String get ping_noReplyNote;
+
+  /// No description provided for @traffic_lastHop.
+  ///
+  /// In en, this message translates to:
+  /// **'Last hop {name} · {snr} dB'**
+  String traffic_lastHop(String name, String snr);
 }
 
 class _AppLocalizationsDelegate

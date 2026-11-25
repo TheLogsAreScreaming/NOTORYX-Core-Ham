@@ -13158,4 +13158,13 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get messageFilter_ghostIconTooltip => 'Skryté vaším filtrom správ';
+
+  @override
+  String get ping_noReplyNote =>
+      'Žiadna odpoveď nedokazuje, že opakovač nefunguje. Sonda alebo odpoveď sa môžu stratiť pre šum alebo kolíziu; skúste znova alebo z iného miesta.';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return 'Posledný skok $name · $snr dB';
+  }
 }

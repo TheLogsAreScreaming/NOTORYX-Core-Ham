@@ -4919,5 +4919,7 @@
   "messageFilter_filterSenderConfirm": "Alle berichten van „{name}” verbergen?",
   "messageFilter_filterLikeThis": "Berichten zoals dit filteren…",
   "messageFilter_channelToggle": "Berichten in dit kanaal filteren",
-  "messageFilter_ghostIconTooltip": "Verborgen door je berichtenfilter"
+  "messageFilter_ghostIconTooltip": "Verborgen door je berichtenfilter",
+  "ping_noReplyNote": "Geen antwoord bewijst niet dat de repeater uit is. De test of het antwoord kan verloren gaan door ruis of een botsing; probeer opnieuw of test vanaf een andere plek.",
+  "traffic_lastHop": "Laatste hop {name} · {snr} dB"
 }

@@ -5053,5 +5053,7 @@
   "messageFilter_filterSenderConfirm": "Nascondere tutti i messaggi di «{name}»?",
   "messageFilter_filterLikeThis": "Filtra messaggi come questo…",
   "messageFilter_channelToggle": "Filtra i messaggi in questo canale",
-  "messageFilter_ghostIconTooltip": "Nascosto dal tuo filtro messaggi"
+  "messageFilter_ghostIconTooltip": "Nascosto dal tuo filtro messaggi",
+  "ping_noReplyNote": "Nessuna risposta non dimostra che il ripetitore sia spento. La sonda o la sua risposta possono perdersi per rumore o collisione: riprova o prova da un altro punto.",
+  "traffic_lastHop": "Ultimo salto {name} · {snr} dB"
 }

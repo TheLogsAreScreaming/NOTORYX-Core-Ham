@@ -13161,4 +13161,13 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get messageFilter_ghostIconTooltip => 'Az üzenetszűrő elrejtette';
+
+  @override
+  String get ping_noReplyNote =>
+      'A válasz hiánya nem bizonyítja, hogy az átjátszó nem működik. A próba vagy a válasz elveszhet zaj vagy ütközés miatt; próbálja újra, vagy teszteljen máshonnan.';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return 'Utolsó ugrás $name · $snr dB';
+  }
 }

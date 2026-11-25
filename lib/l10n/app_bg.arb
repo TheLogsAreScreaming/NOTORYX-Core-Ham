@@ -4919,5 +4919,7 @@
   "messageFilter_filterSenderConfirm": "Да се скрият ли всички съобщения от „{name}“?",
   "messageFilter_filterLikeThis": "Филтрирай съобщения като това…",
   "messageFilter_channelToggle": "Филтрирай съобщенията в този канал",
-  "messageFilter_ghostIconTooltip": "Скрито от твоя филтър за съобщения"
+  "messageFilter_ghostIconTooltip": "Скрито от твоя филтър за съобщения",
+  "ping_noReplyNote": "Липсата на отговор не доказва, че ретранслаторът не работи. Заявката или отговорът могат да се загубят заради шум или сблъсък; опитайте отново или от друго място.",
+  "traffic_lastHop": "Последен скок {name} · {snr} dB"
 }

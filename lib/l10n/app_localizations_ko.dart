@@ -12600,4 +12600,13 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get messageFilter_ghostIconTooltip => '메시지 필터로 숨겨짐';
+
+  @override
+  String get ping_noReplyNote =>
+      '응답이 없다고 해서 리피터가 꺼졌다는 증거는 아닙니다. 프로브나 응답이 잡음이나 충돌로 사라질 수 있으니 다시 시도하거나 다른 위치에서 테스트하세요.';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return '마지막 홉 $name · $snr dB';
+  }
 }

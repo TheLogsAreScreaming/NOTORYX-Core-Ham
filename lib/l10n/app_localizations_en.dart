@@ -13043,4 +13043,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get messageFilter_ghostIconTooltip => 'Hidden by your message filter';
+
+  @override
+  String get ping_noReplyNote =>
+      'No reply isn\'t proof the repeater is down. The probe or its answer can be lost to noise or a collision, so try again or test from another spot.';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return 'Last hop $name · $snr dB';
+  }
 }

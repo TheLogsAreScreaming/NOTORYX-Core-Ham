@@ -5053,5 +5053,7 @@
   "messageFilter_filterSenderConfirm": "Masquer tous les messages de « {name} » ?",
   "messageFilter_filterLikeThis": "Filtrer les messages comme celui-ci…",
   "messageFilter_channelToggle": "Filtrer les messages de ce canal",
-  "messageFilter_ghostIconTooltip": "Masqué par votre filtre de messages"
+  "messageFilter_ghostIconTooltip": "Masqué par votre filtre de messages",
+  "ping_noReplyNote": "L'absence de réponse ne prouve pas que le relais est hors service. La sonde ou sa réponse peut être perdue à cause du bruit ou d'une collision : réessayez ou testez depuis un autre endroit.",
+  "traffic_lastHop": "Dernier saut {name} · {snr} dB"
 }

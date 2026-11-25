@@ -12350,4 +12350,13 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get messageFilter_ghostIconTooltip => '已被你的消息过滤隐藏';
+
+  @override
+  String get ping_noReplyNote =>
+      '没有回复并不能证明中继器已离线。探测或其回复可能因噪声或冲突而丢失，请重试或换个位置测试。';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return '最后一跳 $name · $snr dB';
+  }
 }

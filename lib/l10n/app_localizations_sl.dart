@@ -13189,4 +13189,13 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get messageFilter_ghostIconTooltip =>
       'Skrito z vašim filtrom sporočil';
+
+  @override
+  String get ping_noReplyNote =>
+      'Brez odgovora še ne pomeni, da repetitor ne deluje. Poizvedba ali odgovor se lahko izgubita zaradi šuma ali trka; poskusite znova ali z drugega mesta.';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return 'Zadnji skok $name · $snr dB';
+  }
 }

@@ -13091,4 +13091,13 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get messageFilter_ghostIconTooltip => 'Dolt av ditt meddelandefilter';
+
+  @override
+  String get ping_noReplyNote =>
+      'Inget svar bevisar inte att repeatern är nere. Förfrågan eller svaret kan försvinna i brus eller en kollision, så försök igen eller testa från en annan plats.';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return 'Sista hopp $name · $snr dB';
+  }
 }
