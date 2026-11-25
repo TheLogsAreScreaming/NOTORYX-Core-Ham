@@ -13292,4 +13292,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String traffic_lastHop(String name, String snr) {
     return 'Utolsó ugrás $name · $snr dB';
   }
+
+  @override
+  String get contacts_fullWarning =>
+      'A rádió névjegylistája megtelt, ezért nem tud új node-okat felvenni. Törölj néhány névjegyet, hogy legyen hely.';
 }

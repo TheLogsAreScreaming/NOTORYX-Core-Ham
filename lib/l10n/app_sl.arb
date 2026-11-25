@@ -4953,5 +4953,6 @@
   "messageFilter_channelToggle": "Filtriraj sporočila v tem kanalu",
   "messageFilter_ghostIconTooltip": "Skrito z vašim filtrom sporočil",
   "ping_noReplyNote": "Brez odgovora še ne pomeni, da repetitor ne deluje. Poizvedba ali odgovor se lahko izgubita zaradi šuma ali trka; poskusite znova ali z drugega mesta.",
-  "traffic_lastHop": "Zadnji skok {name} · {snr} dB"
+  "traffic_lastHop": "Zadnji skok {name} · {snr} dB",
+  "contacts_fullWarning": "Seznam stikov tega radia je poln, zato ne more dodajati novih vozlišč. Odstranite nekaj stikov, da sprostite prostor."
 }

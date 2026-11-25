@@ -518,6 +518,7 @@ class _ContactsScreenState extends State<ContactsScreen>
             children: [
               if (connector.contactSyncStalled)
                 _ContactSyncStalledBanner(connector: connector),
+              if (connector.contactsFull) const _ContactsFullBanner(),
               Expanded(child: _buildContactsBody(context, connector)),
             ],
           ),
@@ -1913,6 +1914,34 @@ class _ContactTileEntrance extends StatelessWidget {
 }
 
 /// Shown when the radio didn't answer a contact sync.
+class _ContactsFullBanner extends StatelessWidget {
+  const _ContactsFullBanner();
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Material(
+      key: const ValueKey('contacts-full'),
+      color: scheme.errorContainer,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
+        child: Row(
+          children: [
+            Icon(Icons.group_off_outlined, color: scheme.onErrorContainer),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                context.l10n.contacts_fullWarning,
+                style: TextStyle(color: scheme.onErrorContainer),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _ContactSyncStalledBanner extends StatelessWidget {
   final MeshCoreConnector connector;
   const _ContactSyncStalledBanner({required this.connector});

@@ -12474,4 +12474,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String traffic_lastHop(String name, String snr) {
     return '最后一跳 $name · $snr dB';
   }
+
+  @override
+  String get contacts_fullWarning => '此电台的联系人列表已满，无法添加新节点。请删除一些联系人以腾出空间。';
 }

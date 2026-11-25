@@ -5087,5 +5087,6 @@
   "messageFilter_channelToggle": "このチャンネルでメッセージをフィルター",
   "messageFilter_ghostIconTooltip": "メッセージフィルターで隠されました",
   "ping_noReplyNote": "応答がなくてもリピーターが停止しているとは限りません。プローブや応答はノイズや衝突で失われることがあります。もう一度試すか、別の場所からテストしてください。",
-  "traffic_lastHop": "最終ホップ {name} · {snr} dB"
+  "traffic_lastHop": "最終ホップ {name} · {snr} dB",
+  "contacts_fullWarning": "この無線機の連絡先リストがいっぱいのため、新しいノードを追加できません。連絡先をいくつか削除して空きを作ってください。"
 }

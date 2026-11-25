@@ -12726,4 +12726,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String traffic_lastHop(String name, String snr) {
     return '마지막 홉 $name · $snr dB';
   }
+
+  @override
+  String get contacts_fullWarning =>
+      '이 무전기의 연락처 목록이 가득 차서 새 노드를 추가할 수 없습니다. 연락처를 일부 삭제해 공간을 확보하세요.';
 }

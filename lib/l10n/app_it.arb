@@ -5087,5 +5087,6 @@
   "messageFilter_channelToggle": "Filtra i messaggi in questo canale",
   "messageFilter_ghostIconTooltip": "Nascosto dal tuo filtro messaggi",
   "ping_noReplyNote": "Nessuna risposta non dimostra che il ripetitore sia spento. La sonda o la sua risposta possono perdersi per rumore o collisione: riprova o prova da un altro punto.",
-  "traffic_lastHop": "Ultimo salto {name} · {snr} dB"
+  "traffic_lastHop": "Ultimo salto {name} · {snr} dB",
+  "contacts_fullWarning": "L'elenco contatti di questa radio è pieno, quindi non può aggiungere nuovi nodi. Rimuovi alcuni contatti per fare spazio."
 }

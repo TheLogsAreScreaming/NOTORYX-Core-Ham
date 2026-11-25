@@ -13332,4 +13332,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String traffic_lastHop(String name, String snr) {
     return 'Letzter Hop $name · $snr dB';
   }
+
+  @override
+  String get contacts_fullWarning =>
+      'Die Kontaktliste dieses Funkgeräts ist voll, daher kann es keine neuen Knoten hinzufügen. Entferne einige Kontakte, um Platz zu schaffen.';
 }

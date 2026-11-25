@@ -13363,4 +13363,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String traffic_lastHop(String name, String snr) {
     return 'Останній перехід $name · $snr дБ';
   }
+
+  @override
+  String get contacts_fullWarning =>
+      'Список контактів цієї рації заповнений, тому вона не може додавати нові вузли. Видаліть кілька контактів, щоб звільнити місце.';
 }

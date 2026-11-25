@@ -13319,4 +13319,8 @@ class AppLocalizationsSl extends AppLocalizations {
   String traffic_lastHop(String name, String snr) {
     return 'Zadnji skok $name · $snr dB';
   }
+
+  @override
+  String get contacts_fullWarning =>
+      'Seznam stikov tega radia je poln, zato ne more dodajati novih vozlišč. Odstranite nekaj stikov, da sprostite prostor.';
 }

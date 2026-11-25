@@ -13288,4 +13288,8 @@ class AppLocalizationsSk extends AppLocalizations {
   String traffic_lastHop(String name, String snr) {
     return 'Posledný skok $name · $snr dB';
   }
+
+  @override
+  String get contacts_fullWarning =>
+      'Zoznam kontaktov tohto rádia je plný, takže nemôže pridávať nové uzly. Odstráňte niekoľko kontaktov, aby ste uvoľnili miesto.';
 }

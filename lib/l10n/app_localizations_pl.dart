@@ -13359,4 +13359,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String traffic_lastHop(String name, String snr) {
     return 'Ostatni skok $name · $snr dB';
   }
+
+  @override
+  String get contacts_fullWarning =>
+      'Lista kontaktów tego radia jest pełna, więc nie może dodawać nowych węzłów. Usuń kilka kontaktów, aby zrobić miejsce.';
 }

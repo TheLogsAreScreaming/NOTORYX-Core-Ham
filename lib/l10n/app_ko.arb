@@ -5087,5 +5087,6 @@
   "messageFilter_channelToggle": "이 채널에서 메시지 필터링",
   "messageFilter_ghostIconTooltip": "메시지 필터로 숨겨짐",
   "ping_noReplyNote": "응답이 없다고 해서 리피터가 꺼졌다는 증거는 아닙니다. 프로브나 응답이 잡음이나 충돌로 사라질 수 있으니 다시 시도하거나 다른 위치에서 테스트하세요.",
-  "traffic_lastHop": "마지막 홉 {name} · {snr} dB"
+  "traffic_lastHop": "마지막 홉 {name} · {snr} dB",
+  "contacts_fullWarning": "이 무전기의 연락처 목록이 가득 차서 새 노드를 추가할 수 없습니다. 연락처를 일부 삭제해 공간을 확보하세요."
 }

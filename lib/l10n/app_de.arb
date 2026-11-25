@@ -5087,5 +5087,6 @@
   "messageFilter_channelToggle": "Nachrichten in diesem Kanal filtern",
   "messageFilter_ghostIconTooltip": "Von Ihrem Nachrichtenfilter ausgeblendet",
   "ping_noReplyNote": "Keine Antwort beweist nicht, dass der Repeater ausgefallen ist. Die Anfrage oder ihre Antwort kann durch Rauschen oder eine Kollision verloren gehen. Versuche es erneut oder teste von einem anderen Ort.",
-  "traffic_lastHop": "Letzter Hop {name} · {snr} dB"
+  "traffic_lastHop": "Letzter Hop {name} · {snr} dB",
+  "contacts_fullWarning": "Die Kontaktliste dieses Funkgeräts ist voll, daher kann es keine neuen Knoten hinzufügen. Entferne einige Kontakte, um Platz zu schaffen."
 }

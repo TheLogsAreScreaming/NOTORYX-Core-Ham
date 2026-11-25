@@ -12712,4 +12712,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String traffic_lastHop(String name, String snr) {
     return '最終ホップ $name · $snr dB';
   }
+
+  @override
+  String get contacts_fullWarning =>
+      'この無線機の連絡先リストがいっぱいのため、新しいノードを追加できません。連絡先をいくつか削除して空きを作ってください。';
 }

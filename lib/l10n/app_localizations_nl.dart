@@ -13273,4 +13273,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String traffic_lastHop(String name, String snr) {
     return 'Laatste hop $name · $snr dB';
   }
+
+  @override
+  String get contacts_fullWarning =>
+      'De contactenlijst van deze radio is vol, dus er kunnen geen nieuwe nodes bij. Verwijder enkele contacten om ruimte te maken.';
 }

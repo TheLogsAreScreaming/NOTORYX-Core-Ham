@@ -21896,6 +21896,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Last hop {name} · {snr} dB'**
   String traffic_lastHop(String name, String snr);
+
+  /// No description provided for @contacts_fullWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'This radio\'s contact list is full, so it can\'t add new nodes. Remove some contacts to make room.'**
+  String get contacts_fullWarning;
 }
 
 class _AppLocalizationsDelegate

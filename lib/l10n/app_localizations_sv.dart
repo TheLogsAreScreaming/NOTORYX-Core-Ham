@@ -13221,4 +13221,8 @@ class AppLocalizationsSv extends AppLocalizations {
   String traffic_lastHop(String name, String snr) {
     return 'Sista hopp $name · $snr dB';
   }
+
+  @override
+  String get contacts_fullWarning =>
+      'Radions kontaktlista är full, så den kan inte lägga till nya noder. Ta bort några kontakter för att frigöra plats.';
 }

@@ -4953,5 +4953,6 @@
   "messageFilter_channelToggle": "Filtrar mensagens neste canal",
   "messageFilter_ghostIconTooltip": "Oculta pelo seu filtro de mensagens",
   "ping_noReplyNote": "Sem resposta não prova que o repetidor esteja inativo. A sonda ou a resposta podem perder-se por ruído ou colisão; tente novamente ou teste de outro local.",
-  "traffic_lastHop": "Último salto {name} · {snr} dB"
+  "traffic_lastHop": "Último salto {name} · {snr} dB",
+  "contacts_fullWarning": "A lista de contatos deste rádio está cheia, então ele não pode adicionar novos nós. Remova alguns contatos para liberar espaço."
 }

@@ -4991,5 +4991,6 @@
   "messageFilter_channelToggle": "Filtruj wiadomości na tym kanale",
   "messageFilter_ghostIconTooltip": "Ukryte przez Twój filtr wiadomości",
   "ping_noReplyNote": "Brak odpowiedzi nie dowodzi, że przekaźnik nie działa. Sonda lub odpowiedź mogą zginąć przez szum lub kolizję; spróbuj ponownie albo z innego miejsca.",
-  "traffic_lastHop": "Ostatni skok {name} · {snr} dB"
+  "traffic_lastHop": "Ostatni skok {name} · {snr} dB",
+  "contacts_fullWarning": "Lista kontaktów tego radia jest pełna, więc nie może dodawać nowych węzłów. Usuń kilka kontaktów, aby zrobić miejsce."
 }

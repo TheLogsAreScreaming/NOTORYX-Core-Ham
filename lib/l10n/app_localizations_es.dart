@@ -13320,4 +13320,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String traffic_lastHop(String name, String snr) {
     return 'Último salto $name · $snr dB';
   }
+
+  @override
+  String get contacts_fullWarning =>
+      'La lista de contactos de esta radio está llena, así que no puede añadir nodos nuevos. Elimina algunos contactos para hacer espacio.';
 }

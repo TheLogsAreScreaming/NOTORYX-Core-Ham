@@ -4991,5 +4991,6 @@
   "messageFilter_channelToggle": "Üzenetek szűrése ezen a csatornán",
   "messageFilter_ghostIconTooltip": "Az üzenetszűrő elrejtette",
   "ping_noReplyNote": "A válasz hiánya nem bizonyítja, hogy az átjátszó nem működik. A próba vagy a válasz elveszhet zaj vagy ütközés miatt; próbálja újra, vagy teszteljen máshonnan.",
-  "traffic_lastHop": "Utolsó ugrás {name} · {snr} dB"
+  "traffic_lastHop": "Utolsó ugrás {name} · {snr} dB",
+  "contacts_fullWarning": "A rádió névjegylistája megtelt, ezért nem tud új node-okat felvenni. Törölj néhány névjegyet, hogy legyen hely."
 }

@@ -13306,4 +13306,8 @@ class AppLocalizationsBg extends AppLocalizations {
   String traffic_lastHop(String name, String snr) {
     return 'Последен скок $name · $snr dB';
   }
+
+  @override
+  String get contacts_fullWarning =>
+      'Списъкът с контакти на това радио е пълен и не може да добавя нови възли. Премахнете някои контакти, за да освободите място.';
 }

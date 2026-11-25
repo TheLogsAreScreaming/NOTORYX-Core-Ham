@@ -13364,4 +13364,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String traffic_lastHop(String name, String snr) {
     return 'Dernier saut $name · $snr dB';
   }
+
+  @override
+  String get contacts_fullWarning =>
+      'La liste de contacts de cette radio est pleine : elle ne peut plus ajouter de nouveaux nœuds. Supprimez des contacts pour faire de la place.';
 }

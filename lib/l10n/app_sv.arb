@@ -4953,5 +4953,6 @@
   "messageFilter_channelToggle": "Filtrera meddelanden i den här kanalen",
   "messageFilter_ghostIconTooltip": "Dolt av ditt meddelandefilter",
   "ping_noReplyNote": "Inget svar bevisar inte att repeatern är nere. Förfrågan eller svaret kan försvinna i brus eller en kollision, så försök igen eller testa från en annan plats.",
-  "traffic_lastHop": "Sista hopp {name} · {snr} dB"
+  "traffic_lastHop": "Sista hopp {name} · {snr} dB",
+  "contacts_fullWarning": "Radions kontaktlista är full, så den kan inte lägga till nya noder. Ta bort några kontakter för att frigöra plats."
 }
