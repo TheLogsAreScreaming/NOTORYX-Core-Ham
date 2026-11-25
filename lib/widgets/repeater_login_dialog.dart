@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
-
 import '../l10n/app_localizations.dart';
 import '../l10n/l10n.dart';
 import '../models/contact.dart';
 import '../l10n/contact_localization.dart';
 import '../services/repeater_clock_sync.dart';
+import '../services/repeater_login_doctor.dart';
 import '../services/storage_service.dart';
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
@@ -125,8 +125,10 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
       appLogger.info('Login routing: $selectionLabel', tag: 'RepeaterLogin');
       bool? loginResult;
       bool isAdmin = false;
+      var sendFailed = false;
       for (int attempt = 0; attempt < _maxAttempts; attempt++) {
         if (!mounted) return;
+        if (!_connector.isConnected) break;
         setState(() {
           _currentAttempt = attempt + 1;
         });
@@ -135,7 +137,13 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
           'Sending login attempt ${attempt + 1}/$_maxAttempts',
           tag: 'RepeaterLogin',
         );
-        await _connector.sendFrame(loginFrame);
+        try {
+          await _connector.sendFrame(loginFrame);
+        } catch (e) {
+          appLogger.warn('Login frame not sent: $e', tag: 'RepeaterLogin');
+          sendFailed = true;
+          break;
+        }
 
         (loginResult, isAdmin) = await _awaitLoginResponse(timeout);
         if (loginResult == true) {
@@ -172,10 +180,24 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
       }
 
       if (loginResult != true) {
+        final failure = diagnoseLogin(
+          radioConnected: _connector.isConnected,
+          sendFailed: sendFailed,
+          result: loginResult,
+          usedFlood: selection.useFlood,
+        );
+        appLogger.warn(
+          'Login stopped at ${failure?.name}',
+          tag: 'RepeaterLogin',
+        );
         if (mounted) {
           setState(() {
             _isLoggingIn = false;
-            _loginError = context.l10n.login_failedMessage;
+            _loginError = _failureText(
+              context.l10n,
+              failure,
+              selection.hopCount,
+            );
           });
         }
         return;
@@ -224,11 +246,28 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
       if (mounted) {
         setState(() {
           _isLoggingIn = false;
-          _loginError = context.l10n.login_failedMessage;
+          _loginError = _connector.isConnected
+              ? context.l10n.login_failedMessage
+              : context.l10n.login_failRadioOffline;
         });
       }
     }
   }
+
+  /// Says which step the login stopped at.
+  String _failureText(AppLocalizations l10n, LoginFailure? failure, int hops) =>
+      switch (failure) {
+        LoginFailure.radioOffline => l10n.login_failRadioOffline,
+        LoginFailure.sendFailed => l10n.login_failSend,
+        LoginFailure.rejected => l10n.login_failRejected,
+        LoginFailure.noAnswerPath => l10n.login_failNoAnswerPath(
+          hops,
+          l10n.login_forceFloodMode,
+          l10n.login_routing,
+        ),
+        LoginFailure.noAnswerFlood => l10n.login_failNoAnswerFlood,
+        null => l10n.login_failedMessage,
+      };
 
   // _awaitLoginResponse returns a record of bool, for success and if the client is an admin
   Future<(bool?, bool)> _awaitLoginResponse(Duration timeout) async {

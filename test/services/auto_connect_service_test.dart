@@ -24,8 +24,13 @@ class _Radio extends MeshCoreConnector {
   MeshCoreConnectionState get state => current;
   @override
   bool get isConnected => current == MeshCoreConnectionState.connected;
+
+  /// Whether every attempt said it was automatic.
+  bool allAutomatic = true;
+
   @override
-  Future<void> reconnectSavedRadio() async {
+  Future<void> reconnectSavedRadio({bool automatic = false}) async {
+    if (!automatic) allAutomatic = false;
     attempts++;
     if (attempts <= failFirst) throw Exception('out of range');
     current = MeshCoreConnectionState.connected;
@@ -74,6 +79,7 @@ void main() {
     auto.start();
     await settle();
     expect(radio.attempts, 3);
+    expect(radio.allAutomatic, isTrue);
     expect(radio.isConnected, isTrue);
   });
 

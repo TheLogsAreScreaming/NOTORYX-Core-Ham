@@ -172,6 +172,20 @@ class _RepeaterPingScreenState extends State<RepeaterPingScreen> {
                     ? null
                     : SignalReadout(_results[i]!.snrBack),
               ),
+            if (_results.any((r) => r == null))
+              Padding(
+                padding: const EdgeInsets.fromLTRB(
+                  MeshSpace.lg,
+                  MeshSpace.lg,
+                  MeshSpace.lg,
+                  0,
+                ),
+                child: Text(
+                  l10n.ping_noReplyNote,
+                  key: const ValueKey('ping-no-reply-note'),
+                  style: TextStyle(color: MeshPalette.ink2, fontSize: 12.5),
+                ),
+              ),
             Padding(
               padding: const EdgeInsets.all(MeshSpace.lg),
               child: Text(

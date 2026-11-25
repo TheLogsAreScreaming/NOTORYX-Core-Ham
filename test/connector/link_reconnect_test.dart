@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:fake_async/fake_async.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:meshcore_open/connector/meshcore_connector.dart';
+import 'package:meshcore_open/services/connection_timeline.dart';
 import 'package:meshcore_open/storage/prefs_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -107,6 +108,23 @@ void main() {
 
       async.elapse(const Duration(minutes: 5));
       expect(attempts, isEmpty);
+    });
+  });
+
+  test('the connection timeline records who closed the link', () {
+    fakeAsync((async) {
+      connector.debugRememberLink(const TcpLinkTarget('radio.local', 5000));
+      connector.debugMarkConnected();
+      drop(async);
+      connector.debugMarkConnected();
+      unawaited(connector.disconnect());
+      async.flushMicrotasks();
+
+      final closed = connector.connectionTimeline.events
+          .where((e) => e.state == MeshCoreConnectionState.disconnected)
+          .map((e) => e.cause)
+          .toList();
+      expect(closed, [ConnectionCause.app, ConnectionCause.user]);
     });
   });
 

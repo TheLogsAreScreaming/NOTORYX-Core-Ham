@@ -60,6 +60,18 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/notoryx_widget_info" />
         </receiver>
+        <!-- Quick Settings tile: radio status and unread count; a tap opens
+             the app. -->
+        <service
+            android:name="com.meshcore.meshcore_open.NotoryxTileService"
+            android:exported="true"
+            android:icon="@drawable/ic_qs_tile"
+            android:label="NOTORYX Core Ham"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
         <!-- Runs Reply and Mark-as-read from a notification without opening
              the app (notification shade, watches, Android Auto). -->
         <receiver

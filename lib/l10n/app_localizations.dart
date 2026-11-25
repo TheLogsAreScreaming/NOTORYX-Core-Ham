@@ -5073,6 +5073,36 @@ abstract class AppLocalizations {
   /// **'Login failed. Either the password is incorrect or the repeater is unreachable.'**
   String get login_failedMessage;
 
+  /// No description provided for @login_failRadioOffline.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio isn\'t connected, so the login wasn\'t sent. Connect your radio and try again.'**
+  String get login_failRadioOffline;
+
+  /// No description provided for @login_failSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio didn\'t accept the login request. Reconnect it and try again.'**
+  String get login_failSend;
+
+  /// No description provided for @login_failNoAnswerPath.
+  ///
+  /// In en, this message translates to:
+  /// **'No answer over the saved path ({hops} hops). The path may be out of date: turn on “{option}” under {section} and try again. A wrong password also gets no answer.'**
+  String login_failNoAnswerPath(int hops, String option, String section);
+
+  /// No description provided for @login_failRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'The repeater answered and refused the password.'**
+  String get login_failRejected;
+
+  /// No description provided for @login_failNoAnswerFlood.
+  ///
+  /// In en, this message translates to:
+  /// **'No answer by flood. The repeater may be out of range, off or busy, or the password may be wrong (repeaters don\'t answer a wrong one). Try again from closer.'**
+  String get login_failNoAnswerFlood;
+
   /// No description provided for @common_reload.
   ///
   /// In en, this message translates to:
@@ -5701,6 +5731,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Settings saved successfully'**
   String get repeater_settingsSaved;
+
+  /// No description provided for @repeater_settingsConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings saved and confirmed by the repeater'**
+  String get repeater_settingsConfirmed;
+
+  /// No description provided for @repeater_settingsUnconfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings saved, but {count} could not be read back to confirm'**
+  String repeater_settingsUnconfirmed(int count);
+
+  /// No description provided for @repeater_readBackMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'{key} reads back as {value}'**
+  String repeater_readBackMismatch(String key, String value);
 
   /// No description provided for @repeater_rxGain.
   ///
@@ -11606,6 +11654,48 @@ abstract class AppLocalizations {
   /// **'Export diagnostics'**
   String get bastionDiag_export;
 
+  /// No description provided for @diagTimeline_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Connection timeline'**
+  String get diagTimeline_title;
+
+  /// No description provided for @diagTimeline_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No connection changes since the app started.'**
+  String get diagTimeline_empty;
+
+  /// No description provided for @diagTimeline_causeUser.
+  ///
+  /// In en, this message translates to:
+  /// **'you asked'**
+  String get diagTimeline_causeUser;
+
+  /// No description provided for @diagTimeline_causeLinkLost.
+  ///
+  /// In en, this message translates to:
+  /// **'link dropped'**
+  String get diagTimeline_causeLinkLost;
+
+  /// No description provided for @diagTimeline_causeReconnect.
+  ///
+  /// In en, this message translates to:
+  /// **'automatic retry'**
+  String get diagTimeline_causeReconnect;
+
+  /// No description provided for @diagTimeline_causeAutoConnect.
+  ///
+  /// In en, this message translates to:
+  /// **'connected automatically'**
+  String get diagTimeline_causeAutoConnect;
+
+  /// No description provided for @diagTimeline_causeApp.
+  ///
+  /// In en, this message translates to:
+  /// **'closed by the app'**
+  String get diagTimeline_causeApp;
+
   /// No description provided for @bastionDiag_channels.
   ///
   /// In en, this message translates to:
@@ -12768,6 +12858,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Check in'**
   String get shortcuts_checkIn;
+
+  /// No description provided for @qsTile_unread.
+  ///
+  /// In en, this message translates to:
+  /// **'{status} · {count} unread'**
+  String qsTile_unread(String status, int count);
 
   /// No description provided for @shortcuts_trip.
   ///
@@ -20815,6 +20911,102 @@ abstract class AppLocalizations {
   /// **'Status history'**
   String get statusHistory_title;
 
+  /// No description provided for @reportCard_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Report card'**
+  String get reportCard_title;
+
+  /// No description provided for @reportCard_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Built only from status checks you ran and kept on this phone. Nothing extra is sent.'**
+  String get reportCard_hint;
+
+  /// No description provided for @reportCard_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No status checks kept yet. Each Status check you run adds to this report.'**
+  String get reportCard_empty;
+
+  /// No description provided for @reportCard_checks.
+  ///
+  /// In en, this message translates to:
+  /// **'Checks'**
+  String get reportCard_checks;
+
+  /// No description provided for @reportCard_restarts.
+  ///
+  /// In en, this message translates to:
+  /// **'Restarts seen'**
+  String get reportCard_restarts;
+
+  /// No description provided for @reportCard_longestUptime.
+  ///
+  /// In en, this message translates to:
+  /// **'Longest uptime'**
+  String get reportCard_longestUptime;
+
+  /// No description provided for @reportCard_battery.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery'**
+  String get reportCard_battery;
+
+  /// No description provided for @reportCard_noise.
+  ///
+  /// In en, this message translates to:
+  /// **'Noise floor'**
+  String get reportCard_noise;
+
+  /// No description provided for @reportCard_errors.
+  ///
+  /// In en, this message translates to:
+  /// **'New errors'**
+  String get reportCard_errors;
+
+  /// No description provided for @reportCard_neighbours.
+  ///
+  /// In en, this message translates to:
+  /// **'Neighbours'**
+  String get reportCard_neighbours;
+
+  /// No description provided for @reportCard_exportCsv.
+  ///
+  /// In en, this message translates to:
+  /// **'Export CSV'**
+  String get reportCard_exportCsv;
+
+  /// No description provided for @reportCard_checksValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} over {days} days'**
+  String reportCard_checksValue(int count, int days);
+
+  /// No description provided for @reportCard_batteryValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{now} now · lowest {low}'**
+  String reportCard_batteryValue(String now, String low);
+
+  /// No description provided for @reportCard_batteryTrend.
+  ///
+  /// In en, this message translates to:
+  /// **'{change} per week'**
+  String reportCard_batteryTrend(String change);
+
+  /// No description provided for @reportCard_noiseValue.
+  ///
+  /// In en, this message translates to:
+  /// **'average {avg} dBm · worst {worst} dBm'**
+  String reportCard_noiseValue(String avg, String worst);
+
+  /// No description provided for @reportCard_neighboursValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{total} heard · {fresh} new this week · {gone} not heard this week'**
+  String reportCard_neighboursValue(int total, int fresh, int gone);
+
   /// No description provided for @statusHistory_battery.
   ///
   /// In en, this message translates to:
@@ -21728,6 +21920,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hidden by your message filter'**
   String get messageFilter_ghostIconTooltip;
+
+  /// No description provided for @ping_noReplyNote.
+  ///
+  /// In en, this message translates to:
+  /// **'No reply isn\'t proof the repeater is down. The probe or its answer can be lost to noise or a collision, so try again or test from another spot.'**
+  String get ping_noReplyNote;
+
+  /// No description provided for @traffic_lastHop.
+  ///
+  /// In en, this message translates to:
+  /// **'Last hop {name} · {snr} dB'**
+  String traffic_lastHop(String name, String snr);
 }
 
 class _AppLocalizationsDelegate

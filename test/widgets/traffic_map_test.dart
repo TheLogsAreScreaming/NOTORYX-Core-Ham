@@ -47,7 +47,8 @@ void main() {
       _app(TrafficRouteCard(route: route, onTap: () => tapped = true)),
     );
     expect(find.text('1FD75D → Cellar → Ridge → You'), findsOneWidget);
-    expect(find.text('Heard from Ridge · 12 dB'), findsOneWidget);
+    // Ridge relayed it, so its SNR is only the last leg.
+    expect(find.text('Last hop Ridge · 12 dB'), findsOneWidget);
     expect(
       find.textContaining('Flood 16 · -33 dBm · SNR 12 · 1 not on map · '),
       findsOneWidget,

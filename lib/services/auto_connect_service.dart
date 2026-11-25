@@ -65,7 +65,7 @@ class AutoConnectService {
           return;
         }
         try {
-          await connector.reconnectSavedRadio();
+          await connector.reconnectSavedRadio(automatic: true);
         } catch (_) {
           // Out of range or still booting; the next attempt may find it.
         }
