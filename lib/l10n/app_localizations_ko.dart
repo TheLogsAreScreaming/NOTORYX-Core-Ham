@@ -2744,6 +2744,25 @@ class AppLocalizationsKo extends AppLocalizations {
       '로그인에 실패했습니다. 비밀번호가 잘못되었거나, 연결이 되지 않는 것 같습니다.';
 
   @override
+  String get login_failRadioOffline =>
+      '무전기가 연결되지 않아 로그인을 보내지 못했습니다. 무전기를 연결한 뒤 다시 시도하세요.';
+
+  @override
+  String get login_failSend => '무전기가 로그인 요청을 받지 않았습니다. 다시 연결한 뒤 시도하세요.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return '저장된 경로($hops홉)로 응답이 없습니다. 경로가 오래되었을 수 있으니 $section에서 “$option”를 켜고 다시 시도하세요. 비밀번호가 틀려도 응답이 없습니다.';
+  }
+
+  @override
+  String get login_failRejected => '리피터가 응답했지만 비밀번호를 거부했습니다.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      '플러드로 응답이 없습니다. 리피터가 범위 밖이거나 꺼져 있거나 바쁠 수 있고, 비밀번호가 틀렸을 수도 있습니다(틀리면 응답하지 않음). 더 가까이에서 다시 시도하세요.';
+
+  @override
   String get common_reload => '다시 불러오기';
 
   @override
@@ -3065,6 +3084,19 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => '설정이 성공적으로 저장되었습니다.';
+
+  @override
+  String get repeater_settingsConfirmed => '설정을 저장했고 리피터가 확인했습니다';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return '설정을 저장했지만 $count개는 다시 읽어 확인하지 못했습니다';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key 값을 다시 읽으니 $value';
+  }
 
   @override
   String get repeater_rxGain => '향상된 RX 성능';

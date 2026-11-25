@@ -2871,6 +2871,27 @@ class AppLocalizationsBg extends AppLocalizations {
       'Входът не беше успешен. Или паролата е грешна, или повторителят е недостъпен.';
 
   @override
+  String get login_failRadioOffline =>
+      'Радиото не е свързано, затова входът не беше изпратен. Свържете го и опитайте отново.';
+
+  @override
+  String get login_failSend =>
+      'Радиото не прие заявката за вход. Свържете го отново и опитайте пак.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return 'Няма отговор по запазения път ($hops скока). Може да е остарял: включете $section → $option и опитайте отново. На грешна парола също няма отговор.';
+  }
+
+  @override
+  String get login_failRejected =>
+      'Ретранслаторът отговори и отхвърли паролата.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'Няма отговор чрез flood. Ретранслаторът може да е извън обхват, изключен или зает, или паролата е грешна (на нея не отговарят). Опитайте по-отблизо.';
+
+  @override
   String get common_reload => 'Презареди';
 
   @override
@@ -3209,6 +3230,20 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => 'Настройките са запазени успешно.';
+
+  @override
+  String get repeater_settingsConfirmed =>
+      'Настройките са запазени и потвърдени от ретранслатора';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return 'Настройките са запазени, но $count не можаха да се прочетат обратно за потвърждение';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key се прочита като $value';
+  }
 
   @override
   String get repeater_rxGain => 'RX усилване';

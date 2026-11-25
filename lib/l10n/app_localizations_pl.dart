@@ -2881,6 +2881,26 @@ class AppLocalizationsPl extends AppLocalizations {
       'Logowanie nie powiodło się. Hasło jest nieprawidłowe albo przekaźnik jest nieosiągalny.';
 
   @override
+  String get login_failRadioOffline =>
+      'Radio nie jest połączone, więc logowanie nie zostało wysłane. Połącz radio i spróbuj ponownie.';
+
+  @override
+  String get login_failSend =>
+      'Radio nie przyjęło żądania logowania. Połącz je ponownie i spróbuj jeszcze raz.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return 'Brak odpowiedzi przez zapisaną trasę ($hops skoków). Może być nieaktualna: włącz $section → $option i spróbuj ponownie. Na błędne hasło też nie ma odpowiedzi.';
+  }
+
+  @override
+  String get login_failRejected => 'Przekaźnik odpowiedział i odrzucił hasło.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'Brak odpowiedzi przez flood. Przekaźnik może być poza zasięgiem, wyłączony lub zajęty albo hasło jest błędne (na takie nie odpowiada). Spróbuj bliżej.';
+
+  @override
   String get common_reload => 'Odśwież';
 
   @override
@@ -3214,6 +3234,20 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => 'Ustawienia zostały pomyślnie zapisane.';
+
+  @override
+  String get repeater_settingsConfirmed =>
+      'Ustawienia zapisane i potwierdzone przez przekaźnik';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return 'Ustawienia zapisane, ale $count nie udało się odczytać w celu potwierdzenia';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key odczytuje się jako $value';
+  }
 
   @override
   String get repeater_rxGain => 'Zwiększony zysk RX';

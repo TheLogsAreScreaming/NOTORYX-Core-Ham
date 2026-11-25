@@ -2859,6 +2859,27 @@ class AppLocalizationsHu extends AppLocalizations {
       'Sikertelen bejelentkezés. Vagy hibás a jelszó, vagy az átjátszó nem érhető el.';
 
   @override
+  String get login_failRadioOffline =>
+      'A rádió nincs csatlakoztatva, ezért a bejelentkezés nem ment el. Csatlakoztassa, és próbálja újra.';
+
+  @override
+  String get login_failSend =>
+      'A rádió nem fogadta a bejelentkezési kérést. Csatlakoztassa újra, és próbálja meg ismét.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return 'Nincs válasz a mentett útvonalon ($hops ugrás). Lehet, hogy elavult: kapcsolja be ezt: $section → $option, és próbálja újra. Hibás jelszóra sem jön válasz.';
+  }
+
+  @override
+  String get login_failRejected =>
+      'Az átjátszó válaszolt, és elutasította a jelszót.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'Nincs válasz floodon. Az átjátszó hatótávon kívül, kikapcsolva vagy elfoglalt lehet, vagy hibás a jelszó (arra nem válaszol). Próbálja közelebbről.';
+
+  @override
   String get common_reload => 'Újratöltés';
 
   @override
@@ -3194,6 +3215,20 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => 'A beállítások sikeresen elmentve';
+
+  @override
+  String get repeater_settingsConfirmed =>
+      'A beállítások mentve, az átjátszó megerősítette';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return 'A beállítások mentve, de $count visszaolvasása nem sikerült';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key visszaolvasva: $value';
+  }
 
   @override
   String get repeater_rxGain => 'Megnövelt RX nyereség';

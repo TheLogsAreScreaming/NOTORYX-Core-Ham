@@ -2873,6 +2873,26 @@ class AppLocalizationsRu extends AppLocalizations {
       'Не удалось войти. Либо пароль неверен, либо репитер недоступен.';
 
   @override
+  String get login_failRadioOffline =>
+      'Радио не подключено, поэтому вход не отправлен. Подключите радио и повторите попытку.';
+
+  @override
+  String get login_failSend =>
+      'Радио не приняло запрос на вход. Переподключите его и повторите попытку.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return 'Нет ответа по сохранённому пути ($hops переходов). Возможно, он устарел: включите $section → $option и повторите. На неверный пароль ответа тоже нет.';
+  }
+
+  @override
+  String get login_failRejected => 'Ретранслятор ответил и отклонил пароль.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'Нет ответа по флуду. Ретранслятор может быть вне зоны, выключен или занят, либо пароль неверный (на него ретрансляторы не отвечают). Попробуйте ближе.';
+
+  @override
   String get common_reload => 'Обновить';
 
   @override
@@ -3209,6 +3229,20 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => 'Настройки успешно сохранены';
+
+  @override
+  String get repeater_settingsConfirmed =>
+      'Настройки сохранены и подтверждены ретранслятором';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return 'Настройки сохранены, но $count не удалось прочитать обратно для проверки';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key читается как $value';
+  }
 
   @override
   String get repeater_rxGain => 'Увеличенная эффективность RX';

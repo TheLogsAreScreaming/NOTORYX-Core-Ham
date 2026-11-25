@@ -5073,6 +5073,36 @@ abstract class AppLocalizations {
   /// **'Login failed. Either the password is incorrect or the repeater is unreachable.'**
   String get login_failedMessage;
 
+  /// No description provided for @login_failRadioOffline.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio isn\'t connected, so the login wasn\'t sent. Connect your radio and try again.'**
+  String get login_failRadioOffline;
+
+  /// No description provided for @login_failSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio didn\'t accept the login request. Reconnect it and try again.'**
+  String get login_failSend;
+
+  /// No description provided for @login_failNoAnswerPath.
+  ///
+  /// In en, this message translates to:
+  /// **'No answer over the saved path ({hops} hops). The path may be out of date: turn on “{option}” under {section} and try again. A wrong password also gets no answer.'**
+  String login_failNoAnswerPath(int hops, String option, String section);
+
+  /// No description provided for @login_failRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'The repeater answered and refused the password.'**
+  String get login_failRejected;
+
+  /// No description provided for @login_failNoAnswerFlood.
+  ///
+  /// In en, this message translates to:
+  /// **'No answer by flood. The repeater may be out of range, off or busy, or the password may be wrong (repeaters don\'t answer a wrong one). Try again from closer.'**
+  String get login_failNoAnswerFlood;
+
   /// No description provided for @common_reload.
   ///
   /// In en, this message translates to:
@@ -5665,6 +5695,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Settings saved successfully'**
   String get repeater_settingsSaved;
+
+  /// No description provided for @repeater_settingsConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings saved and confirmed by the repeater'**
+  String get repeater_settingsConfirmed;
+
+  /// No description provided for @repeater_settingsUnconfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings saved, but {count} could not be read back to confirm'**
+  String repeater_settingsUnconfirmed(int count);
+
+  /// No description provided for @repeater_readBackMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'{key} reads back as {value}'**
+  String repeater_readBackMismatch(String key, String value);
 
   /// No description provided for @repeater_rxGain.
   ///

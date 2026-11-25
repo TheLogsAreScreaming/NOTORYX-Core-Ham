@@ -2838,6 +2838,26 @@ class AppLocalizationsSv extends AppLocalizations {
       'Inloggning misslyckades. Antingen är lösenordet fel eller så går det inte att nå repeatern.';
 
   @override
+  String get login_failRadioOffline =>
+      'Din radio är inte ansluten, så inloggningen skickades inte. Anslut radion och försök igen.';
+
+  @override
+  String get login_failSend =>
+      'Din radio tog inte emot inloggningsbegäran. Anslut igen och försök på nytt.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return 'Inget svar via den sparade vägen ($hops hopp). Vägen kan vara inaktuell: slå på “$option” under $section och försök igen. Fel lösenord får inte heller något svar.';
+  }
+
+  @override
+  String get login_failRejected => 'Repeatern svarade och nekade lösenordet.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'Inget svar via flood. Repeatern kan vara utom räckhåll, avstängd eller upptagen, eller så är lösenordet fel (det svarar repeatrar inte på). Försök igen närmare.';
+
+  @override
   String get common_reload => 'Ladda om';
 
   @override
@@ -3173,6 +3193,20 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get repeater_settingsSaved =>
       'Inställningarna sparades framgångsrikt.';
+
+  @override
+  String get repeater_settingsConfirmed =>
+      'Inställningarna sparades och bekräftades av repeatern';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return 'Inställningarna sparades, men $count kunde inte läsas tillbaka för bekräftelse';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key läses tillbaka som $value';
+  }
 
   @override
   String get repeater_rxGain => 'Ökad RX-vinst';

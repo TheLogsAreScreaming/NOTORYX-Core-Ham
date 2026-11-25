@@ -2851,6 +2851,26 @@ class AppLocalizationsSl extends AppLocalizations {
       'Prijava je bila neuspešna. Geslo je napačno ali pa je repetitor nedosegljiv.';
 
   @override
+  String get login_failRadioOffline =>
+      'Radio ni povezan, zato prijava ni bila poslana. Povežite radio in poskusite znova.';
+
+  @override
+  String get login_failSend =>
+      'Radio ni sprejel zahteve za prijavo. Ponovno ga povežite in poskusite znova.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return 'Ni odgovora po shranjeni poti ($hops skokov). Morda je zastarela: vklopite $section → $option in poskusite znova. Na napačno geslo tudi ni odgovora.';
+  }
+
+  @override
+  String get login_failRejected => 'Repetitor je odgovoril in zavrnil geslo.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'Ni odgovora prek flooda. Repetitor je morda zunaj dosega, izklopljen ali zaseden, ali pa je geslo napačno (nanj ne odgovori). Poskusite bližje.';
+
+  @override
   String get common_reload => 'Ponovno naloži';
 
   @override
@@ -3184,6 +3204,20 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => 'Nastavitve so shranjene uspešno.';
+
+  @override
+  String get repeater_settingsConfirmed =>
+      'Nastavitve shranjene in potrjene s strani repetitorja';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return 'Nastavitve shranjene, vendar $count ni bilo mogoče prebrati nazaj za potrditev';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key se prebere kot $value';
+  }
 
   @override
   String get repeater_rxGain => 'Povečana dobitka RX';

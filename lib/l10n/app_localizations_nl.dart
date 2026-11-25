@@ -2850,6 +2850,27 @@ class AppLocalizationsNl extends AppLocalizations {
       'Inloggen mislukt. Het wachtwoord is onjuist of de repeater is niet bereikbaar.';
 
   @override
+  String get login_failRadioOffline =>
+      'Je radio is niet verbonden, dus de aanmelding is niet verstuurd. Verbind je radio en probeer het opnieuw.';
+
+  @override
+  String get login_failSend =>
+      'Je radio nam het aanmeldverzoek niet aan. Verbind opnieuw en probeer het nog eens.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return 'Geen antwoord via het opgeslagen pad ($hops hops). Het pad is misschien verouderd: zet “$option” aan onder $section en probeer opnieuw. Op een fout wachtwoord komt ook geen antwoord.';
+  }
+
+  @override
+  String get login_failRejected =>
+      'De repeater antwoordde en weigerde het wachtwoord.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'Geen antwoord via flood. De repeater is misschien buiten bereik, uit of bezet, of het wachtwoord klopt niet (daarop antwoorden repeaters niet). Probeer het dichterbij opnieuw.';
+
+  @override
   String get common_reload => 'Opnieuw laden';
 
   @override
@@ -3182,6 +3203,20 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => 'Instellingen succesvol opgeslagen';
+
+  @override
+  String get repeater_settingsConfirmed =>
+      'Instellingen opgeslagen en door de repeater bevestigd';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return 'Instellingen opgeslagen, maar $count konden niet worden teruggelezen ter controle';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key leest terug als $value';
+  }
 
   @override
   String get repeater_rxGain => 'Verhoogde RX-uitgang';

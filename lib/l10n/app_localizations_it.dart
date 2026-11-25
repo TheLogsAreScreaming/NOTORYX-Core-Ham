@@ -2869,6 +2869,27 @@ class AppLocalizationsIt extends AppLocalizations {
       'Accesso fallito. La password non è corretta oppure il ripetitore non è raggiungibile.';
 
   @override
+  String get login_failRadioOffline =>
+      'La tua radio non è collegata, quindi l\'accesso non è stato inviato. Collegala e riprova.';
+
+  @override
+  String get login_failSend =>
+      'La tua radio non ha accettato la richiesta di accesso. Ricollegala e riprova.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return 'Nessuna risposta sul percorso salvato ($hops salti). Potrebbe essere superato: attiva “$option” in $section e riprova. Anche una password errata non riceve risposta.';
+  }
+
+  @override
+  String get login_failRejected =>
+      'Il ripetitore ha risposto e ha rifiutato la password.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'Nessuna risposta via flood. Il ripetitore potrebbe essere fuori portata, spento o occupato, oppure la password è errata (i ripetitori non rispondono). Riprova più vicino.';
+
+  @override
   String get common_reload => 'Ricarica';
 
   @override
@@ -3206,6 +3227,20 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => 'Impostazioni salvate con successo';
+
+  @override
+  String get repeater_settingsConfirmed =>
+      'Impostazioni salvate e confermate dal ripetitore';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return 'Impostazioni salvate, ma $count non sono state rilette per conferma';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key risulta $value alla rilettura';
+  }
 
   @override
   String get repeater_rxGain => 'Aumento del guadagno RX';

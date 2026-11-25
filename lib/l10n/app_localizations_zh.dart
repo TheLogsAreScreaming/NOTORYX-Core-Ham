@@ -2710,6 +2710,24 @@ class AppLocalizationsZh extends AppLocalizations {
   String get login_failedMessage => '登录失败。可能是密码错误或无法连接到服务器。';
 
   @override
+  String get login_failRadioOffline => '电台未连接，登录未发送。请连接电台后重试。';
+
+  @override
+  String get login_failSend => '电台未接受登录请求。请重新连接后重试。';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return '通过已保存路径（$hops 跳）没有回复。路径可能已过时：请在$section中开启“$option”后重试。密码错误时同样不会回复。';
+  }
+
+  @override
+  String get login_failRejected => '中继器已回复并拒绝了密码。';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      '泛洪没有回复。中继器可能超出范围、已关闭或繁忙，也可能密码错误（密码错误时中继器不回复）。请靠近后重试。';
+
+  @override
   String get common_reload => '重新加载';
 
   @override
@@ -3027,6 +3045,19 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => '设置保存成功';
+
+  @override
+  String get repeater_settingsConfirmed => '设置已保存并经中继器确认';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return '设置已保存，但有 $count 项无法回读确认';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key 回读为 $value';
+  }
 
   @override
   String get repeater_rxGain => '增强的 RX 增益';

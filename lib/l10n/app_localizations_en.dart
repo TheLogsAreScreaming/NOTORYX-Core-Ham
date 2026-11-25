@@ -2825,6 +2825,27 @@ class AppLocalizationsEn extends AppLocalizations {
       'Login failed. Either the password is incorrect or the repeater is unreachable.';
 
   @override
+  String get login_failRadioOffline =>
+      'Your radio isn\'t connected, so the login wasn\'t sent. Connect your radio and try again.';
+
+  @override
+  String get login_failSend =>
+      'Your radio didn\'t accept the login request. Reconnect it and try again.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return 'No answer over the saved path ($hops hops). The path may be out of date: turn on “$option” under $section and try again. A wrong password also gets no answer.';
+  }
+
+  @override
+  String get login_failRejected =>
+      'The repeater answered and refused the password.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'No answer by flood. The repeater may be out of range, off or busy, or the password may be wrong (repeaters don\'t answer a wrong one). Try again from closer.';
+
+  @override
   String get common_reload => 'Reload';
 
   @override
@@ -3154,6 +3175,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => 'Settings saved successfully';
+
+  @override
+  String get repeater_settingsConfirmed =>
+      'Settings saved and confirmed by the repeater';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return 'Settings saved, but $count could not be read back to confirm';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key reads back as $value';
+  }
 
   @override
   String get repeater_rxGain => 'Boosted RX gain';

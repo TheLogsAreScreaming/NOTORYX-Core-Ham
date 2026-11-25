@@ -2872,6 +2872,27 @@ class AppLocalizationsDe extends AppLocalizations {
       'Anmeldung fehlgeschlagen. Entweder ist das Passwort falsch oder der Repeater ist nicht erreichbar.';
 
   @override
+  String get login_failRadioOffline =>
+      'Dein Funkgerät ist nicht verbunden, daher wurde die Anmeldung nicht gesendet. Verbinde es und versuche es erneut.';
+
+  @override
+  String get login_failSend =>
+      'Dein Funkgerät hat die Anmeldeanfrage nicht angenommen. Verbinde es neu und versuche es erneut.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return 'Keine Antwort über den gespeicherten Pfad ($hops Hops). Der Pfad ist vielleicht veraltet: Schalte unter $section „$option“ ein und versuche es erneut. Auch ein falsches Passwort bleibt unbeantwortet.';
+  }
+
+  @override
+  String get login_failRejected =>
+      'Der Repeater hat geantwortet und das Passwort abgelehnt.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'Keine Antwort per Flood. Der Repeater ist vielleicht außer Reichweite, aus oder beschäftigt, oder das Passwort ist falsch (darauf antworten Repeater nicht). Versuche es näher dran erneut.';
+
+  @override
   String get common_reload => 'Neu laden';
 
   @override
@@ -3204,6 +3225,20 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => 'Einstellungen erfolgreich gespeichert';
+
+  @override
+  String get repeater_settingsConfirmed =>
+      'Einstellungen gespeichert und vom Repeater bestätigt';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return 'Einstellungen gespeichert, aber $count ließen sich nicht zur Bestätigung zurücklesen';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key wird als $value zurückgelesen';
+  }
 
   @override
   String get repeater_rxGain => 'Verstärkter RX-Gewinn';

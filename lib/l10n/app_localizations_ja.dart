@@ -2742,6 +2742,25 @@ class AppLocalizationsJa extends AppLocalizations {
       'ログインに失敗しました。パスワードが間違っているか、または接続が確立されていません。';
 
   @override
+  String get login_failRadioOffline =>
+      '無線機が接続されていないため、ログインは送信されませんでした。接続してからもう一度お試しください。';
+
+  @override
+  String get login_failSend => '無線機がログイン要求を受け付けませんでした。再接続してもう一度お試しください。';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return '保存済みの経路（$hops ホップ）で応答がありません。経路が古い可能性があります。$sectionで「$option」をオンにして再試行してください。パスワードが違う場合も応答はありません。';
+  }
+
+  @override
+  String get login_failRejected => 'リピーターが応答し、パスワードを拒否しました。';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'フラッドで応答がありません。リピーターが圏外・停止中・混雑中か、パスワードが違う可能性があります（違う場合は応答しません）。近くから再試行してください。';
+
+  @override
   String get common_reload => '再読み込み';
 
   @override
@@ -3061,6 +3080,19 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => '設定が正常に保存されました';
+
+  @override
+  String get repeater_settingsConfirmed => '設定を保存し、リピーターで確認しました';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return '設定を保存しましたが、$count 件は確認のための読み戻しができませんでした';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key の読み戻し値は $value';
+  }
 
   @override
   String get repeater_rxGain => 'RX ゲインの向上';

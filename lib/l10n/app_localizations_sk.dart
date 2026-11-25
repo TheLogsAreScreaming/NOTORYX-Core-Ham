@@ -2852,6 +2852,26 @@ class AppLocalizationsSk extends AppLocalizations {
       'Prihlásenie zlyhalo. Heslo je nesprávne alebo je opakovač nedostupný.';
 
   @override
+  String get login_failRadioOffline =>
+      'Rádio nie je pripojené, preto sa prihlásenie neodoslalo. Pripojte rádio a skúste znova.';
+
+  @override
+  String get login_failSend =>
+      'Rádio neprijalo žiadosť o prihlásenie. Pripojte ho znova a skúste to ešte raz.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return 'Žiadna odpoveď cez uloženú cestu ($hops skokov). Môže byť zastaraná: zapnite $section → $option a skúste znova. Na nesprávne heslo tiež nepríde odpoveď.';
+  }
+
+  @override
+  String get login_failRejected => 'Opakovač odpovedal a heslo odmietol.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'Žiadna odpoveď cez flood. Opakovač môže byť mimo dosahu, vypnutý alebo zaneprázdnený, alebo je heslo nesprávne (naň neodpovedá). Skúste to bližšie.';
+
+  @override
   String get common_reload => 'Načítať';
 
   @override
@@ -3183,6 +3203,20 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => 'Nastavenia boli uložené úspešne.';
+
+  @override
+  String get repeater_settingsConfirmed =>
+      'Nastavenia uložené a potvrdené opakovačom';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return 'Nastavenia uložené, ale $count sa nepodarilo spätne načítať na potvrdenie';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key sa spätne číta ako $value';
+  }
 
   @override
   String get repeater_rxGain => 'Zvýšený zisk RX';

@@ -2864,6 +2864,27 @@ class AppLocalizationsEs extends AppLocalizations {
       'El inicio de sesión ha fallado. La contraseña es incorrecta o el repetidor no está disponible.';
 
   @override
+  String get login_failRadioOffline =>
+      'Tu radio no está conectada, así que el inicio de sesión no se envió. Conéctala e inténtalo de nuevo.';
+
+  @override
+  String get login_failSend =>
+      'Tu radio no aceptó la solicitud de inicio de sesión. Vuelve a conectarla e inténtalo de nuevo.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return 'Sin respuesta por la ruta guardada ($hops saltos). Puede estar desactualizada: activa “$option” en $section e inténtalo de nuevo. Una contraseña incorrecta tampoco recibe respuesta.';
+  }
+
+  @override
+  String get login_failRejected =>
+      'El repetidor respondió y rechazó la contraseña.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'Sin respuesta por inundación. El repetidor puede estar fuera de alcance, apagado u ocupado, o la contraseña es incorrecta (los repetidores no responden a una incorrecta). Inténtalo más cerca.';
+
+  @override
   String get common_reload => 'Recargar';
 
   @override
@@ -3202,6 +3223,20 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => 'Ajustes guardados correctamente';
+
+  @override
+  String get repeater_settingsConfirmed =>
+      'Ajustes guardados y confirmados por el repetidor';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return 'Ajustes guardados, pero $count no se pudieron releer para confirmar';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key se relee como $value';
+  }
 
   @override
   String get repeater_rxGain => 'Ganancia RX';
