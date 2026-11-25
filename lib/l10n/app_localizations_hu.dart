@@ -7604,6 +7604,11 @@ class AppLocalizationsHu extends AppLocalizations {
   String get shortcuts_checkIn => 'Bejelentkezés';
 
   @override
+  String qsTile_unread(String status, int count) {
+    return '$status · $count olvasatlan';
+  }
+
+  @override
   String get shortcuts_trip => 'Túra';
 
   @override

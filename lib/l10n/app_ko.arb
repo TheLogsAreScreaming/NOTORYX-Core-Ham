@@ -3521,6 +3521,7 @@
   "messageSearch_count": "{count, plural, other{{count}건 일치}}",
   "messageSearch_capped": "최신 일치 항목 {count}건 표시 중",
   "shortcuts_checkIn": "체크인",
+  "qsTile_unread": "{status} · 읽지 않음 {count}",
   "shortcuts_trip": "여정",
   "shortcuts_chats": "채팅",
   "shortcuts_map": "지도",

@@ -3387,6 +3387,7 @@
   "messageSearch_count": "{count, plural, =1{1 resultaat} other{{count} resultaten}}",
   "messageSearch_capped": "De nieuwste {count} resultaten worden getoond",
   "shortcuts_checkIn": "Inchecken",
+  "qsTile_unread": "{status} · {count} ongelezen",
   "shortcuts_trip": "Tocht",
   "shortcuts_chats": "Chats",
   "shortcuts_map": "Kaart",

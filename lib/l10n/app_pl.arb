@@ -3425,6 +3425,7 @@
   "messageSearch_count": "{count, plural, one{1 wynik} few{{count} wyniki} many{{count} wyników} other{{count} wyników}}",
   "messageSearch_capped": "Wyświetlane są najnowsze wyniki ({count})",
   "shortcuts_checkIn": "Zamelduj się",
+  "qsTile_unread": "{status} · nieprzeczytane: {count}",
   "shortcuts_trip": "Wyprawa",
   "shortcuts_chats": "Czaty",
   "shortcuts_map": "Mapa",

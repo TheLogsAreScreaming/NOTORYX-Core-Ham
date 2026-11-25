@@ -3521,6 +3521,7 @@
   "messageSearch_count": "{count, plural, =1{1 résultat} other{{count} résultats}}",
   "messageSearch_capped": "Affichage des {count} résultats les plus récents",
   "shortcuts_checkIn": "Pointer",
+  "qsTile_unread": "{status} · {count} non lus",
   "shortcuts_trip": "Sortie",
   "shortcuts_chats": "Discussions",
   "shortcuts_map": "Carte",

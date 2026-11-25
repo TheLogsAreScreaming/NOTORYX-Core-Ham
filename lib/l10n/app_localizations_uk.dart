@@ -7651,6 +7651,11 @@ class AppLocalizationsUk extends AppLocalizations {
   String get shortcuts_checkIn => 'Позначитися';
 
   @override
+  String qsTile_unread(String status, int count) {
+    return '$status · непрочитаних: $count';
+  }
+
+  @override
   String get shortcuts_trip => 'Похід';
 
   @override

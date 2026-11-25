@@ -3367,6 +3367,7 @@
   "messageSearch_count": "{count, plural, one{{count} збіг} few{{count} збіги} many{{count} збігів} other{{count} збігу}}",
   "messageSearch_capped": "Показано останні збіги ({count})",
   "shortcuts_checkIn": "Позначитися",
+  "qsTile_unread": "{status} · непрочитаних: {count}",
   "shortcuts_trip": "Похід",
   "shortcuts_chats": "Чати",
   "shortcuts_map": "Мапа",

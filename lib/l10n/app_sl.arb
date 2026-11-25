@@ -3387,6 +3387,7 @@
   "messageSearch_count": "{count, plural, one{{count} zadetek} two{{count} zadetka} few{{count} zadetki} other{{count} zadetkov}}",
   "messageSearch_capped": "Prikazanih je najnovejših {count} zadetkov",
   "shortcuts_checkIn": "Javi se",
+  "qsTile_unread": "{status} · neprebrano: {count}",
   "shortcuts_trip": "Tura",
   "shortcuts_chats": "Klepeti",
   "shortcuts_map": "Zemljevid",

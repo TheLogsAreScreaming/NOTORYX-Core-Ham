@@ -2690,6 +2690,7 @@
   "messageSearch_count": "{count, plural, one{{count} совпадение} few{{count} совпадения} many{{count} совпадений} other{{count} совпадения}}",
   "messageSearch_capped": "Показаны последние совпадения ({count})",
   "shortcuts_checkIn": "Отметиться",
+  "qsTile_unread": "{status} · непрочитанных: {count}",
   "shortcuts_trip": "Поход",
   "shortcuts_chats": "Чаты",
   "shortcuts_map": "Карта",

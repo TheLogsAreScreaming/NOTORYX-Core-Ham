@@ -3521,6 +3521,7 @@
   "messageSearch_count": "{count, plural, other{{count}件一致}}",
   "messageSearch_capped": "最新の一致{count}件を表示しています",
   "shortcuts_checkIn": "チェックイン",
+  "qsTile_unread": "{status} · 未読 {count}",
   "shortcuts_trip": "行程",
   "shortcuts_chats": "チャット",
   "shortcuts_map": "マップ",

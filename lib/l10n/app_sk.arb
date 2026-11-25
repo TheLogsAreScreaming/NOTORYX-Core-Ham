@@ -3387,6 +3387,7 @@
   "messageSearch_count": "{count, plural, one{1 výsledok} few{{count} výsledky} many{{count} výsledku} other{{count} výsledkov}}",
   "messageSearch_capped": "Zobrazuje sa najnovších {count} výsledkov",
   "shortcuts_checkIn": "Nahlásiť sa",
+  "qsTile_unread": "{status} · neprečítané: {count}",
   "shortcuts_trip": "Túra",
   "shortcuts_chats": "Čety",
   "shortcuts_map": "Mapa",

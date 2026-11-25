@@ -3388,6 +3388,7 @@
   "messageSearch_count": "{count, plural, =1{1 träff} other{{count} träffar}}",
   "messageSearch_capped": "Visar de {count} senaste träffarna",
   "shortcuts_checkIn": "Checka in",
+  "qsTile_unread": "{status} · {count} olästa",
   "shortcuts_trip": "Tur",
   "shortcuts_chats": "Chattar",
   "shortcuts_map": "Karta",

@@ -3392,6 +3392,7 @@
   "messageSearch_count": "{count, plural, other{{count} 条匹配}}",
   "messageSearch_capped": "显示最新的 {count} 条匹配",
   "shortcuts_checkIn": "报到",
+  "qsTile_unread": "{status} · {count} 条未读",
   "shortcuts_trip": "行程",
   "shortcuts_chats": "聊天",
   "shortcuts_map": "地图",

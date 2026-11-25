@@ -12733,6 +12733,12 @@ abstract class AppLocalizations {
   /// **'Check in'**
   String get shortcuts_checkIn;
 
+  /// No description provided for @qsTile_unread.
+  ///
+  /// In en, this message translates to:
+  /// **'{status} · {count} unread'**
+  String qsTile_unread(String status, int count);
+
   /// No description provided for @shortcuts_trip.
   ///
   /// In en, this message translates to:

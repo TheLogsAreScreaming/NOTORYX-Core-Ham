@@ -3523,6 +3523,7 @@
   "messageSearch_count": "{count, plural, =1{1 Treffer} other{{count} Treffer}}",
   "messageSearch_capped": "Die neuesten {count} Treffer werden angezeigt",
   "shortcuts_checkIn": "Einchecken",
+  "qsTile_unread": "{status} · {count} ungelesen",
   "shortcuts_trip": "Tour",
   "shortcuts_chats": "Chats",
   "shortcuts_map": "Karte",

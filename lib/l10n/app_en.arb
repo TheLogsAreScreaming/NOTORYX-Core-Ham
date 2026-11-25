@@ -4518,6 +4518,8 @@
     }
   },
   "shortcuts_checkIn": "Check in",
+  "qsTile_unread": "{status} · {count} unread",
+  "@qsTile_unread": {"placeholders": {"status": {"type": "String"}, "count": {"type": "int"}}},
   "shortcuts_trip": "Trip",
   "shortcuts_chats": "Chats",
   "shortcuts_map": "Map",

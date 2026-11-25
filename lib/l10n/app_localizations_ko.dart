@@ -7257,6 +7257,11 @@ class AppLocalizationsKo extends AppLocalizations {
   String get shortcuts_checkIn => '체크인';
 
   @override
+  String qsTile_unread(String status, int count) {
+    return '$status · 읽지 않음 $count';
+  }
+
+  @override
   String get shortcuts_trip => '여정';
 
   @override

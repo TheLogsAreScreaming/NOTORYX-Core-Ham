@@ -3425,6 +3425,7 @@
   "messageSearch_count": "{count, plural, =1{1 találat} other{{count} találat}}",
   "messageSearch_capped": "A legújabb {count} találat látható",
   "shortcuts_checkIn": "Bejelentkezés",
+  "qsTile_unread": "{status} · {count} olvasatlan",
   "shortcuts_trip": "Túra",
   "shortcuts_chats": "Csevegések",
   "shortcuts_map": "Térkép",

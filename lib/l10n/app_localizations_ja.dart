@@ -7247,6 +7247,11 @@ class AppLocalizationsJa extends AppLocalizations {
   String get shortcuts_checkIn => 'チェックイン';
 
   @override
+  String qsTile_unread(String status, int count) {
+    return '$status · 未読 $count';
+  }
+
+  @override
   String get shortcuts_trip => '行程';
 
   @override

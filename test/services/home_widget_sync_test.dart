@@ -37,6 +37,8 @@ void main() {
     expect(off['status'], en.connections_statusNotConnected);
     expect(off['battery'], '—', reason: 'stale battery is not shown');
     expect(off['unread'], '3');
+    expect(off['connected'], '0');
+    expect(off['tile_subtitle'], en.qsTile_unread(off['status']!, 3));
     final on = homeWidgetValues(
       t: lookupAppLocalizations(const Locale('de')),
       connected: true,
@@ -46,6 +48,8 @@ void main() {
     );
     expect(on['radio'], 'Trail Lead');
     expect(on['battery'], '78%');
+    expect(on['connected'], '1');
+    expect(on['tile_subtitle'], on['status'], reason: 'no unread count at 0');
     expect(on['lbl_checkin'], isNot(en.shortcuts_checkIn));
   });
 

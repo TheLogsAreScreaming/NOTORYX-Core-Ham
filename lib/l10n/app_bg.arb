@@ -3387,6 +3387,7 @@
   "messageSearch_count": "{count, plural, =1{1 съвпадение} other{{count} съвпадения}}",
   "messageSearch_capped": "Показани са най-новите {count} съвпадения",
   "shortcuts_checkIn": "Отметка",
+  "qsTile_unread": "{status} · непрочетени: {count}",
   "shortcuts_trip": "Поход",
   "shortcuts_chats": "Чатове",
   "shortcuts_map": "Карта",

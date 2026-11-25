@@ -7613,6 +7613,11 @@ class AppLocalizationsBg extends AppLocalizations {
   String get shortcuts_checkIn => 'Отметка';
 
   @override
+  String qsTile_unread(String status, int count) {
+    return '$status · непрочетени: $count';
+  }
+
+  @override
   String get shortcuts_trip => 'Поход';
 
   @override

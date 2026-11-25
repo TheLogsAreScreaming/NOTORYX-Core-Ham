@@ -3521,6 +3521,7 @@
   "messageSearch_count": "{count, plural, =1{1 coincidencia} other{{count} coincidencias}}",
   "messageSearch_capped": "Se muestran las {count} coincidencias más recientes",
   "shortcuts_checkIn": "Enviar aviso",
+  "qsTile_unread": "{status} · {count} sin leer",
   "shortcuts_trip": "Salida",
   "shortcuts_chats": "Chats",
   "shortcuts_map": "Mapa",
