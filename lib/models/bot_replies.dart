@@ -60,6 +60,25 @@ String sunReply(double lat, double lon, DateTime now) {
   };
 }
 
+/// 🎯 direct, 1⃣–9⃣, 🔟 ten, 🦘 for eleven or more hops.
+String hopEmoji(int? pathLength) {
+  if (pathLength == null) return '🎯';
+  final hops = pathLength & 0x3F;
+  if (hops == 0) return '🎯';
+  if (hops > 10) return '🦘';
+  const digits = ['1⃣', '2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣', '8⃣', '9⃣', '🔟'];
+  return digits[hops - 1];
+}
+
+/// `!ping` reply: hop-count emoji + hop count.
+String pingReply(int? pathLength) {
+  final emoji = hopEmoji(pathLength);
+  if (pathLength == null) return '$emoji Direct.';
+  final hops = pathLength & 0x3F;
+  if (hops == 0) return '$emoji Direct.';
+  return '$emoji $hops hop${hops == 1 ? '' : 's'}.';
+}
+
 /// `!moon` reply: phase name and how much of the disc is lit.
 String moonReply(DateTime now) {
   final moon = moonPhase(now);
