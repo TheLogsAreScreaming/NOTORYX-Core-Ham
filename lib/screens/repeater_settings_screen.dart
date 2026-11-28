@@ -10,14 +10,17 @@ import '../models/contact.dart';
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../services/repeater_command_service.dart';
+import '../services/repeater_login_doctor.dart';
 import '../services/storage_service.dart';
 import '../theme/mesh_theme.dart';
+import '../widgets/ui/mesh_states.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/us_bandwidth_notice.dart';
 import '../widgets/routing_sheet.dart';
 import '../models/prefix_census.dart';
 import '../utils/keys.dart';
 import '../helpers/snack_bar_builder.dart';
+import '../utils/amateur_radio.dart';
 
 class RepeaterSettingsScreen extends StatefulWidget {
   final Contact repeater;
@@ -728,8 +731,52 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
     });
   }
 
+  /// Why the ham firmware would refuse these settings, or null. Remote admin
+  /// travels in plain text, so passwords never go over the air.
+  String? _amateurProblem() {
+    if (_dirtyFields.contains(_SettingField.name) &&
+        _nameController.text.isNotEmpty &&
+        callsignOf(_nameController.text.trim()) == null) {
+      return context.l10n.ham_repeaterNameNeedsCall;
+    }
+    if (_passwordController.text.isNotEmpty ||
+        _guestPasswordController.text.isNotEmpty) {
+      return context.l10n.ham_repeaterPasswordsSerial;
+    }
+    final mhz = double.tryParse(_freqController.text.trim());
+    if (_dirtyFields.contains(_SettingField.radio) &&
+        mhz != null &&
+        !isAmateurFrequencyMHz(mhz)) {
+      return context.l10n.settings_frequencyInvalid;
+    }
+    return null;
+  }
+
+  /// Reads back what [setCommand] changed. Null when that setting isn't
+  /// checked; unreadable when the `get` gets no usable reply.
+  Future<ReadBack?> _readBack(Contact repeater, String setCommand) async {
+    final get = readBackCommand(setCommand);
+    if (get == null || _commandService == null) return null;
+    try {
+      await Future.delayed(const Duration(milliseconds: 200));
+      final reply = await _commandService!.sendCommand(
+        repeater,
+        get,
+        retries: 1,
+      );
+      return checkReadBack(setCommand, reply);
+    } catch (_) {
+      return const ReadBackUnreadable();
+    }
+  }
+
   Future<void> _saveSettings() async {
     if (_commandService == null) return;
+    final problem = _amateurProblem();
+    if (problem != null) {
+      showDismissibleSnackBar(context, content: Text(problem));
+      return;
+    }
     final connector = Provider.of<MeshCoreConnector>(context, listen: false);
     final repeater = _resolveRepeater(connector);
 
@@ -925,6 +972,8 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
       final retainDirty = <_SettingField>{};
       var passwordsFailed = false;
       var rebootNeeded = false;
+      var confirmed = 0;
+      var unconfirmed = 0;
       for (final entry in pending) {
         var failed = false;
         try {
@@ -941,6 +990,26 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
             failed = true;
           } else if (outcome == _SaveOutcome.rebootNeeded) {
             rebootNeeded = true;
+          } else {
+            // "OK" only says the command parsed: read the value back.
+            switch (await _readBack(repeater, entry.command)) {
+              case null:
+                break;
+              case ReadBackMatch():
+                confirmed++;
+              case ReadBackMismatch(:final actual):
+                if (mounted) {
+                  failures.add(
+                    context.l10n.repeater_readBackMismatch(
+                      _shortCommandLabel(entry.command),
+                      actual,
+                    ),
+                  );
+                }
+                failed = true;
+              case ReadBackUnreadable():
+                unconfirmed++;
+            }
           }
         } catch (e) {
           failures.add('${_shortCommandLabel(entry.command)}: ${e.toString()}');
@@ -976,12 +1045,22 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
           showDismissibleSnackBar(
             context,
             content: Text(l10n.repeater_settingsSavedRebootNeeded),
-            backgroundColor: Theme.of(context).colorScheme.tertiary,
+            backgroundColor: MeshPalette.warn,
+          );
+        } else if (failures.isEmpty && unconfirmed > 0) {
+          showDismissibleSnackBar(
+            context,
+            content: Text(l10n.repeater_settingsUnconfirmed(unconfirmed)),
+            backgroundColor: MeshPalette.warn,
           );
         } else if (failures.isEmpty) {
           showDismissibleSnackBar(
             context,
-            content: Text(l10n.repeater_settingsSaved),
+            content: Text(
+              confirmed > 0
+                  ? l10n.repeater_settingsConfirmed
+                  : l10n.repeater_settingsSaved,
+            ),
           );
         } else {
           showDismissibleSnackBar(
@@ -1110,7 +1189,7 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
       body: SafeArea(
         top: false,
         child: _isLoading && _nameController.text.isEmpty
-            ? const Center(child: CircularProgressIndicator())
+            ? const MeshLoadingState()
             : ListView(
                 padding: const EdgeInsets.only(bottom: 32),
                 children: [
@@ -1713,7 +1792,6 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                       decoration: InputDecoration(
                         labelText: l10n.repeater_loopDetect,
                         helperText: l10n.repeater_loopDetectHelper,
-                        helperMaxLines: 3,
                       ),
                       items: [
                         DropdownMenuItem(
@@ -1819,7 +1897,6 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
             decoration: InputDecoration(
               labelText: l10n.repeater_ownerInfo,
               helperText: l10n.repeater_ownerInfoHelper,
-              helperMaxLines: 3,
             ),
             maxLines: 4,
             minLines: 2,
@@ -1887,7 +1964,9 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
         leading: const Icon(Icons.tune),
         title: Text(
           l10n.repeater_advancedSettings,
-          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          style: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
         ),
         subtitle: Text(l10n.repeater_advancedSettingsSubtitle),
         childrenPadding: const EdgeInsets.fromLTRB(0, 8, 0, 4),
@@ -1901,7 +1980,6 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                   decoration: InputDecoration(
                     labelText: l10n.repeater_pathHashMode,
                     helperText: l10n.repeater_pathHashModeHelper,
-                    helperMaxLines: 5,
                   ),
                   items: const [
                     DropdownMenuItem(value: 0, child: Text('0')),
@@ -1933,7 +2011,6 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                   decoration: InputDecoration(
                     labelText: l10n.repeater_txDelay,
                     helperText: l10n.repeater_txDelayHelper,
-                    helperMaxLines: 3,
                   ),
                   keyboardType: const TextInputType.numberWithOptions(
                     decimal: true,
@@ -1958,7 +2035,6 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                   decoration: InputDecoration(
                     labelText: l10n.repeater_directTxDelay,
                     helperText: l10n.repeater_directTxDelayHelper,
-                    helperMaxLines: 3,
                   ),
                   keyboardType: const TextInputType.numberWithOptions(
                     decimal: true,
@@ -1983,7 +2059,6 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                   decoration: InputDecoration(
                     labelText: l10n.repeater_intThresh,
                     helperText: l10n.repeater_intThreshHelper,
-                    helperMaxLines: 3,
                   ),
                   keyboardType: TextInputType.number,
                   onChanged: (_) => _markChanged(_SettingField.intThresh),
@@ -2075,7 +2150,9 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
         leading: const Icon(Icons.vpn_key),
         title: Text(
           l10n.repeater_keySettings,
-          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          style: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
         ),
         subtitle: Text(l10n.repeater_keySettingsSubtitle),
         childrenPadding: const EdgeInsets.fromLTRB(0, 8, 0, 4),
@@ -2092,7 +2169,6 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                   decoration: InputDecoration(
                     labelText: l10n.repeater_prvKey,
                     helperText: l10n.repeater_prvKeyHelper,
-                    helperMaxLines: 3,
                     border: const OutlineInputBorder(),
                   ),
                   onChanged: (_) {
@@ -2140,7 +2216,6 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                   decoration: InputDecoration(
                     labelText: l10n.repeater_pubKey,
                     helperText: l10n.repeater_pubKeyHelper,
-                    helperMaxLines: 3,
                     border: const OutlineInputBorder(),
                   ),
                 ),
@@ -2176,9 +2251,7 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                     helperText: l10n.repeater_pubKeyPrefixHelper(
                       pow(16, _prvKeyPrefixController.text.length).toInt(),
                     ),
-                    helperMaxLines: 3,
                     errorText: _prefixClash(connector, repeater),
-                    errorMaxLines: 3,
                     border: const OutlineInputBorder(),
                   ),
                 ),
@@ -2223,8 +2296,7 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
               const SizedBox(width: 8),
               Text(
                 l10n.repeater_dangerZone,
-                style: TextStyle(
-                  fontSize: 15,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w700,
                   color: MeshPalette.alert,
                 ),

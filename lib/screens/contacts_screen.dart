@@ -15,6 +15,8 @@ import '../connector/meshcore_protocol.dart';
 import '../models/contact.dart';
 import '../l10n/contact_localization.dart';
 import '../models/contact_group.dart';
+import '../models/node_staleness.dart';
+import '../services/app_settings_service.dart';
 import '../services/ui_view_state_service.dart';
 import '../theme/mesh_theme.dart';
 import '../utils/contact_search.dart';
@@ -23,9 +25,11 @@ import '../utils/dialog_utils.dart';
 import '../utils/disconnect_navigation_mixin.dart';
 import '../utils/emoji_utils.dart';
 import '../utils/main_tab_navigation.dart';
+import '../widgets/ui/unread_badge.dart';
+import '../widgets/path_hash_badge.dart';
+import '../widgets/contact_table_banner.dart';
 import '../widgets/ember_backdrop.dart';
 import '../widgets/list_filter_widget.dart';
-import '../widgets/empty_state.dart';
 import '../widgets/glass_node_card.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/quick_switch_bar.dart';
@@ -35,10 +39,16 @@ import '../widgets/sync_progress_overlay.dart';
 import '../helpers/snack_bar_builder.dart';
 import '../helpers/share_links.dart';
 import '../widgets/share_in_chat.dart';
+import '../widgets/node_avatar.dart';
+import '../widgets/node_look_sheet.dart';
 import 'chat_screen.dart';
 import 'discovery_screen.dart';
+import 'follow_contact_screen.dart';
+import 'node_compass_screen.dart';
+import 'sensor_history_screen.dart';
 import 'repeater_hub_screen.dart';
 import 'settings_screen.dart';
+import '../widgets/ui/mesh_states.dart';
 
 enum RoomLoginDestination { chat, management }
 
@@ -508,10 +518,12 @@ class _ContactsScreenState extends State<ContactsScreen>
             children: [
               if (connector.contactSyncStalled)
                 _ContactSyncStalledBanner(connector: connector),
+              if (connector.contactsFull) const _ContactsFullBanner(),
               Expanded(child: _buildContactsBody(context, connector)),
             ],
           ),
           floatingActionButton: FloatingActionButton(
+            tooltip: context.l10n.discoveredContacts_addContact,
             onPressed: () => _showAddContactSheet(context),
             child: const Icon(Icons.person_add),
           ),
@@ -740,6 +752,11 @@ class _ContactsScreenState extends State<ContactsScreen>
 
   Widget _buildContactsBody(BuildContext context, MeshCoreConnector connector) {
     final viewState = context.watch<UiViewStateService>();
+    final staleAfter = staleAfterFromHours(
+      context.select<AppSettingsService?, int>(
+        (s) => s?.settings.staleAfterHours ?? 24,
+      ),
+    );
     final contacts = connector.contacts;
     final waitingForInitialContacts =
         connector.isConnected &&
@@ -749,7 +766,7 @@ class _ContactsScreenState extends State<ContactsScreen>
         connector.isLoadingContacts && contacts.isEmpty;
 
     if (waitingForInitialContacts || waitingForFirstContact) {
-      return const Center(child: CircularProgressIndicator());
+      return const MeshLoadingState();
     }
 
     if (contacts.isEmpty && _groups.isEmpty) {
@@ -934,6 +951,7 @@ class _ContactsScreenState extends State<ContactsScreen>
             ],
           ),
         ),
+        const ContactTableBanner(),
         Expanded(
           child: RefreshIndicator(
             onRefresh: () => connector.getContacts(),
@@ -975,6 +993,11 @@ class _ContactsScreenState extends State<ContactsScreen>
                             contact: contact,
                             pathHashByteWidth: connector.pathHashByteWidth,
                             lastSeen: _resolveLastSeen(contact),
+                            stale: isStale(
+                              contact.lastHeard,
+                              DateTime.now(),
+                              staleAfter,
+                            ),
                             unreadCount: unreadCount,
                             isFavorite: contact.isFavorite,
                             onTap: () => _openChat(context, contact),
@@ -1082,10 +1105,9 @@ class _ContactsScreenState extends State<ContactsScreen>
   }
 
   DateTime _resolveLastSeen(Contact contact) {
-    if (contact.type != advTypeChat) return contact.lastSeen;
-    return contact.lastMessageAt.isAfter(contact.lastSeen)
-        ? contact.lastMessageAt
-        : contact.lastSeen;
+    final heard = contact.lastHeard;
+    if (contact.type != advTypeChat) return heard;
+    return contact.lastMessageAt.isAfter(heard) ? contact.lastMessageAt : heard;
   }
 
   void _openChat(BuildContext context, Contact contact) {
@@ -1165,38 +1187,27 @@ class _ContactsScreenState extends State<ContactsScreen>
     );
   }
 
-  void _confirmDeleteGroup(BuildContext context, ContactGroup group) {
+  Future<void> _confirmDeleteGroup(
+    BuildContext context,
+    ContactGroup group,
+  ) async {
     if (!_hasGroupStoreScope(context.read<MeshCoreConnector>())) {
       _showGroupsUnavailableMessage(context);
       return;
     }
-    showDialog(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(context.l10n.contacts_deleteGroup),
-        content: Text(context.l10n.contacts_deleteGroupConfirm(group.name)),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext),
-            child: Text(context.l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () async {
-              Navigator.pop(dialogContext);
-              setState(() {
-                _groups.removeWhere((g) => g.name == group.name);
-                _ensureValidSelectedGroup();
-              });
-              await _saveGroups();
-            },
-            child: Text(
-              context.l10n.common_delete,
-              style: TextStyle(color: Theme.of(context).colorScheme.error),
-            ),
-          ),
-        ],
-      ),
+    final confirmed = await confirmDestructive(
+      context,
+      title: context.l10n.contacts_deleteGroup,
+      message: context.l10n.contacts_deleteGroupConfirm(group.name),
+      confirmLabel: context.l10n.common_delete,
     );
+    if (!confirmed) return;
+    if (!context.mounted) return;
+    setState(() {
+      _groups.removeWhere((g) => g.name == group.name);
+      _ensureValidSelectedGroup();
+    });
+    await _saveGroups();
   }
 
   void _showGroupEditor(
@@ -1510,6 +1521,49 @@ class _ContactsScreenState extends State<ContactsScreen>
                   },
                 ),
             ],
+            if (contact.type == advTypeSensor)
+              ListTile(
+                leading: const Icon(Icons.show_chart),
+                title: Text(context.l10n.sensorHistory_title),
+                subtitle: Text(context.l10n.sensorHistory_menuHint),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  openSensorHistory(context, contact);
+                },
+              ),
+            if (contact.hasLocation)
+              ListTile(
+                leading: const Icon(Icons.explore_outlined),
+                title: Text(context.l10n.compass_openHint),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  openNodeCompass(context, contact);
+                },
+              ),
+            if (contact.hasLocation)
+              ListTile(
+                leading: const Icon(Icons.radar),
+                title: Text(context.l10n.follow_menu),
+                subtitle: Text(context.l10n.follow_menuHint),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  followContact(context, contact);
+                },
+              ),
+            ListTile(
+              leading: const Icon(Icons.palette_outlined),
+              title: Text(context.l10n.nodeLook_menu),
+              onTap: () {
+                Navigator.pop(sheetContext);
+                unawaited(
+                  showNodeLookSheet(
+                    context,
+                    nodeKey: contact.publicKeyHex,
+                    name: contact.name,
+                  ),
+                );
+              },
+            ),
             ListTile(
               leading: Icon(
                 isFavorite ? Icons.star : Icons.star_border,
@@ -1575,34 +1629,20 @@ class _ContactsScreenState extends State<ContactsScreen>
     return Uint8List.fromList(contact.publicKey.sublist(0, width));
   }
 
-  void _confirmDelete(
+  Future<void> _confirmDelete(
     BuildContext context,
     MeshCoreConnector connector,
     Contact contact,
-  ) {
-    showDialog(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(context.l10n.contacts_deleteContact),
-        content: Text(context.l10n.contacts_removeConfirm(contact.name)),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext),
-            child: Text(context.l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.pop(dialogContext);
-              connector.removeContact(contact);
-            },
-            child: Text(
-              context.l10n.common_delete,
-              style: TextStyle(color: Theme.of(context).colorScheme.error),
-            ),
-          ),
-        ],
-      ),
+  ) async {
+    final confirmed = await confirmDestructive(
+      context,
+      title: context.l10n.contacts_deleteContact,
+      message: context.l10n.contacts_removeConfirm(contact.name),
+      confirmLabel: context.l10n.common_delete,
     );
+    if (!confirmed) return;
+    if (!context.mounted) return;
+    connector.removeContact(contact);
   }
 }
 
@@ -1610,6 +1650,9 @@ class _ContactTile extends StatelessWidget {
   final Contact contact;
   final int pathHashByteWidth;
   final DateTime lastSeen;
+
+  /// Not heard (no advert) within the "Mark nodes stale after" setting.
+  final bool stale;
   final int unreadCount;
   final bool isFavorite;
   final VoidCallback onTap;
@@ -1619,6 +1662,7 @@ class _ContactTile extends StatelessWidget {
     required this.contact,
     required this.pathHashByteWidth,
     required this.lastSeen,
+    this.stale = false,
     required this.unreadCount,
     required this.isFavorite,
     required this.onTap,
@@ -1646,115 +1690,153 @@ class _ContactTile extends StatelessWidget {
     final emoji = firstEmoji(contact.name);
     final hasUnread = unreadCount > 0;
     // What it is and when we last heard it; how far sits on the right.
+    // A stale node says so in words and with an icon, not by colour alone,
+    // and its age is from when it was last heard.
     final subtitle = [
       contact.typeLabel(l10n),
-      _formatLastSeen(context, lastSeen),
+      stale
+          ? l10n.stale_badge(_formatLastSeen(context, contact.lastHeard))
+          : _formatLastSeen(context, lastSeen),
     ].join(' · ');
 
     // A glyph, not an avatar: the node type, or the emoji it's named with.
+    // A photo or colour picked for this node replaces it.
     final Widget glyph = SizedBox(
-      width: 24,
-      child: emoji != null
-          ? Text(emoji, style: const TextStyle(fontSize: 17))
-          : Icon(_typeIcon(), size: 19, color: MeshPalette.ink3),
+      width: 28,
+      child: NodeAvatar(
+        nodeKey: contact.publicKeyHex,
+        name: contact.name,
+        size: 28,
+        icon: _typeIcon(),
+        fallback: emoji != null
+            ? Text(emoji, style: const TextStyle(fontSize: 17))
+            : Icon(_typeIcon(), size: 19, color: MeshPalette.ink3),
+      ),
     );
 
-    return GestureDetector(
-      onSecondaryTapUp: PlatformInfo.isDesktop ? (_) => onLongPress() : null,
-      child: InkWell(
-        onTap: onTap,
-        onLongPress: onLongPress,
-        // Each tile sits in its own glass card, so no divider line.
-        child: DecoratedBox(
-          decoration: const BoxDecoration(),
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(minHeight: 56),
-            child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(16, 10, 16, 10),
-              child: Row(
-                children: [
-                  glyph,
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+    // Merge the name, type and distance into the row's tap target so a
+    // screen reader announces the contact, not just "button".
+    return MergeSemantics(
+      child: GestureDetector(
+        onSecondaryTapUp: PlatformInfo.isDesktop ? (_) => onLongPress() : null,
+        child: InkWell(
+          onTap: onTap,
+          onLongPress: onLongPress,
+          // Each tile sits in its own glass card, so no divider line.
+          child: DecoratedBox(
+            decoration: const BoxDecoration(),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(minHeight: 56),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 10, 16, 10),
+                child: Row(
+                  children: [
+                    glyph,
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  contact.name,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.titleSmall
+                                      ?.copyWith(
+                                        fontSize: 15,
+                                        fontWeight: hasUnread
+                                            ? FontWeight.w700
+                                            : FontWeight.w500,
+                                      ),
+                                ),
+                              ),
+                              if (isFavorite) ...[
+                                const SizedBox(width: 6),
+                                Icon(
+                                  Icons.star,
+                                  size: 16,
+                                  color: MeshPalette.warn,
+                                  semanticLabel: l10n.listFilter_favorites,
+                                ),
+                              ],
+                              if (contact.hasLocation) ...[
+                                const SizedBox(width: 4),
+                                Icon(
+                                  Icons.location_on_outlined,
+                                  size: 16,
+                                  color: scheme.onSurfaceVariant,
+                                ),
+                              ],
+                            ],
+                          ),
+                          const SizedBox(height: 2),
+                          Row(
+                            children: [
+                              if (stale) ...[
+                                Icon(
+                                  Icons.history_toggle_off,
+                                  key: const ValueKey('contact-stale-icon'),
+                                  size: 14,
+                                  color: MeshPalette.ink3,
+                                ),
+                                const SizedBox(width: 4),
+                              ],
+                              Flexible(
+                                child: Text(
+                                  subtitle,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.bodySmall
+                                      ?.copyWith(
+                                        fontSize: 13,
+                                        color: MeshPalette.ink3,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Row(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
-                            Flexible(
-                              child: Text(
-                                contact.name,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontWeight: hasUnread
-                                      ? FontWeight.w700
-                                      : FontWeight.w500,
-                                  fontSize: 15,
-                                  color: scheme.onSurface,
-                                ),
+                            if (contact.routeHashWidth case final width?) ...[
+                              PathHashBadge(
+                                width: width,
+                                radioWidth: pathHashByteWidth,
+                              ),
+                              const SizedBox(width: 6),
+                            ],
+                            Text(
+                              contact.pathLabel(
+                                l10n,
+                                pathHashByteWidth: pathHashByteWidth,
+                              ),
+                              style: MeshTheme.mono(
+                                fontSize: 12,
+                                color: MeshPalette.ink3,
                               ),
                             ),
-                            if (isFavorite) ...[
-                              const SizedBox(width: 6),
-                              Icon(
-                                Icons.star,
-                                size: 16,
-                                color: MeshPalette.warn,
-                                semanticLabel: l10n.listFilter_favorites,
-                              ),
-                            ],
-                            if (contact.hasLocation) ...[
-                              const SizedBox(width: 4),
-                              Icon(
-                                Icons.location_on_outlined,
-                                size: 16,
-                                color: scheme.onSurfaceVariant,
-                              ),
-                            ],
                           ],
                         ),
-                        const SizedBox(height: 2),
-                        Text(
-                          subtitle,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: MeshPalette.ink3,
-                          ),
-                        ),
+                        if (hasUnread) ...[
+                          const SizedBox(height: 4),
+                          UnreadBadge(unreadCount),
+                        ],
                       ],
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        contact.pathLabel(
-                          l10n,
-                          pathHashByteWidth: pathHashByteWidth,
-                        ),
-                        style: MeshTheme.mono(
-                          fontSize: 12,
-                          color: MeshPalette.ink3,
-                        ),
-                      ),
-                      if (hasUnread)
-                        Text(
-                          '$unreadCount',
-                          style: MeshTheme.mono(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w700,
-                            color: MeshPalette.accent,
-                          ),
-                        ),
-                    ],
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -1792,6 +1874,9 @@ class _ContactTileEntrance extends StatelessWidget {
   final Contact contact;
   final int pathHashByteWidth;
   final DateTime lastSeen;
+
+  /// Not heard (no advert) within the "Mark nodes stale after" setting.
+  final bool stale;
   final int unreadCount;
   final bool isFavorite;
   final VoidCallback onTap;
@@ -1802,6 +1887,7 @@ class _ContactTileEntrance extends StatelessWidget {
     required this.contact,
     required this.pathHashByteWidth,
     required this.lastSeen,
+    this.stale = false,
     required this.unreadCount,
     required this.isFavorite,
     required this.onTap,
@@ -1816,6 +1902,7 @@ class _ContactTileEntrance extends StatelessWidget {
         contact: contact,
         pathHashByteWidth: pathHashByteWidth,
         lastSeen: lastSeen,
+        stale: stale,
         unreadCount: unreadCount,
         isFavorite: isFavorite,
         onTap: onTap,
@@ -1826,6 +1913,34 @@ class _ContactTileEntrance extends StatelessWidget {
 }
 
 /// Shown when the radio didn't answer a contact sync.
+class _ContactsFullBanner extends StatelessWidget {
+  const _ContactsFullBanner();
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Material(
+      key: const ValueKey('contacts-full'),
+      color: scheme.errorContainer,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
+        child: Row(
+          children: [
+            Icon(Icons.group_off_outlined, color: scheme.onErrorContainer),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                context.l10n.contacts_fullWarning,
+                style: TextStyle(color: scheme.onErrorContainer),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _ContactSyncStalledBanner extends StatelessWidget {
   final MeshCoreConnector connector;
   const _ContactSyncStalledBanner({required this.connector});

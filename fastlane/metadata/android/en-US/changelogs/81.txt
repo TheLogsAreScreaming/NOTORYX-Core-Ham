@@ -1,0 +1,4 @@
+• Quick messages: ready-made replies from the message box menu, editable
+• Stop retrying a direct message, and a note that people must add you before they can reply
+• Map button jumps to your position using phone GPS
+• Forget last advert for a node stuck after a clock reset

@@ -72,21 +72,76 @@ class _Radio extends MeshCoreConnector {
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  test('the bundled list is valid and includes Philadelphia', () {
-    final presets = parseRegionalPresets(
-      File('assets/regional_presets.json').readAsStringSync(),
-    );
-    final philly = presets.singleWhere((p) => p.id == 'us-philadelphia');
-    expect(philly.summary, '919.500 MHz · BW500 · SF10 · CR5 · 2-byte paths');
+  test('the bundled list is a valid ham document with no areas yet', () {
+    final source = File('assets/regional_presets.json').readAsStringSync();
+    expect(jsonDecode(source)['version'], 1);
+    expect(parseRegionalPresets(source), isEmpty);
+  });
+
+  test('areas outside the ham bands are skipped', () {
+    expect(parseRegionalPresets(_doc(freq: 869.525)), isEmpty);
+    expect(parseRegionalPresets(_doc(freq: 915.0)), hasLength(1));
   });
 
   test('invalid entries and documents are skipped', () {
     expect(parseRegionalPresets(_doc()), hasLength(1));
     expect(parseRegionalPresets('nope'), isEmpty);
     expect(
-      parseRegionalPresets(jsonEncode({'version': 2, 'regions': []})),
+      parseRegionalPresets(jsonEncode({'version': 3, 'regions': []})),
       isEmpty,
     );
+  });
+
+  test('the bundled ham list parses and has no areas yet', () {
+    // Ham ships only coordinated amateur areas; MeshCore map areas (Part 15)
+    // don't belong in it.
+    final source = File('assets/regional_presets.json').readAsStringSync();
+    expect(parseRegionalPresets(source), isEmpty);
+  });
+
+  test('version 2: missing path hash is unknown, version 1: it is 1', () {
+    Map<String, dynamic> area() => {
+      'id': 'map-x',
+      'name': 'Phoenix, Arizona',
+      'center': [33.45, -112.07],
+      'radiusKm': 150,
+      'frequencyMHz': 908.205,
+      'bandwidthKHz': 62.5,
+      'spreadingFactor': 9,
+      'codingRate': 8,
+      'updated': '2026-11-06',
+      'source': 'map',
+      'nodes': 219,
+    };
+    final v2 = parseRegionalPresets(
+      jsonEncode({
+        'version': 2,
+        'regions': [area()],
+      }),
+    ).single;
+    expect(v2.pathHashBytes, isNull);
+    expect(v2.fromMap, isTrue);
+    expect(v2.nodeCount, 219);
+    expect(v2.summary, '908.205 MHz · BW62.5 · SF9 · CR8');
+    expect(
+      v2.differences(
+        const RadioSettingsState(
+          frequencyMHz: 908.205,
+          bandwidthKHz: 62.5,
+          spreadingFactor: 9,
+          codingRate: 8,
+          pathHashBytes: 2,
+        ),
+      ),
+      isEmpty,
+    );
+    final v1 = parseRegionalPresets(
+      jsonEncode({
+        'version': 1,
+        'regions': [area()],
+      }),
+    ).single;
+    expect(v1.pathHashBytes, 1);
   });
 
   test('area by position, and what would change', () {
@@ -118,10 +173,13 @@ void main() {
     late List<String> alerts;
     late String remote;
 
+    LatLng? phone;
+
     RegionalPresetService make() => RegionalPresetService(
       radio,
       httpClient: MockClient((_) async => http.Response(remote, 200)),
       loadBundled: () async => _doc(),
+      phonePosition: () async => phone,
       notify: (m) async {
         alerts.add(m);
         return true;
@@ -135,6 +193,7 @@ void main() {
       radio = _Radio();
       alerts = [];
       remote = _doc();
+      phone = null;
     });
     tearDown(() => radio.dispose());
 
@@ -182,6 +241,62 @@ void main() {
       expect(s.shouldOffer, isFalse);
       await s.select('us-philadelphia');
       expect(s.active?.name, 'Philadelphia');
+      s.dispose();
+    });
+
+    test(
+      'without a radio position, the phone position picks the area',
+      () async {
+        radio.lat = 0;
+        radio.lon = 0;
+        final s = make();
+        await s.start();
+        expect(s.active, isNull);
+        s.dispose();
+        phone = const LatLng(40.0, -75.3);
+        final s2 = make();
+        await s2.start();
+        expect(s2.active?.name, 'Philadelphia');
+        s2.dispose();
+      },
+    );
+
+    test('the radio position wins over the phone', () async {
+      phone = const LatLng(34.05, -118.24);
+      final s = make();
+      await s.start();
+      expect(s.active?.name, 'Philadelphia');
+      s.dispose();
+    });
+
+    test('a map area without path hash sends no path hash command', () async {
+      remote = jsonEncode({
+        'version': 2,
+        'regions': [
+          {
+            'id': 'map-phl',
+            'name': 'Philadelphia area',
+            'center': [39.95, -75.17],
+            'radiusKm': 100,
+            'frequencyMHz': 919.5,
+            'bandwidthKHz': 500,
+            'spreadingFactor': 10,
+            'codingRate': 5,
+            'updated': '2026-11-06',
+            'source': 'map',
+          },
+        ],
+      });
+      final s = make();
+      await s.start();
+      await s.refresh();
+      expect(s.active?.id, 'map-phl');
+      await s.apply(s.active!);
+      expect(radio.sent.where((f) => f[0] == cmdSetRadioParams), hasLength(1));
+      expect(
+        radio.sent.any((f) => f[0] == buildSetPathHashModeFrame(0)[0]),
+        isFalse,
+      );
       s.dispose();
     });
 

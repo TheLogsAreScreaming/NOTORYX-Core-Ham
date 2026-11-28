@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -11,11 +12,13 @@ import '../l10n/contact_localization.dart';
 import '../models/contact.dart';
 import '../theme/mesh_theme.dart';
 import '../utils/contact_search.dart';
+import '../utils/node_import.dart';
 import '../utils/platform_info.dart';
 import '../widgets/app_bar.dart';
 import '../widgets/list_filter_widget.dart';
 import '../widgets/mesh_ui.dart';
 import '../helpers/snack_bar_builder.dart';
+import '../widgets/ui/mesh_states.dart';
 
 enum DiscoverySortOption { lastSeen, name, type }
 
@@ -34,6 +37,107 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
   ContactTypeFilter typeFilter = ContactTypeFilter.all;
   DiscoverySortOption discoverySortOption = DiscoverySortOption.lastSeen;
   Timer? _searchDebounce;
+
+  /// Contacts picked for adding together. Long-press a contact to start.
+  final Set<String> _selected = {};
+  bool get _selecting => _selected.isNotEmpty;
+
+  /// Set while contacts are being added one by one; the Stop button clears
+  /// it.
+  bool _adding = false;
+
+  void _toggle(Contact c) => setState(() {
+    if (!_selected.remove(c.publicKeyHex)) _selected.add(c.publicKeyHex);
+  });
+
+  /// Whether [c] is already one of the radio's contacts.
+  bool _isContact(Contact c, MeshCoreConnector connector) =>
+      c.isActive ||
+      connector.contacts.any((k) => k.publicKeyHex == c.publicKeyHex);
+
+  /// Adds [list] one after another, at most as many as the radio has room
+  /// for, with a progress dialog that can stop early.
+  Future<void> _addMany(List<Contact> list, MeshCoreConnector connector) async {
+    final l10n = context.l10n;
+    final todo = [
+      for (final c in list)
+        if (!_isContact(c, connector)) c,
+    ];
+    if (todo.isEmpty) return;
+    final room = connector.maxContacts - connector.contacts.length;
+    if (room <= 0) {
+      showDismissibleSnackBar(
+        context,
+        content: Text(l10n.discoveredContacts_radioFull),
+      );
+      return;
+    }
+    final ok = await confirmAction(
+      confirmKey: const ValueKey('discovered-add-many-confirm'),
+      context,
+      title: l10n.discoveredContacts_addManyTitle(todo.length),
+      message: todo.length > room
+          ? l10n.discoveredContacts_roomLimit(room, todo.length)
+          : l10n.discoveredContacts_roomLeft(room),
+      confirmLabel: l10n.common_add,
+    );
+    if (ok != true || !mounted) return;
+    final batch = todo.take(room).toList();
+    final progress = ValueNotifier<int>(0);
+    _adding = true;
+    unawaited(
+      showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (d) => AlertDialog(
+          content: ValueListenableBuilder<int>(
+            valueListenable: progress,
+            builder: (_, done, _) => Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                LinearProgressIndicator(value: done / batch.length),
+                const SizedBox(height: 12),
+                Text(l10n.discoveredContacts_adding(done, batch.length)),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => _adding = false,
+              child: Text(l10n.common_cancel),
+            ),
+          ],
+        ),
+      ),
+    );
+    var added = 0, failed = 0;
+    for (final c in batch) {
+      if (!_adding || !connector.isConnected) break;
+      try {
+        if (await connector.importDiscoveredContact(c)) {
+          added++;
+        } else {
+          failed++;
+        }
+      } catch (_) {
+        failed++;
+      }
+      progress.value = added + failed;
+    }
+    _adding = false;
+    if (!mounted) return;
+    Navigator.of(context, rootNavigator: true).pop();
+    progress.dispose();
+    setState(_selected.clear);
+    showDismissibleSnackBar(
+      context,
+      content: Text(
+        failed == 0
+            ? l10n.discoveredContacts_addedMany(added)
+            : l10n.discoveredContacts_addedSome(added, failed),
+      ),
+    );
+  }
 
   @override
   void dispose() {
@@ -57,7 +161,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
       case advTypeRoom:
         return MeshPalette.magenta;
       case advTypeSensor:
-        return const Color(0xFF4ACCC4); // teal
+        return MeshPalette.signal;
       default:
         return MeshPalette.accent;
     }
@@ -88,37 +192,132 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
       connector,
     );
 
+    final addable = [
+      for (final c in filteredAndSorted)
+        if (!_isContact(c, connector)) c,
+    ];
+
     return Scaffold(
-      appBar: AppBar(
-        title: AppBarTitle(
-          l10n.discoveredContacts_Title,
-          indicators: false,
-          subtitle: false,
-        ),
-        centerTitle: true,
-        actions: [
-          PopupMenuButton(
-            itemBuilder: (context) => [
-              PopupMenuItem(
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.delete,
-                      color: Theme.of(context).colorScheme.error,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(context.l10n.discoveredContacts_deleteContactAll),
-                  ],
-                ),
-                onTap: () {
-                  _deleteContacts(context, connector);
-                },
+      appBar: _selecting
+          ? AppBar(
+              leading: IconButton(
+                tooltip: l10n.common_cancel,
+                icon: const Icon(Icons.close),
+                onPressed: () => setState(_selected.clear),
               ),
-            ],
-            icon: const Icon(Icons.more_vert),
-          ),
-        ],
-      ),
+              title: Text(l10n.discoveredContacts_selected(_selected.length)),
+              actions: [
+                IconButton(
+                  key: const ValueKey('discovered-select-all'),
+                  tooltip: l10n.discoveredContacts_selectAll,
+                  icon: const Icon(Icons.select_all),
+                  onPressed: () => setState(
+                    () => _selected.addAll(addable.map((c) => c.publicKeyHex)),
+                  ),
+                ),
+                IconButton(
+                  key: const ValueKey('discovered-add-selected'),
+                  tooltip: l10n.discoveredContacts_addSelected,
+                  icon: const Icon(Icons.group_add),
+                  onPressed: () => _addMany([
+                    for (final c in filteredAndSorted)
+                      if (_selected.contains(c.publicKeyHex)) c,
+                  ], connector),
+                ),
+              ],
+            )
+          : AppBar(
+              title: AppBarTitle(
+                l10n.discoveredContacts_Title,
+                indicators: false,
+                subtitle: false,
+              ),
+              centerTitle: true,
+              actions: [
+                PopupMenuButton(
+                  key: const ValueKey('discovered-menu'),
+                  itemBuilder: (context) => [
+                    PopupMenuItem(
+                      key: const ValueKey('discovered-add-all'),
+                      enabled: addable.isNotEmpty && connector.isConnected,
+                      onTap: () => _addMany(addable, connector),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.group_add),
+                          const SizedBox(width: 8),
+                          Flexible(
+                            child: Text(
+                              l10n.discoveredContacts_addAllShown(
+                                addable.length,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    PopupMenuItem(
+                      onTap: () => setState(
+                        () => _selected.addAll(
+                          addable.map((c) => c.publicKeyHex),
+                        ),
+                      ),
+                      enabled: addable.isNotEmpty,
+                      child: Row(
+                        children: [
+                          const Icon(Icons.checklist),
+                          const SizedBox(width: 8),
+                          Flexible(
+                            child: Text(
+                              l10n.discoveredContacts_selectAll,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    PopupMenuItem(
+                      key: const ValueKey('discovered-import'),
+                      enabled: connector.isConnected,
+                      onTap: () => _importNodes(connector),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.file_download_outlined),
+                          const SizedBox(width: 8),
+                          Flexible(
+                            child: Text(
+                              l10n.discoveredContacts_importNodes,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    PopupMenuItem(
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.delete,
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                          const SizedBox(width: 8),
+                          Flexible(
+                            child: Text(
+                              context.l10n.discoveredContacts_deleteContactAll,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        _deleteContacts(context, connector);
+                      },
+                    ),
+                  ],
+                  icon: const Icon(Icons.more_vert),
+                ),
+              ],
+            ),
       body: Column(
         children: [
           _buildFilters(filteredAndSorted, connector),
@@ -169,7 +368,14 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
     return ListEntrance(
       index: index,
       child: MeshCard(
-        onTap: () => _showContactContextMenu(contact, connector),
+        key: ValueKey('discovered-${contact.publicKeyHex}'),
+        borderColor: _selected.contains(contact.publicKeyHex)
+            ? scheme.primary
+            : null,
+        onTap: _selecting
+            ? () => _toggle(contact)
+            : () => _showContactContextMenu(contact, connector),
+        onLongPress: () => _toggle(contact),
         onSecondaryTap: PlatformInfo.isDesktop
             ? () => _showContactContextMenu(contact, connector)
             : null,
@@ -195,9 +401,8 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
                     key: ValueKey('discovered-name-${contact.publicKeyHex}'),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       fontWeight: FontWeight.w500,
-                      fontSize: 15,
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -263,11 +468,17 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
               ),
             ),
             const SizedBox(width: 4),
-            IconButton(
-              tooltip: context.l10n.discoveredContacts_addContact,
-              icon: const Icon(Icons.person_add_alt_1),
-              onPressed: () => _addContact(contact, connector),
-            ),
+            if (_selecting)
+              Checkbox(
+                value: _selected.contains(contact.publicKeyHex),
+                onChanged: (_) => _toggle(contact),
+              )
+            else
+              IconButton(
+                tooltip: context.l10n.discoveredContacts_addContact,
+                icon: const Icon(Icons.person_add_alt_1),
+                onPressed: () => _addContact(contact, connector),
+              ),
           ],
         ),
       ),
@@ -362,28 +573,98 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
     }
   }
 
-  void _deleteContacts(BuildContext context, MeshCoreConnector connector) {
+  /// Reads nodes from a file or the clipboard into the heard-node list.
+  Future<void> _importNodes(MeshCoreConnector connector) async {
     final l10n = context.l10n;
-    showDialog(
+    final source = await showModalBottomSheet<String>(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.common_deleteAll),
-        content: Text(l10n.discoveredContacts_deleteContactAllContent),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () async {
-              Navigator.pop(context);
-              connector.removeAllDiscoveredContacts();
-            },
-            child: Text(l10n.common_deleteAll),
-          ),
-        ],
+      builder: (sheet) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ListTile(
+              title: Text(
+                l10n.discoveredContacts_importNodes,
+                style: Theme.of(sheet).textTheme.titleMedium,
+              ),
+              subtitle: Text(l10n.discoveredContacts_importHint),
+            ),
+            ListTile(
+              key: const ValueKey('discovered-import-file'),
+              leading: const Icon(Icons.folder_open),
+              title: Text(l10n.discoveredContacts_importFromFile),
+              onTap: () => Navigator.pop(sheet, 'file'),
+            ),
+            ListTile(
+              key: const ValueKey('discovered-import-clipboard'),
+              leading: const Icon(Icons.content_paste),
+              title: Text(l10n.discoveredContacts_importFromClipboard),
+              onTap: () => Navigator.pop(sheet, 'clipboard'),
+            ),
+          ],
+        ),
       ),
     );
+    if (source == null || !mounted) return;
+
+    String? text;
+    try {
+      if (source == 'file') {
+        final file = await openFile();
+        if (file == null) return;
+        text = await file.readAsString();
+      } else {
+        text = (await Clipboard.getData('text/plain'))?.text;
+      }
+    } on Object {
+      text = null;
+      if (!mounted) return;
+      showDismissibleSnackBar(
+        context,
+        content: Text(l10n.discoveredContacts_importFailed),
+      );
+      return;
+    }
+    if (!mounted) return;
+    final nodes = parseNodeImport(text ?? '');
+    if (nodes.isEmpty) {
+      showDismissibleSnackBar(
+        context,
+        content: Text(l10n.discoveredContacts_importNone),
+      );
+      return;
+    }
+    final result = await connector.importHeardNodes(nodes);
+    if (!mounted) return;
+    showDismissibleSnackBar(
+      context,
+      content: Text(
+        result == null
+            ? l10n.discoveredContacts_importNotConnected
+            : l10n.discoveredContacts_importResult(
+                result.added,
+                result.updated,
+                result.skipped,
+              ),
+      ),
+    );
+  }
+
+  Future<void> _deleteContacts(
+    BuildContext context,
+    MeshCoreConnector connector,
+  ) async {
+    final l10n = context.l10n;
+    final confirmed = await confirmDestructive(
+      context,
+      title: l10n.common_deleteAll,
+      message: l10n.discoveredContacts_deleteContactAllContent,
+      confirmLabel: l10n.common_deleteAll,
+    );
+    if (!confirmed) return;
+    if (!context.mounted) return;
+    connector.removeAllDiscoveredContacts();
   }
 
   Widget _buildFilters(
@@ -438,6 +719,9 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
                 children: [
                   if (searchQuery.isNotEmpty)
                     IconButton(
+                      tooltip: MaterialLocalizations.of(
+                        context,
+                      ).clearButtonTooltip,
                       icon: const Icon(Icons.clear),
                       onPressed: () {
                         _searchController.clear();

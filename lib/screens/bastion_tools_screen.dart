@@ -1,18 +1,34 @@
 import '../theme/mesh_theme.dart';
+
 import 'package:flutter/material.dart';
+
+import 'trail_routing_screen.dart';
 import '../l10n/l10n.dart';
 import '../widgets/ember_backdrop.dart';
 import '../widgets/instrument.dart';
 import '../widgets/glass_action_row.dart';
 
 import 'antenna_coverage_screen.dart';
+import 'automation_screen.dart';
 import 'antenna_hunt_screen.dart';
+import 'waypoints_screen.dart';
+import 'network_changes_screen.dart';
+import 'node_journal_screen.dart';
+import 'troubleshooting_screen.dart';
 import 'bastion_about_screen.dart';
+import 'backdrop_settings_screen.dart';
 import 'bot_settings_screen.dart';
+import 'connection_dashboard_screen.dart';
+import 'licensed_operator_screen.dart';
+import 'networks_screen.dart';
+import 'rx_log_screen.dart';
 import 'path_graph_screen.dart';
 import 'encrypted_backup_screen.dart';
+import 'security_screen.dart';
+import 'team_config_screen.dart';
 import 'field_guide_screen.dart';
 import 'bastion_field_ops_screen.dart';
+import 'checklists_screen.dart';
 import 'bastion_diagnostics_screen.dart';
 import 'bastion_field_stats_screen.dart';
 import 'bastion_map_hub_screen.dart';
@@ -22,6 +38,7 @@ import 'coverage_hex_screen.dart';
 import 'prefix_tool_screen.dart';
 import 'repeater_ping_screen.dart';
 import 'settings_screen.dart';
+import 'timeline_screen.dart';
 import 'track_log_screen.dart';
 import 'wardrive_screen.dart';
 import '../utils/platform_info.dart';
@@ -49,12 +66,40 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
     final l10n = context.l10n;
     final groups = [
       (
+        // Ham first: who is operating, and how the radio is connected.
+        title: l10n.ham_yourStation,
+        actions: <_ToolAction>[
+          _ToolAction(
+            icon: Icons.badge_outlined,
+            title: l10n.ham_licensedOperator,
+            subtitle: l10n.ham_operatorCardIncomplete,
+            builder: (_) => const LicensedOperatorScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.settings_input_antenna,
+            title: l10n.connections_title,
+            subtitle: l10n.ham_connectedRadio,
+            builder: (_) => const ConnectionDashboardScreen(),
+          ),
+        ],
+      ),
+      (
         title: l10n.tools_groupApp,
         actions: <_ToolAction>[
           _ToolAction(
             icon: Icons.tune_rounded,
             title: l10n.settings_title,
             builder: (_) => const SettingsScreen(),
+          ),
+          // Lives in Settings; search finds it here too.
+          _ToolAction(
+            icon: Icons.wallpaper_outlined,
+            title: l10n.bg_title,
+            subtitle:
+                '${l10n.bg_kindSolid}, ${l10n.bg_kindLinear}, '
+                '${l10n.bg_kindMesh}, ${l10n.bg_kindPhoto}',
+            builder: (_) => const BackdropSettingsScreen(),
+            searchOnly: true,
           ),
           _ToolAction(
             icon: Icons.smart_toy_outlined,
@@ -63,10 +108,28 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
             builder: (_) => const BotSettingsScreen(),
           ),
           _ToolAction(
+            icon: Icons.bolt_outlined,
+            title: l10n.automation_title,
+            subtitle: l10n.automation_toolHint,
+            builder: (_) => const AutomationScreen(),
+          ),
+          _ToolAction(
             icon: Icons.lock_outline,
             title: l10n.bastionTools_backup,
             subtitle: l10n.bastionTools_backupHint,
             builder: (_) => const EncryptedBackupScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.lock_outline,
+            title: l10n.security_title,
+            subtitle: l10n.security_toolSubtitle,
+            builder: (_) => const SecurityScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.qr_code_2,
+            title: l10n.team_title,
+            subtitle: l10n.team_toolSubtitle,
+            builder: (_) => const TeamConfigScreen(),
           ),
           _ToolAction(
             icon: Icons.menu_book_outlined,
@@ -86,16 +149,34 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
             builder: (_) => const WardriveScreen(),
           ),
           _ToolAction(
+            icon: Icons.radar,
+            title: l10n.networks_title,
+            subtitle: l10n.networks_hint,
+            builder: (_) => const NetworksScreen(),
+          ),
+          _ToolAction(
             icon: Icons.backpack_outlined,
             title: l10n.bastion_fieldOps,
             subtitle: l10n.bastionTools_fieldOpsHint,
             builder: (_) => const BastionFieldOpsScreen(),
           ),
           _ToolAction(
+            icon: Icons.checklist,
+            title: l10n.checklist_title,
+            subtitle: l10n.checklist_toolSubtitle,
+            builder: (_) => const ChecklistsScreen(),
+          ),
+          _ToolAction(
             icon: Icons.analytics_outlined,
             title: l10n.bastion_fieldStats,
             subtitle: l10n.bastionTools_statsHint,
             builder: (_) => const BastionFieldStatsScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.view_timeline_outlined,
+            title: l10n.timeline_title,
+            subtitle: l10n.timeline_toolSubtitle,
+            builder: (_) => const TimelineScreen(),
           ),
           _ToolAction(
             icon: Icons.timeline,
@@ -109,6 +190,12 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
             subtitle: l10n.bastionTools_diagnosticsHint,
             builder: (_) => const BastionDiagnosticsScreen(),
           ),
+          _ToolAction(
+            icon: Icons.receipt_long_outlined,
+            title: l10n.rxLog_title,
+            subtitle: l10n.rxLog_hint,
+            builder: (_) => const RxLogScreen(),
+          ),
         ],
       ),
       (
@@ -121,11 +208,24 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
             builder: (_) => const BastionMapHubScreen(),
           ),
           _ToolAction(
+            icon: Icons.place_outlined,
+            title: l10n.waypoints_title,
+            subtitle: l10n.waypoints_toolSubtitle,
+            builder: (_) => const WaypointsScreen(),
+          ),
+          _ToolAction(
             icon: Icons.cell_tower,
             title: l10n.tools_antenna,
             subtitle: l10n.tools_antennaHint,
             builder: (_) => const AntennaCoverageScreen(),
           ),
+          if (!PlatformInfo.isWeb)
+            _ToolAction(
+              icon: Icons.hiking,
+              title: 'Trail routing',
+              subtitle: 'Offline routes along downloaded trails',
+              builder: (_) => const TrailRoutingScreen(),
+            ),
           if (!PlatformInfo.isWeb)
             _ToolAction(
               icon: Icons.hexagon_outlined,
@@ -155,6 +255,24 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
             title: l10n.bastion_repeaterTools,
             subtitle: l10n.bastionTools_repeaterHint,
             builder: (_) => const BastionRepeaterToolsScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.auto_stories_outlined,
+            title: l10n.journal_title,
+            subtitle: l10n.journal_toolSubtitle,
+            builder: (_) => const NodeJournalScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.notifications_active_outlined,
+            title: l10n.netChange_title,
+            subtitle: l10n.netChange_toolSubtitle,
+            builder: (_) => const NetworkChangesScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.healing_outlined,
+            title: l10n.trouble_title,
+            subtitle: l10n.trouble_toolSubtitle,
+            builder: (_) => const TroubleshootingScreen(),
           ),
           _ToolAction(
             icon: Icons.network_ping,
@@ -190,11 +308,16 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
       ),
     ];
     final visibleGroups = [
-      for (final group in groups)
+      for (final (index, group) in groups.indexed)
         (
           title: group.title,
+          hue: index,
           actions: group.actions
-              .where((action) => action.matches(_query))
+              .where(
+                (action) =>
+                    action.matches(_query) &&
+                    (_query.isNotEmpty || !action.searchOnly),
+              )
               .toList(),
         ),
     ].where((group) => group.actions.isNotEmpty).toList();
@@ -261,6 +384,9 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
                             for (final action in group.actions)
                               GlassActionRow(
                                 icon: action.icon,
+                                // Each group keeps its own color, also
+                                // while searching.
+                                iconColor: MeshPalette.hue(group.hue),
                                 title: action.title,
                                 subtitle: action.subtitle,
                                 onTap: () => Navigator.of(context).push(
@@ -285,7 +411,12 @@ class _ToolAction {
     required this.title,
     this.subtitle,
     required this.builder,
+    this.searchOnly = false,
   });
+
+  /// Listed only while searching: it lives elsewhere, and search still
+  /// finds it here.
+  final bool searchOnly;
 
   final IconData icon;
   final String title;

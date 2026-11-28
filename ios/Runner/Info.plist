@@ -15,7 +15,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>NOTORYX Core</string>
+	<string>NOTORYX Core Ham</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -31,6 +31,10 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<true/>
+	<key>NSFaceIDUsageDescription</key>
+	<string>NOTORYX Core Ham can use Face ID to unlock the app if you turn on App lock.</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>This app uses Bluetooth to communicate with MeshCore devices.</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
@@ -84,6 +88,19 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>NOTORYX Core uses your location only while coverage mapping is on, to credit what your radio hears to a map hexagon.</string>
+	<string>NOTORYX Core Ham uses your location only while coverage mapping is on, to credit what your radio hears to a map hexagon.</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>meshcore</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>meshcore</string>
+			</array>
+		</dict>
+	</array>
+	<key>FlutterDeepLinkingEnabled</key>
+	<false/>
 </dict>
 </plist>

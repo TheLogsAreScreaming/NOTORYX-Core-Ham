@@ -1,10 +1,14 @@
 import '../services/node_telemetry_store.dart';
+
 import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+
 import '../l10n/l10n.dart';
+import '../models/admin_wait.dart';
 import '../models/contact.dart';
 import '../models/path_selection.dart';
 import '../models/app_settings.dart';
@@ -14,6 +18,8 @@ import '../connector/meshcore_protocol.dart';
 import '../services/app_settings_service.dart';
 import '../services/repeater_command_service.dart';
 import '../utils/app_logger.dart';
+import '../widgets/coordinate_copy_sheet.dart';
+import '../widgets/admin_wait_banner.dart';
 import '../widgets/routing_sheet.dart';
 import '../helpers/cayenne_lpp.dart';
 import '../utils/battery_utils.dart';
@@ -23,6 +29,7 @@ import '../widgets/telemetry_location_map.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/sensor_live_card.dart';
+import 'sensor_history_screen.dart';
 
 class TelemetryScreen extends StatefulWidget {
   final Contact contact;
@@ -45,6 +52,8 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
   String _requestScope = '';
 
   bool _isLoading = false;
+  AdminWait? _wait;
+  int _requestAttempt = 1;
   bool _isLoaded = false;
   bool _hasData = false;
   Timer? _statusTimeout;
@@ -113,9 +122,26 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
           _tripTime = reader.readUInt32LE();
           _statusTimeout?.cancel();
           final isAutoRefreshRequest = _activeTelemetryRequestIsAutoRefresh;
+          final attempt = _requestAttempt;
+          final selection = _pendingStatusSelection;
+          if (!isAutoRefreshRequest && selection != null && mounted) {
+            setState(() {
+              _wait = AdminWait(
+                hops: selection.useFlood ? -1 : selection.hopCount,
+                timeout: Duration(milliseconds: _tripTime),
+                attempt: attempt,
+              );
+            });
+          }
           _statusTimeout = Timer(Duration(milliseconds: _tripTime), () {
             if (!mounted) return;
+            if (!isAutoRefreshRequest && attempt < adminRequestMaxAttempts) {
+              _recordTelemetryResult(false);
+              unawaited(_loadTelemetry(attempt: attempt + 1));
+              return;
+            }
             setState(() {
+              _wait = null;
               _isLoading = false;
               _isLoaded = false;
               if (isAutoRefreshRequest && _isAutoRefreshEnabled) {
@@ -212,8 +238,12 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
     }
   }
 
-  Future<void> _loadTelemetry({bool isAutoRefresh = false}) async {
+  Future<void> _loadTelemetry({
+    bool isAutoRefresh = false,
+    int attempt = 1,
+  }) async {
     if (_commandService == null) return;
+    _requestAttempt = attempt;
     _requestScope = context.read<MeshCoreConnector>().selfPublicKeyHex;
     _tagData = 0;
 
@@ -342,6 +372,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final scheme = Theme.of(context).colorScheme;
+    final wait = _isLoading ? _wait : null;
     final connector = context.watch<MeshCoreConnector>();
     final settings = context.watch<AppSettingsService>().settings;
     final isImperialUnits = settings.unitSystem == UnitSystem.imperial;
@@ -359,20 +390,26 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
           children: [
             Text(
               l10n.repeater_telemetry,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
             ),
             Text(
               widget.contact.name,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.normal),
             ),
           ],
         ),
         centerTitle: true,
         bottom: const SyncProgressAppBarBottom(),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.show_chart),
+            tooltip: l10n.sensorHistory_title,
+            onPressed: () => openSensorHistory(context, widget.contact),
+          ),
           IconButton(
             icon: Icon(isFloodMode ? Icons.waves : Icons.route),
             tooltip: l10n.repeater_routingMode,
@@ -402,14 +439,18 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
           child: ListView(
             padding: const EdgeInsets.all(16),
             children: [
+              if (wait != null)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: AdminWaitBanner(wait: wait),
+                ),
               if (!_isLoaded &&
                   !_hasData &&
                   (_parsedTelemetry == null || _parsedTelemetry!.isEmpty))
                 Center(
                   child: Text(
                     l10n.telemetry_noData,
-                    style: TextStyle(
-                      fontSize: 16,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: scheme.onSurfaceVariant,
                     ),
                   ),
@@ -828,8 +869,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
     final isValidPosition = _isValidGpsPosition(latitude, longitude);
     final gpsText = isValidPosition
         ? [
-            latitude!.toStringAsFixed(5),
-            longitude!.toStringAsFixed(5),
+            formatCoordinateFor(context, latitude!, longitude!),
             if (altitude != null) '${altitude.toStringAsFixed(1)} m',
           ].join(', ')
         : value.toString();
@@ -926,9 +966,8 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
           Expanded(
             child: Text(
               label,
-              style: TextStyle(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: scheme.onSurfaceVariant,
-                fontSize: 13,
                 fontWeight: FontWeight.w500,
               ),
             ),

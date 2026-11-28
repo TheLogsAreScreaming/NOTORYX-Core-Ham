@@ -9,7 +9,7 @@ class AppLocalizationsJa extends AppLocalizations {
   AppLocalizationsJa([String locale = 'ja']) : super(locale);
 
   @override
-  String get appTitle => 'NOTORYX Core';
+  String get appTitle => 'NOTORYX Core Ham';
 
   @override
   String get nav_contacts => '連絡先';
@@ -425,7 +425,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get common_interval => '間隔';
 
   @override
-  String get scanner_title => 'NOTORYX Core';
+  String get scanner_title => 'NOTORYX Core Ham';
 
   @override
   String get connectionChoiceUsbLabel => 'USB';
@@ -869,7 +869,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String settings_aboutVersion(String version) {
-    return 'NOTORYX Core v$version';
+    return 'NOTORYX Core Ham v$version';
   }
 
   @override
@@ -917,10 +917,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get settings_frequency => '周波数 (MHz)';
 
   @override
-  String get settings_frequencyHelper => '300.0 - 2500.0';
+  String get settings_frequencyHelper => '420–450 / 902–928';
 
   @override
-  String get settings_frequencyInvalid => '無効な周波数 (300-2500 MHz)';
+  String get settings_frequencyInvalid => '無効な周波数 (420–450 / 902–928 MHz)';
 
   @override
   String get settings_bandwidth => '帯域幅';
@@ -1483,7 +1483,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get channels_viaMqttSemantics => 'MQTT経由で受信、無線機では受信していません';
 
   @override
-  String get channels_private => '非公開';
+  String get channels_private => 'キー付き';
 
   @override
   String get channels_editChannel => 'チャンネルを編集';
@@ -1628,16 +1628,17 @@ class AppLocalizationsJa extends AppLocalizations {
   String get channels_sortUnread => '未読';
 
   @override
-  String get channels_createPrivateChannel => 'プライベートチャンネルを作成する';
+  String get channels_createPrivateChannel => 'キー付きチャンネルを作成';
 
   @override
-  String get channels_createPrivateChannelDesc => '秘密鍵で保護されます。';
+  String get channels_createPrivateChannelDesc =>
+      '共有キーでチャンネルを選びます。メッセージは引き続き誰でも読めます。';
 
   @override
-  String get channels_joinPrivateChannel => 'プライベートチャンネルに参加する';
+  String get channels_joinPrivateChannel => 'キー付きチャンネルに参加';
 
   @override
-  String get channels_joinPrivateChannelDesc => '秘密鍵を手動で入力します。';
+  String get channels_joinPrivateChannelDesc => 'チャンネルの共有キーを入力してください。';
 
   @override
   String get channels_joinPublicChannel => '公開チャンネルに参加する';
@@ -1731,6 +1732,9 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get chat_selectSendAction => '送信アクションを選択';
+
+  @override
+  String get chat_jumpToLatest => '最新のメッセージへ移動';
 
   @override
   String get chat_sendGif => 'GIF を送信';
@@ -1949,6 +1953,130 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get routing_noPathYet => 'まだ経路はありません。次のメッセージは経路が見つかるまでフラッドされます。';
+
+  @override
+  String get routePick_open => '経路ビューと選択';
+
+  @override
+  String get routePick_openHint => '各ホップのリンク品質を表示し、より確実な経路を選択';
+
+  @override
+  String routePick_title(String name) {
+    return '$name への経路';
+  }
+
+  @override
+  String get routePick_current => '現在の経路';
+
+  @override
+  String get routePick_flooding => '固定経路なし: 経路を学習するまでメッセージはメッシュ全体にフラッドされます。';
+
+  @override
+  String get routePick_direct => '直接';
+
+  @override
+  String routePick_hopUnknown(String id) {
+    return 'リピーター $id';
+  }
+
+  @override
+  String get routePick_notMeasured => '未測定';
+
+  @override
+  String get routePick_measure => 'この経路を測定';
+
+  @override
+  String get routePick_measuring => 'トレース中…';
+
+  @override
+  String get routePick_measured => '測定しました。';
+
+  @override
+  String get routePick_noAnswer => 'トレースに応答がありません。経路上のリピーターが圏外かもしれません。';
+
+  @override
+  String get routePick_floodDone => '経路を消去しました。次のメッセージはフラッドして新しい経路を探します。';
+
+  @override
+  String get routePick_suggested => 'おすすめ';
+
+  @override
+  String routePick_suggestBody(String route, int score) {
+    return 'より確実な経路: $route（スコア $score）';
+  }
+
+  @override
+  String get routePick_use => '使用';
+
+  @override
+  String routePick_useLabel(String route) {
+    return '経路 $route を使用';
+  }
+
+  @override
+  String get routePick_options => '選べる経路';
+
+  @override
+  String get routePick_optionsHint =>
+      'この連絡先で聞こえたすべての経路を、リンク信号・配信実績・長さ・新しさから0〜100で採点。';
+
+  @override
+  String get routePick_none => 'まだ経路がありません。メッセージを送って探してください。';
+
+  @override
+  String get routePick_other => 'その他';
+
+  @override
+  String get routePick_build => '経路を作成';
+
+  @override
+  String get routePick_flood => 'メッシュに経路を探させる';
+
+  @override
+  String get routePick_explainer =>
+      '測定では経路に沿って往復のトレースを送り、リピーター間の各リンクを双方向で測ります。連絡先までの最後のリンクはトレースできません。結果は30日間保存され、同じリンクを使うすべての経路に反映されます。';
+
+  @override
+  String routePick_score(int score) {
+    return 'スコア $score/100';
+  }
+
+  @override
+  String routePick_hopLabel(
+    int number,
+    String name,
+    String quality,
+    String out,
+    String back,
+  ) {
+    return 'ホップ $number: $name。リンク $quality、往路 $out デシベル、復路 $back デシベル。';
+  }
+
+  @override
+  String get routePick_lastLink => '連絡先への最後のリンク: トレースでは測定不可';
+
+  @override
+  String routePick_linkLine(String out, String back) {
+    return '往路 $out dB · 復路 $back dB';
+  }
+
+  @override
+  String routePick_optionLine(int score, int hops) {
+    return 'スコア $score · ホップ数: $hops';
+  }
+
+  @override
+  String routePick_record(int ok, int tries) {
+    return '$tries 件中 $ok 件配信';
+  }
+
+  @override
+  String routePick_weakest(String snr) {
+    return '最弱リンク $snr dB';
+  }
+
+  @override
+  String get routePick_inUse => '使用中';
 
   @override
   String get routing_floodBroadcast => 'すべてのリピータにブロードキャスト';
@@ -2614,6 +2742,25 @@ class AppLocalizationsJa extends AppLocalizations {
       'ログインに失敗しました。パスワードが間違っているか、または接続が確立されていません。';
 
   @override
+  String get login_failRadioOffline =>
+      '無線機が接続されていないため、ログインは送信されませんでした。接続してからもう一度お試しください。';
+
+  @override
+  String get login_failSend => '無線機がログイン要求を受け付けませんでした。再接続してもう一度お試しください。';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return '保存済みの経路（$hops ホップ）で応答がありません。経路が古い可能性があります。$sectionで「$option」をオンにして再試行してください。パスワードが違う場合も応答はありません。';
+  }
+
+  @override
+  String get login_failRejected => 'リピーターが応答し、パスワードを拒否しました。';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'フラッドで応答がありません。リピーターが圏外・停止中・混雑中か、パスワードが違う可能性があります（違う場合は応答しません）。近くから再試行してください。';
+
+  @override
   String get common_reload => '再読み込み';
 
   @override
@@ -2678,6 +2825,34 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get repeater_clockSyncAfterLoginSubtitle => 'ログイン成功時に自動で時刻同期を送信します';
+
+  @override
+  String repeater_cliLateReply(String command, String reply) {
+    return '「$command」への遅れた応答: $reply';
+  }
+
+  @override
+  String repeater_clockWrongNotice(String name) {
+    return '$name の時計がずれています。アドバートが古く見えます。';
+  }
+
+  @override
+  String get repeater_clockSyncAction => '同期';
+
+  @override
+  String repeater_clockSyncDone(String name) {
+    return '$name の時計がスマートフォンと一致しました。';
+  }
+
+  @override
+  String repeater_clockAhead(String name) {
+    return '$name の時計はスマートフォンより進んでおり、戻すことはできません。';
+  }
+
+  @override
+  String repeater_clockSyncFailed(String name) {
+    return '$name の時計を設定できませんでした。設定 → 時刻を同期 をお試しください。';
+  }
 
   @override
   String get repeater_statusTitle => '再送ステータス';
@@ -2808,7 +2983,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get repeater_frequencyMhz => '周波数 (MHz)';
 
   @override
-  String get repeater_frequencyHelper => '300～2500 MHz';
+  String get repeater_frequencyHelper => '420–450 / 902–928 MHz';
 
   @override
   String get repeater_txPower => 'TXパワー';
@@ -2933,6 +3108,19 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => '設定が正常に保存されました';
+
+  @override
+  String get repeater_settingsConfirmed => '設定を保存し、リピーターで確認しました';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return '設定を保存しましたが、$count 件は確認のための読み戻しができませんでした';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key の読み戻し値は $value';
+  }
 
   @override
   String get repeater_rxGain => 'RX ゲインの向上';
@@ -4206,6 +4394,71 @@ class AppLocalizationsJa extends AppLocalizations {
   String get listFilter_newGroup => '新しいグループ';
 
   @override
+  String get traceCard_title => 'トレースカード';
+
+  @override
+  String get traceCard_open => 'トレースカードを共有';
+
+  @override
+  String traceCard_from(String name) {
+    return '送信元: $name';
+  }
+
+  @override
+  String traceCard_to(String name) {
+    return '宛先: $name';
+  }
+
+  @override
+  String traceCard_sentAt(String time) {
+    return '送信日時 $time';
+  }
+
+  @override
+  String traceCard_roundTrip(String seconds) {
+    return '往復 $seconds 秒';
+  }
+
+  @override
+  String traceCard_hops(int count) {
+    return 'ホップ数: $count';
+  }
+
+  @override
+  String get traceCard_backToYou => 'あなたに戻る';
+
+  @override
+  String traceCard_distance(String distance) {
+    return '経路 $distance';
+  }
+
+  @override
+  String traceCard_weakest(String snr) {
+    return '最も弱いリンク $snr';
+  }
+
+  @override
+  String get traceCard_noMap => 'この経路の位置情報がないため、地図はありません。';
+
+  @override
+  String get traceCard_guessed => '推定位置';
+
+  @override
+  String get traceCard_mapLabel => '往復経路の地図';
+
+  @override
+  String get traceCard_shareImage => '画像を共有';
+
+  @override
+  String get traceCard_shareText => 'テキストを共有';
+
+  @override
+  String get traceCard_shareFailed => 'トレースカードを共有できませんでした。';
+
+  @override
+  String get traceCard_snrUnknown => 'SNRなし';
+
+  @override
   String get pathTrace_you => 'あなた';
 
   @override
@@ -4337,6 +4590,34 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get losLegendTerrain => '地形';
+
+  @override
+  String get nodeLook_menu => '写真または色';
+
+  @override
+  String nodeLook_title(String name) {
+    return '$nameの表示';
+  }
+
+  @override
+  String get nodeLook_hint => 'この端末だけの設定で、メッシュには送信されません。';
+
+  @override
+  String get nodeLook_choosePhoto => '写真を選ぶ';
+
+  @override
+  String get nodeLook_removePhoto => '写真を外す';
+
+  @override
+  String get nodeLook_clear => '標準の表示に戻す';
+
+  @override
+  String nodeLook_colorN(int index) {
+    return '色 $index';
+  }
+
+  @override
+  String get nodeLook_photoFailed => 'その写真は使えませんでした。別の写真を試してください。';
 
   @override
   String get losBlockedSpotsTitle => '利用できない場所';
@@ -4546,11 +4827,11 @@ class AppLocalizationsJa extends AppLocalizations {
   String get settings_gpxExportAllContacts => 'すべての連絡先場所';
 
   @override
-  String get settings_gpxExportShareText => 'NOTORYX Coreからエクスポートされた地図データ';
+  String get settings_gpxExportShareText => 'NOTORYX Core Hamからエクスポートされた地図データ';
 
   @override
   String get settings_gpxExportShareSubject =>
-      'NOTORYX Core GPX形式の地図データのエクスポート';
+      'NOTORYX Core Ham GPX形式の地図データのエクスポート';
 
   @override
   String get snrIndicator_nearByRepeaters => '近くのリピータ';
@@ -5288,6 +5569,10 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String get sos_notEmergencyService =>
+      '選択した連絡先と範囲内の無線機にのみ届きます。911 や緊急サービスには連絡しません。';
+
+  @override
   String get sos_holdHint => '2秒間長押しします。誰かが応答するまで、5分ごとに行程の連絡先へ位置を送信します。';
 
   @override
@@ -5523,7 +5808,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get tripBrief_sharesOnly => 'この概要は情報を共有するだけで、無線メッセージの送信や行程の開始は行いません。';
 
   @override
-  String get fieldOps_title => 'NOTORYX Core フィールド運用';
+  String get fieldOps_title => 'NOTORYX Core Ham フィールド運用';
 
   @override
   String get fieldOps_tabTrip => '行程';
@@ -5707,7 +5992,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get fieldOps_shareBrief => '概要を共有';
 
   @override
-  String get fieldOps_briefSubject => 'NOTORYX Core 行程概要';
+  String get fieldOps_briefSubject => 'NOTORYX Core Ham 行程概要';
 
   @override
   String get fieldOps_tripName => '行程名';
@@ -5731,7 +6016,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get fieldOps_reminderLabel => 'チェックインを通知';
 
   @override
-  String get fieldOps_reminderHelper => 'NOTORYX Core を閉じていても端末に通知します。';
+  String get fieldOps_reminderHelper => 'NOTORYX Core Ham を閉じていても端末に通知します。';
 
   @override
   String get fieldOps_reminderOff => 'オフ';
@@ -5771,31 +6056,30 @@ class AppLocalizationsJa extends AppLocalizations {
   String get fieldOps_send => '送信';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'SOS 中継';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable => 'リピーターが中継しなかった SOS を中継する';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware => '無線機ファームウェア v1.16 以降が必要です';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'まだ SOS を中継していません';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: 'SOS パケットを $count 件中継、最終 $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      '送信者から直接 SOS を受信し、約 15 秒以内にどのリピーターも中継しなかった場合、NOTORYX がそれをそのまま 1 回だけ再送信し、送信者には届かないがあなたには届くリピーターへ届けます。中継するのは、あなたが持っているチャンネルの SOS だけです。バッテリーと送信時間を使うため、既定ではオフです。';
 
   @override
   String get fieldOps_beforeYouLeave => '出発前に';
@@ -5912,7 +6196,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get fieldOps_deleteLog => 'ログを削除';
 
   @override
-  String get fieldOps_logSubject => 'NOTORYX Core フィールドログ';
+  String get fieldOps_logSubject => 'NOTORYX Core Ham フィールドログ';
 
   @override
   String get fieldOps_logCaveat =>
@@ -6103,7 +6387,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get fieldOps_noteTooltip => '無線機が発信した座標でのローカルメモ。古い可能性があります。';
 
   @override
-  String get bastionHome_aboutTooltip => 'NOTORYX Core について';
+  String get bastionHome_aboutTooltip => 'NOTORYX Core Ham について';
 
   @override
   String get bastionHome_getStarted => 'はじめに';
@@ -6216,14 +6500,14 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get bastionTools_aboutHint =>
-      'NOTORYX Core のバージョン、独立性に関する声明、オープンソースライセンス';
+      'NOTORYX Core Ham のバージョン、独立性に関する声明、オープンソースライセンス';
 
   @override
   String get bastionAbout_title => '情報 + クレジット';
 
   @override
   String get bastionAbout_intro =>
-      'MeshCore ネットワーク向けの独立したコミュニティ製コンパニオンアプリです。NOTORYX Core は MeshCore の公式アプリではなく、コミュニティのリソースを掲載していても提携や推奨を意味するものではありません。';
+      'MeshCore ネットワーク向けの独立したコミュニティ製コンパニオンアプリです。NOTORYX Core Ham は MeshCore の公式アプリではなく、コミュニティのリソースを掲載していても提携や推奨を意味するものではありません。';
 
   @override
   String get bastionAbout_version => 'バージョン';
@@ -6233,7 +6517,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get bastionAbout_openSourceBody =>
-      'NOTORYX Core は MIT ライセンスの MeshCore Open のオープンソースコードをもとに作られ、それを改変しています。カバレッジ機能の作業では、該当する場合に MIT ライセンスの MeshMapper Flutter App のクレジットも記載しています。';
+      'NOTORYX Core Ham は MIT ライセンスの MeshCore Open のオープンソースコードをもとに作られ、それを改変しています。カバレッジ機能の作業では、該当する場合に MIT ライセンスの MeshMapper Flutter App のクレジットも記載しています。';
 
   @override
   String get bastionAbout_community => 'コミュニティ第一';
@@ -6243,13 +6527,13 @@ class AppLocalizationsJa extends AppLocalizations {
       '第三者のクリエイターのリソースは、それぞれのクリエイターに帰属します。所有権や提携を意味するものではありません。';
 
   @override
-  String get bastionAbout_legalese => 'NOTORYX Core • 独立した MeshCore コンパニオン';
+  String get bastionAbout_legalese => 'NOTORYX Core Ham • 独立した MeshCore コンパニオン';
 
   @override
   String get bastionAbout_licenses => 'オープンソースライセンス';
 
   @override
-  String get bastionSetup_title => 'NOTORYX Core をはじめる';
+  String get bastionSetup_title => 'NOTORYX Core Ham をはじめる';
 
   @override
   String get bastionSetup_intro =>
@@ -6272,7 +6556,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get bastionSetup_step1Bluetooth =>
-      'Bluetoothの検索結果が空の場合は、Bluetoothがオンになっていること、Android のアプリ設定で NOTORYX Core に「付近のデバイス」の権限があることを確認してください。スキャナーが表示する追加の権限リクエストにも従ってください。';
+      'Bluetoothの検索結果が空の場合は、Bluetoothがオンになっていること、Android のアプリ設定で NOTORYX Core Ham に「付近のデバイス」の権限があることを確認してください。スキャナーが表示する追加の権限リクエストにも従ってください。';
 
   @override
   String get bastionSetup_connectionDiagnostics => '接続の診断';
@@ -6338,6 +6622,27 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get bastionDiag_export => '診断をエクスポート';
+
+  @override
+  String get diagTimeline_title => '接続の履歴';
+
+  @override
+  String get diagTimeline_empty => 'アプリ起動後、接続の変化はありません。';
+
+  @override
+  String get diagTimeline_causeUser => 'ユーザー操作';
+
+  @override
+  String get diagTimeline_causeLinkLost => 'リンク切断';
+
+  @override
+  String get diagTimeline_causeReconnect => '自動再試行';
+
+  @override
+  String get diagTimeline_causeAutoConnect => '自動接続';
+
+  @override
+  String get diagTimeline_causeApp => 'アプリが切断';
 
   @override
   String get bastionDiag_channels => 'チャンネル';
@@ -6432,7 +6737,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get coverage_connectedBody =>
-      'NOTORYX Core はこのセッション中に新たに受信したノードを記録します。ルートデータ、ノード/位置のメタデータ、最も近い無線機のRSSI/SNRスナップショットを含みます。';
+      'NOTORYX Core Ham はこのセッション中に新たに受信したノードを記録します。ルートデータ、ノード/位置のメタデータ、最も近い無線機のRSSI/SNRスナップショットを含みます。';
 
   @override
   String get coverage_disconnectedBody =>
@@ -6502,10 +6807,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get coverage_pathDirect => '直接';
 
   @override
-  String get coverage_shareSubject => 'NOTORYX Core カバレッジセッション';
+  String get coverage_shareSubject => 'NOTORYX Core Ham カバレッジセッション';
 
   @override
-  String get coverage_shareText => 'NOTORYX Core カバレッジ記録のエクスポート';
+  String get coverage_shareText => 'NOTORYX Core Ham カバレッジ記録のエクスポート';
 
   @override
   String get coverage_historyTitle => '保存済みカバレッジセッション';
@@ -6593,7 +6898,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get fieldStats_snapshot => 'メッシュのライブスナップショット';
 
   @override
-  String get fieldStats_headline => '今 NOTORYX Core が把握していること。';
+  String get fieldStats_headline => '今 NOTORYX Core Ham が把握していること。';
 
   @override
   String get fieldStats_body =>
@@ -6634,7 +6939,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get fieldStats_pathIntelBody =>
-      'NOTORYX Core のルート分析は、保存された経路の試行、ホップ数、成功/失敗、所要時間、ルートの重み付けを使って学習済みルートを表示します。';
+      'NOTORYX Core Ham のルート分析は、保存された経路の試行、ホップ数、成功/失敗、所要時間、ルートの重み付けを使って学習済みルートを表示します。';
 
   @override
   String get fieldStats_coverageSessions => 'カバレッジセッション';
@@ -6648,7 +6953,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get mapHub_intro =>
-      'ライブマップ、オフラインエリア、地域プロファイル、NOTORYX Core のフィールドカバレッジセッション。';
+      'ライブマップ、オフラインエリア、地域プロファイル、NOTORYX Core Ham のフィールドカバレッジセッション。';
 
   @override
   String get mapHub_captureHint => 'フィールドカバレッジセッションを開始・停止';
@@ -6681,6 +6986,68 @@ class AppLocalizationsJa extends AppLocalizations {
   String get mapHub_regionsHint => '地域のメッシュ定義を管理・取得';
 
   @override
+  String get replay_title => '1日を再生';
+
+  @override
+  String get replay_entryHint => '選んだ日にチームが移動した場所を再生';
+
+  @override
+  String get replay_badge => '履歴';
+
+  @override
+  String get replay_day => '日付';
+
+  @override
+  String get replay_team => 'チーム';
+
+  @override
+  String get replay_everyone => '全員';
+
+  @override
+  String get replay_emptyTeam =>
+      'この日のチーム位置はありません。メンバーがチャンネルで追跡位置を共有すると表示されます。ノードのアドバートは「全員」で確認できます。';
+
+  @override
+  String get replay_emptyEveryone =>
+      'この日の位置記録はありません。今後、アプリを開いている間にノードがアドバートする位置を記録します。';
+
+  @override
+  String replay_mapSummary(String time, int count) {
+    return '$time の地図: $count 件表示';
+  }
+
+  @override
+  String get replay_play => '再生';
+
+  @override
+  String get replay_pause => '一時停止';
+
+  @override
+  String get replay_speed => '速度';
+
+  @override
+  String replay_speedValue(int minutes) {
+    return '1秒あたり$minutes分';
+  }
+
+  @override
+  String replay_showNode(String name) {
+    return '$name を表示/非表示';
+  }
+
+  @override
+  String get replay_notYet => 'この時刻にはまだ未確認';
+
+  @override
+  String replay_lastSeen(String time, String lat, String lon) {
+    return '最終確認 $time、$lat, $lon';
+  }
+
+  @override
+  String get replay_explainer =>
+      'チーム位置はメンバーがチャンネルで共有する追跡位置から取得します。「全員」ではノードがアドバートする位置も表示します。これはアプリを開いている間に記録され、30日間保存されます。何も送信しません。';
+
+  @override
   String get mapHub_badgeRegions => '地域';
 
   @override
@@ -6691,7 +7058,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get routes_body =>
-      'NOTORYX Core は、実際のメッセージ送信や探索から学習済みの経路履歴を使って保存済みルートを順位付けします。';
+      'NOTORYX Core Ham は、実際のメッセージ送信や探索から学習済みの経路履歴を使って保存済みルートを順位付けします。';
 
   @override
   String get routes_routes => 'ルート';
@@ -6808,14 +7175,78 @@ class AppLocalizationsJa extends AppLocalizations {
       'リピーターはまだ検出されていません。無線機を接続して、まずメッシュを探索してください。';
 
   @override
+  String get rptTest_title => '近くのリピーターをテスト';
+
+  @override
+  String get rptTest_subtitle => 'ワンタップで直接届くリピーターを確認';
+
+  @override
+  String get rptTest_start => '今すぐテスト';
+
+  @override
+  String get rptTest_listening => '応答を待っています…';
+
+  @override
+  String rptTest_wait(int seconds) {
+    return '次のテストまで $seconds 秒';
+  }
+
+  @override
+  String rptTest_found(int count) {
+    return '応答したリピーター: $count';
+  }
+
+  @override
+  String get rptTest_none =>
+      '直接届く範囲のリピーターから応答がありません。高い場所から、または1分後に再試行してください。古いファームウェアのリピーターはこのテストに応答しません。';
+
+  @override
+  String get rptTest_strong => '強い';
+
+  @override
+  String get rptTest_usable => '使用可';
+
+  @override
+  String get rptTest_weak => '弱い';
+
+  @override
+  String rptTest_unknown(String prefix) {
+    return 'リピーター $prefix';
+  }
+
+  @override
+  String rptTest_line(String there, String here, String rssi) {
+    return '相手の受信 $there dB · 自分の受信 $here dB, $rssi dBm';
+  }
+
+  @override
+  String rptTest_rowLabel(
+    String name,
+    String quality,
+    String there,
+    String here,
+    String rssi,
+  ) {
+    return '$name、$quality。相手の受信 $there デシベル。自分の受信 $here デシベル、$rssi dBm。';
+  }
+
+  @override
+  String get rptTest_notConnected => 'テストするには無線機を接続してください。';
+
+  @override
+  String get rptTest_explainer =>
+      'ホップなしの探索要求を1回送るため、あなたの無線機を直接受信できるリピーターだけが応答します。最初の数値はリピーターがあなたを受信した強さ、2番目はあなたが受信した強さです。リピーターは応答回数を制限するため、テストは30秒間隔です。';
+
+  @override
   String get notification_fieldAlertTitle => 'NOTORYX フィールドアラート';
 
   @override
-  String get notification_checkInReminderTitle => 'NOTORYX Core チェックインのリマインダー';
+  String get notification_checkInReminderTitle =>
+      'NOTORYX Core Ham チェックインのリマインダー';
 
   @override
   String notification_checkInReminderBody(int minutes, String trip) {
-    return '$tripで$minutes分間チェックインがありません。NOTORYX Core を開いてチェックインしてください。';
+    return '$tripで$minutes分間チェックインがありません。NOTORYX Core Ham を開いてチェックインしてください。';
   }
 
   @override
@@ -6852,7 +7283,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get settings_readAloudHelper =>
-      'NOTORYX Core を開いている間だけ。ミュートしたチャンネルは読み上げません。各メッセージのメニューからも読み上げできます。';
+      'NOTORYX Core Ham を開いている間だけ。ミュートしたチャンネルは読み上げません。各メッセージのメニューからも読み上げできます。';
 
   @override
   String get settings_readAloudOff => 'オフ';
@@ -6895,6 +7326,11 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get shortcuts_checkIn => 'チェックイン';
+
+  @override
+  String qsTile_unread(String status, int count) {
+    return '$status · 未読 $count';
+  }
 
   @override
   String get shortcuts_trip => '行程';
@@ -7066,7 +7502,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get setupWizard_firmware =>
-      '無線機には、選んだ接続方法に対応したMeshCoreコンパニオンファームウェアが必要です。対応状況はボードやファームウェアのビルドによって異なり、USBポートがあってもUSBシリアルに対応しているとは限りません。お使いのボードとインストール済みのビルドの説明を確認してください。リピーターやルームサーバーのファームウェアはコンパニオンではありません。接続に失敗しただけで書き直しが必要とは限りません。';
+      '無線機には、選んだ接続方法に対応したNOTORYX Hamコンパニオンファームウェアが必要です。対応状況はボードやファームウェアのビルドによって異なり、USBポートがあってもUSBシリアルに対応しているとは限りません。お使いのボードとインストール済みのビルドの説明を確認してください。リピーターやルームサーバーのファームウェアはコンパニオンではありません。接続に失敗しただけで書き直しが必要とは限りません。';
 
   @override
   String get setupWizard_settings =>
@@ -7576,6 +8012,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get scanner_tcpHint => 'ネットワーク上の Wi‑Fi ファームウェア搭載無線機。';
 
   @override
+  String get scanner_tryDemo => 'デモを試す';
+
+  @override
+  String get scanner_tryDemoHint => '架空の無線機とメッシュです。何も送信されません。';
+
+  @override
   String get scanner_otherWays => 'その他の接続方法';
 
   @override
@@ -7596,7 +8038,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get scanner_heroHint =>
-      '無線機の電源を入れ、数メートル以内に置いてください。MeshCore companion ファームウェアが必要です。';
+      '無線機の電源を入れ、数メートル以内に置いてください。NOTORYX Ham companion ファームウェアが必要です。';
 
   @override
   String get scanner_tipsTitle => '無線機が表示されませんか？';
@@ -7606,7 +8048,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get scanner_tipFirmware =>
-      'MeshCore companion ファームウェアが必要です。リピーターとルームサーバーはここに表示されません。';
+      'NOTORYX Ham companion ファームウェアが必要です。リピーターとルームサーバーはここに表示されません。';
 
   @override
   String get scanner_tipOtherDevice =>
@@ -7905,7 +8347,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get trackLog_howItWorks =>
-      'NOTORYX Core を開いている間、無線機が約1分ごとに送る位置を使います。25 m 移動するか、止まっている間は15分ごとに点が追加されます。';
+      'NOTORYX Core Ham を開いている間、無線機が約1分ごとに送る位置を使います。25 m 移動するか、止まっている間は15分ごとに点が追加されます。';
 
   @override
   String get trackLog_snap => '位置を約100 mに丸める';
@@ -8023,6 +8465,72 @@ class AppLocalizationsJa extends AppLocalizations {
   String routes_repeaterWithId(String id) {
     return 'リピーター $id';
   }
+
+  @override
+  String get signedCov_section => '署名付きレポート';
+
+  @override
+  String get signedCov_share => '署名付きレポートを共有';
+
+  @override
+  String get signedCov_shareHint =>
+      '各六角形はこの電話のカバレッジ鍵で署名されるため、改ざんや捏造を見分けられます。共有しない限り電話の外には出ません。';
+
+  @override
+  String get signedCov_check => 'レポートを確認';
+
+  @override
+  String get signedCov_checkHint => '署名付きレポートを貼り付けて、本物の観測を確認';
+
+  @override
+  String get signedCov_paste => '署名付きレポート (JSON)';
+
+  @override
+  String get signedCov_verify => '確認';
+
+  @override
+  String signedCov_yourKey(String fingerprint) {
+    return 'あなたのカバレッジ鍵: $fingerprint';
+  }
+
+  @override
+  String signedCov_result(int accepted, int rejected) {
+    return '$accepted 件の観測を確認、$rejected 件を拒否';
+  }
+
+  @override
+  String signedCov_signer(String fingerprint) {
+    return '署名鍵 $fingerprint';
+  }
+
+  @override
+  String get signedCov_unreadable => 'これは署名付きカバレッジレポートではありません。';
+
+  @override
+  String signedCov_rBadSignature(int count) {
+    return '署名なしまたは不正: $count 件';
+  }
+
+  @override
+  String signedCov_rMalformed(int count) {
+    return '破損: $count 件';
+  }
+
+  @override
+  String signedCov_rImpossible(int count) {
+    return 'ありえない信号値: $count 件';
+  }
+
+  @override
+  String signedCov_rFuture(int count) {
+    return '未来の日付: $count 件';
+  }
+
+  @override
+  String get signedCov_empty => '共有できるカバレッジのサンプルはまだありません。';
+
+  @override
+  String get signedCov_shareFailed => 'レポートを共有できませんでした。';
 
   @override
   String get coverageHex_title => 'カバレッジ六角形';
@@ -8194,51 +8702,10 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get botWx_title => '気象警報をチャンネルに投稿';
-
-  @override
-  String get botWx_body =>
-      '10 分ごとに米国国立気象局で無線機の GPS 位置（約 1 km に丸め）の重大・極端な警報を確認し、新しい警報を 1 回ずつ投稿します。スマートフォンのインターネットが必要です。';
-
-  @override
-  String get botWx_channel => '投稿先チャンネル';
-
-  @override
-  String get botWx_moderate => '中程度の警報も含める';
-
-  @override
-  String get botWx_moderateHint => '注意報と警報の両方。投稿が増えます。';
-
-  @override
-  String botWx_lastChecked(String time) {
-    return '最終確認 $time。';
-  }
-
-  @override
-  String get botWx_noPosition => '無線機はまだ GPS 位置を報告していません。';
-
-  @override
-  String get botWx_noChannel => '警報の投稿先チャンネルを選んでください。';
-
-  @override
-  String get botWx_channelGone => '選んだチャンネルはもう存在しません。';
-
-  @override
-  String botWx_httpError(String code) {
-    return '気象サービスが $code を返しました。';
-  }
-
-  @override
-  String get botWx_unreachable => '気象サービスに接続できません。';
-
-  @override
   String get botCmd_sun => '無線機の GPS 位置の日の出と日の入り。';
 
   @override
   String get botCmd_moon => '月相と照らされている割合。';
-
-  @override
-  String get botCmd_weather => '無線機の現在の天気（Open-Meteo）。約 1 km に丸めた位置を送信します。';
 
   @override
   String get botCmd_dice => 'サイコロを振ります：!dice、!dice 20、!dice 2d6。';
@@ -8611,7 +9078,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get tools_bot => 'ボットモード';
 
   @override
-  String get tools_botHint => 'チャンネルでの自動返信、!コマンド、気象警報';
+  String get tools_botHint => 'チャンネルでの自動返信と!コマンド';
 
   @override
   String get botChannels_title => 'チャンネル';
@@ -8692,6 +9159,63 @@ class AppLocalizationsJa extends AppLocalizations {
   String get channels_regionUnknownSemantics => 'アプリが知らない地域宛てに送信';
 
   @override
+  String get timeline_title => 'タイムライン';
+
+  @override
+  String get timeline_toolSubtitle => 'メッセージ、新しいノード、信号の変化、場所をひとつのフィードに';
+
+  @override
+  String get timeline_refresh => '再読み込み';
+
+  @override
+  String get timeline_search => 'タイムラインを検索';
+
+  @override
+  String get timeline_kindMessages => 'メッセージ';
+
+  @override
+  String get timeline_kindNodes => '新しいノード';
+
+  @override
+  String get timeline_kindSignal => '信号';
+
+  @override
+  String get timeline_kindPlaces => '場所';
+
+  @override
+  String timeline_messageFrom(String sender, String where) {
+    return '$where の $sender';
+  }
+
+  @override
+  String timeline_nodeJoined(String name) {
+    return '初めて受信: $name';
+  }
+
+  @override
+  String timeline_signalUp(String name, String from, String to) {
+    return '$name: 信号が $from から $to dB に上昇';
+  }
+
+  @override
+  String timeline_signalDown(String name, String from, String to) {
+    return '$name: 信号が $from から $to dB に低下';
+  }
+
+  @override
+  String timeline_placeSaved(String name) {
+    return '場所を保存: $name';
+  }
+
+  @override
+  String timeline_placeShared(String sender, String where) {
+    return '$sender が $where で場所を共有';
+  }
+
+  @override
+  String get timeline_empty => 'まだ何もありません。メッセージ、新しく受信したノード、信号の変化、場所がここに表示されます。';
+
+  @override
   String get wardrive_title => 'ウォードライブ';
 
   @override
@@ -8762,4 +9286,3462 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get autoConnect_hint => 'アプリを開くと、タップせずに前回の無線機へ再接続します。まだ圏外なら数回試します。';
+
+  @override
+  String get ham_licensedOperator => '免許を持つ運用者';
+
+  @override
+  String get ham_operatorIntro =>
+      'NOTORYX Core Ham の無線機はアマチュア無線の免許（FCC Part 97）で送信します。送信内容は誰でも読むことができ、すべてのフレームに無線機名の先頭にあるコールサインが含まれます。';
+
+  @override
+  String get ham_yourStation => 'あなたの局';
+
+  @override
+  String get ham_callSign => 'コールサイン';
+
+  @override
+  String get ham_notUsCallsign => '米国のコールサインではありません';
+
+  @override
+  String get ham_licenceClass => '免許クラス';
+
+  @override
+  String get ham_licenceClassHelper => 'どのクラスも 33 cm と 70 cm を全面的に運用できます';
+
+  @override
+  String get ham_antennaSystem => 'アンテナ系';
+
+  @override
+  String get ham_antennaSystemHint => '下の出力の推定に使います。ないものは 0 のままにしてください。';
+
+  @override
+  String get ham_externalAmpGain => '外部アンプの利得';
+
+  @override
+  String get ham_feedlineLoss => '給電線の損失';
+
+  @override
+  String get ham_antennaGain => 'アンテナ利得';
+
+  @override
+  String get ham_coordination => '調整';
+
+  @override
+  String get ham_coordinationNotice =>
+      'NOTORYX Core Ham は十分な調整を行ってから使ってください。無線機とレピーターは共用バンドで自動的に送信します。どの無線機も電波を出す前に、周波数調整担当者と相談し、地域のバンドプランに従い、地域のすべての運用者と 1 つのチャンネルを取り決めてください。';
+
+  @override
+  String get ham_readCoordinationGuide => '調整ガイドを読む';
+
+  @override
+  String get ham_acknowledgment => 'この免許を持っており、調整ガイドを読みました。送信する前に調整を行います。';
+
+  @override
+  String get ham_operatorSaved => '保存しました';
+
+  @override
+  String get ham_connectedRadio => '接続中の無線機';
+
+  @override
+  String get ham_nodeName => 'ノード名';
+
+  @override
+  String get ham_nodeNameOk => 'あなたのコールサインで始まっています';
+
+  @override
+  String get ham_nodeNameBad => 'コールサインで始まらないと無線機は送信しません';
+
+  @override
+  String ham_setNameTo(String callsign) {
+    return '$callsign に設定';
+  }
+
+  @override
+  String get ham_frequency => '周波数';
+
+  @override
+  String get ham_inHamBand => 'アマチュアバンド内';
+
+  @override
+  String get ham_outsideHamBands => '420–450 / 902–928 MHz の範囲外';
+
+  @override
+  String get ham_txPowerSetting => '送信出力の設定';
+
+  @override
+  String get ham_chipSetting => '無線チップの設定値';
+
+  @override
+  String get ham_firmware => 'ファームウェア';
+
+  @override
+  String get ham_estimatedOutput => '推定出力';
+
+  @override
+  String get ham_estimatedErp => '推定 ERP';
+
+  @override
+  String get ham_unknown => '不明';
+
+  @override
+  String get ham_unknownBoard => '不明なボード: アンプなしとして計算';
+
+  @override
+  String get ham_ampNone => 'アンプなし';
+
+  @override
+  String ham_ampGain(String db) {
+    return 'アンプで約 +$db dB';
+  }
+
+  @override
+  String get ham_ampVariable => 'アンプのレベル設定による';
+
+  @override
+  String ham_boardNote(String board, String note) {
+    return '$board: $note';
+  }
+
+  @override
+  String ham_measureFirst(String board) {
+    return '$board。推定に頼る前に測定してください。';
+  }
+
+  @override
+  String ham_outputNote(String board) {
+    return '$board。推定値です。確実を期すため測定し、通信できる最小の出力を使ってください。';
+  }
+
+  @override
+  String get ham_overSpreadSpectrum =>
+      '10 W PEP を超えています。LoRa のようなスペクトラム拡散の上限です（§97.311）。下げてください。';
+
+  @override
+  String get ham_erpNote =>
+      '給電線損失とアンテナ利得を考慮したダイポール比の値です。高出力では電波防護（§97.13）を確認してください。';
+
+  @override
+  String get ham_location => '場所';
+
+  @override
+  String get ham_noLocationLimits => '帯域の制限は見つかりません';
+
+  @override
+  String get ham_locationOkNote => '無線機の位置からの判断です。念のため §97.303 を確認してください。';
+
+  @override
+  String get ham_check => '要確認';
+
+  @override
+  String get ham_positionUnknown => '位置が不明です。運用場所の制限は §97.303 で確認してください。';
+
+  @override
+  String get ham_exclusion33cm =>
+      'この地域は §97.303(g) の除外区域内とみられます。ここではアマチュア局は 33 cm で送信できません。';
+
+  @override
+  String get ham_lineA =>
+      'ライン A の北側（カナダ国境付近）では 420–430 MHz は使えません。§97.303 を確認してください。';
+
+  @override
+  String get ham_statusOk => 'OK';
+
+  @override
+  String get ham_needsAttention => '要確認';
+
+  @override
+  String get ham_setupBanner => '送信する前に運用者の設定を完了してください';
+
+  @override
+  String get ham_setUp => '設定';
+
+  @override
+  String get ham_operatorCardIncomplete => 'コールサインを設定し、調整ガイドを読んでください';
+
+  @override
+  String get ham_nodeNameCallsignHelper =>
+      'コールサインで始めてください（例:「W1AW」「W1AW Base」）';
+
+  @override
+  String get ham_repeaterNameNeedsCall =>
+      '名前はレピーターのコールサインで始めてください（例:「N0RPT Hilltop」）。';
+
+  @override
+  String get ham_repeaterPasswordsSerial =>
+      'パスワードはレピーターの USB シリアルコンソールで設定してください。電波で送ると誰でも読めてしまいます。';
+
+  @override
+  String get networks_title => 'ネットワーク';
+
+  @override
+  String get networks_hint => '近くのネットワークを探して記録';
+
+  @override
+  String get networks_yourNetwork => 'あなたのネットワーク';
+
+  @override
+  String get networks_scanTitle => 'ネットワークを探す';
+
+  @override
+  String get networks_scanExplainer =>
+      '無線機はまったく同じ設定のネットワークしか受信できないため、スキャンでは設定を順に切り替えて受信し、最後に元に戻します。スキャン中は自分のメッシュから外れます。';
+
+  @override
+  String get networks_listenFor => '各ネットワークの受信時間';
+
+  @override
+  String networks_choose(int count) {
+    return 'スキャンするネットワーク: $count';
+  }
+
+  @override
+  String get networks_suggested => 'おすすめ';
+
+  @override
+  String get networks_start => 'スキャン開始';
+
+  @override
+  String get networks_cancel => 'スキャン停止';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return '$name を受信中 ($step/$steps)';
+  }
+
+  @override
+  String get networks_blockNoRadio => 'スキャンするには無線機を接続してください。';
+
+  @override
+  String get networks_blockSettings => '無線機の設定を待っています。';
+
+  @override
+  String get networks_blockSos => 'SOS 中はできません: スキャンするとメッシュから外れます。';
+
+  @override
+  String get networks_blockTrip => 'トリップ中はできません: スキャンするとメッシュから外れます。';
+
+  @override
+  String get networks_nearby => '近くのネットワーク';
+
+  @override
+  String get networks_nothingYet => 'まだネットワークは受信されていません。スキャンしてください。';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return 'ノード $nodes · パケット $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return '最終受信 $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return '受信回数: $count';
+  }
+
+  @override
+  String get networks_saved => '保存したネットワーク';
+
+  @override
+  String get networks_noSaved => '保存したネットワークはまだありません。';
+
+  @override
+  String get networks_add => 'ネットワークを追加';
+
+  @override
+  String get networks_join => '参加';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return '無線機を $name に切り替えますか? 現在のネットワークから離れます。送信出力は変わりません。';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return '無線機は $name になりました。';
+  }
+
+  @override
+  String get networks_log => 'ネットワークログ';
+
+  @override
+  String get networks_logEmpty => 'まだ記録はありません。';
+
+  @override
+  String get networks_showMap => '地図';
+
+  @override
+  String get networks_exportCsv => 'CSV を書き出す';
+
+  @override
+  String get networks_exportGpx => 'GPX を書き出す';
+
+  @override
+  String get networks_clearLog => 'ログを消去';
+
+  @override
+  String get networks_clearLogConfirm => '記録したネットワークをすべて削除しますか?';
+
+  @override
+  String get networks_name => '名前';
+
+  @override
+  String get networks_invalid => '設定を確認してください: MeshCore 無線機が受け付ける範囲外です。';
+
+  @override
+  String get networks_nodesHeard => '受信したノード';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      '送信されていません: 無線機を接続してからもう一度お試しください。メッセージは残っています。';
+
+  @override
+  String get quick_title => 'クイックメッセージ';
+
+  @override
+  String get quick_ok => 'OK';
+
+  @override
+  String get quick_onMyWay => '向かっています';
+
+  @override
+  String get quick_atCamp => 'キャンプにいます';
+
+  @override
+  String get quick_runningLate => '遅れます';
+
+  @override
+  String get quick_needHelp => '助けが必要です';
+
+  @override
+  String get quick_copyThat => '了解';
+
+  @override
+  String get quick_empty => 'クイックメッセージはありません。編集をタップして追加してください。';
+
+  @override
+  String get quick_add => '新しいクイックメッセージ';
+
+  @override
+  String get quick_reset => '既定に戻す';
+
+  @override
+  String get chat_stopRetrying => '再送を止める';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name があなたを連絡先に追加するまで、ダイレクトメッセージを読んだり返信したりできません。まだなら、アドバートを送るか連絡先を共有してください。';
+  }
+
+  @override
+  String get map_goToMyPosition => '現在地に移動';
+
+  @override
+  String get map_positionUnavailable =>
+      '位置情報を取得できません。位置情報をオンにするか、無線機の位置を設定してください。';
+
+  @override
+  String get contact_forgetAdvert => '最後のアドバートを忘れる';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'このノードの時計がリセットされてからアドバートが更新されない場合、「最後のアドバートを忘れる」で次のアドバートを受け付けます。';
+
+  @override
+  String get contact_forgetAdvertDone => '完了しました。このノードの次のアドバートを受け付けます。';
+
+  @override
+  String get networks_modeQuick => 'クイック';
+
+  @override
+  String get networks_modeThorough => 'じっくり';
+
+  @override
+  String get networks_modeQuickHint =>
+      '各ネットワークでゼロホップの短い ping を 1 回送り、数秒受信します。範囲内にリピーターがあるネットワークを見つけます。';
+
+  @override
+  String get networks_modeThoroughHint =>
+      '受信のみで、各ネットワークで長めに聞きます。何も送信せず、誰かが送信すればリピーターのないネットワークも見つけます。';
+
+  @override
+  String networks_estimate(String time) {
+    return '約 $time';
+  }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return '$count 件選択';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => 'すべて選択';
+
+  @override
+  String get discoveredContacts_addSelected => '選択項目を追加';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return '表示中をすべて追加 ($count)';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return '$count 件の連絡先を追加しますか?';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return '無線機にはあと $room 件の連絡先を追加できます。';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return '無線機にはあと $room 件しか追加できないため、$count 件のうち最初の $room 件だけを追加します。';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return '$done/$total を追加中…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return '追加した連絡先: $count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return '追加した連絡先: $added。追加できなかった連絡先: $failed。';
+  }
+
+  @override
+  String get discoveredContacts_radioFull =>
+      '無線機の連絡先リストがいっぱいです。先にいくつか削除してください。';
+
+  @override
+  String get fieldIntel_radioNow => '現在の無線機';
+
+  @override
+  String get fieldIntel_noRadio => 'ライブ値を表示するには無線機を接続してください。';
+
+  @override
+  String get fieldIntel_noise => 'ノイズ dBm';
+
+  @override
+  String get fieldIntel_lastSnr => '最新 SNR';
+
+  @override
+  String get fieldIntel_lastRssi => '最新 RSSI';
+
+  @override
+  String get fieldIntel_battery => 'バッテリー V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return '無線機起動後の送信時間: 送信 $sent、受信 $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => '周りにいるノード';
+
+  @override
+  String get fieldIntel_m15 => '15 分';
+
+  @override
+  String get fieldIntel_h1 => '1 時間';
+
+  @override
+  String get fieldIntel_h24 => '24 時間';
+
+  @override
+  String get fieldIntel_older => 'それ以前';
+
+  @override
+  String get fieldIntel_lastHour => '直近 1 時間';
+
+  @override
+  String get fieldIntel_chartHint =>
+      '各ノードを最後に受信した時刻を、過去 1 日分 1 時間ごとに表示します。バーをタップすると一覧が表示されます。';
+
+  @override
+  String get fieldIntel_mix => 'ノードの種類';
+
+  @override
+  String get fieldIntel_reach => '到達範囲';
+
+  @override
+  String get fieldIntel_hops1 => '1 ホップ';
+
+  @override
+  String get fieldIntel_hops2 => '2 ホップ';
+
+  @override
+  String get fieldIntel_hops3 => '3 ホップ以上';
+
+  @override
+  String get fieldIntel_noRoute => 'ルート未確定';
+
+  @override
+  String get fieldIntel_distance => '最も近い / 遠いノード';
+
+  @override
+  String get fieldIntel_noneLocated => '位置情報を持つ連絡先がありません。';
+
+  @override
+  String get fieldIntel_noPosition => '無線機に位置がないため、距離を計算できません。';
+
+  @override
+  String get fieldIntel_bestRepeaters => '直接受信できる最良のリピーター';
+
+  @override
+  String get fieldIntel_noneDirect => '過去 30 分間に直接受信したリピーターはありません。';
+
+  @override
+  String get fieldIntel_attention => '要確認';
+
+  @override
+  String get fieldIntel_allGood => '確認が必要なものはありません。';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'バッテリー低下: $volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'お気に入り、$agoから受信なし';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'その他のツール';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'ノード: $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'ノードはありません。';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return '最終受信 $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => '地図で表示';
+
+  @override
+  String get fieldIntel_openChat => 'チャットを開く';
+
+  @override
+  String get repeaterTools_login => 'ログイン';
+
+  @override
+  String get repeaterTools_heardDirect => '直接受信';
+
+  @override
+  String get repeaterTools_filterAll => 'すべて';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'バッテリー低下';
+
+  @override
+  String get repeaterTools_hint =>
+      'リピーターをタップすると詳細が表示され、そこからログインしてステータス、近隣、テレメトリー、コマンドラインを確認できます。';
+
+  @override
+  String get repeaterTools_noneMatch => '該当するリピーターはありません。';
+
+  @override
+  String get repeaterTools_toolsTitle => 'ツール';
+
+  @override
+  String get repeaterTools_regionSetupHint => '地域のリージョンツリーを調べてコマンドをコピーします';
+
+  @override
+  String get routes_failingOnly => '失敗したルートのみ';
+
+  @override
+  String get routes_contactDetails => '連絡先の詳細';
+
+  @override
+  String get links_contactTitle => '連絡先を追加しますか?';
+
+  @override
+  String get links_importAdvert => 'この連絡先を無線機に追加しますか?';
+
+  @override
+  String get links_connectFirst => '先に無線機を接続してから、もう一度リンクを開いてください。';
+
+  @override
+  String get links_added => '連絡先を追加しました';
+
+  @override
+  String get links_notContact => 'このリンクは MeshCore の連絡先ではありません。';
+
+  @override
+  String get radioBuzzer_title => '無線機のブザー';
+
+  @override
+  String get radioBuzzer_hint => '新着メッセージで無線機が鳴ります。ブザー付きの無線機でのみ表示されます。';
+
+  @override
+  String get radioBuzzer_failed => '無線機が変更を受け付けませんでした。もう一度お試しください。';
+
+  @override
+  String get appSettings_floodAttempts => 'フラッド送信の試行回数';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      '直接送信が失敗した後、経路が変わった場合に備えてフラッドで再送する回数です。1 回ごとに送信時間が増えます。0 でオフ。';
+
+  @override
+  String get pathGraph_you => 'あなた';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return '$count 件のメッセージを中継';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote => 'この短い ID は複数のリピーターに一致するため、1 つに特定できません。';
+
+  @override
+  String get pathGraph_comesFrom => '受信元';
+
+  @override
+  String get pathGraph_goesTo => '送信先';
+
+  @override
+  String get pathGraph_repeaterDetails => 'リピーターの詳細';
+
+  @override
+  String get pathGraph_days7 => '7 日間';
+
+  @override
+  String get pathGraph_empty =>
+      'この期間のチャンネルメッセージの経路はまだありません。経路は、メッセージ追跡がオンのときに受信したチャンネルメッセージから集められます。';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '受信した経路 $paths · リピーター $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly => '各ホップはハッシュ接頭辞、またはリピーターが分かる場合はその名前で表示されます。';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count 件の短い (1 バイト) ホップを、より長い経路から特定のリピーターに対応付けました。';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched 件の短い (1 バイト) ホップを、より長い経路から特定のリピーターに対応付けました · $ambiguous 件はまだあいまいです (? 付き)。';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      '左: 遠くのリピーター。右: あなた。帯の太さはそのホップを通ったメッセージ数です。ボックスをタップするとそのリピーターを表示します。';
+
+  @override
+  String get pathGraph_busiest => '最も使われているリピーター';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return '経路グラフ。最も使われているリピーターは $name、$count 件を中継。';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'コピーしました: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'この無線機にはチャンネルがありません。';
+
+  @override
+  String get diag_tapToCopy => '値をタップするとコピーします。下に引くと更新します。';
+
+  @override
+  String get diag_storage => 'ストレージ';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used / $total KB';
+  }
+
+  @override
+  String get favReturn_setting => 'お気に入りが圏内に復帰';
+
+  @override
+  String get favReturn_settingHint => 'しばらく受信がなかったお気に入りを再び受信したら通知';
+
+  @override
+  String get favReturn_off => 'オフ';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count時間後',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => '圏内に復帰';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours時間',
+    );
+    return '$name を$_temp0ぶりに受信しました';
+  }
+
+  @override
+  String get ham_heardFrom => '受信元';
+
+  @override
+  String get ham_lastHeard => '最後に受信した局';
+
+  @override
+  String get ham_nothingHeardYet => 'まだありません';
+
+  @override
+  String get ham_readyToTransmit => '送信の準備ができています';
+
+  @override
+  String get ham_notReadyToTransmit => '送信する前に、下で印の付いた項目を確認してください';
+
+  @override
+  String get ham_bannerNameMismatch => '送信する前に無線機の名前をコールサインにしてください';
+
+  @override
+  String get ham_bannerOutOfBand => '無線機がアマチュアバンドの外に設定されています';
+
+  @override
+  String get a11y_showPassword => 'パスワードを表示';
+
+  @override
+  String get a11y_hidePassword => 'パスワードを隠す';
+
+  @override
+  String get a11y_sendLocation => '現在地を送信';
+
+  @override
+  String get a11y_toggleFlash => 'ライト';
+
+  @override
+  String get a11y_switchCamera => 'カメラを切り替え';
+
+  @override
+  String get los_worst => '最悪';
+
+  @override
+  String get los_selectedObstruction => '選択した障害物';
+
+  @override
+  String get bastionHome_stationOk => 'ノード名とバンドは問題ありません';
+
+  @override
+  String get bastionHome_stationConnectToCheck => '無線機を接続して名前とバンドを確認してください';
+
+  @override
+  String get theme_selected => '選択中';
+
+  @override
+  String get theme_desc_blaze => 'チャコールスレートに高視認オレンジ';
+
+  @override
+  String get theme_desc_blackout => 'マットブラックとスチール。標準テーマ。';
+
+  @override
+  String get theme_desc_tactical => 'フィールド向けのオリーブ、ガンメタル、アースカラー';
+
+  @override
+  String get theme_desc_okabe_ito => '色覚の多様性に配慮、青みがかったグレー地';
+
+  @override
+  String get theme_desc_night_ops => '暗所作業向けの落ち着いた赤';
+
+  @override
+  String get rxLog_title => '受信ログ';
+
+  @override
+  String get rxLog_hint => '無線機が受信したすべてのパケットをリアルタイムで表示';
+
+  @override
+  String get rxLog_empty => 'まだパケットはありません。無線機が受信したパケットは届き次第ここに表示されます。';
+
+  @override
+  String get rxLog_note => 'メモリ内のみに直近2,000件を保持します。保存や送信は行いません。';
+
+  @override
+  String get rxLog_pause => '一時停止';
+
+  @override
+  String get rxLog_resume => '再開';
+
+  @override
+  String get rxLog_export => 'CSVを書き出す';
+
+  @override
+  String get rxLog_clearConfirm => '受信ログを消去しますか？';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return '$shown件表示 · $total件受信';
+  }
+
+  @override
+  String get rxLog_paused => '一時停止中：新しいパケットは記録されません';
+
+  @override
+  String get rxLog_kindAll => 'すべて';
+
+  @override
+  String get rxLog_kindAdvert => 'アドバート';
+
+  @override
+  String get rxLog_kindChannel => 'チャンネル';
+
+  @override
+  String get rxLog_kindDirect => 'ダイレクト';
+
+  @override
+  String get rxLog_kindAck => 'ACK';
+
+  @override
+  String get rxLog_kindPath => 'パス';
+
+  @override
+  String get rxLog_kindTrace => 'トレース';
+
+  @override
+  String get rxLog_kindControl => '制御';
+
+  @override
+  String get rxLog_kindOther => 'その他';
+
+  @override
+  String get rxLog_routeFlood => 'フラッド';
+
+  @override
+  String get rxLog_routeDirect => 'ダイレクト経路';
+
+  @override
+  String get rxLog_heardDirectly => '直接受信';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$countホップ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$countバイト',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => '自分の無線機';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => '信号';
+
+  @override
+  String get rxLog_route => '経路';
+
+  @override
+  String get rxLog_path => 'パス';
+
+  @override
+  String get rxLog_payloadType => 'ペイロード種別';
+
+  @override
+  String get rxLog_hash => 'パケットハッシュ';
+
+  @override
+  String get rxLog_raw => '生パケット';
+
+  @override
+  String get rxLog_copyHex => '16進をコピー';
+
+  @override
+  String get deliv_title => '配信の詳細';
+
+  @override
+  String get deliv_note => 'このメッセージに保存された情報から算出しています。';
+
+  @override
+  String get deliv_queued => 'キュー登録';
+
+  @override
+  String get deliv_sent => '無線機が送信';
+
+  @override
+  String get deliv_notSent => '無線機が受け付けませんでした';
+
+  @override
+  String get deliv_attempts => '試行';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made / $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return '予定：ダイレクト $direct 回、その後フラッド $flood 回';
+  }
+
+  @override
+  String get deliv_lastRoute => '最後の経路';
+
+  @override
+  String get deliv_routeFlood => 'すべての中継器を通るフラッド';
+
+  @override
+  String get deliv_routeNeighbor => 'ダイレクト（中継なし）';
+
+  @override
+  String deliv_routeVia(String path) {
+    return '$path 経由のダイレクト';
+  }
+
+  @override
+  String get deliv_confirmed => '受信を確認';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return '往復 $seconds 秒';
+  }
+
+  @override
+  String get deliv_waiting => '確認待ち';
+
+  @override
+  String get deliv_noConfirm => '確認なし';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name の最終受信';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours時間前',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return '配信済み。$name が確認しました。';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return 'ダイレクト送信が失敗した後、フラッドで配信されました。$name への保存経路が古い可能性があります。';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return '送信中：$total 回中 $attempt 回目。';
+  }
+
+  @override
+  String get deliv_vNotSent => '無線機がこのメッセージを受け付けませんでした。接続を確認してから再試行してください。';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours時間',
+    );
+    return '確認なし。$name は$_temp0受信されていないため、圏外か電源が切れている可能性があります。';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      '保存経路で確認がなく、フラッド試行がオフです。設定 → アプリ設定 → メッセージでオンにするか、再試行してください。';
+
+  @override
+  String get deliv_vNoAck => 'どの経路でも確認がありません。圏外か、確認があなたまで届かなかった可能性があります。';
+
+  @override
+  String get batteryOpt_title => 'バッテリーの最適化';
+
+  @override
+  String get batteryOpt_off => 'NOTORYX Core Ham ではオフのため、バックグラウンドでも通知が届きます。';
+
+  @override
+  String get batteryOpt_on =>
+      'オン。Android がバックグラウンドでアプリを停止することがあり、SOS・チェックイン・メッセージの通知が遅れたり届かなかったりします。';
+
+  @override
+  String get batteryOpt_fix => 'オフにする';
+
+  @override
+  String block_sender(String name) {
+    return '$name をブロック';
+  }
+
+  @override
+  String get block_confirmBody =>
+      'この相手のチャンネルメッセージはこの端末で非表示になり、通知もされません。相手からはあなたのメッセージが引き続き見えます。設定でブロックを解除できます。';
+
+  @override
+  String get block_action => 'ブロック';
+
+  @override
+  String block_done(String name) {
+    return '$name をブロックしました';
+  }
+
+  @override
+  String get mention_suggestions => '名前の候補';
+
+  @override
+  String get block_listTitle => 'ブロック中の送信者';
+
+  @override
+  String get block_listHint => 'これらの名前からのメッセージはチャンネルで非表示になり、通知もされません。';
+
+  @override
+  String get block_listEmpty => 'ブロック中の相手はいません。';
+
+  @override
+  String get block_unblock => 'ブロック解除';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 件ブロック中',
+      zero: 'ブロックなし',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return '無線機の連絡先リストが $percent% 使用中';
+  }
+
+  @override
+  String get contactTable_full => '無線機の連絡先リストがいっぱいです';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used / $max 件の連絡先';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'いっぱいになると、無線機は最も長く受信していない連絡先を置き換えます。お気に入りは残ります。';
+
+  @override
+  String get contactTable_stopHint => 'いっぱいになると、無線機は新しく受信した連絡先を追加しなくなります。';
+
+  @override
+  String get contactTable_freeUp => '空きを作る';
+
+  @override
+  String get contactTable_sheetBody => '受信が古い順に表示。お気に入りは表示されません。';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return '最終受信 $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 件の連絡先を削除',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      '無線機から削除され、この端末上のメッセージも削除されます。元に戻せません。';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 件の連絡先を削除しました',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest => 'すべての連絡先がお気に入りのため、候補はありません。';
+
+  @override
+  String get adminWait_waiting => '応答を待っています';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'まだ応答がありません。再試行中 ($attempt/$total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: '直接、$hops ホップ',
+      zero: '直接',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return '最大 $seconds 秒';
+  }
+
+  @override
+  String get coords_setting => '座標の形式';
+
+  @override
+  String get coords_decimal => '10進数の度';
+
+  @override
+  String get coords_dms => '度・分・秒';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => '位置をコピー';
+
+  @override
+  String coords_copied(String format) {
+    return '$format でコピーしました';
+  }
+
+  @override
+  String pathHash_badge(int width) {
+    return '経路は $width バイトのパスハッシュを使用';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'この無線機は $width バイトを使用';
+  }
+
+  @override
+  String ham_idMismatchTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '名前と一致しない局識別が $count 件あります',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_idMismatchBody =>
+      '直接受信したこれらのアドバートには、名前の先頭のコールサインと異なる局識別が付いていました。無線機の設定ミスかもしれません。頼りにする前に運用者に確認してください。';
+
+  @override
+  String ham_idMismatchSentAs(String station) {
+    return '局識別 $station で送信';
+  }
+
+  @override
+  String get ham_idMismatchNoCall => 'この名前はコールサインで始まっていません';
+
+  @override
+  String get ham_composerPlainText => '平文です。受信している誰でも読めます';
+
+  @override
+  String get ham_bannerStockFirmware =>
+      'この無線機は標準の MeshCore です。アマチュアバンドで送信しないでください';
+
+  @override
+  String get ham_firmwareOk => 'NOTORYX Ham ファームウェア: 局識別、平文、アマチュアバンドのみ';
+
+  @override
+  String get ham_firmwareStock =>
+      '標準の MeshCore は暗号化し、局識別を送りません。送信前に NOTORYX Ham ファームウェアを書き込んでください';
+
+  @override
+  String get ham_stationLog => '局ログ';
+
+  @override
+  String get ham_stationLogExport => 'ログを書き出す';
+
+  @override
+  String get ham_exportAdif => 'ADIF で書き出す (.adi)';
+
+  @override
+  String get ham_exportCsv => 'CSV で書き出す';
+
+  @override
+  String get ham_stationLogClear => 'ログを消去';
+
+  @override
+  String get ham_stationLogClearConfirm => '局ログのすべての記録を削除しますか？元に戻せません。';
+
+  @override
+  String get ham_stationLogEmpty => 'まだ記録された局はありません';
+
+  @override
+  String get ham_stationLogHint => '名前がコールサインで始まる局とのダイレクトメッセージを、この端末にだけ記録します。';
+
+  @override
+  String ham_stationLogCounts(int sent, int received) {
+    return '送信 $sent、受信 $received';
+  }
+
+  @override
+  String ham_rxStationId(String call) {
+    return 'ID $call';
+  }
+
+  @override
+  String get ham_stationIdLabel => '局識別';
+
+  @override
+  String get ham_stationIdHint => 'このフレームを送信した局。送信者、または中継したリピーターです';
+
+  @override
+  String ham_stockTrafficTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'この 10 分間に標準 MeshCore のフレームを $count 件受信しました',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get security_title => 'セキュリティ';
+
+  @override
+  String get security_toolSubtitle => 'アプリのロックとメッセージ履歴の暗号化';
+
+  @override
+  String get appLock_title => 'アプリのロック';
+
+  @override
+  String get appLock_subtitle =>
+      'アプリを開くときに指紋、顔、または画面ロックを求めます。通知は届き、SOSはロック画面からも送信できます。';
+
+  @override
+  String get appLock_reason => 'NOTORYX Core Hamのロックを解除';
+
+  @override
+  String get appLock_unlock => 'ロック解除';
+
+  @override
+  String get appLock_locked => 'NOTORYX Core Hamはロックされています';
+
+  @override
+  String get appLock_unavailable => 'この端末には画面ロックがないか、確認できませんでした。';
+
+  @override
+  String get dbEncrypt_title => 'メッセージ履歴を暗号化';
+
+  @override
+  String get dbEncrypt_subtitle =>
+      'この端末のメッセージデータベースを、スマートフォンの安全な保管領域にある鍵で暗号化します。鍵を失うと履歴は復元できないため、バックアップを保管してください。';
+
+  @override
+  String get dbEncrypt_on => '状態: 暗号化済み';
+
+  @override
+  String get dbEncrypt_off => '状態: 暗号化なし';
+
+  @override
+  String get dbEncrypt_failed => '状態: 適用できませんでした。履歴は変更されていません。';
+
+  @override
+  String get dbEncrypt_restart => '次回アプリを起動したときに有効になります。';
+
+  @override
+  String get appLock_sosNoTarget => '先にロックを解除し、SOSの送信先を選んでください。';
+
+  @override
+  String get ham_stockTrafficBody =>
+      '別のネットワーク (Part 15 の MeshCore メッシュなど) がこの周波数を使っています。そのフレームには局識別がなく、アマチュア無線用ファームウェアでは読めません。ここで送信する前に周波数調整担当者に確認してください。';
+
+  @override
+  String get forward_action => '転送';
+
+  @override
+  String get forward_title => 'メッセージを転送';
+
+  @override
+  String get forward_to => '送信先';
+
+  @override
+  String get forward_send => '送信';
+
+  @override
+  String get forward_hint => 'あなたのコールサインで送信され、作成者の名前も示されます。転送内容の責任はあなたにあります。';
+
+  @override
+  String get forward_needCallsign => '先に「免許を持つオペレーター」でコールサインを設定してください。';
+
+  @override
+  String forward_tooLong(int count) {
+    return '$count バイト長すぎます。メッセージを短くしてください。';
+  }
+
+  @override
+  String get forward_sent => '無線機に転送しました';
+
+  @override
+  String get ham_setupBeforeTitle => '送信する前に';
+
+  @override
+  String get team_title => 'チーム設定';
+
+  @override
+  String get team_toolSubtitle => '無線設定とチャンネルを QR またはファイルで共有';
+
+  @override
+  String get team_shareHint =>
+      'この無線機の周波数、帯域幅、拡散率、符号化率、ハッシュタグチャンネルを共有します。鍵と送信出力は含まれません。';
+
+  @override
+  String get team_shareFile => 'ファイルで共有';
+
+  @override
+  String get team_scan => 'チームの QR コードをスキャン';
+
+  @override
+  String get team_openFile => 'チームファイルを開く';
+
+  @override
+  String get team_importTitle => 'チーム設定を適用しますか？';
+
+  @override
+  String get team_apply => '無線機に適用';
+
+  @override
+  String get team_invalid => '有効なチーム設定ではないか、周波数がアマチュアバンド外です。';
+
+  @override
+  String get team_applied => 'チーム設定を適用しました';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'チャンネル: $names';
+  }
+
+  @override
+  String get ham_setupBeforeBody =>
+      '調整ガイドを読み、「免許を持つ運用者」でコールサインと免許を入力してください。周波数調整担当者とメッシュ内の他局がチャンネルに合意するまで送信しないでください。';
+
+  @override
+  String ham_setupBeforeDone(String call) {
+    return '免許局として設定済み: $call';
+  }
+
+  @override
+  String get fieldOps_kindReport => 'レポート';
+
+  @override
+  String get fieldReport_title => 'フィールドレポート';
+
+  @override
+  String get fieldReport_open => 'SALUTE または 9-Line レポートを作成';
+
+  @override
+  String get fieldReport_hint =>
+      'コールサインを付けた平文で、トリップの連絡先と SOS チャンネルに送信します。送信を押すまで何も送られません。';
+
+  @override
+  String get fieldReport_usePosition => '無線機の位置を使う';
+
+  @override
+  String fieldReport_preview(int count) {
+    return '送信するメッセージ: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign => '先に「免許を持つオペレーター」でコールサインを設定してください。';
+
+  @override
+  String get fieldReport_tooLong => '1 行が長すぎて 1 通に収まりません。短くしてください。';
+
+  @override
+  String get fieldReport_sent => 'レポートを無線機に渡しました';
+
+  @override
+  String get coords_maidenhead => 'メイデンヘッド・ロケーター';
+
+  @override
+  String get reactions_radioTitle => 'リアクションを無線で送信';
+
+  @override
+  String get reactions_radioHint =>
+      'リアクションは1件ごとに電波で送られます。自動では、送信時間が制限されるEUの868 MHz帯ではこの端末内だけに表示します。';
+
+  @override
+  String get reactions_radioAuto => '自動';
+
+  @override
+  String get reactions_radioOn => 'オン';
+
+  @override
+  String get reactions_radioOff => 'オフ（この端末）';
+
+  @override
+  String get notification_replyAction => '返信';
+
+  @override
+  String get notification_replyHint => '返信を入力';
+
+  @override
+  String get notification_markRead => '既読にする';
+
+  @override
+  String get notification_you => 'あなた';
+
+  @override
+  String get mesh_title => 'メッシュの状態';
+
+  @override
+  String get mesh_overallGood => 'メッシュは良好です';
+
+  @override
+  String get mesh_overallFair => 'メッシュは動いていますが問題があります';
+
+  @override
+  String get mesh_overallPoor => 'メッシュは不調です';
+
+  @override
+  String get mesh_overallUnknown => 'まだ判断できるデータがありません';
+
+  @override
+  String get mesh_gradeGood => '良好';
+
+  @override
+  String get mesh_gradeFair => '普通';
+
+  @override
+  String get mesh_gradePoor => '不良';
+
+  @override
+  String get mesh_gradeUnknown => 'データなし';
+
+  @override
+  String get mesh_noise => 'ノイズ';
+
+  @override
+  String mesh_noiseValue(String dbm) {
+    return 'ノイズフロア $dbm dBm';
+  }
+
+  @override
+  String get mesh_signal => '直近の信号';
+
+  @override
+  String mesh_signalValue(String db) {
+    return 'SNR $db dB';
+  }
+
+  @override
+  String get mesh_busy => 'チャンネル使用率';
+
+  @override
+  String mesh_busyValue(int percent) {
+    return '直近15分のうち$percent%が送受信中';
+  }
+
+  @override
+  String get mesh_neighbours => '直接受信';
+
+  @override
+  String mesh_neighboursValue(int count) {
+    return '直近1時間で$countノード';
+  }
+
+  @override
+  String get mesh_delivery => 'ダイレクトメッセージ';
+
+  @override
+  String mesh_deliveryValue(int delivered, int total) {
+    return '直近1日で$total件中$delivered件配信';
+  }
+
+  @override
+  String get mesh_tipNoise => '近くの何かがこの周波数でノイズを出しています。アンテナを電子機器や充電器から離してください。';
+
+  @override
+  String get mesh_tipSignal => '直近のパケットは弱い信号でした。アンテナを高くするか、高い場所へ移動してください。';
+
+  @override
+  String get mesh_tipBusy => 'チャンネルが混雑しています。メッセージは短くし、フラッド送信は避けてください。';
+
+  @override
+  String get mesh_tipNeighbours =>
+      '直接受信できるノードが少ないです。アンテナを高くするか、リピーターに近づいてください。';
+
+  @override
+  String get mesh_tipDelivery =>
+      '多くのメッセージが確認応答されていません。失敗したメッセージを開いて、どこで止まったか確認してください。';
+
+  @override
+  String routeHealth_staleTitle(String name) {
+    return '$nameへのルートは古いかもしれません';
+  }
+
+  @override
+  String routeHealth_weakTitle(String name) {
+    return '$nameへのルートは不安定です';
+  }
+
+  @override
+  String routeHealth_lastWorkedHours(int hours) {
+    return '最後に成功したのは$hours時間前';
+  }
+
+  @override
+  String routeHealth_lastWorkedDays(int days) {
+    return '最後に成功したのは$days日前';
+  }
+
+  @override
+  String routeHealth_notHeard(int days) {
+    return '$days日間受信なし';
+  }
+
+  @override
+  String routeHealth_failures(int failures, int attempts) {
+    return '$attempts回中$failures回失敗';
+  }
+
+  @override
+  String routeHealth_longPath(int hops) {
+    return '$hopsホップ';
+  }
+
+  @override
+  String get routeHealth_useFlood => '新しいルートを探す';
+
+  @override
+  String get routeHealth_keep => 'このルートを使う';
+
+  @override
+  String get netChange_title => 'ネットワークの変化';
+
+  @override
+  String get netChange_toolSubtitle => '近くに現れた、または沈黙したリピーター';
+
+  @override
+  String netChange_newDirect(String name) {
+    return '直接受信した新しいリピーター: $name';
+  }
+
+  @override
+  String netChange_newHops(String name, int hops) {
+    return '$hopsホップ先の新しいリピーター: $name';
+  }
+
+  @override
+  String netChange_wentQuiet(String name, int hours) {
+    return '$nameが沈黙: $hours時間受信なし';
+  }
+
+  @override
+  String get netChange_empty =>
+      'まだ変化はありません。沈黙したお気に入りリピーターや近くの新しいリピーターがここに表示されます。';
+
+  @override
+  String get netChange_quietSetting => 'お気に入りリピーターの沈黙';
+
+  @override
+  String get netChange_quietHint => 'お気に入りリピーターがこの時間受信されないときに通知';
+
+  @override
+  String get netChange_newSetting => '近くの新しいリピーター';
+
+  @override
+  String get netChange_newHint => '未知のリピーターが1ホップ以内で受信されたら通知';
+
+  @override
+  String get netChange_clear => 'クリア';
+
+  @override
+  String get netChange_notifTitle => 'ネットワークの変化';
+
+  @override
+  String get journal_title => 'ノード日誌';
+
+  @override
+  String get journal_toolSubtitle => 'これまでに受信したすべてのノード。行動ラベル、タグ、メモ付き';
+
+  @override
+  String get journal_empty => 'まだノードはありません。無線機が受信したノードは自動でここに追加されます。';
+
+  @override
+  String get journal_search => '名前、ID、タグ、メモを検索';
+
+  @override
+  String get journal_filterAll => 'すべて';
+
+  @override
+  String get journal_bSteadyRelay => '常時稼働の中継';
+
+  @override
+  String get journal_bRegular => '常連';
+
+  @override
+  String get journal_bRoamer => '移動型';
+
+  @override
+  String get journal_bRarelyHeard => 'めったに受信しない';
+
+  @override
+  String get journal_bNewcomer => '新顔';
+
+  @override
+  String get journal_bGoneQuiet => '沈黙中';
+
+  @override
+  String journal_confidence(int percent) {
+    return '確度 $percent%';
+  }
+
+  @override
+  String journal_eDaysHeard(int heard, int days) {
+    return '$days 日中 $heard 日受信';
+  }
+
+  @override
+  String journal_eFirstHeard(int hours) {
+    return '$hours 時間前に初受信';
+  }
+
+  @override
+  String journal_eSilent(int days) {
+    return '$days 日間受信なし';
+  }
+
+  @override
+  String journal_ePlaces(int places, int km) {
+    return '$places か所で確認、最大 $km km 離れている';
+  }
+
+  @override
+  String journal_eSightings(int count) {
+    return '新しいアドバート計 $count 件';
+  }
+
+  @override
+  String get journal_noLabel => 'ラベルを付けるにはまだデータが足りません。';
+
+  @override
+  String journal_firstSeen(String time) {
+    return '初受信: $time';
+  }
+
+  @override
+  String journal_lastSeen(String time) {
+    return '最終受信: $time';
+  }
+
+  @override
+  String journal_hops(int min, int max) {
+    return 'ホップ数: $min〜$max';
+  }
+
+  @override
+  String get journal_tags => 'タグ';
+
+  @override
+  String get journal_addTag => 'タグを追加';
+
+  @override
+  String get journal_tagHint => '例: 登山口、クラブ、自分の';
+
+  @override
+  String journal_removeTag(String tag) {
+    return 'タグ $tag を削除';
+  }
+
+  @override
+  String get journal_note => 'メモ';
+
+  @override
+  String get journal_saveNote => 'メモを保存';
+
+  @override
+  String get journal_forget => 'このノードを削除';
+
+  @override
+  String journal_forgetConfirm(String name) {
+    return '$name をタグとメモごと日誌から削除しますか？再び受信すると最初から記録されます。';
+  }
+
+  @override
+  String get journal_forgotten => 'ノードを日誌から削除しました。';
+
+  @override
+  String journal_markLabel(String name) {
+    return '$name の生成マーク';
+  }
+
+  @override
+  String get trouble_title => 'トラブルシューティング';
+
+  @override
+  String get trouble_toolSubtitle => 'うまくいかないときの手順ごとのヘルプ';
+
+  @override
+  String get trouble_pick => '何が問題ですか？';
+
+  @override
+  String get trouble_noDelivery => 'メッセージが届かない';
+
+  @override
+  String get trouble_noConnect => '無線機に接続できない';
+
+  @override
+  String get trouble_hearNobody => '誰も受信できない';
+
+  @override
+  String get trouble_startHere => 'ここから';
+
+  @override
+  String get trouble_resultOk => 'OK';
+
+  @override
+  String get trouble_resultProblem => '問題あり';
+
+  @override
+  String get trouble_resultUnchecked => '確認できません';
+
+  @override
+  String get trouble_connectedNow => '現在は接続されています。接続が何度も切れる場合は、以下の手順も役立ちます。';
+
+  @override
+  String get trouble_allOk => 'すべてのチェックに合格しました。それでも動かない場合は、以下の手順を確認してください。';
+
+  @override
+  String get trouble_connected => '無線機が接続されている';
+
+  @override
+  String get trouble_connectedAdvice => 'まず無線機を接続してください: 設定 → 無線機を接続。';
+
+  @override
+  String get trouble_routes => 'メッセージ相手へのルートがわかっている';
+
+  @override
+  String get trouble_routesAdvice =>
+      'ルートが不明な相手へのメッセージはメッシュ全体にフラッドされ、届かないことがよくあります。相手がアドバートするのを待つか依頼してから、もう一度送ってください。';
+
+  @override
+  String get trouble_heardRecently => 'メッセージ相手を直近1日で受信している';
+
+  @override
+  String get trouble_heardRecentlyAdvice =>
+      'しばらく受信がない相手は圏外か電源オフかもしれません。戻るまでメッセージは確認応答されません。';
+
+  @override
+  String get trouble_neighbours => '無線機がほかのノードを受信している';
+
+  @override
+  String get trouble_neighboursAdvice =>
+      '直接何も受信できない場合、ここからはメッシュに届きません。アンテナを高くする、高い場所へ行く、またはリピーターに近づいてください。';
+
+  @override
+  String get trouble_bluetooth => 'Bluetoothがオンで、アプリが使える';
+
+  @override
+  String get trouble_bluetoothAdvice =>
+      'Bluetoothがオンで、端末の設定でNOTORYX Core HamにBluetooth（Androidでは付近のデバイス）の権限があるか確認してください。';
+
+  @override
+  String get trouble_otherApp => 'ほかの端末やアプリが無線機に接続していない';
+
+  @override
+  String get trouble_otherAppAdvice =>
+      '無線機は一度に1つのアプリとだけ通信します。ほかのMeshCoreアプリを閉じるか、ペアリング済みのほかの端末でBluetoothをオフにしてください。';
+
+  @override
+  String get trouble_inRange => '無線機の電源が入っていて近くにある';
+
+  @override
+  String get trouble_inRangeAdvice =>
+      '無線機が充電され、電源が入り、数メートル以内にあるか確認してください。無線機の再起動で固まった接続が直ることがよくあります。';
+
+  @override
+  String get trouble_otherTransport => '別の接続方法を試す';
+
+  @override
+  String get trouble_otherTransportAdvice =>
+      'Bluetoothで失敗が続く場合は、USBケーブル、または対応していればWi-Fi（TCP）で接続してください。';
+
+  @override
+  String get trouble_noise => '無線機がノイズに埋もれていない';
+
+  @override
+  String get trouble_noiseAdvice =>
+      'ノイズフロアが高いと弱い信号が隠れます。アンテナを電子機器、充電器、ソーラーコントローラーから離してください。';
+
+  @override
+  String get trouble_region => '無線機が地域の設定を使っている';
+
+  @override
+  String get trouble_regionAdvice =>
+      '周波数、帯域幅、拡散率が地元のメッシュと違うと誰も受信できません。設定 → 無線機を地域の設定と比べてください。';
+
+  @override
+  String get trouble_antenna => 'アンテナが取り付けられている';
+
+  @override
+  String get trouble_antennaAdvice =>
+      'アンテナがしっかり締まっているか確認してください。アンテナなしで送信しないでください。無線機が壊れることがあります。';
+
+  @override
+  String get readiness_sos => 'SOSの送信先';
+
+  @override
+  String get readiness_sosOk => 'SOSの送信先があります。';
+
+  @override
+  String get readiness_sosBlocked =>
+      'SOSの送信先がありません。連絡先にいる同行者を追加するか、SOSチャンネルを設定してください。';
+
+  @override
+  String get readiness_routes => '同行者へのルート';
+
+  @override
+  String get readiness_routesOk => 'すべての同行者へのルートがわかっています。';
+
+  @override
+  String readiness_routesMissing(String names) {
+    return '$namesへのルートが不明です。ルートを学習するまでメッセージはフラッドで送られます。出発前にメッセージを送ってください。';
+  }
+
+  @override
+  String get readiness_notifications => '通知';
+
+  @override
+  String get readiness_notificationsOk => '許可されています。';
+
+  @override
+  String get readiness_notificationsOff => '通知がオフのため、返信・チェックイン・アラートが届きません。';
+
+  @override
+  String get readiness_batteryOpt => 'バッテリー最適化';
+
+  @override
+  String get readiness_batteryOptOk => 'NOTORYX Core Hamは対象外です。';
+
+  @override
+  String get readiness_batteryOptOn =>
+      'Androidがバックグラウンドでアプリを停止する可能性があります。設定 → アプリ設定 → 通知でオフにしてください。';
+
+  @override
+  String get readiness_blockedTitle => 'まだ出発できません';
+
+  @override
+  String readiness_warnTitle(int count) {
+    return '確認事項 $count 件';
+  }
+
+  @override
+  String get readiness_startAnyway => 'このまま開始';
+
+  @override
+  String get readiness_review => '確認する';
+
+  @override
+  String get readiness_summaryReady => '準備完了';
+
+  @override
+  String readiness_summaryWarn(int count) {
+    return '確認 $count 件';
+  }
+
+  @override
+  String get readiness_summaryBlocked => 'SOSの送信先がありません';
+
+  @override
+  String get waypoints_title => 'ウェイポイント';
+
+  @override
+  String get waypoints_toolSubtitle => '保存した場所とルート。GPXの読み込み・書き出し';
+
+  @override
+  String get waypoints_importFile => 'GPXファイルを読み込む';
+
+  @override
+  String get waypoints_importPaste => 'GPXを貼り付け';
+
+  @override
+  String get waypoints_export => 'GPXを書き出す';
+
+  @override
+  String get waypoints_empty =>
+      'ウェイポイントはまだありません。GPXファイルを読み込むか、チャットで共有された場所を保存してください。';
+
+  @override
+  String waypoints_waypoints(int count) {
+    return 'ウェイポイント ($count)';
+  }
+
+  @override
+  String waypoints_routes(int count) {
+    return 'ルート ($count)';
+  }
+
+  @override
+  String waypoints_routeSummary(int points, String km) {
+    return '$points地点 · $km km';
+  }
+
+  @override
+  String get waypoints_delete => '削除';
+
+  @override
+  String get waypoints_copy => '座標をコピー';
+
+  @override
+  String get waypoints_sendToChannel => 'チャンネルに送信';
+
+  @override
+  String get waypoints_pickChannel => 'どのチャンネルに送りますか？';
+
+  @override
+  String waypoints_sent(String channel) {
+    return '$channelに送信しました';
+  }
+
+  @override
+  String get waypoints_importFailed => 'アプリで読めるGPXファイルではありません。';
+
+  @override
+  String get waypoints_pasteHint => 'GPXのテキストをここに貼り付け';
+
+  @override
+  String get waypoints_import => '読み込む';
+
+  @override
+  String waypoints_imported(int waypoints, int routes) {
+    return 'ウェイポイント$waypoints件とルート$routes件を追加しました';
+  }
+
+  @override
+  String get waypoints_save => 'ウェイポイントとして保存';
+
+  @override
+  String get waypoints_unnamed => '共有された場所';
+
+  @override
+  String get waypoints_saved => 'ウェイポイントに保存しました';
+
+  @override
+  String get waypoints_alreadySaved => 'すでにウェイポイントにあります';
+
+  @override
+  String get map_showWaypoints => '保存したウェイポイントとルートを表示';
+
+  @override
+  String get dbEncrypt_covers =>
+      '連絡先、チャンネルキー、ウェイポイント、保存したルート、下書き、送信待ちメッセージも対象です。';
+
+  @override
+  String get bk_intro =>
+      'アプリ設定、連絡先、チャンネル鍵、ウェイポイント、下書きを暗号化して保存します。選択すればメッセージ履歴も含めます。オフライン地図、写真、無線機のファームウェアは含まれません。';
+
+  @override
+  String bk_confirmBody(Object count) {
+    return 'この端末に保存されている$count件の設定（連絡先、チャンネル鍵、ウェイポイントを含む）をバックアップの内容で置き換えます。元に戻すことはできません。';
+  }
+
+  @override
+  String get bk_history => 'メッセージ履歴を含める';
+
+  @override
+  String get bk_historyHint => 'すべての無線機のダイレクトメッセージとチャンネルメッセージ。ファイルが大きくなります。';
+
+  @override
+  String get bk_tooLarge => 'バックアップが大きすぎます。メッセージ履歴をオフにしてもう一度お試しください。';
+
+  @override
+  String bk_confirmHistory(int count) {
+    return '最大$count件のメッセージも履歴に追加します。この端末にすでにあるメッセージは残ります。';
+  }
+
+  @override
+  String bk_restoredHistory(int count) {
+    return '$count件のメッセージを履歴に追加しました。';
+  }
+
+  @override
+  String get bk_confirmTitle => 'このバックアップを復元しますか？';
+
+  @override
+  String bk_restored(int count) {
+    return '$count件の設定を復元しました。アプリを完全に終了して開き直してください。';
+  }
+
+  @override
+  String get automation_title => 'Automation';
+
+  @override
+  String get automation_toolHint =>
+      'Rules that alert you or send a message when something happens';
+
+  @override
+  String get automation_newRule => 'New rule';
+
+  @override
+  String get automation_editRule => 'Edit rule';
+
+  @override
+  String get automation_hamNotice =>
+      'Rules run while the app is open. Automated messages are plain text and start with [auto]. They are held unless your station is ready to transmit (ham firmware, call sign in the radio\'s name, in band), limited to 3 every 10 minutes, and written to the station log. You remain the control operator for every automated transmission.';
+
+  @override
+  String get automation_empty => 'No rules yet';
+
+  @override
+  String get automation_emptyHint =>
+      'Add a rule to get an alert when your battery runs low, a station goes quiet or a message arrives.';
+
+  @override
+  String get automation_allowWebhooks => 'Allow webhooks';
+
+  @override
+  String get automation_allowWebhooksHint =>
+      'Needs internet. Off by default; webhook actions do nothing while this is off.';
+
+  @override
+  String get automation_workingChannel => 'Working channel';
+
+  @override
+  String get automation_stationLogHint =>
+      'Every automated transmission is listed there';
+
+  @override
+  String get automation_activity => 'Recent activity';
+
+  @override
+  String get automation_none => 'None';
+
+  @override
+  String get automation_unnamed => 'Unnamed rule';
+
+  @override
+  String get automation_transmits => 'Transmits on air';
+
+  @override
+  String get automation_incomplete => 'Unfinished';
+
+  @override
+  String automation_ruleSwitch(String name) {
+    return 'Rule $name on';
+  }
+
+  @override
+  String get automation_ruleName => 'Rule name';
+
+  @override
+  String get automation_when => 'When';
+
+  @override
+  String get automation_then => 'Then';
+
+  @override
+  String get automation_matchAll => 'All are true (AND)';
+
+  @override
+  String get automation_matchAny => 'Any is true (OR)';
+
+  @override
+  String automation_matchAllShort(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'All of $count conditions',
+      one: '1 condition',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String automation_matchAnyShort(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Any of $count conditions',
+      one: '1 condition',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String automation_actionCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count actions',
+      one: '1 action',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get automation_addCondition => 'Add condition';
+
+  @override
+  String get automation_addAction => 'Add action';
+
+  @override
+  String automation_remove(String item) {
+    return 'Remove $item';
+  }
+
+  @override
+  String get automation_savedOff =>
+      'Saved switched off. Fill in every field to turn it on.';
+
+  @override
+  String get automation_deleteConfirm => 'Delete this rule?';
+
+  @override
+  String get automation_transmitNotice =>
+      'This rule transmits. It only sends when your station is ready, at most 3 automated messages every 10 minutes and once every 15 minutes per rule, and each one is logged in the station log.';
+
+  @override
+  String get automation_condBattery => 'Battery low';
+
+  @override
+  String get automation_condTime => 'Time of day';
+
+  @override
+  String get automation_condEnter => 'Enter an area';
+
+  @override
+  String get automation_condLeave => 'Leave an area';
+
+  @override
+  String get automation_condMessage => 'Message received';
+
+  @override
+  String get automation_condOnline => 'Node online';
+
+  @override
+  String get automation_condOffline => 'Node offline';
+
+  @override
+  String automation_batteryBelow(int percent) {
+    return 'Radio battery below $percent%';
+  }
+
+  @override
+  String get automation_timeHint =>
+      'Every day at this time, on this device\'s clock';
+
+  @override
+  String get automation_latitude => 'Latitude';
+
+  @override
+  String get automation_longitude => 'Longitude';
+
+  @override
+  String get automation_radiusMeters => 'Radius (meters)';
+
+  @override
+  String get automation_useRadioPosition => 'Use the radio\'s position';
+
+  @override
+  String get automation_areaHint => 'Uses the position the radio reports.';
+
+  @override
+  String get automation_sourceAny => 'Any';
+
+  @override
+  String get automation_sourceDirect => 'Direct';
+
+  @override
+  String get automation_sourceChannel => 'Channel';
+
+  @override
+  String get automation_onChannel => 'On channel';
+
+  @override
+  String get automation_anyChannel => 'Any channel';
+
+  @override
+  String get automation_from => 'From';
+
+  @override
+  String get automation_anyone => 'Anyone';
+
+  @override
+  String get automation_contains => 'Contains text (optional)';
+
+  @override
+  String get automation_node => 'Node';
+
+  @override
+  String get automation_heardWithinMinutes => 'Heard within (minutes)';
+
+  @override
+  String get automation_actionSend => 'Send a message';
+
+  @override
+  String get automation_actionAlert => 'Alert me';
+
+  @override
+  String get automation_actionChangeChannel => 'Change working channel';
+
+  @override
+  String get automation_actionSound => 'Play a sound';
+
+  @override
+  String get automation_actionWebhook => 'Call a webhook';
+
+  @override
+  String get automation_sendTo => 'Send to';
+
+  @override
+  String get automation_targetChannel => 'Channel';
+
+  @override
+  String get automation_targetContact => 'Contact';
+
+  @override
+  String get automation_message => 'Message';
+
+  @override
+  String get automation_messageTooLong =>
+      'Too long: 140 bytes at most, [auto] included';
+
+  @override
+  String get automation_sendHint =>
+      'Sent on air as plain text with [auto] in front, and logged in the station log.';
+
+  @override
+  String get automation_alertText => 'Alert text';
+
+  @override
+  String get automation_changeChannelHint =>
+      'Rules that send to the working channel use this channel from now on.';
+
+  @override
+  String get automation_soundHint => 'Plays this device\'s alert sound.';
+
+  @override
+  String get automation_webhookUrl => 'Webhook address (https://)';
+
+  @override
+  String get automation_webhookHttps => 'Use an https:// address';
+
+  @override
+  String get automation_webhookNeedsInternet =>
+      'Needs internet. Sends the rule\'s name and the time.';
+
+  @override
+  String get automation_webhookOffNotice =>
+      'Needs internet. Webhooks are off: allow them on the Automation page.';
+
+  @override
+  String get automation_outDone => 'Done';
+
+  @override
+  String get automation_outNotConnected => 'Held: no radio connected';
+
+  @override
+  String get automation_outNotReady => 'Held: station not ready to transmit';
+
+  @override
+  String get automation_outRateLimited =>
+      'Held: automated message limit reached';
+
+  @override
+  String get automation_outNoTarget =>
+      'Held: contact or channel not on the radio';
+
+  @override
+  String get automation_outWebhooksOff => 'Skipped: webhooks are off';
+
+  @override
+  String get automation_outFailed => 'Failed';
+
+  @override
+  String get ham_automatedTx => 'Automated transmissions';
+
+  @override
+  String get ham_automatedTxHint =>
+      'Messages your automation rules sent on air.';
+
+  @override
+  String get ham_exportAutomatedCsv => 'Export automated transmissions (CSV)';
+
+  @override
+  String get checklist_title => 'チェックリスト';
+
+  @override
+  String get checklist_toolSubtitle => '出発前・設置用の再利用できるチェックリスト（オフライン対応）';
+
+  @override
+  String get checklist_empty => 'チェックリストはありません。下のボタンで追加できます。';
+
+  @override
+  String get checklist_add => '新しいチェックリスト';
+
+  @override
+  String get checklist_edit => 'チェックリストを編集';
+
+  @override
+  String get checklist_name => '名前';
+
+  @override
+  String get checklist_items => '項目（1 行に 1 つ）';
+
+  @override
+  String checklist_itemCount(int count) {
+    return '項目数: $count';
+  }
+
+  @override
+  String get checklist_history => '完了した記録';
+
+  @override
+  String get checklist_noRuns => '完了した記録はまだありません。';
+
+  @override
+  String get checklist_inProgress => '進行中';
+
+  @override
+  String checklist_progress(int done, int total) {
+    return '$total 件中 $done 件完了';
+  }
+
+  @override
+  String checklist_startedAt(String time) {
+    return '開始 $time';
+  }
+
+  @override
+  String checklist_finishedAt(String time) {
+    return '完了 $time';
+  }
+
+  @override
+  String get checklist_note => 'メモ';
+
+  @override
+  String get checklist_finish => '完了して保存';
+
+  @override
+  String get checklist_unfinished => 'チェックされていない項目があります。それでも保存しますか？';
+
+  @override
+  String get checklist_saveAnyway => '保存する';
+
+  @override
+  String get checklist_export => '書き出しまたは削除';
+
+  @override
+  String get checklist_exportText => 'テキストで共有';
+
+  @override
+  String get checklist_exportJson => 'JSON で共有';
+
+  @override
+  String get checklist_exportFailed => '記録を共有できませんでした。';
+
+  @override
+  String get checklist_deleteRun => '記録を削除';
+
+  @override
+  String get checklist_deleteRunConfirm => 'この記録を削除しますか？元に戻せません。';
+
+  @override
+  String checklist_deleteConfirm(String name) {
+    return '$name を削除しますか？完了した記録は残ります。';
+  }
+
+  @override
+  String get checklist_preTrip => '出発前';
+
+  @override
+  String get checklist_preTrip1 => '無線機を充電し、予備バッテリーを持った';
+
+  @override
+  String get checklist_preTrip2 => '無線機を電話とペアリングし、テスト送信した';
+
+  @override
+  String get checklist_preTrip3 => 'エリアのオフライン地図を保存した';
+
+  @override
+  String get checklist_preTrip4 => 'ルートと帰着予定を誰かに伝えた';
+
+  @override
+  String get checklist_preTrip5 => 'グループのチャンネルとチームの連絡先を確認した';
+
+  @override
+  String get checklist_preTrip6 => 'SOS とチェックインを一度試した';
+
+  @override
+  String get checklist_deploy => 'ノードの設置';
+
+  @override
+  String get checklist_deploy1 => '場所と許可を確認した';
+
+  @override
+  String get checklist_deploy2 => 'アンテナを取り付け、コネクタを防水した';
+
+  @override
+  String get checklist_deploy3 => '電源とソーラーを確認した';
+
+  @override
+  String get checklist_deploy4 => '無線設定と地域を確認した';
+
+  @override
+  String get checklist_deploy5 => 'テスト送信がノード経由で届いた';
+
+  @override
+  String get checklist_deploy6 => '位置・写真・メモを記録した';
+
+  @override
+  String automation_placeholders(String list) {
+    return '使用できる語: $list';
+  }
+
+  @override
+  String get losLegendFresnel => 'フレネルゾーン';
+
+  @override
+  String losFresnelClear(int percent) {
+    return '最も狭い地点でフレネルゾーンの$percent%が開けています。60%以上なら良好です。';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return '最も狭い地点でフレネルゾーンの$percent%しか開けていません。60%以上を目指して、アンテナを高くするか地点を動かしてください。';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      '地形がフレネルゾーンと電波経路を遮っています。アンテナを高くするか地点を動かしてください。';
+
+  @override
+  String get bg_title => '背景';
+
+  @override
+  String get bg_kindTheme => 'テーマの光';
+
+  @override
+  String get bg_kindSolid => '単色';
+
+  @override
+  String get bg_kindLinear => 'グラデーション';
+
+  @override
+  String get bg_kindMesh => 'メッシュブレンド';
+
+  @override
+  String get bg_kindPhoto => '写真';
+
+  @override
+  String get bg_color1 => '1つ目の色';
+
+  @override
+  String get bg_color2 => '2つ目の色';
+
+  @override
+  String bg_colorN(int index) {
+    return '色 $index';
+  }
+
+  @override
+  String get bg_dim => '暗さ';
+
+  @override
+  String get bg_blur => 'ぼかし';
+
+  @override
+  String get bg_choosePhoto => '写真を選ぶ';
+
+  @override
+  String get bg_reset => 'テーマの背景に戻す';
+
+  @override
+  String get bg_hint => 'カードはすりガラスとして上に重なります。文字が読みにくい場合は暗さを上げてください。';
+
+  @override
+  String get bg_previewTitle => 'プレビュー';
+
+  @override
+  String get bg_previewBody => 'ガラスカード上の文字はこのように見えます。';
+
+  @override
+  String get bg_photoNotBackedUp => '写真はこの端末にだけ保存され、バックアップには含まれません。';
+
+  @override
+  String get bg_photoFailed => 'その写真は使えませんでした。別の写真を試してください。';
+
+  @override
+  String get compass_openHint => '方向を指す';
+
+  @override
+  String get compass_onTarget => 'まっすぐ前方';
+
+  @override
+  String compass_turnRight(int degrees) {
+    return '右に$degrees°';
+  }
+
+  @override
+  String compass_turnLeft(int degrees) {
+    return '左に$degrees°';
+  }
+
+  @override
+  String compass_bearing(int degrees, String point) {
+    return '方位 $degrees° $point';
+  }
+
+  @override
+  String get compass_noSensor => 'この端末にはコンパスがないため、北を上にして矢印を表示しています。';
+
+  @override
+  String get compass_calibrate => 'コンパスの精度が低いです。端末を8の字に数回動かして調整してください。';
+
+  @override
+  String get compass_magneticNote => '現在地がわかるまでは磁北を基準にしています。';
+
+  @override
+  String get compass_noPosition =>
+      '現在地がまだわかりません。端末の位置情報を許可するか、無線機の位置を設定してください。';
+
+  @override
+  String get compass_noNodePosition => 'このノードは位置を共有していないため、指す先がありません。';
+
+  @override
+  String get compass_usePhoneLocation => '端末の位置情報を使う';
+
+  @override
+  String get compass_sourcePhone => '現在地は端末のGPSから取得しています。';
+
+  @override
+  String get compass_sourceRadio => '現在地は無線機から取得しています。';
+
+  @override
+  String get traffic_mode => 'トラフィック';
+
+  @override
+  String get traffic_modeHint => 'メッシュを流れるパケットを表示';
+
+  @override
+  String get traffic_locate => '現在地';
+
+  @override
+  String get traffic_advert => 'アドバート';
+
+  @override
+  String get traffic_filter => 'フィルター';
+
+  @override
+  String get traffic_search => '検索';
+
+  @override
+  String get traffic_fitAll => '全体表示';
+
+  @override
+  String get traffic_options => 'オプション';
+
+  @override
+  String get traffic_kindAdvert => 'アドバート';
+
+  @override
+  String get traffic_kindDirect => 'ダイレクトメッセージ';
+
+  @override
+  String get traffic_kindChannel => 'チャンネルメッセージ';
+
+  @override
+  String get traffic_kindAck => '確認応答';
+
+  @override
+  String get traffic_kindTrace => 'トレース';
+
+  @override
+  String get traffic_kindPath => '経路';
+
+  @override
+  String get traffic_filterTitle => '表示するパケットの種類';
+
+  @override
+  String get traffic_listening => 'パケットを待機中…';
+
+  @override
+  String traffic_heardFrom(String name, String snr) {
+    return '$name から受信 · $snr dB';
+  }
+
+  @override
+  String traffic_flood(int hops) {
+    return 'フラッド $hops';
+  }
+
+  @override
+  String get traffic_direct => 'ダイレクト';
+
+  @override
+  String traffic_snr(String snr) {
+    return 'SNR $snr';
+  }
+
+  @override
+  String traffic_rssi(int rssi) {
+    return '$rssi dBm';
+  }
+
+  @override
+  String traffic_notOnMapCount(int count) {
+    return '地図外 $count 件';
+  }
+
+  @override
+  String traffic_age(int seconds) {
+    return '$seconds秒';
+  }
+
+  @override
+  String traffic_notOnMapList(String names) {
+    return '地図外: $names';
+  }
+
+  @override
+  String get traffic_unknown => '不明';
+
+  @override
+  String get traffic_cardHint => '地図上に経路を表示';
+
+  @override
+  String get stale_setting => 'ノードを古いとみなすまで';
+
+  @override
+  String get stale_settingHint =>
+      'この期間受信がない連絡先とリピーターは、リストで古いと表示され、地図では薄く表示されます。';
+
+  @override
+  String get stale_off => 'オフ';
+
+  @override
+  String stale_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count時間',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_days(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count日',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_badge(String age) {
+    return '古い · $age';
+  }
+
+  @override
+  String get rangeRings_toggle => '距離リング';
+
+  @override
+  String get rangeRings_hint => '表示範囲に合わせた、現在地を中心とする距離リング';
+
+  @override
+  String get rangeRings_noPosition => '現在地がまだ不明なため、距離リングを描けません。';
+
+  @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '無線機の$count件のチャンネルがアプリと異なります',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => '確認';
+
+  @override
+  String get channelConflict_title => 'チャンネルの相違';
+
+  @override
+  String get channelConflict_hint =>
+      'これらのスロットでは、無線機の名前またはキーがアプリの保存内容と異なります。別のアプリで変更されたか、アプリのコピーが古い可能性があります。スロットごとに残すバージョンを選んでください。';
+
+  @override
+  String get channelConflict_allResolved => 'すべてのスロットが一致しました。';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'スロット $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => '無線機';
+
+  @override
+  String get channelConflict_inApp => 'アプリに保存';
+
+  @override
+  String get channelConflict_empty => '空';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'キー $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => '名前が異なる';
+
+  @override
+  String get channelConflict_keyDiffers => 'キーが異なる';
+
+  @override
+  String get channelConflict_keepRadio => '無線機の方を残す';
+
+  @override
+  String get channelConflict_useApp => 'アプリの方を書き込む';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'スロット $index は無線機の方を残しました';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'スロット $index にアプリの方を書き込みました';
+  }
+
+  @override
+  String get history_window24h => '24時間';
+
+  @override
+  String get history_window7d => '7日';
+
+  @override
+  String get history_window30d => '30日';
+
+  @override
+  String get statusHistory_title => 'ステータス履歴';
+
+  @override
+  String get reportCard_title => 'レポート';
+
+  @override
+  String get reportCard_hint => '実行したステータス確認（この端末に保存）だけから作成します。追加の送信はありません。';
+
+  @override
+  String get reportCard_empty => 'まだ確認結果がありません。ステータス確認を行うたびにこのレポートに追加されます。';
+
+  @override
+  String get reportCard_checks => '確認回数';
+
+  @override
+  String get reportCard_restarts => '検出した再起動';
+
+  @override
+  String get reportCard_longestUptime => '最長稼働時間';
+
+  @override
+  String get reportCard_battery => 'バッテリー';
+
+  @override
+  String get reportCard_noise => 'ノイズフロア';
+
+  @override
+  String get reportCard_errors => '新しいエラー';
+
+  @override
+  String get reportCard_neighbours => '近隣ノード';
+
+  @override
+  String get reportCard_exportCsv => 'CSV を書き出す';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$days 日間で $count 回';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '現在 $now · 最低 $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '週あたり $change';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return '平均 $avg dBm · 最悪 $worst dBm';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return '受信 $total · 今週新規 $fresh · 今週未受信 $gone';
+  }
+
+  @override
+  String get statusHistory_battery => 'バッテリー';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'ノイズフロア';
+
+  @override
+  String get statusHistory_errors => 'エラー';
+
+  @override
+  String get statusHistory_uptime => '稼働時間';
+
+  @override
+  String get statusHistory_empty => 'ステータス確認の結果はここに保存され、このリピーターの変化を確認できます。';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'この期間の$metricデータはありません。';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metricのグラフ、$count件、$low〜$high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '保存された確認 $count件',
+      zero: '保存された確認なし',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => '履歴を消去';
+
+  @override
+  String get statusHistory_clearTitle => 'このリピーターの履歴を消去しますか?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'このリピーターの保存済みステータスと隣接ノードのSNRがこの端末から削除されます。';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return '$nameのSNR推移、$count件。タップでグラフ表示。';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return '$nameのSNR';
+  }
+
+  @override
+  String get snrHistory_hint => '問い合わせのたびにリピーターがこの隣接ノードをどれだけ良く受信したか。この端末に保存。';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count件 · 最低 $low · 平均 $avg · 最高 $high';
+  }
+
+  @override
+  String get follow_menu => '15分間追跡';
+
+  @override
+  String get follow_menuHint => '数分ごとに位置を問い合わせ、軌跡を描きます';
+
+  @override
+  String follow_title(String name) {
+    return '$nameを追跡中';
+  }
+
+  @override
+  String get follow_askNow => '今すぐ位置を問い合わせ';
+
+  @override
+  String follow_fromYou(String distance, String direction, int degrees) {
+    return 'あなたから$direction（$degrees°）へ$distance';
+  }
+
+  @override
+  String get follow_waiting => '位置を待っています…';
+
+  @override
+  String get follow_noOwnPosition => '自分の位置が不明なため、距離と方位は表示できません。';
+
+  @override
+  String follow_timeLeftLabel(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: '残り約$minutes分',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String follow_lastFix(String ago) {
+    return '最終位置 $ago';
+  }
+
+  @override
+  String follow_secondsAgo(int n) {
+    return '$n秒前';
+  }
+
+  @override
+  String follow_minutesAgo(int n) {
+    return '$n分前';
+  }
+
+  @override
+  String follow_answers(int answered, int asked) {
+    return '$asked件中$answered件に応答';
+  }
+
+  @override
+  String follow_points(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count地点',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get follow_hint =>
+      '15分後に自動で停止します。相手がテレメトリで位置の共有を許可していない場合、アドバート送信時のみ更新されます。';
+
+  @override
+  String get follow_stop => '停止';
+
+  @override
+  String get follow_stopped => '追跡していません。もう一度開始すると、さらに15分間位置を問い合わせます。';
+
+  @override
+  String get follow_start => '15分追跡';
+
+  @override
+  String get follow_you => 'あなた';
+
+  @override
+  String get sensorHistory_title => 'センサー履歴';
+
+  @override
+  String get sensorHistory_menuHint => '1時間〜24時間のグラフとアラート';
+
+  @override
+  String get sensorHistory_readNow => '今すぐ読む';
+
+  @override
+  String get sensorHistory_window1h => '1時間';
+
+  @override
+  String get sensorHistory_window6h => '6時間';
+
+  @override
+  String get sensorHistory_window24h => '24時間';
+
+  @override
+  String get sensorHistory_empty =>
+      'まだデータがありません。「今すぐ読む」をタップするか、テレメトリでライブ更新または自動更新をオンにしてください。各データはここに1日保存されます。';
+
+  @override
+  String sensorHistory_updated(String time) {
+    return '$time 更新';
+  }
+
+  @override
+  String get sensorHistory_noneInWindow => 'この期間のデータはありません。';
+
+  @override
+  String sensorHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metricのグラフ、$count件、$low〜$high';
+  }
+
+  @override
+  String get sensorHistory_noAlert => 'アラートなし';
+
+  @override
+  String sensorHistory_alertWhenAbove(String value) {
+    return '$value超でアラート';
+  }
+
+  @override
+  String sensorHistory_alertWhenBelow(String value) {
+    return '$value未満でアラート';
+  }
+
+  @override
+  String get sensorHistory_setAlert => 'アラート…';
+
+  @override
+  String get sensorHistory_alertDialogTitle => 'この値のアラート';
+
+  @override
+  String get sensorHistory_alertDialogHint =>
+      '新しい値が上限・下限を超えると通知します。使わない欄は空のままにしてください。';
+
+  @override
+  String get sensorHistory_above => '上限';
+
+  @override
+  String get sensorHistory_below => '下限';
+
+  @override
+  String get sensorHistory_belowMustBeLower => '上限より低くしてください';
+
+  @override
+  String get sensorHistory_removeAlert => '削除';
+
+  @override
+  String get sensorHistory_alertTitle => 'センサーアラート';
+
+  @override
+  String sensorHistory_alertAbove(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $whatが$value（$limit超）';
+  }
+
+  @override
+  String sensorHistory_alertBelow(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $whatが$value（$limit未満）';
+  }
+
+  @override
+  String get sensorHistory_unknownNode => 'センサー';
+
+  @override
+  String get coverageHex_notoryxTitle => 'NOTORYX カバレッジマップ';
+
+  @override
+  String get coverageHex_notoryxShare => 'NOTORYX カバレッジマップに共有';
+
+  @override
+  String get coverageHex_notoryxShareHint =>
+      '実際の MeshCore カバレッジの公開マップです。同意するまで何も送信されません。';
+
+  @override
+  String get coverageHex_notoryxConsent =>
+      '電話は各六角形（約 0.9 km）で無線機が受信した内容を送信します：信号強度、パケット数、直接受信したリピーター、15 分単位の時間帯。GPS の軌跡や正確な位置は送信しません。マップがリピーター名を表示できるよう、リピーター自身の公開アドバート（名前と位置）も送信します。アップロードは無線機とは別のカバレッジ鍵で署名されるため、後で消去できます。';
+
+  @override
+  String get coverageHex_notoryxAnonymousNote => '匿名のアップロードは後で消去できません。';
+
+  @override
+  String get coverageHex_mapperName => 'マッパー名（任意）';
+
+  @override
+  String get coverageHex_mapperNameHint =>
+      'NOTORYX メンバーにのみ表示されます。名前なしにするには空欄のままにします。';
+
+  @override
+  String get coverageHex_shareAction => '共有';
+
+  @override
+  String get coverageHex_notNow => '今はしない';
+
+  @override
+  String get coverageHex_stopSharing => '共有をやめる';
+
+  @override
+  String get coverageHex_eraseUploads => '自分のアップロードを消去';
+
+  @override
+  String get coverageHex_eraseConfirm =>
+      'この電話が NOTORYX カバレッジマップにアップロードしたすべてを削除しますか？元に戻せません。';
+
+  @override
+  String coverageHex_erased(String count) {
+    return 'マップから $count 件の測定を消去しました。';
+  }
+
+  @override
+  String get coverageHex_eraseFailed => '消去できませんでした。接続を確認して、もう一度お試しください。';
+
+  @override
+  String get coverageHex_openMap => 'カバレッジマップを開く';
+
+  @override
+  String get coverageHex_trimDrives => '各移動の開始と終了を隠す';
+
+  @override
+  String get coverageHex_trimDrivesHint =>
+      '各マッピングの最初と最後の 2 つの六角形はこの電話に残るため、マップに自宅や駐車場所が表示されません。';
+
+  @override
+  String get appSettings_resetRoutingToDefault => 'ルーティングアルゴリズムをデフォルトにリセット';
+
+  @override
+  String get appSettings_resetRoutingToDefaultSubtitle =>
+      'ルーティングアルゴリズムの設定を工場出荷時のデフォルトに戻す';
+
+  @override
+  String get appSettings_routingResetToDefault =>
+      'ルーティングアルゴリズムの設定がデフォルトにリセットされました';
+
+  @override
+  String get discoveredContacts_importNodes => 'ノードをインポート';
+
+  @override
+  String get discoveredContacts_importHint =>
+      '連絡先リンク、公開鍵、またはJSON/CSVのノード一覧を読み込みます。無線機ではなく、この一覧に追加されます。';
+
+  @override
+  String get discoveredContacts_importFromFile => 'ファイルから';
+
+  @override
+  String get discoveredContacts_importFromClipboard => 'クリップボードから';
+
+  @override
+  String get discoveredContacts_importFailed => '読み込めませんでした';
+
+  @override
+  String get discoveredContacts_importNone => 'ノードが見つかりません';
+
+  @override
+  String get discoveredContacts_importNotConnected => '先に無線機を接続してください';
+
+  @override
+  String discoveredContacts_importResult(int added, int updated, int skipped) {
+    return '新規 $added、更新 $updated、スキップ $skipped';
+  }
+
+  @override
+  String home_knownNodes(int chats, int repeaters, int rooms) {
+    return 'チャット $chats · リピーター $repeaters · ルーム $rooms';
+  }
+
+  @override
+  String home_radioHolds(int count, int max) {
+    return '無線機の連絡先 $count / $max';
+  }
+
+  @override
+  String messageFilter_markedSpamCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'メッセージ $count 件をスパムとしてマークしました',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageFilter_markedNotSpamCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'メッセージ $count 件をスパムではないとマークしました',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get messageFilter_title => 'メッセージフィルター';
+
+  @override
+  String get messageFilter_settingsSubtitle => 'スパムや繰り返しのメッセージを隠す';
+
+  @override
+  String get messageFilter_enabled => 'メッセージをフィルターする';
+
+  @override
+  String get messageFilter_enabledSubtitle => 'チャンネルのメッセージに適用されます';
+
+  @override
+  String get messageFilter_displayTitle => 'フィルターされたメッセージ';
+
+  @override
+  String get messageFilter_displayPlaceholder => '小さな表示を残す';
+
+  @override
+  String get messageFilter_displayHide => '完全に隠す';
+
+  @override
+  String get messageFilter_displayHideHelp =>
+      '隠したメッセージは「フィルターされたメッセージ」の一覧に残ります。';
+
+  @override
+  String get messageFilter_rulesSection => 'あなたのルール';
+
+  @override
+  String get messageFilter_rulesEmpty =>
+      'ルールはまだありません。単語、フレーズ、送信者名を追加すると、一致するメッセージを隠せます。';
+
+  @override
+  String get messageFilter_addRule => 'ルールを追加';
+
+  @override
+  String get messageFilter_editRule => 'ルールを編集';
+
+  @override
+  String get messageFilter_rulePattern => '単語、フレーズ、名前';
+
+  @override
+  String get messageFilter_rulePatternHint => '例: meshos';
+
+  @override
+  String get messageFilter_ruleWhere => '対象';
+
+  @override
+  String get messageFilter_ruleFieldText => 'メッセージ本文';
+
+  @override
+  String get messageFilter_ruleFieldSender => '送信者名';
+
+  @override
+  String get messageFilter_ruleFieldBoth => '両方';
+
+  @override
+  String get messageFilter_ruleMatch => '一致の条件';
+
+  @override
+  String get messageFilter_ruleMatchContains => '含む';
+
+  @override
+  String get messageFilter_ruleMatchWholeWord => '単語全体';
+
+  @override
+  String get messageFilter_ruleMatchExact => '完全一致';
+
+  @override
+  String get messageFilter_ruleDeleted => 'ルールを削除しました';
+
+  @override
+  String get messageFilter_ruleSaved => 'ルールを保存しました';
+
+  @override
+  String get messageFilter_automaticSection => '自動';
+
+  @override
+  String get messageFilter_duplicates => '繰り返しのメッセージ';
+
+  @override
+  String get messageFilter_duplicatesSubtitle =>
+      '同じメッセージが再送されたり、複数の送信者から届いたりしたもの';
+
+  @override
+  String get messageFilter_repeatSends => '繰り返しと見なす送信回数';
+
+  @override
+  String messageFilter_repeatSendsSubtitle(int count) {
+    return '同じ送信者が10分以内に同じメッセージを$count回送信したら非表示にします';
+  }
+
+  @override
+  String get messageFilter_repeatedCharacters => '繰り返しの文字';
+
+  @override
+  String get messageFilter_repeatedCharactersSubtitle =>
+      '同じ文字の長い連続（例：「aaaaaaaaaaaaaaaaaaaa」）';
+
+  @override
+  String get messageFilter_learning => 'スパムのタップから学習';
+
+  @override
+  String messageFilter_learningSubtitle(int spam, int notSpam) {
+    return 'スパム $spam 件、スパムではない $notSpam 件の例';
+  }
+
+  @override
+  String get messageFilter_resetLearning => '学習をリセット';
+
+  @override
+  String get messageFilter_resetLearningConfirm =>
+      '「スパム」と「スパムではない」のタップから学習した内容をすべて忘れますか？ルールはそのまま残ります。';
+
+  @override
+  String messageFilter_filteredMessages(int count) {
+    return 'フィルターされたメッセージ ($count)';
+  }
+
+  @override
+  String get messageFilter_filteredMessagesEmpty => 'フィルターされたメッセージはありません。';
+
+  @override
+  String get messageFilter_ghostSingle => '隠したメッセージ · タップで表示';
+
+  @override
+  String messageFilter_ghostMany(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '隠したメッセージ $count 件 · タップで表示',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get messageFilter_ghostSingleExpanded => '隠したメッセージを表示中 · タップで隠す';
+
+  @override
+  String messageFilter_ghostManyExpanded(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '隠したメッセージ $count 件を表示中 · タップで隠す',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageFilter_reasonTextRule(String pattern) {
+    return 'フィルター: 「$pattern」に一致';
+  }
+
+  @override
+  String messageFilter_reasonSenderRule(String pattern) {
+    return 'フィルター: 送信者「$pattern」';
+  }
+
+  @override
+  String get messageFilter_reasonRepeatedCharacters => 'フィルター: 繰り返しの文字';
+
+  @override
+  String get messageFilter_reasonDuplicate => 'フィルター: 繰り返しのメッセージ';
+
+  @override
+  String get messageFilter_reasonCrossSenderDuplicate =>
+      'フィルター: 複数の送信者から同じメッセージ';
+
+  @override
+  String get messageFilter_reasonLearned => 'フィルター: スパムにしたメッセージに似ています';
+
+  @override
+  String get messageFilter_reasonManual => 'フィルター: あなたがスパムにしました';
+
+  @override
+  String get messageFilter_notSpam => 'スパムではない';
+
+  @override
+  String get messageFilter_hideAgain => '隠す';
+
+  @override
+  String get messageFilter_markSpam => 'スパムにする';
+
+  @override
+  String get messageFilter_markedSpam => 'スパムとしてマークしました';
+
+  @override
+  String get messageFilter_markedNotSpam => 'スパムではないとマークしました';
+
+  @override
+  String get messageFilter_filterSender => 'この送信者をフィルター';
+
+  @override
+  String messageFilter_filterSenderConfirm(String name) {
+    return '「$name」からのメッセージをすべて隠しますか？';
+  }
+
+  @override
+  String get messageFilter_filterLikeThis => 'このようなメッセージをフィルター…';
+
+  @override
+  String get messageFilter_channelToggle => 'このチャンネルでメッセージをフィルター';
+
+  @override
+  String get messageFilter_ghostIconTooltip => 'メッセージフィルターで隠されました';
+
+  @override
+  String get ping_noReplyNote =>
+      '応答がなくてもリピーターが停止しているとは限りません。プローブや応答はノイズや衝突で失われることがあります。もう一度試すか、別の場所からテストしてください。';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return '最終ホップ $name · $snr dB';
+  }
+
+  @override
+  String get contacts_fullWarning =>
+      'この無線機の連絡先リストがいっぱいのため、新しいノードを追加できません。連絡先をいくつか削除して空きを作ってください。';
 }

@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../l10n/l10n.dart';
 import '../models/contact.dart';
 import '../models/field_ops.dart';
+import '../services/operator_profile_service.dart';
 import 'bastion_diagnostics_screen.dart';
 import 'bastion_field_ops_screen.dart';
 import 'chat_screen.dart';
 import 'discovery_screen.dart';
 import 'connection_setup_screen.dart';
+import 'licensed_operator_screen.dart';
 
 class BastionSetupScreen extends StatefulWidget {
   const BastionSetupScreen({super.key});
@@ -43,6 +46,57 @@ class _BastionSetupScreenState extends State<BastionSetupScreen> {
       ),
     ),
   );
+
+  /// Coordination comes before the radio: read the guide, then set up the
+  /// licensed operator. Nothing here transmits.
+  Widget _beforeYouTransmit(BuildContext context) {
+    final l10n = context.l10n;
+    final profile = context.watch<OperatorProfileService>().profile;
+    final done = profile.isComplete;
+    return _step(l10n.ham_setupBeforeTitle, Icons.gavel_outlined, [
+      Text(l10n.ham_setupBeforeBody),
+      const SizedBox(height: 8),
+      Row(
+        key: const ValueKey('setup-operator-status'),
+        children: [
+          Icon(
+            done ? Icons.check_circle_outline : Icons.error_outline,
+            size: 20,
+            semanticLabel: done ? l10n.ham_statusOk : l10n.ham_needsAttention,
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              done
+                  ? l10n.ham_setupBeforeDone(profile.callsign)
+                  : l10n.ham_operatorCardIncomplete,
+            ),
+          ),
+        ],
+      ),
+      const SizedBox(height: 8),
+      Wrap(
+        spacing: 8,
+        runSpacing: 4,
+        children: [
+          FilledButton.icon(
+            key: const ValueKey('setup-coordination-guide'),
+            onPressed: () => launchUrl(
+              coordinationGuideUrl,
+              mode: LaunchMode.externalApplication,
+            ),
+            icon: const Icon(Icons.open_in_new),
+            label: Text(l10n.ham_readCoordinationGuide),
+          ),
+          TextButton(
+            key: const ValueKey('setup-licensed-operator'),
+            onPressed: () => _open(const LicensedOperatorScreen()),
+            child: Text(l10n.ham_licensedOperator),
+          ),
+        ],
+      ),
+    ]);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +138,7 @@ class _BastionSetupScreenState extends State<BastionSetupScreen> {
             padding: const EdgeInsets.all(8),
             child: Text(l10n.bastionSetup_intro),
           ),
+          _beforeYouTransmit(context),
           _step(l10n.bastionSetup_step1, Icons.radio_outlined, [
             Text(
               radio.isConnected

@@ -126,6 +126,9 @@ class InstrumentRow extends StatelessWidget {
   final VoidCallback? onTap;
   final Color? titleColor;
 
+  /// The icon's color; muted ink when null.
+  final Color? iconColor;
+
   /// The hairline under the row; off when the row sits in its own card.
   final bool divider;
 
@@ -137,6 +140,7 @@ class InstrumentRow extends StatelessWidget {
     this.trailing,
     this.onTap,
     this.titleColor,
+    this.iconColor,
     this.divider = true,
   });
 
@@ -157,7 +161,7 @@ class InstrumentRow extends StatelessWidget {
         child: Row(
           children: [
             if (icon != null) ...[
-              Icon(icon, size: 19, color: MeshPalette.ink3),
+              Icon(icon, size: 19, color: iconColor ?? MeshPalette.ink3),
               const SizedBox(width: MeshSpace.md),
             ],
             Expanded(

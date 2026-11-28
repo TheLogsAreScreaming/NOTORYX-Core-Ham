@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "about": "Public MeshCore hashtag channels, shown in NOTORYX Core's channel directory. The app bundles a copy and checks the public notoryx-core-releases repository for updates. To add a channel, open a pull request. Pacific Northwest entries come from the CascadiaMesh channel list (cascadiamesh.org/channels).",
+  "about": "Public MeshCore hashtag channels, shown in NOTORYX Core's channel directory. The app bundles a copy and checks the public NOTORYX-Core-Ham-Releases repository for updates. To add a channel, open a pull request. Pacific Northwest entries come from the CascadiaMesh channel list (cascadiamesh.org/channels).",
   "channels": [
     { "name": "#test", "category": "test", "description": "Can anyone hear me? Connectivity checks." },
     { "name": "#testing", "category": "test", "description": "Another common channel for range and reach checks." },

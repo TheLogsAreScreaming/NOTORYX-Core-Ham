@@ -19,9 +19,10 @@ import '../storage/community_store.dart';
 import '../theme/mesh_theme.dart';
 import '../utils/dialog_utils.dart';
 import '../utils/disconnect_navigation_mixin.dart';
+import '../widgets/channel_conflict_banner.dart';
 import '../widgets/ember_backdrop.dart';
 import '../widgets/list_filter_widget.dart';
-import '../widgets/empty_state.dart';
+import '../widgets/ui/unread_badge.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/qr_code_display.dart';
 import '../widgets/sync_progress_overlay.dart';
@@ -40,6 +41,7 @@ import 'channel_directory_screen.dart';
 import 'message_search_screen.dart';
 import 'community_qr_scanner_screen.dart';
 import 'settings_screen.dart';
+import '../widgets/ui/mesh_states.dart';
 
 class ChannelsScreen extends StatefulWidget {
   /// Shown as the CHATS tab: no back button, and the bottom bar below.
@@ -203,12 +205,13 @@ class _ChannelsScreenState extends State<ChannelsScreen>
               // If the initial sync aborts, show cached/partial channels instead
               // of trapping the user behind an idle spinner.
               if (waitingForFirstChannel) {
-                return const Center(child: CircularProgressIndicator());
+                return const MeshLoadingState();
               }
 
               if (channels.isEmpty) {
                 return ListView(
                   children: [
+                    const ChannelConflictBanner(),
                     SizedBox(
                       height: MediaQuery.of(context).size.height - 200,
                       child: EmptyState(
@@ -246,6 +249,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                           children: [
                             if (viewState.channelsSearchText.isNotEmpty)
                               IconButton(
+                                tooltip: MaterialLocalizations.of(
+                                  context,
+                                ).clearButtonTooltip,
                                 icon: const Icon(Icons.clear),
                                 onPressed: () {
                                   _searchDebounce?.cancel();
@@ -278,6 +284,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                       },
                     ),
                   ),
+                  const ChannelConflictBanner(),
                   const _DiscoveredTray(),
                   Expanded(
                     child: filteredChannels.isEmpty
@@ -422,12 +429,21 @@ class _ChannelsScreenState extends State<ChannelsScreen>
       case ChannelType.hashtag:
         icon = Icons.tag;
       case ChannelType.private:
-        icon = Icons.lock;
+        icon = Icons.key_outlined;
     }
 
+    final glyphColor = switch (channelType) {
+      ChannelType.public => MeshPalette.accent,
+      ChannelType.hashtag => MeshPalette.secondary,
+      ChannelType.private => MeshPalette.tertiary,
+      ChannelType.communityPublic ||
+      ChannelType.communityHashtag => MeshPalette.magenta,
+    };
+
     // Last message preview
-    final messages = connector.getChannelMessages(channel);
-    final lastMessage = messages.isNotEmpty ? messages.last : null;
+    // The newest message the filter did not hide: spam never reaches the
+    // channel list preview.
+    final lastMessage = connector.latestVisibleChannelMessage(channel);
     final lastMessageText = lastMessage?.text ?? '';
     final lastPreview =
         lastMessageText.isNotEmpty &&
@@ -499,7 +515,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // A glyph, not an avatar: # hashtag, ◎ public, lock private.
+                  // A glyph, not an avatar: # hashtag, ◎ public, lock private,
+                  // each kind in its own theme color.
                   SizedBox(
                     width: 22,
                     child: channelType == ChannelType.hashtag
@@ -507,7 +524,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                             '#',
                             style: MeshTheme.mono(
                               fontSize: 17,
-                              color: MeshPalette.ink3,
+                              color: glyphColor,
                             ),
                           )
                         : channelType == ChannelType.public
@@ -515,10 +532,10 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                             '\u25CE',
                             style: MeshTheme.mono(
                               fontSize: 16,
-                              color: MeshPalette.ink3,
+                              color: glyphColor,
                             ),
                           )
-                        : Icon(icon, size: 17, color: MeshPalette.ink3),
+                        : Icon(icon, size: 17, color: glyphColor),
                   ),
                   const SizedBox(width: 12),
                   // Title + subtitle + ch chip
@@ -529,13 +546,13 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                       children: [
                         Text(
                           channelLabel,
-                          style: TextStyle(
-                            color: scheme.onSurface,
-                            fontSize: 15,
-                            fontWeight: unreadCount > 0
-                                ? FontWeight.w700
-                                : FontWeight.w500,
-                          ),
+                          style: Theme.of(context).textTheme.titleSmall
+                              ?.copyWith(
+                                fontSize: 15,
+                                fontWeight: unreadCount > 0
+                                    ? FontWeight.w700
+                                    : FontWeight.w500,
+                              ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -553,12 +570,13 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                           const SizedBox(height: 2),
                           Text(
                             lastPreview,
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: unreadCount > 0
-                                  ? MeshPalette.ink2
-                                  : MeshPalette.ink3,
-                            ),
+                            style: Theme.of(context).textTheme.bodySmall
+                                ?.copyWith(
+                                  fontSize: 13,
+                                  color: unreadCount > 0
+                                      ? MeshPalette.ink2
+                                      : MeshPalette.ink3,
+                                ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -592,15 +610,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                             ),
                             const SizedBox(width: 4),
                           ],
-                          if (unreadCount > 0)
-                            Text(
-                              '$unreadCount',
-                              style: MeshTheme.mono(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w700,
-                                color: MeshPalette.accent,
-                              ),
-                            ),
+                          if (unreadCount > 0) UnreadBadge(unreadCount),
                         ],
                       ),
                     ],
@@ -1200,13 +1210,13 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Text(
                           sheetContext.l10n.community_hashtagPrivacyHint,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Theme.of(
-                              sheetContext,
-                            ).colorScheme.onSurfaceVariant,
-                            fontStyle: FontStyle.italic,
-                          ),
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(
+                                color: Theme.of(
+                                  sheetContext,
+                                ).colorScheme.onSurfaceVariant,
+                                fontStyle: FontStyle.italic,
+                              ),
                         ),
                       ),
                     Padding(
@@ -1532,7 +1542,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                         buildExpandedContent(_channelMessageStore)!,
                       buildOptionCard(
                         optionIndex: 1,
-                        icon: Icons.lock,
+                        icon: Icons.key_outlined,
                         title: sheetContext.l10n.channels_joinPrivateChannel,
                         subtitle:
                             sheetContext.l10n.channels_joinPrivateChannelDesc,
@@ -1779,7 +1789,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                             showDismissibleSnackBar(
                               context,
                               content: Text(
-                                context.l10n.channels_channelUpdateFailed('$e'),
+                                context.l10n.channels_channelUpdateFailed(
+                                  friendlyError(e),
+                                ),
                               ),
                             );
                           }
@@ -1797,64 +1809,41 @@ class _ChannelsScreenState extends State<ChannelsScreen>
     );
   }
 
-  void _confirmDeleteChannel(
+  Future<void> _confirmDeleteChannel(
     BuildContext context,
     MeshCoreConnector connector,
     ChannelMessageStore channelMessageStore,
     Channel channel,
-  ) {
-    showDialog(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(dialogContext.l10n.channels_deleteChannel),
-        content: Text(
-          dialogContext.l10n.channels_deleteChannelConfirm(channel.name),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext),
-            child: Text(dialogContext.l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () async {
-              Navigator.pop(dialogContext);
-              try {
-                await connector.deleteChannel(channel.index);
-
-                await channelMessageStore.clearChannelMessages(channel.index);
-
-                if (!context.mounted) return;
-
-                showDismissibleSnackBar(
-                  context,
-                  content: Text(
-                    context.l10n.channels_channelDeleted(channel.name),
-                  ),
-                );
-              } catch (e, st) {
-                if (!context.mounted) return;
-
-                showDismissibleSnackBar(
-                  context,
-                  content: Text(
-                    context.l10n.channels_channelDeleteFailed(channel.name),
-                  ),
-                );
-
-                // Preserve existing logging (if it was there)
-                debugPrint('Failed to delete channel: $e\n$st');
-              }
-            },
-            child: Text(
-              dialogContext.l10n.common_delete,
-              style: TextStyle(
-                color: Theme.of(dialogContext).colorScheme.error,
-              ),
-            ),
-          ),
-        ],
-      ),
+  ) async {
+    final confirmed = await confirmDestructive(
+      context,
+      title: context.l10n.channels_deleteChannel,
+      message: context.l10n.channels_deleteChannelConfirm(channel.name),
+      confirmLabel: context.l10n.common_delete,
     );
+    if (!confirmed) return;
+    if (!context.mounted) return;
+    try {
+      await connector.deleteChannel(channel.index);
+
+      await channelMessageStore.clearChannelMessages(channel.index);
+
+      if (!context.mounted) return;
+
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.channels_channelDeleted(channel.name)),
+      );
+    } catch (e, st) {
+      if (!context.mounted) return;
+
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.channels_channelDeleteFailed(channel.name)),
+      );
+
+      debugPrint('Failed to delete channel: $e\n$st');
+    }
   }
 
   void _addPublicChannel(BuildContext context, MeshCoreConnector connector) {
@@ -1890,42 +1879,10 @@ class _ChannelsScreenState extends State<ChannelsScreen>
             const Divider(height: 1),
             Expanded(
               child: _communities.isEmpty
-                  ? Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.groups_outlined,
-                            size: 64,
-                            color: Theme.of(sheetContext)
-                                .colorScheme
-                                .onSurfaceVariant
-                                .withValues(alpha: 0.6),
-                          ),
-                          const SizedBox(height: 16),
-                          Text(
-                            sheetContext.l10n.community_noCommunities,
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Theme.of(
-                                sheetContext,
-                              ).colorScheme.onSurfaceVariant,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            sheetContext.l10n.community_scanOrCreate,
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Theme.of(sheetContext)
-                                  .colorScheme
-                                  .onSurfaceVariant
-                                  .withValues(alpha: 0.8),
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
+                  ? EmptyState(
+                      icon: Icons.groups_outlined,
+                      title: sheetContext.l10n.community_noCommunities,
+                      subtitle: sheetContext.l10n.community_scanOrCreate,
                     )
                   : ListView.builder(
                       controller: scrollController,
@@ -1945,12 +1902,12 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                             context.l10n.channels_communityShortId(
                               community.shortCommunityId,
                             ),
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Theme.of(
-                                context,
-                              ).colorScheme.onSurfaceVariant,
-                            ),
+                            style: Theme.of(context).textTheme.bodySmall
+                                ?.copyWith(
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurfaceVariant,
+                                ),
                           ),
                           trailing: PopupMenuButton<String>(
                             onSelected: (value) {
@@ -2173,8 +2130,8 @@ class _DirectChats extends StatelessWidget {
                           : hops < 0
                           ? ''
                           : hops == 0
-                          ? 'direct'
-                          : '$hops hop${hops == 1 ? '' : 's'}',
+                          ? context.l10n.chat_direct
+                          : context.l10n.chat_hopsCount(hops),
                       style: MeshTheme.mono(
                         fontSize: 12,
                         fontWeight: unread > 0 ? FontWeight.w700 : null,
@@ -2201,8 +2158,11 @@ class _DiscoveredTray extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final discovery = context.watch<ChannelDiscoveryService?>();
+    final demo = context.watch<MeshCoreConnector>().isDemoRadio;
     final found = discovery?.discovered ?? const [];
-    if (discovery == null || found.isEmpty) return const SizedBox.shrink();
+    if (discovery == null || demo || found.isEmpty) {
+      return const SizedBox.shrink();
+    }
     final l10n = context.l10n;
     return InstrumentRow(
       key: const ValueKey('discovered-tray'),
@@ -2313,7 +2273,9 @@ class _DiscoveredSheet extends StatelessWidget {
               ),
               child: Text(
                 l10n.discovered_explainer,
-                style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
               ),
             ),
           ],

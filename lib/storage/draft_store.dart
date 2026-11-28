@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 
-import 'prefs_manager.dart';
+import 'secure_prefs.dart';
 
 /// Unsent message text, kept per conversation and per radio so it survives
 /// leaving the chat and restarting the app.
@@ -20,7 +20,7 @@ class DraftStore {
 
   static String? load(String key) {
     try {
-      final text = PrefsManager.instance.getString(key);
+      final text = SecurePrefs.getString(key);
       return (text == null || text.isEmpty) ? null : text;
     } on StateError {
       return null; // Storage not ready (tests, early startup).
@@ -29,11 +29,10 @@ class DraftStore {
 
   static Future<void> save(String key, String text) async {
     try {
-      final prefs = PrefsManager.instance;
       if (text.trim().isEmpty) {
-        await prefs.remove(key);
+        await SecurePrefs.remove(key);
       } else {
-        await prefs.setString(key, text);
+        await SecurePrefs.setString(key, text);
       }
     } on StateError {
       // Storage not ready; the draft just isn't kept.

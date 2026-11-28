@@ -45,30 +45,30 @@ ImageReassemblyResult? feed(
 void main() {
   group('constants', () {
     test('every blob fits the binding transport limit', () {
-      expect(kImageChunkBlobBytes, 163);
+      expect(kImageChunkBlobBytes, 157); // ham firmware MAX_GROUP_DATA_LENGTH
       expect(kImageChunkHeaderBytes, 4);
-      expect(kImageChunkBodyBytes, 158);
+      expect(kImageChunkBodyBytes, 152);
       // Chunk 0 spends 1 byte on metadata and nothing else: the CRC-16 that
       // briefly lived here was removed once it turned out the LoRa PHY CRC and
       // MeshCore's per-packet HMAC already cover a delivered chunk.
       expect(kImageChunkMetadataBytes, 1);
       expect(kImageChunkZeroMetadataBytes, 1);
-      expect(kImageChunkFirstCapacity, 157);
-      expect(kImageChunkCapacity, 158);
-      expect(kImageMaxPayloadBytes, 157 + 14 * 158);
+      expect(kImageChunkFirstCapacity, 151);
+      expect(kImageChunkCapacity, 152);
+      expect(kImageMaxPayloadBytes, 151 + 14 * 152);
     });
 
     test('measured codec worst cases hit the design chunk counts', () {
       // ft32 (standard) max 209 B, ft16 (high) max 409 B.
       expect(imageDataChunkCount(209), 2);
       expect(imageDataChunkCount(409), 3);
-      // With chunk 0 back at 157 data bytes the measured ft32 MEAN fits in a
-      // single data chunk (2 packets with parity), which is the whole point of
-      // dropping the CRC.
+      // Ham frames carry 157-byte chunks (151 data bytes in chunk 0), so the
+      // measured ft32 mean of 156 B now takes two data chunks; small images
+      // still fit in one.
       expect(ImageCodecRateStats.standard.meanBytes, 156);
-      expect(imageDataChunkCount(ImageCodecRateStats.standard.meanBytes), 1);
-      expect(imageDataChunkCount(157), 1);
-      expect(imageDataChunkCount(158), 2);
+      expect(imageDataChunkCount(ImageCodecRateStats.standard.meanBytes), 2);
+      expect(imageDataChunkCount(151), 1);
+      expect(imageDataChunkCount(152), 2);
       expect(imageDataChunkCount(ImageCodecRateStats.standard.minBytes), 1);
       expect(imageDataChunkCount(ImageCodecRateStats.high.meanBytes), 2);
     });
@@ -208,7 +208,7 @@ void main() {
     });
 
     test('out-of-order arrival still reassembles', () {
-      final payload = payloadOf(460, seed: 3);
+      final payload = payloadOf(450, seed: 3);
       final set = buildImageChunks(
         payload: payload,
         metadata: stdMeta,
@@ -231,7 +231,7 @@ void main() {
     });
 
     test('duplicate chunks are ignored', () {
-      final payload = payloadOf(460); // 3 data chunks + parity
+      final payload = payloadOf(450); // 3 data chunks + parity
       final set = buildImageChunks(
         payload: payload,
         metadata: stdMeta,
@@ -255,7 +255,7 @@ void main() {
 
     test('a duplicate parity chunk is ignored', () {
       final set = buildImageChunks(
-        payload: payloadOf(460),
+        payload: payloadOf(450),
         metadata: stdMeta,
         senderPrefix: senderA,
         imgId: 15,
@@ -393,7 +393,7 @@ void main() {
     });
 
     test('losing two chunks fails and never yields a wrong image', () {
-      final payload = payloadOf(460);
+      final payload = payloadOf(450);
       final set = buildImageChunks(
         payload: payload,
         metadata: stdMeta,
@@ -426,7 +426,7 @@ void main() {
   group('TTL and eviction', () {
     test('a stalled image expires and is reported as failed', () {
       final set = buildImageChunks(
-        payload: payloadOf(460),
+        payload: payloadOf(450),
         metadata: stdMeta,
         senderPrefix: senderA,
         imgId: 21,
@@ -461,7 +461,7 @@ void main() {
 
     test('addChunk sweeps expired streams', () {
       final setOld = buildImageChunks(
-        payload: payloadOf(460),
+        payload: payloadOf(450),
         metadata: stdMeta,
         senderPrefix: senderA,
         imgId: 30,
@@ -601,7 +601,7 @@ void main() {
 
     test('img_id wraparound reusing a key restarts the stream', () {
       final first = buildImageChunks(
-        payload: payloadOf(460, seed: 1),
+        payload: payloadOf(450, seed: 1),
         metadata: stdMeta,
         senderPrefix: senderA,
         imgId: 77,
@@ -774,7 +774,7 @@ void main() {
           },
         );
 
-        final payload = payloadOf(460, seed: 9);
+        final payload = payloadOf(450, seed: 9);
         final set = await tx.sendImage(
           payload: payload,
           metadata: highMeta,

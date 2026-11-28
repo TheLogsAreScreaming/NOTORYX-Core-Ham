@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:uuid/uuid.dart';
 import 'package:crypto/crypto.dart';
+
 import '../models/contact.dart';
 import '../models/message.dart';
 import '../models/path_selection.dart';
@@ -34,7 +36,9 @@ typedef AckHashMapping = ({
 });
 
 class RetryServiceConfig {
-  final void Function(Contact, String, int, int) sendMessage;
+  /// Writes one attempt to the radio. Returns false when the write failed
+  /// (not connected, or the link rejected it); null or true when it went out.
+  final FutureOr<bool?> Function(Contact, String, int, int) sendMessage;
   final void Function(String, Message) addMessage;
   final void Function(Message) updateMessage;
   final Function(Contact)? clearContactPath;
@@ -86,7 +90,20 @@ class MessageRetryService extends ChangeNotifier {
   static const int _maxGlobalInFlight = 6;
 
   int _maxRetries = 5;
-  int get maxRetries => _maxRetries;
+
+  /// Direct tries, along the known route (or rotating routes). Read from
+  /// settings each time, so a change applies to the next message.
+  int get maxRetries =>
+      _config?.appSettingsService?.settings.maxMessageRetries.clamp(2, 10) ??
+      _maxRetries;
+
+  /// Flood tries after the direct ones, in case the route has changed.
+  int get floodAttempts =>
+      _config?.appSettingsService?.settings.messageFloodAttempts.clamp(0, 5) ??
+      0;
+
+  /// Every try a message gets before it's marked failed.
+  int get totalAttempts => maxRetries + floodAttempts;
 
   final Map<String, Timer> _timeoutTimers = {};
   final Map<String, Message> _pendingMessages = {};
@@ -284,7 +301,10 @@ class MessageRetryService extends ChangeNotifier {
 
     if (message == null || contact == null || config == null) return;
 
-    final currentSelection = _selectPathForAttempt(message, contact);
+    // Past the direct tries, flood: the route may have broken.
+    final currentSelection = message.retryCount >= maxRetries
+        ? const PathSelection(pathBytes: [], hopCount: -1, useFlood: true)
+        : _selectPathForAttempt(message, contact);
 
     if (currentSelection != null) {
       final updatedMessage = message.copyWith(
@@ -380,7 +400,29 @@ class MessageRetryService extends ChangeNotifier {
       );
     }
 
-    config.sendMessage(contact, message.text, attempt, timestampSeconds);
+    final written = await config.sendMessage(
+      contact,
+      message.text,
+      attempt,
+      timestampSeconds,
+    );
+    if (written == false) _failUnsent(messageId, contact.publicKeyHex);
+  }
+
+  /// The radio never took this attempt, so no "sent" reply or ACK will come
+  /// and no retry timer is running. Fail it now rather than leave it pending
+  /// forever holding the contact's send slot, which would queue every later
+  /// message to them behind it.
+  void _failUnsent(String messageId, String contactKey) {
+    final message = _pendingMessages[messageId];
+    if (message == null || _resolvedMessages.contains(messageId)) return;
+    _timeoutTimers[messageId]?.cancel();
+    final failed = message.copyWith(status: MessageStatus.failed);
+    _pendingMessages[messageId] = failed;
+    _config?.updateMessage(failed);
+    notifyListeners();
+    _onMessageResolved(messageId, contactKey);
+    _cleanupMessage(messageId);
   }
 
   bool updateMessageFromSent(int ackHash, int timeoutMs) {
@@ -535,7 +577,7 @@ class MessageRetryService extends ChangeNotifier {
       tag: 'AckHash',
     );
 
-    if (message.retryCount < maxRetries - 1) {
+    if (message.retryCount < totalAttempts - 1) {
       final backoffMs = 1000 * (1 << message.retryCount);
 
       if (selection != null) {

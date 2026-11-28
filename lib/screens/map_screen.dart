@@ -1,9 +1,16 @@
+import 'dart:async';
+
+import '../services/waypoint_store.dart';
+import '../widgets/waypoint_map_layer.dart';
+import '../widgets/coordinate_copy_sheet.dart';
 import '../widgets/map_telemetry.dart';
 import '../services/node_telemetry_store.dart';
+
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -16,6 +23,8 @@ import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../l10n/l10n.dart';
 import '../models/app_settings.dart';
+import '../models/node_staleness.dart';
+import '../widgets/range_rings_layer.dart';
 import '../models/channel.dart';
 import '../models/contact.dart';
 import '../l10n/contact_localization.dart';
@@ -39,6 +48,13 @@ import '../helpers/snack_bar_builder.dart';
 import 'repeater_hub_screen.dart';
 import 'settings_screen.dart';
 import 'line_of_sight_map_screen.dart';
+import '../widgets/ui/mesh_states.dart';
+import 'node_compass_screen.dart';
+import '../widgets/node_avatar.dart';
+import '../widgets/radio_overview_card.dart' show showAdvertChoice;
+import '../widgets/traffic_map.dart';
+import '../models/traffic_route.dart';
+import '../services/traffic_feed.dart';
 
 class MapScreen extends StatefulWidget {
   final LatLng? highlightPosition;
@@ -63,6 +79,16 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   // Zoom level at which node labels start to appear
   static const double _labelZoomThreshold = 14.0;
+
+  /// Where the tool pill starts: below the search bar and its two rows of
+  /// filter chips.
+  static const double _toolbarTop = 140;
+
+  /// How far the map's overlays reach in from each edge, so range-ring
+  /// labels stay out from under them: the search bar and chips on top, the
+  /// tool pill on the right and the route card at the bottom when it shows.
+  EdgeInsets get _overlayInsets =>
+      EdgeInsets.fromLTRB(16, _toolbarTop, 96, _trafficFeed == null ? 24 : 176);
   // Below this zoom, nearby nodes collapse into clusters.
   static const double _clusterOffZoom = 12.5;
   // Guessed (estimated) locations only render at closer zooms to avoid a
@@ -102,9 +128,12 @@ class _MapScreenState extends State<MapScreen> {
   List<_SharedMarker> _cachedSharedMarkers = const [];
   _NodeMarkersCacheKey? _nodeMarkersCacheKey;
   List<Marker> _cachedNodeMarkers = const [];
+  TrafficFeed? _trafficFeed;
+  Set<TrafficKind> _trafficKinds = TrafficKind.values.toSet();
 
   @override
   void dispose() {
+    _trafficFeed?.dispose();
     _searchController.dispose();
     _searchFocus.dispose();
     _mapController.dispose();
@@ -137,10 +166,25 @@ class _MapScreenState extends State<MapScreen> {
       : Colors.black.withValues(alpha: 0.18);
 
   _NodeAge _ageOf(Contact contact) {
-    final d = DateTime.now().difference(contact.lastSeen);
+    final d = DateTime.now().difference(contact.lastHeard);
     if (d.inMinutes <= 60) return _NodeAge.online;
     if (d.inHours <= 24) return _NodeAge.recent;
     return _NodeAge.stale;
+  }
+
+  /// Whether [contact] hasn't advertised within the "Mark nodes stale
+  /// after" setting; its marker is drawn faded.
+  bool _isNodeStale(Contact contact, int staleAfterHours) => isStale(
+    contact.lastHeard,
+    DateTime.now(),
+    staleAfterFromHours(staleAfterHours),
+  );
+
+  /// Your own position from the radio, or null when it isn't known.
+  LatLng? _selfPosition(MeshCoreConnector connector) {
+    final lat = connector.selfLatitude, lon = connector.selfLongitude;
+    if (lat == null || lon == null || (lat == 0 && lon == 0)) return null;
+    return LatLng(lat, lon);
   }
 
   void _selectNode(Contact contact, {LatLng? guessedPosition}) {
@@ -164,6 +208,13 @@ class _MapScreenState extends State<MapScreen> {
   @override
   void initState() {
     super.initState();
+    // The telemetry badges and their metric are remembered between visits.
+    final settings = context.read<AppSettingsService>().settings;
+    _showTelemetry = settings.mapShowTelemetry;
+    _telemetryMetric = TelemetryMetric.values.firstWhere(
+      (m) => m.name == settings.mapTelemetryMetric,
+      orElse: () => TelemetryMetric.battery,
+    );
     _loadRemovedMarkers();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
@@ -241,6 +292,44 @@ class _MapScreenState extends State<MapScreen> {
         platform == TargetPlatform.macOS;
   }
 
+  /// Centres the map on where you are: the phone's GPS first, since it
+  /// moves with you, then the radio's position.
+  Future<void> _goToMyPosition(MeshCoreConnector connector) async {
+    LatLng? here;
+    try {
+      var permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+      }
+      if (permission != LocationPermission.denied &&
+          permission != LocationPermission.deniedForever) {
+        final p =
+            await Geolocator.getLastKnownPosition() ??
+            await Geolocator.getCurrentPosition(
+              locationSettings: const LocationSettings(
+                timeLimit: Duration(seconds: 10),
+              ),
+            );
+        here = LatLng(p.latitude, p.longitude);
+      }
+    } catch (_) {
+      // No phone GPS here; the radio's position is next.
+    }
+    final lat = connector.selfLatitude, lon = connector.selfLongitude;
+    if (here == null && lat != null && lon != null && (lat != 0 || lon != 0)) {
+      here = LatLng(lat, lon);
+    }
+    if (!mounted) return;
+    if (here == null) {
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.map_positionUnavailable),
+      );
+      return;
+    }
+    _mapController.move(here, max(_zoom, 14));
+  }
+
   void _zoomMapBy(double delta) {
     final camera = _mapController.camera;
     final nextZoom = (camera.zoom + delta)
@@ -249,66 +338,165 @@ class _MapScreenState extends State<MapScreen> {
     _mapController.move(camera.center, nextZoom);
   }
 
-  Widget _buildControlRail(
+  void _setTraffic(bool on) {
+    HapticFeedback.selectionClick();
+    if (on == (_trafficFeed != null)) return;
+    setState(() {
+      if (on) {
+        final connector = context.read<MeshCoreConnector>();
+        _trafficFeed = TrafficFeed(
+          packets: connector.rxPackets,
+          contacts: () => connector.allContacts,
+          selfPosition: () =>
+              connector.selfLatitude == null || connector.selfLongitude == null
+              ? null
+              : LatLng(connector.selfLatitude!, connector.selfLongitude!),
+          selfId: () => connector.selfPublicKeyPrefixHex?.toUpperCase(),
+          selfName: () => connector.selfName,
+        )..kinds = _trafficKinds;
+      } else {
+        _trafficFeed?.dispose();
+        _trafficFeed = null;
+      }
+    });
+  }
+
+  void _fitPoints(List<LatLng> points) {
+    if (points.isEmpty) return;
+    if (points.length == 1) {
+      _mapController.move(points.single, max(_mapController.camera.zoom, 13));
+      return;
+    }
+    _mapController.fitCamera(
+      CameraFit.coordinates(
+        coordinates: points,
+        padding: const EdgeInsets.fromLTRB(48, 140, 96, 200),
+        maxZoom: 16,
+      ),
+    );
+  }
+
+  Widget _buildToolPill(
     BuildContext context, {
-    required LatLng center,
-    required double zoom,
     required MeshCoreConnector connector,
+    required List<Contact> visibleContacts,
   }) {
-    final hasSelf =
-        connector.selfLatitude != null && connector.selfLongitude != null;
+    final l10n = context.l10n;
+    final isDesktop = _isDesktopPlatform(defaultTargetPlatform);
+    final trafficOn = _trafficFeed != null;
+    final feed = _trafficFeed;
+    // The pill gets exactly the space between the filter chips and the
+    // route card, whatever the card's height; when that is short it drops
+    // its labels. Padding rather than insets, so a very short screen
+    // shrinks the space instead of failing layout.
     return Positioned(
       left: 12,
-      bottom: 96,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: _overlayPanelColor,
-          borderRadius: BorderRadius.circular(MeshRadii.xs),
-          border: Border.all(color: _overlayBorderColor),
-          boxShadow: [
-            BoxShadow(
-              color: _overlayShadowColor,
-              blurRadius: 8,
-              offset: Offset(0, 3),
-            ),
-          ],
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(MeshRadii.xs),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconButton(
-                color: _overlayPrimaryTextColor,
-                icon: const Icon(Icons.add),
-                visualDensity: VisualDensity.standard,
-                tooltip: context.l10n.map_zoomIn,
-                onPressed: () => _zoomMapBy(1),
-              ),
-              IconButton(
-                color: _overlayPrimaryTextColor,
-                icon: const Icon(Icons.remove),
-                tooltip: context.l10n.map_zoomOut,
-                onPressed: () => _zoomMapBy(-1),
-              ),
-              IconButton(
-                color: _overlayPrimaryTextColor,
-                icon: const Icon(Icons.crop_free),
-                tooltip: context.l10n.map_centerMap,
-                onPressed: () => _mapController.move(center, zoom),
-              ),
-              if (hasSelf)
-                IconButton(
-                  color: MapPalette.selected,
-                  icon: const Icon(Icons.my_location),
-                  tooltip: context.l10n.map_setAsMyLocation,
-                  onPressed: () => _mapController.move(
-                    LatLng(connector.selfLatitude!, connector.selfLongitude!),
-                    max(_zoom, 14),
-                  ),
+      right: 12,
+      top: 0,
+      bottom: 0,
+      child: Padding(
+        padding: EdgeInsets.only(top: _toolbarTop, bottom: trafficOn ? 8 : 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+              child: Align(
+                alignment: Alignment.topRight,
+                child: MapToolPill(
+                  items: [
+                    if (isDesktop) ...[
+                      MapToolItem(
+                        icon: Icons.add,
+                        label: l10n.map_zoomIn,
+                        onPressed: () => _zoomMapBy(1),
+                      ),
+                      MapToolItem(
+                        icon: Icons.remove,
+                        label: l10n.map_zoomOut,
+                        onPressed: () => _zoomMapBy(-1),
+                      ),
+                    ],
+                    MapToolItem(
+                      key: const ValueKey('map-my-position'),
+                      icon: Icons.near_me_outlined,
+                      label: l10n.traffic_locate,
+                      onPressed: () => unawaited(_goToMyPosition(connector)),
+                    ),
+                    MapToolItem(
+                      key: const ValueKey('map-send-advert'),
+                      icon: Icons.campaign_outlined,
+                      label: l10n.traffic_advert,
+                      onPressed: () =>
+                          unawaited(showAdvertChoice(context, connector)),
+                    ),
+                    MapToolItem(
+                      key: const ValueKey('map-traffic-filter'),
+                      icon: Icons.filter_list,
+                      label: l10n.traffic_filter,
+                      onPressed: () => showTrafficFilterSheet(
+                        context,
+                        kinds: _trafficKinds,
+                        onChanged: (kinds) {
+                          setState(() => _trafficKinds = kinds);
+                          _trafficFeed?.kinds = kinds;
+                        },
+                      ),
+                    ),
+                    MapToolItem(
+                      key: const ValueKey('map-traffic'),
+                      icon: Icons.route,
+                      label: l10n.traffic_mode,
+                      selected: trafficOn,
+                      onPressed: () => _setTraffic(!trafficOn),
+                    ),
+                    MapToolItem(
+                      icon: Icons.search,
+                      label: l10n.traffic_search,
+                      onPressed: () => _searchFocus.requestFocus(),
+                    ),
+                    MapToolItem(
+                      key: const ValueKey('map-fit-all'),
+                      icon: Icons.open_in_full,
+                      label: l10n.traffic_fitAll,
+                      onPressed: () => _fitPoints([
+                        for (final c in visibleContacts)
+                          if (c.hasLocation) LatLng(c.latitude!, c.longitude!),
+                        if (connector.selfLatitude != null &&
+                            connector.selfLongitude != null)
+                          LatLng(
+                            connector.selfLatitude!,
+                            connector.selfLongitude!,
+                          ),
+                      ]),
+                    ),
+                    MapToolItem(
+                      icon: Icons.more_horiz,
+                      label: l10n.traffic_options,
+                      onPressed: () => _showFilterSheet(
+                        context,
+                        context.read<AppSettingsService>(),
+                      ),
+                    ),
+                  ],
                 ),
+              ),
+            ),
+            if (feed != null) ...[
+              const SizedBox(height: 8),
+              ListenableBuilder(
+                listenable: feed,
+                builder: (context, _) {
+                  final route = feed.latest;
+                  return TrafficRouteCard(
+                    route: route,
+                    onTap: route == null
+                        ? null
+                        : () => _fitPoints(route.points),
+                  );
+                },
+              ),
             ],
-          ),
+          ],
         ),
       ),
     );
@@ -365,6 +553,9 @@ class _MapScreenState extends State<MapScreen> {
             ? allContacts
             : allContacts.where((c) => c.isActive).toList();
 
+        final waypointStore = settings.mapShowWaypoints
+            ? context.watch<WaypointStore>()
+            : null;
         final highlightPosition = widget.highlightPosition;
         final sharedMarkers = settings.mapShowMarkers
             ? _collectSharedMarkers(
@@ -384,7 +575,7 @@ class _MapScreenState extends State<MapScreen> {
         final filteredByTime = settings.mapTimeFilterHours == 0
             ? contacts
             : contacts.where((c) {
-                final hoursSinceLastSeen = now.difference(c.lastSeen).inHours;
+                final hoursSinceLastSeen = now.difference(c.lastHeard).inHours;
                 return hoursSinceLastSeen <= settings.mapTimeFilterHours;
               }).toList();
 
@@ -790,8 +981,24 @@ class _MapScreenState extends State<MapScreen> {
                     tileCache.buildTileLayer(context),
                     if (_polylines.isNotEmpty && _isBuildingPathTrace)
                       PolylineLayer(polylines: _polylines),
+                    if (waypointStore != null &&
+                        waypointStore.routes.isNotEmpty)
+                      PolylineLayer(
+                        polylines: [
+                          for (final route in waypointStore.routes)
+                            waypointRoutePolyline(route),
+                        ],
+                      ),
                     if (sharedMarkerPolylines.isNotEmpty)
                       PolylineLayer(polylines: sharedMarkerPolylines),
+                    if (settings.mapShowRangeRings)
+                      if (_selfPosition(connector) case final self?)
+                        RangeRingsLayer(
+                          centre: self,
+                          units: settings.unitSystem,
+                          dark: _useDarkOverlay,
+                          insets: _overlayInsets,
+                        ),
                     MarkerLayer(
                       markers: [
                         if (highlightPosition != null)
@@ -849,6 +1056,13 @@ class _MapScreenState extends State<MapScreen> {
                           showLabels: _showNodeLabels,
                           selectedContact: selectedContact,
                         ),
+                        ...?waypointStore?.waypoints.map(
+                          (w) => waypointMapMarker(
+                            w,
+                            showLabel: _showNodeLabels,
+                            onTap: () => showWaypointMapSheet(context, w),
+                          ),
+                        ),
                         ...sharedMarkers.map(_buildSharedMarker),
                         if (connector.selfLatitude != null &&
                             connector.selfLongitude != null)
@@ -900,6 +1114,8 @@ class _MapScreenState extends State<MapScreen> {
                           ),
                       ],
                     ),
+                    if (_trafficFeed != null && !_isBuildingPathTrace)
+                      TrafficRouteLayer(feed: _trafficFeed!),
                     if (_showTelemetry && !_isBuildingPathTrace)
                       MapTelemetryLayer(
                         contacts: [
@@ -931,12 +1147,11 @@ class _MapScreenState extends State<MapScreen> {
                       ),
                   ],
                 ),
-                if (selectedContact == null)
-                  _buildControlRail(
+                if (selectedContact == null && !_isBuildingPathTrace)
+                  _buildToolPill(
                     context,
-                    center: center,
-                    zoom: initialZoom,
                     connector: connector,
+                    visibleContacts: visibleContacts,
                   ),
                 if (!_isBuildingPathTrace)
                   _buildTopOverlay(
@@ -968,14 +1183,6 @@ class _MapScreenState extends State<MapScreen> {
                 highContrast: _useDarkOverlay,
               ),
             ),
-            floatingActionButton:
-                (selectedContact == null && !_isBuildingPathTrace)
-                ? FloatingActionButton(
-                    onPressed: () => _showFilterSheet(context, settingsService),
-                    tooltip: context.l10n.map_filterNodes,
-                    child: const Icon(Icons.filter_list),
-                  )
-                : null,
           ),
         );
       },
@@ -998,8 +1205,11 @@ class _MapScreenState extends State<MapScreen> {
   }) {
     final visibleContactsSignature = Object.hashAll(
       contacts.map(
-        (contact) =>
-            Object.hash(_mapContactSignature(contact), _ageOf(contact)),
+        (contact) => Object.hash(
+          _mapContactSignature(contact),
+          _ageOf(contact),
+          _isNodeStale(contact, settings.staleAfterHours),
+        ),
       ),
     );
     final key = _NodeMarkersCacheKey(
@@ -1056,7 +1266,7 @@ class _MapScreenState extends State<MapScreen> {
 
     for (final contact in allContacts) {
       if (contact.hasLocation) continue;
-      if (contact.lastSeen.isBefore(
+      if (contact.lastHeard.isBefore(
         DateTime.now().subtract(const Duration(hours: 24)),
       )) {
         continue; // skip stale contacts
@@ -1248,40 +1458,46 @@ class _MapScreenState extends State<MapScreen> {
         point: guess.position,
         width: 48,
         height: 48,
-        child: GestureDetector(
-          onLongPress: () {
-            if (_isBuildingPathTrace) _showNodeInfo(context, guess.contact);
-          },
-          onSecondaryTap: () {
-            if (_isBuildingPathTrace) _showNodeInfo(context, guess.contact);
-          },
-          onTap: () => _isBuildingPathTrace
-              ? _addToPath(context, guess.contact, position: guess.position)
-              : _selectNode(guess.contact, guessedPosition: guess.position),
-          child: Center(
-            child: Container(
-              width: 36,
-              height: 36,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: _overlayPanelColor,
-                border: Border.all(
-                  color: guess.highConfidence ? color : _overlayMutedTextColor,
-                  width: guess.highConfidence ? 2.5 : 2,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: _overlayShadowColor,
-                    blurRadius: 7,
-                    offset: Offset(0, 2),
+        child: Semantics(
+          button: true,
+          label: guess.contact.name,
+          child: GestureDetector(
+            onLongPress: () {
+              if (_isBuildingPathTrace) _showNodeInfo(context, guess.contact);
+            },
+            onSecondaryTap: () {
+              if (_isBuildingPathTrace) _showNodeInfo(context, guess.contact);
+            },
+            onTap: () => _isBuildingPathTrace
+                ? _addToPath(context, guess.contact, position: guess.position)
+                : _selectNode(guess.contact, guessedPosition: guess.position),
+            child: Center(
+              child: Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: _overlayPanelColor,
+                  border: Border.all(
+                    color: guess.highConfidence
+                        ? color
+                        : _overlayMutedTextColor,
+                    width: guess.highConfidence ? 2.5 : 2,
                   ),
-                ],
-              ),
-              alignment: Alignment.center,
-              child: Icon(
-                Icons.not_listed_location,
-                color: _overlayPrimaryTextColor,
-                size: 19,
+                  boxShadow: [
+                    BoxShadow(
+                      color: _overlayShadowColor,
+                      blurRadius: 7,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
+                ),
+                alignment: Alignment.center,
+                child: Icon(
+                  Icons.not_listed_location,
+                  color: _overlayPrimaryTextColor,
+                  size: 19,
+                ),
               ),
             ),
           ),
@@ -1466,50 +1682,62 @@ class _MapScreenState extends State<MapScreen> {
     final online = age == _NodeAge.online;
     final batteryLow = _isBatteryLow(contact);
     final size = selected ? 46.0 : (dot ? 22.0 : 40.0);
+    final faded = _isNodeStale(
+      contact,
+      context.read<AppSettingsService>().settings.staleAfterHours,
+    );
     return Marker(
       point: LatLng(contact.latitude!, contact.longitude!),
       width: size,
       height: size,
-      child: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onLongPress: () {
-          if (_isBuildingPathTrace) _showNodeInfo(context, contact);
-        },
-        onSecondaryTap: () {
-          if (_isBuildingPathTrace) _showNodeInfo(context, contact);
-        },
-        onTap: () => _isBuildingPathTrace
-            ? _addToPath(context, contact)
-            : _selectNode(contact),
-        child: Center(
-          child: dot && !selected
-              ? Container(
-                  width: 15,
-                  height: 15,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: baseColor,
-                    border: Border.all(
-                      color: MapPalette.markerOutline,
-                      width: 2,
-                    ),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: MapPalette.markerShadow,
-                        blurRadius: 6,
-                        offset: Offset(0, 2),
+      child: Semantics(
+        button: true,
+        label: contact.name,
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onLongPress: () {
+            if (_isBuildingPathTrace) _showNodeInfo(context, contact);
+          },
+          onSecondaryTap: () {
+            if (_isBuildingPathTrace) _showNodeInfo(context, contact);
+          },
+          onTap: () => _isBuildingPathTrace
+              ? _addToPath(context, contact)
+              : _selectNode(contact),
+          child: Opacity(
+            opacity: faded ? 0.45 : 1,
+            child: Center(
+              child: dot && !selected
+                  ? Container(
+                      width: 15,
+                      height: 15,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: baseColor,
+                        border: Border.all(
+                          color: MapPalette.markerOutline,
+                          width: 2,
+                        ),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: MapPalette.markerShadow,
+                            blurRadius: 6,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                )
-              : _buildNodeMarkerWidget(
-                  color: baseColor,
-                  icon: _getNodeIcon(contact.type),
-                  selected: selected,
-                  stale: stale,
-                  online: online,
-                  batteryLow: batteryLow,
-                ),
+                    )
+                  : _buildNodeMarkerWidget(
+                      color: baseColor,
+                      icon: _getNodeIcon(contact.type),
+                      selected: selected,
+                      stale: stale,
+                      online: online,
+                      batteryLow: batteryLow,
+                      square: contact.type == advTypeRepeater,
+                    ),
+            ),
+          ),
         ),
       ),
     );
@@ -1691,7 +1919,7 @@ class _MapScreenState extends State<MapScreen> {
       case advTypeChat:
         return Icons.person;
       case advTypeRepeater:
-        return Icons.router;
+        return Icons.cell_tower;
       case advTypeRoom:
         return Icons.meeting_room;
       case advTypeSensor:
@@ -1708,6 +1936,7 @@ class _MapScreenState extends State<MapScreen> {
     bool stale = false,
     bool online = false,
     bool batteryLow = false,
+    bool square = false,
   }) {
     final statusColor = batteryLow
         ? MapPalette.batteryLow
@@ -1724,11 +1953,15 @@ class _MapScreenState extends State<MapScreen> {
           width: selected ? 44 : 36,
           height: selected ? 44 : 36,
           decoration: BoxDecoration(
-            shape: BoxShape.circle,
+            shape: square ? BoxShape.rectangle : BoxShape.circle,
+            borderRadius: square ? BorderRadius.circular(10) : null,
             color: selected ? MapPalette.selected : color,
+            // A recently heard repeater gets a green ring.
             border: Border.all(
-              color: MapPalette.markerOutline,
-              width: selected ? 3 : 2.5,
+              color: square && online && !selected
+                  ? MapPalette.online
+                  : MapPalette.markerOutline,
+              width: selected || (square && online) ? 3 : 2.5,
             ),
             boxShadow: [
               const BoxShadow(
@@ -1779,8 +2012,7 @@ class _MapScreenState extends State<MapScreen> {
           Expanded(
             child: Text(
               label,
-              style: TextStyle(
-                fontSize: 12,
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
                 fontWeight: FontWeight.w600,
                 color: _overlaySecondaryTextColor,
               ),
@@ -1858,6 +2090,9 @@ class _MapScreenState extends State<MapScreen> {
                       ),
                       suffixIcon: hasQuery
                           ? IconButton(
+                              tooltip: MaterialLocalizations.of(
+                                context,
+                              ).closeButtonTooltip,
                               color: _overlayPrimaryTextColor,
                               icon: const Icon(Icons.close, size: 18),
                               onPressed: () {
@@ -1878,8 +2113,7 @@ class _MapScreenState extends State<MapScreen> {
                         vertical: 12,
                       ),
                     ),
-                    style: TextStyle(
-                      fontSize: 14,
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: _overlayPrimaryTextColor,
                       fontWeight: FontWeight.w600,
                     ),
@@ -1945,14 +2179,27 @@ class _MapScreenState extends State<MapScreen> {
                 _mapChip(
                   label: context.l10n.contact_telemetry,
                   selected: _showTelemetry,
-                  onTap: () => setState(() => _showTelemetry = !_showTelemetry),
+                  onTap: () {
+                    setState(() => _showTelemetry = !_showTelemetry);
+                    unawaited(
+                      context.read<AppSettingsService>().setMapShowTelemetry(
+                        _showTelemetry,
+                      ),
+                    );
+                  },
                 ),
                 if (_showTelemetry)
                   PopupMenuButton<TelemetryMetric>(
                     tooltip: context.l10n.contact_telemetry,
                     initialValue: _telemetryMetric,
-                    onSelected: (value) =>
-                        setState(() => _telemetryMetric = value),
+                    onSelected: (value) {
+                      setState(() => _telemetryMetric = value);
+                      unawaited(
+                        context
+                            .read<AppSettingsService>()
+                            .setMapTelemetryMetric(value.name),
+                      );
+                    },
                     itemBuilder: (context) => [
                       for (final metric in TelemetryMetric.values)
                         PopupMenuItem(
@@ -2078,8 +2325,7 @@ class _MapScreenState extends State<MapScreen> {
                 ],
                 Text(
                   label,
-                  style: TextStyle(
-                    fontSize: 12.5,
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
                     fontWeight: FontWeight.w600,
                     color: selected
                         ? _overlayPrimaryTextColor
@@ -2106,7 +2352,7 @@ class _MapScreenState extends State<MapScreen> {
             if (a.hasLocation != b.hasLocation) {
               return a.hasLocation ? -1 : 1;
             }
-            return b.lastSeen.compareTo(a.lastSeen);
+            return b.lastHeard.compareTo(a.lastHeard);
           });
     final results = matches.take(8).toList();
     return Container(
@@ -2129,9 +2375,8 @@ class _MapScreenState extends State<MapScreen> {
               padding: const EdgeInsets.all(16),
               child: Text(
                 context.l10n.map_noResults,
-                style: TextStyle(
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: _overlaySecondaryTextColor,
-                  fontSize: 13,
                 ),
               ),
             )
@@ -2161,11 +2406,11 @@ class _MapScreenState extends State<MapScreen> {
                             children: [
                               Text(
                                 c.name,
-                                style: TextStyle(
-                                  fontSize: 13.5,
-                                  fontWeight: FontWeight.w600,
-                                  color: _overlayPrimaryTextColor,
-                                ),
+                                style: Theme.of(context).textTheme.titleSmall
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.w600,
+                                      color: _overlayPrimaryTextColor,
+                                    ),
                                 overflow: TextOverflow.ellipsis,
                               ),
                               Text(
@@ -2323,8 +2568,7 @@ class _MapScreenState extends State<MapScreen> {
           Expanded(
             child: Text(
               label,
-              style: TextStyle(
-                fontSize: 12.5,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: _overlaySecondaryTextColor,
               ),
               overflow: TextOverflow.ellipsis,
@@ -2381,11 +2625,17 @@ class _MapScreenState extends State<MapScreen> {
                 children: [
                   Row(
                     children: [
-                      AvatarCircle(
+                      NodeAvatar(
+                        nodeKey: contact.publicKeyHex,
                         name: contact.name,
                         size: 38,
-                        color: color,
                         icon: _getNodeIcon(contact.type),
+                        fallback: AvatarCircle(
+                          name: contact.name,
+                          size: 38,
+                          color: color,
+                          icon: _getNodeIcon(contact.type),
+                        ),
                       ),
                       const SizedBox(width: 10),
                       Expanded(
@@ -2397,11 +2647,13 @@ class _MapScreenState extends State<MapScreen> {
                                 Flexible(
                                   child: Text(
                                     contact.name,
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w700,
-                                      color: _overlayPrimaryTextColor,
-                                    ),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.w700,
+                                          color: _overlayPrimaryTextColor,
+                                        ),
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
@@ -2428,10 +2680,10 @@ class _MapScreenState extends State<MapScreen> {
                                 Flexible(
                                   child: Text(
                                     contact.typeLabel(context.l10n),
-                                    style: TextStyle(
-                                      fontSize: 11.5,
-                                      color: _overlaySecondaryTextColor,
-                                    ),
+                                    style: Theme.of(context).textTheme.bodySmall
+                                        ?.copyWith(
+                                          color: _overlaySecondaryTextColor,
+                                        ),
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
@@ -2449,6 +2701,9 @@ class _MapScreenState extends State<MapScreen> {
                               _mapController.move(pos, max(_zoom, 15)),
                         ),
                       IconButton(
+                        tooltip: MaterialLocalizations.of(
+                          context,
+                        ).closeButtonTooltip,
                         color: _overlayPrimaryTextColor,
                         icon: const Icon(Icons.close, size: 20),
                         onPressed: _clearSelection,
@@ -2462,7 +2717,7 @@ class _MapScreenState extends State<MapScreen> {
                     children: [
                       _miniMeta(
                         context.l10n.map_lastSeen,
-                        _formatLastSeen(contact.lastSeen),
+                        _formatLastSeen(contact.lastHeard),
                       ),
                       _miniMeta(
                         context.l10n.map_path,
@@ -2495,6 +2750,13 @@ class _MapScreenState extends State<MapScreen> {
                   Row(
                     children: [
                       ..._selectedNodeActions(context, contact, connector),
+                      if (contact.hasLocation)
+                        IconButton(
+                          tooltip: context.l10n.compass_openHint,
+                          color: MapPalette.selected,
+                          icon: const Icon(Icons.explore_outlined),
+                          onPressed: () => openNodeCompass(context, contact),
+                        ),
                       TextButton(
                         style: TextButton.styleFrom(
                           foregroundColor: MapPalette.selected,
@@ -2558,7 +2820,7 @@ class _MapScreenState extends State<MapScreen> {
           ),
           onPressed: onPressed,
           icon: Icon(icon, size: 16),
-          label: Text(label, style: const TextStyle(fontSize: 12.5)),
+          label: Text(label, style: Theme.of(context).textTheme.bodySmall),
         ),
       );
     }
@@ -2720,37 +2982,44 @@ class _MapScreenState extends State<MapScreen> {
       point: marker.position,
       width: 60,
       height: 60,
-      child: GestureDetector(
-        onTap: () async {
-          if (_removedMarkerIds.contains(marker.id)) {
-            setState(() {
-              _removedMarkerIds.remove(marker.id);
-            });
-            await _markerService.saveRemovedIds(_removedMarkerIds);
-          }
-          _showMarkerInfo(marker);
-        },
-        child: Column(
-          children: [
-            Container(
-              width: 36,
-              height: 36,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: markerColor,
-                border: Border.all(color: MapPalette.markerOutline, width: 2.5),
-                boxShadow: const [
-                  BoxShadow(
-                    color: MapPalette.markerShadow,
-                    blurRadius: 8,
-                    offset: Offset(0, 3),
+      child: Semantics(
+        button: true,
+        label: marker.label.isEmpty ? context.l10n.map_sharedPin : marker.label,
+        child: GestureDetector(
+          onTap: () async {
+            if (_removedMarkerIds.contains(marker.id)) {
+              setState(() {
+                _removedMarkerIds.remove(marker.id);
+              });
+              await _markerService.saveRemovedIds(_removedMarkerIds);
+            }
+            _showMarkerInfo(marker);
+          },
+          child: Column(
+            children: [
+              Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: markerColor,
+                  border: Border.all(
+                    color: MapPalette.markerOutline,
+                    width: 2.5,
                   ),
-                ],
+                  boxShadow: const [
+                    BoxShadow(
+                      color: MapPalette.markerShadow,
+                      blurRadius: 8,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                ),
+                alignment: Alignment.center,
+                child: const Icon(Icons.flag, color: Colors.white, size: 19),
               ),
-              alignment: Alignment.center,
-              child: const Icon(Icons.flag, color: Colors.white, size: 19),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -2893,18 +3162,21 @@ class _MapScreenState extends State<MapScreen> {
                         ),
                       ),
                       if (contact.hasLocation)
-                        _buildInfoRow(
+                        _buildLocationRow(
                           context.l10n.map_location,
-                          '${contact.latitude!.toStringAsFixed(6)}, ${contact.longitude!.toStringAsFixed(6)}',
+                          contact.latitude!,
+                          contact.longitude!,
                         )
                       else if (guessedPosition != null)
-                        _buildInfoRow(
+                        _buildLocationRow(
                           context.l10n.map_estLocation,
-                          '~${guessedPosition.latitude.toStringAsFixed(6)}, ${guessedPosition.longitude.toStringAsFixed(6)}',
+                          guessedPosition.latitude,
+                          guessedPosition.longitude,
+                          prefix: '~',
                         ),
                       _buildInfoRow(
                         context.l10n.map_lastSeen,
-                        _formatLastSeen(contact.lastSeen),
+                        _formatLastSeen(contact.lastHeard),
                       ),
                       _buildInfoRow(
                         context.l10n.map_publicKey,
@@ -2912,6 +3184,17 @@ class _MapScreenState extends State<MapScreen> {
                       ),
                       const SizedBox(height: 16),
                       ...actions,
+                      if (contact.hasLocation) ...[
+                        const SizedBox(height: 8),
+                        OutlinedButton.icon(
+                          icon: const Icon(Icons.explore_outlined),
+                          label: Text(context.l10n.compass_openHint),
+                          onPressed: () {
+                            Navigator.pop(sheetContext);
+                            openNodeCompass(context, contact);
+                          },
+                        ),
+                      ],
                     ],
                   ),
                 ),
@@ -2927,22 +3210,11 @@ class _MapScreenState extends State<MapScreen> {
     BuildContext context,
     MeshCoreConnector connector,
   ) async {
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(context.l10n.common_disconnect),
-        content: Text(context.l10n.map_disconnectConfirm),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, false),
-            child: Text(context.l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, true),
-            child: Text(context.l10n.common_disconnect),
-          ),
-        ],
-      ),
+    final confirmed = await confirmAction(
+      context,
+      title: context.l10n.common_disconnect,
+      message: context.l10n.map_disconnectConfirm,
+      confirmLabel: context.l10n.common_disconnect,
     );
 
     if (confirmed == true) {
@@ -2967,9 +3239,10 @@ class _MapScreenState extends State<MapScreen> {
               context.l10n.map_sharedAt,
               _formatLastSeen(marker.timestamp),
             ),
-            _buildInfoRow(
+            _buildLocationRow(
               context.l10n.map_location,
-              '${marker.position.latitude.toStringAsFixed(6)}, ${marker.position.longitude.toStringAsFixed(6)}',
+              marker.position.latitude,
+              marker.position.longitude,
             ),
             if (marker.flags.isNotEmpty)
               _buildInfoRow(context.l10n.map_flags, marker.flags),
@@ -3010,6 +3283,33 @@ class _MapScreenState extends State<MapScreen> {
     );
   }
 
+  /// A position in the chosen coordinate format, with a button that copies
+  /// it in any format.
+  Widget _buildLocationRow(
+    String label,
+    double lat,
+    double lon, {
+    String prefix = '',
+  }) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Expanded(
+          child: _buildInfoRow(
+            label,
+            '$prefix${formatCoordinateFor(context, lat, lon)}',
+          ),
+        ),
+        IconButton(
+          key: const ValueKey('map-copy-location'),
+          icon: const Icon(Icons.copy_all_outlined, size: 20),
+          tooltip: context.l10n.coords_copyTitle,
+          onPressed: () => showCoordinateCopySheet(context, lat: lat, lon: lon),
+        ),
+      ],
+    );
+  }
+
   Widget _buildInfoRow(String label, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
@@ -3018,8 +3318,7 @@ class _MapScreenState extends State<MapScreen> {
         children: [
           Text(
             label,
-            style: TextStyle(
-              fontSize: 12,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
               color: Theme.of(context).colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w500,
             ),
@@ -3091,7 +3390,7 @@ class _MapScreenState extends State<MapScreen> {
                 );
                 await connector.refreshDeviceInfo();
                 if (!mounted) return;
-                messenger.showSnackBar(SnackBar(content: Text(successMsg)));
+                messenger.showSnackBar(meshSnackBar(content: Text(successMsg)));
               },
             ),
             if (connector.floodCorridorSupported == true)
@@ -3343,26 +3642,12 @@ class _MapScreenState extends State<MapScreen> {
     BuildContext context,
     String channelLabel,
   ) async {
-    final result = await showDialog<bool>(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(context.l10n.map_publicLocationShare),
-        content: Text(
-          context.l10n.map_publicLocationShareConfirm(channelLabel),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, false),
-            child: Text(context.l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, true),
-            child: Text(context.l10n.common_share),
-          ),
-        ],
-      ),
+    return confirmAction(
+      context,
+      title: context.l10n.map_publicLocationShare,
+      message: context.l10n.map_publicLocationShareConfirm(channelLabel),
+      confirmLabel: context.l10n.common_share,
     );
-    return result ?? false;
   }
 
   void _showFilterSheet(
@@ -3501,11 +3786,41 @@ class _MapScreenState extends State<MapScreen> {
                         ),
                         SectionHeader(sheetContext.l10n.map_markers),
                         SwitchListTile(
+                          key: const ValueKey('map-range-rings'),
+                          secondary: const Icon(Icons.track_changes),
+                          title: Text(sheetContext.l10n.rangeRings_toggle),
+                          subtitle: Text(sheetContext.l10n.rangeRings_hint),
+                          value: settings.mapShowRangeRings,
+                          dense: true,
+                          onChanged: (value) {
+                            service.setMapShowRangeRings(value);
+                            if (value &&
+                                _selfPosition(
+                                      sheetContext.read<MeshCoreConnector>(),
+                                    ) ==
+                                    null) {
+                              showDismissibleSnackBar(
+                                sheetContext,
+                                content: Text(
+                                  sheetContext.l10n.rangeRings_noPosition,
+                                ),
+                              );
+                            }
+                          },
+                        ),
+                        SwitchListTile(
                           title: Text(sheetContext.l10n.map_showSharedMarkers),
                           value: settings.mapShowMarkers,
                           dense: true,
                           onChanged: (value) =>
                               service.setMapShowMarkers(value),
+                        ),
+                        SwitchListTile(
+                          title: Text(sheetContext.l10n.map_showWaypoints),
+                          value: settings.mapShowWaypoints,
+                          dense: true,
+                          onChanged: (value) =>
+                              service.setMapShowWaypoints(value),
                         ),
                         SwitchListTile(
                           title: Text(
@@ -3732,8 +4047,7 @@ class _MapScreenState extends State<MapScreen> {
                 if (_pathTrace.isEmpty)
                   Text(
                     l10n.map_tapToAdd,
-                    style: TextStyle(
-                      fontSize: 12,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: _overlaySecondaryTextColor,
                     ),
                   ),

@@ -5,6 +5,7 @@ import 'package:meshcore_open/l10n/app_localizations.dart';
 import 'package:meshcore_open/screens/settings_screen.dart';
 import 'package:meshcore_open/services/app_debug_log_service.dart';
 import 'package:meshcore_open/services/app_settings_service.dart';
+import 'package:meshcore_open/services/operator_profile_service.dart';
 import 'package:meshcore_open/storage/prefs_manager.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
@@ -38,6 +39,7 @@ Widget _app(MeshCoreConnector connector) => MultiProvider(
   providers: [
     ChangeNotifierProvider<MeshCoreConnector>.value(value: connector),
     ChangeNotifierProvider(create: (_) => AppSettingsService()),
+    ChangeNotifierProvider(create: (_) => OperatorProfileService()),
     ChangeNotifierProvider(create: (_) => AppDebugLogService()),
   ],
   child: MaterialApp(

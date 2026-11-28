@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import '../models/delivery_observation.dart';
 import '../models/path_history.dart';
 import '../storage/prefs_manager.dart';
@@ -29,7 +30,9 @@ class StorageService {
     String repeaterPubKeyHex,
   ) async {
     final settings = await _loadRepeaterAutoClockSyncAfterLogin();
-    return settings[repeaterPubKeyHex] ?? false;
+    // On unless turned off: a repeater with a wrong clock looks long gone
+    // and logs the wrong times.
+    return settings[repeaterPubKeyHex] ?? true;
   }
 
   Future<void> setRepeaterAutoClockSyncAfterLoginEnabled(

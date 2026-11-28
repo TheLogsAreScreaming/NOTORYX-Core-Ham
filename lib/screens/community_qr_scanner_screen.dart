@@ -109,7 +109,9 @@ class _CommunityQrScannerScreenState extends State<CommunityQrScannerScreen> {
                 ),
                 child: Text(
                   context.l10n.community_scanInstructions,
-                  style: TextStyle(color: MeshPalette.ink2, fontSize: 13),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(color: MeshPalette.ink2),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -204,10 +206,8 @@ class _CommunityQrScannerScreenState extends State<CommunityQrScannerScreen> {
                       children: [
                         Text(
                           community.name,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
-                          ),
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(fontWeight: FontWeight.w600),
                         ),
                         Text(
                           'ID: ${community.shortCommunityId}...',
@@ -278,10 +278,8 @@ class _CommunityQrScannerScreenState extends State<CommunityQrScannerScreen> {
                         children: [
                           Text(
                             community.name,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 15,
-                            ),
+                            style: Theme.of(context).textTheme.titleMedium
+                                ?.copyWith(fontWeight: FontWeight.w600),
                           ),
                           Text(
                             'ID: ${community.shortCommunityId}...',

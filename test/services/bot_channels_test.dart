@@ -142,9 +142,7 @@ void main() {
         await hear(_post('!ping', channel: 0));
         expect(radio.sent, isEmpty);
         await hear(_post('!ping', channel: 1));
-        expect(radio.sent, [
-          ('#hiking', '$botPrefix@Sam Pong — NOTORYX Core online'),
-        ]);
+        expect(radio.sent, [('#hiking', '$botPrefix@Sam 🎯 Direct.')]);
       },
     );
 

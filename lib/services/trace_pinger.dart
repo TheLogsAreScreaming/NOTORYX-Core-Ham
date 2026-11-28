@@ -17,7 +17,6 @@ class PingResult {
 
 /// Parses a trace reply for [tag]: the SNR each hop heard, ending with the
 /// SNR this radio heard the last hop at. Null when the frame isn't it.
-@visibleForTesting
 List<double>? parseTraceSnrs(Uint8List frame, Uint8List tag) {
   if (frame.length < 12 || frame[0] != pushCodeTraceData) return null;
   if (!listEquals(frame.sublist(4, 8), tag)) return null;

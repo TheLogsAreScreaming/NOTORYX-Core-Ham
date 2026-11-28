@@ -68,3 +68,44 @@ void showDismissibleSnackBar(
     ),
   );
 }
+
+/// The app's standard [SnackBar] for callers that captured a
+/// [ScaffoldMessengerState] before an async gap: tap to dismiss, 4 s, and
+/// never persistent (Flutter keeps action snack bars up indefinitely).
+SnackBar meshSnackBar({
+  required Widget content,
+  SnackBarAction? action,
+  Duration? duration,
+}) {
+  return SnackBar(
+    content: Builder(
+      builder: (context) => GestureDetector(
+        onTap: () => ScaffoldMessenger.maybeOf(context)?.hideCurrentSnackBar(),
+        child: content,
+      ),
+    ),
+    action: action,
+    duration: duration ?? const Duration(seconds: 4),
+    persist: false,
+    dismissDirection: DismissDirection.down,
+  );
+}
+
+/// Turns a caught error into text fit for a person: drops Dart's
+/// `Exception: ` / `Bad state: ` style prefixes and platform-channel noise.
+String friendlyError(Object error) {
+  var text = error.toString();
+  final platform = RegExp(
+    r'^PlatformException\([^,]*, ([^,]*),',
+  ).firstMatch(text);
+  if (platform != null) text = platform.group(1)!;
+  text = text.replaceFirst(
+    RegExp(
+      r'^(Exception|Bad state|Invalid argument\(s\)|FormatException|'
+      r'TimeoutException|StateError|SocketException|FileSystemException)'
+      r'(\s*after [^:]*)?:\s*',
+    ),
+    '',
+  );
+  return text.trim().isEmpty ? error.runtimeType.toString() : text.trim();
+}

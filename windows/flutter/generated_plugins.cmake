@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  app_links
   connectivity_plus
   file_selector_windows
   flutter_blue_plus_winrt
@@ -10,6 +11,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   flutter_secure_storage_windows
   flutter_tts
   geolocator_windows
+  local_auth_windows
   share_plus
   url_launcher_windows
 )

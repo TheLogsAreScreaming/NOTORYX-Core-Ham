@@ -56,4 +56,8 @@ void main() {
     await go(tester, MainTab.home);
     expect(find.text('screen:home'), findsOneWidget);
   });
+
+  test('only Chats and Nodes need a connected radio', () {
+    expect(MainTab.values.where(tabNeedsRadio), [MainTab.chats, MainTab.nodes]);
+  });
 }

@@ -378,6 +378,22 @@ void main() {
   });
 
   group('AppSettings — new fields', () {
+    test('map telemetry badges and metric survive a save and reload', () {
+      expect(AppSettings().mapShowTelemetry, isFalse);
+      expect(AppSettings().mapTelemetryMetric, 'battery');
+      final saved = AppSettings(
+        mapShowTelemetry: true,
+        mapTelemetryMetric: 'humidity',
+      ).toJson();
+      final back = AppSettings.fromJson(jsonDecode(jsonEncode(saved)));
+      expect(back.mapShowTelemetry, isTrue);
+      expect(back.mapTelemetryMetric, 'humidity');
+      expect(
+        back.copyWith(mapShowTelemetry: false).mapTelemetryMetric,
+        'humidity',
+      );
+    });
+
     test('default values are correct', () {
       final settings = AppSettings();
       expect(settings.maxRouteWeight, equals(5.0));

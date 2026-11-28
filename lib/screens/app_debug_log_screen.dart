@@ -126,18 +126,14 @@ class AppDebugLogScreen extends StatelessWidget {
                         const SizedBox(height: 16),
                         Text(
                           context.l10n.debugLog_noEntries,
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: MeshPalette.ink3,
-                          ),
+                          style: Theme.of(context).textTheme.bodyLarge
+                              ?.copyWith(color: MeshPalette.ink3),
                         ),
                         const SizedBox(height: 8),
                         Text(
                           context.l10n.debugLog_enableInSettings,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: MeshPalette.ink3,
-                          ),
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(color: MeshPalette.ink3),
                         ),
                       ],
                     ),

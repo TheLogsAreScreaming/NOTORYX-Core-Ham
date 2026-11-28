@@ -18,7 +18,6 @@ const botCommands = <String>[
   '!repeater',
   '!sun',
   '!moon',
-  '!weather',
   '!dice',
   '!trace',
 ];
@@ -93,8 +92,9 @@ class BotSettings {
     this.enabled = false,
     this.awayEnabled = true,
     this.shareLocation = false,
-    this.awayMessage = "I'm away. Your message was received by NOTORYX Core.",
-    this.info = 'NOTORYX Core',
+    this.awayMessage =
+        "I'm away. Your message was received by NOTORYX Core Ham.",
+    this.info = 'NOTORYX Core Ham',
     this.checkIn = 'No check-in status configured.',
     this.cooldownSeconds = 300,
     this.repliesPerMinute = 3,
@@ -156,12 +156,14 @@ class BotSettings {
     shareLocation: json['shareLocation'] as bool? ?? false,
     awayMessage:
         json['awayMessage'] as String? ??
-        "I'm away. Your message was received by NOTORYX Core.",
-    info: json['info'] as String? ?? 'NOTORYX Core',
+        "I'm away. Your message was received by NOTORYX Core Ham.",
+    info: json['info'] as String? ?? 'NOTORYX Core Ham',
     checkIn: json['checkIn'] as String? ?? 'No check-in status configured.',
     cooldownSeconds: (json['cooldownSeconds'] as int? ?? 300).clamp(60, 3600),
     repliesPerMinute: (json['repliesPerMinute'] as int? ?? 3).clamp(1, 6),
-    commands: (json['commands'] as List?)?.cast<String>().toSet(),
+    // `!weather` was removed; older saved settings may still list it.
+    commands: (json['commands'] as List?)?.cast<String>().toSet()
+      ?..remove('!weather'),
     rules: (json['rules'] as List? ?? [])
         .map((r) => BotRule.fromJson(Map<String, dynamic>.from(r as Map)))
         .toList(),

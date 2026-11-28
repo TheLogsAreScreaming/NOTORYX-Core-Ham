@@ -14,6 +14,7 @@ class GlassActionRow extends StatelessWidget {
     this.trailing,
     this.onTap,
     this.titleColor,
+    this.iconColor,
   });
 
   final String title;
@@ -22,6 +23,9 @@ class GlassActionRow extends StatelessWidget {
   final Widget? trailing;
   final VoidCallback? onTap;
   final Color? titleColor;
+
+  /// The icon's color; muted ink when null.
+  final Color? iconColor;
 
   @override
   Widget build(BuildContext context) => Padding(
@@ -41,6 +45,7 @@ class GlassActionRow extends StatelessWidget {
         trailing: trailing,
         onTap: onTap,
         titleColor: titleColor,
+        iconColor: iconColor,
         divider: false,
       ),
     ),

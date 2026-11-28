@@ -2,12 +2,19 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+
 import '../l10n/l10n.dart';
 
 class GifPicker extends StatefulWidget {
   final Function(String gifId) onGifSelected;
 
   const GifPicker({super.key, required this.onGifSelected});
+
+  /// Whether this build has a GIPHY key, so GIF search can work.
+  ///
+  /// Builds without one hide the "Send GIF" action. Received GIFs still
+  /// display, because loading them from the GIPHY media CDN needs no key.
+  static bool get isAvailable => _GifPickerState._giphyApiKey.isNotEmpty;
 
   @override
   State<GifPicker> createState() => _GifPickerState();
@@ -19,9 +26,10 @@ class _GifPickerState extends State<GifPicker> {
   bool _isLoading = false;
   String? _error;
 
-  // Giphy API key - Using public beta key (limited usage)
-  // For production, replace with your own Giphy API key from developers.giphy.com
-  static const String _giphyApiKey = 'sXpGFDGZs0Dv1mmNFvYaGUvYwKX0PWIh';
+  // GIPHY API key, supplied at build time with
+  // --dart-define=GIPHY_API_KEY=<key> (CI reads the GIPHY_API_KEY secret).
+  // Never put a key in source: this repository is public.
+  static const String _giphyApiKey = String.fromEnvironment('GIPHY_API_KEY');
 
   @override
   void initState() {
@@ -135,6 +143,7 @@ class _GifPickerState extends State<GifPicker> {
               ),
               const Spacer(),
               IconButton(
+                tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
                 icon: const Icon(Icons.close),
                 onPressed: () => Navigator.pop(context),
               ),
@@ -150,6 +159,9 @@ class _GifPickerState extends State<GifPicker> {
               prefixIcon: const Icon(Icons.search),
               suffixIcon: _searchController.text.isNotEmpty
                   ? IconButton(
+                      tooltip: MaterialLocalizations.of(
+                        context,
+                      ).clearButtonTooltip,
                       icon: const Icon(Icons.clear),
                       onPressed: () {
                         _searchController.clear();
@@ -261,35 +273,39 @@ class _GifPickerState extends State<GifPicker> {
         final previewUrl =
             gif['images']?['fixed_height_small']?['url'] as String?;
 
-        return GestureDetector(
-          onTap: () {
-            widget.onGifSelected(gifId);
-            Navigator.pop(context);
-          },
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Container(
-              color: Theme.of(context).colorScheme.surfaceContainerHighest,
-              child: previewUrl != null
-                  ? Image.network(
-                      previewUrl,
-                      fit: BoxFit.cover,
-                      loadingBuilder: (context, child, loadingProgress) {
-                        if (loadingProgress == null) return child;
-                        return Center(
-                          child: CircularProgressIndicator(
-                            value: loadingProgress.expectedTotalBytes != null
-                                ? loadingProgress.cumulativeBytesLoaded /
-                                      loadingProgress.expectedTotalBytes!
-                                : null,
-                          ),
-                        );
-                      },
-                      errorBuilder: (context, error, stackTrace) {
-                        return const Center(child: Icon(Icons.error_outline));
-                      },
-                    )
-                  : const Center(child: Icon(Icons.gif_box)),
+        return Semantics(
+          button: true,
+          label: context.l10n.chat_sendGif,
+          child: GestureDetector(
+            onTap: () {
+              widget.onGifSelected(gifId);
+              Navigator.pop(context);
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Container(
+                color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                child: previewUrl != null
+                    ? Image.network(
+                        previewUrl,
+                        fit: BoxFit.cover,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return Center(
+                            child: CircularProgressIndicator(
+                              value: loadingProgress.expectedTotalBytes != null
+                                  ? loadingProgress.cumulativeBytesLoaded /
+                                        loadingProgress.expectedTotalBytes!
+                                  : null,
+                            ),
+                          );
+                        },
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Center(child: Icon(Icons.error_outline));
+                        },
+                      )
+                    : const Center(child: Icon(Icons.gif_box)),
+              ),
             ),
           ),
         );

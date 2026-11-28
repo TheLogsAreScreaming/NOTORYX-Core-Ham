@@ -3,9 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
+import '../l10n/app_localizations.dart';
 import '../l10n/l10n.dart';
 import '../models/contact.dart';
 import '../l10n/contact_localization.dart';
+import '../services/repeater_clock_sync.dart';
+import '../services/repeater_login_doctor.dart';
 import '../services/storage_service.dart';
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
@@ -122,8 +125,10 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
       appLogger.info('Login routing: $selectionLabel', tag: 'RepeaterLogin');
       bool? loginResult;
       bool isAdmin = false;
+      var sendFailed = false;
       for (int attempt = 0; attempt < _maxAttempts; attempt++) {
         if (!mounted) return;
+        if (!_connector.isConnected) break;
         setState(() {
           _currentAttempt = attempt + 1;
         });
@@ -132,7 +137,13 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
           'Sending login attempt ${attempt + 1}/$_maxAttempts',
           tag: 'RepeaterLogin',
         );
-        await _connector.sendFrame(loginFrame);
+        try {
+          await _connector.sendFrame(loginFrame);
+        } catch (e) {
+          appLogger.warn('Login frame not sent: $e', tag: 'RepeaterLogin');
+          sendFailed = true;
+          break;
+        }
 
         (loginResult, isAdmin) = await _awaitLoginResponse(timeout);
         if (loginResult == true) {
@@ -169,10 +180,24 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
       }
 
       if (loginResult != true) {
+        final failure = diagnoseLogin(
+          radioConnected: _connector.isConnected,
+          sendFailed: sendFailed,
+          result: loginResult,
+          usedFlood: selection.useFlood,
+        );
+        appLogger.warn(
+          'Login stopped at ${failure?.name}',
+          tag: 'RepeaterLogin',
+        );
         if (mounted) {
           setState(() {
             _isLoggingIn = false;
-            _loginError = context.l10n.login_failedMessage;
+            _loginError = _failureText(
+              context.l10n,
+              failure,
+              selection.hopCount,
+            );
           });
         }
         return;
@@ -194,23 +219,18 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
           .getRepeaterAutoClockSyncAfterLoginEnabled(
             widget.repeater.publicKeyHex,
           );
-      if (autoClockSync) {
-        try {
-          final timestampSeconds =
-              DateTime.now().millisecondsSinceEpoch ~/ 1000;
-          await _connector.sendFrame(
-            buildSendCliCommandFrame(
-              repeater.publicKey,
-              'clock sync',
-              timestampSeconds: timestampSeconds,
-            ),
-          );
-        } catch (e) {
-          appLogger.warn(
-            'Auto clock sync failed for ${repeater.name}: $e',
-            tag: 'RepeaterLogin',
-          );
-        }
+      final behind = RepeaterClockSync.behindBy(
+        _connector.repeaterClockAtLogin(repeater.publicKey),
+        DateTime.now(),
+      );
+      if (mounted) {
+        _checkRepeaterClock(
+          ScaffoldMessenger.of(context),
+          context.l10n,
+          repeater,
+          enabled: autoClockSync,
+          behind: behind,
+        );
       }
 
       if (mounted) {
@@ -226,11 +246,28 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
       if (mounted) {
         setState(() {
           _isLoggingIn = false;
-          _loginError = context.l10n.login_failedMessage;
+          _loginError = _connector.isConnected
+              ? context.l10n.login_failedMessage
+              : context.l10n.login_failRadioOffline;
         });
       }
     }
   }
+
+  /// Says which step the login stopped at.
+  String _failureText(AppLocalizations l10n, LoginFailure? failure, int hops) =>
+      switch (failure) {
+        LoginFailure.radioOffline => l10n.login_failRadioOffline,
+        LoginFailure.sendFailed => l10n.login_failSend,
+        LoginFailure.rejected => l10n.login_failRejected,
+        LoginFailure.noAnswerPath => l10n.login_failNoAnswerPath(
+          hops,
+          l10n.login_forceFloodMode,
+          l10n.login_routing,
+        ),
+        LoginFailure.noAnswerFlood => l10n.login_failNoAnswerFlood,
+        null => l10n.login_failedMessage,
+      };
 
   // _awaitLoginResponse returns a record of bool, for success and if the client is an admin
   Future<(bool?, bool)> _awaitLoginResponse(Duration timeout) async {
@@ -266,6 +303,63 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
     timer.cancel();
     await subscription.cancel();
     return (result, isAdmin);
+  }
+
+  /// After login: sends the phone's time when the repeater's clock is off
+  /// (retrying, as a single lost reply is common on busy meshes), or tells
+  /// the user about a wrong clock when they turned automatic sync off. Runs
+  /// after the dialog closes, so it never holds up the login.
+  void _checkRepeaterClock(
+    ScaffoldMessengerState messenger,
+    AppLocalizations l10n,
+    Contact repeater, {
+    required bool enabled,
+    required Duration? behind,
+  }) {
+    if (RepeaterClockSync.shouldNotify(enabled: enabled, behind: behind)) {
+      messenger.showSnackBar(
+        SnackBar(
+          content: Text(l10n.repeater_clockWrongNotice(repeater.name)),
+          action: SnackBarAction(
+            label: l10n.repeater_clockSyncAction,
+            onPressed: () => _syncRepeaterClock(messenger, l10n, repeater),
+          ),
+        ),
+      );
+      return;
+    }
+    if (RepeaterClockSync.shouldSync(enabled: enabled, behind: behind)) {
+      _syncRepeaterClock(messenger, l10n, repeater, quietIfSet: behind == null);
+    }
+  }
+
+  void _syncRepeaterClock(
+    ScaffoldMessengerState messenger,
+    AppLocalizations l10n,
+    Contact repeater, {
+    bool quietIfSet = false,
+  }) {
+    unawaited(
+      RepeaterClockSync.sync(_connector, repeater).then((result) {
+        appLogger.info(
+          'Clock sync for ${repeater.name}: ${result.name}',
+          tag: 'RepeaterLogin',
+        );
+        final text = switch (result) {
+          RepeaterClockSyncResult.set =>
+            quietIfSet ? null : l10n.repeater_clockSyncDone(repeater.name),
+          RepeaterClockSyncResult.ahead => l10n.repeater_clockAhead(
+            repeater.name,
+          ),
+          RepeaterClockSyncResult.failed => l10n.repeater_clockSyncFailed(
+            repeater.name,
+          ),
+        };
+        if (text != null && messenger.mounted) {
+          messenger.showSnackBar(SnackBar(content: Text(text)));
+        }
+      }),
+    );
   }
 
   @override
@@ -352,6 +446,9 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
                       hintText: l10n.login_enterPassword,
                       prefixIcon: const Icon(Icons.lock),
                       suffixIcon: IconButton(
+                        tooltip: _obscurePassword
+                            ? context.l10n.a11y_showPassword
+                            : context.l10n.a11y_hidePassword,
                         icon: Icon(
                           _obscurePassword
                               ? Icons.visibility

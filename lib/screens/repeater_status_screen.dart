@@ -1,19 +1,26 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+
 import '../l10n/l10n.dart';
+import '../models/admin_wait.dart';
 import '../models/contact.dart';
 import '../models/path_selection.dart';
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../services/app_settings_service.dart';
 import '../services/repeater_command_service.dart';
+import '../services/repeater_status_history.dart';
 import '../theme/mesh_theme.dart';
 import '../utils/battery_utils.dart';
+import '../widgets/admin_wait_banner.dart';
 import '../widgets/mesh_ui.dart';
+import '../widgets/repeater_history_widgets.dart';
+import '../widgets/repeater_report_card_view.dart';
 import '../widgets/routing_sheet.dart';
 import '../helpers/snack_bar_builder.dart';
 
@@ -38,6 +45,7 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
       _statusPayloadOffset + _statusStatsSize;
 
   bool _isLoading = false;
+  AdminWait? _wait;
   StreamSubscription<Uint8List>? _frameSubscription;
   RepeaterCommandService? _commandService;
   Timer? _statusTimeout;
@@ -190,6 +198,17 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
       _dupFlood = floodDups;
       _chanUtil = ((txAirSecs + rxAirSecs) / uptimeSecs) * 100;
     });
+    _keepStatus(
+      StatusSample(
+        at: DateTime.now(),
+        batteryMv: batteryMv,
+        rssi: lastRssi,
+        snr: lastSnrRaw / 4.0,
+        noiseFloor: noiseFloor,
+        errors: errEvents,
+        uptimeSecs: uptimeSecs,
+      ),
+    );
     final connector = Provider.of<MeshCoreConnector>(context, listen: false);
     connector.updateRepeaterBatterySnapshot(
       widget.repeater.publicKeyHex,
@@ -197,6 +216,14 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
       source: 'status_binary',
     );
     _recordStatusResult(true);
+  }
+
+  void _keepStatus(StatusSample sample) {
+    if (!mounted) return;
+    context.read<RepeaterStatusHistory?>()?.recordStatus(
+      widget.repeater.publicKeyHex,
+      sample,
+    );
   }
 
   bool _matchesRepeaterPrefix(Uint8List prefix) {
@@ -246,12 +273,23 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
           _dupFlood = _asInt(data['dup_flood']);
           _dupDirect = _asInt(data['dup_direct']);
         }
+        _keepStatus(
+          StatusSample(
+            at: DateTime.now(),
+            batteryMv: _asInt(data['battery_mv']),
+            uptimeSecs: _asInt(data['uptime_secs']),
+            errors: _asInt(data['errors']),
+            noiseFloor: _asInt(data['noise_floor']),
+            rssi: _asInt(data['last_rssi']),
+            snr: _asDouble(data['last_snr']),
+          ),
+        );
       } catch (_) {}
     }
     if (mounted) setState(() {});
   }
 
-  Future<void> _loadStatus() async {
+  Future<void> _loadStatus({int attempt = 1}) async {
     if (_commandService == null) return;
 
     setState(() {
@@ -294,16 +332,32 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
         pathLength: pathLengthValue,
         messageBytes: messageBytes,
       );
+      if (mounted) {
+        setState(() {
+          _wait = AdminWait(
+            hops: pathLengthValue,
+            timeout: Duration(milliseconds: timeoutMs),
+            attempt: attempt,
+          );
+        });
+      }
       _statusTimeout?.cancel();
       _statusTimeout = Timer(Duration(milliseconds: timeoutMs), () {
         if (!mounted) return;
-        setState(() => _isLoading = false);
+        _recordStatusResult(false);
+        if (attempt < adminRequestMaxAttempts) {
+          unawaited(_loadStatus(attempt: attempt + 1));
+          return;
+        }
+        setState(() {
+          _isLoading = false;
+          _wait = null;
+        });
         showDismissibleSnackBar(
           context,
           content: Text(context.l10n.repeater_statusRequestTimeout),
           backgroundColor: Theme.of(context).colorScheme.error,
         );
-        _recordStatusResult(false);
       });
     } catch (e) {
       if (mounted) {
@@ -470,18 +524,42 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
         child: RefreshIndicator(
           onRefresh: _loadStatus,
           child: _isLoading && _batteryMv == null
-              ? const Center(child: CircularProgressIndicator())
+              ? _buildWaiting()
               : _buildBody(l10n, repeater.name),
         ),
       ),
     );
   }
 
+  Widget _buildWaiting() {
+    final wait = _wait;
+    return ListView(
+      padding: const EdgeInsets.all(16),
+      children: [
+        if (wait != null)
+          AdminWaitBanner(wait: wait)
+        else
+          const Padding(
+            padding: EdgeInsets.only(top: 48),
+            child: Center(child: CircularProgressIndicator()),
+          ),
+        RepeaterReportCardView(repeaterKey: widget.repeater.publicKeyHex),
+        RepeaterStatusHistoryCard(repeaterKey: widget.repeater.publicKeyHex),
+      ],
+    );
+  }
+
   Widget _buildBody(dynamic l10n, String name) {
     final scheme = Theme.of(context).colorScheme;
+    final wait = _isLoading ? _wait : null;
     return ListView(
       padding: const EdgeInsets.only(bottom: 24),
       children: [
+        if (wait != null)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+            child: AdminWaitBanner(wait: wait),
+          ),
         // ── System ─────────────────────────────────────────────────────────
         SectionHeader(l10n.repeater_systemInformation),
         Padding(
@@ -596,6 +674,8 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
           ]),
         ),
         const SizedBox(height: 8),
+        RepeaterReportCardView(repeaterKey: widget.repeater.publicKeyHex),
+        RepeaterStatusHistoryCard(repeaterKey: widget.repeater.publicKeyHex),
       ],
     );
   }

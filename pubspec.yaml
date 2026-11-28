@@ -1,7 +1,9 @@
 name: meshcore_open
-description: "NOTORYX Core: an independent MeshCore LoRa companion app"
+description: "NOTORYX Core Ham: an independent MeshCore LoRa companion app"
 publish_to: 'none'
-version: 10.0.0-rc.24+76
+# NOTORYX Core Ham versions. The build number stays above 76 (the copy of
+# NOTORYX Core it started from), so Android installs updates over test 1.
+version: 0.1.0-test.23+121
 
 environment:
   sdk: ^3.9.2
@@ -14,10 +16,12 @@ dependencies:
   intl: any
   cupertino_icons: ^1.0.8
   flutter_blue_plus: ^2.1.0
+  # Bundled copy of MeshEnvy/flserial (MIT), the same as NOTORYX Core's,
+  # with fixes: idle USB serial no longer keeps a CPU core busy on macOS
+  # and Linux, Linux waits for the read callback before delivering data,
+  # and closing a port frees its buffers. Same API.
   flserial:
-    git:
-      url: https://github.com/MeshEnvy/flserial.git
-      ref: 48216310061efc8d5d217cc18014fc2cb501646e
+    path: third_party/flserial
   provider: ^6.1.5+1
   shared_preferences: ^2.2.2
   uuid: ^4.3.3
@@ -41,6 +45,7 @@ dependencies:
   gpx: ^2.3.0
   path_provider: ^2.1.5
   share_plus: ^13.1.0
+  file_selector: ^1.1.0
   build_pipe: ^0.3.1
   material_symbols_icons: ^4.2928.1
   web: ^1.1.1
@@ -62,9 +67,14 @@ dependencies:
   home_widget: ^0.10.0
   h3_flutter: ^0.7.1
   geolocator: ^14.1.2
+  app_links: ^7.2.2
+  sqlite3: ^3.9.0
+  local_auth: ^3.0.2
 
 hooks:
   user_defines:
+    sqlite3:
+      source: sqlite3mc
     llamadart:
       llamadart_native_backends:
         platforms:
@@ -80,6 +90,13 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   flutter_launcher_icons: ^0.14.4
   fake_async: ^1.3.3
+
+# jni 1.2.0 / jni_flutter 1.1.0 (published 2026-11-18) make path_provider_android
+# fail to find android.content.Context at startup, so the app hangs on the
+# splash screen. Keep the versions test.15 shipped with until that's fixed.
+dependency_overrides:
+  jni: 1.1.2
+  jni_flutter: 1.0.4+1
 
 flutter:
   generate: true
@@ -136,15 +153,19 @@ flutter_launcher_icons:
   ios: true
   image_path: "branding/notoryx-icon.png"
   remove_alpha_ios: true
-  adaptive_icon_background: "#150F0D"
+  background_color_ios: "#080808"
+  adaptive_icon_background: "#080808"
   adaptive_icon_foreground: "branding/notoryx-icon-foreground.png"
+  # The BLACKOUT foreground already sits inside the 66 dp safe zone.
+  adaptive_icon_foreground_inset: 0
+  adaptive_icon_monochrome: "branding/notoryx-icon-monochrome.png"
   macos:
     generate: true
     image_path: "branding/notoryx-icon-macos.png"
   web:
     generate: true
     image_path: "branding/notoryx-icon.png"
-    background_color: "#150F0D"
+    background_color: "#080808"
     theme_color: "#FF9A3C"
 
 build_pipe:

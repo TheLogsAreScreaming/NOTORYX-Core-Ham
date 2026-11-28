@@ -207,9 +207,7 @@ class _ConnectedChip extends StatelessWidget {
             style: TextStyle(
               fontSize: 13,
               fontWeight: FontWeight.w600,
-              color: Theme.of(context).brightness == Brightness.dark
-                  ? const Color(0xFF6EE7B7)
-                  : const Color(0xFF047857),
+              color: MeshPalette.signal,
             ),
           ),
         ],

@@ -5,6 +5,7 @@ import 'package:fake_async/fake_async.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:meshcore_open/connector/meshcore_connector.dart';
+import 'package:meshcore_open/services/connection_timeline.dart';
 import 'package:meshcore_open/connector/meshcore_protocol.dart';
 import 'package:meshcore_open/models/saved_radio.dart';
 import 'package:meshcore_open/storage/prefs_manager.dart';
@@ -279,6 +280,25 @@ void main() {
       expect(ble.linked, [_radioB]);
       expect(connector.deviceId, _radioB);
       expect(connector.deviceDisplayName, 'Ridge');
+    });
+
+    test('the timeline tells an automatic connect from a tap', () async {
+      await const SavedRadio(
+        transport: SavedRadioTransport.bluetooth,
+        address: _radioB,
+        name: 'Ridge',
+      ).save(PrefsManager.instance);
+
+      await connector.reconnectSavedRadio(automatic: true);
+      expect(connector.connectionTimeline.events.map((e) => e.cause).toSet(), {
+        ConnectionCause.autoConnect,
+      });
+      await connector.disconnect();
+      await connector.reconnectSavedRadio();
+      expect(
+        connector.connectionTimeline.events.last.cause,
+        ConnectionCause.user,
+      );
     });
 
     test('reconnect with nothing saved does nothing', () async {

@@ -17,6 +17,8 @@ import '../widgets/radio_overview_card.dart';
 import 'scanner_screen.dart';
 import 'tcp_screen.dart';
 import 'usb_screen.dart';
+import '../widgets/ui/mesh_states.dart';
+import '../helpers/snack_bar_builder.dart';
 
 /// Radio and MQTT broker connections are shown and controlled separately.
 class ConnectionDashboardScreen extends StatelessWidget {
@@ -121,9 +123,8 @@ class RadioConnectionCard extends StatelessWidget {
                       title,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: MeshPalette.ink,
-                        fontSize: 20,
                         fontWeight: FontWeight.w800,
                         height: 1.15,
                       ),
@@ -137,11 +138,11 @@ class RadioConnectionCard extends StatelessWidget {
                           child: Text(
                             radioStatusLabel(l10n, connector),
                             key: const ValueKey('radio-status'),
-                            style: TextStyle(
-                              color: statusColor,
-                              fontSize: 13.5,
-                              fontWeight: FontWeight.w700,
-                            ),
+                            style: Theme.of(context).textTheme.titleSmall
+                                ?.copyWith(
+                                  color: statusColor,
+                                  fontWeight: FontWeight.w700,
+                                ),
                           ),
                         ),
                         Flexible(
@@ -149,10 +150,8 @@ class RadioConnectionCard extends StatelessWidget {
                             '  ·  ${transportLabel(l10n, connector.activeTransport)}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              color: MeshPalette.ink3,
-                              fontSize: 13,
-                            ),
+                            style: Theme.of(context).textTheme.bodyMedium
+                                ?.copyWith(color: MeshPalette.ink3),
                           ),
                         ),
                       ],
@@ -266,7 +265,7 @@ class RadioConnectionCard extends StatelessWidget {
       await connector.reconnectSavedRadio();
     } catch (_) {
       // The card already shows connector.lastConnectionError.
-      messenger.showSnackBar(SnackBar(content: Text(failed)));
+      messenger.showSnackBar(meshSnackBar(content: Text(failed)));
     }
   }
 }
@@ -389,9 +388,8 @@ class _StatTile extends StatelessWidget {
                   stat.label,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: MeshPalette.ink3,
-                    fontSize: 12,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -520,7 +518,9 @@ class _ExtraBrokers extends StatelessWidget {
                 context.l10n.mqttExtra_ownKey(
                   uploaders.ownPublicKey(u.id)!.substring(0, 8),
                 ),
-                style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
               ),
             ),
         ],
@@ -593,22 +593,11 @@ class _ExtraBrokers extends StatelessWidget {
     MqttUploadersService uploaders,
     MqttUploader u,
   ) async {
-    final ok = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(context.l10n.mqttExtra_removeTitle(u.name)),
-        content: Text(context.l10n.mqttExtra_removeBody),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: Text(context.l10n.common_cancel),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(context, true),
-            child: Text(context.l10n.common_remove),
-          ),
-        ],
-      ),
+    final ok = await confirmDestructive(
+      context,
+      title: context.l10n.mqttExtra_removeTitle(u.name),
+      message: context.l10n.mqttExtra_removeBody,
+      confirmLabel: context.l10n.common_remove,
     );
     if (ok == true) await uploaders.remove(u.id);
   }

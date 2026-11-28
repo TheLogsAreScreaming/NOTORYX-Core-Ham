@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 
 import '../models/access_control.dart';
 import '../models/flood_corridor.dart';
+import '../utils/amateur_radio.dart' show stationIdBytes;
 
 // Buffer Reader - sequential binary data reader with pointer tracking
 class BufferReader {
@@ -312,6 +313,8 @@ const int pushCodeNewAdvert = 0x8A;
 const int pushCodeTelemetryResponse = 0x8B;
 const int pushCodeBinaryResponse = 0x8C;
 const int pushCodeControlData = 0x8E;
+const int pushCodeContactDeleted = 0x8F; // radio overwrote or dropped one
+const int pushCodeContactsFull = 0x90; // radio's contact table is full
 
 // Contact/advertisement types
 const int advTypeChat = 1;
@@ -367,8 +370,9 @@ const int pathHashSize = 1;
 const int maxNameSize = 32;
 const int maxFrameSize = 172;
 const int appProtocolVersion = 4;
-// Matches firmware MAX_TEXT_LEN (10 * CIPHER_BLOCK_SIZE).
-const int maxTextPayloadBytes = 160;
+// Matches the ham firmware's MAX_TEXT_LEN: the 8-byte station ID on every
+// frame shrinks MAX_PACKET_PAYLOAD from 184 to 176, so text drops from 160.
+const int maxTextPayloadBytes = 152;
 const int _sendTextMsgOverheadBytes =
     1 + 1 + 1 + 4 + 6 + 1 + 2; // +2 safety margin
 const int _sendChannelTextMsgOverheadBytes =
@@ -764,6 +768,14 @@ Uint8List buildResetPathFrame(Uint8List pubKey) {
   return writer.toBytes();
 }
 
+/// [time] as the 32-bit seconds value of a contact's last-advert field.
+///
+/// The radio drops any advert that is not newer than this field, so contact
+/// writes must send the node's own advert time (or 0 for a node never heard),
+/// never the phone's clock.
+int advertSeconds(DateTime time) =>
+    (time.millisecondsSinceEpoch ~/ 1000).clamp(0, 0xFFFFFFFF).toInt();
+
 // Build CMD_ADD_UPDATE_CONTACT frame to set custom path
 // Format: [cmd][pub_key x32][type][flags][path_len][path x64][name x32][Lat? x4, Lon? x4][timestamp? x4]
 Uint8List buildUpdateContactPathFrame(
@@ -776,6 +788,7 @@ Uint8List buildUpdateContactPathFrame(
   double? lat,
   double? lon,
   DateTime? lastModified,
+  int? lastAdvertTimestamp,
 }) {
   final writer = BufferWriter();
   writer.writeByte(cmdAddUpdateContact);
@@ -789,8 +802,10 @@ Uint8List buildUpdateContactPathFrame(
   // Name (32 bytes, null-padded)
   writer.writeCString(name, maxNameSize);
 
-  // Timestamp
-  final timestamp = DateTime.now().millisecondsSinceEpoch ~/ 1000;
+  // The contact's last advert time. The radio ignores an advert that is not
+  // newer than this, so 0 lets the next advert through whatever its clock.
+  final timestamp =
+      lastAdvertTimestamp ?? DateTime.now().millisecondsSinceEpoch ~/ 1000;
   writer.writeUInt32LE(timestamp);
 
   // Optional [Lat x4, Lon x4][timestamp x4] tail per the doc comment above.
@@ -879,7 +894,7 @@ int calculateMessageTimeout({
 }) {
   // Calculate airtime for one packet
   final airtime = calculateLoRaAirtime(
-    payloadBytes: messageBytes,
+    payloadBytes: messageBytes + stationIdBytes,
     spreadingFactor: sf,
     bandwidthHz: bwHz,
     codingRate: cr,

@@ -33,9 +33,14 @@ class _EmptyStateState extends State<EmptyState>
   );
 
   @override
-  void initState() {
-    super.initState();
-    _controller.forward();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Respect the system's reduce-motion setting: appear without animating.
+    if (MediaQuery.maybeDisableAnimationsOf(context) ?? false) {
+      _controller.value = 1;
+    } else if (_controller.isDismissed) {
+      _controller.forward();
+    }
   }
 
   @override
@@ -56,55 +61,57 @@ class _EmptyStateState extends State<EmptyState>
           end: Offset.zero,
         ).animate(_curve),
         child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 80,
-                  height: 80,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: scheme.primary.withValues(alpha: 0.08),
-                    border: Border.all(
-                      color: scheme.primary.withValues(alpha: 0.18),
-                      width: 1.5,
+          // Scrolls and caps its width so large system text never overflows.
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 420),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 80,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: scheme.primary.withValues(alpha: 0.08),
+                      border: Border.all(
+                        color: scheme.primary.withValues(alpha: 0.18),
+                        width: 1.5,
+                      ),
+                    ),
+                    child: Icon(
+                      widget.icon,
+                      size: 36,
+                      color: scheme.onSurfaceVariant,
                     ),
                   ),
-                  child: Icon(
-                    widget.icon,
-                    size: 36,
-                    color: scheme.onSurfaceVariant,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  widget.title,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: scheme.onSurface,
-                    letterSpacing: -0.1,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                if (widget.subtitle != null) ...[
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 20),
                   Text(
-                    widget.subtitle!,
-                    style: TextStyle(
-                      fontSize: 13.5,
-                      color: scheme.onSurfaceVariant,
-                      height: 1.45,
+                    widget.title,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: scheme.onSurface,
+                      letterSpacing: -0.1,
                     ),
                     textAlign: TextAlign.center,
                   ),
+                  if (widget.subtitle != null) ...[
+                    const SizedBox(height: 8),
+                    Text(
+                      widget.subtitle!,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: scheme.onSurfaceVariant,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                  if (widget.action != null) ...[
+                    const SizedBox(height: 28),
+                    widget.action!,
+                  ],
                 ],
-                if (widget.action != null) ...[
-                  const SizedBox(height: 28),
-                  widget.action!,
-                ],
-              ],
+              ),
             ),
           ),
         ),

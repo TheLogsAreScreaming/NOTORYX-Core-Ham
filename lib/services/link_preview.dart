@@ -88,7 +88,7 @@ class LinkPreviewFetcher {
     final client = _client();
     try {
       final req = http.Request('GET', url)
-        ..headers['User-Agent'] = 'NOTORYX Core link preview'
+        ..headers['User-Agent'] = 'NOTORYX Core Ham link preview'
         ..headers['Accept'] = 'text/html';
       final res = await client.send(req).timeout(const Duration(seconds: 6));
       final type = res.headers['content-type'] ?? '';

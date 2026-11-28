@@ -1,0 +1,4 @@
+• Network scan is much faster: Quick mode pings each network once and listens a few seconds
+• Thorough mode still listens only, for networks without a repeater nearby
+• Shorter default list after your first scan, and a time estimate before you start
+• Local mesh settings from the MeshCore map: 26 more areas such as Phoenix and Southern California

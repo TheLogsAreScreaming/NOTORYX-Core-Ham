@@ -93,11 +93,12 @@ const int dataTypeAeicImage = 0xAE1C;
 /// Maximum blob we will ever put in one GRP_DATA packet.
 ///
 /// Binding limits, smallest first:
-///   * app  `maxFrameSize` 172 - 9 byte RESP header = **163**  <- used
+///   * radio `MAX_GROUP_DATA_LENGTH` on the ham firmware: 176 - 16 - 3 = **157**
+///     (the 8-byte station ID shrinks the payload from 184)  <- used
+///   * app  `maxFrameSize` 172 - 9 byte RESP header = 163
 ///   * BLE  ATT_MTU 176 - 3 notify - 9 resp header  = 164
-///   * radio `MAX_GROUP_DATA_LENGTH` 184 - 16 - 3   = 165
 ///   * serial `MAX_CHANNEL_DATA_LENGTH` 176 - 9     = 167
-const int kImageChunkBlobBytes = 163;
+const int kImageChunkBlobBytes = 157;
 
 /// Per-chunk header: sender_prefix(2) + img_id(1) + idx/total(1).
 const int kImageChunkHeaderBytes = 4;

@@ -33,7 +33,11 @@ class _FakeMeshCoreConnector extends MeshCoreConnector {
   String? get activeTcpEndpoint => initialEndpoint;
 
   @override
-  Future<void> connectTcp({required String host, required int port}) async {
+  Future<void> connectTcp({
+    required String host,
+    required int port,
+    bool automaticReconnect = false,
+  }) async {
     connectTcpCalls += 1;
     lastHost = host;
     lastPort = port;
@@ -127,6 +131,8 @@ void main() {
     final scannerL10n = AppLocalizations.of(scannerContext);
     final tcpTile = find.text(scannerL10n.radioStatus_tcp);
     await tester.ensureVisible(tcpTile);
+    // The list measures its full extent lazily; settle before tapping.
+    await tester.pumpAndSettle();
     await tester.tap(tcpTile);
     await tester.pumpAndSettle();
     expect(find.byType(TcpScreen), findsOneWidget);

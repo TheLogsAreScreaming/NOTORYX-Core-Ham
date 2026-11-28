@@ -35,7 +35,12 @@ void main() {
     int snrX4 = 0x1C,
     int rssi = 0xA4,
   }) async {
-    connector.handleFrameForTest([pushCodeLogRxData, snrX4, rssi, ...raw]);
+    connector.handleFrameForTest([
+      pushCodeLogRxData,
+      snrX4,
+      rssi,
+      ...onAir(raw, station: 'N0RPT'),
+    ]);
     await Future<void>.delayed(Duration.zero);
     return heard.last;
   }
@@ -50,8 +55,36 @@ void main() {
     expect(packet.snr, 7.0);
     expect(packet.rssi, -92);
     expect(packet.fromSelf, isFalse);
+    expect(packet.station, 'N0RPT');
+    expect(connector.lastHeardStation, 'N0RPT');
 
     expect((await rx(raw, snrX4: 0xF6)).snr, -2.5);
+  });
+
+  test('ignores stock MeshCore frames', () async {
+    final before = heard.length;
+    connector.handleFrameForTest([
+      pushCodeLogRxData,
+      0x1C,
+      0xA4,
+      ...groupTextPacket(psk: psk, text: 'Alice: Part 15 mesh'),
+    ]);
+    await Future<void>.delayed(Duration.zero);
+    expect(heard.length, before);
+  });
+
+  test('counts stock MeshCore frames, but not noise or ham frames', () async {
+    expect(connector.stockFramesHeard, 0);
+    void log(List<int> onAir) =>
+        connector.handleFrameForTest([pushCodeLogRxData, 0x1C, 0xA4, ...onAir]);
+
+    log(groupTextPacket(psk: psk, text: 'Alice: Part 15 mesh'));
+    log(groupTextPacket(psk: psk, text: 'Bob: also Part 15'));
+    log([0x11]); // too short to be a packet
+    log([0xD1, 0, 1, 2]); // payload version 4: not MeshCore
+    await rx(groupTextPacket(psk: psk, text: 'Alice: ham')); // amateur frame
+    expect(connector.stockFramesHeard, 2);
+    expect(connector.lastStockFrameAt, isNotNull);
   });
 
   test('recognises its own advert', () async {

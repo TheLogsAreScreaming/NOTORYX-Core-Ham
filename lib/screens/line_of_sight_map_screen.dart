@@ -544,9 +544,8 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                         '${_start?.label ?? 'A'}  →  ${_end?.label ?? 'B'}',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           color: LosPalette.text,
-                          fontSize: 14,
                           fontWeight: FontWeight.w800,
                         ),
                       ),
@@ -559,11 +558,11 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                                   '${isImperial ? 'mi' : 'km'}',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          color: LosPalette.textMuted,
-                          fontSize: 11.5,
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style: Theme.of(context).textTheme.labelMedium
+                            ?.copyWith(
+                              color: LosPalette.textMuted,
+                              fontWeight: FontWeight.w600,
+                            ),
                       ),
                     ],
                   ),
@@ -656,9 +655,8 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
               color: LosPalette.text,
               icon: Text(
                 isImperial ? 'ft' : 'm',
-                style: const TextStyle(
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   color: LosPalette.text,
-                  fontSize: 12,
                   fontWeight: FontWeight.w800,
                 ),
               ),
@@ -715,9 +713,8 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
               Expanded(
                 child: Text(
                   _statusLabel(status),
-                  style: TextStyle(
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: color,
-                    fontSize: 19,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
@@ -752,7 +749,57 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
               ),
             ],
           ),
+          if (segment != null && segment.worstFresnelClearance != null) ...[
+            const SizedBox(height: 10),
+            _buildFresnelVerdict(segment.worstFresnelClearance!),
+          ],
         ],
+      ),
+    );
+  }
+
+  /// One line saying how much of the first Fresnel zone is clear at its
+  /// tightest point, with a hint when it falls short of 60%.
+  Widget _buildFresnelVerdict(double worstClearance) {
+    final l10n = context.l10n;
+    final percent = (worstClearance * 100).clamp(0, 100).round();
+    final String text;
+    final Color color;
+    final IconData icon;
+    if (worstClearance < 0) {
+      text = l10n.losFresnelBlocked;
+      color = LosPalette.blocked;
+      icon = Icons.block;
+    } else if (worstClearance < LineOfSightService.fresnelClearTarget) {
+      text = l10n.losFresnelPartial(percent);
+      color = LosPalette.marginal;
+      icon = Icons.warning_amber_rounded;
+    } else {
+      text = l10n.losFresnelClear(percent);
+      color = LosPalette.clear;
+      icon = Icons.check_circle_outline;
+    }
+    return Semantics(
+      container: true,
+      label: text,
+      child: ExcludeSemantics(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(icon, color: color, size: 18),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                text,
+                style: const TextStyle(
+                  color: LosPalette.text,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -766,9 +813,8 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
           children: [
             Text(
               label.toUpperCase(),
-              style: const TextStyle(
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
                 color: LosPalette.textMuted,
-                fontSize: 9,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -828,9 +874,8 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                 Expanded(
                   child: Text(
                     '${_formatDistanceValue(obstruction.distanceMeters, isImperial)} $distanceUnit',
-                    style: const TextStyle(
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       color: LosPalette.text,
-                      fontSize: 12,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
@@ -845,11 +890,10 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                       color: LosPalette.blocked,
                       borderRadius: BorderRadius.circular(99),
                     ),
-                    child: const Text(
-                      'WORST',
-                      style: TextStyle(
+                    child: Text(
+                      context.l10n.los_worst,
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: Colors.white,
-                        fontSize: 8,
                         fontWeight: FontWeight.w900,
                       ),
                     ),
@@ -859,9 +903,8 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
             const Spacer(),
             Text(
               'Blocked ${_formatHeightValue(obstruction.obstructionMeters, isImperial)} $heightUnit',
-              style: const TextStyle(
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
                 color: LosPalette.textMuted,
-                fontSize: 11,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -888,11 +931,10 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Selected obstruction',
-            style: TextStyle(
+          Text(
+            context.l10n.los_selectedObstruction,
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
               color: LosPalette.text,
-              fontSize: 14,
               fontWeight: FontWeight.w800,
             ),
           ),
@@ -941,9 +983,8 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
         children: [
           Text(
             label.toUpperCase(),
-            style: const TextStyle(
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
               color: LosPalette.textMuted,
-              fontSize: 9,
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -1015,22 +1056,24 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
               terrainLabel: context.l10n.losLegendTerrain,
               losBeamLabel: context.l10n.losLegendLosBeam,
               radioHorizonLabel: context.l10n.losLegendRadioHorizon,
+              fresnelLabel: context.l10n.losLegendFresnel,
             ),
           ],
           if (obstructions.isNotEmpty) ...[
             const SizedBox(height: 18),
             Text(
               context.l10n.losBlockedSpotsTitle,
-              style: const TextStyle(
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: LosPalette.text,
-                fontSize: 15,
                 fontWeight: FontWeight.w800,
               ),
             ),
             const SizedBox(height: 4),
             Text(
               context.l10n.losBlockedSpotsHint,
-              style: const TextStyle(color: LosPalette.textMuted, fontSize: 12),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: LosPalette.textMuted),
             ),
             const SizedBox(height: 10),
             SizedBox(
@@ -1069,15 +1112,16 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
             collapsedIconColor: LosPalette.textMuted,
             title: Text(
               context.l10n.losMenuTitle,
-              style: const TextStyle(
+              style: Theme.of(context).textTheme.titleSmall?.copyWith(
                 color: LosPalette.text,
-                fontSize: 14,
                 fontWeight: FontWeight.w700,
               ),
             ),
             subtitle: Text(
               context.l10n.losMenuSubtitle,
-              style: const TextStyle(color: LosPalette.textMuted, fontSize: 11),
+              style: Theme.of(
+                context,
+              ).textTheme.labelSmall?.copyWith(color: LosPalette.textMuted),
             ),
             children: [
               SwitchListTile(
@@ -1085,7 +1129,7 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                 contentPadding: EdgeInsets.zero,
                 title: Text(
                   context.l10n.losShowDisplayNodes,
-                  style: const TextStyle(fontSize: 12),
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
                 value: _showDisplayNodes,
                 onChanged: (value) {
@@ -1101,7 +1145,9 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                 const SizedBox(height: 6),
                 Text(
                   context.l10n.losCustomPoints,
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 for (final point in _customEndpoints)
                   ListTile(
@@ -1109,11 +1155,11 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                     contentPadding: EdgeInsets.zero,
                     title: Text(
                       point.label,
-                      style: const TextStyle(fontSize: 12),
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                     subtitle: Text(
                       '${point.point.latitude.toStringAsFixed(5)}, ${point.point.longitude.toStringAsFixed(5)}',
-                      style: const TextStyle(fontSize: 11),
+                      style: Theme.of(context).textTheme.labelSmall,
                     ),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
@@ -1170,7 +1216,7 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                   antennaADisplay.toStringAsFixed(1),
                   heightUnit,
                 ),
-                style: const TextStyle(fontSize: 12),
+                style: Theme.of(context).textTheme.bodySmall,
               ),
               Slider(
                 value: antennaADisplay,
@@ -1188,7 +1234,7 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                   antennaBDisplay.toStringAsFixed(1),
                   heightUnit,
                 ),
-                style: const TextStyle(fontSize: 12),
+                style: Theme.of(context).textTheme.bodySmall,
               ),
               Slider(
                 value: antennaBDisplay,
@@ -1219,10 +1265,9 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                   '${context.l10n.losFrequencyLabel}: '
                   '${displayFrequencyMHz.toStringAsFixed(3)} MHz'
                   '${kFactorUsed == null ? '' : '  k=${kFactorUsed.toStringAsFixed(3)}'}',
-                  style: const TextStyle(
-                    color: LosPalette.textMuted,
-                    fontSize: 11,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelSmall?.copyWith(color: LosPalette.textMuted),
                 ),
                 if (kFactorUsed != null)
                   IconButton(
@@ -1240,7 +1285,9 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
           ],
           Text(
             context.l10n.losElevationAttribution,
-            style: const TextStyle(color: LosPalette.textMuted, fontSize: 10),
+            style: Theme.of(
+              context,
+            ).textTheme.labelSmall?.copyWith(color: LosPalette.textMuted),
           ),
         ],
       ),
@@ -1257,7 +1304,7 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
       children: [
         SizedBox(
           width: 54,
-          child: Text(label, style: const TextStyle(fontSize: 12)),
+          child: Text(label, style: Theme.of(context).textTheme.bodySmall),
         ),
         Expanded(
           child: DropdownButton<LineOfSightEndpoint>(
@@ -1496,40 +1543,50 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
           point: obstruction.point,
           width: 52,
           height: 52,
-          child: GestureDetector(
-            onTap: () => _centerOnObstruction(obstruction),
-            child: Center(
-              child: Container(
-                width:
-                    _selectedObstruction?.sampleIndex == obstruction.sampleIndex
-                    ? 36
-                    : 24,
-                height:
-                    _selectedObstruction?.sampleIndex == obstruction.sampleIndex
-                    ? 36
-                    : 24,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.transparent,
-                  border: Border.all(
-                    color:
-                        _selectedObstruction?.sampleIndex ==
-                            obstruction.sampleIndex
-                        ? LosPalette.selected
-                        : LosPalette.blocked,
-                    width:
-                        _selectedObstruction?.sampleIndex ==
-                            obstruction.sampleIndex
-                        ? 4
-                        : 3,
-                  ),
-                  boxShadow: [
-                    const BoxShadow(
-                      color: LosPalette.shadow,
-                      blurRadius: 8,
-                      offset: Offset(0, 2),
+          child: Semantics(
+            button: true,
+            label: _obstructionChipLabel(
+              obstruction,
+              context.read<AppSettingsService>().settings.unitSystem ==
+                  UnitSystem.imperial,
+            ),
+            child: GestureDetector(
+              onTap: () => _centerOnObstruction(obstruction),
+              child: Center(
+                child: Container(
+                  width:
+                      _selectedObstruction?.sampleIndex ==
+                          obstruction.sampleIndex
+                      ? 36
+                      : 24,
+                  height:
+                      _selectedObstruction?.sampleIndex ==
+                          obstruction.sampleIndex
+                      ? 36
+                      : 24,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.transparent,
+                    border: Border.all(
+                      color:
+                          _selectedObstruction?.sampleIndex ==
+                              obstruction.sampleIndex
+                          ? LosPalette.selected
+                          : LosPalette.blocked,
+                      width:
+                          _selectedObstruction?.sampleIndex ==
+                              obstruction.sampleIndex
+                          ? 4
+                          : 3,
                     ),
-                  ],
+                    boxShadow: [
+                      const BoxShadow(
+                        color: LosPalette.shadow,
+                        blurRadius: 8,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -1765,7 +1822,7 @@ class _LosProfileGeometry {
   late final double minY = samples
       .map(
         (s) => math.min(
-          math.min(s.terrainMeters, s.lineHeightMeters),
+          math.min(s.terrainMeters, s.fresnelBottomMeters),
           s.refractedHeightMeters,
         ),
       )
@@ -1773,7 +1830,7 @@ class _LosProfileGeometry {
   late final double maxY = samples
       .map(
         (s) => math.max(
-          math.max(s.terrainMeters, s.lineHeightMeters),
+          math.max(s.terrainMeters, s.fresnelTopMeters),
           s.refractedHeightMeters,
         ),
       )
@@ -1833,7 +1890,7 @@ class _LosProfilePainter extends CustomPainter {
     final minY = samples
         .map(
           (s) => math.min(
-            math.min(s.terrainMeters, s.lineHeightMeters),
+            math.min(s.terrainMeters, s.fresnelBottomMeters),
             s.refractedHeightMeters,
           ),
         )
@@ -1841,7 +1898,7 @@ class _LosProfilePainter extends CustomPainter {
     final maxY = samples
         .map(
           (s) => math.max(
-            math.max(s.terrainMeters, s.lineHeightMeters),
+            math.max(s.terrainMeters, s.fresnelTopMeters),
             s.refractedHeightMeters,
           ),
         )
@@ -1970,6 +2027,8 @@ class _LosProfilePainter extends CustomPainter {
         ..style = PaintingStyle.stroke
         ..strokeWidth = 2.5,
     );
+
+    _paintFresnelZone(canvas, mapPoint);
 
     final losLine = ui.Path();
     for (int i = 0; i < samples.length; i++) {
@@ -2114,6 +2173,69 @@ class _LosProfilePainter extends CustomPainter {
     }
   }
 
+  /// Shades the first Fresnel zone around the beam and draws a dashed line
+  /// where 60% of it is clear, the usual minimum for a solid link.
+  void _paintFresnelZone(Canvas canvas, Offset Function(double, double) map) {
+    if (!samples.any((s) => s.fresnelRadiusMeters > 0)) return;
+    final zone = ui.Path();
+    for (var i = 0; i < samples.length; i++) {
+      final p = map(samples[i].distanceMeters, samples[i].fresnelTopMeters);
+      if (i == 0) {
+        zone.moveTo(p.dx, p.dy);
+      } else {
+        zone.lineTo(p.dx, p.dy);
+      }
+    }
+    for (var i = samples.length - 1; i >= 0; i--) {
+      final p = map(samples[i].distanceMeters, samples[i].fresnelBottomMeters);
+      zone.lineTo(p.dx, p.dy);
+    }
+    zone.close();
+    canvas.drawPath(
+      zone,
+      Paint()..color = LosPalette.fresnel.withValues(alpha: 0.16),
+    );
+    canvas.drawPath(
+      zone,
+      Paint()
+        ..color = LosPalette.fresnel.withValues(alpha: 0.55)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1,
+    );
+
+    final targetPaint = Paint()
+      ..color = LosPalette.fresnel
+      ..strokeWidth = 1.2;
+    const dash = 5.0;
+    const gap = 4.0;
+    // Where in the dash-gap cycle the line is. Carried from one sample to the
+    // next: segments are often shorter than one dash, and restarting the
+    // pattern on each one would draw a solid line.
+    var phase = 0.0;
+    for (var i = 0; i < samples.length - 1; i++) {
+      final a = map(
+        samples[i].distanceMeters,
+        samples[i].lineHeightMeters -
+            samples[i].fresnelRadiusMeters *
+                LineOfSightService.fresnelClearTarget,
+      );
+      final b = map(
+        samples[i + 1].distanceMeters,
+        samples[i + 1].lineHeightMeters -
+            samples[i + 1].fresnelRadiusMeters *
+                LineOfSightService.fresnelClearTarget,
+      );
+      final length = (b - a).distance;
+      if (length <= 0) continue;
+      final dir = (b - a) / length;
+      final run = dashRuns(length, phase, dash: dash, gap: gap);
+      for (final (start, end) in run.runs) {
+        canvas.drawLine(a + dir * start, a + dir * end, targetPaint);
+      }
+      phase = run.phase;
+    }
+  }
+
   double _displayDistance(double meters) {
     return distanceUnit == 'mi'
         ? (meters / 1000.0) * 0.621371
@@ -2211,11 +2333,13 @@ class _LosLegend extends StatelessWidget {
   final String terrainLabel;
   final String losBeamLabel;
   final String radioHorizonLabel;
+  final String fresnelLabel;
 
   const _LosLegend({
     required this.terrainLabel,
     required this.losBeamLabel,
     required this.radioHorizonLabel,
+    required this.fresnelLabel,
   });
 
   @override
@@ -2236,6 +2360,7 @@ class _LosLegend extends StatelessWidget {
       _LegendEntry(terrainLabel, LosPalette.terrain),
       _LegendEntry(losBeamLabel, LosPalette.beam),
       _LegendEntry(radioHorizonLabel, LosPalette.horizon),
+      _LegendEntry(fresnelLabel, LosPalette.fresnel),
       const _LegendEntry('Blocked', LosPalette.blocked),
     ];
 
@@ -2272,4 +2397,25 @@ class _LegendEntry {
   final Color color;
 
   const _LegendEntry(this.label, this.color);
+}
+
+/// The drawn parts of a dashed segment [length] long, starting [phase] into
+/// the dash-gap cycle, and the phase to start the next segment with.
+@visibleForTesting
+({List<(double, double)> runs, double phase}) dashRuns(
+  double length,
+  double phase, {
+  required double dash,
+  required double gap,
+}) {
+  final runs = <(double, double)>[];
+  var t = 0.0;
+  while (t < length) {
+    final left = (phase < dash ? dash : dash + gap) - phase;
+    final step = math.min(left, length - t);
+    if (phase < dash) runs.add((t, t + step));
+    t += step;
+    phase = (phase + step) % (dash + gap);
+  }
+  return (runs: runs, phase: phase);
 }

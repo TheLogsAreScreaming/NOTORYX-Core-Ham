@@ -5,6 +5,7 @@ import '../connector/meshcore_connector.dart';
 import '../models/app_settings.dart';
 import '../services/app_settings_service.dart';
 import 'mesh_ui.dart';
+import '../helpers/snack_bar_builder.dart';
 
 /// Settings' auto-delete choice for old channel messages.
 class ChannelRetentionCard extends StatelessWidget {
@@ -28,7 +29,6 @@ class ChannelRetentionCard extends StatelessWidget {
           labelText: 'Delete old channel messages',
           helperText:
               'Frees space on this phone. Direct messages are never deleted.',
-          helperMaxLines: 2,
           icon: Icon(Icons.auto_delete_outlined),
         ),
         items: [
@@ -43,7 +43,7 @@ class ChannelRetentionCard extends StatelessWidget {
           final removed = await connector.pruneOldChannelMessages();
           if (removed > 0) {
             messenger.showSnackBar(
-              SnackBar(
+              meshSnackBar(
                 content: Text(
                   'Deleted $removed old channel ${removed == 1 ? 'message' : 'messages'}.',
                 ),

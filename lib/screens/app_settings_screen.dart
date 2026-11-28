@@ -1,3 +1,4 @@
+import 'message_filter_settings_screen.dart';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -8,6 +9,7 @@ import '../connector/meshcore_connector.dart';
 import '../l10n/l10n.dart';
 import '../models/app_settings.dart';
 import '../models/image_codec_support.dart';
+import '../models/node_staleness.dart';
 import '../models/translation_support.dart';
 import '../services/app_settings_service.dart';
 import '../services/image_codec_service.dart';
@@ -15,13 +17,25 @@ import '../services/map_tile_cache_service.dart';
 import '../services/notification_service.dart';
 import '../services/translation_service.dart';
 import '../theme/mesh_theme.dart';
+import '../widgets/battery_optimization_tile.dart';
+import '../widgets/blocked_senders_sheet.dart';
 import '../widgets/theme_picker.dart';
+import 'backdrop_settings_screen.dart';
 import '../widgets/adaptive_app_bar_title.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/sync_progress_overlay.dart';
 import '../helpers/snack_bar_builder.dart';
 import 'map_cache_screen.dart';
 import 'bot_settings_screen.dart';
+import '../widgets/ui/mesh_states.dart';
+import '../utils/grid_coords.dart';
+import '../widgets/coordinate_copy_sheet.dart';
+
+/// Quiet times offered for favorite back-in-range alerts, in hours.
+const favoriteReturnChoices = [0, 1, 3, 6, 12, 24];
+
+/// Hours a favourite repeater may go unheard before a notification.
+const repeaterQuietChoices = [0, 12, 24, 48];
 
 class AppSettingsScreen extends StatelessWidget {
   /// Scrolls the image-message settings into view once, on first build.
@@ -191,6 +205,8 @@ class AppSettingsScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               const ThemePicker(),
+              const SizedBox(height: 6),
+              const BackdropSettingsTile(),
             ],
           ),
         ),
@@ -250,6 +266,7 @@ class AppSettingsScreen extends StatelessWidget {
     final notifEnabled = settingsService.settings.notificationsEnabled;
     return Column(
       children: [
+        const BatteryOptimizationTile(),
         SwitchListTile(
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 16,
@@ -372,6 +389,127 @@ class AppSettingsScreen extends StatelessWidget {
           onChanged: notifEnabled
               ? (value) => settingsService.setNotifyOnNewAdvert(value)
               : null,
+        ),
+        const Divider(height: 1, indent: 16),
+        ListTile(
+          key: const ValueKey('favorite-return-setting'),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 4,
+          ),
+          enabled: notifEnabled,
+          leading: const Icon(Icons.star_outline, size: 20),
+          title: Text(context.l10n.favReturn_setting),
+          subtitle: Text(context.l10n.favReturn_settingHint),
+          trailing: DropdownButton<int>(
+            value:
+                favoriteReturnChoices.contains(
+                  settingsService.settings.favoriteReturnHours,
+                )
+                ? settingsService.settings.favoriteReturnHours
+                : 6,
+            underline: const SizedBox.shrink(),
+            onChanged: notifEnabled
+                ? (v) {
+                    if (v != null) settingsService.setFavoriteReturnHours(v);
+                  }
+                : null,
+            items: [
+              for (final h in favoriteReturnChoices)
+                DropdownMenuItem(
+                  value: h,
+                  child: Text(
+                    h == 0
+                        ? context.l10n.favReturn_off
+                        : context.l10n.favReturn_hours(h),
+                  ),
+                ),
+            ],
+          ),
+        ),
+        const Divider(height: 1, indent: 16),
+        ListTile(
+          key: const ValueKey('repeater-quiet-setting'),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 4,
+          ),
+          enabled: notifEnabled,
+          leading: const Icon(Icons.portable_wifi_off, size: 20),
+          title: Text(context.l10n.netChange_quietSetting),
+          subtitle: Text(context.l10n.netChange_quietHint),
+          trailing: DropdownButton<int>(
+            value:
+                repeaterQuietChoices.contains(
+                  settingsService.settings.repeaterQuietHours,
+                )
+                ? settingsService.settings.repeaterQuietHours
+                : 24,
+            underline: const SizedBox.shrink(),
+            onChanged: notifEnabled
+                ? (v) {
+                    if (v != null) settingsService.setRepeaterQuietHours(v);
+                  }
+                : null,
+            items: [
+              for (final h in repeaterQuietChoices)
+                DropdownMenuItem(
+                  value: h,
+                  child: Text(
+                    h == 0
+                        ? context.l10n.favReturn_off
+                        : context.l10n.favReturn_hours(h),
+                  ),
+                ),
+            ],
+          ),
+        ),
+        const Divider(height: 1, indent: 16),
+        SwitchListTile(
+          key: const ValueKey('new-repeater-setting'),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 4,
+          ),
+          secondary: const Icon(Icons.cell_tower, size: 20),
+          title: Text(context.l10n.netChange_newSetting),
+          subtitle: Text(context.l10n.netChange_newHint),
+          value: settingsService.settings.newRepeaterAlerts,
+          onChanged: notifEnabled ? settingsService.setNewRepeaterAlerts : null,
+        ),
+        const Divider(height: 1, indent: 16),
+        ListTile(
+          key: const ValueKey('blocked-senders-setting'),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 4,
+          ),
+          leading: const Icon(Icons.block, size: 20),
+          title: Text(context.l10n.block_listTitle),
+          subtitle: Text(
+            context.l10n.block_count(
+              settingsService.settings.blockedSenders.length,
+            ),
+          ),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: () => showBlockedSendersSheet(context),
+        ),
+        ListTile(
+          key: const ValueKey('message-filter-setting'),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 4,
+          ),
+          leading: const Icon(Icons.filter_alt_outlined, size: 20),
+          title: Text(context.l10n.messageFilter_title),
+          subtitle: Text(context.l10n.messageFilter_settingsSubtitle),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const MessageFilterSettingsScreen(),
+            ),
+          ),
         ),
       ],
     );
@@ -562,35 +700,64 @@ class AppSettingsScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const Divider(height: 1),
-                      ListTile(
-                        title: Text(context.l10n.appSettings_maxMessageRetries),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              context
-                                  .l10n
-                                  .appSettings_maxMessageRetriesSubtitle,
-                            ),
-                            Slider(
-                              value: settingsService.settings.maxMessageRetries
-                                  .toDouble(),
-                              min: 2,
-                              max: 10,
-                              divisions: 8,
-                              label: settingsService.settings.maxMessageRetries
-                                  .toString(),
-                              onChanged: (value) => settingsService
-                                  .setMaxMessageRetries(value.toInt()),
-                            ),
-                          ],
-                        ),
-                      ),
                     ],
                   ),
                 )
               : const SizedBox.shrink(),
+        ),
+        ListTile(
+          title: Text(context.l10n.appSettings_maxMessageRetries),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(context.l10n.appSettings_maxMessageRetriesSubtitle),
+              Slider(
+                value: settingsService.settings.maxMessageRetries.toDouble(),
+                min: 2,
+                max: 10,
+                divisions: 8,
+                label: settingsService.settings.maxMessageRetries.toString(),
+                onChanged: (value) =>
+                    settingsService.setMaxMessageRetries(value.toInt()),
+              ),
+            ],
+          ),
+        ),
+        ListTile(
+          title: Text(context.l10n.appSettings_floodAttempts),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(context.l10n.appSettings_floodAttemptsSubtitle),
+              Slider(
+                key: const ValueKey('flood-attempts'),
+                value: settingsService.settings.messageFloodAttempts.toDouble(),
+                min: 0,
+                max: 5,
+                divisions: 5,
+                label: settingsService.settings.messageFloodAttempts.toString(),
+                onChanged: (value) =>
+                    settingsService.setMessageFloodAttempts(value.toInt()),
+              ),
+            ],
+          ),
+        ),
+        ListTile(
+          key: const ValueKey('reset-routing-defaults'),
+          leading: const Icon(Icons.restart_alt),
+          title: Text(context.l10n.appSettings_resetRoutingToDefault),
+          subtitle: Text(
+            context.l10n.appSettings_resetRoutingToDefaultSubtitle,
+          ),
+          onTap: () async {
+            await settingsService.resetRoutingSettingsToDefault();
+            if (!context.mounted) return;
+            showDismissibleSnackBar(
+              context,
+              content: Text(context.l10n.appSettings_routingResetToDefault),
+              duration: const Duration(seconds: 2),
+            );
+          },
         ),
         const Divider(height: 1, indent: 16),
         SwitchListTile(
@@ -791,7 +958,9 @@ class AppSettingsScreen extends StatelessWidget {
     try {
       await codec.downloadPresetModel(spec);
     } on Exception catch (error) {
-      messenger.showSnackBar(SnackBar(content: Text('$failed $error')));
+      messenger.showSnackBar(
+        meshSnackBar(content: Text('$failed ${friendlyError(error)}')),
+      );
     }
   }
 
@@ -909,6 +1078,34 @@ class AppSettingsScreen extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     final children = <Widget>[
+      ListTile(
+        key: const ValueKey('coordinate-format-setting'),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+        leading: const Icon(Icons.grid_on, size: 20),
+        title: Text(context.l10n.coords_setting),
+        subtitle: Text(
+          formatCoordinate(
+            40.68925,
+            -74.0445,
+            settingsService.coordinateFormat,
+          ),
+        ),
+        trailing: DropdownButton<CoordinateFormat>(
+          value: settingsService.coordinateFormat,
+          underline: const SizedBox.shrink(),
+          onChanged: (v) {
+            if (v != null) settingsService.setCoordinateFormat(v);
+          },
+          items: [
+            for (final f in CoordinateFormat.values)
+              DropdownMenuItem(
+                value: f,
+                child: Text(coordinateFormatLabel(context, f)),
+              ),
+          ],
+        ),
+      ),
+      const Divider(height: 1, indent: 16),
       SwitchListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
         secondary: const Icon(Icons.router_outlined, size: 20),
@@ -980,6 +1177,33 @@ class AppSettingsScreen extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+      const Divider(height: 1, indent: 16),
+      ListTile(
+        key: const ValueKey('stale-after-setting'),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+        leading: const Icon(Icons.history_toggle_off, size: 20),
+        title: Text(context.l10n.stale_setting),
+        subtitle: Text(context.l10n.stale_settingHint),
+        trailing: DropdownButton<int>(
+          value:
+              staleAfterChoices.contains(
+                settingsService.settings.staleAfterHours,
+              )
+              ? settingsService.settings.staleAfterHours
+              : 24,
+          underline: const SizedBox.shrink(),
+          onChanged: (v) {
+            if (v != null) settingsService.setStaleAfterHours(v);
+          },
+          items: [
+            for (final h in staleAfterChoices)
+              DropdownMenuItem(
+                value: h,
+                child: Text(staleAfterLabel(context, h)),
+              ),
+          ],
         ),
       ),
       const Divider(height: 1, indent: 16),
@@ -2317,7 +2541,9 @@ class AppSettingsScreen extends StatelessWidget {
       showDismissibleSnackBar(
         context,
         content: Text(
-          context.l10n.appSettings_translationModelDeleteFailed('$error'),
+          context.l10n.appSettings_translationModelDeleteFailed(
+            friendlyError(error),
+          ),
         ),
       );
     }
@@ -2503,37 +2729,24 @@ class AppSettingsScreen extends StatelessWidget {
     );
   }
 
-  void _showDeleteCyr2LatProfileDialog(
+  Future<void> _showDeleteCyr2LatProfileDialog(
     BuildContext context,
     AppSettingsService settingsService,
     Cyr2LatProfile profile,
-  ) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(context.l10n.settings_cyr2latProfileDelete),
-        content: Text(
-          context.l10n.settings_cyr2latProfileDeleteDscr(profile.name),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(context.l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () async {
-              await settingsService.removeCyr2LatProfile(profile.id);
-              if (!context.mounted) return;
-              Navigator.pop(context);
-              showDismissibleSnackBar(
-                context,
-                content: Text(context.l10n.settings_cyr2latProfileDeleted),
-              );
-            },
-            child: Text(context.l10n.common_delete),
-          ),
-        ],
-      ),
+  ) async {
+    final confirmed = await confirmDestructive(
+      context,
+      title: context.l10n.settings_cyr2latProfileDelete,
+      message: context.l10n.settings_cyr2latProfileDeleteDscr(profile.name),
+      confirmLabel: context.l10n.common_delete,
+    );
+    if (!confirmed) return;
+    if (!context.mounted) return;
+    await settingsService.removeCyr2LatProfile(profile.id);
+    if (!context.mounted) return;
+    showDismissibleSnackBar(
+      context,
+      content: Text(context.l10n.settings_cyr2latProfileDeleted),
     );
   }
 }
@@ -2754,4 +2967,12 @@ class _ScrollIntoViewOnceState extends State<_ScrollIntoViewOnce> {
 
   @override
   Widget build(BuildContext context) => widget.child;
+}
+
+/// The label for a "Mark nodes stale after" choice of [hours].
+String staleAfterLabel(BuildContext context, int hours) {
+  final l10n = context.l10n;
+  if (hours <= 0) return l10n.stale_off;
+  if (hours % 24 == 0 && hours > 24) return l10n.stale_days(hours ~/ 24);
+  return l10n.stale_hours(hours);
 }

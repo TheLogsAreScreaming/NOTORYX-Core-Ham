@@ -106,7 +106,7 @@ SNRUi snrUiFromSNR(double? snr, int? spreadingFactor) {
       spreadingFactor == null ||
       spreadingFactor < 7 ||
       spreadingFactor > 12) {
-    return const SNRUi(Icons.signal_cellular_off, Colors.grey, '—');
+    return SNRUi(Icons.signal_cellular_off, MeshPalette.ink4, '—');
   }
 
   final snrLevels = getSNRfromSF(spreadingFactor);

@@ -5,6 +5,7 @@ import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../helpers/share_links.dart';
 import '../models/contact.dart';
+import '../helpers/snack_bar_builder.dart';
 
 /// The radio's advertised position as a map-marker message, or null when
 /// the radio has none.
@@ -162,10 +163,12 @@ class _ContactLinkCardState extends State<ContactLinkCard> {
     try {
       await context.read<MeshCoreConnector>().addContactFromLink(link);
       if (mounted) setState(() => _addedPublicKeyHex = link.publicKeyHex);
-      messenger.showSnackBar(SnackBar(content: Text('Added ${link.name}.')));
+      messenger.showSnackBar(
+        meshSnackBar(content: Text('Added ${link.name}.')),
+      );
     } catch (e) {
       messenger.showSnackBar(
-        SnackBar(content: Text('Could not add ${link.name}: $e')),
+        meshSnackBar(content: Text('Could not add ${link.name}: $e')),
       );
     } finally {
       if (mounted) setState(() => _adding = false);

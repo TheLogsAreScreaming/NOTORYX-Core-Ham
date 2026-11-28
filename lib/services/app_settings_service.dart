@@ -1,11 +1,14 @@
 import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
+
 import '../models/app_settings.dart';
 import '../models/image_codec_support.dart';
 import '../models/translation_support.dart';
 import '../storage/prefs_manager.dart';
 import '../utils/app_logger.dart';
 import '../helpers/cyr2lat.dart';
+import '../utils/grid_coords.dart';
 
 class AppSettingsService extends ChangeNotifier {
   static const String _settingsKey = 'app_settings';
@@ -95,6 +98,10 @@ class AppSettingsService extends ChangeNotifier {
 
   Future<void> setMapKeyPrefix(String value) async {
     await updateSettings(_settings.copyWith(mapKeyPrefix: value));
+  }
+
+  Future<void> setMapShowWaypoints(bool value) async {
+    await updateSettings(_settings.copyWith(mapShowWaypoints: value));
   }
 
   Future<void> setMapShowMarkers(bool value) async {
@@ -210,6 +217,39 @@ class AppSettingsService extends ChangeNotifier {
     await updateSettings(_settings.copyWith(maxMessageRetries: value));
   }
 
+  Future<void> setMessageFloodAttempts(int value) async {
+    await updateSettings(_settings.copyWith(messageFloodAttempts: value));
+  }
+
+  /// Puts the route weights and the direct and flood retry counts back to
+  /// their defaults. Auto route rotation stays on or off as it was.
+  Future<void> resetRoutingSettingsToDefault() async {
+    await updateSettings(
+      _settings.copyWith(
+        maxRouteWeight: AppSettings.defaultMaxRouteWeight,
+        initialRouteWeight: AppSettings.defaultInitialRouteWeight,
+        routeWeightSuccessIncrement:
+            AppSettings.defaultRouteWeightSuccessIncrement,
+        routeWeightFailureDecrement:
+            AppSettings.defaultRouteWeightFailureDecrement,
+        maxMessageRetries: AppSettings.defaultMaxMessageRetries,
+        messageFloodAttempts: AppSettings.defaultMessageFloodAttempts,
+      ),
+    );
+  }
+
+  Future<void> setRepeaterQuietHours(int value) async {
+    await updateSettings(_settings.copyWith(repeaterQuietHours: value));
+  }
+
+  Future<void> setNewRepeaterAlerts(bool value) async {
+    await updateSettings(_settings.copyWith(newRepeaterAlerts: value));
+  }
+
+  Future<void> setFavoriteReturnHours(int value) async {
+    await updateSettings(_settings.copyWith(favoriteReturnHours: value));
+  }
+
   Future<void> setThemeMode(String value) async {
     await updateSettings(_settings.copyWith(themeMode: value));
   }
@@ -273,6 +313,25 @@ class AppSettingsService extends ChangeNotifier {
     await updateSettings(_settings.copyWith(mutedChannels: updated));
   }
 
+  /// Whether channel messages from [senderName] are blocked.
+  bool isSenderBlocked(String senderName) {
+    final name = senderName.trim();
+    return name.isNotEmpty && _settings.blockedSenders.contains(name);
+  }
+
+  Future<void> blockSender(String senderName) async {
+    final name = senderName.trim();
+    if (name.isEmpty) return;
+    final updated = Set<String>.from(_settings.blockedSenders)..add(name);
+    await updateSettings(_settings.copyWith(blockedSenders: updated));
+  }
+
+  Future<void> unblockSender(String senderName) async {
+    final updated = Set<String>.from(_settings.blockedSenders)
+      ..remove(senderName.trim());
+    await updateSettings(_settings.copyWith(blockedSenders: updated));
+  }
+
   Future<void> setTcpServerAddress(String value) async {
     await updateSettings(_settings.copyWith(tcpServerAddress: value));
   }
@@ -285,12 +344,36 @@ class AppSettingsService extends ChangeNotifier {
     await updateSettings(_settings.copyWith(channelMessageRetentionDays: days));
   }
 
+  /// The chosen way to show positions.
+  CoordinateFormat get coordinateFormat =>
+      CoordinateFormat.parse(_settings.coordinateFormat);
+
+  Future<void> setCoordinateFormat(CoordinateFormat format) async {
+    await updateSettings(_settings.copyWith(coordinateFormat: format.value));
+  }
+
   Future<void> setAppTheme(String id) async {
     await updateSettings(_settings.copyWith(appTheme: id));
   }
 
   Future<void> setAutoConnectRadio(bool value) async {
     await updateSettings(_settings.copyWith(autoConnectRadio: value));
+  }
+
+  Future<void> setMapShowTelemetry(bool value) async {
+    await updateSettings(_settings.copyWith(mapShowTelemetry: value));
+  }
+
+  Future<void> setStaleAfterHours(int value) async {
+    await updateSettings(_settings.copyWith(staleAfterHours: value));
+  }
+
+  Future<void> setMapShowRangeRings(bool value) async {
+    await updateSettings(_settings.copyWith(mapShowRangeRings: value));
+  }
+
+  Future<void> setMapTelemetryMetric(String value) async {
+    await updateSettings(_settings.copyWith(mapTelemetryMetric: value));
   }
 
   Future<void> setLinkPreviews(bool value) async {
@@ -303,6 +386,11 @@ class AppSettingsService extends ChangeNotifier {
 
   Future<void> setRefreshRate(String value) async {
     await updateSettings(_settings.copyWith(refreshRate: value));
+  }
+
+  Future<void> setReactionsOverRadio(String value) async {
+    if (!const {'auto', 'on', 'off'}.contains(value)) return;
+    await updateSettings(_settings.copyWith(reactionsOverRadio: value));
   }
 
   Future<void> setSignChannelPosts(bool value) async {

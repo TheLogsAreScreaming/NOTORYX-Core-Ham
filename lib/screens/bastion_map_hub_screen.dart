@@ -1,8 +1,11 @@
 import '../theme/mesh_theme.dart';
 import '../widgets/ember_backdrop.dart';
 import '../widgets/tactical_glass_panel.dart';
+
 import 'package:flutter/material.dart';
+
 import '../l10n/l10n.dart';
+import 'day_replay_screen.dart';
 import 'map_screen.dart';
 import 'map_cache_screen.dart';
 import 'region_management_screen.dart';
@@ -42,12 +45,12 @@ class BastionMapHubScreen extends StatelessWidget {
                       Expanded(
                         child: Text(
                           context.l10n.bastion_mapCoverage,
-                          style: TextStyle(
-                            color: MeshPalette.ink,
-                            fontSize: 21,
-                            fontWeight: FontWeight.w900,
-                            letterSpacing: .7,
-                          ),
+                          style: Theme.of(context).textTheme.headlineMedium
+                              ?.copyWith(
+                                color: MeshPalette.ink,
+                                fontWeight: FontWeight.w900,
+                                letterSpacing: .7,
+                              ),
                         ),
                       ),
                     ],
@@ -81,6 +84,16 @@ class BastionMapHubScreen extends StatelessWidget {
               onTap: () => Navigator.of(
                 context,
               ).push(MaterialPageRoute(builder: (_) => const MapScreen())),
+            ),
+            const SizedBox(height: 12),
+            _MapAction(
+              icon: Icons.history_rounded,
+              title: context.l10n.replay_title,
+              subtitle: context.l10n.replay_entryHint,
+              badge: context.l10n.replay_badge,
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const DayReplayScreen()),
+              ),
             ),
             const SizedBox(height: 12),
             _MapAction(
@@ -172,12 +185,12 @@ class _MapAction extends StatelessWidget {
                         ),
                         child: Text(
                           badge,
-                          style: TextStyle(
-                            color: BastionMapHubScreen._cyan,
-                            fontSize: 9,
-                            fontWeight: FontWeight.w900,
-                            letterSpacing: .7,
-                          ),
+                          style: Theme.of(context).textTheme.labelSmall
+                              ?.copyWith(
+                                color: BastionMapHubScreen._cyan,
+                                fontWeight: FontWeight.w900,
+                                letterSpacing: .7,
+                              ),
                         ),
                       ),
                     ],
@@ -185,9 +198,8 @@ class _MapAction extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     subtitle,
-                    style: TextStyle(
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: BastionMapHubScreen._muted,
-                      fontSize: 12.5,
                     ),
                   ),
                 ],

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'bastion_themes.dart';
+import 'mesh_design.dart';
 
 export 'bastion_themes.dart';
+export 'mesh_design.dart';
+import 'okabe_ito.dart';
+
+export 'okabe_ito.dart';
 
 /// Bastion palette: the colors of the theme chosen in Settings. Read these
 /// at build time (they are not constants) so a theme switch repaints.
@@ -38,12 +43,48 @@ class MeshPalette {
   static Color get accentBg => current.accentBg;
   static Color get accentLine => current.accentLine;
   static Color get onAccent => current.onAccent;
+  static Color get secondary => current.secondary;
+  static Color get tertiary => current.tertiary;
   static Color get magenta => current.magenta;
+
+  /// The current theme's color for item [index]; see [BastionPalette.hue].
+  static Color hue(int index) => current.hue(index);
+
+  /// Black or white, whichever reads better on [fill]. For text and icons
+  /// on a status color that has no matching ink of its own.
+  static Color onColor(Color fill) {
+    final l = fill.computeLuminance();
+    // Contrast with white is 1.05 / (l + .05); with black (l + .05) / .05.
+    return 1.05 / (l + .05) >= (l + .05) / .05
+        ? const Color(0xFFFFFFFF)
+        : const Color(0xFF000000);
+  }
+
+  /// [color] darkened or lightened just enough to read as text on
+  /// [surface] (WCAG AA, 4.5:1 by default). The hue is kept, so per-name
+  /// colors stay apart; colors that already pass come back unchanged.
+  static Color readable(Color color, Color surface, {double minRatio = 4.5}) {
+    double ratio(Color a) {
+      final la = a.computeLuminance(), lb = surface.computeLuminance();
+      return (la > lb ? la + .05 : lb + .05) / (la > lb ? lb + .05 : la + .05);
+    }
+
+    final darken = onColor(surface) != const Color(0xFFFFFFFF);
+    var hsl = HSLColor.fromColor(color);
+    for (var i = 0; i < 50 && ratio(hsl.toColor()) < minRatio; i++) {
+      final l = hsl.lightness + (darken ? -.02 : .02);
+      hsl = hsl.withLightness(l.clamp(0.0, 1.0));
+    }
+    return hsl.toColor().withValues(alpha: color.a);
+  }
+
   static Color get magentaBg => current.magentaBg;
   static Color get magentaLine => current.magentaLine;
   static Color get me => current.me;
   static Color get meBorder => current.meBorder;
   static Color get meInk => current.meInk;
+  static Color get nav => current.nav;
+  static BackdropMotif get motif => current.motif;
 
   // ── Light variant (used when user explicitly picks light theme)
   static const lightBg = Color(0xFFF1F1E9);
@@ -63,12 +104,13 @@ class MapPalette {
   static const online = Color(0xFF93B99D);
   static const offline = Color(0xFF6B7280);
   static const stale = Color(0xFFD6B77C);
-  static const repeater = Color(0xFF2563EB);
-  static const router = Color(0xFF7C3AED);
+  // Node types use the color-blind safe Okabe-Ito palette.
+  static const repeater = OkabeIto.orange;
+  static const router = OkabeIto.reddishPurple;
   static const batteryLow = Color(0xFFDB8D85);
-  static const cluster = Color(0xFFF97316);
-  static const selected = Color(0xFF8AB6AA);
-  static const sensor = Color(0xFF0F766E);
+  static const cluster = OkabeIto.vermillion;
+  static const selected = OkabeIto.skyBlue;
+  static const sensor = OkabeIto.bluishGreen;
   static const shared = Color(0xFF6D978C);
 
   static const panelLight = Color(0xF0FFFFFF);
@@ -81,6 +123,48 @@ class MapPalette {
   static const markerShadow = Color(0xB3000000);
 }
 
+/// Colours someone can pick for a node: distinct hues that stay apart for
+/// common colour-blindness, plus neutrals. Each also has a label.
+class NodeLookPalette {
+  NodeLookPalette._();
+
+  static const List<Color> colors = [
+    Color(0xFFE53935), // red
+    Color(0xFFFB8C00), // orange
+    Color(0xFFFDD835), // yellow
+    Color(0xFF7CB342), // green
+    Color(0xFF00897B), // teal
+    Color(0xFF29B6F6), // sky
+    Color(0xFF1E88E5), // blue
+    Color(0xFF5E35B1), // violet
+    Color(0xFFD81B60), // pink
+    Color(0xFF8D6E63), // brown
+    Color(0xFF90A4AE), // grey
+    Color(0xFFF5F5F5), // white
+  ];
+}
+
+/// Colours offered for a custom background: deep and bright tones that
+/// sit well behind frosted glass once dimmed.
+class BackdropPalette {
+  BackdropPalette._();
+
+  static const List<Color> colors = [
+    Color(0xFF0B1F3A), // night blue
+    Color(0xFF1E3A5F), // slate blue
+    Color(0xFF0F766E), // deep teal
+    Color(0xFF14532D), // forest
+    Color(0xFF4D7C0F), // moss
+    Color(0xFFB4532A), // ember
+    Color(0xFFC2410C), // orange
+    Color(0xFF9F1239), // crimson
+    Color(0xFF6D28D9), // violet
+    Color(0xFFDB2777), // pink
+    Color(0xFF374151), // graphite
+    Color(0xFFE7E5E4), // stone
+  ];
+}
+
 /// High-contrast colors for line-of-sight maps and elevation profiles.
 class LosPalette {
   LosPalette._();
@@ -88,6 +172,7 @@ class LosPalette {
   static const terrain = Color(0xFFA3E635);
   static const beam = Color(0xFF38BDF8);
   static const horizon = Color(0xFFFBBF24);
+  static const fresnel = Color(0xFFC4B5FD);
   static const blocked = Color(0xFFDB8D85);
   static const marginal = Color(0xFFD6B77C);
   static const clear = Color(0xFF93B99D);
@@ -165,18 +250,11 @@ class MeshSpace {
 class MeshTheme {
   MeshTheme._();
 
-  /// The current theme if it's dark, otherwise Blaze.
+  /// The current theme if it's dark, otherwise BLACKOUT.
   static ThemeData dark() => forPalette(
     MeshPalette.current.brightness == Brightness.dark
         ? MeshPalette.current
-        : BastionTheme.blaze.palette,
-  );
-
-  /// The current theme if it's light, otherwise Alpine day.
-  static ThemeData light() => forPalette(
-    MeshPalette.current.brightness == Brightness.light
-        ? MeshPalette.current
-        : BastionTheme.alpineDay.palette,
+        : BastionTheme.blackout.palette,
   );
 
   /// Material theme for one of the Bastion palettes.
@@ -208,7 +286,7 @@ class MeshTheme {
       surfaceContainerHigh: p.bg2,
       surfaceContainerHighest: p.bg3,
       onSurfaceVariant: p.ink2,
-      outline: p.line2,
+      outline: p.line3,
       outlineVariant: p.line,
       shadow: Colors.black,
       scrim: Colors.black54,
@@ -216,20 +294,19 @@ class MeshTheme {
       onInverseSurface: p.bg,
       inversePrimary: p.accentDim,
     );
-    return _build(scheme, p.brightness);
+    return _build(scheme, p.brightness, MeshStatusColors.fromPalette(p));
   }
 
-  static ThemeData _build(ColorScheme scheme, Brightness brightness) {
-    final baseText =
-        Typography.material2021(
-          platform: TargetPlatform.android,
-          colorScheme: scheme,
-        ).black.apply(
-          bodyColor: scheme.onSurface,
-          displayColor: scheme.onSurface,
-          fontFamily: MeshFonts.sans,
-          fontFamilyFallback: MeshFonts.sansFallback,
-        );
+  static ThemeData _build(
+    ColorScheme scheme,
+    Brightness brightness,
+    MeshStatusColors status,
+  ) {
+    final text = meshTextTheme(scheme);
+    const controlShape = RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(MeshShape.control)),
+    );
+    const minControl = Size(64, MeshShape.minTouch);
 
     return ThemeData(
       useMaterial3: true,
@@ -239,7 +316,10 @@ class MeshTheme {
       canvasColor: scheme.surface,
       fontFamily: MeshFonts.sans,
       fontFamilyFallback: MeshFonts.sansFallback,
-      textTheme: baseText,
+      textTheme: text,
+      extensions: [status],
+      materialTapTargetSize: MaterialTapTargetSize.padded,
+      visualDensity: VisualDensity.standard,
       dividerColor: scheme.outlineVariant,
       dividerTheme: DividerThemeData(
         color: scheme.outlineVariant,
@@ -253,14 +333,7 @@ class MeshTheme {
         elevation: 0,
         scrolledUnderElevation: 0,
         centerTitle: false,
-        titleTextStyle: TextStyle(
-          fontFamily: MeshFonts.sans,
-          fontFamilyFallback: MeshFonts.sansFallback,
-          fontSize: 20,
-          fontWeight: FontWeight.w600,
-          letterSpacing: -0.2,
-          color: scheme.onSurface,
-        ),
+        titleTextStyle: text.titleLarge,
         iconTheme: IconThemeData(color: scheme.onSurface),
       ),
       // Field-instrument cards: no fill, a hairline outline, squared off.
@@ -278,8 +351,11 @@ class MeshTheme {
         iconColor: scheme.onSurfaceVariant,
         textColor: scheme.onSurface,
         tileColor: Colors.transparent,
+        titleTextStyle: text.bodyLarge,
+        subtitleTextStyle: text.bodySmall,
+        minVerticalPadding: 10,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(MeshRadii.md),
+          borderRadius: BorderRadius.circular(MeshShape.control),
         ),
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -289,9 +365,7 @@ class MeshTheme {
         focusElevation: 0,
         hoverElevation: 0,
         highlightElevation: 2,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(MeshRadii.sm),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         extendedTextStyle: const TextStyle(
           fontFamily: MeshFonts.sans,
           fontFamilyFallback: MeshFonts.sansFallback,
@@ -304,71 +378,63 @@ class MeshTheme {
           backgroundColor: scheme.primary,
           foregroundColor: scheme.onPrimary,
           elevation: 0,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(MeshRadii.xs),
-          ),
-          textStyle: const TextStyle(
-            fontFamily: MeshFonts.sans,
-            fontFamilyFallback: MeshFonts.sansFallback,
-            fontWeight: FontWeight.w600,
-            fontSize: 14,
-          ),
+          minimumSize: minControl,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          shape: controlShape,
+          textStyle: text.labelLarge,
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           foregroundColor: scheme.onSurface,
           side: BorderSide(color: scheme.outline),
+          minimumSize: minControl,
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(MeshRadii.xs),
-          ),
+          shape: controlShape,
+          textStyle: text.labelLarge,
         ),
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           foregroundColor: scheme.primary,
+          minimumSize: const Size(MeshShape.minTouch, MeshShape.minTouch),
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(MeshRadii.xs),
-          ),
+          shape: controlShape,
+          textStyle: text.labelLarge,
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
+        // Help and error text wraps instead of cutting off at large sizes.
+        helperMaxLines: 8,
+        errorMaxLines: 8,
         filled: true,
         fillColor: scheme.surfaceContainerHigh,
-        hintStyle: TextStyle(color: scheme.onSurfaceVariant),
+        hintStyle: text.bodyMedium?.copyWith(color: scheme.onSurfaceVariant),
+        labelStyle: text.bodyMedium?.copyWith(color: scheme.onSurfaceVariant),
+        helperStyle: text.bodySmall,
+        errorStyle: text.bodySmall?.copyWith(color: scheme.error),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 12,
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(MeshRadii.md),
+          borderRadius: BorderRadius.circular(MeshShape.control),
           borderSide: BorderSide(color: scheme.outline),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(MeshRadii.md),
+          borderRadius: BorderRadius.circular(MeshShape.control),
           borderSide: BorderSide(color: scheme.outlineVariant),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(MeshRadii.md),
+          borderRadius: BorderRadius.circular(MeshShape.control),
           borderSide: BorderSide(color: scheme.primary, width: 1.5),
         ),
       ),
       chipTheme: ChipThemeData(
         backgroundColor: scheme.surfaceContainerLow,
         side: BorderSide(color: scheme.outlineVariant),
-        labelStyle: TextStyle(
-          fontFamily: MeshFonts.sans,
-          fontFamilyFallback: MeshFonts.sansFallback,
-          fontSize: 12.5,
-          fontWeight: FontWeight.w600,
-          color: scheme.onSurfaceVariant,
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(MeshRadii.xs),
-        ),
+        labelStyle: text.labelMedium,
+        shape: controlShape,
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       ),
       navigationBarTheme: NavigationBarThemeData(
@@ -401,22 +467,28 @@ class MeshTheme {
         backgroundColor: scheme.surfaceContainerLow,
         surfaceTintColor: Colors.transparent,
         modalBackgroundColor: scheme.surfaceContainerLow,
+        showDragHandle: true,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            top: Radius.circular(MeshRadii.lg),
+            top: Radius.circular(MeshShape.sheet),
           ),
         ),
       ),
       dialogTheme: DialogThemeData(
         backgroundColor: scheme.surfaceContainerLow,
         surfaceTintColor: Colors.transparent,
+        titleTextStyle: text.titleLarge,
+        contentTextStyle: text.bodyMedium?.copyWith(
+          color: scheme.onSurfaceVariant,
+        ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(MeshRadii.lg),
+          borderRadius: BorderRadius.circular(MeshShape.sheet),
         ),
       ),
       snackBarTheme: SnackBarThemeData(
         backgroundColor: scheme.surfaceContainerHigh,
-        contentTextStyle: TextStyle(color: scheme.onSurface),
+        contentTextStyle: text.bodyMedium,
+        actionTextColor: scheme.primary,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(MeshRadii.md),
@@ -443,8 +515,11 @@ class MeshTheme {
       segmentedButtonTheme: SegmentedButtonThemeData(
         style: SegmentedButton.styleFrom(
           selectedBackgroundColor: scheme.primary.withValues(alpha: 0.16),
-          selectedForegroundColor: scheme.primary,
+          foregroundColor: scheme.onSurface,
+          selectedForegroundColor: scheme.onSurface,
           side: BorderSide(color: scheme.outlineVariant),
+          minimumSize: const Size(MeshShape.minTouch, MeshShape.minTouch),
+          shape: controlShape,
           textStyle: const TextStyle(
             fontFamily: MeshFonts.sans,
             fontFamilyFallback: MeshFonts.sansFallback,
@@ -513,22 +588,38 @@ class MeshTheme {
           borderRadius: BorderRadius.circular(MeshRadii.sm),
           border: Border.all(color: scheme.outline),
         ),
-        textStyle: TextStyle(color: scheme.onSurface, fontSize: 12),
+        textStyle: text.bodySmall?.copyWith(color: scheme.onSurface),
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
           backgroundColor: scheme.primary,
           foregroundColor: scheme.onPrimary,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(MeshRadii.xs),
-          ),
-          textStyle: const TextStyle(
-            fontFamily: MeshFonts.sans,
-            fontFamilyFallback: MeshFonts.sansFallback,
-            fontWeight: FontWeight.w600,
-            fontSize: 14,
-          ),
+          minimumSize: minControl,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          shape: controlShape,
+          textStyle: text.labelLarge,
+        ),
+      ),
+      iconButtonTheme: IconButtonThemeData(
+        style: IconButton.styleFrom(
+          minimumSize: const Size(MeshShape.minTouch, MeshShape.minTouch),
+        ),
+      ),
+      checkboxTheme: CheckboxThemeData(
+        fillColor: WidgetStateProperty.resolveWith(
+          (states) => states.contains(WidgetState.selected)
+              ? scheme.primary
+              : Colors.transparent,
+        ),
+        checkColor: WidgetStatePropertyAll(scheme.onPrimary),
+        side: BorderSide(color: scheme.outline, width: 1.5),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+      ),
+      radioTheme: RadioThemeData(
+        fillColor: WidgetStateProperty.resolveWith(
+          (states) => states.contains(WidgetState.selected)
+              ? scheme.primary
+              : scheme.outline,
         ),
       ),
     );

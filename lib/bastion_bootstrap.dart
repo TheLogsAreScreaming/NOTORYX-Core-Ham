@@ -16,7 +16,7 @@ class BastionBootstrapApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'NOTORYX Core',
+      title: 'NOTORYX Core Ham',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,

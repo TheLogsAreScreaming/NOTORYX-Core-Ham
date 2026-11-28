@@ -79,6 +79,15 @@ class AppSettings {
   static const Object _unset = Object();
   static const String stadiaDemo = '51bd0381-4685-4666-bae8-48940f6d77c0';
 
+  // Routing and retry defaults, shared by the constructor, fromJson and
+  // AppSettingsService.resetRoutingSettingsToDefault.
+  static const double defaultMaxRouteWeight = 5.0;
+  static const double defaultInitialRouteWeight = 3.0;
+  static const double defaultRouteWeightSuccessIncrement = 0.5;
+  static const double defaultRouteWeightFailureDecrement = 0.2;
+  static const int defaultMaxMessageRetries = 5;
+  static const int defaultMessageFloodAttempts = 2;
+
   final bool clearPathOnMaxRetry;
   final bool mapShowRepeaters;
   final bool mapShowChatNodes;
@@ -88,6 +97,7 @@ class AppSettings {
   final bool mapKeyPrefixEnabled;
   final String mapKeyPrefix;
   final bool mapShowMarkers;
+  final bool mapShowWaypoints;
   final bool mapShowGuessedLocations;
   final bool enableMessageTracing;
 
@@ -112,6 +122,20 @@ class AppSettings {
   final double routeWeightSuccessIncrement;
   final double routeWeightFailureDecrement;
   final int maxMessageRetries;
+
+  /// Tries sent as a flood after the [maxMessageRetries] direct ones fail,
+  /// in case the route has changed. 0 turns them off.
+  final int messageFloodAttempts;
+
+  /// Hours a favorite must be quiet before hearing them again notifies
+  /// "back in range". 0 turns it off.
+  final int favoriteReturnHours;
+
+  /// Hours a favourite repeater may go unheard before a notification; 0 off.
+  final int repeaterQuietHours;
+
+  /// Whether to notify when a repeater not seen before is heard within one hop.
+  final bool newRepeaterAlerts;
   final String themeMode;
   final String? languageOverride; // null = system default
   final bool appDebugLogEnabled;
@@ -119,6 +143,9 @@ class AppSettings {
   final Map<String, String> batteryChemistryByRepeaterId;
   final UnitSystem unitSystem;
   final Set<String> mutedChannels;
+
+  /// Channel sender names whose messages are hidden and never notify.
+  final Set<String> blockedSenders;
   final bool mapShowDiscoveryContacts;
   final String tcpServerAddress;
   final int tcpServerPort;
@@ -138,12 +165,32 @@ class AppSettings {
   /// Reconnect to the last radio by itself when the app opens.
   final bool autoConnectRadio;
 
+  /// The map's telemetry badges, and which reading they show (a
+  /// `TelemetryMetric` name), kept between visits.
+  final bool mapShowTelemetry;
+
+  /// Hours a node may go unheard (no advert) before it's shown as stale in
+  /// the contacts list and faded on the map. 0 turns it off.
+  final int staleAfterHours;
+
+  /// Whether the map draws distance rings around your own position.
+  final bool mapShowRangeRings;
+  final String mapTelemetryMetric;
+
   /// Signs every channel post, not only SOS. Each signature is one extra
   /// packet on air.
   final bool signChannelPosts;
 
-  /// The chosen color theme's id (see BastionTheme); Blaze by default.
+  /// Whether reactions go out over the radio: 'auto' (not on the EU
+  /// 863–870 MHz duty-cycle band), 'on' or 'off' (this device only).
+  final String reactionsOverRadio;
+
+  /// The chosen color theme's id (see BastionTheme); BLACKOUT by default.
+  /// An id that is no longer offered opens as BLACKOUT.
   final String appTheme;
+
+  /// How positions are shown: 'decimal', 'dms', 'utm' or 'mgrs'.
+  final String coordinateFormat;
 
   /// Channel messages older than this many days are deleted; 0 keeps them.
   final int channelMessageRetentionDays;
@@ -218,6 +265,7 @@ class AppSettings {
     this.mapKeyPrefixEnabled = false,
     this.mapKeyPrefix = '',
     this.mapShowMarkers = true,
+    this.mapShowWaypoints = true,
     this.mapShowGuessedLocations = true,
     this.enableMessageTracing = true,
     this.readAloudIncoming = 'off',
@@ -234,11 +282,15 @@ class AppSettings {
     this.autoSendZeroHopAdvertOnGpsUpdate = false,
     this.gpsIntervalSeconds = 900,
     this.autoRouteRotationEnabled = true,
-    this.maxRouteWeight = 5.0,
-    this.initialRouteWeight = 3.0,
-    this.routeWeightSuccessIncrement = 0.5,
-    this.routeWeightFailureDecrement = 0.2,
-    this.maxMessageRetries = 5,
+    this.maxRouteWeight = defaultMaxRouteWeight,
+    this.initialRouteWeight = defaultInitialRouteWeight,
+    this.routeWeightSuccessIncrement = defaultRouteWeightSuccessIncrement,
+    this.routeWeightFailureDecrement = defaultRouteWeightFailureDecrement,
+    this.maxMessageRetries = defaultMaxMessageRetries,
+    this.messageFloodAttempts = defaultMessageFloodAttempts,
+    this.favoriteReturnHours = 6,
+    this.repeaterQuietHours = 24,
+    this.newRepeaterAlerts = false,
     this.themeMode = 'system',
     this.languageOverride,
     this.appDebugLogEnabled = false,
@@ -246,6 +298,7 @@ class AppSettings {
     Map<String, String>? batteryChemistryByRepeaterId,
     this.unitSystem = UnitSystem.metric,
     Set<String>? mutedChannels,
+    Set<String>? blockedSenders,
     this.mapShowDiscoveryContacts = true,
     this.tcpServerAddress = '',
     this.tcpServerPort = 0,
@@ -254,8 +307,14 @@ class AppSettings {
     this.refreshRate = 'normal',
     this.linkPreviews = false,
     this.autoConnectRadio = false,
+    this.mapShowTelemetry = false,
+    this.staleAfterHours = 24,
+    this.mapShowRangeRings = false,
+    this.mapTelemetryMetric = 'battery',
     this.signChannelPosts = false,
-    this.appTheme = 'blaze',
+    this.reactionsOverRadio = 'auto',
+    this.appTheme = 'blackout',
+    this.coordinateFormat = 'decimal',
     this.channelMessageRetentionDays = 0,
     this.imageMessagesEnabled = false,
     this.imageProcessAutomatically = false,
@@ -276,6 +335,7 @@ class AppSettings {
   }) : batteryChemistryByDeviceId = batteryChemistryByDeviceId ?? {},
        batteryChemistryByRepeaterId = batteryChemistryByRepeaterId ?? {},
        mutedChannels = mutedChannels ?? {},
+       blockedSenders = blockedSenders ?? {},
        imageCodecDownloadedModels = imageCodecDownloadedModels ?? const [],
        translationDownloadedModels = translationDownloadedModels ?? const [],
        cyr2latProfiles =
@@ -300,6 +360,7 @@ class AppSettings {
       'map_key_prefix_enabled': mapKeyPrefixEnabled,
       'map_key_prefix': mapKeyPrefix,
       'map_show_markers': mapShowMarkers,
+      'map_show_waypoints': mapShowWaypoints,
       'map_show_guessed_locations': mapShowGuessedLocations,
       'enable_message_tracing': enableMessageTracing,
       'read_aloud_incoming': readAloudIncoming,
@@ -322,6 +383,10 @@ class AppSettings {
       'route_weight_success_increment': routeWeightSuccessIncrement,
       'route_weight_failure_decrement': routeWeightFailureDecrement,
       'max_message_retries': maxMessageRetries,
+      'message_flood_attempts': messageFloodAttempts,
+      'favorite_return_hours': favoriteReturnHours,
+      'repeater_quiet_hours': repeaterQuietHours,
+      'new_repeater_alerts': newRepeaterAlerts,
       'theme_mode': themeMode,
       'language_override': languageOverride,
       'app_debug_log_enabled': appDebugLogEnabled,
@@ -329,6 +394,7 @@ class AppSettings {
       'battery_chemistry_by_repeater_id': batteryChemistryByRepeaterId,
       'unit_system': unitSystem.value,
       'muted_channels': mutedChannels.toList(),
+      'blocked_senders': blockedSenders.toList(),
       'map_show_discovery_contacts': mapShowDiscoveryContacts,
       'tcp_server_address': tcpServerAddress,
       'tcp_server_port': tcpServerPort,
@@ -337,8 +403,14 @@ class AppSettings {
       'refresh_rate': refreshRate,
       'link_previews': linkPreviews,
       'auto_connect_radio': autoConnectRadio,
+      'map_show_telemetry': mapShowTelemetry,
+      'stale_after_hours': staleAfterHours,
+      'map_show_range_rings': mapShowRangeRings,
+      'map_telemetry_metric': mapTelemetryMetric,
       'sign_channel_posts': signChannelPosts,
+      'reactions_over_radio': reactionsOverRadio,
       'app_theme': appTheme,
+      'coordinate_format': coordinateFormat,
       'channel_message_retention_days': channelMessageRetentionDays,
       'image_messages_enabled': imageMessagesEnabled,
       'image_process_automatically': imageProcessAutomatically,
@@ -384,6 +456,7 @@ class AppSettings {
       mapKeyPrefixEnabled: json['map_key_prefix_enabled'] as bool? ?? false,
       mapKeyPrefix: json['map_key_prefix'] as String? ?? '',
       mapShowMarkers: json['map_show_markers'] as bool? ?? true,
+      mapShowWaypoints: json['map_show_waypoints'] as bool? ?? true,
       mapShowGuessedLocations:
           json['map_show_guessed_locations'] as bool? ?? true,
       enableMessageTracing: json['enable_message_tracing'] as bool? ?? true,
@@ -410,14 +483,25 @@ class AppSettings {
           (json['gps_interval_seconds'] as num?)?.toInt() ?? 900,
       autoRouteRotationEnabled:
           json['auto_route_rotation_enabled'] as bool? ?? true,
-      maxRouteWeight: (json['max_route_weight'] as num?)?.toDouble() ?? 5.0,
+      maxRouteWeight:
+          (json['max_route_weight'] as num?)?.toDouble() ??
+          defaultMaxRouteWeight,
       initialRouteWeight:
-          (json['initial_route_weight'] as num?)?.toDouble() ?? 3.0,
+          (json['initial_route_weight'] as num?)?.toDouble() ??
+          defaultInitialRouteWeight,
       routeWeightSuccessIncrement:
-          (json['route_weight_success_increment'] as num?)?.toDouble() ?? 0.5,
+          (json['route_weight_success_increment'] as num?)?.toDouble() ??
+          defaultRouteWeightSuccessIncrement,
       routeWeightFailureDecrement:
-          (json['route_weight_failure_decrement'] as num?)?.toDouble() ?? 0.2,
-      maxMessageRetries: json['max_message_retries'] as int? ?? 5,
+          (json['route_weight_failure_decrement'] as num?)?.toDouble() ??
+          defaultRouteWeightFailureDecrement,
+      maxMessageRetries:
+          json['max_message_retries'] as int? ?? defaultMaxMessageRetries,
+      messageFloodAttempts:
+          json['message_flood_attempts'] as int? ?? defaultMessageFloodAttempts,
+      favoriteReturnHours: json['favorite_return_hours'] as int? ?? 6,
+      repeaterQuietHours: json['repeater_quiet_hours'] as int? ?? 24,
+      newRepeaterAlerts: json['new_repeater_alerts'] as bool? ?? false,
       themeMode: json['theme_mode'] as String? ?? 'system',
       languageOverride: json['language_override'] as String?,
       appDebugLogEnabled: json['app_debug_log_enabled'] as bool? ?? false,
@@ -437,6 +521,11 @@ class AppSettings {
               ?.map((e) => e.toString())
               .toSet()) ??
           {},
+      blockedSenders:
+          ((json['blocked_senders'] as List?)
+              ?.map((e) => e.toString())
+              .toSet()) ??
+          {},
       mapShowDiscoveryContacts:
           json['map_show_discovery_contacts'] as bool? ?? true,
       tcpServerAddress: json['tcp_server_address'] as String? ?? '',
@@ -446,8 +535,17 @@ class AppSettings {
       refreshRate: json['refresh_rate'] as String? ?? 'normal',
       linkPreviews: json['link_previews'] as bool? ?? false,
       autoConnectRadio: json['auto_connect_radio'] as bool? ?? false,
+      mapShowTelemetry: json['map_show_telemetry'] as bool? ?? false,
+      staleAfterHours: json['stale_after_hours'] as int? ?? 24,
+      mapShowRangeRings: json['map_show_range_rings'] as bool? ?? false,
+      mapTelemetryMetric: json['map_telemetry_metric'] as String? ?? 'battery',
       signChannelPosts: json['sign_channel_posts'] as bool? ?? false,
-      appTheme: json['app_theme'] as String? ?? 'blaze',
+      reactionsOverRadio: switch (json['reactions_over_radio']) {
+        final String v when const {'auto', 'on', 'off'}.contains(v) => v,
+        _ => 'auto',
+      },
+      appTheme: json['app_theme'] as String? ?? 'blackout',
+      coordinateFormat: json['coordinate_format'] as String? ?? 'decimal',
       channelMessageRetentionDays:
           channelRetentionChoices.contains(
             json['channel_message_retention_days'],
@@ -536,6 +634,7 @@ class AppSettings {
     bool? mapKeyPrefixEnabled,
     String? mapKeyPrefix,
     bool? mapShowMarkers,
+    bool? mapShowWaypoints,
     bool? mapShowGuessedLocations,
     bool? enableMessageTracing,
     String? readAloudIncoming,
@@ -557,6 +656,10 @@ class AppSettings {
     double? routeWeightSuccessIncrement,
     double? routeWeightFailureDecrement,
     int? maxMessageRetries,
+    int? messageFloodAttempts,
+    int? favoriteReturnHours,
+    int? repeaterQuietHours,
+    bool? newRepeaterAlerts,
     String? themeMode,
     Object? languageOverride = _unset,
     bool? appDebugLogEnabled,
@@ -564,6 +667,7 @@ class AppSettings {
     Map<String, String>? batteryChemistryByRepeaterId,
     UnitSystem? unitSystem,
     Set<String>? mutedChannels,
+    Set<String>? blockedSenders,
     bool? mapShowDiscoveryContacts,
     String? tcpServerAddress,
     int? tcpServerPort,
@@ -572,8 +676,14 @@ class AppSettings {
     String? refreshRate,
     bool? linkPreviews,
     bool? autoConnectRadio,
+    bool? mapShowTelemetry,
+    int? staleAfterHours,
+    bool? mapShowRangeRings,
+    String? mapTelemetryMetric,
     bool? signChannelPosts,
+    String? reactionsOverRadio,
     String? appTheme,
+    String? coordinateFormat,
     int? channelMessageRetentionDays,
     bool? imageMessagesEnabled,
     bool? imageProcessAutomatically,
@@ -602,6 +712,7 @@ class AppSettings {
       mapKeyPrefixEnabled: mapKeyPrefixEnabled ?? this.mapKeyPrefixEnabled,
       mapKeyPrefix: mapKeyPrefix ?? this.mapKeyPrefix,
       mapShowMarkers: mapShowMarkers ?? this.mapShowMarkers,
+      mapShowWaypoints: mapShowWaypoints ?? this.mapShowWaypoints,
       mapShowGuessedLocations:
           mapShowGuessedLocations ?? this.mapShowGuessedLocations,
       enableMessageTracing: enableMessageTracing ?? this.enableMessageTracing,
@@ -634,6 +745,10 @@ class AppSettings {
       routeWeightFailureDecrement:
           routeWeightFailureDecrement ?? this.routeWeightFailureDecrement,
       maxMessageRetries: maxMessageRetries ?? this.maxMessageRetries,
+      messageFloodAttempts: messageFloodAttempts ?? this.messageFloodAttempts,
+      favoriteReturnHours: favoriteReturnHours ?? this.favoriteReturnHours,
+      repeaterQuietHours: repeaterQuietHours ?? this.repeaterQuietHours,
+      newRepeaterAlerts: newRepeaterAlerts ?? this.newRepeaterAlerts,
       themeMode: themeMode ?? this.themeMode,
       languageOverride: languageOverride == _unset
           ? this.languageOverride
@@ -645,6 +760,7 @@ class AppSettings {
           batteryChemistryByRepeaterId ?? this.batteryChemistryByRepeaterId,
       unitSystem: unitSystem ?? this.unitSystem,
       mutedChannels: mutedChannels ?? this.mutedChannels,
+      blockedSenders: blockedSenders ?? this.blockedSenders,
       mapShowDiscoveryContacts:
           mapShowDiscoveryContacts ?? this.mapShowDiscoveryContacts,
       tcpServerAddress: tcpServerAddress ?? this.tcpServerAddress,
@@ -654,8 +770,14 @@ class AppSettings {
       refreshRate: refreshRate ?? this.refreshRate,
       linkPreviews: linkPreviews ?? this.linkPreviews,
       autoConnectRadio: autoConnectRadio ?? this.autoConnectRadio,
+      mapShowTelemetry: mapShowTelemetry ?? this.mapShowTelemetry,
+      staleAfterHours: staleAfterHours ?? this.staleAfterHours,
+      mapShowRangeRings: mapShowRangeRings ?? this.mapShowRangeRings,
+      mapTelemetryMetric: mapTelemetryMetric ?? this.mapTelemetryMetric,
       signChannelPosts: signChannelPosts ?? this.signChannelPosts,
+      reactionsOverRadio: reactionsOverRadio ?? this.reactionsOverRadio,
       appTheme: appTheme ?? this.appTheme,
+      coordinateFormat: coordinateFormat ?? this.coordinateFormat,
       channelMessageRetentionDays:
           channelMessageRetentionDays ?? this.channelMessageRetentionDays,
       imageMessagesEnabled: imageMessagesEnabled ?? this.imageMessagesEnabled,
@@ -696,3 +818,6 @@ class AppSettings {
 
 /// Auto-delete choices for channel messages, in days; 0 keeps them forever.
 const channelRetentionChoices = [0, 7, 30, 90, 365];
+
+/// A saved theme id from any version as one of today's eight theme ids, so
+/// an old choice opens as its closest new theme instead of resetting.

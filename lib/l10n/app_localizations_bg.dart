@@ -9,7 +9,7 @@ class AppLocalizationsBg extends AppLocalizations {
   AppLocalizationsBg([String locale = 'bg']) : super(locale);
 
   @override
-  String get appTitle => 'NOTORYX Core';
+  String get appTitle => 'NOTORYX Core Ham';
 
   @override
   String get nav_contacts => 'Контакти';
@@ -917,7 +917,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String settings_aboutVersion(String version) {
-    return 'NOTORYX Core, версия $version';
+    return 'NOTORYX Core Ham, версия $version';
   }
 
   @override
@@ -966,10 +966,11 @@ class AppLocalizationsBg extends AppLocalizations {
   String get settings_frequency => 'Честота (MHz)';
 
   @override
-  String get settings_frequencyHelper => '300,0 – 2500,0';
+  String get settings_frequencyHelper => '420–450 / 902–928';
 
   @override
-  String get settings_frequencyInvalid => 'Невалидна честота (300-2500 MHz)';
+  String get settings_frequencyInvalid =>
+      'Невалидна честота (420–450 / 902–928 MHz)';
 
   @override
   String get settings_bandwidth => 'Ширина на честотната лента';
@@ -1566,7 +1567,7 @@ class AppLocalizationsBg extends AppLocalizations {
       'Получено чрез MQTT, не е чуто от вашето радио';
 
   @override
-  String get channels_private => 'Частен';
+  String get channels_private => 'С ключ';
 
   @override
   String get channels_editChannel => 'Редактирай канал';
@@ -1716,16 +1717,18 @@ class AppLocalizationsBg extends AppLocalizations {
   String get channels_sortUnread => 'Непрочетено';
 
   @override
-  String get channels_createPrivateChannel => 'Създай Частен Канал';
+  String get channels_createPrivateChannel => 'Създай канал с ключ';
 
   @override
-  String get channels_createPrivateChannelDesc => 'Защитено с таен ключ.';
+  String get channels_createPrivateChannelDesc =>
+      'Използва общ ключ за избор на канала. Съобщенията пак могат да се четат от всеки.';
 
   @override
-  String get channels_joinPrivateChannel => 'Присъедини се към Частен Канал';
+  String get channels_joinPrivateChannel => 'Присъедини се към канал с ключ';
 
   @override
-  String get channels_joinPrivateChannelDesc => 'Ръчно въведете таен ключ.';
+  String get channels_joinPrivateChannelDesc =>
+      'Въведете общия ключ на канала.';
 
   @override
   String get channels_joinPublicChannel =>
@@ -1822,6 +1825,9 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get chat_selectSendAction => 'Изберете действие за изпращане';
+
+  @override
+  String get chat_jumpToLatest => 'Към последното съобщение';
 
   @override
   String get chat_sendGif => 'Изпрати GIF';
@@ -2047,6 +2053,136 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get routing_noPathYet =>
       'Все още няма път. Съобщението продължава да се изпраща, докато не бъде открит маршрут.';
+
+  @override
+  String get routePick_open => 'Изглед и избор на маршрут';
+
+  @override
+  String get routePick_openHint =>
+      'Качество на връзката при всеки скок и избор на по-надежден маршрут';
+
+  @override
+  String routePick_title(String name) {
+    return 'Маршрут до $name';
+  }
+
+  @override
+  String get routePick_current => 'Текущ маршрут';
+
+  @override
+  String get routePick_flooding =>
+      'Няма фиксиран маршрут: съобщенията заливат мрежата, докато се научи маршрут.';
+
+  @override
+  String get routePick_direct => 'Директно';
+
+  @override
+  String routePick_hopUnknown(String id) {
+    return 'Ретранслатор $id';
+  }
+
+  @override
+  String get routePick_notMeasured => 'Още не е измерено';
+
+  @override
+  String get routePick_measure => 'Измери маршрута';
+
+  @override
+  String get routePick_measuring => 'Трасиране…';
+
+  @override
+  String get routePick_measured => 'Току-що измерено.';
+
+  @override
+  String get routePick_noAnswer =>
+      'Няма отговор на трасирането. Ретранслатор по маршрута може да е извън обхват.';
+
+  @override
+  String get routePick_floodDone =>
+      'Маршрутът е изчистен. Следващото съобщение ще залее мрежата, за да намери нов.';
+
+  @override
+  String get routePick_suggested => 'Препоръчан';
+
+  @override
+  String routePick_suggestBody(String route, int score) {
+    return 'По-надежден маршрут: $route (оценка $score).';
+  }
+
+  @override
+  String get routePick_use => 'Използвай';
+
+  @override
+  String routePick_useLabel(String route) {
+    return 'Използвай маршрут $route';
+  }
+
+  @override
+  String get routePick_options => 'Маршрути за избор';
+
+  @override
+  String get routePick_optionsHint =>
+      'Всеки чут маршрут за този контакт, с оценка 0–100 по сигнал на връзките, доставка, дължина и актуалност.';
+
+  @override
+  String get routePick_none =>
+      'Още няма маршрути. Изпратете съобщение, за да откриете.';
+
+  @override
+  String get routePick_other => 'Други възможности';
+
+  @override
+  String get routePick_build => 'Състави маршрут';
+
+  @override
+  String get routePick_flood => 'Нека мрежата намери маршрут';
+
+  @override
+  String get routePick_explainer =>
+      'Измерването изпраща трасиране по маршрута и обратно, така всяка връзка между ретранслатори се измерва в двете посоки. Последната връзка до контакта не може да се трасира. Данните се пазят 30 дни и важат за всеки маршрут със същата връзка.';
+
+  @override
+  String routePick_score(int score) {
+    return 'Оценка $score от 100';
+  }
+
+  @override
+  String routePick_hopLabel(
+    int number,
+    String name,
+    String quality,
+    String out,
+    String back,
+  ) {
+    return 'Скок $number: $name. Връзка $quality, натам $out децибела, обратно $back децибела.';
+  }
+
+  @override
+  String get routePick_lastLink =>
+      'Последна връзка до контакта: не се измерва с трасиране';
+
+  @override
+  String routePick_linkLine(String out, String back) {
+    return 'Натам $out dB · обратно $back dB';
+  }
+
+  @override
+  String routePick_optionLine(int score, int hops) {
+    return 'Оценка $score · скокове: $hops';
+  }
+
+  @override
+  String routePick_record(int ok, int tries) {
+    return 'доставени $ok от $tries';
+  }
+
+  @override
+  String routePick_weakest(String snr) {
+    return 'най-слаба връзка $snr dB';
+  }
+
+  @override
+  String get routePick_inUse => 'Използва се';
 
   @override
   String get routing_floodBroadcast => 'Предаване през всички повторители';
@@ -2735,6 +2871,27 @@ class AppLocalizationsBg extends AppLocalizations {
       'Входът не беше успешен. Или паролата е грешна, или повторителят е недостъпен.';
 
   @override
+  String get login_failRadioOffline =>
+      'Радиото не е свързано, затова входът не беше изпратен. Свържете го и опитайте отново.';
+
+  @override
+  String get login_failSend =>
+      'Радиото не прие заявката за вход. Свържете го отново и опитайте пак.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return 'Няма отговор по запазения път ($hops скока). Може да е остарял: включете $section → $option и опитайте отново. На грешна парола също няма отговор.';
+  }
+
+  @override
+  String get login_failRejected =>
+      'Ретранслаторът отговори и отхвърли паролата.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'Няма отговор чрез flood. Ретранслаторът може да е извън обхват, изключен или зает, или паролата е грешна (на нея не отговарят). Опитайте по-отблизо.';
+
+  @override
   String get common_reload => 'Презареди';
 
   @override
@@ -2806,6 +2963,34 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get repeater_clockSyncAfterLoginSubtitle =>
       'Автоматично изпращайте съобщение \"синхронизиране на часовника\" след успешно влизане.';
+
+  @override
+  String repeater_cliLateReply(String command, String reply) {
+    return 'Закъснял отговор на „$command“: $reply';
+  }
+
+  @override
+  String repeater_clockWrongNotice(String name) {
+    return 'Часовникът на $name е грешен. Обявите му ще изглеждат стари.';
+  }
+
+  @override
+  String get repeater_clockSyncAction => 'Синхронизиране';
+
+  @override
+  String repeater_clockSyncDone(String name) {
+    return 'Часовникът на $name вече съвпада с телефона ви.';
+  }
+
+  @override
+  String repeater_clockAhead(String name) {
+    return 'Часовникът на $name избързва спрямо телефона ви и не може да се върне назад.';
+  }
+
+  @override
+  String repeater_clockSyncFailed(String name) {
+    return 'Часовникът на $name не можа да се настрои. Опитайте Настройки → Синхронизирай часовника сега.';
+  }
 
   @override
   String get repeater_statusTitle => 'Статус на повтарянето';
@@ -2938,7 +3123,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get repeater_frequencyMhz => 'Честота (MHz)';
 
   @override
-  String get repeater_frequencyHelper => '300-2500 MHz';
+  String get repeater_frequencyHelper => '420–450 / 902–928 MHz';
 
   @override
   String get repeater_txPower => 'TX мощност';
@@ -3073,6 +3258,20 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => 'Настройките са запазени успешно.';
+
+  @override
+  String get repeater_settingsConfirmed =>
+      'Настройките са запазени и потвърдени от ретранслатора';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return 'Настройките са запазени, но $count не можаха да се прочетат обратно за потвърждение';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key се прочита като $value';
+  }
 
   @override
   String get repeater_rxGain => 'RX усилване';
@@ -4431,6 +4630,73 @@ class AppLocalizationsBg extends AppLocalizations {
   String get listFilter_newGroup => 'Нова група';
 
   @override
+  String get traceCard_title => 'Карта на трасето';
+
+  @override
+  String get traceCard_open => 'Сподели картата на трасето';
+
+  @override
+  String traceCard_from(String name) {
+    return 'От $name';
+  }
+
+  @override
+  String traceCard_to(String name) {
+    return 'До $name';
+  }
+
+  @override
+  String traceCard_sentAt(String time) {
+    return 'Изпратено $time';
+  }
+
+  @override
+  String traceCard_roundTrip(String seconds) {
+    return 'Отиване и връщане $seconds s';
+  }
+
+  @override
+  String traceCard_hops(int count) {
+    return 'Скокове: $count';
+  }
+
+  @override
+  String get traceCard_backToYou => 'Обратно при теб';
+
+  @override
+  String traceCard_distance(String distance) {
+    return 'Маршрут $distance';
+  }
+
+  @override
+  String traceCard_weakest(String snr) {
+    return 'Най-слаба връзка $snr';
+  }
+
+  @override
+  String get traceCard_noMap =>
+      'Няма известни позиции за този маршрут, затова няма карта.';
+
+  @override
+  String get traceCard_guessed => 'приблизителна позиция';
+
+  @override
+  String get traceCard_mapLabel => 'Карта на пътя дотам и обратно';
+
+  @override
+  String get traceCard_shareImage => 'Сподели изображение';
+
+  @override
+  String get traceCard_shareText => 'Сподели текст';
+
+  @override
+  String get traceCard_shareFailed =>
+      'Картата на трасето не можа да бъде споделена.';
+
+  @override
+  String get traceCard_snrUnknown => 'няма SNR';
+
+  @override
   String get pathTrace_you => 'Вие';
 
   @override
@@ -4567,6 +4833,36 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get losLegendTerrain => 'Терен';
+
+  @override
+  String get nodeLook_menu => 'Снимка или цвят';
+
+  @override
+  String nodeLook_title(String name) {
+    return 'Вид на $name';
+  }
+
+  @override
+  String get nodeLook_hint =>
+      'Само на този телефон. Никога не се изпраща по мрежата.';
+
+  @override
+  String get nodeLook_choosePhoto => 'Изберете снимка';
+
+  @override
+  String get nodeLook_removePhoto => 'Премахни снимката';
+
+  @override
+  String get nodeLook_clear => 'Използвай стандартния вид';
+
+  @override
+  String nodeLook_colorN(int index) {
+    return 'Цвят $index';
+  }
+
+  @override
+  String get nodeLook_photoFailed =>
+      'Тази снимка не може да се използва. Опитайте друга.';
 
   @override
   String get losBlockedSpotsTitle => 'Ограничени места';
@@ -4786,11 +5082,11 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get settings_gpxExportShareText =>
-      'Картинни данни изнесени от NOTORYX Core';
+      'Картинни данни изнесени от NOTORYX Core Ham';
 
   @override
   String get settings_gpxExportShareSubject =>
-      'NOTORYX Core износ на данни за карта в формат GPX';
+      'NOTORYX Core Ham износ на данни за карта в формат GPX';
 
   @override
   String get snrIndicator_nearByRepeaters => 'Близки повторители';
@@ -5561,6 +5857,10 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
+  String get sos_notEmergencyService =>
+      'Достига само до избраните контакти и радиа в обхват. Не се свързва със 112 или спешни служби.';
+
+  @override
   String get sos_holdHint =>
       'Задръжте 2 секунди. Изпраща местоположението ви до контактите от похода на всеки 5 минути, докато някой отговори.';
 
@@ -5812,7 +6112,7 @@ class AppLocalizationsBg extends AppLocalizations {
       'Това обобщение само споделя информация; то не изпраща радиосъобщение и не започва поход.';
 
   @override
-  String get fieldOps_title => 'Теренни операции NOTORYX Core';
+  String get fieldOps_title => 'Теренни операции NOTORYX Core Ham';
 
   @override
   String get fieldOps_tabTrip => 'Поход';
@@ -6005,7 +6305,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get fieldOps_shareBrief => 'Споделяне на обобщението';
 
   @override
-  String get fieldOps_briefSubject => 'Обобщение на поход NOTORYX Core';
+  String get fieldOps_briefSubject => 'Обобщение на поход NOTORYX Core Ham';
 
   @override
   String get fieldOps_tripName => 'Име на похода';
@@ -6033,7 +6333,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get fieldOps_reminderHelper =>
-      'Известие на телефона, дори ако NOTORYX Core е затворен.';
+      'Известие на телефона, дори ако NOTORYX Core Ham е затворен.';
 
   @override
   String get fieldOps_reminderOff => 'Изкл.';
@@ -6075,31 +6375,33 @@ class AppLocalizationsBg extends AppLocalizations {
   String get fieldOps_send => 'Изпрати';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'Препредаване на SOS';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable =>
+      'Препредавай SOS, които не е предал ретранслатор';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware =>
+      'Нужен е фърмуер на радиото v1.16 или по-нов';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'Още няма препредадени SOS';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: 'Препредадени $count SOS пакета, последно в $time',
+      one: 'Препредаден 1 SOS пакет, последно в $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'Когато радиото чуе SOS директно от подателя и никой ретранслатор не го предаде до около 15 секунди, NOTORYX го изпраща още веднъж, непроменен, за да стигне до ретранслатор, който вие чувате, а подателят не. Препредават се само SOS в каналите, които имате. Използва батерия и ефирно време, затова е изключено по подразбиране.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Преди да тръгнете';
@@ -6218,7 +6520,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get fieldOps_deleteLog => 'Изтриване на дневника';
 
   @override
-  String get fieldOps_logSubject => 'Теренен дневник NOTORYX Core';
+  String get fieldOps_logSubject => 'Теренен дневник NOTORYX Core Ham';
 
   @override
   String get fieldOps_logCaveat =>
@@ -6421,7 +6723,7 @@ class AppLocalizationsBg extends AppLocalizations {
       'Локална бележка при излъчените координати на радиостанцията; може да е остаряла.';
 
   @override
-  String get bastionHome_aboutTooltip => 'За NOTORYX Core';
+  String get bastionHome_aboutTooltip => 'За NOTORYX Core Ham';
 
   @override
   String get bastionHome_getStarted => 'Първи стъпки';
@@ -6546,14 +6848,14 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get bastionTools_aboutHint =>
-      'Версия на NOTORYX Core, декларация за независимост и лицензи с отворен код';
+      'Версия на NOTORYX Core Ham, декларация за независимост и лицензи с отворен код';
 
   @override
   String get bastionAbout_title => 'За приложението + Благодарности';
 
   @override
   String get bastionAbout_intro =>
-      'Независимо общностно приложение-спътник за мрежи MeshCore. NOTORYX Core не е официално приложение на MeshCore и включването на ресурси от общността не означава партньорство или одобрение.';
+      'Независимо общностно приложение-спътник за мрежи MeshCore. NOTORYX Core Ham не е официално приложение на MeshCore и включването на ресурси от общността не означава партньорство или одобрение.';
 
   @override
   String get bastionAbout_version => 'Версия';
@@ -6563,7 +6865,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get bastionAbout_openSourceBody =>
-      'NOTORYX Core е изграден върху и променя отворения код на MeshCore Open под лиценза MIT. Работата по процеса за покритие отдава признание и, където е приложимо, на лицензираното под MIT приложение MeshMapper Flutter App.';
+      'NOTORYX Core Ham е изграден върху и променя отворения код на MeshCore Open под лиценза MIT. Работата по процеса за покритие отдава признание и, където е приложимо, на лицензираното под MIT приложение MeshMapper Flutter App.';
 
   @override
   String get bastionAbout_community => 'Общността на първо място';
@@ -6574,13 +6876,13 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get bastionAbout_legalese =>
-      'NOTORYX Core • Независим спътник за MeshCore';
+      'NOTORYX Core Ham • Независим спътник за MeshCore';
 
   @override
   String get bastionAbout_licenses => 'Лицензи с отворен код';
 
   @override
-  String get bastionSetup_title => 'Първи стъпки с NOTORYX Core';
+  String get bastionSetup_title => 'Първи стъпки с NOTORYX Core Ham';
 
   @override
   String get bastionSetup_intro =>
@@ -6603,7 +6905,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get bastionSetup_step1Bluetooth =>
-      'Ако търсенето чрез Bluetooth е празно, проверете дали Bluetooth е включен и дали NOTORYX Core има разрешение „Устройства наблизо“ в настройките на приложенията на Android. Следвайте всички допълнителни заявки за разрешения от скенера.';
+      'Ако търсенето чрез Bluetooth е празно, проверете дали Bluetooth е включен и дали NOTORYX Core Ham има разрешение „Устройства наблизо“ в настройките на приложенията на Android. Следвайте всички допълнителни заявки за разрешения от скенера.';
 
   @override
   String get bastionSetup_connectionDiagnostics => 'Диагностика на връзката';
@@ -6670,6 +6972,28 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get bastionDiag_export => 'Експорт на диагностика';
+
+  @override
+  String get diagTimeline_title => 'История на връзката';
+
+  @override
+  String get diagTimeline_empty =>
+      'Няма промени във връзката от стартирането на приложението.';
+
+  @override
+  String get diagTimeline_causeUser => 'по ваша заявка';
+
+  @override
+  String get diagTimeline_causeLinkLost => 'връзката прекъсна';
+
+  @override
+  String get diagTimeline_causeReconnect => 'автоматичен повторен опит';
+
+  @override
+  String get diagTimeline_causeAutoConnect => 'свързано автоматично';
+
+  @override
+  String get diagTimeline_causeApp => 'затворено от приложението';
 
   @override
   String get bastionDiag_channels => 'Канали';
@@ -6768,7 +7092,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get coverage_connectedBody =>
-      'NOTORYX Core записва новочути възли по време на тази сесия, включително данни за маршрута, метаданни за възел/местоположение и най-близката налична моментна снимка RSSI/SNR на радиостанцията.';
+      'NOTORYX Core Ham записва новочути възли по време на тази сесия, включително данни за маршрута, метаданни за възел/местоположение и най-близката налична моментна снимка RSSI/SNR на радиостанцията.';
 
   @override
   String get coverage_disconnectedBody =>
@@ -6838,10 +7162,11 @@ class AppLocalizationsBg extends AppLocalizations {
   String get coverage_pathDirect => 'директен';
 
   @override
-  String get coverage_shareSubject => 'Сесия за покритие NOTORYX Core';
+  String get coverage_shareSubject => 'Сесия за покритие NOTORYX Core Ham';
 
   @override
-  String get coverage_shareText => 'Експорт на запис на покритие NOTORYX Core';
+  String get coverage_shareText =>
+      'Експорт на запис на покритие NOTORYX Core Ham';
 
   @override
   String get coverage_historyTitle => 'Запазени сесии за покритие';
@@ -6932,7 +7257,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get fieldStats_snapshot => 'Моментна снимка на мрежата';
 
   @override
-  String get fieldStats_headline => 'Какво знае NOTORYX Core в момента.';
+  String get fieldStats_headline => 'Какво знае NOTORYX Core Ham в момента.';
 
   @override
   String get fieldStats_body =>
@@ -6973,7 +7298,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get fieldStats_pathIntelBody =>
-      'Анализът на маршрути на NOTORYX Core използва запазени опити за пътища, брой скокове, успехи/неуспехи, време за преминаване и тегла на маршрутите, за да покаже научени маршрути.';
+      'Анализът на маршрути на NOTORYX Core Ham използва запазени опити за пътища, брой скокове, успехи/неуспехи, време за преминаване и тегла на маршрутите, за да покаже научени маршрути.';
 
   @override
   String get fieldStats_coverageSessions => 'Сесии за покритие';
@@ -6987,7 +7312,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get mapHub_intro =>
-      'Карти на живо, офлайн области, регионални профили и теренни сесии за покритие на NOTORYX Core.';
+      'Карти на живо, офлайн области, регионални профили и теренни сесии за покритие на NOTORYX Core Ham.';
 
   @override
   String get mapHub_captureHint =>
@@ -7024,6 +7349,68 @@ class AppLocalizationsBg extends AppLocalizations {
       'Управление и изтегляне на регионални дефиниции на мрежата';
 
   @override
+  String get replay_title => 'Преглед на ден';
+
+  @override
+  String get replay_entryHint => 'Къде е бил екипът в избран ден';
+
+  @override
+  String get replay_badge => 'История';
+
+  @override
+  String get replay_day => 'Ден';
+
+  @override
+  String get replay_team => 'Екип';
+
+  @override
+  String get replay_everyone => 'Всички';
+
+  @override
+  String get replay_emptyTeam =>
+      'Няма позиции на екипа за този ден. Съотборниците се появяват, когато споделят проследявани позиции в канал. Опитайте Всички за обявите на възлите.';
+
+  @override
+  String get replay_emptyEveryone =>
+      'Няма записани позиции за този ден. Отсега нататък телефонът записва позициите от обявите на възлите, докато приложението е отворено.';
+
+  @override
+  String replay_mapSummary(String time, int count) {
+    return 'Карта в $time: показани $count';
+  }
+
+  @override
+  String get replay_play => 'Пусни';
+
+  @override
+  String get replay_pause => 'Пауза';
+
+  @override
+  String get replay_speed => 'Скорост';
+
+  @override
+  String replay_speedValue(int minutes) {
+    return '$minutes мин в секунда';
+  }
+
+  @override
+  String replay_showNode(String name) {
+    return 'Покажи или скрий $name';
+  }
+
+  @override
+  String get replay_notYet => 'Още не е видян по това време';
+
+  @override
+  String replay_lastSeen(String time, String lat, String lon) {
+    return 'Последно видян в $time на $lat, $lon';
+  }
+
+  @override
+  String get replay_explainer =>
+      'Позициите на екипа идват от проследяваните позиции, споделени в канали. Всички добавя позициите от обявите на възлите, които телефонът записва при отворено приложение и пази 30 дни. Нищо не се изпраща.';
+
+  @override
   String get mapHub_badgeRegions => 'РЕГИОНИ';
 
   @override
@@ -7034,7 +7421,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get routes_body =>
-      'NOTORYX Core подрежда запазените маршрути по историята на пътищата, вече научена от реални опити за съобщения и откриване.';
+      'NOTORYX Core Ham подрежда запазените маршрути по историята на пътищата, вече научена от реални опити за съобщения и откриване.';
 
   @override
   String get routes_routes => 'Маршрути';
@@ -7065,7 +7452,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get routes_noneBody =>
-      'Използвайте мрежата нормално или стартирайте откриване. NOTORYX Core ще показва тук научените маршрути, щом има история на пътищата.';
+      'Използвайте мрежата нормално или стартирайте откриване. NOTORYX Core Ham ще показва тук научените маршрути, щом има история на пътищата.';
 
   @override
   String get routes_direct => 'ДИРЕКТЕН';
@@ -7155,15 +7542,80 @@ class AppLocalizationsBg extends AppLocalizations {
       'Все още няма открити ретранслатори. Свържете радиостанция и първо разгледайте мрежата.';
 
   @override
+  String get rptTest_title => 'Тест на близки ретранслатори';
+
+  @override
+  String get rptTest_subtitle =>
+      'Едно докосване: кои ретранслатори ви чуват директно';
+
+  @override
+  String get rptTest_start => 'Тествай сега';
+
+  @override
+  String get rptTest_listening => 'Изчакване на отговори…';
+
+  @override
+  String rptTest_wait(int seconds) {
+    return 'Следващ тест след $seconds s';
+  }
+
+  @override
+  String rptTest_found(int count) {
+    return 'Отговорили ретранслатори: $count';
+  }
+
+  @override
+  String get rptTest_none =>
+      'Нито един ретранслатор в пряк обхват не отговори. Опитайте от по-високо място или след минута. Ретранслатори със стар фърмуер не отговарят на този тест.';
+
+  @override
+  String get rptTest_strong => 'Силен';
+
+  @override
+  String get rptTest_usable => 'Използваем';
+
+  @override
+  String get rptTest_weak => 'Слаб';
+
+  @override
+  String rptTest_unknown(String prefix) {
+    return 'Ретранслатор $prefix';
+  }
+
+  @override
+  String rptTest_line(String there, String here, String rssi) {
+    return 'Чува ви при $there dB · чувате го при $here dB, $rssi dBm';
+  }
+
+  @override
+  String rptTest_rowLabel(
+    String name,
+    String quality,
+    String there,
+    String here,
+    String rssi,
+  ) {
+    return '$name, $quality. Чува ви при $there децибела. Чувате го при $here децибела, $rssi dBm.';
+  }
+
+  @override
+  String get rptTest_notConnected =>
+      'Свържете радиото си, за да пуснете теста.';
+
+  @override
+  String get rptTest_explainer =>
+      'Изпраща една заявка за откриване без скокове, така че отговарят само ретранслатори, които чуват радиото ви директно. Първото число показва колко добре ретранслаторът ви е чул, второто — колко добре сте го чули вие. Между тестовете има 30 секунди, защото ретранслаторите ограничават отговорите си.';
+
+  @override
   String get notification_fieldAlertTitle => 'Теренно предупреждение NOTORYX';
 
   @override
   String get notification_checkInReminderTitle =>
-      'Напомняне за отметка NOTORYX Core';
+      'Напомняне за отметка NOTORYX Core Ham';
 
   @override
   String notification_checkInReminderBody(int minutes, String trip) {
-    return 'Няма отметка от $minutes минути в похода „$trip“. Отворете NOTORYX Core, за да се отметнете.';
+    return 'Няма отметка от $minutes минути в похода „$trip“. Отворете NOTORYX Core Ham, за да се отметнете.';
   }
 
   @override
@@ -7200,7 +7652,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get settings_readAloudHelper =>
-      'Докато NOTORYX Core е отворен. Заглушените канали остават тихи. Всяко съобщение може да се прочете и от менюто му.';
+      'Докато NOTORYX Core Ham е отворен. Заглушените канали остават тихи. Всяко съобщение може да се прочете и от менюто му.';
 
   @override
   String get settings_readAloudOff => 'Изкл.';
@@ -7244,6 +7696,11 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get shortcuts_checkIn => 'Отметка';
+
+  @override
+  String qsTile_unread(String status, int count) {
+    return '$status · непрочетени: $count';
+  }
 
   @override
   String get shortcuts_trip => 'Поход';
@@ -7420,7 +7877,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get setupWizard_firmware =>
-      'Радиото ви се нуждае от фърмуер MeshCore companion, който поддържа избраната връзка. Поддръжката зависи от платката и версията на фърмуера; наличието на USB порт само по себе си не гарантира поддръжка на USB сериен порт. Проверете инструкциите за вашата платка и инсталираната версия. Фърмуерът на повторител или сървър за стая не е companion. Неуспешната връзка сама по себе си не означава, че трябва да препрограмирате.';
+      'Радиото ви се нуждае от фърмуер NOTORYX Ham companion, който поддържа избраната връзка. Поддръжката зависи от платката и версията на фърмуера; наличието на USB порт само по себе си не гарантира поддръжка на USB сериен порт. Проверете инструкциите за вашата платка и инсталираната версия. Фърмуерът на повторител или сървър за стая не е companion. Неуспешната връзка сама по себе си не означава, че трябва да препрограмирате.';
 
   @override
   String get setupWizard_settings =>
@@ -7949,6 +8406,13 @@ class AppLocalizationsBg extends AppLocalizations {
   String get scanner_tcpHint => 'Радио с Wi‑Fi фърмуер във вашата мрежа.';
 
   @override
+  String get scanner_tryDemo => 'Пробвайте демо';
+
+  @override
+  String get scanner_tryDemoHint =>
+      'Измислено радио и мрежа. Нищо не се изпраща.';
+
+  @override
   String get scanner_otherWays => 'Други начини за свързване';
 
   @override
@@ -7970,7 +8434,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get scanner_heroHint =>
-      'Включете радиото и го дръжте на няколко метра. Нужен е фърмуер MeshCore companion.';
+      'Включете радиото и го дръжте на няколко метра. Нужен е фърмуер NOTORYX Ham companion.';
 
   @override
   String get scanner_tipsTitle => 'Не виждате радиото си?';
@@ -7980,7 +8444,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get scanner_tipFirmware =>
-      'Нужен е фърмуер MeshCore companion. Ретранслаторите и стайните сървъри не се показват тук.';
+      'Нужен е фърмуер NOTORYX Ham companion. Ретранслаторите и стайните сървъри не се показват тук.';
 
   @override
   String get scanner_tipOtherDevice =>
@@ -8295,7 +8759,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get trackLog_howItWorks =>
-      'Използва позицията, която радиото подава приблизително веднъж в минута, докато NOTORYX Core е отворено. Точка се добавя след преместване с 25 м или на всеки 15 минути на място.';
+      'Използва позицията, която радиото подава приблизително веднъж в минута, докато NOTORYX Core Ham е отворено. Точка се добавя след преместване с 25 м или на всеки 15 минути на място.';
 
   @override
   String get trackLog_snap => 'Закръгляй позициите до около 100 м';
@@ -8417,6 +8881,73 @@ class AppLocalizationsBg extends AppLocalizations {
   String routes_repeaterWithId(String id) {
     return 'Ретранслатор $id';
   }
+
+  @override
+  String get signedCov_section => 'Подписани отчети';
+
+  @override
+  String get signedCov_share => 'Сподели подписан отчет';
+
+  @override
+  String get signedCov_shareHint =>
+      'Всеки шестоъгълник е подписан с ключа за покритие на телефона, така че променените или измислените се разпознават. Нищо не напуска телефона, освен ако не го споделиш.';
+
+  @override
+  String get signedCov_check => 'Провери отчет';
+
+  @override
+  String get signedCov_checkHint =>
+      'Постави подписан отчет, за да видиш кои наблюдения са истински';
+
+  @override
+  String get signedCov_paste => 'Подписан отчет (JSON)';
+
+  @override
+  String get signedCov_verify => 'Провери';
+
+  @override
+  String signedCov_yourKey(String fingerprint) {
+    return 'Твоят ключ за покритие: $fingerprint';
+  }
+
+  @override
+  String signedCov_result(int accepted, int rejected) {
+    return '$accepted потвърдени наблюдения, $rejected отхвърлени';
+  }
+
+  @override
+  String signedCov_signer(String fingerprint) {
+    return 'Подписано с ключ $fingerprint';
+  }
+
+  @override
+  String get signedCov_unreadable => 'Това не е подписан отчет за покритие.';
+
+  @override
+  String signedCov_rBadSignature(int count) {
+    return '$count с липсващ или грешен подпис';
+  }
+
+  @override
+  String signedCov_rMalformed(int count) {
+    return '$count повредени';
+  }
+
+  @override
+  String signedCov_rImpossible(int count) {
+    return '$count с невъзможни стойности на сигнала';
+  }
+
+  @override
+  String signedCov_rFuture(int count) {
+    return '$count с бъдеща дата';
+  }
+
+  @override
+  String get signedCov_empty => 'Още няма проби за покритие за споделяне.';
+
+  @override
+  String get signedCov_shareFailed => 'Отчетът не можа да бъде споделен.';
 
   @override
   String get coverageHex_title => 'Шестоъгълници на покритието';
@@ -8595,53 +9126,10 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get botWx_title => 'Публикуване на метеопредупреждения в канал';
-
-  @override
-  String get botWx_body =>
-      'Проверява Националната метеорологична служба на САЩ на всеки 10 минути за сериозни и екстремни предупреждения на GPS позицията на радиото (закръглена до около 1 км) и публикува всяко ново веднъж. Нужен е интернет на телефона.';
-
-  @override
-  String get botWx_channel => 'Публикуване в канал';
-
-  @override
-  String get botWx_moderate => 'Включване на умерени предупреждения';
-
-  @override
-  String get botWx_moderateHint =>
-      'Съвети, както и предупреждения. По-натоварено.';
-
-  @override
-  String botWx_lastChecked(String time) {
-    return 'Последна проверка $time.';
-  }
-
-  @override
-  String get botWx_noPosition => 'Радиото още не е съобщило GPS позиция.';
-
-  @override
-  String get botWx_noChannel => 'Изберете канал за предупрежденията.';
-
-  @override
-  String get botWx_channelGone => 'Избраният канал вече не съществува.';
-
-  @override
-  String botWx_httpError(String code) {
-    return 'Метеослужбата отговори с $code.';
-  }
-
-  @override
-  String get botWx_unreachable => 'Метеослужбата е недостъпна.';
-
-  @override
   String get botCmd_sun => 'Изгрев и залез на GPS позицията на радиото.';
 
   @override
   String get botCmd_moon => 'Фаза на Луната и колко е осветена.';
-
-  @override
-  String get botCmd_weather =>
-      'Текущо време при радиото (Open-Meteo). Изпраща позицията, закръглена до около 1 км.';
 
   @override
   String get botCmd_dice => 'Хвърля зарове: !dice, !dice 20 или !dice 2d6.';
@@ -9032,8 +9520,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get tools_bot => 'Режим бот';
 
   @override
-  String get tools_botHint =>
-      'Автоматични отговори, !команди и метео предупреждения в каналите';
+  String get tools_botHint => 'Автоматични отговори и !команди в каналите';
 
   @override
   String get botChannels_title => 'Канали';
@@ -9118,6 +9605,65 @@ class AppLocalizationsBg extends AppLocalizations {
       'Изпратено до регион, непознат за приложението';
 
   @override
+  String get timeline_title => 'Хронология';
+
+  @override
+  String get timeline_toolSubtitle =>
+      'Съобщения, нови възли, промени в сигнала и места в един поток';
+
+  @override
+  String get timeline_refresh => 'Презареди';
+
+  @override
+  String get timeline_search => 'Търси в хронологията';
+
+  @override
+  String get timeline_kindMessages => 'Съобщения';
+
+  @override
+  String get timeline_kindNodes => 'Нови възли';
+
+  @override
+  String get timeline_kindSignal => 'Сигнал';
+
+  @override
+  String get timeline_kindPlaces => 'Места';
+
+  @override
+  String timeline_messageFrom(String sender, String where) {
+    return '$sender в $where';
+  }
+
+  @override
+  String timeline_nodeJoined(String name) {
+    return 'Чут за първи път: $name';
+  }
+
+  @override
+  String timeline_signalUp(String name, String from, String to) {
+    return '$name: сигналът се подобри от $from на $to dB';
+  }
+
+  @override
+  String timeline_signalDown(String name, String from, String to) {
+    return '$name: сигналът спадна от $from на $to dB';
+  }
+
+  @override
+  String timeline_placeSaved(String name) {
+    return 'Запазено място: $name';
+  }
+
+  @override
+  String timeline_placeShared(String sender, String where) {
+    return '$sender сподели място в $where';
+  }
+
+  @override
+  String get timeline_empty =>
+      'Още няма нищо. Тук се появяват съобщения, новочути възли, промени в сигнала и места.';
+
+  @override
   String get wardrive_title => 'Картографиране на покритие';
 
   @override
@@ -9191,4 +9737,3605 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get autoConnect_hint =>
       'При отваряне на приложението се свързва отново с последното радио без докосване. Опитва няколко пъти, ако радиото още не е в обхват.';
+
+  @override
+  String get ham_licensedOperator => 'Лицензиран оператор';
+
+  @override
+  String get ham_operatorIntro =>
+      'Радиата на NOTORYX Core Ham предават по радиолюбителски лиценз (FCC Part 97). Всичко изпратено може да бъде прочетено от всеки, а всеки кадър носи позивната от началото на името на радиото.';
+
+  @override
+  String get ham_yourStation => 'Вашата станция';
+
+  @override
+  String get ham_callSign => 'Позивна';
+
+  @override
+  String get ham_notUsCallsign => 'Не е американска позивна';
+
+  @override
+  String get ham_licenceClass => 'Клас на лиценза';
+
+  @override
+  String get ham_licenceClassHelper =>
+      'Всеки клас има пълни права на 33 cm и 70 cm';
+
+  @override
+  String get ham_antennaSystem => 'Антенна система';
+
+  @override
+  String get ham_antennaSystemHint =>
+      'За оценката на мощността по-долу. Оставете 0 за това, което нямате.';
+
+  @override
+  String get ham_externalAmpGain => 'Усилване на външния усилвател';
+
+  @override
+  String get ham_feedlineLoss => 'Загуби във фидера';
+
+  @override
+  String get ham_antennaGain => 'Усилване на антената';
+
+  @override
+  String get ham_coordination => 'Координация';
+
+  @override
+  String get ham_coordinationNotice =>
+      'Използвайте NOTORYX Core Ham само след много добра координация. Радиата и ретранслаторите предават автоматично в споделени обхвати, затова преди всяко радио да излезе в ефир, говорете с честотния си координатор, спазвайте местния лентов план и се договорете за един канал с всички оператори във вашия район.';
+
+  @override
+  String get ham_readCoordinationGuide =>
+      'Прочетете ръководството за координация';
+
+  @override
+  String get ham_acknowledgment =>
+      'Имам този лиценз, прочетох ръководството за координация и ще се координирам, преди да предавам.';
+
+  @override
+  String get ham_operatorSaved => 'Операторът е запазен';
+
+  @override
+  String get ham_connectedRadio => 'Свързано радио';
+
+  @override
+  String get ham_nodeName => 'Име на възела';
+
+  @override
+  String get ham_nodeNameOk => 'Започва с вашата позивна';
+
+  @override
+  String get ham_nodeNameBad =>
+      'Трябва да започва с вашата позивна, иначе радиото мълчи';
+
+  @override
+  String ham_setNameTo(String callsign) {
+    return 'Задай $callsign';
+  }
+
+  @override
+  String get ham_frequency => 'Честота';
+
+  @override
+  String get ham_inHamBand => 'В радиолюбителски обхват';
+
+  @override
+  String get ham_outsideHamBands => 'Извън 420–450 / 902–928 MHz';
+
+  @override
+  String get ham_txPowerSetting => 'Настройка на мощността';
+
+  @override
+  String get ham_chipSetting => 'Настройката на радиочипа';
+
+  @override
+  String get ham_firmware => 'Фърмуер';
+
+  @override
+  String get ham_estimatedOutput => 'Очаквана изходна мощност';
+
+  @override
+  String get ham_estimatedErp => 'Очаквана ЕИМ (ERP)';
+
+  @override
+  String get ham_unknown => 'неизвестно';
+
+  @override
+  String get ham_unknownBoard => 'Непозната платка: смята се без усилвател';
+
+  @override
+  String get ham_ampNone => 'без усилвател';
+
+  @override
+  String ham_ampGain(String db) {
+    return 'около +$db dB от усилвателя';
+  }
+
+  @override
+  String get ham_ampVariable => 'зависи от настройката на усилвателя';
+
+  @override
+  String ham_boardNote(String board, String note) {
+    return '$board: $note';
+  }
+
+  @override
+  String ham_measureFirst(String board) {
+    return '$board. Измерете я, преди да разчитате на оценка.';
+  }
+
+  @override
+  String ham_outputNote(String board) {
+    return '$board. Оценка: измерете, за да сте сигурни, и ползвайте най-малката достатъчна мощност.';
+  }
+
+  @override
+  String get ham_overSpreadSpectrum =>
+      'Над 10 W PEP, границата за разпределен спектър като LoRa (§97.311). Намалете я.';
+
+  @override
+  String get ham_erpNote =>
+      'След загубите във фидера и усилването на антената, спрямо дипол. При по-голяма мощност проверете облъчването (§97.13).';
+
+  @override
+  String get ham_location => 'Местоположение';
+
+  @override
+  String get ham_noLocationLimits => 'не са открити ограничения';
+
+  @override
+  String get ham_locationOkNote =>
+      'По позицията на радиото. За сигурност проверете §97.303.';
+
+  @override
+  String get ham_check => 'проверете';
+
+  @override
+  String get ham_positionUnknown =>
+      'Позицията е неизвестна: проверете §97.303 за ограничения там, където работите.';
+
+  @override
+  String get ham_exclusion33cm =>
+      'Този район изглежда е в зона на изключение по §97.303(g): тук радиолюбителски станции не могат да предават на 33 cm.';
+
+  @override
+  String get ham_lineA =>
+      'Ако сте северно от Линия A (близо до канадската граница), 420–430 MHz не е достъпен. Проверете §97.303.';
+
+  @override
+  String get ham_statusOk => 'Наред';
+
+  @override
+  String get ham_needsAttention => 'Изисква внимание';
+
+  @override
+  String get ham_setupBanner =>
+      'Завършете настройката на оператора, преди да предавате';
+
+  @override
+  String get ham_setUp => 'Настрой';
+
+  @override
+  String get ham_operatorCardIncomplete =>
+      'Задайте позивната си и прочетете ръководството за координация';
+
+  @override
+  String get ham_nodeNameCallsignHelper =>
+      'Започнете с позивната си, напр. „W1AW“ или „W1AW Base“';
+
+  @override
+  String get ham_repeaterNameNeedsCall =>
+      'Името трябва да започва с позивната на ретранслатора, напр. „N0RPT Hilltop“.';
+
+  @override
+  String get ham_repeaterPasswordsSerial =>
+      'Задавайте паролите през USB серийната конзола на ретранслатора. Изпратени по ефира, всеки би ги прочел.';
+
+  @override
+  String get networks_title => 'Мрежи';
+
+  @override
+  String get networks_hint => 'Търсене на мрежи наблизо и дневник';
+
+  @override
+  String get networks_yourNetwork => 'Вашата мрежа';
+
+  @override
+  String get networks_scanTitle => 'Търсене на мрежи';
+
+  @override
+  String get networks_scanExplainer =>
+      'Радиото чува само мрежи с точно неговите настройки, затова търсенето го превключва последователно на всяка, слуша и го връща обратно. Докато трае, сте извън своята мрежа.';
+
+  @override
+  String get networks_listenFor => 'Слушане на всяка';
+
+  @override
+  String networks_choose(int count) {
+    return 'Мрежи за търсене: $count';
+  }
+
+  @override
+  String get networks_suggested => 'Предложени';
+
+  @override
+  String get networks_start => 'Започни търсене';
+
+  @override
+  String get networks_cancel => 'Спри търсенето';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return 'Слушане на $name ($step от $steps)';
+  }
+
+  @override
+  String get networks_blockNoRadio => 'Свържете радио, за да търсите.';
+
+  @override
+  String get networks_blockSettings => 'Изчакват се настройките на радиото.';
+
+  @override
+  String get networks_blockSos =>
+      'Не и докато има активен SOS: търсенето ви изважда от мрежата.';
+
+  @override
+  String get networks_blockTrip =>
+      'Не и по време на преход: търсенето ви изважда от мрежата.';
+
+  @override
+  String get networks_nearby => 'Мрежи наблизо';
+
+  @override
+  String get networks_nothingYet => 'Още няма чути мрежи. Пуснете търсене.';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return 'Възли $nodes · пакети $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return 'Последно чута $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return 'Чута пъти: $count';
+  }
+
+  @override
+  String get networks_saved => 'Запазени мрежи';
+
+  @override
+  String get networks_noSaved => 'Още няма запазени мрежи.';
+
+  @override
+  String get networks_add => 'Добавяне на мрежа';
+
+  @override
+  String get networks_join => 'Присъединяване';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return 'Да превключа ли радиото на $name? Ще напуснете текущата мрежа. Мощността на предаване остава същата.';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return 'Радиото вече е на $name.';
+  }
+
+  @override
+  String get networks_log => 'Дневник на мрежите';
+
+  @override
+  String get networks_logEmpty => 'Още няма записи.';
+
+  @override
+  String get networks_showMap => 'Карта';
+
+  @override
+  String get networks_exportCsv => 'Експорт CSV';
+
+  @override
+  String get networks_exportGpx => 'Експорт GPX';
+
+  @override
+  String get networks_clearLog => 'Изчистване на дневника';
+
+  @override
+  String get networks_clearLogConfirm => 'Да изтрия ли всички записани мрежи?';
+
+  @override
+  String get networks_name => 'Име';
+
+  @override
+  String get networks_invalid =>
+      'Проверете настройките: извън обхвата на радиата MeshCore.';
+
+  @override
+  String get networks_nodesHeard => 'Чути възли';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      'Не е изпратено: свържете радиото и опитайте отново. Съобщението е запазено.';
+
+  @override
+  String get quick_title => 'Бързи съобщения';
+
+  @override
+  String get quick_ok => 'Добре';
+
+  @override
+  String get quick_onMyWay => 'Идвам';
+
+  @override
+  String get quick_atCamp => 'В лагера';
+
+  @override
+  String get quick_runningLate => 'Закъснявам';
+
+  @override
+  String get quick_needHelp => 'Нужна ми е помощ';
+
+  @override
+  String get quick_copyThat => 'Разбрано';
+
+  @override
+  String get quick_empty =>
+      'Няма бързи съобщения. Докоснете Редактиране, за да добавите.';
+
+  @override
+  String get quick_add => 'Ново бързо съобщение';
+
+  @override
+  String get quick_reset => 'Връщане към стандартните';
+
+  @override
+  String get chat_stopRetrying => 'Спри повторните опити';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name може да чете и отговаря на личните ви съобщения само след като ви добави като контакт. Ако не е, изпратете обявата си или споделете контакта си.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'Към моята позиция';
+
+  @override
+  String get map_positionUnavailable =>
+      'Позицията ви не е налична. Включете местоположението или задайте позицията на радиото.';
+
+  @override
+  String get contact_forgetAdvert => 'Забрави последната обява';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Ако обявите на този възел са спрели да се обновяват след нулиране на часовника му, Забрави последната обява пропуска следващата.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Готово. Следващата обява от този възел ще бъде приета.';
+
+  @override
+  String get networks_modeQuick => 'Бързо';
+
+  @override
+  String get networks_modeThorough => 'Подробно';
+
+  @override
+  String get networks_modeQuickHint =>
+      'Изпраща един кратък пинг с нула скока във всяка мрежа и слуша няколко секунди. Намира мрежи с ретранслатор в обхват.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Само слуша, по-дълго във всяка мрежа. Не изпраща нищо и намира и мрежи без ретранслатор в обхват, ако някой предава.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'около $time';
+  }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return 'Избрани: $count';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => 'Избери всички';
+
+  @override
+  String get discoveredContacts_addSelected => 'Добави избраните';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return 'Добави всички показани ($count)';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return 'Да добавя ли $count контакта?';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return 'Радиото има място за още $room контакта.';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return 'Радиото има място за още $room контакта, затова ще бъдат добавени само първите $room от $count.';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return 'Добавяне $done от $total…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return 'Добавени контакти: $count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return 'Добавени контакти: $added. Недобавени: $failed.';
+  }
+
+  @override
+  String get discoveredContacts_radioFull =>
+      'Списъкът с контакти на радиото е пълен. Първо премахнете някои.';
+
+  @override
+  String get fieldIntel_radioNow => 'Радиото в момента';
+
+  @override
+  String get fieldIntel_noRadio => 'Свържете радиото за данни на живо.';
+
+  @override
+  String get fieldIntel_noise => 'шум dBm';
+
+  @override
+  String get fieldIntel_lastSnr => 'последен SNR';
+
+  @override
+  String get fieldIntel_lastRssi => 'последен RSSI';
+
+  @override
+  String get fieldIntel_battery => 'батерия V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return 'Ефирно време от включването на радиото: изпратено $sent, получено $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => 'Кой е наоколо';
+
+  @override
+  String get fieldIntel_m15 => '15 мин';
+
+  @override
+  String get fieldIntel_h1 => '1 час';
+
+  @override
+  String get fieldIntel_h24 => '24 часа';
+
+  @override
+  String get fieldIntel_older => 'По-стари';
+
+  @override
+  String get fieldIntel_lastHour => 'Последния час';
+
+  @override
+  String get fieldIntel_chartHint =>
+      'Кога всеки възел е чут за последно, по часове, през последното денонощие. Докоснете стълбче, за да видите кои.';
+
+  @override
+  String get fieldIntel_mix => 'Видове възли';
+
+  @override
+  String get fieldIntel_reach => 'Обхват';
+
+  @override
+  String get fieldIntel_hops1 => '1 скок';
+
+  @override
+  String get fieldIntel_hops2 => '2 скока';
+
+  @override
+  String get fieldIntel_hops3 => '3+ скока';
+
+  @override
+  String get fieldIntel_noRoute => 'Още няма маршрут';
+
+  @override
+  String get fieldIntel_distance => 'Най-близки и най-далечни';
+
+  @override
+  String get fieldIntel_noneLocated => 'Никой от контактите ви няма позиция.';
+
+  @override
+  String get fieldIntel_noPosition =>
+      'Радиото още няма позиция, затова разстоянията не могат да се изчислят.';
+
+  @override
+  String get fieldIntel_bestRepeaters =>
+      'Най-добри ретранслатори, чути директно';
+
+  @override
+  String get fieldIntel_noneDirect =>
+      'През последните 30 минути не е чут директно ретранслатор.';
+
+  @override
+  String get fieldIntel_attention => 'Нужно е внимание';
+
+  @override
+  String get fieldIntel_allGood => 'Нищо не изисква внимание.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'Слаба батерия: $volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'Любим, не е чут от $ago';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'Още инструменти';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'Възли: $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'Няма възли.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return 'Последно чут $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => 'Покажи на картата';
+
+  @override
+  String get fieldIntel_openChat => 'Отвори чата';
+
+  @override
+  String get repeaterTools_login => 'Вход';
+
+  @override
+  String get repeaterTools_heardDirect => 'Чут директно';
+
+  @override
+  String get repeaterTools_filterAll => 'Всички';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Слаба батерия';
+
+  @override
+  String get repeaterTools_hint =>
+      'Докоснете ретранслатор за подробности, а оттам влезте за състояние, съседи, телеметрия и команден ред.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Няма ретранслатори тук.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Инструменти';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Намерете регионалното дърво за района си и копирайте командите му';
+
+  @override
+  String get routes_failingOnly => 'Само неуспешни маршрути';
+
+  @override
+  String get routes_contactDetails => 'Данни за контакта';
+
+  @override
+  String get links_contactTitle => 'Добавяне на контакт?';
+
+  @override
+  String get links_importAdvert => 'Да добавя ли този контакт в радиото?';
+
+  @override
+  String get links_connectFirst =>
+      'Първо свържете радиото, после отворете връзката отново.';
+
+  @override
+  String get links_added => 'Контактът е добавен';
+
+  @override
+  String get links_notContact => 'Тази връзка не е контакт на MeshCore.';
+
+  @override
+  String get radioBuzzer_title => 'Звуков сигнал на радиото';
+
+  @override
+  String get radioBuzzer_hint =>
+      'Радиото пиука при нови съобщения. Показва се само за радиа със зумер.';
+
+  @override
+  String get radioBuzzer_failed =>
+      'Радиото не прие промяната. Опитайте отново.';
+
+  @override
+  String get appSettings_floodAttempts => 'Опити с наводняване';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Допълнителни опити, изпратени чрез наводняване, след като директните се провалят, в случай че маршрутът се е променил. Всеки използва повече ефирно време. 0 ги изключва.';
+
+  @override
+  String get pathGraph_you => 'Вие';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return 'Препредадени $count съобщения';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Този кратък ID съвпада с повече от един ретранслатор, затова не може да се определи точно.';
+
+  @override
+  String get pathGraph_comesFrom => 'Идва от';
+
+  @override
+  String get pathGraph_goesTo => 'Отива към';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Данни за ретранслатора';
+
+  @override
+  String get pathGraph_days7 => '7 дни';
+
+  @override
+  String get pathGraph_empty =>
+      'Още няма пътища на съобщения в канали за този период. Пътищата се събират от получени съобщения в канали, докато проследяването е включено.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return 'Чути пътища: $paths · ретранслатори: $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Всеки скок е показан с хеш префикса си или с името, ако познавате ретранслатора.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count кратки (1-байтови) скока са свързани с конкретен ретранслатор чрез по-дълги пътища.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched кратки (1-байтови) скока са свързани с конкретен ретранслатор чрез по-дълги пътища · $ambiguous остават неясни (с ?).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Вляво: по-далечни ретранслатори. Вдясно: вие. Дебелината на лентата е броят съобщения през този скок. Докоснете кутийка, за да видите ретранслатора.';
+
+  @override
+  String get pathGraph_busiest => 'Най-натоварени ретранслатори';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Граф на пътищата. Най-натоварен ретранслатор $name, препредал $count съобщения.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Копирано: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'В радиото няма канали.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Докоснете стойност, за да я копирате. Дръпнете надолу за обновяване.';
+
+  @override
+  String get diag_storage => 'Памет';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used от $total KB';
+  }
+
+  @override
+  String get favReturn_setting => 'Любими отново в обхват';
+
+  @override
+  String get favReturn_settingHint =>
+      'Известие, когато любим контакт се чуе отново след период на тишина';
+
+  @override
+  String get favReturn_off => 'Изкл.';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'След $count часа',
+      one: 'След 1 час',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Отново в обхват';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours часа',
+      one: '1 час',
+    );
+    return '$name се чу отново след $_temp0 тишина';
+  }
+
+  @override
+  String get ham_heardFrom => 'Чуто от';
+
+  @override
+  String get ham_lastHeard => 'Последен кадър от';
+
+  @override
+  String get ham_nothingHeardYet => 'още нищо';
+
+  @override
+  String get ham_readyToTransmit => 'Готово за предаване';
+
+  @override
+  String get ham_notReadyToTransmit =>
+      'Проверете отбелязаните по-долу точки, преди да предавате';
+
+  @override
+  String get ham_bannerNameMismatch =>
+      'Дайте на радиото име с вашата позивна, преди да предавате';
+
+  @override
+  String get ham_bannerOutOfBand =>
+      'Радиото е настроено извън радиолюбителските обхвати';
+
+  @override
+  String get a11y_showPassword => 'Покажи паролата';
+
+  @override
+  String get a11y_hidePassword => 'Скрий паролата';
+
+  @override
+  String get a11y_sendLocation => 'Изпрати местоположението ми';
+
+  @override
+  String get a11y_toggleFlash => 'Фенерче';
+
+  @override
+  String get a11y_switchCamera => 'Смени камерата';
+
+  @override
+  String get los_worst => 'НАЙ-ЛОШО';
+
+  @override
+  String get los_selectedObstruction => 'Избрано препятствие';
+
+  @override
+  String get bastionHome_stationOk => 'Името на възела и обхватът са наред';
+
+  @override
+  String get bastionHome_stationConnectToCheck =>
+      'Свържете радио, за да проверите името и обхвата му';
+
+  @override
+  String get theme_selected => 'Избрана';
+
+  @override
+  String get theme_desc_blaze => 'Тъмен шисти с ярко оранжево';
+
+  @override
+  String get theme_desc_blackout => 'Матово черно и стомана. По подразбиране.';
+
+  @override
+  String get theme_desc_tactical =>
+      'Маслинено, оръжейно сиво и земни тонове за терена';
+
+  @override
+  String get theme_desc_okabe_ito =>
+      'Подходяща при нарушено цветно зрение, на синкавосиво';
+
+  @override
+  String get theme_desc_night_ops => 'Приглушено червено за работа на тъмно';
+
+  @override
+  String get rxLog_title => 'RX дневник';
+
+  @override
+  String get rxLog_hint => 'Всеки пакет, който радиото чува, на живо';
+
+  @override
+  String get rxLog_empty =>
+      'Все още няма пакети. Пакетите, които радиото чува, се появяват тук при пристигането им.';
+
+  @override
+  String get rxLog_note =>
+      'Пази се само в паметта, последните 2000 пакета. Нищо не се записва и не се изпраща.';
+
+  @override
+  String get rxLog_pause => 'Пауза';
+
+  @override
+  String get rxLog_resume => 'Продължи';
+
+  @override
+  String get rxLog_export => 'Експорт в CSV';
+
+  @override
+  String get rxLog_clearConfirm => 'Да се изчисти ли RX дневникът?';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return '$shown показани · $total чути';
+  }
+
+  @override
+  String get rxLog_paused => 'На пауза: новите пакети не се записват';
+
+  @override
+  String get rxLog_kindAll => 'Всички';
+
+  @override
+  String get rxLog_kindAdvert => 'Обявления';
+
+  @override
+  String get rxLog_kindChannel => 'Канал';
+
+  @override
+  String get rxLog_kindDirect => 'Директни';
+
+  @override
+  String get rxLog_kindAck => 'Потвърждения';
+
+  @override
+  String get rxLog_kindPath => 'Пътища';
+
+  @override
+  String get rxLog_kindTrace => 'Трасета';
+
+  @override
+  String get rxLog_kindControl => 'Управление';
+
+  @override
+  String get rxLog_kindOther => 'Други';
+
+  @override
+  String get rxLog_routeFlood => 'Наводняване';
+
+  @override
+  String get rxLog_routeDirect => 'Директен маршрут';
+
+  @override
+  String get rxLog_heardDirectly => 'Чут директно';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count скока',
+      one: '1 скок',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count байта',
+      one: '1 байт',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => 'Вашето радио';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => 'Сигнал';
+
+  @override
+  String get rxLog_route => 'Маршрут';
+
+  @override
+  String get rxLog_path => 'Път';
+
+  @override
+  String get rxLog_payloadType => 'Тип съдържание';
+
+  @override
+  String get rxLog_hash => 'Хеш на пакета';
+
+  @override
+  String get rxLog_raw => 'Суров пакет';
+
+  @override
+  String get rxLog_copyHex => 'Копирай hex';
+
+  @override
+  String get deliv_title => 'Подробности за доставката';
+
+  @override
+  String get deliv_note => 'Изведено от данните, запазени с това съобщение.';
+
+  @override
+  String get deliv_queued => 'В опашка';
+
+  @override
+  String get deliv_sent => 'Изпратено от радиото';
+
+  @override
+  String get deliv_notSent => 'Радиото не го прие';
+
+  @override
+  String get deliv_attempts => 'Опити';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made от $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return 'План: $direct директни, после $flood с наводняване';
+  }
+
+  @override
+  String get deliv_lastRoute => 'Последен маршрут';
+
+  @override
+  String get deliv_routeFlood => 'Наводняване през всички ретранслатори';
+
+  @override
+  String get deliv_routeNeighbor => 'Директно, без ретранслатори';
+
+  @override
+  String deliv_routeVia(String path) {
+    return 'Директно през $path';
+  }
+
+  @override
+  String get deliv_confirmed => 'Потвърдено получаване';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return 'Двупосочно време $seconds s';
+  }
+
+  @override
+  String get deliv_waiting => 'Изчаква потвърждение';
+
+  @override
+  String get deliv_noConfirm => 'Няма потвърждение';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name последно чут';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'преди $hours часа',
+      one: 'преди 1 час',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return 'Доставено. $name потвърди.';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return 'Доставено с наводняване, след като директните опити не успяха. Запазеният маршрут до $name може да е остарял.';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return 'Още се опитва: опит $attempt от $total.';
+  }
+
+  @override
+  String get deliv_vNotSent =>
+      'Радиото не прие това съобщение. Проверете дали е свързано и опитайте отново.';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours часа',
+      one: '1 час',
+    );
+    return 'Няма потвърждение. $name не е чут от $_temp0, може да е извън обхват или изключен.';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      'Няма потвърждение по запазения маршрут, а опитите с наводняване са изключени. Включете ги в Настройки → Настройки на приложението → Съобщения или опитайте отново.';
+
+  @override
+  String get deliv_vNoAck =>
+      'Няма потвърждение по никой маршрут. Може да е извън обхват или потвърждението не е стигнало до вас.';
+
+  @override
+  String get batteryOpt_title => 'Оптимизация на батерията';
+
+  @override
+  String get batteryOpt_off =>
+      'Изключена за NOTORYX Core Ham, така известията работят и във фонов режим.';
+
+  @override
+  String get batteryOpt_on =>
+      'Включена. Android може да спре приложението във фонов режим и известията за SOS, отметки и съобщения да закъснеят или да се изгубят.';
+
+  @override
+  String get batteryOpt_fix => 'Изключи';
+
+  @override
+  String block_sender(String name) {
+    return 'Блокирай $name';
+  }
+
+  @override
+  String get block_confirmBody =>
+      'Съобщенията му в каналите се скриват на това устройство и никога не ви известяват. Той още вижда вашите съобщения. Можете да го отблокирате в Настройки.';
+
+  @override
+  String get block_action => 'Блокирай';
+
+  @override
+  String block_done(String name) {
+    return '$name е блокиран';
+  }
+
+  @override
+  String get mention_suggestions => 'Предложения за имена';
+
+  @override
+  String get block_listTitle => 'Блокирани податели';
+
+  @override
+  String get block_listHint =>
+      'Съобщенията от тези имена се скриват в каналите и никога не ви известяват.';
+
+  @override
+  String get block_listEmpty => 'Няма блокирани.';
+
+  @override
+  String get block_unblock => 'Отблокирай';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count блокирани',
+      one: '1 блокиран',
+      zero: 'Няма блокирани',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return 'Списъкът с контакти на радиото е запълнен на $percent%';
+  }
+
+  @override
+  String get contactTable_full => 'Списъкът с контакти на радиото е пълен';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used от $max контакта';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'Когато е пълен, радиото заменя най-отдавна чутия контакт. Любимите се запазват.';
+
+  @override
+  String get contactTable_stopHint =>
+      'Когато е пълен, радиото спира да добавя нови чути контакти.';
+
+  @override
+  String get contactTable_freeUp => 'Освободи място';
+
+  @override
+  String get contactTable_sheetBody =>
+      'Първо най-отдавна чутите. Любимите не са в списъка.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return 'Последно чут $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Премахни $count контакта',
+      one: 'Премахни 1 контакт',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'Премахват се от радиото, а съобщенията им на това устройство се изтриват. Това не може да се отмени.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Премахнати са $count контакта',
+      one: 'Премахнат е 1 контакт',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Всички контакти са любими, затова няма какво да се предложи.';
+
+  @override
+  String get adminWait_waiting => 'Изчакване на отговор';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Още няма отговор. Нов опит ($attempt от $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Директно, $hops скока',
+      one: 'Директно, 1 скок',
+      zero: 'Директно',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'до $seconds с';
+  }
+
+  @override
+  String get coords_setting => 'Формат на координатите';
+
+  @override
+  String get coords_decimal => 'Десетични градуси';
+
+  @override
+  String get coords_dms => 'Градуси, минути, секунди';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => 'Копирай позицията';
+
+  @override
+  String coords_copied(String format) {
+    return 'Копирано като $format';
+  }
+
+  @override
+  String pathHash_badge(int width) {
+    return 'Маршрутът използва $width-байтови хешове на пътя';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'Вашето радио използва $width-байтови';
+  }
+
+  @override
+  String ham_idMismatchTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count идентификатора на станции не съвпадат с имената',
+      one: '1 идентификатор на станция не съвпада с името',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_idMismatchBody =>
+      'Приети директно, тези обявления носеха идентификатор на станция, различен от позивната, с която започва името им. Може радиото да е настроено грешно; проверете с оператора, преди да разчитате на това.';
+
+  @override
+  String ham_idMismatchSentAs(String station) {
+    return 'изпратено с идентификатор $station';
+  }
+
+  @override
+  String get ham_idMismatchNoCall => 'Това име не започва с позивна';
+
+  @override
+  String get ham_composerPlainText =>
+      'Обикновен текст: всеки, който слуша, може да го прочете';
+
+  @override
+  String get ham_bannerStockFirmware =>
+      'Това радио е със стандартен MeshCore. Не предавайте с него в любителските обхвати';
+
+  @override
+  String get ham_firmwareOk =>
+      'Фърмуер NOTORYX Ham: позивна, обикновен текст, само любителски обхвати';
+
+  @override
+  String get ham_firmwareStock =>
+      'Стандартният MeshCore шифрова и не изпраща позивна. Качете фърмуера NOTORYX Ham, преди да предавате';
+
+  @override
+  String get ham_stationLog => 'Дневник на станцията';
+
+  @override
+  String get ham_stationLogExport => 'Експорт на дневника';
+
+  @override
+  String get ham_exportAdif => 'Експорт ADIF (.adi)';
+
+  @override
+  String get ham_exportCsv => 'Експорт CSV';
+
+  @override
+  String get ham_stationLogClear => 'Изчисти дневника';
+
+  @override
+  String get ham_stationLogClearConfirm =>
+      'Да се изтрият всички записи в дневника? Това не може да се отмени.';
+
+  @override
+  String get ham_stationLogEmpty => 'Още няма станции в дневника';
+
+  @override
+  String get ham_stationLogHint =>
+      'Тук се записват директните съобщения със станции, чието име започва с позивна, само на този телефон.';
+
+  @override
+  String ham_stationLogCounts(int sent, int received) {
+    return 'изпратени: $sent, получени: $received';
+  }
+
+  @override
+  String ham_rxStationId(String call) {
+    return 'ID $call';
+  }
+
+  @override
+  String get ham_stationIdLabel => 'Идентификатор на станция';
+
+  @override
+  String get ham_stationIdHint =>
+      'Станцията, предала този кадър: подателят или ретранслаторът, който го препредаде';
+
+  @override
+  String ham_stockTrafficTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other:
+          '$count кадъра от стандартен MeshCore, чути тук през последните 10 минути',
+      one: '1 кадър от стандартен MeshCore, чут тук през последните 10 минути',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get security_title => 'Сигурност';
+
+  @override
+  String get security_toolSubtitle =>
+      'Заключване и шифрована история на съобщенията';
+
+  @override
+  String get appLock_title => 'Заключване на приложението';
+
+  @override
+  String get appLock_subtitle =>
+      'Изисква пръстов отпечатък, лице или заключване на екрана при отваряне. Известията продължават, а SOS остава на заключения екран.';
+
+  @override
+  String get appLock_reason => 'Отключете NOTORYX Core Ham';
+
+  @override
+  String get appLock_unlock => 'Отключи';
+
+  @override
+  String get appLock_locked => 'NOTORYX Core Ham е заключено';
+
+  @override
+  String get appLock_unavailable =>
+      'Устройството няма заключване на екрана или то не беше потвърдено.';
+
+  @override
+  String get dbEncrypt_title => 'Шифроване на историята';
+
+  @override
+  String get dbEncrypt_subtitle =>
+      'Шифрова базата със съобщения на устройството с ключ в защитеното хранилище на телефона. Ако ключът се загуби, историята не може да се възстанови, затова пазете резервно копие.';
+
+  @override
+  String get dbEncrypt_on => 'Състояние: шифровано';
+
+  @override
+  String get dbEncrypt_off => 'Състояние: нешифровано';
+
+  @override
+  String get dbEncrypt_failed =>
+      'Състояние: неуспешно. Историята е непроменена.';
+
+  @override
+  String get dbEncrypt_restart => 'Влиза в сила при следващото стартиране.';
+
+  @override
+  String get appLock_sosNoTarget =>
+      'Първо отключете и изберете кой да получи вашия SOS.';
+
+  @override
+  String get ham_stockTrafficBody =>
+      'Друга мрежа, например MeshCore по Part 15, използва тази честота. Кадрите ѝ нямат позивна и любителският фърмуер не може да ги чете. Попитайте честотния координатор, преди да предавате тук.';
+
+  @override
+  String get forward_action => 'Препрати';
+
+  @override
+  String get forward_title => 'Препращане на съобщение';
+
+  @override
+  String get forward_to => 'Изпрати до';
+
+  @override
+  String get forward_send => 'Изпрати';
+
+  @override
+  String get forward_hint =>
+      'Изпраща се с вашия позивен и посочва автора. Вие отговаряте за това, което препращате.';
+
+  @override
+  String get forward_needCallsign =>
+      'Първо задайте позивния си в „Лицензиран оператор“.';
+
+  @override
+  String forward_tooLong(int count) {
+    return 'Твърде дълго с $count байта. Съкратете съобщението.';
+  }
+
+  @override
+  String get forward_sent => 'Препратено към радиото';
+
+  @override
+  String get ham_setupBeforeTitle => 'Преди да предавате';
+
+  @override
+  String get team_title => 'Настройки на екипа';
+
+  @override
+  String get team_toolSubtitle =>
+      'Споделяне на настройки и канали чрез QR или файл';
+
+  @override
+  String get team_shareHint =>
+      'Споделя честотата, лентата, SF, CR и хаштаг каналите на това радио. Не включва ключове и мощност на предаване.';
+
+  @override
+  String get team_shareFile => 'Сподели като файл';
+
+  @override
+  String get team_scan => 'Сканирай QR код на екипа';
+
+  @override
+  String get team_openFile => 'Отвори файл на екипа';
+
+  @override
+  String get team_importTitle => 'Да се приложат настройките на екипа?';
+
+  @override
+  String get team_apply => 'Приложи към радиото';
+
+  @override
+  String get team_invalid =>
+      'Това не са валидни настройки или честотата е извън любителските обхвати.';
+
+  @override
+  String get team_applied => 'Настройките са приложени';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'Канали: $names';
+  }
+
+  @override
+  String get ham_setupBeforeBody =>
+      'Прочетете ръководството за координация, после добавете позивната и лиценза си в „Лицензиран оператор“. Не предавайте, докато честотният координатор и другите станции в мрежата не се договорят за канал.';
+
+  @override
+  String ham_setupBeforeDone(String call) {
+    return 'Лицензиран оператор: $call';
+  }
+
+  @override
+  String get fieldOps_kindReport => 'Доклад';
+
+  @override
+  String get fieldReport_title => 'Полеви доклади';
+
+  @override
+  String get fieldReport_open => 'Напишете доклад SALUTE или 9-Line';
+
+  @override
+  String get fieldReport_hint =>
+      'Изпраща се като обикновен текст с вашия позивен до контактите от пътуването и SOS канала. Нищо не се изпраща, докато не натиснете Изпрати.';
+
+  @override
+  String get fieldReport_usePosition => 'Използвай позицията на радиото';
+
+  @override
+  String fieldReport_preview(int count) {
+    return 'Съобщения за изпращане: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign =>
+      'Първо задайте позивния си в „Лицензиран оператор“.';
+
+  @override
+  String get fieldReport_tooLong =>
+      'Един ред е твърде дълъг за едно съобщение. Съкратете го.';
+
+  @override
+  String get fieldReport_sent => 'Докладът е изпратен към радиото';
+
+  @override
+  String get coords_maidenhead => 'Локатор Maidenhead';
+
+  @override
+  String get reactions_radioTitle => 'Изпращай реакциите по радиото';
+
+  @override
+  String get reactions_radioHint =>
+      'Всяка реакция е пакет в ефира. Автоматично ги пази на това устройство в европейската лента 868 MHz, където ефирното време е ограничено.';
+
+  @override
+  String get reactions_radioAuto => 'Автоматично';
+
+  @override
+  String get reactions_radioOn => 'Вкл.';
+
+  @override
+  String get reactions_radioOff => 'Изкл. (това устройство)';
+
+  @override
+  String get notification_replyAction => 'Отговор';
+
+  @override
+  String get notification_replyHint => 'Напишете отговор';
+
+  @override
+  String get notification_markRead => 'Маркирай като прочетено';
+
+  @override
+  String get notification_you => 'Вие';
+
+  @override
+  String get mesh_title => 'Състояние на мрежата';
+
+  @override
+  String get mesh_overallGood => 'Мрежата изглежда наред';
+
+  @override
+  String get mesh_overallFair => 'Мрежата работи, но с проблеми';
+
+  @override
+  String get mesh_overallPoor => 'Мрежата се затруднява';
+
+  @override
+  String get mesh_overallUnknown => 'Още няма достатъчно данни';
+
+  @override
+  String get mesh_gradeGood => 'Добро';
+
+  @override
+  String get mesh_gradeFair => 'Средно';
+
+  @override
+  String get mesh_gradePoor => 'Слабо';
+
+  @override
+  String get mesh_gradeUnknown => 'Няма данни';
+
+  @override
+  String get mesh_noise => 'Шум';
+
+  @override
+  String mesh_noiseValue(String dbm) {
+    return 'Шумов праг $dbm dBm';
+  }
+
+  @override
+  String get mesh_signal => 'Последен сигнал';
+
+  @override
+  String mesh_signalValue(String db) {
+    return 'SNR $db dB';
+  }
+
+  @override
+  String get mesh_busy => 'Заетост на канала';
+
+  @override
+  String mesh_busyValue(int percent) {
+    return 'в ефир $percent% от последните 15 минути';
+  }
+
+  @override
+  String get mesh_neighbours => 'Чути директно';
+
+  @override
+  String mesh_neighboursValue(int count) {
+    return '$count възела за последния час';
+  }
+
+  @override
+  String get mesh_delivery => 'Лични съобщения';
+
+  @override
+  String mesh_deliveryValue(int delivered, int total) {
+    return '$delivered от $total доставени за последния ден';
+  }
+
+  @override
+  String get mesh_tipNoise =>
+      'Нещо наблизо шуми на тази честота. Отдалечете антената от електроника и зарядни.';
+
+  @override
+  String get mesh_tipSignal =>
+      'Последният пакет беше слаб. Повдигнете антената или се преместете по-високо.';
+
+  @override
+  String get mesh_tipBusy =>
+      'Каналът е зает. Пишете кратко и избягвайте наводнителни изпращания.';
+
+  @override
+  String get mesh_tipNeighbours =>
+      'Малко възли се чуват директно. Повдигнете антената или се приближете до ретранслатор.';
+
+  @override
+  String get mesh_tipDelivery =>
+      'Много съобщения не са потвърдени. Отворете неуспешно съобщение, за да видите къде е спряло.';
+
+  @override
+  String routeHealth_staleTitle(String name) {
+    return 'Маршрутът до $name може да е остарял';
+  }
+
+  @override
+  String routeHealth_weakTitle(String name) {
+    return 'Маршрутът до $name е ненадежден';
+  }
+
+  @override
+  String routeHealth_lastWorkedHours(int hours) {
+    return 'последно работи преди $hours ч';
+  }
+
+  @override
+  String routeHealth_lastWorkedDays(int days) {
+    return 'последно работи преди $days дни';
+  }
+
+  @override
+  String routeHealth_notHeard(int days) {
+    return 'не е чуван от $days дни';
+  }
+
+  @override
+  String routeHealth_failures(int failures, int attempts) {
+    return '$failures от $attempts опита неуспешни';
+  }
+
+  @override
+  String routeHealth_longPath(int hops) {
+    return '$hops скока';
+  }
+
+  @override
+  String get routeHealth_useFlood => 'Намери нов маршрут';
+
+  @override
+  String get routeHealth_keep => 'Запази маршрута';
+
+  @override
+  String get netChange_title => 'Промени в мрежата';
+
+  @override
+  String get netChange_toolSubtitle =>
+      'Ретранслатори, които се появиха наблизо или замлъкнаха';
+
+  @override
+  String netChange_newDirect(String name) {
+    return 'Нов ретранслатор, чут директно: $name';
+  }
+
+  @override
+  String netChange_newHops(String name, int hops) {
+    return 'Нов ретранслатор на $hops скок: $name';
+  }
+
+  @override
+  String netChange_wentQuiet(String name, int hours) {
+    return '$name замлъкна: не е чуван от $hours ч';
+  }
+
+  @override
+  String get netChange_empty =>
+      'Още няма промени. Тук се показват любими ретранслатори, които замлъкват, и нови ретранслатори наблизо.';
+
+  @override
+  String get netChange_quietSetting => 'Любим ретранслатор замлъква';
+
+  @override
+  String get netChange_quietHint =>
+      'Известие, когато любим ретранслатор не е чуван толкова време';
+
+  @override
+  String get netChange_newSetting => 'Нов ретранслатор наблизо';
+
+  @override
+  String get netChange_newHint =>
+      'Известие, когато непознат ретранслатор се чуе до един скок';
+
+  @override
+  String get netChange_clear => 'Изчисти';
+
+  @override
+  String get netChange_notifTitle => 'Промяна в мрежата';
+
+  @override
+  String get journal_title => 'Дневник на възлите';
+
+  @override
+  String get journal_toolSubtitle =>
+      'Всеки чут възел с етикети за поведение, тагове и бележки';
+
+  @override
+  String get journal_empty =>
+      'Още няма възли. Всеки възел, който радиото ти чуе, се добавя тук автоматично.';
+
+  @override
+  String get journal_search => 'Търси имена, ID, тагове и бележки';
+
+  @override
+  String get journal_filterAll => 'Всички';
+
+  @override
+  String get journal_bSteadyRelay => 'Постоянен ретранслатор';
+
+  @override
+  String get journal_bRegular => 'Редовен';
+
+  @override
+  String get journal_bRoamer => 'Скитник';
+
+  @override
+  String get journal_bRarelyHeard => 'Рядко чуван';
+
+  @override
+  String get journal_bNewcomer => 'Новодошъл';
+
+  @override
+  String get journal_bGoneQuiet => 'Замлъкнал';
+
+  @override
+  String journal_confidence(int percent) {
+    return '$percent% сигурност';
+  }
+
+  @override
+  String journal_eDaysHeard(int heard, int days) {
+    return 'Чут в $heard от $days дни';
+  }
+
+  @override
+  String journal_eFirstHeard(int hours) {
+    return 'За първи път чут преди $hours ч';
+  }
+
+  @override
+  String journal_eSilent(int days) {
+    return 'Не е чут от $days дни';
+  }
+
+  @override
+  String journal_ePlaces(int places, int km) {
+    return 'Видян на $places места на до $km km едно от друго';
+  }
+
+  @override
+  String journal_eSightings(int count) {
+    return 'Общо $count нови обявявания';
+  }
+
+  @override
+  String get journal_noLabel => 'Все още няма достатъчно данни за етикет.';
+
+  @override
+  String journal_firstSeen(String time) {
+    return 'За първи път чут: $time';
+  }
+
+  @override
+  String journal_lastSeen(String time) {
+    return 'Последно чут: $time';
+  }
+
+  @override
+  String journal_hops(int min, int max) {
+    return 'Видени скокове: от $min до $max';
+  }
+
+  @override
+  String get journal_tags => 'Тагове';
+
+  @override
+  String get journal_addTag => 'Добави таг';
+
+  @override
+  String get journal_tagHint => 'напр. начало на пътека, клуб, мой';
+
+  @override
+  String journal_removeTag(String tag) {
+    return 'Премахни таг $tag';
+  }
+
+  @override
+  String get journal_note => 'Бележка';
+
+  @override
+  String get journal_saveNote => 'Запази бележката';
+
+  @override
+  String get journal_forget => 'Забрави този възел';
+
+  @override
+  String journal_forgetConfirm(String name) {
+    return 'Да се премахне ли $name от дневника с таговете и бележката? Ако бъде чут отново, започва наново.';
+  }
+
+  @override
+  String get journal_forgotten => 'Възелът е премахнат от дневника.';
+
+  @override
+  String journal_markLabel(String name) {
+    return 'Генериран знак за $name';
+  }
+
+  @override
+  String get trouble_title => 'Отстраняване на проблеми';
+
+  @override
+  String get trouble_toolSubtitle =>
+      'Помощ стъпка по стъпка, когато нещо не работи';
+
+  @override
+  String get trouble_pick => 'Какъв е проблемът?';
+
+  @override
+  String get trouble_noDelivery => 'Съобщенията не се доставят';
+
+  @override
+  String get trouble_noConnect => 'Не мога да се свържа с радиото';
+
+  @override
+  String get trouble_hearNobody => 'Не чувам никого';
+
+  @override
+  String get trouble_startHere => 'Започнете оттук';
+
+  @override
+  String get trouble_resultOk => 'OK';
+
+  @override
+  String get trouble_resultProblem => 'Проблем';
+
+  @override
+  String get trouble_resultUnchecked => 'Не може да се провери';
+
+  @override
+  String get trouble_connectedNow =>
+      'Вече сте свързани. Ако връзката продължава да прекъсва, стъпките по-долу пак помагат.';
+
+  @override
+  String get trouble_allOk =>
+      'Всички проверки минаха. Ако пак не работи, вижте стъпките по-долу.';
+
+  @override
+  String get trouble_connected => 'Радиото ви е свързано';
+
+  @override
+  String get trouble_connectedAdvice =>
+      'Първо свържете радиото: Настройки → Свързване на радио.';
+
+  @override
+  String get trouble_routes =>
+      'Известни са маршрути до хората, на които пишете';
+
+  @override
+  String get trouble_routesAdvice =>
+      'Съобщенията до някого без известен маршрут наводняват цялата мрежа и често не стигат. Изчакайте да изпрати сигнал или го помолете, после пишете отново.';
+
+  @override
+  String get trouble_heardRecently =>
+      'Хората, на които пишете, са чути през последния ден';
+
+  @override
+  String get trouble_heardRecentlyAdvice =>
+      'Някой, който не е чуван отдавна, може да е извън обхват или изключен. Съобщенията не могат да се потвърдят, докато не се върне.';
+
+  @override
+  String get trouble_neighbours => 'Радиото ви чува други възли';
+
+  @override
+  String get trouble_neighboursAdvice =>
+      'Ако нищо не се чува директно, радиото не достига мрежата оттук. Повдигнете антената, качете се по-високо или се приближете до ретранслатор.';
+
+  @override
+  String get trouble_bluetooth =>
+      'Bluetooth е включен и приложението може да го ползва';
+
+  @override
+  String get trouble_bluetoothAdvice =>
+      'Проверете, че Bluetooth е включен и NOTORYX Core Ham има разрешение за Bluetooth (и на Android за Устройства наблизо) в настройките.';
+
+  @override
+  String get trouble_otherApp =>
+      'Друг телефон или приложение не е свързано с радиото';
+
+  @override
+  String get trouble_otherAppAdvice =>
+      'Радиото говори с едно приложение наведнъж. Затворете други MeshCore приложения или изключете Bluetooth на други сдвоени телефони.';
+
+  @override
+  String get trouble_inRange => 'Радиото е включено и наблизо';
+
+  @override
+  String get trouble_inRangeAdvice =>
+      'Проверете, че радиото е заредено, включено и на няколко метра. Рестартът на радиото често оправя заседнала връзка.';
+
+  @override
+  String get trouble_otherTransport => 'Опитайте друг начин за свързване';
+
+  @override
+  String get trouble_otherTransportAdvice =>
+      'Ако Bluetooth продължава да се проваля, свържете се с USB кабел или през Wi-Fi (TCP), ако радиото го поддържа.';
+
+  @override
+  String get trouble_noise => 'Радиото не е заглушено от шум';
+
+  @override
+  String get trouble_noiseAdvice =>
+      'Високият шумов праг скрива слабите сигнали. Отдалечете антената от електроника, зарядни и соларни контролери.';
+
+  @override
+  String get trouble_region => 'Радиото е с настройките за района ви';
+
+  @override
+  String get trouble_regionAdvice =>
+      'Различна честота, честотна лента или spreading factor от местната мрежа не чува никого. Сравнете Настройки → Радио с това, което ползва районът ви.';
+
+  @override
+  String get trouble_antenna => 'Антената е поставена';
+
+  @override
+  String get trouble_antennaAdvice =>
+      'Уверете се, че антената е завита здраво. Никога не предавайте без нея; това може да повреди радиото.';
+
+  @override
+  String get readiness_sos => 'Получатели на SOS';
+
+  @override
+  String get readiness_sosOk => 'SOS има към кого да изпрати.';
+
+  @override
+  String get readiness_sosBlocked =>
+      'SOS няма към кого да изпрати. Добавете участници от контактите си или задайте SOS канал.';
+
+  @override
+  String get readiness_routes => 'Маршрути до участниците';
+
+  @override
+  String get readiness_routesOk => 'Известен е маршрут до всеки участник.';
+
+  @override
+  String readiness_routesMissing(String names) {
+    return 'Няма известен маршрут до $names. Съобщенията ще се разпространяват наводнително, докато се научи маршрут. Изпратете им съобщение, преди да тръгнете.';
+  }
+
+  @override
+  String get readiness_notifications => 'Известия';
+
+  @override
+  String get readiness_notificationsOk => 'Разрешени.';
+
+  @override
+  String get readiness_notificationsOff =>
+      'Известията са изключени, така че няма да чуете отговори, отметки или сигнали.';
+
+  @override
+  String get readiness_batteryOpt => 'Оптимизация на батерията';
+
+  @override
+  String get readiness_batteryOptOk =>
+      'NOTORYX Core Ham е изключено от оптимизацията.';
+
+  @override
+  String get readiness_batteryOptOn =>
+      'Android може да спре приложението във фонов режим. Изключете я в Настройки → Настройки на приложението → Известия.';
+
+  @override
+  String get readiness_blockedTitle => 'Пътуването още не може да започне';
+
+  @override
+  String readiness_warnTitle(int count) {
+    return '$count неща за проверка';
+  }
+
+  @override
+  String get readiness_startAnyway => 'Започни въпреки това';
+
+  @override
+  String get readiness_review => 'Прегледай';
+
+  @override
+  String get readiness_summaryReady => 'Готови за тръгване';
+
+  @override
+  String readiness_summaryWarn(int count) {
+    return '$count за проверка';
+  }
+
+  @override
+  String get readiness_summaryBlocked => 'SOS не може да достигне никого';
+
+  @override
+  String get waypoints_title => 'Точки';
+
+  @override
+  String get waypoints_toolSubtitle =>
+      'Запазени места и маршрути; внос и износ на GPX';
+
+  @override
+  String get waypoints_importFile => 'Внос на GPX файл';
+
+  @override
+  String get waypoints_importPaste => 'Поставяне на GPX';
+
+  @override
+  String get waypoints_export => 'Износ на GPX';
+
+  @override
+  String get waypoints_empty =>
+      'Още няма точки. Внесете GPX файл или запазете място, споделено в чат.';
+
+  @override
+  String waypoints_waypoints(int count) {
+    return 'Точки ($count)';
+  }
+
+  @override
+  String waypoints_routes(int count) {
+    return 'Маршрути ($count)';
+  }
+
+  @override
+  String waypoints_routeSummary(int points, String km) {
+    return '$points точки · $km км';
+  }
+
+  @override
+  String get waypoints_delete => 'Изтрий';
+
+  @override
+  String get waypoints_copy => 'Копирай координатите';
+
+  @override
+  String get waypoints_sendToChannel => 'Изпрати в канал';
+
+  @override
+  String get waypoints_pickChannel => 'В кой канал да се изпрати?';
+
+  @override
+  String waypoints_sent(String channel) {
+    return 'Изпратено в $channel';
+  }
+
+  @override
+  String get waypoints_importFailed =>
+      'Това не е GPX файл, който приложението може да прочете.';
+
+  @override
+  String get waypoints_pasteHint => 'Поставете GPX текста тук';
+
+  @override
+  String get waypoints_import => 'Внеси';
+
+  @override
+  String waypoints_imported(int waypoints, int routes) {
+    return 'Добавени $waypoints точки и $routes маршрута';
+  }
+
+  @override
+  String get waypoints_save => 'Запази като точка';
+
+  @override
+  String get waypoints_unnamed => 'Споделено място';
+
+  @override
+  String get waypoints_saved => 'Запазено в Точки';
+
+  @override
+  String get waypoints_alreadySaved => 'Вече е в Точки';
+
+  @override
+  String get map_showWaypoints => 'Показвай запазените точки и маршрути';
+
+  @override
+  String get dbEncrypt_covers =>
+      'Обхваща и контакти, ключове на канали, точки, запазени маршрути, чернови и чакащи съобщения.';
+
+  @override
+  String get bk_intro =>
+      'Запазва криптирано копие на настройките, контактите, ключовете на каналите, точките и черновите, а по избор и историята на съобщенията. Офлайн карти, снимки и фърмуер на радиото не се включват.';
+
+  @override
+  String bk_confirmBody(Object count) {
+    return 'Това заменя $count запазени настройки на това устройство, включително контакти, ключове на канали и точки, с тези от резервното копие. Действието не може да бъде отменено.';
+  }
+
+  @override
+  String get bk_history => 'Включи историята на съобщенията';
+
+  @override
+  String get bk_historyHint =>
+      'Лични и канални съобщения за всяко радио. Файлът ще е по-голям.';
+
+  @override
+  String get bk_tooLarge =>
+      'Резервното копие е твърде голямо. Изключете историята на съобщенията и опитайте отново.';
+
+  @override
+  String bk_confirmHistory(int count) {
+    return 'Освен това добавя до $count съобщения към историята. Съобщенията, които вече са на устройството, се запазват.';
+  }
+
+  @override
+  String bk_restoredHistory(int count) {
+    return 'Добавени са $count съобщения към историята.';
+  }
+
+  @override
+  String get bk_confirmTitle => 'Да се възстанови ли това копие?';
+
+  @override
+  String bk_restored(int count) {
+    return 'Възстановени настройки: $count. Затворете напълно приложението и го отворете отново.';
+  }
+
+  @override
+  String get automation_title => 'Automation';
+
+  @override
+  String get automation_toolHint =>
+      'Rules that alert you or send a message when something happens';
+
+  @override
+  String get automation_newRule => 'New rule';
+
+  @override
+  String get automation_editRule => 'Edit rule';
+
+  @override
+  String get automation_hamNotice =>
+      'Rules run while the app is open. Automated messages are plain text and start with [auto]. They are held unless your station is ready to transmit (ham firmware, call sign in the radio\'s name, in band), limited to 3 every 10 minutes, and written to the station log. You remain the control operator for every automated transmission.';
+
+  @override
+  String get automation_empty => 'No rules yet';
+
+  @override
+  String get automation_emptyHint =>
+      'Add a rule to get an alert when your battery runs low, a station goes quiet or a message arrives.';
+
+  @override
+  String get automation_allowWebhooks => 'Allow webhooks';
+
+  @override
+  String get automation_allowWebhooksHint =>
+      'Needs internet. Off by default; webhook actions do nothing while this is off.';
+
+  @override
+  String get automation_workingChannel => 'Working channel';
+
+  @override
+  String get automation_stationLogHint =>
+      'Every automated transmission is listed there';
+
+  @override
+  String get automation_activity => 'Recent activity';
+
+  @override
+  String get automation_none => 'None';
+
+  @override
+  String get automation_unnamed => 'Unnamed rule';
+
+  @override
+  String get automation_transmits => 'Transmits on air';
+
+  @override
+  String get automation_incomplete => 'Unfinished';
+
+  @override
+  String automation_ruleSwitch(String name) {
+    return 'Rule $name on';
+  }
+
+  @override
+  String get automation_ruleName => 'Rule name';
+
+  @override
+  String get automation_when => 'When';
+
+  @override
+  String get automation_then => 'Then';
+
+  @override
+  String get automation_matchAll => 'All are true (AND)';
+
+  @override
+  String get automation_matchAny => 'Any is true (OR)';
+
+  @override
+  String automation_matchAllShort(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'All of $count conditions',
+      one: '1 condition',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String automation_matchAnyShort(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Any of $count conditions',
+      one: '1 condition',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String automation_actionCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count actions',
+      one: '1 action',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get automation_addCondition => 'Add condition';
+
+  @override
+  String get automation_addAction => 'Add action';
+
+  @override
+  String automation_remove(String item) {
+    return 'Remove $item';
+  }
+
+  @override
+  String get automation_savedOff =>
+      'Saved switched off. Fill in every field to turn it on.';
+
+  @override
+  String get automation_deleteConfirm => 'Delete this rule?';
+
+  @override
+  String get automation_transmitNotice =>
+      'This rule transmits. It only sends when your station is ready, at most 3 automated messages every 10 minutes and once every 15 minutes per rule, and each one is logged in the station log.';
+
+  @override
+  String get automation_condBattery => 'Battery low';
+
+  @override
+  String get automation_condTime => 'Time of day';
+
+  @override
+  String get automation_condEnter => 'Enter an area';
+
+  @override
+  String get automation_condLeave => 'Leave an area';
+
+  @override
+  String get automation_condMessage => 'Message received';
+
+  @override
+  String get automation_condOnline => 'Node online';
+
+  @override
+  String get automation_condOffline => 'Node offline';
+
+  @override
+  String automation_batteryBelow(int percent) {
+    return 'Radio battery below $percent%';
+  }
+
+  @override
+  String get automation_timeHint =>
+      'Every day at this time, on this device\'s clock';
+
+  @override
+  String get automation_latitude => 'Latitude';
+
+  @override
+  String get automation_longitude => 'Longitude';
+
+  @override
+  String get automation_radiusMeters => 'Radius (meters)';
+
+  @override
+  String get automation_useRadioPosition => 'Use the radio\'s position';
+
+  @override
+  String get automation_areaHint => 'Uses the position the radio reports.';
+
+  @override
+  String get automation_sourceAny => 'Any';
+
+  @override
+  String get automation_sourceDirect => 'Direct';
+
+  @override
+  String get automation_sourceChannel => 'Channel';
+
+  @override
+  String get automation_onChannel => 'On channel';
+
+  @override
+  String get automation_anyChannel => 'Any channel';
+
+  @override
+  String get automation_from => 'From';
+
+  @override
+  String get automation_anyone => 'Anyone';
+
+  @override
+  String get automation_contains => 'Contains text (optional)';
+
+  @override
+  String get automation_node => 'Node';
+
+  @override
+  String get automation_heardWithinMinutes => 'Heard within (minutes)';
+
+  @override
+  String get automation_actionSend => 'Send a message';
+
+  @override
+  String get automation_actionAlert => 'Alert me';
+
+  @override
+  String get automation_actionChangeChannel => 'Change working channel';
+
+  @override
+  String get automation_actionSound => 'Play a sound';
+
+  @override
+  String get automation_actionWebhook => 'Call a webhook';
+
+  @override
+  String get automation_sendTo => 'Send to';
+
+  @override
+  String get automation_targetChannel => 'Channel';
+
+  @override
+  String get automation_targetContact => 'Contact';
+
+  @override
+  String get automation_message => 'Message';
+
+  @override
+  String get automation_messageTooLong =>
+      'Too long: 140 bytes at most, [auto] included';
+
+  @override
+  String get automation_sendHint =>
+      'Sent on air as plain text with [auto] in front, and logged in the station log.';
+
+  @override
+  String get automation_alertText => 'Alert text';
+
+  @override
+  String get automation_changeChannelHint =>
+      'Rules that send to the working channel use this channel from now on.';
+
+  @override
+  String get automation_soundHint => 'Plays this device\'s alert sound.';
+
+  @override
+  String get automation_webhookUrl => 'Webhook address (https://)';
+
+  @override
+  String get automation_webhookHttps => 'Use an https:// address';
+
+  @override
+  String get automation_webhookNeedsInternet =>
+      'Needs internet. Sends the rule\'s name and the time.';
+
+  @override
+  String get automation_webhookOffNotice =>
+      'Needs internet. Webhooks are off: allow them on the Automation page.';
+
+  @override
+  String get automation_outDone => 'Done';
+
+  @override
+  String get automation_outNotConnected => 'Held: no radio connected';
+
+  @override
+  String get automation_outNotReady => 'Held: station not ready to transmit';
+
+  @override
+  String get automation_outRateLimited =>
+      'Held: automated message limit reached';
+
+  @override
+  String get automation_outNoTarget =>
+      'Held: contact or channel not on the radio';
+
+  @override
+  String get automation_outWebhooksOff => 'Skipped: webhooks are off';
+
+  @override
+  String get automation_outFailed => 'Failed';
+
+  @override
+  String get ham_automatedTx => 'Automated transmissions';
+
+  @override
+  String get ham_automatedTxHint =>
+      'Messages your automation rules sent on air.';
+
+  @override
+  String get ham_exportAutomatedCsv => 'Export automated transmissions (CSV)';
+
+  @override
+  String get checklist_title => 'Контролни списъци';
+
+  @override
+  String get checklist_toolSubtitle =>
+      'Многократни списъци преди поход и за разполагане, работят офлайн';
+
+  @override
+  String get checklist_empty => 'Няма списъци. Добави с бутона долу.';
+
+  @override
+  String get checklist_add => 'Нов списък';
+
+  @override
+  String get checklist_edit => 'Редактирай списъка';
+
+  @override
+  String get checklist_name => 'Име';
+
+  @override
+  String get checklist_items => 'Точки, по една на ред';
+
+  @override
+  String checklist_itemCount(int count) {
+    return 'Точки: $count';
+  }
+
+  @override
+  String get checklist_history => 'Завършени проверки';
+
+  @override
+  String get checklist_noRuns => 'Още няма завършени проверки.';
+
+  @override
+  String get checklist_inProgress => 'В процес';
+
+  @override
+  String checklist_progress(int done, int total) {
+    return '$done от $total готови';
+  }
+
+  @override
+  String checklist_startedAt(String time) {
+    return 'Започнато $time';
+  }
+
+  @override
+  String checklist_finishedAt(String time) {
+    return 'Завършено $time';
+  }
+
+  @override
+  String get checklist_note => 'Бележка';
+
+  @override
+  String get checklist_finish => 'Завърши и запази';
+
+  @override
+  String get checklist_unfinished =>
+      'Някои точки не са отметнати. Да се запази ли записът?';
+
+  @override
+  String get checklist_saveAnyway => 'Запази въпреки това';
+
+  @override
+  String get checklist_export => 'Експорт или изтриване';
+
+  @override
+  String get checklist_exportText => 'Сподели като текст';
+
+  @override
+  String get checklist_exportJson => 'Сподели като JSON';
+
+  @override
+  String get checklist_exportFailed => 'Записът не можа да бъде споделен.';
+
+  @override
+  String get checklist_deleteRun => 'Изтрий записа';
+
+  @override
+  String get checklist_deleteRunConfirm =>
+      'Да се изтрие ли този запис? Не може да се отмени.';
+
+  @override
+  String checklist_deleteConfirm(String name) {
+    return 'Да се изтрие ли $name? Завършените записи се запазват.';
+  }
+
+  @override
+  String get checklist_preTrip => 'Преди поход';
+
+  @override
+  String get checklist_preTrip1 => 'Радиото е заредено, има резервна батерия';
+
+  @override
+  String get checklist_preTrip2 =>
+      'Радиото е сдвоено с телефона и е пратено тестово съобщение';
+
+  @override
+  String get checklist_preTrip3 => 'Офлайн картите за района са запазени';
+
+  @override
+  String get checklist_preTrip4 =>
+      'Маршрутът и часът на връщане са оставени на някого';
+
+  @override
+  String get checklist_preTrip5 =>
+      'Груповият канал и контактите на екипа са проверени';
+
+  @override
+  String get checklist_preTrip6 => 'SOS и отметката са пробвани веднъж';
+
+  @override
+  String get checklist_deploy => 'Поставяне на възел';
+
+  @override
+  String get checklist_deploy1 => 'Мястото и разрешението са потвърдени';
+
+  @override
+  String get checklist_deploy2 =>
+      'Антената е монтирана, конекторите са уплътнени';
+
+  @override
+  String get checklist_deploy3 => 'Захранването и соларният панел са проверени';
+
+  @override
+  String get checklist_deploy4 =>
+      'Настройките и регионът на радиото са потвърдени';
+
+  @override
+  String get checklist_deploy5 => 'Тестовото съобщение е чуто през възела';
+
+  @override
+  String get checklist_deploy6 =>
+      'Местоположението, снимките и бележките са записани';
+
+  @override
+  String automation_placeholders(String list) {
+    return 'Можете да използвате $list';
+  }
+
+  @override
+  String get losLegendFresnel => 'Зона на Френел';
+
+  @override
+  String losFresnelClear(int percent) {
+    return 'Зоната на Френел е $percent% свободна в най-тясната точка. 60% или повече е добре.';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return 'Зоната на Френел е само $percent% свободна в най-тясната точка. Целете 60% или повече: повдигнете антена или преместете точка.';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      'Теренът навлиза в зоната на Френел и в лъча. Повдигнете антена или преместете точка.';
+
+  @override
+  String get bg_title => 'Фон';
+
+  @override
+  String get bg_kindTheme => 'Сияние на темата';
+
+  @override
+  String get bg_kindSolid => 'Цвят';
+
+  @override
+  String get bg_kindLinear => 'Преливане';
+
+  @override
+  String get bg_kindMesh => 'Мрежово смесване';
+
+  @override
+  String get bg_kindPhoto => 'Снимка';
+
+  @override
+  String get bg_color1 => 'Първи цвят';
+
+  @override
+  String get bg_color2 => 'Втори цвят';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Цвят $index';
+  }
+
+  @override
+  String get bg_dim => 'Затъмняване';
+
+  @override
+  String get bg_blur => 'Размазване';
+
+  @override
+  String get bg_choosePhoto => 'Изберете снимка';
+
+  @override
+  String get bg_reset => 'Обратно към фона на темата';
+
+  @override
+  String get bg_hint =>
+      'Картите стоят върху матово стъкло над него. Увеличете затъмняването, ако текстът се чете трудно.';
+
+  @override
+  String get bg_previewTitle => 'Преглед';
+
+  @override
+  String get bg_previewBody => 'Текстът върху стъклена карта изглежда така.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'Снимката остава на този телефон и не влиза в резервните копия.';
+
+  @override
+  String get bg_photoFailed =>
+      'Тази снимка не може да се използва. Опитайте друга.';
+
+  @override
+  String get compass_openHint => 'Насочи ме към него';
+
+  @override
+  String get compass_onTarget => 'Право напред';
+
+  @override
+  String compass_turnRight(int degrees) {
+    return 'Завийте надясно $degrees°';
+  }
+
+  @override
+  String compass_turnLeft(int degrees) {
+    return 'Завийте наляво $degrees°';
+  }
+
+  @override
+  String compass_bearing(int degrees, String point) {
+    return 'Азимут $degrees° $point';
+  }
+
+  @override
+  String get compass_noSensor =>
+      'Това устройство няма компас, затова стрелката е начертана със север нагоре.';
+
+  @override
+  String get compass_calibrate =>
+      'Компасът не е точен. Движете телефона няколко пъти във формата на осмица, за да го калибрирате.';
+
+  @override
+  String get compass_magneticNote =>
+      'Посоката е по магнитния север, докато позицията ви стане известна.';
+
+  @override
+  String get compass_noPosition =>
+      'Вашата позиция още не е известна. Разрешете местоположението на телефона или задайте позицията на радиото.';
+
+  @override
+  String get compass_noNodePosition =>
+      'Този възел не е споделил позиция, затова няма към какво да се сочи.';
+
+  @override
+  String get compass_usePhoneLocation =>
+      'Използвай местоположението на телефона';
+
+  @override
+  String get compass_sourcePhone => 'Позицията ви идва от GPS на телефона.';
+
+  @override
+  String get compass_sourceRadio => 'Позицията ви идва от радиото.';
+
+  @override
+  String get traffic_mode => 'Трафик';
+
+  @override
+  String get traffic_modeHint => 'Показва пакетите, които минават през мрежата';
+
+  @override
+  String get traffic_locate => 'Намери';
+
+  @override
+  String get traffic_advert => 'Обява';
+
+  @override
+  String get traffic_filter => 'Филтър';
+
+  @override
+  String get traffic_search => 'Търсене';
+
+  @override
+  String get traffic_fitAll => 'Покажи всички';
+
+  @override
+  String get traffic_options => 'Опции';
+
+  @override
+  String get traffic_kindAdvert => 'Обява';
+
+  @override
+  String get traffic_kindDirect => 'Лично съобщение';
+
+  @override
+  String get traffic_kindChannel => 'Съобщение в канал';
+
+  @override
+  String get traffic_kindAck => 'Потвърждение';
+
+  @override
+  String get traffic_kindTrace => 'Трасиране';
+
+  @override
+  String get traffic_kindPath => 'Път';
+
+  @override
+  String get traffic_filterTitle => 'Показвани типове пакети';
+
+  @override
+  String get traffic_listening => 'Изчакване на пакети…';
+
+  @override
+  String traffic_heardFrom(String name, String snr) {
+    return 'Чуто от $name · $snr dB';
+  }
+
+  @override
+  String traffic_flood(int hops) {
+    return 'Flood $hops';
+  }
+
+  @override
+  String get traffic_direct => 'Директно';
+
+  @override
+  String traffic_snr(String snr) {
+    return 'SNR $snr';
+  }
+
+  @override
+  String traffic_rssi(int rssi) {
+    return '$rssi dBm';
+  }
+
+  @override
+  String traffic_notOnMapCount(int count) {
+    return '$count не са на картата';
+  }
+
+  @override
+  String traffic_age(int seconds) {
+    return '$seconds с';
+  }
+
+  @override
+  String traffic_notOnMapList(String names) {
+    return 'Не са на картата: $names';
+  }
+
+  @override
+  String get traffic_unknown => 'Неизвестен';
+
+  @override
+  String get traffic_cardHint => 'Показва маршрута на картата';
+
+  @override
+  String get stale_setting => 'Отбелязване на възлите като остарели след';
+
+  @override
+  String get stale_settingHint =>
+      'Контакти и повторители, които не са чути толкова време, се отбелязват като остарели в списъка и избледняват на картата.';
+
+  @override
+  String get stale_off => 'Изкл.';
+
+  @override
+  String stale_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ч',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_days(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count дни',
+      one: '1 ден',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_badge(String age) {
+    return 'остарял · $age';
+  }
+
+  @override
+  String get rangeRings_toggle => 'Кръгове на разстояние';
+
+  @override
+  String get rangeRings_hint =>
+      'Кръгове на разстояние около вашата позиция, според изгледа';
+
+  @override
+  String get rangeRings_noPosition =>
+      'Позицията ви още не е известна, затова кръговете на разстояние не могат да се начертаят.';
+
+  @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count канала в радиото се различават от приложението',
+      one: '1 канал в радиото се различава от приложението',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Преглед';
+
+  @override
+  String get channelConflict_title => 'Разлики в каналите';
+
+  @override
+  String get channelConflict_hint =>
+      'Радиото пази различно име или ключ в тези слотове от запазеното в приложението. Може някой да ги е сменил с друго приложение или копието в приложението е старо. Изберете коя версия да остане за всеки слот.';
+
+  @override
+  String get channelConflict_allResolved => 'Всички слотове вече съвпадат.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'Слот $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'В радиото';
+
+  @override
+  String get channelConflict_inApp => 'Запазено в приложението';
+
+  @override
+  String get channelConflict_empty => 'Празно';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'ключ $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'Името се различава';
+
+  @override
+  String get channelConflict_keyDiffers => 'Ключът се различава';
+
+  @override
+  String get channelConflict_keepRadio => 'Запази от радиото';
+
+  @override
+  String get channelConflict_useApp => 'Запиши от приложението';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'Запазена е версията на радиото в слот $index';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'Версията на приложението е записана в слот $index';
+  }
+
+  @override
+  String get history_window24h => '24 ч';
+
+  @override
+  String get history_window7d => '7 дни';
+
+  @override
+  String get history_window30d => '30 дни';
+
+  @override
+  String get statusHistory_title => 'История на състоянието';
+
+  @override
+  String get reportCard_title => 'Обобщение';
+
+  @override
+  String get reportCard_hint =>
+      'Съставено само от вашите проверки на състоянието, пазени на този телефон. Нищо допълнително не се изпраща.';
+
+  @override
+  String get reportCard_empty =>
+      'Все още няма проверки. Всяка проверка на състоянието допълва обобщението.';
+
+  @override
+  String get reportCard_checks => 'Проверки';
+
+  @override
+  String get reportCard_restarts => 'Засечени рестарти';
+
+  @override
+  String get reportCard_longestUptime => 'Най-дълго време на работа';
+
+  @override
+  String get reportCard_battery => 'Батерия';
+
+  @override
+  String get reportCard_noise => 'Ниво на шума';
+
+  @override
+  String get reportCard_errors => 'Нови грешки';
+
+  @override
+  String get reportCard_neighbours => 'Съседи';
+
+  @override
+  String get reportCard_exportCsv => 'Експорт в CSV';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$count за $days дни';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '$now сега · най-ниско $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '$change на седмица';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return 'средно $avg dBm · най-лошо $worst dBm';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return 'чути: $total · нови тази седмица: $fresh · нечути тази седмица: $gone';
+  }
+
+  @override
+  String get statusHistory_battery => 'Батерия';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Ниво на шума';
+
+  @override
+  String get statusHistory_errors => 'Грешки';
+
+  @override
+  String get statusHistory_uptime => 'Време на работа';
+
+  @override
+  String get statusHistory_empty =>
+      'Всяка проверка на състоянието се пази тук, за да видите как се променя този ретранслатор.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'Няма стойности за $metric в този период.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Графика $metric, $count стойности, от $low до $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count запазени проверки',
+      one: '1 запазена проверка',
+      zero: 'Няма запазени проверки',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Изчисти историята';
+
+  @override
+  String get statusHistory_clearTitle =>
+      'Да се изчисти ли историята на този ретранслатор?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'Запазените проверки и SNR стойностите на съседите на този ретранслатор се изтриват от телефона.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return 'SNR тенденция за $name, $count стойности. Докоснете за графика.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return 'SNR на $name';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'Колко добре ретранслаторът е чувал съседа при всяка заявка, пази се на този телефон.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count стойности · мин. $low · средно $avg · макс. $high';
+  }
+
+  @override
+  String get follow_menu => 'Следвай 15 мин';
+
+  @override
+  String get follow_menuHint =>
+      'Пита за позицията на няколко минути и чертае следата';
+
+  @override
+  String follow_title(String name) {
+    return 'Следване на $name';
+  }
+
+  @override
+  String get follow_askNow => 'Поискай позиция сега';
+
+  @override
+  String follow_fromYou(String distance, String direction, int degrees) {
+    return '$distance на $direction ($degrees°) от вас';
+  }
+
+  @override
+  String get follow_waiting => 'Изчакване на позиция…';
+
+  @override
+  String get follow_noOwnPosition =>
+      'Собствената ви позиция не е известна, затова няма разстояние и посока.';
+
+  @override
+  String follow_timeLeftLabel(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Остават около $minutes минути',
+      one: 'Остава около 1 минута',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String follow_lastFix(String ago) {
+    return 'последна позиция $ago';
+  }
+
+  @override
+  String follow_secondsAgo(int n) {
+    return 'преди $n с';
+  }
+
+  @override
+  String follow_minutesAgo(int n) {
+    return 'преди $n мин';
+  }
+
+  @override
+  String follow_answers(int answered, int asked) {
+    return '$answered/$asked отговорени заявки';
+  }
+
+  @override
+  String follow_points(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count точки',
+      one: '1 точка',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get follow_hint =>
+      'Спира само след 15 минути. Контактът трябва да разрешава местоположение в телеметрията, иначе се мести само при обявяване.';
+
+  @override
+  String get follow_stop => 'Спри';
+
+  @override
+  String get follow_stopped =>
+      'Следването е спряно. Стартирайте отново за още 15 минути.';
+
+  @override
+  String get follow_start => 'Следвай 15 мин';
+
+  @override
+  String get follow_you => 'Вие';
+
+  @override
+  String get sensorHistory_title => 'История на сензора';
+
+  @override
+  String get sensorHistory_menuHint =>
+      'Графики за последния час до денонощие и известия';
+
+  @override
+  String get sensorHistory_readNow => 'Прочети сега';
+
+  @override
+  String get sensorHistory_window1h => '1 ч';
+
+  @override
+  String get sensorHistory_window6h => '6 ч';
+
+  @override
+  String get sensorHistory_window24h => '24 ч';
+
+  @override
+  String get sensorHistory_empty =>
+      'Още няма стойности. Докоснете Прочети сега или включете живи обновления или автоматично опресняване в Телеметрия; всяка стойност се пази тук един ден.';
+
+  @override
+  String sensorHistory_updated(String time) {
+    return 'Обновено $time';
+  }
+
+  @override
+  String get sensorHistory_noneInWindow => 'Няма стойности в този период.';
+
+  @override
+  String sensorHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return 'Графика $metric, $count стойности, от $low до $high';
+  }
+
+  @override
+  String get sensorHistory_noAlert => 'Без известие';
+
+  @override
+  String sensorHistory_alertWhenAbove(String value) {
+    return 'Известие над $value';
+  }
+
+  @override
+  String sensorHistory_alertWhenBelow(String value) {
+    return 'Известие под $value';
+  }
+
+  @override
+  String get sensorHistory_setAlert => 'Известие…';
+
+  @override
+  String get sensorHistory_alertDialogTitle => 'Известие за тази стойност';
+
+  @override
+  String get sensorHistory_alertDialogHint =>
+      'Получавате известие, когато нова стойност премине граница. Оставете поле празно, за да не се ползва.';
+
+  @override
+  String get sensorHistory_above => 'Над';
+
+  @override
+  String get sensorHistory_below => 'Под';
+
+  @override
+  String get sensorHistory_belowMustBeLower =>
+      'Трябва да е под горната граница';
+
+  @override
+  String get sensorHistory_removeAlert => 'Премахни';
+
+  @override
+  String get sensorHistory_alertTitle => 'Известие от сензор';
+
+  @override
+  String sensorHistory_alertAbove(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what е $value, над $limit';
+  }
+
+  @override
+  String sensorHistory_alertBelow(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what е $value, под $limit';
+  }
+
+  @override
+  String get sensorHistory_unknownNode => 'Сензор';
+
+  @override
+  String get coverageHex_notoryxTitle => 'Карта на покритието NOTORYX';
+
+  @override
+  String get coverageHex_notoryxShare =>
+      'Споделяне с картата на покритието NOTORYX';
+
+  @override
+  String get coverageHex_notoryxShareHint =>
+      'Публична карта на реалното покритие на MeshCore. Нищо не се изпраща, докато не се съгласите.';
+
+  @override
+  String get coverageHex_notoryxConsent =>
+      'Телефонът ви изпраща какво е чуло радиото във всеки шестоъгълник (около 0,9 km): сила на сигнала, брой пакети, директно чутите репитери и 15-минутен интервал. Никога не изпраща GPS следата или точното ви местоположение. Изпраща и публичните обявления на репитерите (име и позиция), за да може картата да ги назове. Качванията са подписани с ключ за покритие, отделен от радиото ви, така че можете да ги изтриете по-късно.';
+
+  @override
+  String get coverageHex_notoryxAnonymousNote =>
+      'Анонимните качвания не могат да бъдат изтрити по-късно.';
+
+  @override
+  String get coverageHex_mapperName => 'Име на картографа (по избор)';
+
+  @override
+  String get coverageHex_mapperNameHint =>
+      'Показва се само на членовете на NOTORYX. Оставете празно, за да останете без име.';
+
+  @override
+  String get coverageHex_shareAction => 'Споделяне';
+
+  @override
+  String get coverageHex_notNow => 'Не сега';
+
+  @override
+  String get coverageHex_stopSharing => 'Спиране на споделянето';
+
+  @override
+  String get coverageHex_eraseUploads => 'Изтриване на моите качвания';
+
+  @override
+  String get coverageHex_eraseConfirm =>
+      'Да се изтрие ли всичко, което този телефон е качил в картата на покритието NOTORYX? Това не може да бъде отменено.';
+
+  @override
+  String coverageHex_erased(String count) {
+    return 'Изтрити са $count измервания от картата.';
+  }
+
+  @override
+  String get coverageHex_eraseFailed =>
+      'Изтриването не успя. Проверете връзката и опитайте отново.';
+
+  @override
+  String get coverageHex_openMap => 'Отваряне на картата на покритието';
+
+  @override
+  String get coverageHex_trimDrives =>
+      'Скриване на началото и края на всяко пътуване';
+
+  @override
+  String get coverageHex_trimDrivesHint =>
+      'Първите и последните 2 шестоъгълника от всяка сесия остават на този телефон, така че картите не могат да покажат къде живеете или паркирате.';
+
+  @override
+  String get appSettings_resetRoutingToDefault =>
+      'Нулиране на алгоритъма за маршрутизация до стойност по подразбиране';
+
+  @override
+  String get appSettings_resetRoutingToDefaultSubtitle =>
+      'Възстановяване на настройките на алгоритъма за маршрутизация до заводските стойности по подразбиране';
+
+  @override
+  String get appSettings_routingResetToDefault =>
+      'Настройките на алгоритъма за маршрутизация са нулирани до стойност по подразбиране';
+
+  @override
+  String get discoveredContacts_importNodes => 'Импортиране на възли';
+
+  @override
+  String get discoveredContacts_importHint =>
+      'Чете връзки към контакти, публични ключове или списък с възли в JSON или CSV. Добавят се към този списък, не към радиото.';
+
+  @override
+  String get discoveredContacts_importFromFile => 'От файл';
+
+  @override
+  String get discoveredContacts_importFromClipboard => 'От клипборда';
+
+  @override
+  String get discoveredContacts_importFailed => 'Не може да се прочете';
+
+  @override
+  String get discoveredContacts_importNone => 'Не са намерени възли';
+
+  @override
+  String get discoveredContacts_importNotConnected => 'Първо свържете радиото';
+
+  @override
+  String discoveredContacts_importResult(int added, int updated, int skipped) {
+    return 'Нови: $added, обновени: $updated, пропуснати: $skipped';
+  }
+
+  @override
+  String home_knownNodes(int chats, int repeaters, int rooms) {
+    return 'Чатове $chats · Ретранслатори $repeaters · Стаи $rooms';
+  }
+
+  @override
+  String home_radioHolds(int count, int max) {
+    return 'Радиото пази контакти: $count от $max';
+  }
+
+  @override
+  String messageFilter_markedSpamCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count съобщения са отбелязани като спам',
+      one: '1 съобщение е отбелязано като спам',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageFilter_markedNotSpamCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count съобщения са отбелязани като не е спам',
+      one: '1 съобщение е отбелязано като не е спам',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get messageFilter_title => 'Филтър за съобщения';
+
+  @override
+  String get messageFilter_settingsSubtitle =>
+      'Скрива спам и повтарящи се съобщения';
+
+  @override
+  String get messageFilter_enabled => 'Филтрирай съобщенията';
+
+  @override
+  String get messageFilter_enabledSubtitle => 'Важи за съобщенията в каналите';
+
+  @override
+  String get messageFilter_displayTitle => 'Филтрирани съобщения';
+
+  @override
+  String get messageFilter_displayPlaceholder =>
+      'Показвай малък знак на мястото им';
+
+  @override
+  String get messageFilter_displayHide => 'Скрий напълно';
+
+  @override
+  String get messageFilter_displayHideHelp =>
+      'Скритите съобщения остават в списъка „Филтрирани съобщения“.';
+
+  @override
+  String get messageFilter_rulesSection => 'Твоите правила';
+
+  @override
+  String get messageFilter_rulesEmpty =>
+      'Още няма правила. Добави дума, фраза или име на подател, за да скриваш съобщенията, които съвпадат.';
+
+  @override
+  String get messageFilter_addRule => 'Добави правило';
+
+  @override
+  String get messageFilter_editRule => 'Редактирай правило';
+
+  @override
+  String get messageFilter_rulePattern => 'Дума, фраза или име';
+
+  @override
+  String get messageFilter_rulePatternHint => 'напр. meshos';
+
+  @override
+  String get messageFilter_ruleWhere => 'Търси в';
+
+  @override
+  String get messageFilter_ruleFieldText => 'Текст на съобщението';
+
+  @override
+  String get messageFilter_ruleFieldSender => 'Име на подателя';
+
+  @override
+  String get messageFilter_ruleFieldBoth => 'И двете';
+
+  @override
+  String get messageFilter_ruleMatch => 'Съвпадение';
+
+  @override
+  String get messageFilter_ruleMatchContains => 'Съдържа';
+
+  @override
+  String get messageFilter_ruleMatchWholeWord => 'Цяла дума';
+
+  @override
+  String get messageFilter_ruleMatchExact => 'Точно';
+
+  @override
+  String get messageFilter_ruleDeleted => 'Правилото е изтрито';
+
+  @override
+  String get messageFilter_ruleSaved => 'Правилото е запазено';
+
+  @override
+  String get messageFilter_automaticSection => 'Автоматично';
+
+  @override
+  String get messageFilter_duplicates => 'Повтарящи се съобщения';
+
+  @override
+  String get messageFilter_duplicatesSubtitle =>
+      'Същото съобщение, изпратено отново или от няколко подателя';
+
+  @override
+  String get messageFilter_repeatSends => 'Изпращания, броени за повторение';
+
+  @override
+  String messageFilter_repeatSendsSubtitle(int count) {
+    return 'Скриване на съобщение, когато същият подател го изпрати $count пъти в рамките на 10 минути';
+  }
+
+  @override
+  String get messageFilter_repeatedCharacters => 'Повтарящи се символи';
+
+  @override
+  String get messageFilter_repeatedCharactersSubtitle =>
+      'Дълги поредици от един и същ знак, като „aaaaaaaaaaaaaaaaaaaa“';
+
+  @override
+  String get messageFilter_learning => 'Учи се от натискането на „Спам“';
+
+  @override
+  String messageFilter_learningSubtitle(int spam, int notSpam) {
+    return '$spam примера за спам и $notSpam примера, които не са спам';
+  }
+
+  @override
+  String get messageFilter_resetLearning => 'Нулирай наученото';
+
+  @override
+  String get messageFilter_resetLearningConfirm =>
+      'Да се забрави ли всичко, научено от натискането на „Спам“ и „Не е спам“? Правилата ти се запазват.';
+
+  @override
+  String messageFilter_filteredMessages(int count) {
+    return 'Филтрирани съобщения ($count)';
+  }
+
+  @override
+  String get messageFilter_filteredMessagesEmpty => 'Нищо не е филтрирано.';
+
+  @override
+  String get messageFilter_ghostSingle =>
+      'Скрито съобщение · Докосни, за да го видиш';
+
+  @override
+  String messageFilter_ghostMany(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count скрити съобщения · Докосни, за да ги видиш',
+      one: '$count скрито съобщение · Докосни, за да го видиш',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get messageFilter_ghostSingleExpanded =>
+      'Показва се скрито съобщение · Докосни, за да го скриеш';
+
+  @override
+  String messageFilter_ghostManyExpanded(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Показват се $count скрити съобщения · Докосни, за да ги скриеш',
+      one: 'Показва се 1 скрито съобщение · Докосни, за да го скриеш',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageFilter_reasonTextRule(String pattern) {
+    return 'Филтрирано: съвпада с „$pattern“';
+  }
+
+  @override
+  String messageFilter_reasonSenderRule(String pattern) {
+    return 'Филтрирано: подател „$pattern“';
+  }
+
+  @override
+  String get messageFilter_reasonRepeatedCharacters =>
+      'Филтрирано: повтарящи се символи';
+
+  @override
+  String get messageFilter_reasonDuplicate =>
+      'Филтрирано: повтарящо се съобщение';
+
+  @override
+  String get messageFilter_reasonCrossSenderDuplicate =>
+      'Филтрирано: същото съобщение от няколко подателя';
+
+  @override
+  String get messageFilter_reasonLearned =>
+      'Филтрирано: прилича на съобщения, които си отбелязал като спам';
+
+  @override
+  String get messageFilter_reasonManual =>
+      'Филтрирано: ти го отбеляза като спам';
+
+  @override
+  String get messageFilter_notSpam => 'Не е спам';
+
+  @override
+  String get messageFilter_hideAgain => 'Скрий';
+
+  @override
+  String get messageFilter_markSpam => 'Отбележи като спам';
+
+  @override
+  String get messageFilter_markedSpam => 'Отбелязано като спам';
+
+  @override
+  String get messageFilter_markedNotSpam => 'Отбелязано като не е спам';
+
+  @override
+  String get messageFilter_filterSender => 'Филтрирай този подател';
+
+  @override
+  String messageFilter_filterSenderConfirm(String name) {
+    return 'Да се скрият ли всички съобщения от „$name“?';
+  }
+
+  @override
+  String get messageFilter_filterLikeThis => 'Филтрирай съобщения като това…';
+
+  @override
+  String get messageFilter_channelToggle =>
+      'Филтрирай съобщенията в този канал';
+
+  @override
+  String get messageFilter_ghostIconTooltip =>
+      'Скрито от твоя филтър за съобщения';
+
+  @override
+  String get ping_noReplyNote =>
+      'Липсата на отговор не доказва, че ретранслаторът не работи. Заявката или отговорът могат да се загубят заради шум или сблъсък; опитайте отново или от друго място.';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return 'Последен скок $name · $snr dB';
+  }
+
+  @override
+  String get contacts_fullWarning =>
+      'Списъкът с контакти на това радио е пълен и не може да добавя нови възли. Премахнете някои контакти, за да освободите място.';
 }

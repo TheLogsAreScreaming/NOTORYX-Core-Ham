@@ -9,7 +9,7 @@ class AppLocalizationsZh extends AppLocalizations {
   AppLocalizationsZh([String locale = 'zh']) : super(locale);
 
   @override
-  String get appTitle => 'NOTORYX Core';
+  String get appTitle => 'NOTORYX Core Ham';
 
   @override
   String get nav_contacts => '联系人';
@@ -857,7 +857,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String settings_aboutVersion(String version) {
-    return 'NOTORYX Core v$version';
+    return 'NOTORYX Core Ham v$version';
   }
 
   @override
@@ -905,10 +905,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_frequency => '频率 (MHz)';
 
   @override
-  String get settings_frequencyHelper => '300.0 - 2500.0';
+  String get settings_frequencyHelper => '420–450 / 902–928';
 
   @override
-  String get settings_frequencyInvalid => '无效频率范围（300-2500 MHz）';
+  String get settings_frequencyInvalid => '无效频率范围（420–450 / 902–928 MHz）';
 
   @override
   String get settings_bandwidth => '带宽';
@@ -1464,7 +1464,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get channels_viaMqttSemantics => '通过 MQTT 收到，你的电台未接收到';
 
   @override
-  String get channels_private => '私有';
+  String get channels_private => '带密钥';
 
   @override
   String get channels_editChannel => '编辑频道';
@@ -1609,16 +1609,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get channels_sortUnread => '未读';
 
   @override
-  String get channels_createPrivateChannel => '创建私有频道';
+  String get channels_createPrivateChannel => '创建带密钥的频道';
 
   @override
-  String get channels_createPrivateChannelDesc => '使用密钥保护。';
+  String get channels_createPrivateChannelDesc => '用共享密钥选择频道。消息仍然任何人都能读取。';
 
   @override
-  String get channels_joinPrivateChannel => '加入私有频道';
+  String get channels_joinPrivateChannel => '加入带密钥的频道';
 
   @override
-  String get channels_joinPrivateChannelDesc => '手动输入密钥。';
+  String get channels_joinPrivateChannelDesc => '输入频道的共享密钥。';
 
   @override
   String get channels_joinPublicChannel => '加入公共频道';
@@ -1712,6 +1712,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get chat_selectSendAction => '选择发送操作';
+
+  @override
+  String get chat_jumpToLatest => '跳到最新消息';
 
   @override
   String get chat_sendGif => '发送 GIF';
@@ -1922,6 +1925,130 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get routing_noPathYet => '目前还没有找到路径。直到找到路径，才会收到后续消息。';
+
+  @override
+  String get routePick_open => '路由视图与选择';
+
+  @override
+  String get routePick_openHint => '查看每一跳的链路质量并选择更可靠的路由';
+
+  @override
+  String routePick_title(String name) {
+    return '到 $name 的路由';
+  }
+
+  @override
+  String get routePick_current => '当前路由';
+
+  @override
+  String get routePick_flooding => '没有固定路由：在学到路由前，消息会泛洪整个网络。';
+
+  @override
+  String get routePick_direct => '直连';
+
+  @override
+  String routePick_hopUnknown(String id) {
+    return '中继 $id';
+  }
+
+  @override
+  String get routePick_notMeasured => '尚未测量';
+
+  @override
+  String get routePick_measure => '测量此路由';
+
+  @override
+  String get routePick_measuring => '追踪中…';
+
+  @override
+  String get routePick_measured => '刚刚测量完成。';
+
+  @override
+  String get routePick_noAnswer => '追踪无应答。路由上的某个中继可能超出范围。';
+
+  @override
+  String get routePick_floodDone => '路由已清除。下一条消息将泛洪以寻找新路由。';
+
+  @override
+  String get routePick_suggested => '推荐';
+
+  @override
+  String routePick_suggestBody(String route, int score) {
+    return '更可靠的路由：$route（得分 $score）。';
+  }
+
+  @override
+  String get routePick_use => '使用';
+
+  @override
+  String routePick_useLabel(String route) {
+    return '使用路由 $route';
+  }
+
+  @override
+  String get routePick_options => '可选路由';
+
+  @override
+  String get routePick_optionsHint =>
+      '该联系人的所有已知路由，按链路信号、送达记录、长度和新近程度评为 0–100 分。';
+
+  @override
+  String get routePick_none => '尚无路由。发送消息以发现路由。';
+
+  @override
+  String get routePick_other => '其他选择';
+
+  @override
+  String get routePick_build => '自建路由';
+
+  @override
+  String get routePick_flood => '让网络自行寻找路由';
+
+  @override
+  String get routePick_explainer =>
+      '测量会沿路由往返发送一次追踪，因此中继之间的每条链路都会双向测量。到联系人的最后一段无法追踪。读数保留 30 天，并用于所有使用同一链路的路由。';
+
+  @override
+  String routePick_score(int score) {
+    return '得分 $score/100';
+  }
+
+  @override
+  String routePick_hopLabel(
+    int number,
+    String name,
+    String quality,
+    String out,
+    String back,
+  ) {
+    return '第 $number 跳：$name。链路$quality，去程 $out 分贝，回程 $back 分贝。';
+  }
+
+  @override
+  String get routePick_lastLink => '到联系人的最后一段：无法通过追踪测量';
+
+  @override
+  String routePick_linkLine(String out, String back) {
+    return '去程 $out dB · 回程 $back dB';
+  }
+
+  @override
+  String routePick_optionLine(int score, int hops) {
+    return '得分 $score · 跳数：$hops';
+  }
+
+  @override
+  String routePick_record(int ok, int tries) {
+    return '送达 $ok/$tries';
+  }
+
+  @override
+  String routePick_weakest(String snr) {
+    return '最弱链路 $snr dB';
+  }
+
+  @override
+  String get routePick_inUse => '使用中';
 
   @override
   String get routing_floodBroadcast => '通过所有中继器进行广播';
@@ -2583,6 +2710,24 @@ class AppLocalizationsZh extends AppLocalizations {
   String get login_failedMessage => '登录失败。可能是密码错误或无法连接到服务器。';
 
   @override
+  String get login_failRadioOffline => '电台未连接，登录未发送。请连接电台后重试。';
+
+  @override
+  String get login_failSend => '电台未接受登录请求。请重新连接后重试。';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return '通过已保存路径（$hops 跳）没有回复。路径可能已过时：请在$section中开启“$option”后重试。密码错误时同样不会回复。';
+  }
+
+  @override
+  String get login_failRejected => '中继器已回复并拒绝了密码。';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      '泛洪没有回复。中继器可能超出范围、已关闭或繁忙，也可能密码错误（密码错误时中继器不回复）。请靠近后重试。';
+
+  @override
   String get common_reload => '重新加载';
 
   @override
@@ -2647,6 +2792,34 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get repeater_clockSyncAfterLoginSubtitle => '在成功登录后，自动发送“时钟同步”指令。';
+
+  @override
+  String repeater_cliLateReply(String command, String reply) {
+    return '“$command”的迟到回复：$reply';
+  }
+
+  @override
+  String repeater_clockWrongNotice(String name) {
+    return '$name 的时钟不准，它的广播会显得很旧。';
+  }
+
+  @override
+  String get repeater_clockSyncAction => '同步';
+
+  @override
+  String repeater_clockSyncDone(String name) {
+    return '$name 的时钟现在与你的手机一致。';
+  }
+
+  @override
+  String repeater_clockAhead(String name) {
+    return '$name 的时钟比你的手机快，无法往回调。';
+  }
+
+  @override
+  String repeater_clockSyncFailed(String name) {
+    return '无法设置 $name 的时钟。请试试 设置 → 现在同步时钟。';
+  }
 
   @override
   String get repeater_statusTitle => '转发节点状态';
@@ -2777,7 +2950,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get repeater_frequencyMhz => '频率 (MHz)';
 
   @override
-  String get repeater_frequencyHelper => '300-2500 兆赫';
+  String get repeater_frequencyHelper => '420–450 / 902–928 兆赫';
 
   @override
   String get repeater_txPower => 'TX 功率';
@@ -2900,6 +3073,19 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => '设置保存成功';
+
+  @override
+  String get repeater_settingsConfirmed => '设置已保存并经中继器确认';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return '设置已保存，但有 $count 项无法回读确认';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key 回读为 $value';
+  }
 
   @override
   String get repeater_rxGain => '增强的 RX 增益';
@@ -4123,6 +4309,71 @@ class AppLocalizationsZh extends AppLocalizations {
   String get listFilter_newGroup => '新建群聊';
 
   @override
+  String get traceCard_title => '路径追踪卡片';
+
+  @override
+  String get traceCard_open => '分享路径追踪卡片';
+
+  @override
+  String traceCard_from(String name) {
+    return '来自 $name';
+  }
+
+  @override
+  String traceCard_to(String name) {
+    return '发往 $name';
+  }
+
+  @override
+  String traceCard_sentAt(String time) {
+    return '发送于 $time';
+  }
+
+  @override
+  String traceCard_roundTrip(String seconds) {
+    return '往返 $seconds 秒';
+  }
+
+  @override
+  String traceCard_hops(int count) {
+    return '跳数：$count';
+  }
+
+  @override
+  String get traceCard_backToYou => '返回到你';
+
+  @override
+  String traceCard_distance(String distance) {
+    return '路线 $distance';
+  }
+
+  @override
+  String traceCard_weakest(String snr) {
+    return '最弱链路 $snr';
+  }
+
+  @override
+  String get traceCard_noMap => '此路线没有已知位置，因此没有地图。';
+
+  @override
+  String get traceCard_guessed => '估计位置';
+
+  @override
+  String get traceCard_mapLabel => '往返路线地图';
+
+  @override
+  String get traceCard_shareImage => '分享图片';
+
+  @override
+  String get traceCard_shareText => '分享文本';
+
+  @override
+  String get traceCard_shareFailed => '无法分享路径追踪卡片。';
+
+  @override
+  String get traceCard_snrUnknown => '无 SNR';
+
+  @override
   String get pathTrace_you => '我自己';
 
   @override
@@ -4253,6 +4504,34 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get losLegendTerrain => '地形';
+
+  @override
+  String get nodeLook_menu => '照片或颜色';
+
+  @override
+  String nodeLook_title(String name) {
+    return '$name 的外观';
+  }
+
+  @override
+  String get nodeLook_hint => '仅保存在本手机上，绝不会通过网状网络发送。';
+
+  @override
+  String get nodeLook_choosePhoto => '选择照片';
+
+  @override
+  String get nodeLook_removePhoto => '移除照片';
+
+  @override
+  String get nodeLook_clear => '使用默认外观';
+
+  @override
+  String nodeLook_colorN(int index) {
+    return '颜色 $index';
+  }
+
+  @override
+  String get nodeLook_photoFailed => '无法使用该照片，请换一张。';
 
   @override
   String get losBlockedSpotsTitle => '被占用区域';
@@ -4441,10 +4720,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_gpxExportAllContacts => '所有联系人位置';
 
   @override
-  String get settings_gpxExportShareText => '来自 NOTORYX Core 的地图数据导出';
+  String get settings_gpxExportShareText => '来自 NOTORYX Core Ham 的地图数据导出';
 
   @override
-  String get settings_gpxExportShareSubject => 'NOTORYX Core GPX 地图数据导出';
+  String get settings_gpxExportShareSubject => 'NOTORYX Core Ham GPX 地图数据导出';
 
   @override
   String get snrIndicator_nearByRepeaters => '附近的重复器';
@@ -5170,6 +5449,9 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String get sos_notEmergencyService => '仅能到达您选择的联系人和范围内的电台。不会联系 911 或紧急服务。';
+
+  @override
   String get sos_holdHint => '按住 2 秒。每 5 分钟向你的行程联系人发送你的位置，直到有人回复。';
 
   @override
@@ -5401,7 +5683,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tripBrief_sharesOnly => '本简报仅用于分享信息；它不会发送电台消息，也不会开始行程。';
 
   @override
-  String get fieldOps_title => 'NOTORYX Core 野外行动';
+  String get fieldOps_title => 'NOTORYX Core Ham 野外行动';
 
   @override
   String get fieldOps_tabTrip => '行程';
@@ -5581,7 +5863,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get fieldOps_shareBrief => '分享简报';
 
   @override
-  String get fieldOps_briefSubject => 'NOTORYX Core 行程简报';
+  String get fieldOps_briefSubject => 'NOTORYX Core Ham 行程简报';
 
   @override
   String get fieldOps_tripName => '行程名称';
@@ -5605,7 +5887,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get fieldOps_reminderLabel => '提醒我报到';
 
   @override
-  String get fieldOps_reminderHelper => '即使 NOTORYX Core 已关闭，也会发送手机通知。';
+  String get fieldOps_reminderHelper => '即使 NOTORYX Core Ham 已关闭，也会发送手机通知。';
 
   @override
   String get fieldOps_reminderOff => '关闭';
@@ -5644,31 +5926,30 @@ class AppLocalizationsZh extends AppLocalizations {
   String get fieldOps_send => '发送';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'SOS 转发';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable => '转发没有中继器转发的 SOS';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware => '需要电台固件 v1.16 或更新版本';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => '尚未转发任何 SOS';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: '已转发 $count 个 SOS 数据包，最近一次在 $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      '当电台直接从发送者听到 SOS，且约 15 秒内没有中继器转发时，NOTORYX 会原样再发送一次，让它到达你能听到而发送者听不到的中继器。只转发你所拥有频道中的 SOS。会消耗电量和发射时间，因此默认关闭。';
 
   @override
   String get fieldOps_beforeYouLeave => '出发前';
@@ -5784,7 +6065,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get fieldOps_deleteLog => '删除日志';
 
   @override
-  String get fieldOps_logSubject => 'NOTORYX Core 野外日志';
+  String get fieldOps_logSubject => 'NOTORYX Core Ham 野外日志';
 
   @override
   String get fieldOps_logCaveat =>
@@ -5973,7 +6254,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get fieldOps_noteTooltip => '位于电台广播坐标处的本地备注；可能已过时。';
 
   @override
-  String get bastionHome_aboutTooltip => '关于 NOTORYX Core';
+  String get bastionHome_aboutTooltip => '关于 NOTORYX Core Ham';
 
   @override
   String get bastionHome_getStarted => '开始使用';
@@ -6084,14 +6365,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String get bastionTools_about => '关于 + 致谢';
 
   @override
-  String get bastionTools_aboutHint => 'NOTORYX Core 版本、独立性声明和开源许可证';
+  String get bastionTools_aboutHint => 'NOTORYX Core Ham 版本、独立性声明和开源许可证';
 
   @override
   String get bastionAbout_title => '关于 + 致谢';
 
   @override
   String get bastionAbout_intro =>
-      '一款面向 MeshCore 网络的独立社区配套应用。NOTORYX Core 不是 MeshCore 官方应用，收录社区资源也不代表合作或认可。';
+      '一款面向 MeshCore 网络的独立社区配套应用。NOTORYX Core Ham 不是 MeshCore 官方应用，收录社区资源也不代表合作或认可。';
 
   @override
   String get bastionAbout_version => '版本';
@@ -6101,7 +6382,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get bastionAbout_openSourceBody =>
-      'NOTORYX Core 基于 MIT 许可证下的 MeshCore Open 开源代码构建并对其进行了修改。覆盖功能相关工作也在适用时致谢采用 MIT 许可证的 MeshMapper Flutter App。';
+      'NOTORYX Core Ham 基于 MIT 许可证下的 MeshCore Open 开源代码构建并对其进行了修改。覆盖功能相关工作也在适用时致谢采用 MIT 许可证的 MeshMapper Flutter App。';
 
   @override
   String get bastionAbout_community => '社区优先';
@@ -6110,13 +6391,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get bastionAbout_communityBody => '第三方创作者的资源仍归各自创作者所有。不代表任何所有权或合作关系。';
 
   @override
-  String get bastionAbout_legalese => 'NOTORYX Core • 独立的 MeshCore 配套应用';
+  String get bastionAbout_legalese => 'NOTORYX Core Ham • 独立的 MeshCore 配套应用';
 
   @override
   String get bastionAbout_licenses => '开源许可证';
 
   @override
-  String get bastionSetup_title => 'NOTORYX Core 入门';
+  String get bastionSetup_title => 'NOTORYX Core Ham 入门';
 
   @override
   String get bastionSetup_intro => '连接、选择联系人，然后验证一条消息。你可以随时从仪表板返回本指南。';
@@ -6138,7 +6419,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get bastionSetup_step1Bluetooth =>
-      '如果蓝牙搜索为空，请检查蓝牙是否已开启，以及 NOTORYX Core 是否在 Android 应用设置中拥有“附近的设备”权限。并按扫描器显示的其他权限提示操作。';
+      '如果蓝牙搜索为空，请检查蓝牙是否已开启，以及 NOTORYX Core Ham 是否在 Android 应用设置中拥有“附近的设备”权限。并按扫描器显示的其他权限提示操作。';
 
   @override
   String get bastionSetup_connectionDiagnostics => '连接诊断';
@@ -6202,6 +6483,27 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get bastionDiag_export => '导出诊断';
+
+  @override
+  String get diagTimeline_title => '连接时间线';
+
+  @override
+  String get diagTimeline_empty => '应用启动以来连接没有变化。';
+
+  @override
+  String get diagTimeline_causeUser => '由你操作';
+
+  @override
+  String get diagTimeline_causeLinkLost => '链路断开';
+
+  @override
+  String get diagTimeline_causeReconnect => '自动重试';
+
+  @override
+  String get diagTimeline_causeAutoConnect => '自动连接';
+
+  @override
+  String get diagTimeline_causeApp => '由应用关闭';
 
   @override
   String get bastionDiag_channels => '频道';
@@ -6296,7 +6598,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get coverage_connectedBody =>
-      'NOTORYX Core 会记录本次会话中新收到的节点，包括路由数据、节点/位置元数据，以及最接近的电台 RSSI/SNR 快照。';
+      'NOTORYX Core Ham 会记录本次会话中新收到的节点，包括路由数据、节点/位置元数据，以及最接近的电台 RSSI/SNR 快照。';
 
   @override
   String get coverage_disconnectedBody => '开始前请连接电台。覆盖记录会从已连接的配套电台记录实时网状网络观测。';
@@ -6365,10 +6667,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get coverage_pathDirect => '直连';
 
   @override
-  String get coverage_shareSubject => 'NOTORYX Core 覆盖会话';
+  String get coverage_shareSubject => 'NOTORYX Core Ham 覆盖会话';
 
   @override
-  String get coverage_shareText => 'NOTORYX Core 覆盖记录导出';
+  String get coverage_shareText => 'NOTORYX Core Ham 覆盖记录导出';
 
   @override
   String get coverage_historyTitle => '已保存的覆盖会话';
@@ -6454,7 +6756,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get fieldStats_snapshot => '实时网络快照';
 
   @override
-  String get fieldStats_headline => 'NOTORYX Core 此刻掌握的情况。';
+  String get fieldStats_headline => 'NOTORYX Core Ham 此刻掌握的情况。';
 
   @override
   String get fieldStats_body => '这些计数根据已连接 MeshCore 的联系人表、位置、路径和最后可见时间计算。';
@@ -6494,7 +6796,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get fieldStats_pathIntelBody =>
-      'NOTORYX Core 的路由分析利用已保存的路径尝试、跳数、成功/失败、往返时间和路由权重来呈现学到的路由。';
+      'NOTORYX Core Ham 的路由分析利用已保存的路径尝试、跳数、成功/失败、往返时间和路由权重来呈现学到的路由。';
 
   @override
   String get fieldStats_coverageSessions => '覆盖会话';
@@ -6507,7 +6809,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get mapHub_title => 'NOTORYX 野外地图';
 
   @override
-  String get mapHub_intro => '实时地图、离线区域、区域配置和 NOTORYX Core 野外覆盖会话。';
+  String get mapHub_intro => '实时地图、离线区域、区域配置和 NOTORYX Core Ham 野外覆盖会话。';
 
   @override
   String get mapHub_captureHint => '开始和停止野外覆盖会话';
@@ -6540,6 +6842,66 @@ class AppLocalizationsZh extends AppLocalizations {
   String get mapHub_regionsHint => '管理和获取区域网络定义';
 
   @override
+  String get replay_title => '回放一天';
+
+  @override
+  String get replay_entryHint => '回放团队在某天的位置';
+
+  @override
+  String get replay_badge => '历史';
+
+  @override
+  String get replay_day => '日期';
+
+  @override
+  String get replay_team => '团队';
+
+  @override
+  String get replay_everyone => '所有人';
+
+  @override
+  String get replay_emptyTeam => '这一天没有团队位置。队员在频道中共享跟踪位置后才会显示。选择“所有人”可查看节点广播。';
+
+  @override
+  String get replay_emptyEveryone => '这一天没有记录位置。从现在起，应用打开期间本机会记录节点广播的位置。';
+
+  @override
+  String replay_mapSummary(String time, int count) {
+    return '$time 的地图：显示 $count 个';
+  }
+
+  @override
+  String get replay_play => '播放';
+
+  @override
+  String get replay_pause => '暂停';
+
+  @override
+  String get replay_speed => '速度';
+
+  @override
+  String replay_speedValue(int minutes) {
+    return '每秒 $minutes 分钟';
+  }
+
+  @override
+  String replay_showNode(String name) {
+    return '显示或隐藏 $name';
+  }
+
+  @override
+  String get replay_notYet => '此时尚未出现';
+
+  @override
+  String replay_lastSeen(String time, String lat, String lon) {
+    return '最后出现于 $time，位置 $lat, $lon';
+  }
+
+  @override
+  String get replay_explainer =>
+      '团队位置来自队员在频道中共享的跟踪位置。“所有人”还会加入节点广播的位置，本机在应用打开期间记录并保留 30 天。不会发送任何内容。';
+
+  @override
   String get mapHub_badgeRegions => '区域';
 
   @override
@@ -6549,7 +6911,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get routes_headline => '了解流量如何在网状网络中传递。';
 
   @override
-  String get routes_body => 'NOTORYX Core 根据从真实消息尝试和发现中学到的路径历史，对已保存的路由进行排序。';
+  String get routes_body =>
+      'NOTORYX Core Ham 根据从真实消息尝试和发现中学到的路径历史，对已保存的路由进行排序。';
 
   @override
   String get routes_routes => '路由';
@@ -6580,7 +6943,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get routes_noneBody =>
-      '照常使用网状网络或运行发现。一旦有了路径历史，NOTORYX Core 会在此显示学到的路由。';
+      '照常使用网状网络或运行发现。一旦有了路径历史，NOTORYX Core Ham 会在此显示学到的路由。';
 
   @override
   String get routes_direct => '直连';
@@ -6664,14 +7027,76 @@ class AppLocalizationsZh extends AppLocalizations {
   String get repeaterTools_empty => '尚未发现中继器。请先连接电台并探索网状网络。';
 
   @override
+  String get rptTest_title => '附近中继测试';
+
+  @override
+  String get rptTest_subtitle => '一键查看哪些中继能直接听到你';
+
+  @override
+  String get rptTest_start => '立即测试';
+
+  @override
+  String get rptTest_listening => '正在等待应答…';
+
+  @override
+  String rptTest_wait(int seconds) {
+    return '$seconds 秒后可再次测试';
+  }
+
+  @override
+  String rptTest_found(int count) {
+    return '应答的中继：$count';
+  }
+
+  @override
+  String get rptTest_none => '直接范围内没有中继应答。请到更高处尝试，或一分钟后再试。旧固件的中继不会应答此测试。';
+
+  @override
+  String get rptTest_strong => '强';
+
+  @override
+  String get rptTest_usable => '可用';
+
+  @override
+  String get rptTest_weak => '弱';
+
+  @override
+  String rptTest_unknown(String prefix) {
+    return '中继 $prefix';
+  }
+
+  @override
+  String rptTest_line(String there, String here, String rssi) {
+    return '对方收到 $there dB · 你收到 $here dB, $rssi dBm';
+  }
+
+  @override
+  String rptTest_rowLabel(
+    String name,
+    String quality,
+    String there,
+    String here,
+    String rssi,
+  ) {
+    return '$name，$quality。对方以 $there 分贝收到你。你以 $here 分贝收到对方，$rssi dBm。';
+  }
+
+  @override
+  String get rptTest_notConnected => '请先连接电台再测试。';
+
+  @override
+  String get rptTest_explainer =>
+      '发送一次不经转发的发现请求，只有能直接听到你电台的中继才会应答。第一个数值是中继收到你的信号，第二个是你收到中继的信号。中继会限制应答频率，所以两次测试间隔30秒。';
+
+  @override
   String get notification_fieldAlertTitle => 'NOTORYX 野外警报';
 
   @override
-  String get notification_checkInReminderTitle => 'NOTORYX Core 报到提醒';
+  String get notification_checkInReminderTitle => 'NOTORYX Core Ham 报到提醒';
 
   @override
   String notification_checkInReminderBody(int minutes, String trip) {
-    return '$trip 已有 $minutes 分钟未报到。打开 NOTORYX Core 进行报到。';
+    return '$trip 已有 $minutes 分钟未报到。打开 NOTORYX Core Ham 进行报到。';
   }
 
   @override
@@ -6708,7 +7133,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settings_readAloudHelper =>
-      '仅在 NOTORYX Core 打开时。已静音的频道不会朗读。任何消息也可以从其菜单中朗读。';
+      '仅在 NOTORYX Core Ham 打开时。已静音的频道不会朗读。任何消息也可以从其菜单中朗读。';
 
   @override
   String get settings_readAloudOff => '关闭';
@@ -6750,6 +7175,11 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get shortcuts_checkIn => '报到';
+
+  @override
+  String qsTile_unread(String status, int count) {
+    return '$status · $count 条未读';
+  }
 
   @override
   String get shortcuts_trip => '行程';
@@ -6918,7 +7348,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get setupWizard_firmware =>
-      '你的电台需要支持所选连接方式的 MeshCore companion 固件。支持情况因板卡和固件版本而异；有 USB 接口并不代表支持 USB 串口。请查看你的板卡和已安装版本的说明。转发节点或房间服务器固件不是 companion。连接失败本身并不意味着需要重新刷写固件。';
+      '你的电台需要支持所选连接方式的 NOTORYX Ham companion 固件。支持情况因板卡和固件版本而异；有 USB 接口并不代表支持 USB 串口。请查看你的板卡和已安装版本的说明。转发节点或房间服务器固件不是 companion。连接失败本身并不意味着需要重新刷写固件。';
 
   @override
   String get setupWizard_settings =>
@@ -7417,6 +7847,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get scanner_tcpHint => '你网络中带 Wi‑Fi 固件的电台。';
 
   @override
+  String get scanner_tryDemo => '试用演示';
+
+  @override
+  String get scanner_tryDemoHint => '模拟的电台和网络。不会发送任何内容。';
+
+  @override
   String get scanner_otherWays => '其他连接方式';
 
   @override
@@ -7436,7 +7872,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get scanner_findTitle => '找到你的电台';
 
   @override
-  String get scanner_heroHint => '打开电台并放在几米范围内。需要 MeshCore companion 固件。';
+  String get scanner_heroHint => '打开电台并放在几米范围内。需要 NOTORYX Ham companion 固件。';
 
   @override
   String get scanner_tipsTitle => '看不到你的电台？';
@@ -7446,7 +7882,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get scanner_tipFirmware =>
-      '需要 MeshCore companion 固件。中继器和房间服务器不会显示在这里。';
+      '需要 NOTORYX Ham companion 固件。中继器和房间服务器不会显示在这里。';
 
   @override
   String get scanner_tipOtherDevice => '电台一次只能连接一台设备。请先断开它与其他手机或电脑的连接。';
@@ -7737,7 +8173,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get trackLog_howItWorks =>
-      '在 NOTORYX Core 打开期间，使用电台大约每分钟报告一次的位置。移动 25 米后添加一个点，静止时每 15 分钟添加一个点。';
+      '在 NOTORYX Core Ham 打开期间，使用电台大约每分钟报告一次的位置。移动 25 米后添加一个点，静止时每 15 分钟添加一个点。';
 
   @override
   String get trackLog_snap => '将位置取整到约 100 米';
@@ -7854,6 +8290,72 @@ class AppLocalizationsZh extends AppLocalizations {
   String routes_repeaterWithId(String id) {
     return '中继器 $id';
   }
+
+  @override
+  String get signedCov_section => '签名报告';
+
+  @override
+  String get signedCov_share => '分享签名报告';
+
+  @override
+  String get signedCov_shareHint =>
+      '每个六边形都用本机的覆盖密钥签名，被修改或伪造的数据可以识别。除非你分享，否则数据不会离开手机。';
+
+  @override
+  String get signedCov_check => '检查报告';
+
+  @override
+  String get signedCov_checkHint => '粘贴签名报告，查看哪些观测是真实的';
+
+  @override
+  String get signedCov_paste => '签名报告（JSON）';
+
+  @override
+  String get signedCov_verify => '检查';
+
+  @override
+  String signedCov_yourKey(String fingerprint) {
+    return '你的覆盖密钥：$fingerprint';
+  }
+
+  @override
+  String signedCov_result(int accepted, int rejected) {
+    return '已验证 $accepted 条观测，拒绝 $rejected 条';
+  }
+
+  @override
+  String signedCov_signer(String fingerprint) {
+    return '签名密钥 $fingerprint';
+  }
+
+  @override
+  String get signedCov_unreadable => '这不是签名的覆盖报告。';
+
+  @override
+  String signedCov_rBadSignature(int count) {
+    return '$count 条签名缺失或错误';
+  }
+
+  @override
+  String signedCov_rMalformed(int count) {
+    return '$count 条已损坏';
+  }
+
+  @override
+  String signedCov_rImpossible(int count) {
+    return '$count 条信号值不可能';
+  }
+
+  @override
+  String signedCov_rFuture(int count) {
+    return '$count 条日期在未来';
+  }
+
+  @override
+  String get signedCov_empty => '还没有可分享的覆盖样本。';
+
+  @override
+  String get signedCov_shareFailed => '无法分享报告。';
 
   @override
   String get coverageHex_title => '覆盖六边形';
@@ -8022,51 +8524,10 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get botWx_title => '将天气预警发布到频道';
-
-  @override
-  String get botWx_body =>
-      '每 10 分钟查询美国国家气象局在电台 GPS 位置（约取整到 1 公里）的严重和极端预警，每条新预警发布一次。需要手机联网。';
-
-  @override
-  String get botWx_channel => '发布到频道';
-
-  @override
-  String get botWx_moderate => '包括中等预警';
-
-  @override
-  String get botWx_moderateHint => '包括提示和预警。消息更多。';
-
-  @override
-  String botWx_lastChecked(String time) {
-    return '上次检查 $time。';
-  }
-
-  @override
-  String get botWx_noPosition => '电台尚未报告 GPS 位置。';
-
-  @override
-  String get botWx_noChannel => '请选择发布预警的频道。';
-
-  @override
-  String get botWx_channelGone => '所选频道已不存在。';
-
-  @override
-  String botWx_httpError(String code) {
-    return '气象服务返回 $code。';
-  }
-
-  @override
-  String get botWx_unreachable => '无法连接气象服务。';
-
-  @override
   String get botCmd_sun => '电台 GPS 位置的日出和日落。';
 
   @override
   String get botCmd_moon => '月相和照亮比例。';
-
-  @override
-  String get botCmd_weather => '电台处的当前天气（Open-Meteo）。发送约取整到 1 公里的位置。';
 
   @override
   String get botCmd_dice => '掷骰子：!dice、!dice 20 或 !dice 2d6。';
@@ -8425,7 +8886,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tools_bot => '机器人模式';
 
   @override
-  String get tools_botHint => '频道自动回复、!命令和天气警报';
+  String get tools_botHint => '频道自动回复和!命令';
 
   @override
   String get botChannels_title => '频道';
@@ -8505,6 +8966,63 @@ class AppLocalizationsZh extends AppLocalizations {
   String get channels_regionUnknownSemantics => '发送到应用未知的区域';
 
   @override
+  String get timeline_title => '时间线';
+
+  @override
+  String get timeline_toolSubtitle => '消息、新节点、信号变化和地点汇于一处';
+
+  @override
+  String get timeline_refresh => '重新加载';
+
+  @override
+  String get timeline_search => '搜索时间线';
+
+  @override
+  String get timeline_kindMessages => '消息';
+
+  @override
+  String get timeline_kindNodes => '新节点';
+
+  @override
+  String get timeline_kindSignal => '信号';
+
+  @override
+  String get timeline_kindPlaces => '地点';
+
+  @override
+  String timeline_messageFrom(String sender, String where) {
+    return '$sender 在 $where';
+  }
+
+  @override
+  String timeline_nodeJoined(String name) {
+    return '首次听到：$name';
+  }
+
+  @override
+  String timeline_signalUp(String name, String from, String to) {
+    return '$name：信号从 $from 升至 $to dB';
+  }
+
+  @override
+  String timeline_signalDown(String name, String from, String to) {
+    return '$name：信号从 $from 降至 $to dB';
+  }
+
+  @override
+  String timeline_placeSaved(String name) {
+    return '已保存地点：$name';
+  }
+
+  @override
+  String timeline_placeShared(String sender, String where) {
+    return '$sender 在 $where 分享了一个地点';
+  }
+
+  @override
+  String get timeline_empty => '暂无内容。消息、新听到的节点、信号变化和地点会显示在这里。';
+
+  @override
   String get wardrive_title => '覆盖测绘';
 
   @override
@@ -8575,4 +9093,3416 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get autoConnect_hint => '打开应用时无需点按即可重新连接上次的电台。如果电台还不在范围内，会尝试几次。';
+
+  @override
+  String get ham_licensedOperator => '持照操作员';
+
+  @override
+  String get ham_operatorIntro =>
+      'NOTORYX Core Ham 电台依据业余无线电执照（FCC Part 97）发射。发送的内容任何人都能读取，每一帧都带有电台名称开头的呼号。';
+
+  @override
+  String get ham_yourStation => '你的电台';
+
+  @override
+  String get ham_callSign => '呼号';
+
+  @override
+  String get ham_notUsCallsign => '不是美国呼号';
+
+  @override
+  String get ham_licenceClass => '执照等级';
+
+  @override
+  String get ham_licenceClassHelper => '所有等级均可完整使用 33 cm 和 70 cm';
+
+  @override
+  String get ham_antennaSystem => '天线系统';
+
+  @override
+  String get ham_antennaSystemHint => '用于下方的功率估算。没有的项目请保留 0。';
+
+  @override
+  String get ham_externalAmpGain => '外接功放增益';
+
+  @override
+  String get ham_feedlineLoss => '馈线损耗';
+
+  @override
+  String get ham_antennaGain => '天线增益';
+
+  @override
+  String get ham_coordination => '协调';
+
+  @override
+  String get ham_coordinationNotice =>
+      '请在充分协调之后再使用 NOTORYX Core Ham。电台和中继会在共用频段上自动发射，所以在任何电台上线之前，请与你的频率协调人沟通，遵守当地频段规划，并与本地区所有操作员商定同一个信道。';
+
+  @override
+  String get ham_readCoordinationGuide => '阅读协调指南';
+
+  @override
+  String get ham_acknowledgment => '我持有此执照，已阅读协调指南，并会在发射前进行协调。';
+
+  @override
+  String get ham_operatorSaved => '已保存';
+
+  @override
+  String get ham_connectedRadio => '已连接的电台';
+
+  @override
+  String get ham_nodeName => '节点名称';
+
+  @override
+  String get ham_nodeNameOk => '以你的呼号开头';
+
+  @override
+  String get ham_nodeNameBad => '必须以你的呼号开头，否则电台不会发射';
+
+  @override
+  String ham_setNameTo(String callsign) {
+    return '设为 $callsign';
+  }
+
+  @override
+  String get ham_frequency => '频率';
+
+  @override
+  String get ham_inHamBand => '在业余频段内';
+
+  @override
+  String get ham_outsideHamBands => '不在 420–450 / 902–928 MHz 内';
+
+  @override
+  String get ham_txPowerSetting => '发射功率设置';
+
+  @override
+  String get ham_chipSetting => '射频芯片的设置值';
+
+  @override
+  String get ham_firmware => '固件';
+
+  @override
+  String get ham_estimatedOutput => '估算输出功率';
+
+  @override
+  String get ham_estimatedErp => '估算有效辐射功率（ERP）';
+
+  @override
+  String get ham_unknown => '未知';
+
+  @override
+  String get ham_unknownBoard => '未知主板：按无功放计算';
+
+  @override
+  String get ham_ampNone => '无功放';
+
+  @override
+  String ham_ampGain(String db) {
+    return '功放约 +$db dB';
+  }
+
+  @override
+  String get ham_ampVariable => '取决于功放档位设置';
+
+  @override
+  String ham_boardNote(String board, String note) {
+    return '$board：$note';
+  }
+
+  @override
+  String ham_measureFirst(String board) {
+    return '$board。在依赖估算之前请先实测。';
+  }
+
+  @override
+  String ham_outputNote(String board) {
+    return '$board。这是估算值：请实测确认，并使用能通信的最小功率。';
+  }
+
+  @override
+  String get ham_overSpreadSpectrum =>
+      '超过 10 W PEP，即 LoRa 等扩频的上限（§97.311）。请调低。';
+
+  @override
+  String get ham_erpNote => '已计入馈线损耗和天线增益，相对于偶极子。功率较高时请检查射频暴露（§97.13）。';
+
+  @override
+  String get ham_location => '位置';
+
+  @override
+  String get ham_noLocationLimits => '未发现频段限制';
+
+  @override
+  String get ham_locationOkNote => '依据电台位置判断。请查阅 §97.303 确认。';
+
+  @override
+  String get ham_check => '需确认';
+
+  @override
+  String get ham_positionUnknown => '位置未知：请查阅 §97.303，了解你运行地点的限制。';
+
+  @override
+  String get ham_exclusion33cm =>
+      '此地区似乎位于 §97.303(g) 的排除区内：业余电台不得在此使用 33 cm 发射。';
+
+  @override
+  String get ham_lineA => '如果你位于 A 线以北（靠近加拿大边境），则不能使用 420–430 MHz。请查阅 §97.303。';
+
+  @override
+  String get ham_statusOk => '正常';
+
+  @override
+  String get ham_needsAttention => '需要注意';
+
+  @override
+  String get ham_setupBanner => '发射前请完成持照操作员设置';
+
+  @override
+  String get ham_setUp => '设置';
+
+  @override
+  String get ham_operatorCardIncomplete => '设置你的呼号并阅读协调指南';
+
+  @override
+  String get ham_nodeNameCallsignHelper => '以你的呼号开头，例如“W1AW”或“W1AW Base”';
+
+  @override
+  String get ham_repeaterNameNeedsCall => '名称必须以中继的呼号开头，例如“N0RPT Hilltop”。';
+
+  @override
+  String get ham_repeaterPasswordsSerial =>
+      '请通过中继的 USB 串口控制台设置密码。通过无线发送的话，任何人都能读取。';
+
+  @override
+  String get networks_title => '网络';
+
+  @override
+  String get networks_hint => '搜索附近网络并记录';
+
+  @override
+  String get networks_yourNetwork => '你的网络';
+
+  @override
+  String get networks_scanTitle => '搜索网络';
+
+  @override
+  String get networks_scanExplainer =>
+      '电台只能听到设置完全相同的网络，所以搜索会依次切换到每个网络收听，最后再切回来。搜索期间你会离开自己的网状网络。';
+
+  @override
+  String get networks_listenFor => '每个网络收听时长';
+
+  @override
+  String networks_choose(int count) {
+    return '要搜索的网络：$count';
+  }
+
+  @override
+  String get networks_suggested => '推荐';
+
+  @override
+  String get networks_start => '开始搜索';
+
+  @override
+  String get networks_cancel => '停止搜索';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return '正在收听 $name（$step/$steps）';
+  }
+
+  @override
+  String get networks_blockNoRadio => '请连接电台后再搜索。';
+
+  @override
+  String get networks_blockSettings => '正在等待电台设置。';
+
+  @override
+  String get networks_blockSos => 'SOS 进行中不能搜索：搜索会让你离开网状网络。';
+
+  @override
+  String get networks_blockTrip => '行程中不能搜索：搜索会让你离开网状网络。';
+
+  @override
+  String get networks_nearby => '附近的网络';
+
+  @override
+  String get networks_nothingYet => '还没有听到任何网络。请开始搜索。';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return '节点 $nodes · 数据包 $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return '最后听到 $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return '听到次数：$count';
+  }
+
+  @override
+  String get networks_saved => '已保存的网络';
+
+  @override
+  String get networks_noSaved => '还没有保存的网络。';
+
+  @override
+  String get networks_add => '添加网络';
+
+  @override
+  String get networks_join => '加入';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return '将电台切换到 $name？你将离开当前网络。发射功率保持不变。';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return '电台现在使用 $name。';
+  }
+
+  @override
+  String get networks_log => '网络记录';
+
+  @override
+  String get networks_logEmpty => '还没有记录。';
+
+  @override
+  String get networks_showMap => '地图';
+
+  @override
+  String get networks_exportCsv => '导出 CSV';
+
+  @override
+  String get networks_exportGpx => '导出 GPX';
+
+  @override
+  String get networks_clearLog => '清空记录';
+
+  @override
+  String get networks_clearLogConfirm => '删除所有已记录的网络？';
+
+  @override
+  String get networks_name => '名称';
+
+  @override
+  String get networks_invalid => '请检查设置：超出了 MeshCore 电台可接受的范围。';
+
+  @override
+  String get networks_nodesHeard => '听到的节点';
+
+  @override
+  String get chat_resendNeedsRadio => '未发送：请连接电台后重试。消息已保留。';
+
+  @override
+  String get quick_title => '快捷消息';
+
+  @override
+  String get quick_ok => '好的';
+
+  @override
+  String get quick_onMyWay => '在路上';
+
+  @override
+  String get quick_atCamp => '在营地';
+
+  @override
+  String get quick_runningLate => '会晚到';
+
+  @override
+  String get quick_needHelp => '需要帮助';
+
+  @override
+  String get quick_copyThat => '收到';
+
+  @override
+  String get quick_empty => '没有快捷消息。点按“编辑”添加。';
+
+  @override
+  String get quick_add => '新的快捷消息';
+
+  @override
+  String get quick_reset => '恢复默认';
+
+  @override
+  String get chat_stopRetrying => '停止重试';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name 需要先把你加为联系人，才能阅读并回复你的私信。如果对方还没有添加，请发送你的广播或分享你的联系人。';
+  }
+
+  @override
+  String get map_goToMyPosition => '前往我的位置';
+
+  @override
+  String get map_positionUnavailable => '无法获取你的位置。请打开定位，或设置电台的位置。';
+
+  @override
+  String get contact_forgetAdvert => '忘记上次广播';
+
+  @override
+  String get contact_forgetAdvertHint => '如果此节点的时钟重置后广播不再更新，“忘记上次广播”可让下一条广播通过。';
+
+  @override
+  String get contact_forgetAdvertDone => '完成。此节点的下一条广播将被接受。';
+
+  @override
+  String get networks_modeQuick => '快速';
+
+  @override
+  String get networks_modeThorough => '全面';
+
+  @override
+  String get networks_modeQuickHint => '在每个网络发送一次零跳短 ping 并收听几秒，可找到范围内有中继器的网络。';
+
+  @override
+  String get networks_modeThoroughHint =>
+      '只收听，每个网络听更久。不发送任何内容；只要有人发射，也能找到范围内没有中继器的网络。';
+
+  @override
+  String networks_estimate(String time) {
+    return '约 $time';
+  }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return '已选择 $count 个';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => '全选';
+
+  @override
+  String get discoveredContacts_addSelected => '添加所选';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return '添加全部显示项（$count）';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return '添加 $count 个联系人？';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return '电台还能再添加 $room 个联系人。';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return '电台只能再添加 $room 个联系人，因此 $count 个中只会添加前 $room 个。';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return '正在添加 $done/$total…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return '已添加联系人：$count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return '已添加联系人：$added。未能添加：$failed。';
+  }
+
+  @override
+  String get discoveredContacts_radioFull => '电台的联系人列表已满。请先删除一些联系人。';
+
+  @override
+  String get fieldIntel_radioNow => '电台现状';
+
+  @override
+  String get fieldIntel_noRadio => '连接电台以查看实时数据。';
+
+  @override
+  String get fieldIntel_noise => '噪声 dBm';
+
+  @override
+  String get fieldIntel_lastSnr => '最近 SNR';
+
+  @override
+  String get fieldIntel_lastRssi => '最近 RSSI';
+
+  @override
+  String get fieldIntel_battery => '电池 V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return '电台启动以来的发射时间：发送 $sent，接收 $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => '附近有谁';
+
+  @override
+  String get fieldIntel_m15 => '15 分钟';
+
+  @override
+  String get fieldIntel_h1 => '1 小时';
+
+  @override
+  String get fieldIntel_h24 => '24 小时';
+
+  @override
+  String get fieldIntel_older => '更早';
+
+  @override
+  String get fieldIntel_lastHour => '最近一小时';
+
+  @override
+  String get fieldIntel_chartHint => '过去一天内每个节点最后被听到的时间，按小时显示。点按柱形查看是谁。';
+
+  @override
+  String get fieldIntel_mix => '节点类型';
+
+  @override
+  String get fieldIntel_reach => '覆盖范围';
+
+  @override
+  String get fieldIntel_hops1 => '1 跳';
+
+  @override
+  String get fieldIntel_hops2 => '2 跳';
+
+  @override
+  String get fieldIntel_hops3 => '3 跳以上';
+
+  @override
+  String get fieldIntel_noRoute => '暂无路由';
+
+  @override
+  String get fieldIntel_distance => '最近和最远';
+
+  @override
+  String get fieldIntel_noneLocated => '你的联系人都没有位置。';
+
+  @override
+  String get fieldIntel_noPosition => '电台还没有位置，无法计算距离。';
+
+  @override
+  String get fieldIntel_bestRepeaters => '直接听到的最佳中继器';
+
+  @override
+  String get fieldIntel_noneDirect => '过去 30 分钟内没有直接听到中继器。';
+
+  @override
+  String get fieldIntel_attention => '需要注意';
+
+  @override
+  String get fieldIntel_allGood => '没有需要注意的事项。';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return '电池电量低：$volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return '收藏节点，$ago以来未听到';
+  }
+
+  @override
+  String get fieldIntel_moreTools => '更多工具';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return '节点：$count';
+  }
+
+  @override
+  String get fieldIntel_none => '没有节点。';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return '最后听到 $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => '在地图上显示';
+
+  @override
+  String get fieldIntel_openChat => '打开聊天';
+
+  @override
+  String get repeaterTools_login => '登录';
+
+  @override
+  String get repeaterTools_heardDirect => '直接听到';
+
+  @override
+  String get repeaterTools_filterAll => '全部';
+
+  @override
+  String get repeaterTools_filterLowBattery => '电量低';
+
+  @override
+  String get repeaterTools_hint => '点按中继器查看详情，并在那里登录以查看状态、邻居、遥测和命令行。';
+
+  @override
+  String get repeaterTools_noneMatch => '这里没有中继器。';
+
+  @override
+  String get repeaterTools_toolsTitle => '工具';
+
+  @override
+  String get repeaterTools_regionSetupHint => '查找你所在地区的区域树并复制其命令';
+
+  @override
+  String get routes_failingOnly => '仅失败的路由';
+
+  @override
+  String get routes_contactDetails => '联系人详情';
+
+  @override
+  String get links_contactTitle => '添加联系人？';
+
+  @override
+  String get links_importAdvert => '将此联系人添加到电台？';
+
+  @override
+  String get links_connectFirst => '请先连接电台，然后重新打开链接。';
+
+  @override
+  String get links_added => '已添加联系人';
+
+  @override
+  String get links_notContact => '此链接不是 MeshCore 联系人。';
+
+  @override
+  String get radioBuzzer_title => '电台蜂鸣器';
+
+  @override
+  String get radioBuzzer_hint => '收到新消息时电台会发出蜂鸣。仅在带蜂鸣器的电台上显示。';
+
+  @override
+  String get radioBuzzer_failed => '电台未接受此更改。请重试。';
+
+  @override
+  String get appSettings_floodAttempts => '泛洪重试次数';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      '直接发送失败后，以泛洪方式额外重试，以防路由已变化。每次都会占用更多发射时间。设为 0 则关闭。';
+
+  @override
+  String get pathGraph_you => '你';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return '中继了 $count 条消息';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote => '这个短 ID 与多个中继器匹配，无法确定是哪一个。';
+
+  @override
+  String get pathGraph_comesFrom => '来自';
+
+  @override
+  String get pathGraph_goesTo => '去往';
+
+  @override
+  String get pathGraph_repeaterDetails => '中继器详情';
+
+  @override
+  String get pathGraph_days7 => '7 天';
+
+  @override
+  String get pathGraph_empty => '此期间还没有频道消息路径。消息追踪开启时，会从收到的频道消息中收集路径。';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '听到的路径 $paths · 中继器 $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly => '每一跳以其哈希前缀显示；如果你认识该中继器，则显示名称。';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '已通过更长的路径将 $count 个短（1 字节）跳匹配到具体中继器。';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '已通过更长的路径将 $matched 个短（1 字节）跳匹配到具体中继器 · $ambiguous 个仍不确定（标有 ?）。';
+  }
+
+  @override
+  String get pathGraph_chartHint => '左：较远的中继器。右：你。带宽表示经过该跳的消息数。点按方块可查看该中继器。';
+
+  @override
+  String get pathGraph_busiest => '最繁忙的中继器';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return '路径图。最繁忙的中继器 $name，中继了 $count 条消息。';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return '已复制：$label';
+  }
+
+  @override
+  String get diag_noChannels => '此电台没有频道。';
+
+  @override
+  String get diag_tapToCopy => '点按任意值即可复制。下拉刷新。';
+
+  @override
+  String get diag_storage => '存储';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used / $total KB';
+  }
+
+  @override
+  String get favReturn_setting => '收藏联系人回到范围内';
+
+  @override
+  String get favReturn_settingHint => '收藏联系人沉寂一段时间后再次收到时通知';
+
+  @override
+  String get favReturn_off => '关闭';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 小时后',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => '回到范围内';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours 小时',
+    );
+    return '沉寂 $_temp0后再次收到 $name';
+  }
+
+  @override
+  String get ham_heardFrom => '收到自';
+
+  @override
+  String get ham_lastHeard => '最近一帧来自';
+
+  @override
+  String get ham_nothingHeardYet => '暂无';
+
+  @override
+  String get ham_readyToTransmit => '可以发射';
+
+  @override
+  String get ham_notReadyToTransmit => '发射前请检查下方标记的项目';
+
+  @override
+  String get ham_bannerNameMismatch => '发射前请用你的呼号命名电台';
+
+  @override
+  String get ham_bannerOutOfBand => '电台设置在业余频段之外';
+
+  @override
+  String get a11y_showPassword => '显示密码';
+
+  @override
+  String get a11y_hidePassword => '隐藏密码';
+
+  @override
+  String get a11y_sendLocation => '发送我的位置';
+
+  @override
+  String get a11y_toggleFlash => '手电筒';
+
+  @override
+  String get a11y_switchCamera => '切换摄像头';
+
+  @override
+  String get los_worst => '最差';
+
+  @override
+  String get los_selectedObstruction => '选中的障碍物';
+
+  @override
+  String get bastionHome_stationOk => '节点名称和频段正常';
+
+  @override
+  String get bastionHome_stationConnectToCheck => '连接电台以检查其名称和频段';
+
+  @override
+  String get theme_selected => '已选择';
+
+  @override
+  String get theme_desc_blaze => '炭灰石板配高可见度橙色';
+
+  @override
+  String get theme_desc_blackout => '哑光黑配钢灰。默认主题。';
+
+  @override
+  String get theme_desc_tactical => '适合野外的橄榄绿、枪灰与大地色';
+
+  @override
+  String get theme_desc_okabe_ito => '适合色觉差异，蓝灰底色';
+
+  @override
+  String get theme_desc_night_ops => '适合暗处使用的柔和红色';
+
+  @override
+  String get rxLog_title => '接收日志';
+
+  @override
+  String get rxLog_hint => '实时显示电台收到的每个数据包';
+
+  @override
+  String get rxLog_empty => '暂无数据包。电台收到的数据包会在到达时显示在这里。';
+
+  @override
+  String get rxLog_note => '仅保存在内存中，最近 2,000 个数据包。不会保存或发送任何内容。';
+
+  @override
+  String get rxLog_pause => '暂停';
+
+  @override
+  String get rxLog_resume => '继续';
+
+  @override
+  String get rxLog_export => '导出 CSV';
+
+  @override
+  String get rxLog_clearConfirm => '清空接收日志？';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return '显示 $shown 个 · 收到 $total 个';
+  }
+
+  @override
+  String get rxLog_paused => '已暂停：不记录新数据包';
+
+  @override
+  String get rxLog_kindAll => '全部';
+
+  @override
+  String get rxLog_kindAdvert => '广播';
+
+  @override
+  String get rxLog_kindChannel => '频道';
+
+  @override
+  String get rxLog_kindDirect => '私信';
+
+  @override
+  String get rxLog_kindAck => '确认';
+
+  @override
+  String get rxLog_kindPath => '路径';
+
+  @override
+  String get rxLog_kindTrace => '追踪';
+
+  @override
+  String get rxLog_kindControl => '控制';
+
+  @override
+  String get rxLog_kindOther => '其他';
+
+  @override
+  String get rxLog_routeFlood => '泛洪';
+
+  @override
+  String get rxLog_routeDirect => '直连路由';
+
+  @override
+  String get rxLog_heardDirectly => '直接收到';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 跳',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 字节',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => '你的电台';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => '信号';
+
+  @override
+  String get rxLog_route => '路由';
+
+  @override
+  String get rxLog_path => '路径';
+
+  @override
+  String get rxLog_payloadType => '负载类型';
+
+  @override
+  String get rxLog_hash => '数据包哈希';
+
+  @override
+  String get rxLog_raw => '原始数据包';
+
+  @override
+  String get rxLog_copyHex => '复制十六进制';
+
+  @override
+  String get deliv_title => '送达详情';
+
+  @override
+  String get deliv_note => '根据此消息保存的信息推算。';
+
+  @override
+  String get deliv_queued => '已排队';
+
+  @override
+  String get deliv_sent => '电台已发送';
+
+  @override
+  String get deliv_notSent => '电台未接收';
+
+  @override
+  String get deliv_attempts => '尝试';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made / $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return '计划：直连 $direct 次，然后泛洪 $flood 次';
+  }
+
+  @override
+  String get deliv_lastRoute => '最后路由';
+
+  @override
+  String get deliv_routeFlood => '泛洪，经过所有中继';
+
+  @override
+  String get deliv_routeNeighbor => '直连，无中继';
+
+  @override
+  String deliv_routeVia(String path) {
+    return '经 $path 直连';
+  }
+
+  @override
+  String get deliv_confirmed => '已确认收到';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return '往返 $seconds 秒';
+  }
+
+  @override
+  String get deliv_waiting => '等待确认';
+
+  @override
+  String get deliv_noConfirm => '无确认';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name 最后收到';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours 小时前',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return '已送达。$name 已确认。';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return '直连尝试失败后通过泛洪送达。到 $name 的已保存路由可能已过时。';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return '仍在尝试：第 $attempt 次，共 $total 次。';
+  }
+
+  @override
+  String get deliv_vNotSent => '电台从未接收此消息。请检查连接后重试。';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours 小时',
+    );
+    return '无确认。已 $_temp0未收到 $name，可能超出范围或已关机。';
+  }
+
+  @override
+  String get deliv_vNoFlood => '已保存路由无确认，且泛洪尝试已关闭。可在 设置 → 应用设置 → 消息 中开启，或重试。';
+
+  @override
+  String get deliv_vNoAck => '所有路由均无确认。可能超出范围，或确认未能传回给你。';
+
+  @override
+  String get batteryOpt_title => '电池优化';
+
+  @override
+  String get batteryOpt_off => '已为 NOTORYX Core Ham 关闭，后台也能正常提醒。';
+
+  @override
+  String get batteryOpt_on => '已开启。Android 可能会在后台停止本应用，SOS、签到和消息提醒可能延迟或丢失。';
+
+  @override
+  String get batteryOpt_fix => '关闭';
+
+  @override
+  String block_sender(String name) {
+    return '屏蔽 $name';
+  }
+
+  @override
+  String get block_confirmBody =>
+      '此人的频道消息会在本设备上隐藏，且不会通知你。对方仍能看到你的消息。可在设置中取消屏蔽。';
+
+  @override
+  String get block_action => '屏蔽';
+
+  @override
+  String block_done(String name) {
+    return '已屏蔽 $name';
+  }
+
+  @override
+  String get mention_suggestions => '名称建议';
+
+  @override
+  String get block_listTitle => '已屏蔽的发送者';
+
+  @override
+  String get block_listHint => '来自这些名称的消息会在频道中隐藏，且不会通知你。';
+
+  @override
+  String get block_listEmpty => '没有屏蔽任何人。';
+
+  @override
+  String get block_unblock => '取消屏蔽';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '已屏蔽 $count 人',
+      zero: '未屏蔽任何人',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return '电台联系人列表已用 $percent%';
+  }
+
+  @override
+  String get contactTable_full => '电台联系人列表已满';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used / $max 个联系人';
+  }
+
+  @override
+  String get contactTable_overwriteHint => '列表满后，电台会替换最久未收到的联系人。收藏联系人会保留。';
+
+  @override
+  String get contactTable_stopHint => '列表满后，电台将不再添加新收到的联系人。';
+
+  @override
+  String get contactTable_freeUp => '释放空间';
+
+  @override
+  String get contactTable_sheetBody => '最久未收到的排在前面。收藏联系人不在列表中。';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return '最后收到 $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '删除 $count 个联系人',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody => '这些联系人会从电台删除，其在本设备上的消息也会删除。此操作无法撤销。';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '已删除 $count 个联系人',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest => '所有联系人都是收藏，因此没有可建议删除的。';
+
+  @override
+  String get adminWait_waiting => '正在等待回复';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return '尚未收到回复。正在重试（第 $attempt/$total 次）';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: '直连，$hops 跳',
+      zero: '直连',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return '最多 $seconds 秒';
+  }
+
+  @override
+  String get coords_setting => '坐标格式';
+
+  @override
+  String get coords_decimal => '十进制度';
+
+  @override
+  String get coords_dms => '度分秒';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => '复制位置';
+
+  @override
+  String coords_copied(String format) {
+    return '已按 $format 复制';
+  }
+
+  @override
+  String pathHash_badge(int width) {
+    return '该路由使用 $width 字节路径哈希';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return '你的电台使用 $width 字节';
+  }
+
+  @override
+  String ham_idMismatchTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 个电台识别与名称不符',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_idMismatchBody =>
+      '这些直接收到的广播所带的电台识别，与其名称开头的呼号不同。可能是电台设置有误；在依赖它之前请先与操作员核实。';
+
+  @override
+  String ham_idMismatchSentAs(String station) {
+    return '以电台识别 $station 发送';
+  }
+
+  @override
+  String get ham_idMismatchNoCall => '此名称不以呼号开头';
+
+  @override
+  String get ham_composerPlainText => '明文：任何收听者都能读到';
+
+  @override
+  String get ham_bannerStockFirmware => '此电台运行标准 MeshCore。请勿用它在业余频段发射';
+
+  @override
+  String get ham_firmwareOk => 'NOTORYX Ham 固件：电台识别、明文、仅业余频段';
+
+  @override
+  String get ham_firmwareStock =>
+      '标准 MeshCore 会加密且不发送电台识别。发射前请刷入 NOTORYX Ham 固件';
+
+  @override
+  String get ham_stationLog => '电台日志';
+
+  @override
+  String get ham_stationLogExport => '导出日志';
+
+  @override
+  String get ham_exportAdif => '导出 ADIF (.adi)';
+
+  @override
+  String get ham_exportCsv => '导出 CSV';
+
+  @override
+  String get ham_stationLogClear => '清空日志';
+
+  @override
+  String get ham_stationLogClearConfirm => '删除电台日志中的所有记录？此操作无法撤销。';
+
+  @override
+  String get ham_stationLogEmpty => '尚未记录任何电台';
+
+  @override
+  String get ham_stationLogHint => '与名称以呼号开头的电台互发的私信会记录在这里，仅保存在本手机上。';
+
+  @override
+  String ham_stationLogCounts(int sent, int received) {
+    return '已发送 $sent，已接收 $received';
+  }
+
+  @override
+  String ham_rxStationId(String call) {
+    return 'ID $call';
+  }
+
+  @override
+  String get ham_stationIdLabel => '电台识别';
+
+  @override
+  String get ham_stationIdHint => '发射此帧的电台：发送者，或转发它的中继';
+
+  @override
+  String ham_stockTrafficTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '过去 10 分钟在此收到 $count 个标准 MeshCore 帧',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get security_title => '安全';
+
+  @override
+  String get security_toolSubtitle => '应用锁和加密消息记录';
+
+  @override
+  String get appLock_title => '应用锁';
+
+  @override
+  String get appLock_subtitle => '打开应用时要求指纹、面容或屏幕锁。提醒仍会工作，锁屏上也可发送 SOS。';
+
+  @override
+  String get appLock_reason => '解锁 NOTORYX Core Ham';
+
+  @override
+  String get appLock_unlock => '解锁';
+
+  @override
+  String get appLock_locked => 'NOTORYX Core Ham 已锁定';
+
+  @override
+  String get appLock_unavailable => '此设备没有屏幕锁，或无法确认。';
+
+  @override
+  String get dbEncrypt_title => '加密消息记录';
+
+  @override
+  String get dbEncrypt_subtitle =>
+      '使用手机安全存储中的密钥加密此设备上的消息数据库。密钥丢失后记录无法恢复，请保留备份。';
+
+  @override
+  String get dbEncrypt_on => '状态：已加密';
+
+  @override
+  String get dbEncrypt_off => '状态：未加密';
+
+  @override
+  String get dbEncrypt_failed => '状态：无法应用。记录未更改。';
+
+  @override
+  String get dbEncrypt_restart => '下次启动应用时生效。';
+
+  @override
+  String get appLock_sosNoTarget => '请先解锁并选择 SOS 的接收人。';
+
+  @override
+  String get ham_stockTrafficBody =>
+      '另一个网络（例如 Part 15 的 MeshCore 网状网）正在使用此频率。它的帧不带电台识别，业余固件也无法读取。在此发射前请先与频率协调员确认。';
+
+  @override
+  String get forward_action => '转发';
+
+  @override
+  String get forward_title => '转发消息';
+
+  @override
+  String get forward_to => '发送至';
+
+  @override
+  String get forward_send => '发送';
+
+  @override
+  String get forward_hint => '将以您的呼号发出并注明原作者。您需对转发内容负责。';
+
+  @override
+  String get forward_needCallsign => '请先在“持证操作员”中设置您的呼号。';
+
+  @override
+  String forward_tooLong(int count) {
+    return '超出 $count 字节。请缩短消息。';
+  }
+
+  @override
+  String get forward_sent => '已转发到电台';
+
+  @override
+  String get ham_setupBeforeTitle => '发射之前';
+
+  @override
+  String get team_title => '团队配置';
+
+  @override
+  String get team_toolSubtitle => '通过二维码或文件共享电台设置和频道';
+
+  @override
+  String get team_shareHint => '共享此电台的频率、带宽、扩频因子、编码率和话题频道。不包含密钥和发射功率。';
+
+  @override
+  String get team_shareFile => '作为文件共享';
+
+  @override
+  String get team_scan => '扫描团队二维码';
+
+  @override
+  String get team_openFile => '打开团队文件';
+
+  @override
+  String get team_importTitle => '应用团队配置？';
+
+  @override
+  String get team_apply => '应用到电台';
+
+  @override
+  String get team_invalid => '这不是有效的团队配置，或其频率超出业余频段。';
+
+  @override
+  String get team_applied => '已应用团队配置';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return '频道：$names';
+  }
+
+  @override
+  String get ham_setupBeforeBody =>
+      '请先阅读协调指南，然后在“持照操作员”中填写呼号和执照。在频率协调员和网状网中的其他电台就信道达成一致之前，请勿发射。';
+
+  @override
+  String ham_setupBeforeDone(String call) {
+    return '持照操作员已设置为 $call';
+  }
+
+  @override
+  String get fieldOps_kindReport => '报告';
+
+  @override
+  String get fieldReport_title => '现场报告';
+
+  @override
+  String get fieldReport_open => '撰写 SALUTE 或 9-Line 报告';
+
+  @override
+  String get fieldReport_hint => '以明文并附上您的呼号发送给行程联系人和 SOS 频道。按下发送之前不会发出任何内容。';
+
+  @override
+  String get fieldReport_usePosition => '使用电台位置';
+
+  @override
+  String fieldReport_preview(int count) {
+    return '待发送消息：$count';
+  }
+
+  @override
+  String get fieldReport_needCallsign => '请先在“持证操作员”中设置您的呼号。';
+
+  @override
+  String get fieldReport_tooLong => '有一行太长，无法放入一条消息。请缩短。';
+
+  @override
+  String get fieldReport_sent => '报告已发送到电台';
+
+  @override
+  String get coords_maidenhead => '梅登黑德定位符';
+
+  @override
+  String get reactions_radioTitle => '通过电台发送回应';
+
+  @override
+  String get reactions_radioHint =>
+      '每个回应都是一个空中数据包。自动模式在发射时间受限的欧盟 868 MHz 频段只在本设备上显示。';
+
+  @override
+  String get reactions_radioAuto => '自动';
+
+  @override
+  String get reactions_radioOn => '开';
+
+  @override
+  String get reactions_radioOff => '关（仅本设备）';
+
+  @override
+  String get notification_replyAction => '回复';
+
+  @override
+  String get notification_replyHint => '输入回复';
+
+  @override
+  String get notification_markRead => '标为已读';
+
+  @override
+  String get notification_you => '你';
+
+  @override
+  String get mesh_title => '网状网络状态';
+
+  @override
+  String get mesh_overallGood => '网络状态良好';
+
+  @override
+  String get mesh_overallFair => '网络可用，但有些问题';
+
+  @override
+  String get mesh_overallPoor => '网络状况不佳';
+
+  @override
+  String get mesh_overallUnknown => '数据还不够';
+
+  @override
+  String get mesh_gradeGood => '良好';
+
+  @override
+  String get mesh_gradeFair => '一般';
+
+  @override
+  String get mesh_gradePoor => '较差';
+
+  @override
+  String get mesh_gradeUnknown => '无数据';
+
+  @override
+  String get mesh_noise => '噪声';
+
+  @override
+  String mesh_noiseValue(String dbm) {
+    return '噪声底 $dbm dBm';
+  }
+
+  @override
+  String get mesh_signal => '最近信号';
+
+  @override
+  String mesh_signalValue(String db) {
+    return 'SNR $db dB';
+  }
+
+  @override
+  String get mesh_busy => '信道占用';
+
+  @override
+  String mesh_busyValue(int percent) {
+    return '最近 15 分钟内 $percent% 在收发';
+  }
+
+  @override
+  String get mesh_neighbours => '直接收到';
+
+  @override
+  String mesh_neighboursValue(int count) {
+    return '最近一小时 $count 个节点';
+  }
+
+  @override
+  String get mesh_delivery => '私信';
+
+  @override
+  String mesh_deliveryValue(int delivered, int total) {
+    return '最近一天 $total 条中送达 $delivered 条';
+  }
+
+  @override
+  String get mesh_tipNoise => '附近有东西在此频率上产生噪声。请让天线远离电子设备和充电器。';
+
+  @override
+  String get mesh_tipSignal => '最近的数据包信号较弱。请升高天线或移到更高处。';
+
+  @override
+  String get mesh_tipBusy => '信道繁忙。请保持消息简短，避免泛洪。';
+
+  @override
+  String get mesh_tipNeighbours => '直接收到的节点很少。请升高天线或靠近中继。';
+
+  @override
+  String get mesh_tipDelivery => '许多消息未被确认。打开一条失败的消息查看它停在哪里。';
+
+  @override
+  String routeHealth_staleTitle(String name) {
+    return '到 $name 的路由可能已过时';
+  }
+
+  @override
+  String routeHealth_weakTitle(String name) {
+    return '到 $name 的路由不可靠';
+  }
+
+  @override
+  String routeHealth_lastWorkedHours(int hours) {
+    return '上次可用于 $hours 小时前';
+  }
+
+  @override
+  String routeHealth_lastWorkedDays(int days) {
+    return '上次可用于 $days 天前';
+  }
+
+  @override
+  String routeHealth_notHeard(int days) {
+    return '$days 天未收到';
+  }
+
+  @override
+  String routeHealth_failures(int failures, int attempts) {
+    return '$attempts 次尝试中 $failures 次失败';
+  }
+
+  @override
+  String routeHealth_longPath(int hops) {
+    return '$hops 跳';
+  }
+
+  @override
+  String get routeHealth_useFlood => '寻找新路由';
+
+  @override
+  String get routeHealth_keep => '保留此路由';
+
+  @override
+  String get netChange_title => '网络变化';
+
+  @override
+  String get netChange_toolSubtitle => '附近出现或变得沉默的中继';
+
+  @override
+  String netChange_newDirect(String name) {
+    return '直接收到新中继：$name';
+  }
+
+  @override
+  String netChange_newHops(String name, int hops) {
+    return '$hops 跳外的新中继：$name';
+  }
+
+  @override
+  String netChange_wentQuiet(String name, int hours) {
+    return '$name 已沉默：$hours 小时未收到';
+  }
+
+  @override
+  String get netChange_empty => '暂无变化。沉默的收藏中继和附近的新中继会显示在这里。';
+
+  @override
+  String get netChange_quietSetting => '收藏的中继沉默';
+
+  @override
+  String get netChange_quietHint => '收藏的中继这么久未收到时通知';
+
+  @override
+  String get netChange_newSetting => '附近的新中继';
+
+  @override
+  String get netChange_newHint => '一跳内收到从未见过的中继时通知';
+
+  @override
+  String get netChange_clear => '清除';
+
+  @override
+  String get netChange_notifTitle => '网络变化';
+
+  @override
+  String get journal_title => '节点日志';
+
+  @override
+  String get journal_toolSubtitle => '所有听到过的节点，附行为标签、标记和备注';
+
+  @override
+  String get journal_empty => '还没有节点。电台听到的每个节点都会自动添加到这里。';
+
+  @override
+  String get journal_search => '搜索名称、ID、标记和备注';
+
+  @override
+  String get journal_filterAll => '全部';
+
+  @override
+  String get journal_bSteadyRelay => '常在中继';
+
+  @override
+  String get journal_bRegular => '常客';
+
+  @override
+  String get journal_bRoamer => '漫游者';
+
+  @override
+  String get journal_bRarelyHeard => '很少听到';
+
+  @override
+  String get journal_bNewcomer => '新来者';
+
+  @override
+  String get journal_bGoneQuiet => '已沉寂';
+
+  @override
+  String journal_confidence(int percent) {
+    return '把握度 $percent%';
+  }
+
+  @override
+  String journal_eDaysHeard(int heard, int days) {
+    return '$days 天中有 $heard 天听到';
+  }
+
+  @override
+  String journal_eFirstHeard(int hours) {
+    return '$hours 小时前首次听到';
+  }
+
+  @override
+  String journal_eSilent(int days) {
+    return '$days 天未听到';
+  }
+
+  @override
+  String journal_ePlaces(int places, int km) {
+    return '在 $places 个地点出现，最远相距 $km 公里';
+  }
+
+  @override
+  String journal_eSightings(int count) {
+    return '共 $count 次新广播';
+  }
+
+  @override
+  String get journal_noLabel => '数据不足，暂无标签。';
+
+  @override
+  String journal_firstSeen(String time) {
+    return '首次听到：$time';
+  }
+
+  @override
+  String journal_lastSeen(String time) {
+    return '最后听到：$time';
+  }
+
+  @override
+  String journal_hops(int min, int max) {
+    return '跳数：$min 至 $max';
+  }
+
+  @override
+  String get journal_tags => '标记';
+
+  @override
+  String get journal_addTag => '添加标记';
+
+  @override
+  String get journal_tagHint => '例如：步道口、俱乐部、我的';
+
+  @override
+  String journal_removeTag(String tag) {
+    return '移除标记 $tag';
+  }
+
+  @override
+  String get journal_note => '备注';
+
+  @override
+  String get journal_saveNote => '保存备注';
+
+  @override
+  String get journal_forget => '忘记此节点';
+
+  @override
+  String journal_forgetConfirm(String name) {
+    return '从日志中移除 $name 及其标记和备注？再次听到时会重新开始记录。';
+  }
+
+  @override
+  String get journal_forgotten => '已从日志中移除节点。';
+
+  @override
+  String journal_markLabel(String name) {
+    return '$name 的生成标识';
+  }
+
+  @override
+  String get trouble_title => '故障排查';
+
+  @override
+  String get trouble_toolSubtitle => '出问题时的分步帮助';
+
+  @override
+  String get trouble_pick => '遇到了什么问题？';
+
+  @override
+  String get trouble_noDelivery => '消息没有送达';
+
+  @override
+  String get trouble_noConnect => '无法连接电台';
+
+  @override
+  String get trouble_hearNobody => '听不到任何人';
+
+  @override
+  String get trouble_startHere => '从这里开始';
+
+  @override
+  String get trouble_resultOk => '正常';
+
+  @override
+  String get trouble_resultProblem => '有问题';
+
+  @override
+  String get trouble_resultUnchecked => '无法检查';
+
+  @override
+  String get trouble_connectedNow => '现在已连接。如果连接经常断开，下面的步骤仍然有用。';
+
+  @override
+  String get trouble_allOk => '所有检查都通过了。如果仍然不行，请看看下面的步骤。';
+
+  @override
+  String get trouble_connected => '电台已连接';
+
+  @override
+  String get trouble_connectedAdvice => '先连接电台：设置 → 连接电台。';
+
+  @override
+  String get trouble_routes => '已知到你发消息对象的路由';
+
+  @override
+  String get trouble_routesAdvice =>
+      '发给没有已知路由的人的消息会在整个网络中泛洪，常常送不到。等对方广播，或请对方广播，然后再发。';
+
+  @override
+  String get trouble_heardRecently => '你发消息的对象在最近一天内被收到过';
+
+  @override
+  String get trouble_heardRecentlyAdvice =>
+      '很久没收到的人可能不在范围内或已关机。在对方回来之前，消息无法被确认。';
+
+  @override
+  String get trouble_neighbours => '电台能收到其他节点';
+
+  @override
+  String get trouble_neighboursAdvice =>
+      '如果直接收不到任何节点，说明从这里够不到网络。升高天线、去更高处，或靠近中继。';
+
+  @override
+  String get trouble_bluetooth => '蓝牙已打开且应用可以使用';
+
+  @override
+  String get trouble_bluetoothAdvice =>
+      '确认蓝牙已打开，并在手机设置中给 NOTORYX Core Ham 蓝牙权限（Android 上还有附近设备权限）。';
+
+  @override
+  String get trouble_otherApp => '没有其他手机或应用连接着电台';
+
+  @override
+  String get trouble_otherAppAdvice =>
+      '电台一次只能和一个应用通信。关闭其他 MeshCore 应用，或关闭其他已配对手机的蓝牙。';
+
+  @override
+  String get trouble_inRange => '电台已开机且在附近';
+
+  @override
+  String get trouble_inRangeAdvice => '确认电台有电、已开机且在几米之内。重启电台通常能解决卡住的连接。';
+
+  @override
+  String get trouble_otherTransport => '试试其他连接方式';
+
+  @override
+  String get trouble_otherTransportAdvice =>
+      '如果蓝牙一直失败，用 USB 线连接，或在电台支持时通过 Wi-Fi（TCP）连接。';
+
+  @override
+  String get trouble_noise => '电台没有被噪声淹没';
+
+  @override
+  String get trouble_noiseAdvice => '噪声底过高会掩盖弱信号。让天线远离电子设备、充电器和太阳能控制器。';
+
+  @override
+  String get trouble_region => '电台使用你所在地区的设置';
+
+  @override
+  String get trouble_regionAdvice =>
+      '频率、带宽或扩频因子与本地网络不同，就听不到任何人。把 设置 → 电台 与本地区的设置对比。';
+
+  @override
+  String get trouble_antenna => '天线已装好';
+
+  @override
+  String get trouble_antennaAdvice => '确认天线拧紧。切勿在没有天线时发射，否则可能损坏电台。';
+
+  @override
+  String get readiness_sos => 'SOS 接收者';
+
+  @override
+  String get readiness_sosOk => 'SOS 有接收者。';
+
+  @override
+  String get readiness_sosBlocked => 'SOS 没有可送达的人。请添加联系人中的行程成员，或设置 SOS 频道。';
+
+  @override
+  String get readiness_routes => '到行程成员的路由';
+
+  @override
+  String get readiness_routesOk => '已知到每位行程成员的路由。';
+
+  @override
+  String readiness_routesMissing(String names) {
+    return '尚无到 $names 的已知路由。在学到路由前消息将以泛洪发送。出发前先给他们发一条消息。';
+  }
+
+  @override
+  String get readiness_notifications => '通知';
+
+  @override
+  String get readiness_notificationsOk => '已允许。';
+
+  @override
+  String get readiness_notificationsOff => '通知已关闭，你将收不到回复、报平安和警报。';
+
+  @override
+  String get readiness_batteryOpt => '电池优化';
+
+  @override
+  String get readiness_batteryOptOk => 'NOTORYX Core Ham 已豁免。';
+
+  @override
+  String get readiness_batteryOptOn =>
+      'Android 可能会在后台停止应用。请在 设置 → 应用设置 → 通知 中关闭。';
+
+  @override
+  String get readiness_blockedTitle => '暂时无法开始行程';
+
+  @override
+  String readiness_warnTitle(int count) {
+    return '$count 项需检查';
+  }
+
+  @override
+  String get readiness_startAnyway => '仍然开始';
+
+  @override
+  String get readiness_review => '查看';
+
+  @override
+  String get readiness_summaryReady => '准备就绪';
+
+  @override
+  String readiness_summaryWarn(int count) {
+    return '$count 项需检查';
+  }
+
+  @override
+  String get readiness_summaryBlocked => 'SOS 无法送达任何人';
+
+  @override
+  String get waypoints_title => '航点';
+
+  @override
+  String get waypoints_toolSubtitle => '已保存的地点和路线；导入或导出 GPX';
+
+  @override
+  String get waypoints_importFile => '导入 GPX 文件';
+
+  @override
+  String get waypoints_importPaste => '粘贴 GPX';
+
+  @override
+  String get waypoints_export => '导出 GPX';
+
+  @override
+  String get waypoints_empty => '还没有航点。导入 GPX 文件，或保存聊天中分享的地点。';
+
+  @override
+  String waypoints_waypoints(int count) {
+    return '航点（$count）';
+  }
+
+  @override
+  String waypoints_routes(int count) {
+    return '路线（$count）';
+  }
+
+  @override
+  String waypoints_routeSummary(int points, String km) {
+    return '$points 个点 · $km 公里';
+  }
+
+  @override
+  String get waypoints_delete => '删除';
+
+  @override
+  String get waypoints_copy => '复制坐标';
+
+  @override
+  String get waypoints_sendToChannel => '发送到频道';
+
+  @override
+  String get waypoints_pickChannel => '发送到哪个频道？';
+
+  @override
+  String waypoints_sent(String channel) {
+    return '已发送到 $channel';
+  }
+
+  @override
+  String get waypoints_importFailed => '这不是应用能读取的 GPX 文件。';
+
+  @override
+  String get waypoints_pasteHint => '在此粘贴 GPX 文本';
+
+  @override
+  String get waypoints_import => '导入';
+
+  @override
+  String waypoints_imported(int waypoints, int routes) {
+    return '已添加 $waypoints 个航点和 $routes 条路线';
+  }
+
+  @override
+  String get waypoints_save => '保存为航点';
+
+  @override
+  String get waypoints_unnamed => '分享的地点';
+
+  @override
+  String get waypoints_saved => '已保存到航点';
+
+  @override
+  String get waypoints_alreadySaved => '已在航点中';
+
+  @override
+  String get map_showWaypoints => '显示已保存的航点和路线';
+
+  @override
+  String get dbEncrypt_covers => '同时涵盖联系人、频道密钥、航点、已保存的路线、草稿和待发送消息。';
+
+  @override
+  String get bk_intro => '加密保存应用设置、联系人、频道密钥、航点和草稿，也可选择包含消息记录。不包括离线地图、照片和电台固件。';
+
+  @override
+  String bk_confirmBody(Object count) {
+    return '这将用备份中的内容替换此设备上已保存的 $count 项设置，包括联系人、频道密钥和航点。此操作无法撤销。';
+  }
+
+  @override
+  String get bk_history => '包含消息记录';
+
+  @override
+  String get bk_historyHint => '所有电台的私信和频道消息。文件会更大。';
+
+  @override
+  String get bk_tooLarge => '备份太大。请关闭消息记录后重试。';
+
+  @override
+  String bk_confirmHistory(int count) {
+    return '还会向消息记录添加最多 $count 条消息。此设备上已有的消息会保留。';
+  }
+
+  @override
+  String bk_restoredHistory(int count) {
+    return '已向消息记录添加 $count 条消息。';
+  }
+
+  @override
+  String get bk_confirmTitle => '恢复此备份吗？';
+
+  @override
+  String bk_restored(int count) {
+    return '已恢复 $count 项设置。请完全关闭应用并重新打开以使用。';
+  }
+
+  @override
+  String get automation_title => 'Automation';
+
+  @override
+  String get automation_toolHint =>
+      'Rules that alert you or send a message when something happens';
+
+  @override
+  String get automation_newRule => 'New rule';
+
+  @override
+  String get automation_editRule => 'Edit rule';
+
+  @override
+  String get automation_hamNotice =>
+      'Rules run while the app is open. Automated messages are plain text and start with [auto]. They are held unless your station is ready to transmit (ham firmware, call sign in the radio\'s name, in band), limited to 3 every 10 minutes, and written to the station log. You remain the control operator for every automated transmission.';
+
+  @override
+  String get automation_empty => 'No rules yet';
+
+  @override
+  String get automation_emptyHint =>
+      'Add a rule to get an alert when your battery runs low, a station goes quiet or a message arrives.';
+
+  @override
+  String get automation_allowWebhooks => 'Allow webhooks';
+
+  @override
+  String get automation_allowWebhooksHint =>
+      'Needs internet. Off by default; webhook actions do nothing while this is off.';
+
+  @override
+  String get automation_workingChannel => 'Working channel';
+
+  @override
+  String get automation_stationLogHint =>
+      'Every automated transmission is listed there';
+
+  @override
+  String get automation_activity => 'Recent activity';
+
+  @override
+  String get automation_none => 'None';
+
+  @override
+  String get automation_unnamed => 'Unnamed rule';
+
+  @override
+  String get automation_transmits => 'Transmits on air';
+
+  @override
+  String get automation_incomplete => 'Unfinished';
+
+  @override
+  String automation_ruleSwitch(String name) {
+    return 'Rule $name on';
+  }
+
+  @override
+  String get automation_ruleName => 'Rule name';
+
+  @override
+  String get automation_when => 'When';
+
+  @override
+  String get automation_then => 'Then';
+
+  @override
+  String get automation_matchAll => 'All are true (AND)';
+
+  @override
+  String get automation_matchAny => 'Any is true (OR)';
+
+  @override
+  String automation_matchAllShort(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'All of $count conditions',
+      one: '1 condition',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String automation_matchAnyShort(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Any of $count conditions',
+      one: '1 condition',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String automation_actionCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count actions',
+      one: '1 action',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get automation_addCondition => 'Add condition';
+
+  @override
+  String get automation_addAction => 'Add action';
+
+  @override
+  String automation_remove(String item) {
+    return 'Remove $item';
+  }
+
+  @override
+  String get automation_savedOff =>
+      'Saved switched off. Fill in every field to turn it on.';
+
+  @override
+  String get automation_deleteConfirm => 'Delete this rule?';
+
+  @override
+  String get automation_transmitNotice =>
+      'This rule transmits. It only sends when your station is ready, at most 3 automated messages every 10 minutes and once every 15 minutes per rule, and each one is logged in the station log.';
+
+  @override
+  String get automation_condBattery => 'Battery low';
+
+  @override
+  String get automation_condTime => 'Time of day';
+
+  @override
+  String get automation_condEnter => 'Enter an area';
+
+  @override
+  String get automation_condLeave => 'Leave an area';
+
+  @override
+  String get automation_condMessage => 'Message received';
+
+  @override
+  String get automation_condOnline => 'Node online';
+
+  @override
+  String get automation_condOffline => 'Node offline';
+
+  @override
+  String automation_batteryBelow(int percent) {
+    return 'Radio battery below $percent%';
+  }
+
+  @override
+  String get automation_timeHint =>
+      'Every day at this time, on this device\'s clock';
+
+  @override
+  String get automation_latitude => 'Latitude';
+
+  @override
+  String get automation_longitude => 'Longitude';
+
+  @override
+  String get automation_radiusMeters => 'Radius (meters)';
+
+  @override
+  String get automation_useRadioPosition => 'Use the radio\'s position';
+
+  @override
+  String get automation_areaHint => 'Uses the position the radio reports.';
+
+  @override
+  String get automation_sourceAny => 'Any';
+
+  @override
+  String get automation_sourceDirect => 'Direct';
+
+  @override
+  String get automation_sourceChannel => 'Channel';
+
+  @override
+  String get automation_onChannel => 'On channel';
+
+  @override
+  String get automation_anyChannel => 'Any channel';
+
+  @override
+  String get automation_from => 'From';
+
+  @override
+  String get automation_anyone => 'Anyone';
+
+  @override
+  String get automation_contains => 'Contains text (optional)';
+
+  @override
+  String get automation_node => 'Node';
+
+  @override
+  String get automation_heardWithinMinutes => 'Heard within (minutes)';
+
+  @override
+  String get automation_actionSend => 'Send a message';
+
+  @override
+  String get automation_actionAlert => 'Alert me';
+
+  @override
+  String get automation_actionChangeChannel => 'Change working channel';
+
+  @override
+  String get automation_actionSound => 'Play a sound';
+
+  @override
+  String get automation_actionWebhook => 'Call a webhook';
+
+  @override
+  String get automation_sendTo => 'Send to';
+
+  @override
+  String get automation_targetChannel => 'Channel';
+
+  @override
+  String get automation_targetContact => 'Contact';
+
+  @override
+  String get automation_message => 'Message';
+
+  @override
+  String get automation_messageTooLong =>
+      'Too long: 140 bytes at most, [auto] included';
+
+  @override
+  String get automation_sendHint =>
+      'Sent on air as plain text with [auto] in front, and logged in the station log.';
+
+  @override
+  String get automation_alertText => 'Alert text';
+
+  @override
+  String get automation_changeChannelHint =>
+      'Rules that send to the working channel use this channel from now on.';
+
+  @override
+  String get automation_soundHint => 'Plays this device\'s alert sound.';
+
+  @override
+  String get automation_webhookUrl => 'Webhook address (https://)';
+
+  @override
+  String get automation_webhookHttps => 'Use an https:// address';
+
+  @override
+  String get automation_webhookNeedsInternet =>
+      'Needs internet. Sends the rule\'s name and the time.';
+
+  @override
+  String get automation_webhookOffNotice =>
+      'Needs internet. Webhooks are off: allow them on the Automation page.';
+
+  @override
+  String get automation_outDone => 'Done';
+
+  @override
+  String get automation_outNotConnected => 'Held: no radio connected';
+
+  @override
+  String get automation_outNotReady => 'Held: station not ready to transmit';
+
+  @override
+  String get automation_outRateLimited =>
+      'Held: automated message limit reached';
+
+  @override
+  String get automation_outNoTarget =>
+      'Held: contact or channel not on the radio';
+
+  @override
+  String get automation_outWebhooksOff => 'Skipped: webhooks are off';
+
+  @override
+  String get automation_outFailed => 'Failed';
+
+  @override
+  String get ham_automatedTx => 'Automated transmissions';
+
+  @override
+  String get ham_automatedTxHint =>
+      'Messages your automation rules sent on air.';
+
+  @override
+  String get ham_exportAutomatedCsv => 'Export automated transmissions (CSV)';
+
+  @override
+  String get checklist_title => '检查清单';
+
+  @override
+  String get checklist_toolSubtitle => '可重复使用的出行前和部署清单，离线可用';
+
+  @override
+  String get checklist_empty => '没有清单。用下方按钮添加。';
+
+  @override
+  String get checklist_add => '新建清单';
+
+  @override
+  String get checklist_edit => '编辑清单';
+
+  @override
+  String get checklist_name => '名称';
+
+  @override
+  String get checklist_items => '条目，每行一个';
+
+  @override
+  String checklist_itemCount(int count) {
+    return '条目：$count';
+  }
+
+  @override
+  String get checklist_history => '已完成记录';
+
+  @override
+  String get checklist_noRuns => '还没有已完成的记录。';
+
+  @override
+  String get checklist_inProgress => '进行中';
+
+  @override
+  String checklist_progress(int done, int total) {
+    return '已完成 $done/$total';
+  }
+
+  @override
+  String checklist_startedAt(String time) {
+    return '开始于 $time';
+  }
+
+  @override
+  String checklist_finishedAt(String time) {
+    return '完成于 $time';
+  }
+
+  @override
+  String get checklist_note => '备注';
+
+  @override
+  String get checklist_finish => '完成并保存';
+
+  @override
+  String get checklist_unfinished => '有未勾选的条目。仍要保存吗？';
+
+  @override
+  String get checklist_saveAnyway => '仍然保存';
+
+  @override
+  String get checklist_export => '导出或删除';
+
+  @override
+  String get checklist_exportText => '以文本分享';
+
+  @override
+  String get checklist_exportJson => '以 JSON 分享';
+
+  @override
+  String get checklist_exportFailed => '无法分享记录。';
+
+  @override
+  String get checklist_deleteRun => '删除记录';
+
+  @override
+  String get checklist_deleteRunConfirm => '删除此记录？此操作无法撤销。';
+
+  @override
+  String checklist_deleteConfirm(String name) {
+    return '删除 $name？已完成的记录会保留。';
+  }
+
+  @override
+  String get checklist_preTrip => '出行前';
+
+  @override
+  String get checklist_preTrip1 => '电台已充电，备用电池已带';
+
+  @override
+  String get checklist_preTrip2 => '电台已与手机配对并发送测试消息';
+
+  @override
+  String get checklist_preTrip3 => '已保存该区域的离线地图';
+
+  @override
+  String get checklist_preTrip4 => '已把路线和返回时间告诉家人';
+
+  @override
+  String get checklist_preTrip5 => '已检查团队频道和联系人';
+
+  @override
+  String get checklist_preTrip6 => '已试用一次 SOS 和报到';
+
+  @override
+  String get checklist_deploy => '架设节点';
+
+  @override
+  String get checklist_deploy1 => '已确认地点和许可';
+
+  @override
+  String get checklist_deploy2 => '天线已安装，接头已密封';
+
+  @override
+  String get checklist_deploy3 => '已检查电源和太阳能';
+
+  @override
+  String get checklist_deploy4 => '已确认电台设置和地区';
+
+  @override
+  String get checklist_deploy5 => '已通过节点收到测试消息';
+
+  @override
+  String get checklist_deploy6 => '已记录位置、照片和备注';
+
+  @override
+  String automation_placeholders(String list) {
+    return '可使用 $list';
+  }
+
+  @override
+  String get losLegendFresnel => '菲涅耳区';
+
+  @override
+  String losFresnelClear(int percent) {
+    return '最窄处菲涅耳区有$percent%无遮挡。60%或以上为良好。';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return '最窄处菲涅耳区仅有$percent%无遮挡。目标为60%或以上：升高天线或移动位置。';
+  }
+
+  @override
+  String get losFresnelBlocked => '地形侵入菲涅耳区并遮挡波束。请升高天线或移动位置。';
+
+  @override
+  String get bg_title => '背景';
+
+  @override
+  String get bg_kindTheme => '主题光晕';
+
+  @override
+  String get bg_kindSolid => '纯色';
+
+  @override
+  String get bg_kindLinear => '渐变';
+
+  @override
+  String get bg_kindMesh => '网格混色';
+
+  @override
+  String get bg_kindPhoto => '照片';
+
+  @override
+  String get bg_color1 => '第一种颜色';
+
+  @override
+  String get bg_color2 => '第二种颜色';
+
+  @override
+  String bg_colorN(int index) {
+    return '颜色 $index';
+  }
+
+  @override
+  String get bg_dim => '调暗';
+
+  @override
+  String get bg_blur => '模糊';
+
+  @override
+  String get bg_choosePhoto => '选择照片';
+
+  @override
+  String get bg_reset => '恢复主题背景';
+
+  @override
+  String get bg_hint => '卡片以磨砂玻璃形式叠在其上。如文字难以阅读，请调高“调暗”。';
+
+  @override
+  String get bg_previewTitle => '预览';
+
+  @override
+  String get bg_previewBody => '玻璃卡片上的文字看起来是这样。';
+
+  @override
+  String get bg_photoNotBackedUp => '照片仅保存在本手机上，不包含在备份中。';
+
+  @override
+  String get bg_photoFailed => '无法使用该照片，请换一张。';
+
+  @override
+  String get compass_openHint => '指引方向';
+
+  @override
+  String get compass_onTarget => '正前方';
+
+  @override
+  String compass_turnRight(int degrees) {
+    return '向右转$degrees°';
+  }
+
+  @override
+  String compass_turnLeft(int degrees) {
+    return '向左转$degrees°';
+  }
+
+  @override
+  String compass_bearing(int degrees, String point) {
+    return '方位 $degrees° $point';
+  }
+
+  @override
+  String get compass_noSensor => '此设备没有指南针，箭头以北为上显示。';
+
+  @override
+  String get compass_calibrate => '指南针不准确。请将手机按8字形移动几次进行校准。';
+
+  @override
+  String get compass_magneticNote => '在获知您的位置前，以磁北为准。';
+
+  @override
+  String get compass_noPosition => '尚不知道您的位置。请允许手机定位或设置电台位置。';
+
+  @override
+  String get compass_noNodePosition => '该节点未共享位置，无法指向。';
+
+  @override
+  String get compass_usePhoneLocation => '使用手机定位';
+
+  @override
+  String get compass_sourcePhone => '您的位置来自手机GPS。';
+
+  @override
+  String get compass_sourceRadio => '您的位置来自电台。';
+
+  @override
+  String get traffic_mode => '流量';
+
+  @override
+  String get traffic_modeHint => '显示在网状网络中传输的数据包';
+
+  @override
+  String get traffic_locate => '定位';
+
+  @override
+  String get traffic_advert => '广播';
+
+  @override
+  String get traffic_filter => '筛选';
+
+  @override
+  String get traffic_search => '搜索';
+
+  @override
+  String get traffic_fitAll => '全部显示';
+
+  @override
+  String get traffic_options => '选项';
+
+  @override
+  String get traffic_kindAdvert => '广播';
+
+  @override
+  String get traffic_kindDirect => '私信';
+
+  @override
+  String get traffic_kindChannel => '频道消息';
+
+  @override
+  String get traffic_kindAck => '确认';
+
+  @override
+  String get traffic_kindTrace => '追踪';
+
+  @override
+  String get traffic_kindPath => '路径';
+
+  @override
+  String get traffic_filterTitle => '显示的数据包类型';
+
+  @override
+  String get traffic_listening => '正在监听数据包…';
+
+  @override
+  String traffic_heardFrom(String name, String snr) {
+    return '来自 $name · $snr dB';
+  }
+
+  @override
+  String traffic_flood(int hops) {
+    return '泛洪 $hops';
+  }
+
+  @override
+  String get traffic_direct => '直连';
+
+  @override
+  String traffic_snr(String snr) {
+    return 'SNR $snr';
+  }
+
+  @override
+  String traffic_rssi(int rssi) {
+    return '$rssi dBm';
+  }
+
+  @override
+  String traffic_notOnMapCount(int count) {
+    return '$count 个不在地图上';
+  }
+
+  @override
+  String traffic_age(int seconds) {
+    return '$seconds秒';
+  }
+
+  @override
+  String traffic_notOnMapList(String names) {
+    return '不在地图上：$names';
+  }
+
+  @override
+  String get traffic_unknown => '未知';
+
+  @override
+  String get traffic_cardHint => '在地图上显示路线';
+
+  @override
+  String get stale_setting => '节点标记为过时的时间';
+
+  @override
+  String get stale_settingHint => '超过此时间未收到的联系人和中继器会在列表中标记为过时，并在地图上淡化显示。';
+
+  @override
+  String get stale_off => '关闭';
+
+  @override
+  String stale_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 小时',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_days(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 天',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_badge(String age) {
+    return '过时 · $age';
+  }
+
+  @override
+  String get rangeRings_toggle => '距离圈';
+
+  @override
+  String get rangeRings_hint => '以你的位置为中心、按视图大小绘制的距离圈';
+
+  @override
+  String get rangeRings_noPosition => '你的位置尚未知，无法绘制距离圈。';
+
+  @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '电台上有 $count 个频道与应用不一致',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => '查看';
+
+  @override
+  String get channelConflict_title => '频道差异';
+
+  @override
+  String get channelConflict_hint =>
+      '这些槽位中电台的名称或密钥与应用保存的不同。可能有人用其他应用修改过，或应用中的副本已过时。请为每个槽位选择要保留的版本。';
+
+  @override
+  String get channelConflict_allResolved => '所有槽位现已一致。';
+
+  @override
+  String channelConflict_slot(int index) {
+    return '槽位 $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => '电台上';
+
+  @override
+  String get channelConflict_inApp => '应用中保存';
+
+  @override
+  String get channelConflict_empty => '空';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return '密钥 $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => '名称不同';
+
+  @override
+  String get channelConflict_keyDiffers => '密钥不同';
+
+  @override
+  String get channelConflict_keepRadio => '保留电台的';
+
+  @override
+  String get channelConflict_useApp => '写入应用的';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return '槽位 $index 已保留电台版本';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return '已将应用版本写入槽位 $index';
+  }
+
+  @override
+  String get history_window24h => '24 小时';
+
+  @override
+  String get history_window7d => '7 天';
+
+  @override
+  String get history_window30d => '30 天';
+
+  @override
+  String get statusHistory_title => '状态历史';
+
+  @override
+  String get reportCard_title => '报告卡';
+
+  @override
+  String get reportCard_hint => '仅根据你执行并保存在此手机上的状态检查生成，不会额外发送任何内容。';
+
+  @override
+  String get reportCard_empty => '尚未保存状态检查。每次执行状态检查都会补充此报告。';
+
+  @override
+  String get reportCard_checks => '检查次数';
+
+  @override
+  String get reportCard_restarts => '检测到的重启';
+
+  @override
+  String get reportCard_longestUptime => '最长运行时间';
+
+  @override
+  String get reportCard_battery => '电池';
+
+  @override
+  String get reportCard_noise => '底噪';
+
+  @override
+  String get reportCard_errors => '新增错误';
+
+  @override
+  String get reportCard_neighbours => '邻居';
+
+  @override
+  String get reportCard_exportCsv => '导出 CSV';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$days 天内 $count 次';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '当前 $now · 最低 $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '每周 $change';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return '平均 $avg dBm · 最差 $worst dBm';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return '听到 $total · 本周新增 $fresh · 本周未听到 $gone';
+  }
+
+  @override
+  String get statusHistory_battery => '电池';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => '底噪';
+
+  @override
+  String get statusHistory_errors => '错误';
+
+  @override
+  String get statusHistory_uptime => '运行时间';
+
+  @override
+  String get statusHistory_empty => '每次状态查询都会保存在这里，便于查看此中继器随时间的变化。';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return '此时间段内没有$metric数据。';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metric图表，$count 条，$low 至 $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '已保存 $count 次查询',
+      zero: '没有已保存的查询',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => '清除历史';
+
+  @override
+  String get statusHistory_clearTitle => '清除此中继器的历史？';
+
+  @override
+  String get statusHistory_clearBody => '将从此手机删除该中继器已保存的状态查询和邻居 SNR 记录。';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return '$name 的 SNR 趋势，$count 条。点按查看图表。';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return '$name 的 SNR';
+  }
+
+  @override
+  String get snrHistory_hint => '每次查询时该中继器收到此邻居的信号质量，保存在本机。';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count 条 · 最低 $low · 平均 $avg · 最高 $high';
+  }
+
+  @override
+  String get follow_menu => '跟随 15 分钟';
+
+  @override
+  String get follow_menuHint => '每隔几分钟请求一次位置并绘制轨迹';
+
+  @override
+  String follow_title(String name) {
+    return '正在跟随 $name';
+  }
+
+  @override
+  String get follow_askNow => '立即请求位置';
+
+  @override
+  String follow_fromYou(String distance, String direction, int degrees) {
+    return '距你 $distance，方位 $direction（$degrees°）';
+  }
+
+  @override
+  String get follow_waiting => '正在等待位置…';
+
+  @override
+  String get follow_noOwnPosition => '未知你自己的位置，无法显示距离和方位。';
+
+  @override
+  String follow_timeLeftLabel(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: '剩余约 $minutes 分钟',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String follow_lastFix(String ago) {
+    return '最后位置 $ago';
+  }
+
+  @override
+  String follow_secondsAgo(int n) {
+    return '$n 秒前';
+  }
+
+  @override
+  String follow_minutesAgo(int n) {
+    return '$n 分钟前';
+  }
+
+  @override
+  String follow_answers(int answered, int asked) {
+    return '已应答 $answered/$asked 次请求';
+  }
+
+  @override
+  String follow_points(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 个点',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get follow_hint => '15 分钟后自动停止。对方需在遥测设置中允许位置，否则只有在发送广播时才会更新。';
+
+  @override
+  String get follow_stop => '停止';
+
+  @override
+  String get follow_stopped => '未在跟随。重新开始可再请求 15 分钟位置。';
+
+  @override
+  String get follow_start => '跟随 15 分钟';
+
+  @override
+  String get follow_you => '你';
+
+  @override
+  String get sensorHistory_title => '传感器历史';
+
+  @override
+  String get sensorHistory_menuHint => '最近 1 小时至 24 小时的图表和提醒';
+
+  @override
+  String get sensorHistory_readNow => '立即读取';
+
+  @override
+  String get sensorHistory_window1h => '1 小时';
+
+  @override
+  String get sensorHistory_window6h => '6 小时';
+
+  @override
+  String get sensorHistory_window24h => '24 小时';
+
+  @override
+  String get sensorHistory_empty =>
+      '暂无读数。点按“立即读取”，或在遥测中开启实时更新或自动刷新；每个读数在此保存一天。';
+
+  @override
+  String sensorHistory_updated(String time) {
+    return '更新于 $time';
+  }
+
+  @override
+  String get sensorHistory_noneInWindow => '此时间段内没有读数。';
+
+  @override
+  String sensorHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metric图表，$count 条，$low 至 $high';
+  }
+
+  @override
+  String get sensorHistory_noAlert => '无提醒';
+
+  @override
+  String sensorHistory_alertWhenAbove(String value) {
+    return '高于 $value 时提醒';
+  }
+
+  @override
+  String sensorHistory_alertWhenBelow(String value) {
+    return '低于 $value 时提醒';
+  }
+
+  @override
+  String get sensorHistory_setAlert => '提醒…';
+
+  @override
+  String get sensorHistory_alertDialogTitle => '此数值的提醒';
+
+  @override
+  String get sensorHistory_alertDialogHint => '新读数越过限值时会通知你。留空的项不使用。';
+
+  @override
+  String get sensorHistory_above => '高于';
+
+  @override
+  String get sensorHistory_below => '低于';
+
+  @override
+  String get sensorHistory_belowMustBeLower => '必须低于上限';
+
+  @override
+  String get sensorHistory_removeAlert => '移除';
+
+  @override
+  String get sensorHistory_alertTitle => '传感器提醒';
+
+  @override
+  String sensorHistory_alertAbove(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name：$what为 $value，高于 $limit';
+  }
+
+  @override
+  String sensorHistory_alertBelow(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name：$what为 $value，低于 $limit';
+  }
+
+  @override
+  String get sensorHistory_unknownNode => '某传感器';
+
+  @override
+  String get coverageHex_notoryxTitle => 'NOTORYX 覆盖地图';
+
+  @override
+  String get coverageHex_notoryxShare => '共享到 NOTORYX 覆盖地图';
+
+  @override
+  String get coverageHex_notoryxShareHint =>
+      '真实 MeshCore 覆盖范围的公开地图。在你同意之前不会发送任何内容。';
+
+  @override
+  String get coverageHex_notoryxConsent =>
+      '手机会发送无线电在每个六边形（约 0.9 公里）内收到的内容：信号强度、数据包数量、直接收到的中继器以及 15 分钟时间段。绝不会发送你的 GPS 轨迹或精确位置。它还会发送中继器自身的公开广播（名称和位置），以便地图为其命名。上传内容使用独立于电台的覆盖密钥签名，因此你以后可以删除它们。';
+
+  @override
+  String get coverageHex_notoryxAnonymousNote => '匿名上传以后无法删除。';
+
+  @override
+  String get coverageHex_mapperName => '测绘者名称（可选）';
+
+  @override
+  String get coverageHex_mapperNameHint => '仅 NOTORYX 成员可见。留空则不显示名称。';
+
+  @override
+  String get coverageHex_shareAction => '共享';
+
+  @override
+  String get coverageHex_notNow => '暂不';
+
+  @override
+  String get coverageHex_stopSharing => '停止共享';
+
+  @override
+  String get coverageHex_eraseUploads => '删除我的上传';
+
+  @override
+  String get coverageHex_eraseConfirm => '删除此手机上传到 NOTORYX 覆盖地图的所有内容？此操作无法撤销。';
+
+  @override
+  String coverageHex_erased(String count) {
+    return '已从地图删除 $count 条读数。';
+  }
+
+  @override
+  String get coverageHex_eraseFailed => '无法删除。请检查网络连接后重试。';
+
+  @override
+  String get coverageHex_openMap => '打开覆盖地图';
+
+  @override
+  String get coverageHex_trimDrives => '隐藏每次行程的起点和终点';
+
+  @override
+  String get coverageHex_trimDrivesHint =>
+      '每次测绘的前 2 个和最后 2 个六边形只保留在此手机上，因此地图不会显示你住在哪里或停车的位置。';
+
+  @override
+  String get appSettings_resetRoutingToDefault => '将路由算法重置为默认值';
+
+  @override
+  String get appSettings_resetRoutingToDefaultSubtitle => '将路由算法设置恢复为出厂默认值';
+
+  @override
+  String get appSettings_routingResetToDefault => '路由算法设置已重置为默认值';
+
+  @override
+  String get discoveredContacts_importNodes => '导入节点';
+
+  @override
+  String get discoveredContacts_importHint =>
+      '读取联系人链接、公钥，或 JSON / CSV 节点列表。它们会添加到此列表，而不是你的电台。';
+
+  @override
+  String get discoveredContacts_importFromFile => '从文件';
+
+  @override
+  String get discoveredContacts_importFromClipboard => '从剪贴板';
+
+  @override
+  String get discoveredContacts_importFailed => '无法读取';
+
+  @override
+  String get discoveredContacts_importNone => '未找到节点';
+
+  @override
+  String get discoveredContacts_importNotConnected => '请先连接电台';
+
+  @override
+  String discoveredContacts_importResult(int added, int updated, int skipped) {
+    return '新增 $added，更新 $updated，跳过 $skipped';
+  }
+
+  @override
+  String home_knownNodes(int chats, int repeaters, int rooms) {
+    return '聊天 $chats · 中继 $repeaters · 房间 $rooms';
+  }
+
+  @override
+  String home_radioHolds(int count, int max) {
+    return '电台已存 $count / $max 个联系人';
+  }
+
+  @override
+  String messageFilter_markedSpamCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '已将 $count 条消息标记为垃圾消息',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageFilter_markedNotSpamCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '已将 $count 条消息标记为非垃圾消息',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get messageFilter_title => '消息过滤';
+
+  @override
+  String get messageFilter_settingsSubtitle => '隐藏垃圾消息和重复消息';
+
+  @override
+  String get messageFilter_enabled => '过滤消息';
+
+  @override
+  String get messageFilter_enabledSubtitle => '适用于频道消息';
+
+  @override
+  String get messageFilter_displayTitle => '已过滤的消息';
+
+  @override
+  String get messageFilter_displayPlaceholder => '显示一个小占位提示';
+
+  @override
+  String get messageFilter_displayHide => '完全隐藏';
+
+  @override
+  String get messageFilter_displayHideHelp => '被隐藏的消息仍会保留在“已过滤的消息”列表中。';
+
+  @override
+  String get messageFilter_rulesSection => '你的规则';
+
+  @override
+  String get messageFilter_rulesEmpty => '还没有规则。添加一个词语、短语或发送者名称，即可隐藏匹配的消息。';
+
+  @override
+  String get messageFilter_addRule => '添加规则';
+
+  @override
+  String get messageFilter_editRule => '编辑规则';
+
+  @override
+  String get messageFilter_rulePattern => '词语、短语或名称';
+
+  @override
+  String get messageFilter_rulePatternHint => '例如 meshos';
+
+  @override
+  String get messageFilter_ruleWhere => '查找范围';
+
+  @override
+  String get messageFilter_ruleFieldText => '消息内容';
+
+  @override
+  String get messageFilter_ruleFieldSender => '发送者名称';
+
+  @override
+  String get messageFilter_ruleFieldBoth => '两者';
+
+  @override
+  String get messageFilter_ruleMatch => '匹配方式';
+
+  @override
+  String get messageFilter_ruleMatchContains => '包含';
+
+  @override
+  String get messageFilter_ruleMatchWholeWord => '完整词语';
+
+  @override
+  String get messageFilter_ruleMatchExact => '完全相同';
+
+  @override
+  String get messageFilter_ruleDeleted => '规则已删除';
+
+  @override
+  String get messageFilter_ruleSaved => '规则已保存';
+
+  @override
+  String get messageFilter_automaticSection => '自动';
+
+  @override
+  String get messageFilter_duplicates => '重复消息';
+
+  @override
+  String get messageFilter_duplicatesSubtitle => '重复发送的相同消息，或多个发送者发送的相同消息';
+
+  @override
+  String get messageFilter_repeatSends => '视为重复的发送次数';
+
+  @override
+  String messageFilter_repeatSendsSubtitle(int count) {
+    return '同一发送者在 10 分钟内发送同一消息 $count 次时隐藏该消息';
+  }
+
+  @override
+  String get messageFilter_repeatedCharacters => '重复字符';
+
+  @override
+  String get messageFilter_repeatedCharactersSubtitle =>
+      '同一字符的长串重复，例如“aaaaaaaaaaaaaaaaaaaa”';
+
+  @override
+  String get messageFilter_learning => '从“垃圾消息”点击中学习';
+
+  @override
+  String messageFilter_learningSubtitle(int spam, int notSpam) {
+    return '$spam 个垃圾消息示例和 $notSpam 个非垃圾消息示例';
+  }
+
+  @override
+  String get messageFilter_resetLearning => '重置学习';
+
+  @override
+  String get messageFilter_resetLearningConfirm =>
+      '要清除从你点击“垃圾消息”和“非垃圾消息”中学到的所有内容吗？你的规则会保留。';
+
+  @override
+  String messageFilter_filteredMessages(int count) {
+    return '已过滤的消息（$count）';
+  }
+
+  @override
+  String get messageFilter_filteredMessagesEmpty => '没有被过滤的消息。';
+
+  @override
+  String get messageFilter_ghostSingle => '已隐藏的消息 · 点击查看';
+
+  @override
+  String messageFilter_ghostMany(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 条已隐藏的消息 · 点击查看',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get messageFilter_ghostSingleExpanded => '正在显示已隐藏的消息 · 点击隐藏';
+
+  @override
+  String messageFilter_ghostManyExpanded(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '正在显示 $count 条已隐藏的消息 · 点击隐藏',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageFilter_reasonTextRule(String pattern) {
+    return '已过滤：匹配“$pattern”';
+  }
+
+  @override
+  String messageFilter_reasonSenderRule(String pattern) {
+    return '已过滤：发送者“$pattern”';
+  }
+
+  @override
+  String get messageFilter_reasonRepeatedCharacters => '已过滤：重复字符';
+
+  @override
+  String get messageFilter_reasonDuplicate => '已过滤：重复消息';
+
+  @override
+  String get messageFilter_reasonCrossSenderDuplicate => '已过滤：多个发送者发送的相同消息';
+
+  @override
+  String get messageFilter_reasonLearned => '已过滤：与你标记为垃圾消息的内容相似';
+
+  @override
+  String get messageFilter_reasonManual => '已过滤：你已将此消息标记为垃圾消息';
+
+  @override
+  String get messageFilter_notSpam => '非垃圾消息';
+
+  @override
+  String get messageFilter_hideAgain => '隐藏';
+
+  @override
+  String get messageFilter_markSpam => '标记为垃圾消息';
+
+  @override
+  String get messageFilter_markedSpam => '已标记为垃圾消息';
+
+  @override
+  String get messageFilter_markedNotSpam => '已标记为非垃圾消息';
+
+  @override
+  String get messageFilter_filterSender => '过滤此发送者';
+
+  @override
+  String messageFilter_filterSenderConfirm(String name) {
+    return '要隐藏来自“$name”的所有消息吗？';
+  }
+
+  @override
+  String get messageFilter_filterLikeThis => '过滤类似的消息…';
+
+  @override
+  String get messageFilter_channelToggle => '过滤此频道中的消息';
+
+  @override
+  String get messageFilter_ghostIconTooltip => '已被你的消息过滤隐藏';
+
+  @override
+  String get ping_noReplyNote =>
+      '没有回复并不能证明中继器已离线。探测或其回复可能因噪声或冲突而丢失，请重试或换个位置测试。';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return '最后一跳 $name · $snr dB';
+  }
+
+  @override
+  String get contacts_fullWarning => '此电台的联系人列表已满，无法添加新节点。请删除一些联系人以腾出空间。';
 }

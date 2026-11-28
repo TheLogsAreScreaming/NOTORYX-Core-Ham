@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "appTitle": "NOTORYX Core",
+  "appTitle": "NOTORYX Core Ham",
   "nav_contacts": "Contacts",
   "nav_channels": "Channels",
   "nav_map": "Map",
@@ -397,7 +397,7 @@
   "settings_appDebugLog": "App Debug Log",
   "settings_appDebugLogSubtitle": "Application debug messages",
   "settings_about": "About",
-  "settings_aboutVersion": "NOTORYX Core v{version}",
+  "settings_aboutVersion": "NOTORYX Core Ham v{version}",
   "@settings_aboutVersion": {
     "placeholders": {
       "version": {
@@ -405,8 +405,8 @@
       }
     }
   },
-  "settings_aboutLegalese": "NOTORYX Core • Built with open-source MeshCore Open components",
-  "settings_aboutDescription": "NOTORYX Core is a community-focused MeshCore companion app. It includes and builds on open-source components from MeshCore Open and other credited projects.",
+  "settings_aboutLegalese": "NOTORYX Core Ham • Built with open-source MeshCore Open components",
+  "settings_aboutDescription": "NOTORYX Core Ham is a community-focused MeshCore companion app. It includes and builds on open-source components from MeshCore Open and other credited projects.",
   "settings_aboutOpenMeteoAttribution": "LOS elevation data: Open-Meteo (CC BY 4.0)",
   "settings_infoName": "Name",
   "settings_infoId": "ID",
@@ -419,8 +419,8 @@
   "settings_infoFirmware": "Firmware",
   "settings_presets": "Presets",
   "settings_frequency": "Frequency (MHz)",
-  "settings_frequencyHelper": "300.0 - 2500.0",
-  "settings_frequencyInvalid": "Invalid frequency (300-2500 MHz)",
+  "settings_frequencyHelper": "420–450 / 902–928",
+  "settings_frequencyInvalid": "Invalid frequency (420–450 / 902–928 MHz)",
   "settings_bandwidth": "Bandwidth",
   "settings_spreadingFactor": "Spreading Factor",
   "settings_codingRate": "Coding Rate",
@@ -742,7 +742,7 @@
   "@channels_viaMqttSemantics": {
     "description": "Screen reader label for the via MQTT marker on a channel message."
   },
-  "channels_private": "Private",
+  "channels_private": "Keyed",
   "channels_editChannel": "Edit channel",
   "channels_muteChannel": "Mute channel",
   "channels_unmuteChannel": "Unmute channel",
@@ -839,10 +839,10 @@
   "channels_sortAZ": "A-Z",
   "channels_sortLatestMessages": "Latest messages",
   "channels_sortUnread": "Unread",
-  "channels_createPrivateChannel": "Create a Private Channel",
-  "channels_createPrivateChannelDesc": "Secured with a secret key.",
-  "channels_joinPrivateChannel": "Join a Private Channel",
-  "channels_joinPrivateChannelDesc": "Manually enter a secret key.",
+  "channels_createPrivateChannel": "Create a keyed channel",
+  "channels_createPrivateChannelDesc": "Uses a shared key to pick the channel. Messages are still readable by anyone.",
+  "channels_joinPrivateChannel": "Join a keyed channel",
+  "channels_joinPrivateChannelDesc": "Enter the channel's shared key.",
   "channels_joinPublicChannel": "Join the Public Channel",
   "channels_joinPublicChannelDesc": "Anyone can join this channel.",
   "channels_joinHashtagChannel": "Join a Hashtag Channel",
@@ -916,6 +916,7 @@
     }
   },
   "chat_selectSendAction": "Select send action",
+  "chat_jumpToLatest": "Jump to the latest message",
   "chat_sendGif": "Send GIF",
   "chat_limitToArea": "Limit to an area",
   "chat_limitToAreaTitle": "Only send within…",
@@ -1055,6 +1056,132 @@
   "routing_currentRoute": "Current route",
   "routing_directNoHops": "Direct — no repeater hops",
   "routing_noPathYet": "No path yet. The next message floods until a route is discovered.",
+  "routePick_open": "Route view and picker",
+  "routePick_openHint": "Chart each hop's link quality and pick a more reliable route",
+  "routePick_title": "Route to {name}",
+  "@routePick_title": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "routePick_current": "Current route",
+  "routePick_flooding": "No fixed route: messages flood the mesh until a route is learned.",
+  "routePick_direct": "Direct",
+  "routePick_hopUnknown": "Repeater {id}",
+  "@routePick_hopUnknown": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "routePick_notMeasured": "Not measured yet",
+  "routePick_measure": "Measure this route",
+  "routePick_measuring": "Tracing…",
+  "routePick_measured": "Measured just now.",
+  "routePick_noAnswer": "No answer to the trace. A repeater on the route may be out of range.",
+  "routePick_floodDone": "Route cleared. The next message floods to find a new one.",
+  "routePick_suggested": "Suggested",
+  "routePick_suggestBody": "A more reliable route: {route} (score {score}).",
+  "@routePick_suggestBody": {
+    "placeholders": {
+      "route": {
+        "type": "String"
+      },
+      "score": {
+        "type": "int"
+      }
+    }
+  },
+  "routePick_use": "Use",
+  "routePick_useLabel": "Use route {route}",
+  "@routePick_useLabel": {
+    "placeholders": {
+      "route": {
+        "type": "String"
+      }
+    }
+  },
+  "routePick_options": "Routes to choose from",
+  "routePick_optionsHint": "Every route heard for this contact, scored 0–100 from link signal, delivery record, length and how recent it is.",
+  "routePick_none": "No routes heard yet. Send a message to discover one.",
+  "routePick_other": "Other choices",
+  "routePick_build": "Build a route",
+  "routePick_flood": "Let the mesh find a route",
+  "routePick_explainer": "Measuring sends a trace out along the route and back, so every link between repeaters is measured both ways. The last link to the contact can't be traced. Readings are kept for 30 days and count for every route that uses the same link.",
+  "routePick_score": "Score {score} of 100",
+  "@routePick_score": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
+  },
+  "routePick_hopLabel": "Hop {number}: {name}. Link {quality}, {out} decibels out, {back} decibels back.",
+  "@routePick_hopLabel": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      },
+      "name": {
+        "type": "String"
+      },
+      "quality": {
+        "type": "String"
+      },
+      "out": {
+        "type": "String"
+      },
+      "back": {
+        "type": "String"
+      }
+    }
+  },
+  "routePick_lastLink": "Last link to the contact: not measurable by trace",
+  "routePick_linkLine": "Out {out} dB · back {back} dB",
+  "@routePick_linkLine": {
+    "placeholders": {
+      "out": {
+        "type": "String"
+      },
+      "back": {
+        "type": "String"
+      }
+    }
+  },
+  "routePick_optionLine": "Score {score} · hops: {hops}",
+  "@routePick_optionLine": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      },
+      "hops": {
+        "type": "int"
+      }
+    }
+  },
+  "routePick_record": "delivered {ok} of {tries}",
+  "@routePick_record": {
+    "placeholders": {
+      "ok": {
+        "type": "int"
+      },
+      "tries": {
+        "type": "int"
+      }
+    }
+  },
+  "routePick_weakest": "weakest link {snr} dB",
+  "@routePick_weakest": {
+    "placeholders": {
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "routePick_inUse": "In use",
   "routing_floodBroadcast": "Broadcast through every repeater",
   "routing_editPath": "Edit path",
   "routing_forgetPath": "Forget path",
@@ -1485,6 +1612,12 @@
     }
   },
   "login_failedMessage": "Login failed. Either the password is incorrect or the repeater is unreachable.",
+  "login_failRadioOffline": "Your radio isn't connected, so the login wasn't sent. Connect your radio and try again.",
+  "login_failSend": "Your radio didn't accept the login request. Reconnect it and try again.",
+  "login_failNoAnswerPath": "No answer over the saved path ({hops} hops). The path may be out of date: turn on “{option}” under {section} and try again. A wrong password also gets no answer.",
+  "@login_failNoAnswerPath": {"placeholders": {"hops": {"type": "int"}, "option": {"type": "String"}, "section": {"type": "String"}}},
+  "login_failRejected": "The repeater answered and refused the password.",
+  "login_failNoAnswerFlood": "No answer by flood. The repeater may be out of range, off or busy, or the password may be wrong (repeaters don't answer a wrong one). Try again from closer.",
   "common_reload": "Reload",
   "common_clear": "Clear",
   "path_currentPathLabel": "Current path",
@@ -1509,7 +1642,51 @@
   "@repeater_clockSyncAfterLogin": {
     "description": "Repeater setting: auto sync device clock after successful login"
   },
-  "repeater_clockSyncAfterLoginSubtitle": "Automatically send \"clock sync\" after a successful login",
+  "repeater_clockSyncAfterLoginSubtitle": "After login, set the repeater to your phone's time if its clock is off",
+  "repeater_cliLateReply": "Late reply to “{command}”: {reply}",
+  "@repeater_cliLateReply": {
+    "placeholders": {
+      "command": {
+        "type": "String"
+      },
+      "reply": {
+        "type": "String"
+      }
+    }
+  },
+  "repeater_clockWrongNotice": "{name}'s clock is wrong. Its adverts will look old.",
+  "@repeater_clockWrongNotice": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "repeater_clockSyncAction": "Sync",
+  "repeater_clockSyncDone": "{name}'s clock now matches your phone.",
+  "@repeater_clockSyncDone": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "repeater_clockAhead": "{name}'s clock is ahead of your phone's and can't be set back.",
+  "@repeater_clockAhead": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "repeater_clockSyncFailed": "Couldn't set {name}'s clock. Try Settings → Sync clock now.",
+  "@repeater_clockSyncFailed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "@repeater_clockSyncAfterLoginSubtitle": {
     "description": "Repeater setting subtitle: describes the clock sync after login behavior"
   },
@@ -1616,7 +1793,7 @@
   "repeater_guestPasswordHelper": "Read-only access password",
   "repeater_radioSettings": "Radio Settings",
   "repeater_frequencyMhz": "Frequency (MHz)",
-  "repeater_frequencyHelper": "300-2500 MHz",
+  "repeater_frequencyHelper": "420–450 / 902–928 MHz",
   "repeater_txPower": "TX Power",
   "repeater_txPowerHelper": "1-30 dBm",
   "repeater_bandwidth": "Bandwidth",
@@ -1683,6 +1860,11 @@
   },
   "repeater_confirm": "Confirm",
   "repeater_settingsSaved": "Settings saved successfully",
+  "repeater_settingsConfirmed": "Settings saved and confirmed by the repeater",
+  "repeater_settingsUnconfirmed": "Settings saved, but {count} could not be read back to confirm",
+  "@repeater_settingsUnconfirmed": {"placeholders": {"count": {"type": "int"}}},
+  "repeater_readBackMismatch": "{key} reads back as {value}",
+  "@repeater_readBackMismatch": {"placeholders": {"key": {"type": "String"}, "value": {"type": "String"}}},
   "repeater_rxGain": "Boosted RX gain",
   "repeater_rxGainHelper": "Higher sensitivity, more current draw (SX1262/SX1268 only)",
   "repeater_refreshRxGain": "Refresh boosted RX gain",
@@ -2426,6 +2608,72 @@
   "listFilter_roomServers": "Room servers",
   "listFilter_unreadOnly": "Unread only",
   "listFilter_newGroup": "New group",
+  "traceCard_title": "Trace card",
+  "traceCard_open": "Share trace card",
+  "traceCard_from": "From {name}",
+  "@traceCard_from": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "traceCard_to": "To {name}",
+  "@traceCard_to": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "traceCard_sentAt": "Sent {time}",
+  "@traceCard_sentAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "traceCard_roundTrip": "Round trip {seconds} s",
+  "@traceCard_roundTrip": {
+    "placeholders": {
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "traceCard_hops": "Hops: {count}",
+  "@traceCard_hops": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "traceCard_backToYou": "Back to you",
+  "traceCard_distance": "Route {distance}",
+  "@traceCard_distance": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "traceCard_weakest": "Weakest link {snr}",
+  "@traceCard_weakest": {
+    "placeholders": {
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "traceCard_noMap": "No positions known for this route, so there is no map.",
+  "traceCard_guessed": "estimated position",
+  "traceCard_mapLabel": "Map of the round trip",
+  "traceCard_shareImage": "Share image",
+  "traceCard_shareText": "Share text",
+  "traceCard_shareFailed": "Could not share the trace card.",
+  "traceCard_snrUnknown": "no SNR",
   "pathTrace_you": "You",
   "pathTrace_failed": "Path trace failed.",
   "pathTrace_notAvailable": "Path trace not available.",
@@ -2544,6 +2792,28 @@
   "losLegendRadioHorizon": "Radio horizon",
   "losLegendLosBeam": "LOS beam",
   "losLegendTerrain": "Terrain",
+  "nodeLook_menu": "Photo or colour",
+  "nodeLook_title": "Look for {name}",
+  "@nodeLook_title": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "nodeLook_hint": "Only on this phone. It's never sent over the mesh.",
+  "nodeLook_choosePhoto": "Choose photo",
+  "nodeLook_removePhoto": "Remove photo",
+  "nodeLook_clear": "Use the default look",
+  "nodeLook_colorN": "Colour {index}",
+  "@nodeLook_colorN": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "nodeLook_photoFailed": "Couldn't use that photo. Try a different one.",
   "losBlockedSpotsTitle": "Blocked spots",
   "losBlockedSpotsHint": "Tap a blocked spot to highlight it on the map.",
   "losBlockedSpotChip": "{distance} {distanceUnit} • {obstruction} {heightUnit}",
@@ -2635,7 +2905,7 @@
   "contacts_zeroHopContactAdvertFailed": "Failed to send contact.",
   "contacts_contactAdvertCopied": "Advert copied to Clipboard.",
   "contacts_contactAdvertCopyFailed": "Copying advert to Clipboard failed.",
-  "notification_activityTitle": "NOTORYX Core Activity",
+  "notification_activityTitle": "NOTORYX Core Ham Activity",
   "notification_messagesCount": "{count} {count, plural, =1{message} other{messages}}",
   "@notification_messagesCount": {
     "placeholders": {
@@ -2682,8 +2952,8 @@
   "settings_gpxExportRepeatersRoom": "Repeater & room server locations",
   "settings_gpxExportChat": "Companion locations",
   "settings_gpxExportAllContacts": "All contacts locations",
-  "settings_gpxExportShareText": "Map data exported from NOTORYX Core",
-  "settings_gpxExportShareSubject": "NOTORYX Core GPX map data export",
+  "settings_gpxExportShareText": "Map data exported from NOTORYX Core Ham",
+  "settings_gpxExportShareSubject": "NOTORYX Core Ham GPX map data export",
   "snrIndicator_nearByRepeaters": "Nearby Repeaters",
   "snrIndicator_lastSeen": "Last seen",
   "contactsSettings_title": "Contacts settings",
@@ -2838,7 +3108,7 @@
   },
   "translation_translationOptions": "Translation options",
   "translation_systemLanguage": "System language",
-  "background_serviceTitle": "NOTORYX Core running",
+  "background_serviceTitle": "NOTORYX Core Ham running",
   "background_serviceText": "Keeping BLE connected",
   "appSettings_translationModelDeleted": "Deleted {name}",
   "@appSettings_translationModelDeleted": {
@@ -3158,6 +3428,7 @@
       }
     }
   },
+  "sos_notEmergencyService": "Reaches only your chosen contacts and radios in range. It doesn't contact 911 or emergency services.",
   "sos_holdHint": "Hold 2 seconds. Sends your position to your trip contacts every 5 minutes until someone replies.",
   "sos_holdHintChannel": "Hold 2 seconds. Sends your position to your trip contacts and {channel} every 5 minutes until someone replies.",
   "@sos_holdHintChannel": {
@@ -3361,7 +3632,7 @@
   "tripBrief_overdueMeaning": "Overdue means no recent contact activity; it is not a confirmed emergency.",
   "tripBrief_automations": "Field automations run only while the app is active. Agree on a separate plan for missed contact.",
   "tripBrief_sharesOnly": "This brief shares information only; it does not send a radio message or start a trip.",
-  "fieldOps_title": "NOTORYX Core Field Operations",
+  "fieldOps_title": "NOTORYX Core Ham Field Operations",
   "fieldOps_tabTrip": "Trip",
   "fieldOps_tabReady": "Ready",
   "fieldOps_tabLog": "Log",
@@ -3494,7 +3765,7 @@
   "fieldOps_briefPreviewTitle": "Preview Trip Brief",
   "fieldOps_briefPreviewHint": "Includes trip and contact names. Review before sharing. Coordinates, keys and message history are omitted.",
   "fieldOps_shareBrief": "Share brief",
-  "fieldOps_briefSubject": "NOTORYX Core Trip Brief",
+  "fieldOps_briefSubject": "NOTORYX Core Ham Trip Brief",
   "fieldOps_tripName": "Trip name",
   "fieldOps_defaultTripName": "My trip",
   "fieldOps_includePosition": "Include advertised radio position",
@@ -3502,7 +3773,7 @@
   "fieldOps_includeBattery": "Include radio battery",
   "fieldOps_overdueLabel": "Alert me when a contact is quiet for",
   "fieldOps_reminderLabel": "Remind me to check in",
-  "fieldOps_reminderHelper": "A phone notification, even if NOTORYX Core is closed.",
+  "fieldOps_reminderHelper": "A phone notification, even if NOTORYX Core Ham is closed.",
   "fieldOps_reminderOff": "Off",
   "fieldOps_reminderAfter": "{count, plural, =1{After 1 minute without one} other{After {count} minutes without one}}",
   "@fieldOps_reminderAfter": {
@@ -3527,15 +3798,21 @@
   "fieldOps_sendCheckInHint": "This uses normal direct-message sends. Delivery will be tracked in Field Log.",
   "fieldOps_send": "Send",
   "sosRelay_title": "SOS relay",
-  "@sosRelay_title": {"description": "Field Ops card title for relaying other people's SOS messages"},
+  "@sosRelay_title": {
+    "description": "Field Ops card title for relaying other people's SOS messages"
+  },
   "sosRelay_enable": "Relay SOS no repeater carried",
   "sosRelay_needsFirmware": "Needs radio firmware v1.16 or newer",
   "sosRelay_noneYet": "No SOS relayed yet",
   "sosRelay_relayedCount": "{count, plural, =1{Relayed 1 SOS packet, last at {time}} other{Relayed {count} SOS packets, last at {time}}}",
   "@sosRelay_relayedCount": {
     "placeholders": {
-      "count": {"type": "int"},
-      "time": {"type": "String"}
+      "count": {
+        "type": "int"
+      },
+      "time": {
+        "type": "String"
+      }
     }
   },
   "sosRelay_explainer": "When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can't. Only SOS on channels you have are relayed. Uses some battery and airtime, so it's off by default.",
@@ -3603,7 +3880,7 @@
   "fieldOps_addNote": "Add note",
   "fieldOps_exportJson": "Export JSON",
   "fieldOps_deleteLog": "Delete log",
-  "fieldOps_logSubject": "NOTORYX Core Field Log",
+  "fieldOps_logSubject": "NOTORYX Core Ham Field Log",
   "fieldOps_logCaveat": "Stored locally, up to 1,000 entries. Exports may contain contact keys, messages and locations; review before sharing.",
   "fieldOps_noEntries": "No matching entries.",
   "fieldOps_tripUnspecified": "Trip unspecified",
@@ -3736,7 +4013,7 @@
   "fieldOps_compareCaveat": "Not hearing a node during one session does not establish a dead zone. Conditions and observation duration differ.",
   "fieldOps_heardTooltip": "Heard-node observation; not proof of a successful link",
   "fieldOps_noteTooltip": "Local note at radio-advertised coordinates; may be stale.",
-  "bastionHome_aboutTooltip": "About NOTORYX Core",
+  "bastionHome_aboutTooltip": "About NOTORYX Core Ham",
   "bastionHome_getStarted": "Get started",
   "bastionHome_getStartedHint": "Connect your radio and verify your first message",
   "bastionHome_planYourTrip": "Plan your trip",
@@ -3798,17 +4075,17 @@
   "bastionTools_diagnostics": "Diagnostics",
   "bastionTools_diagnosticsHint": "Radio health, device information, raw frames and export",
   "bastionTools_about": "About + credits",
-  "bastionTools_aboutHint": "NOTORYX Core version, independence statement and open-source licenses",
+  "bastionTools_aboutHint": "NOTORYX Core Ham version, independence statement and open-source licenses",
   "bastionAbout_title": "About + Credits",
-  "bastionAbout_intro": "An independent community companion app for MeshCore networks. NOTORYX Core is not an official MeshCore app and inclusion of community resources does not imply partnership or endorsement.",
+  "bastionAbout_intro": "An independent community companion app for MeshCore networks. NOTORYX Core Ham is not an official MeshCore app and inclusion of community resources does not imply partnership or endorsement.",
   "bastionAbout_version": "Version",
   "bastionAbout_openSource": "Open source foundation",
-  "bastionAbout_openSourceBody": "NOTORYX Core is built from and modifies open-source MeshCore Open code under the MIT License. Coverage workflow work also credits the MIT-licensed MeshMapper Flutter App where applicable.",
+  "bastionAbout_openSourceBody": "NOTORYX Core Ham is built from and modifies open-source MeshCore Open code under the MIT License. Coverage workflow work also credits the MIT-licensed MeshMapper Flutter App where applicable.",
   "bastionAbout_community": "Community first",
   "bastionAbout_communityBody": "Third-party creator resources remain the property of their respective creators. No ownership or partnership is implied.",
-  "bastionAbout_legalese": "NOTORYX Core • Independent MeshCore companion",
+  "bastionAbout_legalese": "NOTORYX Core Ham • Independent MeshCore companion",
   "bastionAbout_licenses": "Open source licenses",
-  "bastionSetup_title": "Get started with NOTORYX Core",
+  "bastionSetup_title": "Get started with NOTORYX Core Ham",
   "bastionSetup_intro": "Connect, choose a contact, then verify a message. You can return to this guide from the dashboard at any time.",
   "bastionSetup_step1": "1. Connect your MeshCore radio",
   "bastionSetup_connectedTo": "Connected to {device} using {transport}.",
@@ -3824,7 +4101,7 @@
   },
   "bastionSetup_noRadio": "No radio connected yet.",
   "bastionSetup_step1Power": "Power on a MeshCore companion radio. Open Connect radio and choose Bluetooth, USB or TCP. Allow the permissions requested for your chosen connection.",
-  "bastionSetup_step1Bluetooth": "If Bluetooth discovery is empty, check Bluetooth is enabled and NOTORYX Core has Nearby devices permission in Android app settings. Follow any additional permission prompt shown by the scanner.",
+  "bastionSetup_step1Bluetooth": "If Bluetooth discovery is empty, check Bluetooth is enabled and NOTORYX Core Ham has Nearby devices permission in Android app settings. Follow any additional permission prompt shown by the scanner.",
   "bastionSetup_connectionDiagnostics": "Connection diagnostics",
   "bastionSetup_step2": "2. Choose a chat contact",
   "bastionSetup_step2Body": "Ask a nearby partner with compatible MeshCore radio settings to advertise their node. Choose a known chat contact below; repeaters are managed separately.",
@@ -3854,6 +4131,13 @@
   "bastionSetup_tripTools": "Trip and readiness tools",
   "bastionDiag_title": "Diagnostics",
   "bastionDiag_export": "Export diagnostics",
+  "diagTimeline_title": "Connection timeline",
+  "diagTimeline_empty": "No connection changes since the app started.",
+  "diagTimeline_causeUser": "you asked",
+  "diagTimeline_causeLinkLost": "link dropped",
+  "diagTimeline_causeReconnect": "automatic retry",
+  "diagTimeline_causeAutoConnect": "connected automatically",
+  "diagTimeline_causeApp": "closed by the app",
   "bastionDiag_channels": "Channels",
   "bastionDiag_radio": "Radio",
   "bastionDiag_frequency": "Frequency",
@@ -3884,7 +4168,7 @@
   "coverage_caveat": "RSSI/SNR are radio snapshots and may belong to another packet. Positions are radio-advertised coordinates, not phone GPS or proof of coverage. Cyan: recorder; amber: advertised node. No interpolation is performed.",
   "coverage_captureActive": "Capture active",
   "coverage_fieldSession": "Field coverage session",
-  "coverage_connectedBody": "NOTORYX Core records newly heard nodes during this session, including route data, node/location metadata and the nearest available radio RSSI/SNR snapshot.",
+  "coverage_connectedBody": "NOTORYX Core Ham records newly heard nodes during this session, including route data, node/location metadata and the nearest available radio RSSI/SNR snapshot.",
   "coverage_disconnectedBody": "Connect a radio before starting. Coverage capture records live mesh observations from the connected companion radio.",
   "coverage_observations": "Observations",
   "coverage_uniqueNodes": "Unique nodes",
@@ -3916,8 +4200,8 @@
   },
   "coverage_pathFlood": "flood",
   "coverage_pathDirect": "direct",
-  "coverage_shareSubject": "NOTORYX Core Coverage Session",
-  "coverage_shareText": "NOTORYX Core coverage capture export",
+  "coverage_shareSubject": "NOTORYX Core Ham Coverage Session",
+  "coverage_shareText": "NOTORYX Core Ham coverage capture export",
   "coverage_historyTitle": "Saved coverage sessions",
   "coverage_loadFailed": "Could not load sessions: {error}",
   "@coverage_loadFailed": {
@@ -3988,7 +4272,7 @@
   "coverage_osmAttribution": "© OpenStreetMap contributors • online basemap",
   "fieldStats_title": "Field intelligence",
   "fieldStats_snapshot": "Live mesh snapshot",
-  "fieldStats_headline": "What NOTORYX Core knows right now.",
+  "fieldStats_headline": "What NOTORYX Core Ham knows right now.",
   "fieldStats_body": "These counters are calculated from the connected MeshCore contact table, locations, paths and last-seen timestamps.",
   "fieldStats_total": "Total",
   "fieldStats_chatNodes": "Chat nodes",
@@ -4001,11 +4285,11 @@
   "fieldStats_direct": "Direct",
   "fieldStats_flood": "Flood",
   "fieldStats_pathIntel": "Path intelligence",
-  "fieldStats_pathIntelBody": "NOTORYX Core’s Route Intelligence uses persisted path attempts, hop counts, success/failure, trip time and route weighting to surface learned routes.",
+  "fieldStats_pathIntelBody": "NOTORYX Core Ham’s Route Intelligence uses persisted path attempts, hop counts, success/failure, trip time and route weighting to surface learned routes.",
   "fieldStats_coverageSessions": "Coverage sessions",
   "fieldStats_coverageSessionsBody": "Coverage Capture now saves field sessions, restores interrupted work, exports observations and maps recorded coverage points. RSSI/SNR remain the nearest available radio snapshot.",
   "mapHub_title": "NOTORYX field map",
-  "mapHub_intro": "Live maps, offline areas, regional profiles and NOTORYX Core field coverage sessions.",
+  "mapHub_intro": "Live maps, offline areas, regional profiles and NOTORYX Core Ham field coverage sessions.",
   "mapHub_captureHint": "Start and stop a field coverage session",
   "mapHub_badgeNew": "NEW",
   "mapHub_liveMap": "Live mesh map",
@@ -4016,10 +4300,64 @@
   "mapHub_badgeOffline": "OFFLINE",
   "mapHub_regions": "Region profiles",
   "mapHub_regionsHint": "Manage and fetch regional mesh definitions",
+  "replay_title": "Replay a day",
+  "replay_entryHint": "Play back where the team went on a chosen day",
+  "replay_badge": "History",
+  "replay_day": "Day",
+  "replay_team": "Team",
+  "replay_everyone": "Everyone",
+  "replay_emptyTeam": "No team positions on this day. Teammates show up when they share tracked positions on a channel. Try Everyone for node adverts.",
+  "replay_emptyEveryone": "No positions recorded on this day. This phone records the positions nodes advertise from now on, while the app is open.",
+  "replay_mapSummary": "Map at {time}: {count} shown",
+  "@replay_mapSummary": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "replay_play": "Play",
+  "replay_pause": "Pause",
+  "replay_speed": "Speed",
+  "replay_speedValue": "{minutes} min per second",
+  "@replay_speedValue": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "replay_showNode": "Show or hide {name}",
+  "@replay_showNode": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "replay_notYet": "Not seen yet at this time",
+  "replay_lastSeen": "Last seen {time} at {lat}, {lon}",
+  "@replay_lastSeen": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      },
+      "lat": {
+        "type": "String"
+      },
+      "lon": {
+        "type": "String"
+      }
+    }
+  },
+  "replay_explainer": "Team positions come from the tracked positions teammates share on channels. Everyone adds the positions nodes advertise, which this phone records while the app is open and keeps for 30 days. Nothing is sent.",
   "mapHub_badgeRegions": "REGIONS",
   "routes_title": "Route Intelligence",
   "routes_headline": "See how traffic moves through the mesh.",
-  "routes_body": "NOTORYX Core ranks saved routes using the path history already learned from real message attempts and discoveries.",
+  "routes_body": "NOTORYX Core Ham ranks saved routes using the path history already learned from real message attempts and discoveries.",
   "routes_routes": "Routes",
   "routes_success": "Success",
   "routes_failed": "Failed",
@@ -4029,7 +4367,7 @@
   "routes_discoverHint": "Find fresh routes",
   "routes_learned": "Learned routes",
   "routes_none": "No route history yet",
-  "routes_noneBody": "Use the mesh normally or run discovery. NOTORYX Core will surface learned routes here as path history becomes available.",
+  "routes_noneBody": "Use the mesh normally or run discovery. NOTORYX Core Ham will surface learned routes here as path history becomes available.",
   "routes_direct": "DIRECT",
   "routes_routeCount": "{count, plural, =1{1 route} other{{count} routes}}",
   "@routes_routeCount": {
@@ -4097,9 +4435,77 @@
   "repeaterTools_cli": "CLI + settings",
   "repeaterTools_cliBody": "Authenticated administrators can reach the existing repeater CLI and configuration tools.",
   "repeaterTools_empty": "No repeaters discovered yet. Connect a radio and discover the mesh first.",
+  "rptTest_title": "Nearby repeater test",
+  "rptTest_subtitle": "One tap: which repeaters hear you directly",
+  "rptTest_start": "Test now",
+  "rptTest_listening": "Listening for answers…",
+  "rptTest_wait": "Next test in {seconds} s",
+  "@rptTest_wait": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "rptTest_found": "Repeaters that answered: {count}",
+  "@rptTest_found": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "rptTest_none": "No repeater in direct range answered. Try from higher ground, or again in a minute. Repeaters on older firmware don't answer this test.",
+  "rptTest_strong": "Strong",
+  "rptTest_usable": "Usable",
+  "rptTest_weak": "Weak",
+  "rptTest_unknown": "Repeater {prefix}",
+  "@rptTest_unknown": {
+    "placeholders": {
+      "prefix": {
+        "type": "String"
+      }
+    }
+  },
+  "rptTest_line": "Heard you at {there} dB · you heard it at {here} dB, {rssi} dBm",
+  "@rptTest_line": {
+    "placeholders": {
+      "there": {
+        "type": "String"
+      },
+      "here": {
+        "type": "String"
+      },
+      "rssi": {
+        "type": "String"
+      }
+    }
+  },
+  "rptTest_rowLabel": "{name}, {quality}. It heard you at {there} decibels. You heard it at {here} decibels, {rssi} dBm.",
+  "@rptTest_rowLabel": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "quality": {
+        "type": "String"
+      },
+      "there": {
+        "type": "String"
+      },
+      "here": {
+        "type": "String"
+      },
+      "rssi": {
+        "type": "String"
+      }
+    }
+  },
+  "rptTest_notConnected": "Connect your radio to run the test.",
+  "rptTest_explainer": "Sends one discover request with no hops, so only repeaters that hear your radio directly answer. The first number is how well each repeater heard you, the second how well you heard it. Tests are 30 seconds apart because repeaters limit how often they answer.",
   "notification_fieldAlertTitle": "NOTORYX Field Alert",
-  "notification_checkInReminderTitle": "NOTORYX Core check-in reminder",
-  "notification_checkInReminderBody": "No check-in for {minutes} minutes on {trip}. Open NOTORYX Core to check in.",
+  "notification_checkInReminderTitle": "NOTORYX Core Ham check-in reminder",
+  "notification_checkInReminderBody": "No check-in for {minutes} minutes on {trip}. Open NOTORYX Core Ham to check in.",
   "@notification_checkInReminderBody": {
     "placeholders": {
       "minutes": {
@@ -4142,7 +4548,7 @@
   "settings_batterySaverOn": "On: radio battery every 10 min, GPS every 5 min, stats at most once a minute, trip checks every 1–2 min. Messages, alerts and SOS are unchanged.",
   "settings_batterySaverOff": "Check the radio and trip less often to save phone and radio battery. Messages, alerts and SOS are unchanged.",
   "settings_readAloud": "Read new messages aloud",
-  "settings_readAloudHelper": "While NOTORYX Core is open. Muted channels stay quiet. Any message can also be read from its menu.",
+  "settings_readAloudHelper": "While NOTORYX Core Ham is open. Muted channels stay quiet. Any message can also be read from its menu.",
   "settings_readAloudOff": "Off",
   "settings_readAloudDirect": "Direct messages",
   "settings_readAloudAll": "Direct and channel messages",
@@ -4174,6 +4580,8 @@
     }
   },
   "shortcuts_checkIn": "Check in",
+  "qsTile_unread": "{status} · {count} unread",
+  "@qsTile_unread": {"placeholders": {"status": {"type": "String"}, "count": {"type": "int"}}},
   "shortcuts_trip": "Trip",
   "shortcuts_chats": "Chats",
   "shortcuts_map": "Map",
@@ -4326,7 +4734,7 @@
   "setupWizard_bluetoothSteps": "Power on your radio and keep it nearby. Enable Bluetooth and allow the app permission to use it. Close other apps connected to the radio, then open the device list and scan.",
   "setupWizard_usbSteps": "Connect a powered radio with a USB data cable; a charge-only cable will not work. Close other serial apps. Open the USB device list, select your radio, and allow access if prompted.",
   "setupWizard_firmwareTitle": "Check compatibility before changing firmware",
-  "setupWizard_firmware": "Your radio needs MeshCore companion firmware that supports the selected connection. Support varies by board and firmware build; a USB socket alone does not confirm USB serial support. Check the instructions for your exact board and installed build. Repeater or room-server firmware is not a companion. A failed connection does not by itself mean you need to reflash.",
+  "setupWizard_firmware": "Your radio needs NOTORYX Ham companion firmware that supports the selected connection. Support varies by board and firmware build; a USB socket alone does not confirm USB serial support. Check the instructions for your exact board and installed build. Repeater or room-server firmware is not a companion. A failed connection does not by itself mean you need to reflash.",
   "setupWizard_settings": "This guide does not flash firmware or change radio settings. After connecting, use Settings for region, frequency, and advanced options. Confirm settings with your local mesh before changing them.",
   "setupWizard_openBluetooth": "Open Bluetooth devices",
   "setupWizard_openUsb": "Open USB devices",
@@ -4631,6 +5039,8 @@
   "scanner_lastRadio": "Last radio",
   "scanner_reconnect": "Reconnect",
   "scanner_tcpHint": "A radio with Wi‑Fi firmware on your network.",
+  "scanner_tryDemo": "Try a demo",
+  "scanner_tryDemoHint": "A pretend radio and mesh. Nothing is sent.",
   "scanner_otherWays": "Other ways to connect",
   "scanner_radiosFound": "{count, plural, =1{1 radio nearby} other{{count} radios nearby}}",
   "@scanner_radiosFound": {
@@ -4642,10 +5052,10 @@
   },
   "scanner_searchingTitle": "Looking for radios…",
   "scanner_findTitle": "Find your radio",
-  "scanner_heroHint": "Turn your radio on and keep it within a few meters. It needs MeshCore companion firmware.",
+  "scanner_heroHint": "Turn your radio on and keep it within a few meters. It needs NOTORYX Ham companion firmware.",
   "scanner_tipsTitle": "Can't see your radio?",
   "scanner_tipPower": "Check that it's switched on and awake.",
-  "scanner_tipFirmware": "It needs MeshCore companion firmware. Repeaters and room servers don't show up here.",
+  "scanner_tipFirmware": "It needs NOTORYX Ham companion firmware. Repeaters and room servers don't show up here.",
   "scanner_tipOtherDevice": "A radio connects to one device at a time. Disconnect it from other phones or computers.",
   "connections_internetBridge": "Internet bridge",
   "connections_noRadio": "No radio",
@@ -4829,7 +5239,7 @@
   "trackLog_noGps": "Your radio isn't reporting a GPS position. The track log needs a radio with GPS turned on.",
   "trackLog_start": "Start recording",
   "trackLog_stop": "Stop recording",
-  "trackLog_howItWorks": "Uses the position your radio reports, about once a minute, while NOTORYX Core is open. A point is added after you move 25 m, or every 15 minutes when you stay put.",
+  "trackLog_howItWorks": "Uses the position your radio reports, about once a minute, while NOTORYX Core Ham is open. A point is added after you move 25 m, or every 15 minutes when you stay put.",
   "trackLog_snap": "Round positions to about 100 m",
   "trackLog_snapBody": "For privacy when you share a track.",
   "trackLog_saved": "Saved tracks",
@@ -4929,6 +5339,75 @@
       }
     }
   },
+  "signedCov_section": "Signed reports",
+  "signedCov_share": "Share signed report",
+  "signedCov_shareHint": "Every hexagon is signed with this phone's coverage key, so edited or invented ones can be spotted. Nothing leaves the phone unless you share it.",
+  "signedCov_check": "Check a report",
+  "signedCov_checkHint": "Paste a signed report to see which observations are genuine",
+  "signedCov_paste": "Signed report (JSON)",
+  "signedCov_verify": "Check",
+  "signedCov_yourKey": "Your coverage key: {fingerprint}",
+  "@signedCov_yourKey": {
+    "placeholders": {
+      "fingerprint": {
+        "type": "String"
+      }
+    }
+  },
+  "signedCov_result": "{accepted} observations verified, {rejected} rejected",
+  "@signedCov_result": {
+    "placeholders": {
+      "accepted": {
+        "type": "int"
+      },
+      "rejected": {
+        "type": "int"
+      }
+    }
+  },
+  "signedCov_signer": "Signed by key {fingerprint}",
+  "@signedCov_signer": {
+    "placeholders": {
+      "fingerprint": {
+        "type": "String"
+      }
+    }
+  },
+  "signedCov_unreadable": "This isn't a signed coverage report.",
+  "signedCov_rBadSignature": "{count} with a missing or wrong signature",
+  "@signedCov_rBadSignature": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "signedCov_rMalformed": "{count} damaged",
+  "@signedCov_rMalformed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "signedCov_rImpossible": "{count} with impossible signal values",
+  "@signedCov_rImpossible": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "signedCov_rFuture": "{count} dated in the future",
+  "@signedCov_rFuture": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "signedCov_empty": "No coverage samples to share yet.",
+  "signedCov_shareFailed": "Could not share the report.",
   "coverageHex_title": "Coverage hexagons",
   "coverageHex_toolSubtitle": "Map where your radio hears the mesh and share it",
   "coverageHex_mapCoverage": "Map coverage",
@@ -5037,34 +5516,8 @@
       }
     }
   },
-  "botWx_title": "Post weather alerts to a channel",
-  "botWx_body": "Checks the US National Weather Service every 10 minutes for severe and extreme warnings at the radio’s GPS position (rounded to about 1 km), and posts each new one once. Needs phone internet.",
-  "botWx_channel": "Post to channel",
-  "botWx_moderate": "Include moderate alerts",
-  "botWx_moderateHint": "Advisories as well as warnings. Busier.",
-  "botWx_lastChecked": "Last checked {time}.",
-  "@botWx_lastChecked": {
-    "placeholders": {
-      "time": {
-        "type": "String"
-      }
-    }
-  },
-  "botWx_noPosition": "The radio hasn’t reported a GPS position yet.",
-  "botWx_noChannel": "Choose a channel to post alerts to.",
-  "botWx_channelGone": "The chosen channel no longer exists.",
-  "botWx_httpError": "Weather Service answered {code}.",
-  "@botWx_httpError": {
-    "placeholders": {
-      "code": {
-        "type": "String"
-      }
-    }
-  },
-  "botWx_unreachable": "Couldn’t reach the Weather Service.",
   "botCmd_sun": "Sunrise and sunset at the radio’s GPS position.",
   "botCmd_moon": "Moon phase and how much is lit.",
-  "botCmd_weather": "Current weather at the radio (Open-Meteo). Sends the position, rounded to about 1 km.",
   "botCmd_dice": "Rolls dice: !dice, !dice 20 or !dice 2d6.",
   "botCmd_trace": "Lists the repeaters the sender’s message came through.",
   "ping_title": "Repeater ping",
@@ -5241,7 +5694,7 @@
   "tools_search": "Search tools and settings",
   "tools_noMatches": "No tools match your search.",
   "tools_bot": "Bot Mode",
-  "tools_botHint": "Auto replies, !commands and weather alerts on channels",
+  "tools_botHint": "Auto replies and !commands on channels",
   "botChannels_title": "Channels",
   "botChannels_hint": "The bot also answers !commands in the channels you turn on, in that channel. It never sends away replies there.",
   "botChannels_none": "No channels on this radio yet.",
@@ -5286,6 +5739,81 @@
     }
   },
   "channels_regionUnknownSemantics": "Sent to a region this app doesn’t know",
+  "timeline_title": "Timeline",
+  "timeline_toolSubtitle": "Messages, new nodes, signal changes and places in one feed",
+  "timeline_refresh": "Reload",
+  "timeline_search": "Search the timeline",
+  "timeline_kindMessages": "Messages",
+  "timeline_kindNodes": "New nodes",
+  "timeline_kindSignal": "Signal",
+  "timeline_kindPlaces": "Places",
+  "timeline_messageFrom": "{sender} in {where}",
+  "@timeline_messageFrom": {
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      },
+      "where": {
+        "type": "String"
+      }
+    }
+  },
+  "timeline_nodeJoined": "First heard: {name}",
+  "@timeline_nodeJoined": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "timeline_signalUp": "{name}: signal up from {from} to {to} dB",
+  "@timeline_signalUp": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "timeline_signalDown": "{name}: signal down from {from} to {to} dB",
+  "@timeline_signalDown": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "timeline_placeSaved": "Place saved: {name}",
+  "@timeline_placeSaved": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "timeline_placeShared": "{sender} shared a place in {where}",
+  "@timeline_placeShared": {
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      },
+      "where": {
+        "type": "String"
+      }
+    }
+  },
+  "timeline_empty": "Nothing yet. Messages, newly heard nodes, signal changes and places show up here.",
   "wardrive_title": "Wardrive",
   "wardrive_hint": "Ping from where you are and map which repeaters hear you",
   "wardrive_start": "Start",
@@ -5327,5 +5855,2633 @@
   "wardrive_explainer": "Each ping is a zero-hop discover request: only repeaters in direct range answer, and nothing is posted to a channel. Positions come from your phone’s GPS, or your radio’s when the phone has none.",
   "mapTelemetry_policy": "Cached readings dim after 1 hour and disappear after 24 hours. Refresh sends one request; the node must allow telemetry and sensors may require login. The map never requests updates automatically.",
   "autoConnect_title": "Connect to my radio automatically",
-  "autoConnect_hint": "When the app opens, reconnect to your last radio without a tap. It tries a few times if the radio isn’t in range yet."
+  "autoConnect_hint": "When the app opens, reconnect to your last radio without a tap. It tries a few times if the radio isn’t in range yet.",
+  "ham_licensedOperator": "Licensed operator",
+  "ham_operatorIntro": "NOTORYX Core Ham radios transmit under an amateur licence (FCC Part 97). Everything sent is readable by anyone, and every frame carries the call sign at the start of the radio's name.",
+  "ham_yourStation": "Your station",
+  "ham_callSign": "Call sign",
+  "ham_notUsCallsign": "Not a US call sign",
+  "ham_licenceClass": "Licence class",
+  "ham_licenceClassHelper": "Every class has full 33 cm and 70 cm privileges",
+  "ham_antennaSystem": "Antenna system",
+  "ham_antennaSystemHint": "For the power estimate below. Leave 0 for anything you don't have.",
+  "ham_externalAmpGain": "External amplifier gain",
+  "ham_feedlineLoss": "Feedline loss",
+  "ham_antennaGain": "Antenna gain",
+  "ham_coordination": "Coordination",
+  "ham_coordinationNotice": "Use NOTORYX Core Ham only after a great deal of coordination. Radios and repeaters transmit automatically on shared bands, so before any radio goes on the air, talk to your frequency coordinator, follow the local band plan and agree one channel with every operator in your area.",
+  "ham_readCoordinationGuide": "Read the coordination guide",
+  "ham_acknowledgment": "I hold this licence, I have read the coordination guide, and I will coordinate before transmitting.",
+  "ham_operatorSaved": "Operator saved",
+  "ham_connectedRadio": "Connected radio",
+  "ham_nodeName": "Node name",
+  "ham_nodeNameOk": "Starts with your call sign",
+  "ham_nodeNameBad": "Must start with your call sign, or the radio stays silent",
+  "ham_setNameTo": "Set to {callsign}",
+  "@ham_setNameTo": {
+    "placeholders": {
+      "callsign": {
+        "type": "String"
+      }
+    }
+  },
+  "ham_frequency": "Frequency",
+  "ham_inHamBand": "In a ham band",
+  "ham_outsideHamBands": "Outside 420–450 / 902–928 MHz",
+  "ham_txPowerSetting": "TX power setting",
+  "ham_chipSetting": "The radio chip's setting",
+  "ham_firmware": "Firmware",
+  "ham_estimatedOutput": "Estimated output",
+  "ham_estimatedErp": "Estimated ERP",
+  "ham_unknown": "unknown",
+  "ham_unknownBoard": "Unknown board: counted as no amplifier",
+  "ham_ampNone": "no amplifier",
+  "ham_ampGain": "about +{db} dB from its amplifier",
+  "@ham_ampGain": {
+    "placeholders": {
+      "db": {
+        "type": "String"
+      }
+    }
+  },
+  "ham_ampVariable": "depends on its amplifier level setting",
+  "ham_boardNote": "{board}: {note}",
+  "@ham_boardNote": {
+    "placeholders": {
+      "board": {
+        "type": "String"
+      },
+      "note": {
+        "type": "String"
+      }
+    }
+  },
+  "ham_measureFirst": "{board}. Measure it before relying on any estimate.",
+  "@ham_measureFirst": {
+    "placeholders": {
+      "board": {
+        "type": "String"
+      }
+    }
+  },
+  "ham_outputNote": "{board}. An estimate: measure to be sure, and use the least power that works.",
+  "@ham_outputNote": {
+    "placeholders": {
+      "board": {
+        "type": "String"
+      }
+    }
+  },
+  "ham_overSpreadSpectrum": "Above 10 W PEP, the limit for spread spectrum such as LoRa (§97.311). Turn it down.",
+  "ham_erpNote": "After feedline loss and antenna gain, relative to a dipole. Check RF exposure (§97.13) at higher power.",
+  "ham_location": "Location",
+  "ham_noLocationLimits": "no band limits found",
+  "ham_locationOkNote": "From the radio's position. Check §97.303 to be sure.",
+  "ham_check": "check",
+  "ham_positionUnknown": "Position unknown: check §97.303 for limits where you operate.",
+  "ham_exclusion33cm": "This area appears to be inside a §97.303(g) exclusion: amateur stations may not transmit on 33 cm here.",
+  "ham_lineA": "If you are north of Line A (near the Canadian border), 420–430 MHz isn't available. Check §97.303.",
+  "ham_statusOk": "OK",
+  "ham_needsAttention": "Needs attention",
+  "ham_setupBanner": "Finish licensed operator setup before transmitting",
+  "ham_setUp": "Set up",
+  "ham_operatorCardIncomplete": "Set your call sign and read the coordination guide",
+  "ham_nodeNameCallsignHelper": "Start with your call sign, like \"W1AW\" or \"W1AW Base\"",
+  "ham_repeaterNameNeedsCall": "The name must start with the repeater's call sign, like \"N0RPT Hilltop\".",
+  "ham_repeaterPasswordsSerial": "Set passwords on the repeater's USB serial console. Sent over the air, anyone could read them.",
+  "networks_title": "Networks",
+  "networks_hint": "Scan for networks nearby and keep a log",
+  "networks_yourNetwork": "Your network",
+  "networks_scanTitle": "Scan for networks",
+  "networks_scanExplainer": "Your radio only hears networks that use its exact settings, so a scan switches it to each one in turn, listens, then switches it back. You're off your own mesh while it scans.",
+  "networks_listenFor": "Listen on each",
+  "networks_choose": "Networks to scan: {count}",
+  "@networks_choose": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "networks_suggested": "Suggested",
+  "networks_start": "Start scan",
+  "networks_cancel": "Stop scan",
+  "networks_listening": "Listening on {name} ({step} of {steps})",
+  "@networks_listening": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "step": {
+        "type": "int"
+      },
+      "steps": {
+        "type": "int"
+      }
+    }
+  },
+  "networks_blockNoRadio": "Connect a radio to scan.",
+  "networks_blockSettings": "Waiting for your radio's settings.",
+  "networks_blockSos": "Not while an SOS is active: a scan takes you off your mesh.",
+  "networks_blockTrip": "Not during a trip: a scan takes you off your mesh.",
+  "networks_nearby": "Networks nearby",
+  "networks_nothingYet": "No networks heard yet. Run a scan to look for some.",
+  "networks_heardSummary": "Nodes {nodes} · packets {packets} · SNR {snr} dB",
+  "@networks_heardSummary": {
+    "placeholders": {
+      "nodes": {
+        "type": "int"
+      },
+      "packets": {
+        "type": "int"
+      },
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "networks_lastHeard": "Last heard {time}",
+  "@networks_lastHeard": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "networks_timesHeard": "Times heard: {count}",
+  "@networks_timesHeard": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "networks_saved": "Saved networks",
+  "networks_noSaved": "No saved networks yet.",
+  "networks_add": "Add a network",
+  "networks_join": "Join",
+  "networks_joinConfirm": "Switch your radio to {name}? You'll leave your current network. Your transmit power stays the same.",
+  "@networks_joinConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "networks_joined": "Your radio is on {name} now.",
+  "@networks_joined": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "networks_log": "Network log",
+  "networks_logEmpty": "Nothing logged yet.",
+  "networks_showMap": "Map",
+  "networks_exportCsv": "Export CSV",
+  "networks_exportGpx": "Export GPX",
+  "networks_clearLog": "Clear log",
+  "networks_clearLogConfirm": "Delete every logged network sighting?",
+  "networks_name": "Name",
+  "networks_invalid": "Check the settings: they're outside what MeshCore radios accept.",
+  "networks_nodesHeard": "Nodes heard",
+  "chat_resendNeedsRadio": "Not sent: connect your radio, then try again. The message is kept.",
+  "quick_title": "Quick messages",
+  "quick_ok": "OK",
+  "quick_onMyWay": "On my way",
+  "quick_atCamp": "At camp",
+  "quick_runningLate": "Running late",
+  "quick_needHelp": "Need help",
+  "quick_copyThat": "Copy that",
+  "quick_empty": "No quick messages. Tap Edit to add one.",
+  "quick_add": "New quick message",
+  "quick_reset": "Reset to the defaults",
+  "chat_stopRetrying": "Stop retrying",
+  "chat_addFirstBanner": "{name} can only read and answer your direct messages after adding you as a contact. If they haven't, send your advert or share your contact with them.",
+  "@chat_addFirstBanner": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "map_goToMyPosition": "Go to my position",
+  "map_positionUnavailable": "Your position isn't available. Turn on location, or set your radio's position.",
+  "contact_forgetAdvert": "Forget last advert",
+  "contact_forgetAdvertHint": "If this node's adverts stopped updating after its clock was reset, Forget last advert lets the next one through.",
+  "contact_forgetAdvertDone": "Done. The next advert from this node will be accepted.",
+  "networks_modeQuick": "Quick",
+  "networks_modeThorough": "Thorough",
+  "networks_modeQuickHint": "Sends one short zero-hop ping on each network and listens a few seconds. Finds networks with a repeater in range.",
+  "networks_modeThoroughHint": "Only listens, longer on each network. Sends nothing, and also finds networks without a repeater in range if someone transmits.",
+  "networks_estimate": "about {time}",
+  "@networks_estimate": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "discoveredContacts_selected": "{count} selected",
+  "@discoveredContacts_selected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "discoveredContacts_selectAll": "Select all",
+  "discoveredContacts_addSelected": "Add selected",
+  "discoveredContacts_addAllShown": "Add all shown ({count})",
+  "@discoveredContacts_addAllShown": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "discoveredContacts_addManyTitle": "Add {count} contacts?",
+  "@discoveredContacts_addManyTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "discoveredContacts_roomLeft": "Your radio has room for {room} more contacts.",
+  "@discoveredContacts_roomLeft": {
+    "placeholders": {
+      "room": {
+        "type": "int"
+      }
+    }
+  },
+  "discoveredContacts_roomLimit": "Your radio has room for {room} more contacts, so only the first {room} of {count} will be added.",
+  "@discoveredContacts_roomLimit": {
+    "placeholders": {
+      "room": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "discoveredContacts_adding": "Adding {done} of {total}…",
+  "@discoveredContacts_adding": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "discoveredContacts_addedMany": "Contacts added: {count}",
+  "@discoveredContacts_addedMany": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "discoveredContacts_addedSome": "Contacts added: {added}. Not added: {failed}.",
+  "@discoveredContacts_addedSome": {
+    "placeholders": {
+      "added": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "discoveredContacts_radioFull": "Your radio's contact list is full. Remove some contacts first.",
+  "fieldIntel_radioNow": "Radio right now",
+  "fieldIntel_noRadio": "Connect your radio for live readings.",
+  "fieldIntel_noise": "noise dBm",
+  "fieldIntel_lastSnr": "last SNR",
+  "fieldIntel_lastRssi": "last RSSI",
+  "fieldIntel_battery": "battery V",
+  "fieldIntel_airtime": "Airtime since the radio started: sent {sent}, received {received}",
+  "@fieldIntel_airtime": {
+    "placeholders": {
+      "sent": {
+        "type": "String"
+      },
+      "received": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldIntel_whoAround": "Who's around",
+  "fieldIntel_m15": "15 min",
+  "fieldIntel_h1": "1 hour",
+  "fieldIntel_h24": "24 hours",
+  "fieldIntel_older": "Older",
+  "fieldIntel_lastHour": "Last hour",
+  "fieldIntel_chartHint": "When each node was last heard, hour by hour, over the past day. Tap a bar to see who.",
+  "fieldIntel_mix": "Node mix",
+  "fieldIntel_reach": "Reach",
+  "fieldIntel_hops1": "1 hop",
+  "fieldIntel_hops2": "2 hops",
+  "fieldIntel_hops3": "3+ hops",
+  "fieldIntel_noRoute": "No route yet",
+  "fieldIntel_distance": "Nearest and farthest",
+  "fieldIntel_noneLocated": "None of your contacts has a position.",
+  "fieldIntel_noPosition": "Your radio has no position yet, so distances can't be worked out.",
+  "fieldIntel_bestRepeaters": "Best repeaters you hear directly",
+  "fieldIntel_noneDirect": "No repeater heard directly in the last 30 minutes.",
+  "fieldIntel_attention": "Needs attention",
+  "fieldIntel_allGood": "Nothing needs attention.",
+  "fieldIntel_lowBattery": "Battery low: {volts} V",
+  "@fieldIntel_lowBattery": {
+    "placeholders": {
+      "volts": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldIntel_quietFavorite": "Favourite not heard since {ago}",
+  "@fieldIntel_quietFavorite": {
+    "placeholders": {
+      "ago": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldIntel_moreTools": "More tools",
+  "fieldIntel_nodeCount": "Nodes: {count}",
+  "@fieldIntel_nodeCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "fieldIntel_none": "No nodes here.",
+  "fieldIntel_lastHeard": "Last heard {ago}",
+  "@fieldIntel_lastHeard": {
+    "placeholders": {
+      "ago": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldIntel_showOnMap": "Show on map",
+  "fieldIntel_openChat": "Open chat",
+  "repeaterTools_login": "Log in",
+  "repeaterTools_heardDirect": "Heard directly",
+  "repeaterTools_filterAll": "All",
+  "repeaterTools_filterLowBattery": "Low battery",
+  "repeaterTools_hint": "Tap a repeater for its details, and log in from there for status, neighbours, telemetry and the command line.",
+  "repeaterTools_noneMatch": "No repeaters here.",
+  "repeaterTools_toolsTitle": "Tools",
+  "repeaterTools_regionSetupHint": "Look up your area's region tree and copy its commands",
+  "routes_failingOnly": "Only routes that failed",
+  "routes_contactDetails": "Contact details",
+  "links_contactTitle": "Add a contact?",
+  "links_importAdvert": "Add this contact to your radio?",
+  "links_connectFirst": "Connect your radio first, then open the link again.",
+  "links_added": "Contact added",
+  "links_notContact": "This link isn't a MeshCore contact.",
+  "radioBuzzer_title": "Radio buzzer",
+  "radioBuzzer_hint": "Beeps on the radio for new messages. Only shown for radios with a buzzer.",
+  "radioBuzzer_failed": "The radio didn't accept the change. Try again.",
+  "appSettings_floodAttempts": "Flood attempts",
+  "appSettings_floodAttemptsSubtitle": "Extra tries sent as a flood after the direct ones fail, in case the route has changed. Each one uses more airtime. 0 turns them off.",
+  "pathGraph_you": "You",
+  "pathGraph_relayed": "Relayed {count} messages",
+  "@pathGraph_relayed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pathGraph_ambiguousNote": "This short ID matches more than one repeater, so it can't be pinned to one.",
+  "pathGraph_comesFrom": "Comes from",
+  "pathGraph_goesTo": "Goes to",
+  "pathGraph_repeaterDetails": "Repeater details",
+  "pathGraph_days7": "7 days",
+  "pathGraph_empty": "No channel message paths in this period yet. Paths are collected from channel messages you receive while message tracing is on.",
+  "pathGraph_summary": "{paths} paths heard · {repeaters} repeaters",
+  "@pathGraph_summary": {
+    "placeholders": {
+      "paths": {
+        "type": "int"
+      },
+      "repeaters": {
+        "type": "int"
+      }
+    }
+  },
+  "pathGraph_hashOnly": "Each hop is shown by its hash prefix, or its name when you know the repeater.",
+  "pathGraph_matched": "{count} short (1-byte) hops matched to a specific repeater using longer paths.",
+  "@pathGraph_matched": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pathGraph_matchedAmbiguous": "{matched} short (1-byte) hops matched to a specific repeater using longer paths · {ambiguous} still ambiguous (marked ?).",
+  "@pathGraph_matchedAmbiguous": {
+    "placeholders": {
+      "matched": {
+        "type": "int"
+      },
+      "ambiguous": {
+        "type": "int"
+      }
+    }
+  },
+  "pathGraph_chartHint": "Left: repeaters farther away. Right: you. Band width is how many messages took that hop. Tap a box to see that repeater.",
+  "pathGraph_busiest": "Busiest repeaters",
+  "pathGraph_chartSemantics": "Path graph. Busiest repeater {name}, relayed {count} messages.",
+  "@pathGraph_chartSemantics": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "diag_copied": "Copied: {label}",
+  "@diag_copied": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "diag_noChannels": "No channels on this radio.",
+  "diag_tapToCopy": "Tap any value to copy it. Pull down to refresh.",
+  "diag_storage": "Storage",
+  "diag_storageValue": "{used} of {total} KB",
+  "@diag_storageValue": {
+    "placeholders": {
+      "used": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "favReturn_setting": "Favorites back in range",
+  "favReturn_settingHint": "Notify when a favorite is heard again after a quiet spell",
+  "favReturn_off": "Off",
+  "favReturn_hours": "{count, plural, =1{After 1 hour} other{After {count} hours}}",
+  "@favReturn_hours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "favReturn_title": "Back in range",
+  "favReturn_body": "{name} heard again after {hours, plural, =1{1 hour} other{{hours} hours}} quiet",
+  "@favReturn_body": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "ham_heardFrom": "Heard from",
+  "ham_lastHeard": "Last frame heard from",
+  "ham_nothingHeardYet": "nothing yet",
+  "ham_readyToTransmit": "Ready to transmit",
+  "ham_notReadyToTransmit": "Check the items marked below before transmitting",
+  "ham_bannerNameMismatch": "Name the radio with your call sign before transmitting",
+  "ham_bannerOutOfBand": "The radio is set outside the ham bands",
+  "a11y_showPassword": "Show password",
+  "a11y_hidePassword": "Hide password",
+  "a11y_sendLocation": "Send my location",
+  "a11y_toggleFlash": "Flashlight",
+  "a11y_switchCamera": "Switch camera",
+  "los_worst": "WORST",
+  "los_selectedObstruction": "Selected obstruction",
+  "bastionHome_stationOk": "Node name and band check out",
+  "bastionHome_stationConnectToCheck": "Connect a radio to check its name and band",
+  "theme_selected": "Selected",
+  "theme_desc_blaze": "Charcoal slate with hi-vis orange",
+  "theme_desc_blackout": "Matte black and steel. The default.",
+  "theme_desc_tactical": "Olive, gunmetal and earth tones for the field",
+  "theme_desc_okabe_ito": "Colour-vision friendly, on blue-grey",
+  "theme_desc_night_ops": "Dim red for working in the dark",
+  "rxLog_title": "RX log",
+  "rxLog_hint": "Every packet your radio hears, live",
+  "rxLog_empty": "No packets yet. Packets your radio hears show up here as they arrive.",
+  "rxLog_note": "Kept in memory only, the last 2,000 packets. Nothing is saved or sent.",
+  "rxLog_pause": "Pause",
+  "rxLog_resume": "Resume",
+  "rxLog_export": "Export CSV",
+  "rxLog_clearConfirm": "Clear the RX log?",
+  "rxLog_count": "{shown} shown · {total} heard",
+  "@rxLog_count": {
+    "placeholders": {
+      "shown": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "rxLog_paused": "Paused: new packets aren't being logged",
+  "rxLog_kindAll": "All",
+  "rxLog_kindAdvert": "Adverts",
+  "rxLog_kindChannel": "Channel",
+  "rxLog_kindDirect": "Direct",
+  "rxLog_kindAck": "ACKs",
+  "rxLog_kindPath": "Paths",
+  "rxLog_kindTrace": "Traces",
+  "rxLog_kindControl": "Control",
+  "rxLog_kindOther": "Other",
+  "rxLog_routeFlood": "Flood",
+  "rxLog_routeDirect": "Direct route",
+  "rxLog_heardDirectly": "Heard directly",
+  "rxLog_hops": "{count, plural, =1{1 hop} other{{count} hops}}",
+  "@rxLog_hops": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "rxLog_bytes": "{count, plural, =1{1 byte} other{{count} bytes}}",
+  "@rxLog_bytes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "rxLog_own": "Your radio",
+  "rxLog_signal": "SNR {snr} · {rssi} dBm",
+  "@rxLog_signal": {
+    "placeholders": {
+      "snr": {
+        "type": "String"
+      },
+      "rssi": {
+        "type": "int"
+      }
+    }
+  },
+  "rxLog_signalTitle": "Signal",
+  "rxLog_route": "Route",
+  "rxLog_path": "Path",
+  "rxLog_payloadType": "Payload type",
+  "rxLog_hash": "Packet hash",
+  "rxLog_raw": "Raw packet",
+  "rxLog_copyHex": "Copy hex",
+  "deliv_title": "Delivery details",
+  "deliv_note": "Worked out from what's saved with this message.",
+  "deliv_queued": "Queued",
+  "deliv_sent": "Sent by your radio",
+  "deliv_notSent": "Not taken by your radio",
+  "deliv_attempts": "Attempts",
+  "deliv_attemptsValue": "{made} of {total}",
+  "@deliv_attemptsValue": {
+    "placeholders": {
+      "made": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "deliv_plan": "Plan: {direct} direct, then {flood} flood",
+  "@deliv_plan": {
+    "placeholders": {
+      "direct": {
+        "type": "int"
+      },
+      "flood": {
+        "type": "int"
+      }
+    }
+  },
+  "deliv_lastRoute": "Last route",
+  "deliv_routeFlood": "Flood, through every repeater",
+  "deliv_routeNeighbor": "Direct, no repeaters",
+  "deliv_routeVia": "Direct via {path}",
+  "@deliv_routeVia": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "deliv_confirmed": "Confirmed received",
+  "deliv_tripTime": "Round trip {seconds} s",
+  "@deliv_tripTime": {
+    "placeholders": {
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "deliv_waiting": "Waiting for confirmation",
+  "deliv_noConfirm": "No confirmation",
+  "deliv_lastHeard": "{name} last heard",
+  "@deliv_lastHeard": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "deliv_hoursAgo": "{hours, plural, =1{1 hour ago} other{{hours} hours ago}}",
+  "@deliv_hoursAgo": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "deliv_vDelivered": "Delivered. {name} confirmed it.",
+  "@deliv_vDelivered": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "deliv_vDeliveredFlood": "Delivered by flood after the direct tries failed. The saved route to {name} may be out of date.",
+  "@deliv_vDeliveredFlood": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "deliv_vPending": "Still trying: attempt {attempt} of {total}.",
+  "@deliv_vPending": {
+    "placeholders": {
+      "attempt": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "deliv_vNotSent": "Your radio never took this message. Check it's connected, then retry.",
+  "deliv_vQuiet": "No confirmation. {name} hasn't been heard for {hours, plural, =1{1 hour} other{{hours} hours}}, so they may be out of range or switched off.",
+  "@deliv_vQuiet": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "deliv_vNoFlood": "No confirmation over the saved route, and flood attempts are off. Turn them on in Settings → App Settings → Messaging, or retry.",
+  "deliv_vNoAck": "No confirmation from any route. They may be out of range, or their confirmation couldn't get back to you.",
+  "batteryOpt_title": "Battery optimisation",
+  "batteryOpt_off": "Off for NOTORYX Core Ham, so alerts keep working in the background.",
+  "batteryOpt_on": "On. Android may stop the app in the background, so SOS, check-in and message alerts can be late or missed.",
+  "batteryOpt_fix": "Turn off",
+  "block_sender": "Block {name}",
+  "@block_sender": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "block_confirmBody": "Their channel messages are hidden on this device and never notify you. They can still see your messages. You can unblock them in Settings.",
+  "block_action": "Block",
+  "block_done": "{name} blocked",
+  "@block_done": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "mention_suggestions": "Name suggestions",
+  "block_listTitle": "Blocked senders",
+  "block_listHint": "Messages from these names are hidden in channels and never notify you.",
+  "block_listEmpty": "No one is blocked.",
+  "block_unblock": "Unblock",
+  "block_count": "{count, plural, =0{No one blocked} =1{1 blocked} other{{count} blocked}}",
+  "@block_count": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "contactTable_nearlyFull": "Radio contact list {percent}% full",
+  "@contactTable_nearlyFull": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "contactTable_full": "Radio contact list is full",
+  "contactTable_count": "{used} of {max} contacts",
+  "@contactTable_count": {
+    "placeholders": {
+      "used": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "contactTable_overwriteHint": "When it's full, the radio replaces the contact heard least recently. Favorites are kept.",
+  "contactTable_stopHint": "When it's full, the radio stops adding new contacts it hears.",
+  "contactTable_freeUp": "Free up space",
+  "contactTable_sheetBody": "Heard least recently first. Favorites aren't listed.",
+  "contactTable_lastHeard": "Last heard {when}",
+  "@contactTable_lastHeard": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "contactTable_remove": "{count, plural, =1{Remove 1 contact} other{Remove {count} contacts}}",
+  "@contactTable_remove": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "contactTable_confirmBody": "They're removed from the radio, and their messages on this device are deleted. This can't be undone.",
+  "contactTable_removed": "{count, plural, =1{Removed 1 contact} other{Removed {count} contacts}}",
+  "@contactTable_removed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "contactTable_noneToSuggest": "Every contact is a favorite, so there's nothing to suggest.",
+  "adminWait_waiting": "Waiting for a reply",
+  "adminWait_retrying": "No reply yet. Trying again ({attempt} of {total})",
+  "@adminWait_retrying": {
+    "placeholders": {
+      "attempt": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "adminWait_direct": "{hops, plural, =0{Direct} =1{Direct, 1 hop} other{Direct, {hops} hops}}",
+  "@adminWait_direct": {
+    "placeholders": {
+      "hops": {
+        "type": "int"
+      }
+    }
+  },
+  "adminWait_upTo": "up to {seconds} s",
+  "@adminWait_upTo": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "coords_setting": "Coordinate format",
+  "coords_decimal": "Decimal degrees",
+  "coords_dms": "Degrees, minutes, seconds",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "Copy position",
+  "coords_copied": "Copied as {format}",
+  "@coords_copied": {
+    "placeholders": {
+      "format": {
+        "type": "String"
+      }
+    }
+  },
+  "pathHash_badge": "Route uses {width}-byte path hashes",
+  "@pathHash_badge": {
+    "placeholders": {
+      "width": {
+        "type": "int"
+      }
+    }
+  },
+  "pathHash_mismatch": "Your radio uses {width}-byte",
+  "@pathHash_mismatch": {
+    "placeholders": {
+      "width": {
+        "type": "int"
+      }
+    }
+  },
+  "ham_idMismatchTitle": "{count, plural, =1{1 station ID doesn't match its name} other{{count} station IDs don't match their names}}",
+  "@ham_idMismatchTitle": {
+    "description": "Licensed operator: heading over direct adverts whose station ID differs from the call sign in their name",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ham_idMismatchBody": "Heard directly, these adverts carried a station ID other than the call sign their name starts with. It may be a misconfigured radio; check with the operator before relying on it.",
+  "@ham_idMismatchBody": {
+    "description": "Licensed operator: explains a station ID mismatch"
+  },
+  "ham_idMismatchSentAs": "sent with station ID {station}",
+  "@ham_idMismatchSentAs": {
+    "description": "Licensed operator: after an advert name, the station ID its frame carried",
+    "placeholders": {
+      "station": {
+        "type": "String",
+        "example": "W1AW"
+      }
+    }
+  },
+  "ham_idMismatchNoCall": "This name doesn't start with a call sign",
+  "@ham_idMismatchNoCall": {
+    "description": "Licensed operator: note under an advert name with no call sign"
+  },
+  "ham_composerPlainText": "Plain text: anyone listening can read this",
+  "@ham_composerPlainText": {
+    "description": "Hint in the message box: ham frames are not encrypted (FCC Part 97)"
+  },
+  "ham_bannerStockFirmware": "This radio runs stock MeshCore. Don't transmit with it on the ham bands",
+  "ham_firmwareOk": "NOTORYX Ham firmware: station ID, plain text, ham bands only",
+  "ham_firmwareStock": "Stock MeshCore encrypts and sends no station ID. Flash the NOTORYX Ham firmware before transmitting",
+  "@ham_bannerStockFirmware": {
+    "description": "Top banner when the connected radio reports a non-ham firmware version"
+  },
+  "@ham_firmwareOk": {
+    "description": "Licensed operator: note under the firmware row on NOTORYX Ham firmware"
+  },
+  "@ham_firmwareStock": {
+    "description": "Licensed operator: note under the firmware row on stock MeshCore"
+  },
+  "ham_stationLog": "Station log",
+  "ham_stationLogExport": "Export the log",
+  "ham_exportAdif": "Export ADIF (.adi)",
+  "ham_exportCsv": "Export CSV",
+  "ham_stationLogClear": "Clear the log",
+  "ham_stationLogClearConfirm": "Delete every entry in the station log? This can't be undone.",
+  "ham_stationLogEmpty": "No stations logged yet",
+  "ham_stationLogHint": "Direct messages with stations whose names start with a call sign are logged here, on this phone only.",
+  "ham_stationLogCounts": "{sent} sent, {received} received",
+  "@ham_stationLog": {
+    "description": "Station log (ham QSO log) screen"
+  },
+  "@ham_stationLogExport": {
+    "description": "Station log (ham QSO log) screen"
+  },
+  "@ham_exportAdif": {
+    "description": "Station log (ham QSO log) screen"
+  },
+  "@ham_exportCsv": {
+    "description": "Station log (ham QSO log) screen"
+  },
+  "@ham_stationLogClear": {
+    "description": "Station log (ham QSO log) screen"
+  },
+  "@ham_stationLogClearConfirm": {
+    "description": "Station log (ham QSO log) screen"
+  },
+  "@ham_stationLogEmpty": {
+    "description": "Station log (ham QSO log) screen"
+  },
+  "@ham_stationLogHint": {
+    "description": "Station log (ham QSO log) screen"
+  },
+  "@ham_stationLogCounts": {
+    "description": "Station log row: messages sent and received in one exchange",
+    "placeholders": {
+      "sent": {
+        "type": "int"
+      },
+      "received": {
+        "type": "int"
+      }
+    }
+  },
+  "ham_rxStationId": "ID {call}",
+  "ham_stationIdLabel": "Station ID",
+  "ham_stationIdHint": "The station that transmitted this frame: the sender, or the repeater that relayed it",
+  "@ham_rxStationId": {
+    "description": "RX log row: the call sign in the frame's station ID",
+    "placeholders": {
+      "call": {
+        "type": "String",
+        "example": "W1AW"
+      }
+    }
+  },
+  "@ham_stationIdLabel": {
+    "description": "RX packet details: station ID row title"
+  },
+  "@ham_stationIdHint": {
+    "description": "RX packet details: what the station ID means"
+  },
+  "ham_stockTrafficTitle": "{count, plural, =1{1 stock MeshCore frame heard here in the last 10 minutes} other{{count} stock MeshCore frames heard here in the last 10 minutes}}",
+  "security_title": "Security",
+  "security_toolSubtitle": "App lock and encrypted message history",
+  "appLock_title": "App lock",
+  "appLock_subtitle": "Ask for your fingerprint, face or screen lock when opening the app. Alerts keep working, and SOS stays on the lock screen.",
+  "appLock_reason": "Unlock NOTORYX Core Ham",
+  "appLock_unlock": "Unlock",
+  "appLock_locked": "NOTORYX Core Ham is locked",
+  "appLock_unavailable": "This device has no screen lock, or it couldn't be confirmed.",
+  "dbEncrypt_title": "Encrypt message history",
+  "dbEncrypt_subtitle": "Scrambles the message database on this device, with a key held in the phone's secure storage. If that key is lost, the history can't be recovered, so keep a backup.",
+  "dbEncrypt_on": "Status: encrypted",
+  "dbEncrypt_off": "Status: not encrypted",
+  "dbEncrypt_failed": "Status: couldn't apply. Your history is unchanged.",
+  "dbEncrypt_restart": "Takes effect the next time the app starts.",
+  "appLock_sosNoTarget": "Unlock and choose who gets your SOS first.",
+  "ham_stockTrafficBody": "Another network, such as a Part 15 MeshCore mesh, is using this frequency. Its frames carry no station ID and the ham firmware can't read them. Check with your frequency coordinator before transmitting here.",
+  "@ham_stockTrafficTitle": {
+    "description": "Licensed operator: stock (non-ham) MeshCore frames heard on this frequency",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@ham_stockTrafficBody": {
+    "description": "Licensed operator: what stock MeshCore traffic on the frequency means"
+  },
+  "forward_action": "Forward",
+  "forward_title": "Forward message",
+  "forward_to": "Send to",
+  "forward_send": "Send",
+  "forward_hint": "Goes out under your call sign and names who wrote it. You're responsible for what you forward.",
+  "forward_needCallsign": "Set your call sign under Licensed operator first.",
+  "forward_tooLong": "Too long by {count} bytes. Shorten the message.",
+  "forward_sent": "Forwarded to the radio",
+  "@forward_tooLong": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ham_setupBeforeTitle": "Before you transmit",
+  "team_title": "Team config",
+  "team_toolSubtitle": "Share radio settings and channels by QR or file",
+  "team_shareHint": "Shares this radio's frequency, bandwidth, spreading factor, coding rate and hashtag channels. No keys and no transmit power are included.",
+  "team_shareFile": "Share as a file",
+  "team_scan": "Scan a team QR code",
+  "team_openFile": "Open a team file",
+  "team_importTitle": "Apply team config?",
+  "team_apply": "Apply to radio",
+  "team_invalid": "This isn't a valid team config, or its frequency is outside the amateur bands.",
+  "team_applied": "Team config applied",
+  "team_summary": "{freq} MHz, {bandwidth} kHz, SF{sf}, CR{cr}",
+  "team_channels": "Channels: {names}",
+  "@team_summary": {
+    "placeholders": {
+      "freq": {
+        "type": "String"
+      },
+      "bandwidth": {
+        "type": "String"
+      },
+      "sf": {
+        "type": "int"
+      },
+      "cr": {
+        "type": "int"
+      }
+    }
+  },
+  "@team_channels": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "ham_setupBeforeBody": "Read the coordination guide, then add your call sign and licence in Licensed operator. Don't transmit until your frequency coordinator and the other stations on your mesh have agreed on a channel.",
+  "ham_setupBeforeDone": "Licensed operator set up as {call}",
+  "@ham_setupBeforeTitle": {
+    "description": "Get started: first card, before connecting a radio"
+  },
+  "@ham_setupBeforeBody": {
+    "description": "Get started: coordinate before transmitting"
+  },
+  "@ham_setupBeforeDone": {
+    "description": "Get started: operator profile is complete",
+    "placeholders": {
+      "call": {
+        "type": "String",
+        "example": "W1AW"
+      }
+    }
+  },
+  "fieldOps_kindReport": "Report",
+  "fieldReport_title": "Field reports",
+  "fieldReport_open": "Write a SALUTE or 9-Line report",
+  "fieldReport_hint": "Sent as plain text under your call sign to your trip contacts and SOS channel. Nothing goes out until you press Send.",
+  "fieldReport_usePosition": "Use the radio's position",
+  "fieldReport_preview": "Messages to send: {count}",
+  "fieldReport_needCallsign": "Set your call sign under Licensed operator first.",
+  "fieldReport_tooLong": "One line is too long for a single message. Shorten it.",
+  "fieldReport_sent": "Report sent to the radio",
+  "@fieldReport_preview": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coords_maidenhead": "Maidenhead locator",
+  "reactions_radioTitle": "Send reactions over the radio",
+  "reactions_radioHint": "Each reaction is a packet on air. Automatic keeps them on this device on the EU 868 MHz band, where airtime is limited.",
+  "reactions_radioAuto": "Automatic",
+  "reactions_radioOn": "On",
+  "reactions_radioOff": "Off (this device)",
+  "notification_replyAction": "Reply",
+  "notification_replyHint": "Write a reply",
+  "notification_markRead": "Mark as read",
+  "notification_you": "You",
+  "mesh_title": "Mesh health",
+  "mesh_overallGood": "The mesh looks healthy",
+  "mesh_overallFair": "The mesh works, with some trouble",
+  "mesh_overallPoor": "The mesh is struggling",
+  "mesh_overallUnknown": "Not enough to go on yet",
+  "mesh_gradeGood": "Good",
+  "mesh_gradeFair": "Fair",
+  "mesh_gradePoor": "Poor",
+  "mesh_gradeUnknown": "No data",
+  "mesh_noise": "Noise",
+  "mesh_noiseValue": "{dbm} dBm noise floor",
+  "@mesh_noiseValue": {
+    "placeholders": {
+      "dbm": {
+        "type": "String"
+      }
+    }
+  },
+  "mesh_signal": "Last signal",
+  "mesh_signalValue": "SNR {db} dB",
+  "@mesh_signalValue": {
+    "placeholders": {
+      "db": {
+        "type": "String"
+      }
+    }
+  },
+  "mesh_busy": "Channel use",
+  "mesh_busyValue": "on air {percent}% of the last 15 minutes",
+  "@mesh_busyValue": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "mesh_neighbours": "Heard directly",
+  "mesh_neighboursValue": "{count} nodes in the last hour",
+  "@mesh_neighboursValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "mesh_delivery": "Direct messages",
+  "mesh_deliveryValue": "{delivered} of {total} delivered in the last day",
+  "@mesh_deliveryValue": {
+    "placeholders": {
+      "delivered": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "mesh_tipNoise": "Something nearby is noisy on this frequency. Move the antenna away from electronics and chargers.",
+  "mesh_tipSignal": "The last packet was weak. Raise the antenna or move to higher ground.",
+  "mesh_tipBusy": "The channel is busy. Keep messages short and avoid sending floods.",
+  "mesh_tipNeighbours": "Few nodes are heard directly. Raise the antenna or move closer to a repeater.",
+  "mesh_tipDelivery": "Many messages aren't acknowledged. Open a failed message to see where it stopped.",
+  "routeHealth_staleTitle": "The route to {name} may be out of date",
+  "@routeHealth_staleTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "routeHealth_weakTitle": "The route to {name} is unreliable",
+  "@routeHealth_weakTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "routeHealth_lastWorkedHours": "last worked {hours} h ago",
+  "@routeHealth_lastWorkedHours": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "routeHealth_lastWorkedDays": "last worked {days} days ago",
+  "@routeHealth_lastWorkedDays": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "routeHealth_notHeard": "not heard from in {days} days",
+  "@routeHealth_notHeard": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "routeHealth_failures": "{failures} of {attempts} tries failed",
+  "@routeHealth_failures": {
+    "placeholders": {
+      "failures": {
+        "type": "int"
+      },
+      "attempts": {
+        "type": "int"
+      }
+    }
+  },
+  "routeHealth_longPath": "{hops} hops",
+  "@routeHealth_longPath": {
+    "placeholders": {
+      "hops": {
+        "type": "int"
+      }
+    }
+  },
+  "routeHealth_useFlood": "Find a new route",
+  "routeHealth_keep": "Keep this route",
+  "netChange_title": "Network changes",
+  "netChange_toolSubtitle": "Repeaters that appeared nearby or went quiet",
+  "netChange_newDirect": "New repeater heard directly: {name}",
+  "@netChange_newDirect": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "netChange_newHops": "New repeater {hops} hop away: {name}",
+  "@netChange_newHops": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "hops": {
+        "type": "int"
+      }
+    }
+  },
+  "netChange_wentQuiet": "{name} went quiet: not heard for {hours} h",
+  "@netChange_wentQuiet": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "netChange_empty": "No changes yet. Favourite repeaters that go quiet, and new repeaters nearby, show up here.",
+  "netChange_quietSetting": "Favourite repeater goes quiet",
+  "netChange_quietHint": "Notify when a favourite repeater hasn't been heard for this long",
+  "netChange_newSetting": "New repeater nearby",
+  "netChange_newHint": "Notify when a repeater not seen before is heard within one hop",
+  "netChange_clear": "Clear",
+  "netChange_notifTitle": "Network change",
+  "journal_title": "Node journal",
+  "journal_toolSubtitle": "Every node ever heard, with behaviour labels, tags and notes",
+  "journal_empty": "No nodes yet. Every node your radio hears is added here automatically.",
+  "journal_search": "Search names, IDs, tags and notes",
+  "journal_filterAll": "All",
+  "journal_bSteadyRelay": "Always-on relay",
+  "journal_bRegular": "Regular",
+  "journal_bRoamer": "Roamer",
+  "journal_bRarelyHeard": "Rarely heard",
+  "journal_bNewcomer": "Newcomer",
+  "journal_bGoneQuiet": "Gone quiet",
+  "journal_confidence": "{percent}% sure",
+  "@journal_confidence": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "journal_eDaysHeard": "Heard on {heard} of {days} days",
+  "@journal_eDaysHeard": {
+    "placeholders": {
+      "heard": {
+        "type": "int"
+      },
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "journal_eFirstHeard": "First heard {hours} h ago",
+  "@journal_eFirstHeard": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "journal_eSilent": "Not heard for {days} days",
+  "@journal_eSilent": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "journal_ePlaces": "Seen at {places} places up to {km} km apart",
+  "@journal_ePlaces": {
+    "placeholders": {
+      "places": {
+        "type": "int"
+      },
+      "km": {
+        "type": "int"
+      }
+    }
+  },
+  "journal_eSightings": "{count} fresh adverts in all",
+  "@journal_eSightings": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "journal_noLabel": "Not enough seen yet for a label.",
+  "journal_firstSeen": "First heard: {time}",
+  "@journal_firstSeen": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "journal_lastSeen": "Last heard: {time}",
+  "@journal_lastSeen": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "journal_hops": "Hops seen: {min} to {max}",
+  "@journal_hops": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "journal_tags": "Tags",
+  "journal_addTag": "Add tag",
+  "journal_tagHint": "e.g. trailhead, club, mine",
+  "journal_removeTag": "Remove tag {tag}",
+  "@journal_removeTag": {
+    "placeholders": {
+      "tag": {
+        "type": "String"
+      }
+    }
+  },
+  "journal_note": "Note",
+  "journal_saveNote": "Save note",
+  "journal_forget": "Forget this node",
+  "journal_forgetConfirm": "Remove {name} from the journal, with its tags and note? It starts fresh if heard again.",
+  "@journal_forgetConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "journal_forgotten": "Node removed from the journal.",
+  "journal_markLabel": "Generated mark for {name}",
+  "@journal_markLabel": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "trouble_title": "Troubleshooting",
+  "trouble_toolSubtitle": "Step-by-step help when something doesn't work",
+  "trouble_pick": "What's wrong?",
+  "trouble_noDelivery": "Messages aren't delivered",
+  "trouble_noConnect": "Can't connect to my radio",
+  "trouble_hearNobody": "I don't hear anyone",
+  "trouble_startHere": "Start here",
+  "trouble_resultOk": "OK",
+  "trouble_resultProblem": "Problem",
+  "trouble_resultUnchecked": "Can't check",
+  "trouble_connectedNow": "You're connected now. If it keeps dropping, the steps below still help.",
+  "trouble_allOk": "Every check passed. If it still doesn't work, the steps below are worth a look.",
+  "trouble_connected": "Your radio is connected",
+  "trouble_connectedAdvice": "Connect your radio first: Settings → Connect a radio.",
+  "trouble_routes": "Routes are known to the people you message",
+  "trouble_routesAdvice": "Messages to someone with no known route flood the whole mesh and often don't arrive. Wait until they advert, or ask them to, then message again.",
+  "trouble_heardRecently": "The people you message were heard in the last day",
+  "trouble_heardRecentlyAdvice": "Someone not heard in a while may be out of range or switched off. Their messages can't be acknowledged until they're back.",
+  "trouble_neighbours": "Your radio hears other nodes",
+  "trouble_neighboursAdvice": "Nothing heard directly means your radio can't reach the mesh from here. Raise the antenna, go higher, or move closer to a repeater.",
+  "trouble_bluetooth": "Bluetooth is on and the app may use it",
+  "trouble_bluetoothAdvice": "Check Bluetooth is on, and that NOTORYX Core Ham has Bluetooth (and on Android, Nearby devices) permission in the phone's settings.",
+  "trouble_otherApp": "No other phone or app is connected to the radio",
+  "trouble_otherAppAdvice": "A radio talks to one app at a time. Close other MeshCore apps, or turn Bluetooth off on other phones that were paired.",
+  "trouble_inRange": "The radio is on and nearby",
+  "trouble_inRangeAdvice": "Check the radio is charged and switched on, and within a few metres. Restarting the radio often clears a stuck connection.",
+  "trouble_otherTransport": "Try another way to connect",
+  "trouble_otherTransportAdvice": "If Bluetooth keeps failing, connect with a USB cable, or over Wi-Fi (TCP) if your radio supports it.",
+  "trouble_noise": "The radio isn't drowned in noise",
+  "trouble_noiseAdvice": "A high noise floor hides weak signals. Move the antenna away from electronics, chargers and solar controllers.",
+  "trouble_region": "Your radio uses the agreed channel",
+  "trouble_regionAdvice": "A different frequency, bandwidth or spreading factor from the other stations hears no one. Compare Settings → Radio with the channel agreed with your frequency coordinator.",
+  "trouble_antenna": "The antenna is fitted",
+  "trouble_antennaAdvice": "Make sure the antenna is screwed on firmly. Never transmit without one; it can damage the radio.",
+  "readiness_sos": "SOS recipients",
+  "readiness_sosOk": "SOS has someone to send to.",
+  "readiness_sosBlocked": "SOS has no one to reach. Add trip contacts who are in your contacts, or set an SOS channel.",
+  "readiness_routes": "Routes to trip contacts",
+  "readiness_routesOk": "A route is known to every trip contact.",
+  "readiness_routesMissing": "No known route to {names}. Messages will flood until one is learned. Send them a message before you go.",
+  "@readiness_routesMissing": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "readiness_notifications": "Notifications",
+  "readiness_notificationsOk": "Allowed.",
+  "readiness_notificationsOff": "Notifications are off, so you won't hear replies, check-ins or alerts.",
+  "readiness_batteryOpt": "Battery optimisation",
+  "readiness_batteryOptOk": "NOTORYX Core Ham is exempt.",
+  "readiness_batteryOptOn": "Android may stop the app in the background. Turn it off in Settings → App Settings → Notifications.",
+  "readiness_blockedTitle": "Can't start the trip yet",
+  "readiness_warnTitle": "{count} things to check",
+  "@readiness_warnTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "readiness_startAnyway": "Start anyway",
+  "readiness_review": "Review",
+  "readiness_summaryReady": "Ready to go",
+  "readiness_summaryWarn": "{count} to check",
+  "@readiness_summaryWarn": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "readiness_summaryBlocked": "SOS can't reach anyone",
+  "waypoints_title": "Waypoints",
+  "waypoints_toolSubtitle": "Saved places and routes; import or export GPX",
+  "waypoints_importFile": "Import GPX file",
+  "waypoints_importPaste": "Paste GPX",
+  "waypoints_export": "Export GPX",
+  "waypoints_empty": "No waypoints yet. Import a GPX file, or save a place someone shared in a chat.",
+  "waypoints_waypoints": "Waypoints ({count})",
+  "@waypoints_waypoints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "waypoints_routes": "Routes ({count})",
+  "@waypoints_routes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "waypoints_routeSummary": "{points} points · {km} km",
+  "@waypoints_routeSummary": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      },
+      "km": {
+        "type": "String"
+      }
+    }
+  },
+  "waypoints_delete": "Delete",
+  "waypoints_copy": "Copy coordinates",
+  "waypoints_sendToChannel": "Send to a channel",
+  "waypoints_pickChannel": "Send to which channel?",
+  "waypoints_sent": "Sent to {channel}",
+  "@waypoints_sent": {
+    "placeholders": {
+      "channel": {
+        "type": "String"
+      }
+    }
+  },
+  "waypoints_importFailed": "That isn't a GPX file the app can read.",
+  "waypoints_pasteHint": "Paste the GPX text here",
+  "waypoints_import": "Import",
+  "waypoints_imported": "Added {waypoints} waypoints and {routes} routes",
+  "@waypoints_imported": {
+    "placeholders": {
+      "waypoints": {
+        "type": "int"
+      },
+      "routes": {
+        "type": "int"
+      }
+    }
+  },
+  "waypoints_save": "Save as waypoint",
+  "waypoints_unnamed": "Shared place",
+  "waypoints_saved": "Saved to Waypoints",
+  "waypoints_alreadySaved": "Already in Waypoints",
+  "map_showWaypoints": "Show saved waypoints and routes",
+  "dbEncrypt_covers": "Also covers contacts, channel keys, waypoints, saved routes, drafts and waiting messages.",
+  "bk_intro": "Save an encrypted copy of app settings, contacts, channel keys, waypoints and drafts, and if you choose, your message history. Offline maps, photos and radio firmware are not included.",
+  "bk_confirmBody": "This replaces {count} saved settings on this device, including contacts, channel keys and waypoints, with the ones in the backup. This cannot be undone.",
+  "bk_history": "Include message history",
+  "bk_historyHint": "Direct and channel messages for every radio. The file will be bigger.",
+  "bk_tooLarge": "The backup is too large. Turn off message history and try again.",
+  "bk_confirmHistory": "It also adds up to {count} messages to your history. Messages already on this device are kept.",
+  "@bk_confirmHistory": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bk_restoredHistory": "Added {count} messages to your history.",
+  "@bk_restoredHistory": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bk_confirmTitle": "Restore this backup?",
+  "bk_restored": "Restored {count} settings. Close the app fully and open it again to use them.",
+  "@bk_restored": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "automation_title": "Automation",
+  "automation_toolHint": "Rules that alert you or send a message when something happens",
+  "automation_newRule": "New rule",
+  "automation_editRule": "Edit rule",
+  "automation_hamNotice": "Rules run while the app is open. Automated messages are plain text and start with [auto]. They are held unless your station is ready to transmit (ham firmware, call sign in the radio's name, in band), limited to 3 every 10 minutes, and written to the station log. You remain the control operator for every automated transmission.",
+  "automation_empty": "No rules yet",
+  "automation_emptyHint": "Add a rule to get an alert when your battery runs low, a station goes quiet or a message arrives.",
+  "automation_allowWebhooks": "Allow webhooks",
+  "automation_allowWebhooksHint": "Needs internet. Off by default; webhook actions do nothing while this is off.",
+  "automation_workingChannel": "Working channel",
+  "automation_stationLogHint": "Every automated transmission is listed there",
+  "automation_activity": "Recent activity",
+  "automation_none": "None",
+  "automation_unnamed": "Unnamed rule",
+  "automation_transmits": "Transmits on air",
+  "automation_incomplete": "Unfinished",
+  "automation_ruleSwitch": "Rule {name} on",
+  "@automation_ruleSwitch": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "automation_ruleName": "Rule name",
+  "automation_when": "When",
+  "automation_then": "Then",
+  "automation_matchAll": "All are true (AND)",
+  "automation_matchAny": "Any is true (OR)",
+  "automation_matchAllShort": "{count, plural, =1{1 condition} other{All of {count} conditions}}",
+  "@automation_matchAllShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "automation_matchAnyShort": "{count, plural, =1{1 condition} other{Any of {count} conditions}}",
+  "@automation_matchAnyShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "automation_actionCount": "{count, plural, =1{1 action} other{{count} actions}}",
+  "@automation_actionCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "automation_addCondition": "Add condition",
+  "automation_addAction": "Add action",
+  "automation_remove": "Remove {item}",
+  "@automation_remove": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "automation_savedOff": "Saved switched off. Fill in every field to turn it on.",
+  "automation_deleteConfirm": "Delete this rule?",
+  "automation_transmitNotice": "This rule transmits. It only sends when your station is ready, at most 3 automated messages every 10 minutes and once every 15 minutes per rule, and each one is logged in the station log.",
+  "automation_condBattery": "Battery low",
+  "automation_condTime": "Time of day",
+  "automation_condEnter": "Enter an area",
+  "automation_condLeave": "Leave an area",
+  "automation_condMessage": "Message received",
+  "automation_condOnline": "Node online",
+  "automation_condOffline": "Node offline",
+  "automation_batteryBelow": "Radio battery below {percent}%",
+  "@automation_batteryBelow": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "automation_timeHint": "Every day at this time, on this device's clock",
+  "automation_latitude": "Latitude",
+  "automation_longitude": "Longitude",
+  "automation_radiusMeters": "Radius (meters)",
+  "automation_useRadioPosition": "Use the radio's position",
+  "automation_areaHint": "Uses the position the radio reports.",
+  "automation_sourceAny": "Any",
+  "automation_sourceDirect": "Direct",
+  "automation_sourceChannel": "Channel",
+  "automation_onChannel": "On channel",
+  "automation_anyChannel": "Any channel",
+  "automation_from": "From",
+  "automation_anyone": "Anyone",
+  "automation_contains": "Contains text (optional)",
+  "automation_node": "Node",
+  "automation_heardWithinMinutes": "Heard within (minutes)",
+  "automation_actionSend": "Send a message",
+  "automation_actionAlert": "Alert me",
+  "automation_actionChangeChannel": "Change working channel",
+  "automation_actionSound": "Play a sound",
+  "automation_actionWebhook": "Call a webhook",
+  "automation_sendTo": "Send to",
+  "automation_targetChannel": "Channel",
+  "automation_targetContact": "Contact",
+  "automation_message": "Message",
+  "automation_messageTooLong": "Too long: 140 bytes at most, [auto] included",
+  "automation_sendHint": "Sent on air as plain text with [auto] in front, and logged in the station log.",
+  "automation_alertText": "Alert text",
+  "automation_changeChannelHint": "Rules that send to the working channel use this channel from now on.",
+  "automation_soundHint": "Plays this device's alert sound.",
+  "automation_webhookUrl": "Webhook address (https://)",
+  "automation_webhookHttps": "Use an https:// address",
+  "automation_webhookNeedsInternet": "Needs internet. Sends the rule's name and the time.",
+  "automation_webhookOffNotice": "Needs internet. Webhooks are off: allow them on the Automation page.",
+  "automation_outDone": "Done",
+  "automation_outNotConnected": "Held: no radio connected",
+  "automation_outNotReady": "Held: station not ready to transmit",
+  "automation_outRateLimited": "Held: automated message limit reached",
+  "automation_outNoTarget": "Held: contact or channel not on the radio",
+  "automation_outWebhooksOff": "Skipped: webhooks are off",
+  "automation_outFailed": "Failed",
+  "ham_automatedTx": "Automated transmissions",
+  "ham_automatedTxHint": "Messages your automation rules sent on air.",
+  "ham_exportAutomatedCsv": "Export automated transmissions (CSV)",
+  "checklist_title": "Checklists",
+  "checklist_toolSubtitle": "Reusable pre-trip and deployment checklists that work offline",
+  "checklist_empty": "No checklists. Add one with the button below.",
+  "checklist_add": "New checklist",
+  "checklist_edit": "Edit checklist",
+  "checklist_name": "Name",
+  "checklist_items": "Items, one per line",
+  "checklist_itemCount": "Items: {count}",
+  "@checklist_itemCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "checklist_history": "Completed runs",
+  "checklist_noRuns": "No completed runs yet.",
+  "checklist_inProgress": "In progress",
+  "checklist_progress": "{done} of {total} done",
+  "@checklist_progress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "checklist_startedAt": "Started {time}",
+  "@checklist_startedAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "checklist_finishedAt": "Finished {time}",
+  "@checklist_finishedAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "checklist_note": "Note",
+  "checklist_finish": "Finish and save",
+  "checklist_unfinished": "Some items aren't ticked. Save the record anyway?",
+  "checklist_saveAnyway": "Save anyway",
+  "checklist_export": "Export or delete",
+  "checklist_exportText": "Share as text",
+  "checklist_exportJson": "Share as JSON",
+  "checklist_exportFailed": "Could not share the record.",
+  "checklist_deleteRun": "Delete record",
+  "checklist_deleteRunConfirm": "Delete this record? It can't be undone.",
+  "checklist_deleteConfirm": "Delete {name}? Its completed records are kept.",
+  "@checklist_deleteConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "checklist_preTrip": "Before a trip",
+  "checklist_preTrip1": "Radio charged and a spare battery packed",
+  "checklist_preTrip2": "Radio paired with the phone and a test message sent",
+  "checklist_preTrip3": "Offline maps saved for the area",
+  "checklist_preTrip4": "Route and return time left with someone at home",
+  "checklist_preTrip5": "Group channel and team contacts checked",
+  "checklist_preTrip6": "SOS and check-in tried once",
+  "checklist_deploy": "Putting up a node",
+  "checklist_deploy1": "Site and permission confirmed",
+  "checklist_deploy2": "Antenna mounted and connectors sealed",
+  "checklist_deploy3": "Power and solar checked",
+  "checklist_deploy4": "Radio settings and region confirmed",
+  "checklist_deploy5": "Test message heard through the node",
+  "checklist_deploy6": "Location, photos and notes recorded",
+  "automation_placeholders": "You can use {list}",
+  "@automation_placeholders": {
+    "placeholders": {
+      "list": {
+        "type": "String"
+      }
+    }
+  },
+  "losLegendFresnel": "Fresnel zone",
+  "losFresnelClear": "Fresnel zone {percent}% clear at the tightest point. 60% or more is good.",
+  "@losFresnelClear": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "losFresnelPartial": "Fresnel zone only {percent}% clear at the tightest point. Aim for 60% or more: raise an antenna or move a point.",
+  "@losFresnelPartial": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "losFresnelBlocked": "Terrain cuts into the Fresnel zone and the beam. Raise an antenna or move a point.",
+  "bg_title": "Background",
+  "bg_kindTheme": "Theme glow",
+  "bg_kindSolid": "Colour",
+  "bg_kindLinear": "Gradient",
+  "bg_kindMesh": "Mesh blend",
+  "bg_kindPhoto": "Photo",
+  "bg_color1": "First colour",
+  "bg_color2": "Second colour",
+  "bg_colorN": "Colour {index}",
+  "@bg_colorN": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "bg_dim": "Dim",
+  "bg_blur": "Blur",
+  "bg_choosePhoto": "Choose photo",
+  "bg_reset": "Back to the theme's background",
+  "bg_hint": "Cards sit on frosted glass over this. Turn up Dim if text is hard to read.",
+  "bg_previewTitle": "Preview",
+  "bg_previewBody": "Text on a glass card looks like this.",
+  "bg_photoNotBackedUp": "The photo stays on this phone and isn't included in backups.",
+  "bg_photoFailed": "Couldn't use that photo. Try a different one.",
+  "compass_openHint": "Point me to it",
+  "compass_onTarget": "Straight ahead",
+  "compass_turnRight": "Turn right {degrees}°",
+  "@compass_turnRight": {
+    "placeholders": {
+      "degrees": {
+        "type": "int"
+      }
+    }
+  },
+  "compass_turnLeft": "Turn left {degrees}°",
+  "@compass_turnLeft": {
+    "placeholders": {
+      "degrees": {
+        "type": "int"
+      }
+    }
+  },
+  "compass_bearing": "Bearing {degrees}° {point}",
+  "@compass_bearing": {
+    "placeholders": {
+      "degrees": {
+        "type": "int"
+      },
+      "point": {
+        "type": "String"
+      }
+    }
+  },
+  "compass_noSensor": "No compass on this device, so the arrow is drawn with north at the top.",
+  "compass_calibrate": "The compass isn't sure. Move the phone in a figure-eight a few times to calibrate it.",
+  "compass_magneticNote": "Pointing by magnetic north until your position is known.",
+  "compass_noPosition": "Your own position isn't known yet. Allow phone location or set the radio's position.",
+  "compass_noNodePosition": "This node hasn't shared a position, so there's nothing to point at.",
+  "compass_usePhoneLocation": "Use phone location",
+  "compass_sourcePhone": "Your position comes from the phone's GPS.",
+  "compass_sourceRadio": "Your position comes from the radio.",
+  "traffic_mode": "Traffic",
+  "traffic_modeHint": "Show packets moving across the mesh",
+  "traffic_locate": "Locate",
+  "traffic_advert": "Advert",
+  "traffic_filter": "Filter",
+  "traffic_search": "Search",
+  "traffic_fitAll": "Fit all",
+  "traffic_options": "Options",
+  "traffic_kindAdvert": "Advert",
+  "traffic_kindDirect": "Direct message",
+  "traffic_kindChannel": "Channel message",
+  "traffic_kindAck": "Acknowledgement",
+  "traffic_kindTrace": "Trace",
+  "traffic_kindPath": "Path",
+  "traffic_filterTitle": "Packet types to show",
+  "traffic_listening": "Listening for packets…",
+  "traffic_heardFrom": "Heard from {name} · {snr} dB",
+  "@traffic_heardFrom": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "traffic_flood": "Flood {hops}",
+  "@traffic_flood": {
+    "placeholders": {
+      "hops": {
+        "type": "int"
+      }
+    }
+  },
+  "traffic_direct": "Direct",
+  "traffic_snr": "SNR {snr}",
+  "@traffic_snr": {
+    "placeholders": {
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "traffic_rssi": "{rssi} dBm",
+  "@traffic_rssi": {
+    "placeholders": {
+      "rssi": {
+        "type": "int"
+      }
+    }
+  },
+  "traffic_notOnMapCount": "{count} not on map",
+  "@traffic_notOnMapCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "traffic_age": "{seconds}s",
+  "@traffic_age": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "traffic_notOnMapList": "Not on map: {names}",
+  "@traffic_notOnMapList": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "traffic_unknown": "Unknown",
+  "traffic_cardHint": "Shows the route on the map",
+  "stale_setting": "Mark nodes stale after",
+  "stale_settingHint": "Contacts and repeaters not heard for this long are marked stale in the list and faded on the map.",
+  "stale_off": "Off",
+  "stale_hours": "{count, plural, other{{count} h}}",
+  "@stale_hours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "stale_days": "{count, plural, =1{1 day} other{{count} days}}",
+  "@stale_days": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "stale_badge": "stale · {age}",
+  "@stale_badge": {
+    "placeholders": {
+      "age": {
+        "type": "String"
+      }
+    }
+  },
+  "rangeRings_toggle": "Range rings",
+  "rangeRings_hint": "Distance rings around your position, sized to the view",
+  "rangeRings_noPosition": "Your position isn't known yet, so range rings can't be drawn.",
+  "channelConflict_banner": "{count, plural, =1{1 channel on the radio differs from the app} other{{count} channels on the radio differ from the app}}",
+  "@channelConflict_banner": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "channelConflict_review": "Review",
+  "channelConflict_title": "Channel differences",
+  "channelConflict_hint": "The radio holds a different name or key in these slots than the app saved. Someone may have changed them with another app, or the app's copy is old. Choose which version to keep for each slot.",
+  "channelConflict_allResolved": "All slots match now.",
+  "channelConflict_slot": "Slot {index}",
+  "@channelConflict_slot": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "channelConflict_onRadio": "On the radio",
+  "channelConflict_inApp": "Saved in the app",
+  "channelConflict_empty": "Empty",
+  "channelConflict_key": "key {fingerprint}",
+  "@channelConflict_key": {
+    "placeholders": {
+      "fingerprint": {
+        "type": "String"
+      }
+    }
+  },
+  "channelConflict_nameDiffers": "Name differs",
+  "channelConflict_keyDiffers": "Key differs",
+  "channelConflict_keepRadio": "Keep radio's",
+  "channelConflict_useApp": "Write app's to radio",
+  "channelConflict_keptRadio": "Kept the radio's version of slot {index}",
+  "@channelConflict_keptRadio": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "channelConflict_usedApp": "Wrote the app's version to slot {index}",
+  "@channelConflict_usedApp": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "history_window24h": "24 h",
+  "history_window7d": "7 days",
+  "history_window30d": "30 days",
+  "statusHistory_title": "Status history",
+  "reportCard_title": "Report card",
+  "reportCard_hint": "Built only from status checks you ran and kept on this phone. Nothing extra is sent.",
+  "reportCard_empty": "No status checks kept yet. Each Status check you run adds to this report.",
+  "reportCard_checks": "Checks",
+  "reportCard_restarts": "Restarts seen",
+  "reportCard_longestUptime": "Longest uptime",
+  "reportCard_battery": "Battery",
+  "reportCard_noise": "Noise floor",
+  "reportCard_errors": "New errors",
+  "reportCard_neighbours": "Neighbours",
+  "reportCard_exportCsv": "Export CSV",
+  "reportCard_checksValue": "{count} over {days} days",
+  "@reportCard_checksValue": {"placeholders": {"count": {"type": "int"}, "days": {"type": "int"}}},
+  "reportCard_batteryValue": "{now} now · lowest {low}",
+  "@reportCard_batteryValue": {"placeholders": {"now": {"type": "String"}, "low": {"type": "String"}}},
+  "reportCard_batteryTrend": "{change} per week",
+  "@reportCard_batteryTrend": {"placeholders": {"change": {"type": "String"}}},
+  "reportCard_noiseValue": "average {avg} dBm · worst {worst} dBm",
+  "@reportCard_noiseValue": {"placeholders": {"avg": {"type": "String"}, "worst": {"type": "String"}}},
+  "reportCard_neighboursValue": "{total} heard · {fresh} new this week · {gone} not heard this week",
+  "@reportCard_neighboursValue": {"placeholders": {"total": {"type": "int"}, "fresh": {"type": "int"}, "gone": {"type": "int"}}},
+  "statusHistory_battery": "Battery",
+  "statusHistory_rssi": "RSSI",
+  "statusHistory_snr": "SNR",
+  "statusHistory_noiseFloor": "Noise floor",
+  "statusHistory_errors": "Errors",
+  "statusHistory_uptime": "Uptime",
+  "statusHistory_empty": "Each status check you run is saved here, so you can see how this repeater changes over time.",
+  "statusHistory_noneInWindow": "No {metric} readings in this time range.",
+  "@statusHistory_noneInWindow": {
+    "placeholders": {
+      "metric": {
+        "type": "String"
+      }
+    }
+  },
+  "statusHistory_chartLabel": "{metric} chart, {count} readings, from {low} to {high}",
+  "@statusHistory_chartLabel": {
+    "placeholders": {
+      "metric": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      },
+      "low": {
+        "type": "String"
+      },
+      "high": {
+        "type": "String"
+      }
+    }
+  },
+  "statusHistory_count": "{count, plural, =0{No saved checks} =1{1 saved check} other{{count} saved checks}}",
+  "@statusHistory_count": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "statusHistory_clear": "Clear history",
+  "statusHistory_clearTitle": "Clear this repeater's history?",
+  "statusHistory_clearBody": "Saved status checks and neighbour SNR readings for this repeater are removed from this phone.",
+  "snrHistory_trendLabel": "SNR trend for {name}, {count} readings. Tap for the chart.",
+  "@snrHistory_trendLabel": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "snrHistory_title": "SNR of {name}",
+  "@snrHistory_title": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "snrHistory_hint": "How well this repeater heard the neighbour each time you asked, kept on this phone.",
+  "snrHistory_summary": "{count} readings · low {low} · average {avg} · high {high}",
+  "@snrHistory_summary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "low": {
+        "type": "String"
+      },
+      "avg": {
+        "type": "String"
+      },
+      "high": {
+        "type": "String"
+      }
+    }
+  },
+  "follow_menu": "Follow for 15 min",
+  "follow_menuHint": "Asks for its position every few minutes and draws its trail",
+  "follow_title": "Following {name}",
+  "@follow_title": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "follow_askNow": "Ask for position now",
+  "follow_fromYou": "{distance} {direction} ({degrees}°) from you",
+  "@follow_fromYou": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "direction": {
+        "type": "String"
+      },
+      "degrees": {
+        "type": "int"
+      }
+    }
+  },
+  "follow_waiting": "Waiting for a position…",
+  "follow_noOwnPosition": "Your own position isn't known, so distance and bearing can't be shown.",
+  "follow_timeLeftLabel": "{minutes, plural, =1{About 1 minute left} other{About {minutes} minutes left}}",
+  "@follow_timeLeftLabel": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "follow_lastFix": "last position {ago}",
+  "@follow_lastFix": {
+    "placeholders": {
+      "ago": {
+        "type": "String"
+      }
+    }
+  },
+  "follow_secondsAgo": "{n} s ago",
+  "@follow_secondsAgo": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "follow_minutesAgo": "{n} min ago",
+  "@follow_minutesAgo": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "follow_answers": "{answered}/{asked} requests answered",
+  "@follow_answers": {
+    "placeholders": {
+      "answered": {
+        "type": "int"
+      },
+      "asked": {
+        "type": "int"
+      }
+    }
+  },
+  "follow_points": "{count, plural, =1{1 point} other{{count} points}}",
+  "@follow_points": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "follow_hint": "Stops by itself after 15 minutes. The contact must allow location in its telemetry settings, or it only moves when it sends an advert.",
+  "follow_stop": "Stop",
+  "follow_stopped": "Not following. Start again to ask for its position for another 15 minutes.",
+  "follow_start": "Follow 15 min",
+  "follow_you": "You",
+  "sensorHistory_title": "Sensor history",
+  "sensorHistory_menuHint": "Charts for the last hour to day, and alerts",
+  "sensorHistory_readNow": "Read now",
+  "sensorHistory_window1h": "1 h",
+  "sensorHistory_window6h": "6 h",
+  "sensorHistory_window24h": "24 h",
+  "sensorHistory_empty": "No readings yet. Tap Read now, or turn on live updates or auto refresh in Telemetry; every reading is kept here for a day.",
+  "sensorHistory_updated": "Updated {time}",
+  "@sensorHistory_updated": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "sensorHistory_noneInWindow": "No readings in this time range.",
+  "sensorHistory_chartLabel": "{metric} chart, {count} readings, from {low} to {high}",
+  "@sensorHistory_chartLabel": {
+    "placeholders": {
+      "metric": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      },
+      "low": {
+        "type": "String"
+      },
+      "high": {
+        "type": "String"
+      }
+    }
+  },
+  "sensorHistory_noAlert": "No alert",
+  "sensorHistory_alertWhenAbove": "Alert above {value}",
+  "@sensorHistory_alertWhenAbove": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "sensorHistory_alertWhenBelow": "Alert below {value}",
+  "@sensorHistory_alertWhenBelow": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "sensorHistory_setAlert": "Alert…",
+  "sensorHistory_alertDialogTitle": "Alert on this value",
+  "sensorHistory_alertDialogHint": "You get a notification when a new reading crosses a limit. Leave a field empty to not use it.",
+  "sensorHistory_above": "Above",
+  "sensorHistory_below": "Below",
+  "sensorHistory_belowMustBeLower": "Must be lower than the upper limit",
+  "sensorHistory_removeAlert": "Remove",
+  "sensorHistory_alertTitle": "Sensor alert",
+  "sensorHistory_alertAbove": "{name}: {what} is {value}, above {limit}",
+  "@sensorHistory_alertAbove": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "what": {
+        "type": "String"
+      },
+      "value": {
+        "type": "String"
+      },
+      "limit": {
+        "type": "String"
+      }
+    }
+  },
+  "sensorHistory_alertBelow": "{name}: {what} is {value}, below {limit}",
+  "@sensorHistory_alertBelow": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "what": {
+        "type": "String"
+      },
+      "value": {
+        "type": "String"
+      },
+      "limit": {
+        "type": "String"
+      }
+    }
+  },
+  "sensorHistory_unknownNode": "A sensor",
+  "coverageHex_notoryxTitle": "NOTORYX coverage map",
+  "coverageHex_notoryxShare": "Share with the NOTORYX coverage map",
+  "coverageHex_notoryxShareHint": "A public map of real MeshCore coverage. Nothing is sent until you agree.",
+  "coverageHex_notoryxConsent": "Your phone sends what the radio heard in each hexagon (about 0.9 km across): signal strength, packet counts, the repeaters heard directly and a 15-minute time slot. It never sends your GPS track or exact position. It also sends repeaters' own public adverts (name and position) so the map can name them. Uploads are signed with a coverage key that is separate from your radio, so you can erase them later.",
+  "coverageHex_notoryxAnonymousNote": "Anonymous uploads can't be erased later.",
+  "coverageHex_mapperName": "Mapper name (optional)",
+  "coverageHex_mapperNameHint": "Shown only to NOTORYX members. Leave empty to stay unnamed.",
+  "coverageHex_shareAction": "Share",
+  "coverageHex_notNow": "Not now",
+  "coverageHex_stopSharing": "Stop sharing",
+  "coverageHex_eraseUploads": "Erase my uploads",
+  "coverageHex_eraseConfirm": "Delete everything this phone uploaded to the NOTORYX coverage map? This can't be undone.",
+  "coverageHex_erased": "Erased {count} readings from the map.",
+  "@coverageHex_erased": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "coverageHex_eraseFailed": "Couldn't erase. Check your connection and try again.",
+  "coverageHex_openMap": "Open the coverage map",
+  "coverageHex_trimDrives": "Hide the start and end of each drive",
+  "coverageHex_trimDrivesHint": "The first and last 2 hexagons of every mapping session stay on this phone, so maps can't show where you live or park.",
+  "appSettings_resetRoutingToDefault": "Reset Routing Algorithm to Default",
+  "appSettings_resetRoutingToDefaultSubtitle": "Restore routing algorithm settings to factory defaults",
+  "appSettings_routingResetToDefault": "Routing algorithm settings reset to default",
+  "discoveredContacts_importNodes": "Import nodes",
+  "discoveredContacts_importHint": "Reads contact links, public keys, or a JSON or CSV list of nodes. They are added to this list, not to your radio.",
+  "discoveredContacts_importFromFile": "From a file",
+  "discoveredContacts_importFromClipboard": "From the clipboard",
+  "discoveredContacts_importFailed": "Couldn't read that",
+  "discoveredContacts_importNone": "No nodes found",
+  "discoveredContacts_importNotConnected": "Connect to your radio first",
+  "discoveredContacts_importResult": "{added} new, {updated} updated, {skipped} skipped",
+  "@discoveredContacts_importResult": {
+    "placeholders": {
+      "added": {
+        "type": "int"
+      },
+      "updated": {
+        "type": "int"
+      },
+      "skipped": {
+        "type": "int"
+      }
+    }
+  },
+  "home_knownNodes": "Chats {chats} · Repeaters {repeaters} · Rooms {rooms}",
+  "@home_knownNodes": {
+    "placeholders": {
+      "chats": {
+        "type": "int"
+      },
+      "repeaters": {
+        "type": "int"
+      },
+      "rooms": {
+        "type": "int"
+      }
+    }
+  },
+  "home_radioHolds": "Radio holds {count} of {max} contacts",
+  "@home_radioHolds": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "messageFilter_markedSpamCount": "{count, plural, =1{1 message marked as spam} other{{count} messages marked as spam}}",
+  "@messageFilter_markedSpamCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "messageFilter_markedNotSpamCount": "{count, plural, =1{1 message marked as not spam} other{{count} messages marked as not spam}}",
+  "@messageFilter_markedNotSpamCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "messageFilter_title": "Message filter",
+  "@messageFilter_title": {
+    "description": "Message filter: Message filter"
+  },
+  "messageFilter_settingsSubtitle": "Hide spam and repeated messages",
+  "@messageFilter_settingsSubtitle": {
+    "description": "Message filter: Hide spam and repeated messages"
+  },
+  "messageFilter_enabled": "Filter messages",
+  "@messageFilter_enabled": {
+    "description": "Message filter: Filter messages"
+  },
+  "messageFilter_enabledSubtitle": "Applies to channel messages",
+  "@messageFilter_enabledSubtitle": {
+    "description": "Message filter: Applies to channel messages"
+  },
+  "messageFilter_displayTitle": "Filtered messages",
+  "@messageFilter_displayTitle": {
+    "description": "Message filter: Filtered messages"
+  },
+  "messageFilter_displayPlaceholder": "Show a small placeholder",
+  "@messageFilter_displayPlaceholder": {
+    "description": "Message filter: Show a small placeholder"
+  },
+  "messageFilter_displayHide": "Hide completely",
+  "@messageFilter_displayHide": {
+    "description": "Message filter: Hide completely"
+  },
+  "messageFilter_displayHideHelp": "Hidden messages stay in the Filtered messages list.",
+  "@messageFilter_displayHideHelp": {
+    "description": "Message filter: Hidden messages stay in the Filtered messages list."
+  },
+  "messageFilter_rulesSection": "Your rules",
+  "@messageFilter_rulesSection": {
+    "description": "Message filter: Your rules"
+  },
+  "messageFilter_rulesEmpty": "No rules yet. Add a word, phrase or sender name to hide messages that match it.",
+  "@messageFilter_rulesEmpty": {
+    "description": "Message filter: No rules yet. Add a word, phrase or sender name to hide messages that match it."
+  },
+  "messageFilter_addRule": "Add rule",
+  "@messageFilter_addRule": {
+    "description": "Message filter: Add rule"
+  },
+  "messageFilter_editRule": "Edit rule",
+  "@messageFilter_editRule": {
+    "description": "Message filter: Edit rule"
+  },
+  "messageFilter_rulePattern": "Word, phrase or name",
+  "@messageFilter_rulePattern": {
+    "description": "Message filter: Word, phrase or name"
+  },
+  "messageFilter_rulePatternHint": "e.g. meshos",
+  "@messageFilter_rulePatternHint": {
+    "description": "Message filter: e.g. meshos"
+  },
+  "messageFilter_ruleWhere": "Look in",
+  "@messageFilter_ruleWhere": {
+    "description": "Message filter: Look in"
+  },
+  "messageFilter_ruleFieldText": "Message text",
+  "@messageFilter_ruleFieldText": {
+    "description": "Message filter: Message text"
+  },
+  "messageFilter_ruleFieldSender": "Sender name",
+  "@messageFilter_ruleFieldSender": {
+    "description": "Message filter: Sender name"
+  },
+  "messageFilter_ruleFieldBoth": "Both",
+  "@messageFilter_ruleFieldBoth": {
+    "description": "Message filter: Both"
+  },
+  "messageFilter_ruleMatch": "Match",
+  "@messageFilter_ruleMatch": {
+    "description": "Message filter: Match"
+  },
+  "messageFilter_ruleMatchContains": "Contains",
+  "@messageFilter_ruleMatchContains": {
+    "description": "Message filter: Contains"
+  },
+  "messageFilter_ruleMatchWholeWord": "Whole word",
+  "@messageFilter_ruleMatchWholeWord": {
+    "description": "Message filter: Whole word"
+  },
+  "messageFilter_ruleMatchExact": "Exact",
+  "@messageFilter_ruleMatchExact": {
+    "description": "Message filter: Exact"
+  },
+  "messageFilter_ruleDeleted": "Rule deleted",
+  "@messageFilter_ruleDeleted": {
+    "description": "Message filter: Rule deleted"
+  },
+  "messageFilter_ruleSaved": "Rule saved",
+  "@messageFilter_ruleSaved": {
+    "description": "Message filter: Rule saved"
+  },
+  "messageFilter_automaticSection": "Automatic",
+  "@messageFilter_automaticSection": {
+    "description": "Message filter: Automatic"
+  },
+  "messageFilter_duplicates": "Repeated messages",
+  "@messageFilter_duplicates": {
+    "description": "Message filter: Repeated messages"
+  },
+  "messageFilter_duplicatesSubtitle": "The same message sent again, or by several senders",
+  "@messageFilter_duplicatesSubtitle": {
+    "description": "Message filter: The same message sent again, or by several senders"
+  },
+  "messageFilter_repeatSends": "Sends to count as a repeat",
+  "@messageFilter_repeatSends": {
+    "description": "Message filter: title of the setting for which send of the same message by the same sender is hidden as a repeat"
+  },
+  "messageFilter_repeatSendsSubtitle": "Hide a message when the same sender sends it {count} times within 10 minutes",
+  "@messageFilter_repeatSendsSubtitle": {
+    "description": "Message filter: subtitle of the repeat-sends setting",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "messageFilter_repeatedCharacters": "Repeated characters",
+  "@messageFilter_repeatedCharacters": {
+    "description": "Message filter: Repeated characters"
+  },
+  "messageFilter_repeatedCharactersSubtitle": "Long runs of one character, like \"aaaaaaaaaaaaaaaaaaaa\"",
+  "@messageFilter_repeatedCharactersSubtitle": {
+    "description": "Message filter: Messages like \"aaaaaaaa\" or \"!!!!!!!!\""
+  },
+  "messageFilter_learning": "Learn from Spam taps",
+  "@messageFilter_learning": {
+    "description": "Message filter: Learn from Spam taps"
+  },
+  "messageFilter_learningSubtitle": "{spam} spam and {notSpam} not-spam examples",
+  "@messageFilter_learningSubtitle": {
+    "description": "Message filter: {spam} spam and {notSpam} not-spam examples",
+    "placeholders": {
+      "spam": {
+        "type": "int"
+      },
+      "notSpam": {
+        "type": "int"
+      }
+    }
+  },
+  "messageFilter_resetLearning": "Reset learning",
+  "@messageFilter_resetLearning": {
+    "description": "Message filter: Reset learning"
+  },
+  "messageFilter_resetLearningConfirm": "Forget everything learned from your Spam and Not spam taps? Your rules are kept.",
+  "@messageFilter_resetLearningConfirm": {
+    "description": "Message filter: Forget everything learned from your Spam and Not spam taps? Your rules are kept."
+  },
+  "messageFilter_filteredMessages": "Filtered messages ({count})",
+  "@messageFilter_filteredMessages": {
+    "description": "Message filter: Filtered messages ({count})",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "messageFilter_filteredMessagesEmpty": "Nothing has been filtered.",
+  "@messageFilter_filteredMessagesEmpty": {
+    "description": "Message filter: Nothing has been filtered."
+  },
+  "messageFilter_ghostSingle": "Hidden message · Tap to view",
+  "@messageFilter_ghostSingle": {
+    "description": "Message filter: Hidden message · Tap to view"
+  },
+  "messageFilter_ghostMany": "{count, plural, one{{count} hidden message · Tap to view} other{{count} hidden messages · Tap to view}}",
+  "@messageFilter_ghostMany": {
+    "description": "Message filter: {count, plural, one{{count} hidden message · Tap to view} other{{count} hidden messages · Tap to view}}",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "messageFilter_ghostSingleExpanded": "Showing hidden message · Tap to hide",
+  "@messageFilter_ghostSingleExpanded": {
+    "description": "Header above one revealed filtered message; tapping it hides the message again"
+  },
+  "messageFilter_ghostManyExpanded": "{count, plural, =1{Showing 1 hidden message · Tap to hide} other{Showing {count} hidden messages · Tap to hide}}",
+  "@messageFilter_ghostManyExpanded": {
+    "description": "Header above a revealed run of filtered messages; tapping it hides them again",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "messageFilter_reasonTextRule": "Filtered: matches \"{pattern}\"",
+  "@messageFilter_reasonTextRule": {
+    "description": "Message filter: Filtered: matches \"{pattern}\"",
+    "placeholders": {
+      "pattern": {
+        "type": "String"
+      }
+    }
+  },
+  "messageFilter_reasonSenderRule": "Filtered: sender \"{pattern}\"",
+  "@messageFilter_reasonSenderRule": {
+    "description": "Message filter: Filtered: sender \"{pattern}\"",
+    "placeholders": {
+      "pattern": {
+        "type": "String"
+      }
+    }
+  },
+  "messageFilter_reasonRepeatedCharacters": "Filtered: repeated characters",
+  "@messageFilter_reasonRepeatedCharacters": {
+    "description": "Message filter: Filtered: repeated characters"
+  },
+  "messageFilter_reasonDuplicate": "Filtered: repeated message",
+  "@messageFilter_reasonDuplicate": {
+    "description": "Message filter: Filtered: repeated message"
+  },
+  "messageFilter_reasonCrossSenderDuplicate": "Filtered: same message from several senders",
+  "@messageFilter_reasonCrossSenderDuplicate": {
+    "description": "Message filter: Filtered: same message from several senders"
+  },
+  "messageFilter_reasonLearned": "Filtered: looks like messages you marked as spam",
+  "@messageFilter_reasonLearned": {
+    "description": "Message filter: Filtered: looks like messages you marked as spam"
+  },
+  "messageFilter_reasonManual": "Filtered: you marked this as spam",
+  "@messageFilter_reasonManual": {
+    "description": "Message filter: Filtered: you marked this as spam"
+  },
+  "messageFilter_notSpam": "Not spam",
+  "@messageFilter_notSpam": {
+    "description": "Message filter: Not spam"
+  },
+  "messageFilter_hideAgain": "Hide",
+  "@messageFilter_hideAgain": {
+    "description": "Message filter: Hide"
+  },
+  "messageFilter_markSpam": "Mark as spam",
+  "@messageFilter_markSpam": {
+    "description": "Message filter: Mark as spam"
+  },
+  "messageFilter_markedSpam": "Marked as spam",
+  "@messageFilter_markedSpam": {
+    "description": "Message filter: Marked as spam"
+  },
+  "messageFilter_markedNotSpam": "Marked as not spam",
+  "@messageFilter_markedNotSpam": {
+    "description": "Message filter: Marked as not spam"
+  },
+  "messageFilter_filterSender": "Filter this sender",
+  "@messageFilter_filterSender": {
+    "description": "Message filter: Filter this sender"
+  },
+  "messageFilter_filterSenderConfirm": "Hide all messages from \"{name}\"?",
+  "@messageFilter_filterSenderConfirm": {
+    "description": "Message filter: Hide all messages from \"{name}\"?",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "messageFilter_filterLikeThis": "Filter messages like this…",
+  "@messageFilter_filterLikeThis": {
+    "description": "Message filter: Filter messages like this…"
+  },
+  "messageFilter_channelToggle": "Filter messages in this channel",
+  "@messageFilter_channelToggle": {
+    "description": "Message filter: Filter messages in this channel"
+  },
+  "messageFilter_ghostIconTooltip": "Hidden by your message filter",
+  "@messageFilter_ghostIconTooltip": {
+    "description": "Message filter: Hidden by your message filter"
+  },
+  "ping_noReplyNote": "No reply isn't proof the repeater is down. The probe or its answer can be lost to noise or a collision, so try again or test from another spot.",
+  "traffic_lastHop": "Last hop {name} · {snr} dB",
+  "@traffic_lastHop": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "contacts_fullWarning": "This radio's contact list is full, so it can't add new nodes. Remove some contacts to make room."
 }

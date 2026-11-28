@@ -1,12 +1,12 @@
 import '../services/node_telemetry_store.dart';
 import '../helpers/cayenne_lpp.dart';
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:meshcore_open/storage/region_store.dart';
-import 'package:pointycastle/export.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
@@ -17,22 +17,29 @@ import '../models/region_setup.dart' show parseRegionTrees;
 import '../models/region_scope.dart';
 import '../models/advert_signature.dart';
 import '../models/channel.dart';
+import '../models/channel_conflict.dart';
 import '../models/channel_message.dart';
 import '../models/companion_radio_stats.dart';
+import '../models/mesh_health.dart';
 import '../models/radio_rx_packet.dart';
 import '../models/saved_radio.dart';
 import '../models/contact.dart';
 import '../models/flood_corridor.dart';
+import '../models/field_ops.dart';
+import '../models/message_filter.dart';
+import '../services/message_filter/message_filter_service.dart';
 import '../models/heard_channel_packet.dart';
 import '../models/message.dart';
 import '../models/path_selection.dart';
 import '../models/translation_support.dart';
 import 'radio_signing.dart';
 import '../helpers/share_links.dart';
+import '../utils/node_import.dart';
 import '../helpers/reaction_helper.dart';
 import '../helpers/cyr2lat.dart';
 import '../helpers/smaz.dart';
 import '../services/app_debug_log_service.dart';
+import '../services/connection_timeline.dart';
 import '../services/ble_debug_log_service.dart';
 import '../services/linux_ble_error_classifier.dart';
 import '../services/linux_ble_pairing_service_stub.dart'
@@ -58,6 +65,7 @@ import '../services/timeout_prediction_service.dart';
 import '../services/translation_service.dart';
 import '../services/notification_service.dart';
 import 'meshcore_connector_usb.dart';
+import 'demo_companion.dart';
 import 'meshcore_connector_tcp.dart';
 import '../storage/channel_message_store.dart';
 import '../storage/channel_order_store.dart';
@@ -71,10 +79,14 @@ import '../storage/message_store.dart';
 import '../storage/prefs_manager.dart';
 import '../storage/unread_store.dart';
 import '../utils/app_logger.dart';
+import '../utils/amateur_radio.dart';
+import '../utils/station_id_check.dart';
 import '../utils/battery_utils.dart';
 import '../utils/platform_info.dart';
 import 'meshcore_uuids.dart';
 import 'meshcore_protocol.dart';
+
+part 'connector_message_filter.dart';
 
 class DirectRepeater {
   static const int maxAgeMinutes = 30; // Max age for direct repeater info
@@ -157,6 +169,43 @@ enum MeshCoreConnectionState {
 
 enum MeshCoreTransportType { bluetooth, usb, tcp }
 
+/// A wired or network link to reconnect to after it drops: the TCP endpoint
+/// or USB port of the last connect that succeeded. Bluetooth reconnects use
+/// the remembered device instead.
+@immutable
+sealed class LinkTarget {
+  const LinkTarget();
+  MeshCoreTransportType get transport;
+}
+
+final class TcpLinkTarget extends LinkTarget {
+  const TcpLinkTarget(this.host, this.port);
+  final String host;
+  final int port;
+  @override
+  MeshCoreTransportType get transport => MeshCoreTransportType.tcp;
+  @override
+  bool operator ==(Object other) =>
+      other is TcpLinkTarget && other.host == host && other.port == port;
+  @override
+  int get hashCode => Object.hash(host, port);
+}
+
+final class UsbLinkTarget extends LinkTarget {
+  const UsbLinkTarget(this.portName, this.baudRate);
+  final String portName;
+  final int baudRate;
+  @override
+  MeshCoreTransportType get transport => MeshCoreTransportType.usb;
+  @override
+  bool operator ==(Object other) =>
+      other is UsbLinkTarget &&
+      other.portName == portName &&
+      other.baudRate == baudRate;
+  @override
+  int get hashCode => Object.hash(portName, baudRate);
+}
+
 class RepeaterBatterySnapshot {
   final int millivolts;
   final DateTime updatedAt;
@@ -189,13 +238,34 @@ class MeshCoreConnector extends ChangeNotifier {
   // Message windowing to limit memory usage
   static const int _messageWindowSize = 200;
 
-  // Cap on discovered (non-contact) nodes retained in memory. Adverts arrive
+  // Cap on discovered (non-contact) nodes remembered. Adverts arrive
   // continuously from the whole mesh, so without a bound this list grows for
   // as long as the app stays connected. When full, the stalest node (oldest
-  // lastSeen) is evicted to make room for a newly heard one.
-  static const int _maxDiscoveredContacts = 500;
+  // lastSeen) is evicted to make room for a newly heard one. A busy mesh can
+  // have a couple of thousand nodes; 500 forgot most of them.
+  static const int _maxDiscoveredContacts = 5000;
+
+  // Saving rewrites the whole list, so adverts only mark it dirty and one save
+  // runs this long after the first change.
+  static const Duration _discoveredSaveDelay = Duration(seconds: 15);
+  Timer? _discoveredSaveTimer;
+  bool _discoveredDirty = false;
+  // The load of the saved list after connecting; an import waits for it so
+  // the load can't replace what was just imported.
+  Future<void>? _discoveredCacheLoad;
 
   MeshCoreConnectionState _state = MeshCoreConnectionState.disconnected;
+
+  /// Recent connection state changes with their cause, for diagnostics and
+  /// the support bundle. Memory only.
+  final ConnectionTimeline connectionTimeline = ConnectionTimeline();
+
+  /// Cause stamped on the next recorded state change.
+  ConnectionCause _nextCause = ConnectionCause.unknown;
+
+  /// Set while [reconnectSavedRadio] runs on its own, so the connect it
+  /// starts isn't recorded as the user's.
+  ConnectionCause? _connectCauseOverride;
   BluetoothDevice? _device;
   BluetoothCharacteristic? _rxCharacteristic;
   BluetoothCharacteristic? _txCharacteristic;
@@ -205,6 +275,10 @@ class MeshCoreConnector extends ChangeNotifier {
   String? _lastDeviceId;
   String? _lastDeviceDisplayName;
   bool _manualDisconnect = false;
+  // Set once a TCP or USB connect succeeds; cleared by a manual disconnect
+  // or by any connect the user starts. While set, a dropped link is retried
+  // with the same backoff as Bluetooth.
+  LinkTarget? _linkTarget;
   final MeshCoreUsbManager _usbManager = MeshCoreUsbManager();
   final LinuxBlePairingService _linuxBlePairingService =
       LinuxBlePairingService();
@@ -266,6 +340,8 @@ class MeshCoreConnector extends ChangeNotifier {
       StreamController<RadioRxPacket>.broadcast();
   final StreamController<Message> _receivedDirectMessagesController =
       StreamController<Message>.broadcast();
+  final StreamController<Contact> _sentDirectMessagesController =
+      StreamController<Contact>.broadcast();
   final StreamController<ReceivedChannelMessage>
   _receivedChannelMessagesController =
       StreamController<ReceivedChannelMessage>.broadcast();
@@ -305,6 +381,11 @@ class MeshCoreConnector extends ChangeNotifier {
   // frames (chunks of one image arrive in separate GRP_DATA frames, and via the
   // firmware offline queue they may be minutes apart).
   ImageChunkTransport? _imageTransport;
+  MessageFilterService? _messageFilterService;
+
+  /// The filter rules revision last applied to stored messages (see
+  /// [_ConnectorMessageFilter._onMessageFilterChanged]).
+  int _appliedFilterRulesRevision = 0;
   void Function(ImageChunkOutcome outcome)? _onImageChunk;
   void Function(int senderPrefix)? _onImageSenderPrefix;
   // Intentionally global (not per-contact): tracks overall network activity.
@@ -359,6 +440,7 @@ class MeshCoreConnector extends ChangeNotifier {
   bool _autoAddSensors = false;
   bool _overwriteOldest = false;
   bool _manualAddContacts = false;
+  bool _contactsFull = false;
   int _telemetryModeBase = 0;
   int _telemetryModeLoc = 0;
   int _telemetryModeEnv = 0;
@@ -368,6 +450,7 @@ class MeshCoreConnector extends ChangeNotifier {
   static const int _defaultMaxContacts = 350;
   static const int _defaultMaxChannels = 40;
   int _maxContacts = _defaultMaxContacts;
+  bool _maxContactsReported = false;
   int _maxChannels = _defaultMaxChannels;
   int? _contactSyncTotal;
   int _contactSyncReceived = 0;
@@ -437,6 +520,11 @@ class MeshCoreConnector extends ChangeNotifier {
   final ChannelStore _channelStore = ChannelStore();
   final UnreadStore _unreadStore = UnreadStore();
   List<Channel> _cachedChannels = [];
+  List<ChannelConflict> _channelConflicts = [];
+
+  /// Slots this app wrote since the last full channel sync; a difference
+  /// there is the app's own edit, not a conflict.
+  final Set<int> _appChannelEdits = {};
   final Map<int, bool> _channelSmazEnabled = {};
   final Map<int, bool> _channelCyr2LatEnabled = {};
   final Map<int, bool> _channelUrlImagesEnabled = {};
@@ -531,11 +619,34 @@ class MeshCoreConnector extends ChangeNotifier {
   @visibleForTesting
   Future<void> Function(BluetoothDevice device)? debugBleLinkOverride;
 
+  /// Replaces the TCP/USB reconnect attempt; for tests.
+  @visibleForTesting
+  Future<void> Function(LinkTarget target)? debugLinkReconnectOverride;
+
+  /// The TCP endpoint or USB port a dropped link will be retried on.
+  LinkTarget? get reconnectTarget => _linkTarget;
+
+  /// Marks [target] as the link to retry, as a successful connect would;
+  /// for tests.
+  @visibleForTesting
+  void debugRememberLink(LinkTarget target) {
+    _linkTarget = target;
+    _manualDisconnect = false;
+  }
+
   /// Replaces the platform BLE disconnect in tests.
   @visibleForTesting
   Future<void> Function(BluetoothDevice device)? debugBleUnlinkOverride;
 
   String? get activeTcpEndpoint => _tcpConnector.activeEndpoint;
+
+  /// Whether the pretend in-app radio is connected instead of a real one.
+  bool get isDemoRadio => _demoSession && _tcpConnector.isDemo;
+
+  /// True from the start of a demo connection until its disconnect has
+  /// finished. While set, the heard-node list (shared by every real radio)
+  /// is neither loaded nor saved, so the demo can't show or overwrite it.
+  bool _demoSession = false;
   bool get isTcpTransportConnected =>
       _state == MeshCoreConnectionState.connected &&
       _activeTransport == MeshCoreTransportType.tcp;
@@ -586,8 +697,46 @@ class MeshCoreConnector extends ChangeNotifier {
     return List.unmodifiable(_discoveredContacts);
   }
 
+  /// Every node this app remembers: the radio's contacts plus heard nodes,
+  /// each counted once, by type.
+  KnownNodeCounts get knownNodeCounts {
+    final types = <String, int>{};
+    for (final c in _discoveredContacts) {
+      types[c.publicKeyHex] = c.type;
+    }
+    for (final c in _contacts) {
+      types[c.publicKeyHex] = c.type;
+    }
+    var chats = 0, repeaters = 0, rooms = 0;
+    for (final t in types.values) {
+      switch (t) {
+        case advTypeRepeater:
+          repeaters++;
+        case advTypeRoom:
+          rooms++;
+        case advTypeChat:
+          chats++;
+      }
+    }
+    return KnownNodeCounts(
+      total: types.length,
+      chats: chats,
+      repeaters: repeaters,
+      rooms: rooms,
+    );
+  }
+
   List<Channel> get channels => List.unmodifiable(_channels);
+
+  /// Slots where the radio's channel differs from the app's saved copy and
+  /// the user hasn't chosen which to keep.
+  List<ChannelConflict> get channelConflicts =>
+      List.unmodifiable(_channelConflicts);
   bool get isConnected => _state == MeshCoreConnectionState.connected;
+
+  /// The radio said its contact table is full, so it can't add the new
+  /// nodes it hears until a contact is removed.
+  bool get contactsFull => _contactsFull;
   bool get isLoadingContacts => _isLoadingContacts;
   bool get hasLoadedContacts => _hasLoadedContacts;
   bool get isLoadingChannels => _isLoadingChannels;
@@ -597,6 +746,11 @@ class MeshCoreConnector extends ChangeNotifier {
   /// Fresh direct-message events; cached history and reconnect sync are excluded.
   Stream<Message> get receivedDirectMessages =>
       _receivedDirectMessagesController.stream;
+
+  /// The contact each direct message is sent to, as the user sends it
+  /// (before delivery is known). Retries aren't repeated here.
+  Stream<Contact> get sentDirectMessages =>
+      _sentDirectMessagesController.stream;
 
   /// Incoming channel messages on channels that aren't muted.
   Stream<ReceivedChannelMessage> get receivedChannelMessages =>
@@ -626,6 +780,45 @@ class MeshCoreConnector extends ChangeNotifier {
 
   CompanionRadioStats? get latestRadioStats => _latestRadioStats;
 
+  /// Contacts you sent a direct message to in the last [within].
+  List<Contact> recentlyMessagedContacts({
+    Duration within = const Duration(days: 7),
+  }) {
+    final since = DateTime.now().subtract(within);
+    final keys = <String>{
+      for (final e in _conversations.entries)
+        if (e.value.any((m) => m.isOutgoing && m.timestamp.isAfter(since)))
+          e.key,
+    };
+    return [
+      for (final c in _contacts)
+        if (keys.contains(c.publicKeyHex)) c,
+    ];
+  }
+
+  final List<AirtimeSample> _airtimeSamples = [];
+
+  /// Recent airtime counter readings (about the last half hour), for how
+  /// busy the channel has been.
+  List<AirtimeSample> get airtimeSamples => List.unmodifiable(_airtimeSamples);
+
+  /// Direct messages sent in the last [within] that were acknowledged, and
+  /// those that gave up.
+  ({int delivered, int failed}) recentDirectDeliveries({
+    Duration within = const Duration(hours: 24),
+  }) {
+    final since = DateTime.now().subtract(within);
+    var delivered = 0, failed = 0;
+    for (final list in _conversations.values) {
+      for (final m in list) {
+        if (!m.isOutgoing || m.timestamp.isBefore(since)) continue;
+        if (m.status == MessageStatus.delivered) delivered++;
+        if (m.status == MessageStatus.failed) failed++;
+      }
+    }
+    return (delivered: delivered, failed: failed);
+  }
+
   bool get supportsCompanionRadioStats => (_firmwareVerCode ?? 0) >= 8;
 
   /// True when the connected companion has a text CLI (firmware v14+).
@@ -640,6 +833,22 @@ class MeshCoreConnector extends ChangeNotifier {
   }
 
   int? get currentFreqHz => _currentFreqHz;
+
+  /// Whether the radio is on the EU 863–870 MHz band, where duty-cycle
+  /// limits make every extra packet count.
+  bool get isOnEuDutyCycleBand {
+    final hz = _currentFreqHz;
+    return hz != null && hz >= 863000000 && hz <= 870000000;
+  }
+
+  /// Whether a reaction is sent over the radio, or only shown on this
+  /// device. 'auto' keeps reactions local on the EU duty-cycle band.
+  bool get sendsReactionsOverRadio =>
+      switch (_appSettingsService?.settings.reactionsOverRadio) {
+        'on' => true,
+        'off' => false,
+        _ => !isOnEuDutyCycleBand,
+      };
   int? get currentBwHz => _currentBwHz;
   int? get currentSf => _currentSf;
   int? get currentCr => _currentCr;
@@ -683,6 +892,10 @@ class MeshCoreConnector extends ChangeNotifier {
   int? get storageUsedKb => _storageUsedKb;
   int? get storageTotalKb => _storageTotalKb;
   int get maxContacts => _maxContacts;
+
+  /// Whether [maxContacts] came from the radio's device info rather than the
+  /// built-in default, so a fullness warning can trust it.
+  bool get maxContactsReported => _maxContactsReported;
   int get maxChannels => _maxChannels;
   Set<String> get knownContactKeys => Set.unmodifiable(_knownContactKeys);
 
@@ -734,7 +947,17 @@ class MeshCoreConnector extends ChangeNotifier {
         !_preserveContactsOnRefresh &&
         !_contactSyncUsesSinceFilter &&
         _contactSyncSeen.isNotEmpty) {
+      // The radio no longer has these (it replaced them when its table was
+      // full, or they were deleted elsewhere); keep them as heard nodes.
+      for (final c in _contacts) {
+        if (!_contactSyncSeen.contains(c.publicKeyHex)) _keepDroppedContact(c);
+      }
       _contacts.removeWhere((c) => !_contactSyncSeen.contains(c.publicKeyHex));
+      // Forget the removed ones too, or Discovery keeps hiding them as if
+      // they were still saved on the radio.
+      _knownContactKeys
+        ..clear()
+        ..addAll(_contacts.map((c) => c.publicKeyHex));
     }
     _contactSyncSeen.clear();
     _contactSyncStalled = stalled;
@@ -827,6 +1050,12 @@ class MeshCoreConnector extends ChangeNotifier {
     return _conversations[contact.publicKeyHex] ?? [];
   }
 
+  /// Puts [message] in its conversation, for tests.
+  @visibleForTesting
+  void debugAddMessage(Message message) {
+    _conversations.putIfAbsent(message.senderKeyHex, () => []).add(message);
+  }
+
   Future<void> deleteMessage(Message message) async {
     final contactKeyHex = message.senderKeyHex;
     final messages = _conversations[contactKeyHex];
@@ -838,7 +1067,17 @@ class MeshCoreConnector extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> resendMessage(Contact contact, Message message) async {
+  /// Sends [message] again as a new message and removes the old one.
+  /// Returns false, keeping the message and marking it failed, when the
+  /// radio is disconnected: deleting it then would lose it, since nothing
+  /// can be sent.
+  Future<bool> resendMessage(Contact contact, Message message) async {
+    if (!isConnected) {
+      if (message.status != MessageStatus.failed) {
+        _updateMessage(message.copyWith(status: MessageStatus.failed));
+      }
+      return false;
+    }
     await deleteMessage(message);
     await sendMessage(
       contact,
@@ -847,6 +1086,7 @@ class MeshCoreConnector extends ChangeNotifier {
       translatedLanguageCode: message.translatedLanguageCode,
       translationModelId: message.translationModelId,
     );
+    return true;
   }
 
   Future<void> _loadMessagesForContact(String contactKeyHex) async {
@@ -927,6 +1167,126 @@ class MeshCoreConnector extends ChangeNotifier {
     notifyListeners();
 
     return olderMessages;
+  }
+
+  // ---- message filter ------------------------------------------------------
+
+  /// The id the message filter uses for [channel]: its key, so per-channel
+  /// exclusions and "Not spam" exemptions follow the channel between slots.
+  static String messageFilterChannelId(Channel channel) =>
+      'psk:${channel.pskHex}';
+
+  /// Returns [message] tagged with [verdict], or unchanged when it is null.
+  @visibleForTesting
+  static ChannelMessage applyFilterVerdict(
+    ChannelMessage message,
+    FilterVerdict? verdict,
+  ) {
+    if (verdict == null) return message;
+    return message.copyWith(
+      filterReason: filterReasonToJson(verdict.reason),
+      filterDetail: verdict.detail,
+    );
+  }
+
+  /// The shared message filter, when the app set one up.
+  MessageFilterService? get messageFilterService => _messageFilterService;
+
+  /// Whether [message] in [channel] is hidden right now: tagged by the
+  /// filter, and filtering is on for that channel.
+  bool isChannelMessageHidden(Channel channel, ChannelMessage message) =>
+      message.isFiltered &&
+      (_messageFilterService?.isChannelFiltered(
+            messageFilterChannelId(channel),
+          ) ??
+          false);
+
+  /// User marked [message] in [channel] as spam: hide it and teach the
+  /// filter.
+  Future<void> markChannelMessageSpam(
+    Channel channel,
+    ChannelMessage message,
+  ) => markChannelMessagesSpam([(channel, message)]);
+
+  /// Bulk "Spam": hides every message and teaches the filter once.
+  Future<void> markChannelMessagesSpam(
+    List<(Channel channel, ChannelMessage message)> items,
+  ) async {
+    if (items.isEmpty) return;
+    for (final (channel, message) in items) {
+      _updateLoadedChannelMessageById(
+        channel,
+        message.messageId,
+        (existing) => existing
+            .copyWith(clearFilter: true)
+            .copyWith(filterReason: filterReasonToJson(FilterReason.manual)),
+      );
+    }
+    notifyListeners();
+    await _messageFilterService?.markSpamMany([
+      for (final (_, message) in items)
+        (
+          sender: message.senderName,
+          text: _ConnectorMessageFilter._messageFilterText(message),
+        ),
+    ]);
+  }
+
+  /// User marked [message] in [channel] as not spam: show it again and
+  /// teach the filter.
+  Future<void> markChannelMessageNotSpam(
+    Channel channel,
+    ChannelMessage message,
+  ) => markChannelMessagesNotSpam([(channel, message)]);
+
+  /// Bulk "Not spam": shows every message again and teaches the filter once.
+  Future<void> markChannelMessagesNotSpam(
+    List<(Channel channel, ChannelMessage message)> items,
+  ) async {
+    if (items.isEmpty) return;
+    for (final (channel, message) in items) {
+      _updateLoadedChannelMessageById(
+        channel,
+        message.messageId,
+        (existing) => existing.copyWith(clearFilter: true),
+      );
+    }
+    notifyListeners();
+    final service = _messageFilterService;
+    if (service == null) return;
+    await service.markNotSpamMany([
+      for (final (channel, message) in items)
+        (
+          channelId: messageFilterChannelId(channel),
+          sender: message.senderName,
+          text: _ConnectorMessageFilter._messageFilterText(message),
+        ),
+    ]);
+  }
+
+  /// Filtered messages across all loaded channels, newest first.
+  List<(Channel channel, ChannelMessage message)>
+  recentFilteredChannelMessages({int limit = 200}) {
+    final result = <(Channel, ChannelMessage)>[];
+    for (final entry in _channelMessages.entries) {
+      final channel = _findChannelByIndex(entry.key);
+      if (channel == null) continue;
+      for (final message in entry.value) {
+        if (message.isFiltered) result.add((channel, message));
+      }
+    }
+    result.sort((a, b) => b.$2.timestamp.compareTo(a.$2.timestamp));
+    return result.length > limit ? result.sublist(0, limit) : result;
+  }
+
+  /// Newest message in [channel] the filter did not hide, for channel-list
+  /// previews.
+  ChannelMessage? latestVisibleChannelMessage(Channel channel) {
+    final messages = getChannelMessages(channel);
+    for (var i = messages.length - 1; i >= 0; i--) {
+      if (!isChannelMessageHidden(channel, messages[i])) return messages[i];
+    }
+    return null;
   }
 
   List<ChannelMessage> getChannelMessages(Channel channel) {
@@ -1083,6 +1443,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
   Future<void> loadCachedChannels() async {
     _cachedChannels = await _channelStore.loadChannels();
+    _channelConflicts = _channelStore.loadConflicts();
     _recalculateCachedChannelsUnreadTotal();
   }
 
@@ -1267,6 +1628,16 @@ class MeshCoreConnector extends ChangeNotifier {
 
   /// Points the channel message store at [selfKeyHex]'s data and uses
   /// [settings], as connecting to that radio would.
+  /// Feeds a companion stats frame, as the radio would.
+  @visibleForTesting
+  void debugHandleStatsFrame(Uint8List frame) => _handleStatsFrame(frame);
+  @visibleForTesting
+  void debugMarkConnected() => _state = MeshCoreConnectionState.connected;
+
+  /// Sets the radio frequency as a self-info reply would.
+  @visibleForTesting
+  void debugSetFrequencyHz(int? hz) => _currentFreqHz = hz;
+
   @visibleForTesting
   void debugUseChannelStore(String selfKeyHex, AppSettingsService settings) {
     _channelMessageStore.setPublicKeyHex = selfKeyHex;
@@ -1376,6 +1747,7 @@ class MeshCoreConnector extends ChangeNotifier {
     TimeoutPredictionService? timeoutPredictionService,
     ImageCodecService? imageCodecService,
     ImageChunkTransport? imageTransport,
+    MessageFilterService? messageFilterService,
     void Function(ImageChunkOutcome outcome)? onImageChunk,
     void Function(int senderPrefix)? onImageSenderPrefix,
   }) {
@@ -1383,6 +1755,10 @@ class MeshCoreConnector extends ChangeNotifier {
     _pathHistoryService = pathHistoryService;
     _appSettingsService = appSettingsService;
     _translationService = translationService;
+    _messageFilterService?.removeListener(_onMessageFilterChanged);
+    _messageFilterService = messageFilterService;
+    _appliedFilterRulesRevision = messageFilterService?.rulesRevision ?? 0;
+    messageFilterService?.addListener(_onMessageFilterChanged);
     _imageCodecService = imageCodecService;
     _imageTransport = imageTransport;
     _onImageChunk = onImageChunk;
@@ -1467,7 +1843,14 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
-  Future<void> _loadDiscoveredContactCache() async {
+  Future<void> _loadDiscoveredContactCache() =>
+      _discoveredCacheLoad = _readDiscoveredContactCache();
+
+  Future<void> _readDiscoveredContactCache() async {
+    if (_demoSession) {
+      _discoveredContacts.clear();
+      return;
+    }
     final cached = await _discoveryContactStore.loadContacts();
     // Trim a previously-saved oversized list down to the freshest entries so a
     // device that grew unbounded before the cap existed recovers on load.
@@ -1586,13 +1969,13 @@ class MeshCoreConnector extends ChangeNotifier {
     );
   }
 
-  Future<void> _sendMessageDirect(
+  Future<bool> _sendMessageDirect(
     Contact contact,
     String text,
     int attempt,
     int timestampSeconds,
   ) async {
-    if (!isConnected || text.isEmpty) return;
+    if (!isConnected || text.isEmpty) return false;
     try {
       await _waitForRadioQuiet(lastInboundRxTime: _lastContactMsgRxTime);
       final outboundText = prepareContactOutboundText(contact, text);
@@ -1604,8 +1987,10 @@ class MeshCoreConnector extends ChangeNotifier {
           timestampSeconds: timestampSeconds,
         ),
       );
+      return true;
     } catch (e) {
       appLogger.error('Failed to send message: $e', tag: 'Connector');
+      return false;
     }
   }
 
@@ -2084,6 +2469,7 @@ class MeshCoreConnector extends ChangeNotifier {
   Future<void> connectUsb({
     required String portName,
     int baudRate = 115200,
+    bool automaticReconnect = false,
   }) async {
     final pendingDisconnect = _disconnectInFlight;
     if (pendingDisconnect != null) await pendingDisconnect;
@@ -2102,10 +2488,12 @@ class MeshCoreConnector extends ChangeNotifier {
     );
 
     await stopScan();
-    _cancelReconnectTimer();
-    _manualDisconnect = false;
+    _beginWiredConnect(automaticReconnect);
     _resetConnectionHandshakeState();
     _activeTransport = MeshCoreTransportType.usb;
+    _nextCause =
+        _connectCauseOverride ??
+        (automaticReconnect ? ConnectionCause.reconnect : ConnectionCause.user);
     _setState(MeshCoreConnectionState.connecting);
 
     try {
@@ -2180,6 +2568,11 @@ class MeshCoreConnector extends ChangeNotifier {
       await syncTime();
       _appDebugLogService?.info('connectUsb: complete', tag: 'USB');
       _lastConnectionError = null;
+      _reconnectAttempts = 0;
+      // Web serial ports can only be reopened from a user gesture.
+      if (!PlatformInfo.isWeb) {
+        _linkTarget = UsbLinkTarget(portName, baudRate);
+      }
       unawaited(_rememberRadio(SavedRadioTransport.usb, portName));
     } catch (error) {
       _appDebugLogService?.error('USB connection error: $error', tag: 'USB');
@@ -2189,7 +2582,11 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
-  Future<void> connectTcp({required String host, required int port}) async {
+  Future<void> connectTcp({
+    required String host,
+    required int port,
+    bool automaticReconnect = false,
+  }) async {
     final pendingDisconnect = _disconnectInFlight;
     if (pendingDisconnect != null) await pendingDisconnect;
     if (_state == MeshCoreConnectionState.connecting ||
@@ -2203,11 +2600,26 @@ class MeshCoreConnector extends ChangeNotifier {
 
     _appDebugLogService?.info('connectTcp: endpoint=$host:$port', tag: 'TCP');
 
+    _demoSession = isDemoRadioHost(host);
+    if (_demoSession) {
+      // Nothing heard by a real radio belongs in the demo. Save waiting
+      // changes first so the clear can't be written over the real list.
+      unawaited(flushDiscoveredContacts());
+      _discoveredContacts.clear();
+      _directRepeaters.clear();
+      _latestRadioStats = null;
+      _lastRxSnr = null;
+      _lastRxRssi = null;
+      _lastRxSignalAt = null;
+    }
+
     await stopScan();
-    _cancelReconnectTimer();
-    _manualDisconnect = false;
+    _beginWiredConnect(automaticReconnect);
     _resetConnectionHandshakeState();
     _activeTransport = MeshCoreTransportType.tcp;
+    _nextCause =
+        _connectCauseOverride ??
+        (automaticReconnect ? ConnectionCause.reconnect : ConnectionCause.user);
     _setState(MeshCoreConnectionState.connecting);
 
     try {
@@ -2288,7 +2700,12 @@ class MeshCoreConnector extends ChangeNotifier {
 
       await syncTime();
       _lastConnectionError = null;
-      unawaited(_rememberRadio(SavedRadioTransport.tcp, '$host:$port'));
+      _reconnectAttempts = 0;
+      // The demo radio is never saved or reconnected to on its own.
+      if (!_tcpConnector.isDemo) {
+        _linkTarget = TcpLinkTarget(host, port);
+        unawaited(_rememberRadio(SavedRadioTransport.tcp, '$host:$port'));
+      }
     } catch (error) {
       _appDebugLogService?.error('TCP connection error: $error', tag: 'TCP');
       final tcpConnectCancelledBeforeHandshake =
@@ -2377,6 +2794,9 @@ class MeshCoreConnector extends ChangeNotifier {
     _activeTransport = MeshCoreTransportType.bluetooth;
 
     await stopScan();
+    _nextCause =
+        _connectCauseOverride ??
+        (automaticReconnect ? ConnectionCause.reconnect : ConnectionCause.user);
     _setState(MeshCoreConnectionState.connecting);
     _device = device;
     _deviceId = targetId;
@@ -2393,6 +2813,7 @@ class MeshCoreConnector extends ChangeNotifier {
     // begin a fresh retry sequence.
     if (!automaticReconnect) {
       _cancelReconnectTimer();
+      _linkTarget = null;
     }
     _bleInitialSyncStarted = false;
     if (PlatformInfo.isWeb) {
@@ -3083,6 +3504,7 @@ class MeshCoreConnector extends ChangeNotifier {
   }
 
   void _resetConnectionHandshakeState() {
+    _contactsFull = false;
     _selfPublicKey = null;
     // Partially received images belong to the previous session's sender prefix.
     _imageTransport?.reassembler.clear();
@@ -3134,11 +3556,26 @@ class MeshCoreConnector extends ChangeNotifier {
     _previousChannelsCache.clear();
   }
 
-  bool get _shouldAutoReconnect =>
-      !_manualDisconnect &&
-      !isBluetoothOff &&
-      _lastDeviceId != null &&
-      _activeTransport == MeshCoreTransportType.bluetooth;
+  bool get _shouldAutoReconnect {
+    if (_manualDisconnect) return false;
+    if (_linkTarget != null) return true;
+    return !isBluetoothOff &&
+        _lastDeviceId != null &&
+        _activeTransport == MeshCoreTransportType.bluetooth;
+  }
+
+  /// Starts a TCP or USB connect. One the user asks for begins a fresh
+  /// backoff and forgets the old link; an automatic retry keeps both.
+  void _beginWiredConnect(bool automaticReconnect) {
+    _manualDisconnect = false;
+    if (automaticReconnect) {
+      _reconnectTimer?.cancel();
+      _reconnectTimer = null;
+    } else {
+      _cancelReconnectTimer();
+      _linkTarget = null;
+    }
+  }
 
   SharedPreferences? get _prefsOrNull {
     try {
@@ -3285,9 +3722,20 @@ class MeshCoreConnector extends ChangeNotifier {
 
   /// Connects to the saved radio, and only that one. Does nothing when no
   /// radio is saved.
-  Future<void> reconnectSavedRadio() async {
+  /// Connects the saved radio. [automatic] marks a connect the app started
+  /// on its own ("Connect to my radio automatically"), not a tap.
+  Future<void> reconnectSavedRadio({bool automatic = false}) async {
     final saved = savedRadio;
     if (saved == null) return;
+    _connectCauseOverride = automatic ? ConnectionCause.autoConnect : null;
+    try {
+      await _connectSaved(saved);
+    } finally {
+      _connectCauseOverride = null;
+    }
+  }
+
+  Future<void> _connectSaved(SavedRadio saved) async {
     switch (saved.transport) {
       case SavedRadioTransport.bluetooth:
         await connect(
@@ -3334,6 +3782,38 @@ class MeshCoreConnector extends ChangeNotifier {
       if (!_shouldAutoReconnect) return;
       if (_state == MeshCoreConnectionState.connecting ||
           _state == MeshCoreConnectionState.connected) {
+        return;
+      }
+
+      final target = _linkTarget;
+      if (target != null) {
+        _appDebugLogService?.info(
+          'Reconnecting ${target.transport.name} (attempt $_reconnectAttempts)',
+          tag: 'Connection',
+        );
+        try {
+          final override = debugLinkReconnectOverride;
+          if (override != null) {
+            await override(target);
+          } else {
+            switch (target) {
+              case TcpLinkTarget(:final host, :final port):
+                await connectTcp(
+                  host: host,
+                  port: port,
+                  automaticReconnect: true,
+                );
+              case UsbLinkTarget(:final portName, :final baudRate):
+                await connectUsb(
+                  portName: portName,
+                  baudRate: baudRate,
+                  automaticReconnect: true,
+                );
+            }
+          }
+        } catch (_) {
+          _scheduleReconnect();
+        }
         return;
       }
 
@@ -3395,11 +3875,13 @@ class MeshCoreConnector extends ChangeNotifier {
 
     if (manual) {
       _manualDisconnect = true;
+      _linkTarget = null;
       _cancelReconnectTimer();
       unawaited(_backgroundService?.stop());
     } else {
       _manualDisconnect = false;
     }
+    _nextCause = manual ? ConnectionCause.user : ConnectionCause.app;
     _setState(MeshCoreConnectionState.disconnecting);
     _stopBatteryPolling();
     _stopRadioStatsPolling();
@@ -3457,6 +3939,10 @@ class MeshCoreConnector extends ChangeNotifier {
     _deviceDisplayName = null;
     _deviceId = null;
     _contacts.clear();
+    // Save waiting changes first: a save after the clear would write an
+    // empty list and lose every remembered node.
+    await flushDiscoveredContacts();
+    _discoveredCacheLoad = null;
     _discoveredContacts.clear();
     _conversations.clear();
     _loadedConversationKeys.clear();
@@ -3481,6 +3967,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _awaitingSelfInfo = false;
     _hasReceivedDeviceInfo = false;
     _maxContacts = _defaultMaxContacts;
+    _maxContactsReported = false;
     _maxChannels = _defaultMaxChannels;
     _resetSyncProgressState();
     _pendingChannelSentQueue.clear();
@@ -3488,13 +3975,16 @@ class MeshCoreConnector extends ChangeNotifier {
     _reactionSendQueueSequence = 0;
 
     _activeTransport = MeshCoreTransportType.bluetooth;
+    _demoSession = false;
 
     _setState(MeshCoreConnectionState.disconnected);
     _appDebugLogService?.info(
       'Disconnect complete transport=$transportLabel manual=$manual',
       tag: 'Connection',
     );
-    if (!manual && transportAtDisconnect == MeshCoreTransportType.bluetooth) {
+    if (!manual &&
+        (transportAtDisconnect == MeshCoreTransportType.bluetooth ||
+            _linkTarget != null)) {
       _scheduleReconnect();
     }
   }
@@ -3860,11 +4350,47 @@ class MeshCoreConnector extends ChangeNotifier {
         0xFF, // OUT_PATH_UNKNOWN
         type: link.type,
         name: link.name,
+        // Never heard yet: 0 lets the node's first advert through.
+        lastAdvertTimestamp: 0,
       ),
       expectsGenericAck: true,
       waitForGenericAck: true,
     );
     await refreshContacts();
+  }
+
+  /// Forgets when [contact] last advertised, keeping its name, type, route
+  /// and position. The radio drops an advert that isn't newer than the last
+  /// one, so a node whose clock went backwards (a reset or a dead RTC
+  /// battery) stays stuck until this is cleared.
+  Future<void> forgetLastAdvert(Contact contact) async {
+    if (!isConnected) throw StateError('Connect your radio first.');
+    final flood = contact.pathLength < 0;
+    final pathLen = flood
+        ? 0xFF
+        : _encodePathLenForCurrentMode(contact.pathLength, contact.path);
+    await sendFrame(
+      buildUpdateContactPathFrame(
+        contact.publicKey,
+        flood ? Uint8List(0) : contact.path,
+        pathLen ?? 0xFF,
+        type: contact.type,
+        flags: contact.flags,
+        name: contact.name,
+        lat: contact.hasLocation ? contact.latitude : null,
+        lon: contact.hasLocation ? contact.longitude : null,
+        lastAdvertTimestamp: 0,
+      ),
+      expectsGenericAck: true,
+      waitForGenericAck: true,
+    );
+  }
+
+  /// Stops retrying [message] and marks it failed, so it isn't sent again.
+  void stopRetrying(Message message) {
+    if (message.status != MessageStatus.pending) return;
+    _retryService?.untrack(message.messageId);
+    _updateMessage(message.copyWith(status: MessageStatus.failed));
   }
 
   Future<void> refreshContacts() async {
@@ -3899,6 +4425,7 @@ class MeshCoreConnector extends ChangeNotifier {
       );
       return;
     }
+    _sentDirectMessagesController.add(contact);
 
     // Check if this is a reaction - apply locally with pending status and route through retry service
     final reactionInfo = ReactionHelper.parseReaction(text);
@@ -3914,6 +4441,12 @@ class MeshCoreConnector extends ChangeNotifier {
 
       // Apply reaction locally with pending status
       _processOutgoingContactReaction(messages, reactionInfo, contact);
+      if (!sendsReactionsOverRadio) {
+        // Local only: shown here, never sent, so there's nothing pending.
+        _messageStore.saveMessages(contact.publicKeyHex, messages);
+        notifyListeners();
+        return;
+      }
       _setReactionStatus(
         contact.publicKeyHex,
         reactionInfo,
@@ -3972,7 +4505,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _pathOpLock = completer.future;
     await prev;
     try {
-      if (!isConnected) return;
+      if (!isConnected || !_isKnownContact(contact)) return;
 
       final encodedPathLen = _encodePathLenForCurrentMode(pathLen, customPath);
       if (encodedPathLen == null) {
@@ -3986,6 +4519,12 @@ class MeshCoreConnector extends ChangeNotifier {
           type: contact.type,
           flags: contact.flags,
           name: contact.name,
+          lastAdvertTimestamp: _knownAdvertSeconds(contact),
+          // Without these the radio stamps "last heard" as now on every
+          // path change, so the node would always look just heard.
+          lat: _knownContact(contact).latitude,
+          lon: _knownContact(contact).longitude,
+          lastModified: _knownContact(contact).lastModified,
         ),
       );
       // USB writes return instantly (no BLE flow control), so give the firmware
@@ -4008,6 +4547,24 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
+  /// Whether [contact] is still in the radio's contact list. The firmware's
+  /// CMD_ADD_UPDATE_CONTACT adds unknown keys, so a path or flag write for a
+  /// removed contact (for example a repeater screen still open after the
+  /// contact was deleted) would add it back on the radio.
+  bool _isKnownContact(Contact contact) =>
+      _contacts.any((c) => c.publicKeyHex == contact.publicKeyHex);
+
+  /// The advert time the radio holds for [contact], from our copy of its
+  /// contact list (a screen may pass an older copy of the contact).
+  int _knownAdvertSeconds(Contact contact) =>
+      advertSeconds(_knownContact(contact).lastSeen);
+
+  /// Our copy of the radio's record for [contact], or [contact] itself.
+  Contact _knownContact(Contact contact) => _contacts.firstWhere(
+    (c) => c.publicKeyHex == contact.publicKeyHex,
+    orElse: () => contact,
+  );
+
   Future<void> setContactFlags(
     Contact contact, {
     bool? isFavorite,
@@ -4016,7 +4573,7 @@ class MeshCoreConnector extends ChangeNotifier {
     bool? teleEnv,
     bool? remoteCli,
   }) async {
-    if (!isConnected) return;
+    if (!isConnected || !_isKnownContact(contact)) return;
     final latestContact =
         await _fetchContactSnapshotFromDevice(contact.publicKey) ?? contact;
     int updatedFlags = isFavorite != null
@@ -4058,6 +4615,11 @@ class MeshCoreConnector extends ChangeNotifier {
         type: latestContact.type,
         flags: updatedFlags,
         name: latestContact.name,
+        lastAdvertTimestamp: advertSeconds(latestContact.lastSeen),
+        // Keep the radio's "last heard" time instead of stamping it now.
+        lat: latestContact.latitude,
+        lon: latestContact.longitude,
+        lastModified: latestContact.lastModified,
       ),
     );
 
@@ -4325,6 +4887,7 @@ class MeshCoreConnector extends ChangeNotifier {
       _processedChannelReactions[channel.index]!.add(reactionIdentifier);
 
       notifyListeners();
+      if (!sendsReactionsOverRadio) return;
 
       // Send the reaction to the device (don't add as a visible message)
       final reactionQueueId = _nextReactionSendQueueId();
@@ -4652,6 +5215,7 @@ class MeshCoreConnector extends ChangeNotifier {
     );
 
     await sendFrame(buildRemoveContactFrame(contact.publicKey));
+    _contactsFull = false;
     _contacts.removeWhere((c) => c.publicKeyHex == contact.publicKeyHex);
     _knownContactKeys.remove(contact.publicKeyHex);
     unawaited(updateKnownDiscovered());
@@ -4712,6 +5276,7 @@ class MeshCoreConnector extends ChangeNotifier {
         lat: contact.latitude,
         lon: contact.longitude,
         lastModified: contact.lastSeen,
+        lastAdvertTimestamp: advertSeconds(contact.lastSeen),
       ),
       waitForGenericAck: true,
     );
@@ -4734,7 +5299,7 @@ class MeshCoreConnector extends ChangeNotifier {
         path: contact.path,
         latitude: contact.latitude,
         longitude: contact.longitude,
-        lastSeen: DateTime.now(),
+        lastSeen: contact.lastSeen,
         flags: contact.flags,
       ),
     );
@@ -5211,6 +5776,17 @@ class MeshCoreConnector extends ChangeNotifier {
       '[ChannelSync] Sync complete: received ${_channels.length}/$_totalChannelsToRequest channels',
     );
 
+    // Compare before cleanup resets the slot count.
+    _channelConflicts = findChannelConflicts(
+      app: _cachedChannels,
+      radio: _channels,
+      slots: _totalChannelsToRequest,
+      skip: _appChannelEdits,
+      pending: _channelConflicts,
+    );
+    _appChannelEdits.clear();
+    unawaited(_channelStore.saveConflicts(_channelConflicts));
+
     _cleanupChannelSync(completed: true);
 
     // Cache channels for offline use
@@ -5265,15 +5841,47 @@ class MeshCoreConnector extends ChangeNotifier {
   Future<void> setChannel(int index, String name, Uint8List psk) async {
     if (!isConnected) return;
 
+    _appChannelEdits.add(index);
+    _dropChannelConflict(index);
     await sendFrame(buildSetChannelFrame(index, name, psk));
     // Refresh channels after setting
     await getChannels(force: true);
+  }
+
+  /// Keeps the radio's version of a conflicting slot; the app forgets its
+  /// old copy.
+  Future<void> keepRadioChannel(int index) async {
+    _dropChannelConflict(index);
+    notifyListeners();
+  }
+
+  /// Writes the app's saved copy of a conflicting slot back to the radio.
+  Future<void> restoreAppChannel(int index) async {
+    final conflict = _channelConflicts.cast<ChannelConflict?>().firstWhere(
+      (c) => c!.index == index,
+      orElse: () => null,
+    );
+    if (conflict == null || !isConnected) return;
+    await setChannel(index, conflict.app.name, conflict.app.psk);
+  }
+
+  void _dropChannelConflict(int index) {
+    final before = _channelConflicts.length;
+    _channelConflicts = [
+      for (final c in _channelConflicts)
+        if (c.index != index) c,
+    ];
+    if (_channelConflicts.length != before) {
+      unawaited(_channelStore.saveConflicts(_channelConflicts));
+    }
   }
 
   Future<void> deleteChannel(int index) async {
     if (!isConnected) return;
 
     // Delete by setting empty name and zero PSK
+    _appChannelEdits.add(index);
+    _dropChannelConflict(index);
     await sendFrame(buildSetChannelFrame(index, '', Uint8List(16)));
     // Clear stored messages for this channel
     await _channelMessageStore.clearChannelMessages(index);
@@ -5290,6 +5898,20 @@ class MeshCoreConnector extends ChangeNotifier {
   void debugSetContacts(List<Contact> contacts) => _contacts
     ..clear()
     ..addAll(contacts);
+
+  /// Feeds a CHANNEL_MSG_RECV frame in as if the radio sent it.
+  @visibleForTesting
+  void debugHandleIncomingChannelFrame(Uint8List frame) =>
+      _handleIncomingChannelMessage(frame);
+
+  /// Uses [service] as the message filter, as [initialize] would.
+  @visibleForTesting
+  void debugUseMessageFilter(MessageFilterService service) {
+    _messageFilterService?.removeListener(_onMessageFilterChanged);
+    _messageFilterService = service;
+    _appliedFilterRulesRevision = service.rulesRevision;
+    service.addListener(_onMessageFilterChanged);
+  }
 
   @visibleForTesting
   void debugSetChannels(List<Channel> channels) => _channels
@@ -5417,6 +6039,18 @@ class MeshCoreConnector extends ChangeNotifier {
         break;
       case pushCodePathUpdated:
         _handlePathUpdated(frame);
+        break;
+      case pushCodeContactsFull:
+        if (!_contactsFull) {
+          _contactsFull = true;
+          notifyListeners();
+        }
+        break;
+      case pushCodeContactDeleted:
+        if (_contactsFull) {
+          _contactsFull = false;
+          notifyListeners();
+        }
         break;
       case pushCodeControlData:
         // Optional feature-specific services listen to receivedFrames directly.
@@ -5767,6 +6401,7 @@ class MeshCoreConnector extends ChangeNotifier {
     final nextMaxContacts = reportedContacts > 0
         ? reportedContacts * 2
         : _maxContacts;
+    if (reportedContacts > 0) _maxContactsReported = true;
     final nextMaxChannels = reportedChannels > 0
         ? reportedChannels
         : _maxChannels;
@@ -5888,6 +6523,11 @@ class MeshCoreConnector extends ChangeNotifier {
       _airtimeBumpStopwatch!.start();
     }
     _prevTotalAirSecs = total;
+    _airtimeSamples.add(AirtimeSample(stats.receivedAt, total));
+    _airtimeSamples.removeWhere(
+      (s) => stats.receivedAt.difference(s.at) > const Duration(minutes: 30),
+    );
+    if (_airtimeSamples.length > 240) _airtimeSamples.removeAt(0);
     _latestRadioStats = stats;
     radioStatsNotifier.value = stats;
   }
@@ -5952,7 +6592,7 @@ class MeshCoreConnector extends ChangeNotifier {
         _currentCr != null) {
       final cr = _currentCr! <= 4 ? _currentCr! : _currentCr! - 4;
       return calculateLoRaAirtime(
-        payloadBytes: messageBytes,
+        payloadBytes: messageBytes + stationIdBytes, // ID on every frame
         spreadingFactor: _currentSf!,
         bandwidthHz: _currentBwHz!,
         codingRate: cr,
@@ -6112,6 +6752,12 @@ class MeshCoreConnector extends ChangeNotifier {
             (_autoAddRoomServers && contact.type == advTypeRoom) ||
             (_autoAddSensors && contact.type == advTypeSensor) ||
             isContact) {
+          // A contact from the radio's own list is truth; one the radio
+          // auto-added from an advert must fit its table, as it does there.
+          if (!isContact && !_admitAutoAddedContact(contact)) {
+            notifyListeners();
+            return;
+          }
           _contacts.add(contact);
           appLogger.info(
             'Added new contact ${contact.name}: pathLen=${contact.pathLength}',
@@ -6152,6 +6798,58 @@ class MeshCoreConnector extends ChangeNotifier {
         unawaited(_persistContacts());
       }
     }
+  }
+
+  /// Whether the radio would have room for a contact it auto-added from an
+  /// advert, mirroring its table: when full it either replaces the oldest
+  /// non-favorite (overwrite oldest on), which is dropped here too, or adds
+  /// nothing. Without this the list here drifts from the radio's over a long
+  /// session, keeping contacts the radio no longer has.
+  bool _admitAutoAddedContact(Contact contact) {
+    if (_contacts.length < _maxContacts) return true;
+    if (!_overwriteOldest) {
+      appLogger.info(
+        'Contact table full ($_maxContacts); radio did not add ${contact.name}',
+        tag: 'Connector',
+      );
+      return false;
+    }
+    Contact? oldest;
+    for (final c in _contacts) {
+      if (c.isFavorite) continue;
+      if (oldest == null ||
+          (c.lastModified ?? c.lastSeen).isBefore(
+            oldest.lastModified ?? oldest.lastSeen,
+          )) {
+        oldest = c;
+      }
+    }
+    if (oldest == null) return false;
+    final evicted = oldest;
+    _contacts.removeWhere((c) => c.publicKeyHex == evicted.publicKeyHex);
+    _knownContactKeys.remove(evicted.publicKeyHex);
+    // The radio forgets it; this app keeps it in the heard-node list.
+    _keepDroppedContact(evicted);
+    appLogger.info(
+      'Contact table full; radio replaced ${evicted.name} with ${contact.name}',
+      tag: 'Connector',
+    );
+    return true;
+  }
+
+  /// Sets the contact-table limits as the radio reports them; for tests.
+  @visibleForTesting
+  void debugSetContactTable({
+    required int maxContacts,
+    bool overwriteOldest = false,
+    bool autoAddUsers = false,
+    bool autoAddRepeaters = false,
+  }) {
+    _maxContacts = maxContacts;
+    _maxContactsReported = true;
+    _overwriteOldest = overwriteOldest;
+    _autoAddUsers = autoAddUsers;
+    _autoAddRepeaters = autoAddRepeaters;
   }
 
   void _handleContactAdvert(Contact contact) {
@@ -6198,6 +6896,10 @@ class MeshCoreConnector extends ChangeNotifier {
         tag: 'Connector',
       );
     } else {
+      if (!_admitAutoAddedContact(contact)) {
+        notifyListeners();
+        return;
+      }
       _contacts.add(contact);
       appLogger.info(
         'Added new contact ${contact.name}: pathLen=${contact.pathLength}',
@@ -6235,8 +6937,15 @@ class MeshCoreConnector extends ChangeNotifier {
     await _contactStore.saveContacts(_contacts);
   }
 
+  /// Marks the heard-node list changed; one save follows a few seconds later
+  /// (see [flushDiscoveredContacts]).
   Future<void> _persistDiscoveredContacts() async {
-    await _discoveryContactStore.saveContacts(_discoveredContacts);
+    if (_demoSession) return;
+    _discoveredDirty = true;
+    _discoveredSaveTimer ??= Timer(
+      _discoveredSaveDelay,
+      () => unawaited(flushDiscoveredContacts()),
+    );
   }
 
   int _latestContactLastmod() {
@@ -6804,6 +7513,8 @@ class MeshCoreConnector extends ChangeNotifier {
 
     final label = channelName ?? _channelDisplayName(channelIndex);
     if (_appSettingsService!.isChannelMuted(label)) return;
+    if (_isBlockedChannelSender(message)) return;
+    if (_isHiddenByFilter(message)) return;
     if (!_receivedChannelMessagesController.isClosed) {
       _receivedChannelMessagesController.add(
         ReceivedChannelMessage(message, label),
@@ -6874,13 +7585,14 @@ class MeshCoreConnector extends ChangeNotifier {
       final isNew = _addChannelMessage(message.channelIndex!, message);
       _maybeIncrementChannelUnread(message, isNew: isNew);
       notifyListeners();
+      final hidden = isNew && _isHiddenByFilter(message);
       if (isNew && !message.isOutgoing) {
         unawaited(_claimHeldSignature(message));
-        if (!_radioChannelMessagesController.isClosed) {
+        if (!hidden && !_radioChannelMessagesController.isClosed) {
           _radioChannelMessagesController.add(message);
         }
       }
-      if (isNew && !message.isOutgoing) {
+      if (isNew && !message.isOutgoing && !hidden) {
         final msg = message; // capture for closure
         unawaited(() async {
           final translationResult = await translateChannelMessage(
@@ -6994,12 +7706,21 @@ class MeshCoreConnector extends ChangeNotifier {
     if (frame.length < 4) return;
     final reader = BufferReader(frame);
     reader.skipBytes(3); // Skip code, SNR x4, RSSI
-    final raw = reader.readRemainingBytes();
+    final onAir = reader.readRemainingBytes();
     final signal = frame.buffer.asByteData(frame.offsetInBytes);
     _lastRxSnr = signal.getInt8(1) / 4;
     _lastRxRssi = signal.getInt8(2);
     _lastRxSignalAt = DateTime.now();
     markNotifyDirty();
+    // The radio logs everything it hears. Only amateur frames are ours; the
+    // rest (eg. Part 15 MeshCore on the same channel) is left alone.
+    final amateur = AmateurFrame.unwrap(onAir);
+    if (amateur == null) {
+      _recordStockFrame(onAir);
+      return;
+    }
+    final raw = amateur.packet;
+    _recordHeardStation(raw, amateur.station);
     _handleRawRxPacket(raw);
     if (!_rxPacketsController.hasListener) return;
     final packet = _parseRawPacket(raw);
@@ -7011,6 +7732,7 @@ class MeshCoreConnector extends ChangeNotifier {
         rssi: _lastRxRssi!,
         receivedAt: DateTime.now(),
         fromSelf: _isOwnRxPacket(packet),
+        station: amateur.station,
       ),
     );
   }
@@ -7064,8 +7786,107 @@ class MeshCoreConnector extends ChangeNotifier {
   ///
   /// Unlike radio RX, a message the app already has is left alone instead of
   /// counted as a repeat, so internet copies don't inflate RF repeat counts.
-  void ingestMqttRawPacket(Uint8List raw) =>
-      _handleRawRxPacket(raw, viaMqtt: true);
+  ///
+  /// Only amateur frames (station ID attached) are used, so encrypted Part 15
+  /// traffic shared by MeshCore observers never shows up as garbled text.
+  void ingestMqttRawPacket(Uint8List raw) {
+    final amateur = AmateurFrame.unwrap(raw);
+    if (amateur == null) return;
+    _handleRawRxPacket(amateur.packet, viaMqtt: true);
+  }
+
+  // Station IDs heard per packet (by packet hash), newest last, capped so a
+  // long session doesn't grow without bound. In memory only.
+  static const _maxHeardPackets = 500;
+  final _heardStations = <String, List<String>>{};
+  String? _lastHeardStation;
+  DateTime? _lastHeardAt;
+
+  /// The call sign in the last amateur frame the radio heard, and when.
+  String? get lastHeardStation => _lastHeardStation;
+  DateTime? get lastHeardAt => _lastHeardAt;
+
+  /// Call signs heard transmitting the packet with [packetHash]: the sender,
+  /// and any repeaters heard relaying it. Empty when none were recorded.
+  List<String> heardStationsFor(String? packetHash) =>
+      packetHash == null ? const [] : (_heardStations[packetHash] ?? const []);
+
+  /// How far back [stockFramesHeard] looks.
+  static const stockTrafficWindow = Duration(minutes: 10);
+  static const _maxStockFrames = 200;
+  final _stockFrameTimes = <DateTime>[];
+
+  /// Stock MeshCore frames (payload version 1, no station ID) the radio
+  /// heard in the last [stockTrafficWindow]: another network, such as a
+  /// Part 15 mesh, is using this frequency. They are counted, not read.
+  int get stockFramesHeard {
+    _pruneStockFrames(DateTime.now());
+    return _stockFrameTimes.length;
+  }
+
+  /// When the last stock MeshCore frame was heard, or null.
+  DateTime? get lastStockFrameAt =>
+      _stockFrameTimes.isEmpty ? null : _stockFrameTimes.last;
+
+  void _pruneStockFrames(DateTime now) {
+    final cutoff = now.subtract(stockTrafficWindow);
+    _stockFrameTimes.removeWhere((t) => t.isBefore(cutoff));
+  }
+
+  void _recordStockFrame(Uint8List onAir) {
+    // Version 1 is stock MeshCore; anything else unreadable is just noise.
+    if (onAir.isEmpty || (onAir[0] >> 6) & 0x03 != 0) return;
+    if (_parseRawPacket(onAir) == null) return;
+    final now = DateTime.now();
+    _pruneStockFrames(now);
+    _stockFrameTimes.add(now);
+    if (_stockFrameTimes.length > _maxStockFrames) {
+      _stockFrameTimes.removeAt(0);
+    }
+  }
+
+  // Direct adverts whose station ID didn't match their name, newest first.
+  static const _maxStationIdMismatches = 20;
+  final _stationIdMismatches = <StationIdMismatch>[];
+
+  /// Nodes heard directly whose frames carried a station ID other than the
+  /// call sign their advertised name starts with, newest first; one entry
+  /// per node and station. In memory only.
+  List<StationIdMismatch> get stationIdMismatches =>
+      List.unmodifiable(_stationIdMismatches);
+
+  void _checkStationId(Uint8List raw, String station, DateTime at) {
+    final m = checkStationId(raw, station, at: at);
+    if (m == null) return;
+    _stationIdMismatches.removeWhere(
+      (o) => o.nodeKey == m.nodeKey && o.station == m.station,
+    );
+    _stationIdMismatches.insert(0, m);
+    if (_stationIdMismatches.length > _maxStationIdMismatches) {
+      _stationIdMismatches.removeLast();
+    }
+    appLogger.warn(
+      'Station ID ${m.station} on a direct advert named "${m.advertName}"',
+      tag: 'Ham',
+    );
+    notifyListeners();
+  }
+
+  void _recordHeardStation(Uint8List raw, String station) {
+    if (station.isEmpty) return;
+    _lastHeardStation = station;
+    _lastHeardAt = DateTime.now();
+    _checkStationId(raw, station, _lastHeardAt!);
+    final packet = _parseRawPacket(raw);
+    if (packet == null) return;
+    final hash = _computePacketHash(packet.payloadType, packet.payload);
+    final list = _heardStations.remove(hash) ?? <String>[];
+    if (!list.contains(station)) list.add(station);
+    _heardStations[hash] = list; // re-insert: most recent last
+    if (_heardStations.length > _maxHeardPackets) {
+      _heardStations.remove(_heardStations.keys.first);
+    }
+  }
 
   void _handleRawRxPacket(Uint8List raw, {bool viaMqtt = false}) {
     try {
@@ -7149,7 +7970,7 @@ class MeshCoreConnector extends ChangeNotifier {
           final isNew = _addChannelMessage(channel.index, message);
           _maybeIncrementChannelUnread(message, isNew: isNew);
           notifyListeners();
-          if (isNew) {
+          if (isNew && !_isHiddenByFilter(message)) {
             // Run translation + notification asynchronously to avoid blocking
             unawaited(() async {
               final translationResult = await translateChannelMessage(
@@ -7499,10 +8320,18 @@ class MeshCoreConnector extends ChangeNotifier {
         );
   }
 
+  /// Whether [message] comes from a sender the user blocked: it is kept but
+  /// neither notifies nor counts as unread.
+  bool _isBlockedChannelSender(ChannelMessage message) =>
+      !message.isOutgoing &&
+      (_appSettingsService?.isSenderBlocked(message.senderName) ?? false);
+
   void _maybeIncrementChannelUnread(
     ChannelMessage message, {
     required bool isNew,
   }) {
+    if (_isBlockedChannelSender(message)) return;
+    if (_isHiddenByFilter(message)) return;
     if (!isNew || message.isOutgoing) {
       _appDebugLogService?.info(
         'Skip unread increment: isNew=$isNew, isOutgoing=${message.isOutgoing}',
@@ -7908,17 +8737,9 @@ class MeshCoreConnector extends ChangeNotifier {
     }
 
     if (cipherText.isEmpty || cipherText.length % 16 != 0) return null;
-    final key16 = Uint8List(16);
-    final keyLen = psk.length < 16 ? psk.length : 16;
-    key16.setRange(0, keyLen, psk);
-
-    final cipher = ECBBlockCipher(AESEngine());
-    cipher.init(false, KeyParameter(key16));
-    final out = Uint8List(cipherText.length);
-    for (var i = 0; i < cipherText.length; i += 16) {
-      cipher.processBlock(cipherText, i, out, i);
-    }
-    return out;
+    // Amateur frames carry plain text (Part 97.113): once the MAC matches the
+    // channel key, the zero-padded body is the message itself.
+    return Uint8List.fromList(cipherText);
   }
 
   _ParsedText _splitSenderText(String text) {
@@ -8007,6 +8828,8 @@ class MeshCoreConnector extends ChangeNotifier {
           replyToSenderName: originalMessage.senderName,
           replyToText: originalMessage.text,
           viaMqtt: message.viaMqtt,
+          filterReason: message.filterReason,
+          filterDetail: message.filterDetail,
         );
       }
     }
@@ -8066,7 +8889,9 @@ class MeshCoreConnector extends ChangeNotifier {
         _pendingChannelSentQueue.remove(existing.messageId);
       }
     } else {
-      messages.add(processedMessage);
+      final filtered = _applyMessageFilter(channelIndex, processedMessage);
+      messages.add(filtered);
+      _recordCleanChannelMessage(channelIndex, filtered);
     }
 
     // Save to persistent storage
@@ -8221,10 +9046,13 @@ class MeshCoreConnector extends ChangeNotifier {
   }
 
   void _handleDisconnection() {
+    // The next radio may be on another frequency.
+    _stockFrameTimes.clear();
     _stopBatteryPolling();
     _stopGpsLocationPolling();
     _stopRadioStatsPolling();
     _latestRadioStats = null;
+    _airtimeSamples.clear();
     radioStatsNotifier.value = null;
     _prevTotalAirSecs = 0;
     _airtimeBumpStopwatch?.stop();
@@ -8247,12 +9075,14 @@ class MeshCoreConnector extends ChangeNotifier {
     // They're only cleared on manual disconnect via disconnect() method
     _hasReceivedDeviceInfo = false;
     _maxContacts = _defaultMaxContacts;
+    _maxContactsReported = false;
     _maxChannels = _defaultMaxChannels;
     _resetSyncProgressState();
     _pendingChannelSentQueue.clear();
     _pendingGenericAckQueue.clear();
     _reactionSendQueueSequence = 0;
 
+    _nextCause = ConnectionCause.linkLost;
     _setState(MeshCoreConnectionState.disconnected);
     _scheduleReconnect();
   }
@@ -8285,6 +9115,17 @@ class MeshCoreConnector extends ChangeNotifier {
 
   bool _isReactionSendQueueId(String queueId) {
     return queueId.startsWith(_reactionSendQueuePrefix);
+  }
+
+  /// Moves a contact the radio dropped into the heard-node list, so the app
+  /// still remembers it (name, type, position, last heard) after the radio's
+  /// contact table forgets it.
+  void _keepDroppedContact(Contact contact) {
+    _handleDiscovery(
+      contact,
+      contact.rawPacket ?? Uint8List(0),
+      noNotify: true,
+    );
   }
 
   Map<String, String> _parseKeyValueString(String input) {
@@ -8346,6 +9187,11 @@ class MeshCoreConnector extends ChangeNotifier {
 
   void _setState(MeshCoreConnectionState newState) {
     if (_state != newState) {
+      // Scans start and stop all the time; only real link changes count.
+      if (newState != MeshCoreConnectionState.scanning &&
+          _state != MeshCoreConnectionState.scanning) {
+        connectionTimeline.record(newState, _activeTransport, _nextCause);
+      }
       _state = newState;
       notifyListeners();
     }
@@ -8403,6 +9249,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _receivedFramesController.close();
     _rxPacketsController.close();
     _receivedDirectMessagesController.close();
+    _sentDirectMessagesController.close();
     _receivedChannelMessagesController.close();
     _radioChannelMessagesController.close();
     _usbManager.dispose();
@@ -8410,6 +9257,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
     // Flush pending unread writes before disposal
     _unreadStore.flush();
+    unawaited(flushDiscoveredContacts());
 
     super.dispose();
   }
@@ -8955,7 +9803,105 @@ class MeshCoreConnector extends ChangeNotifier {
   void removeAllDiscoveredContacts() {
     _discoveredContacts.clear();
     unawaited(_persistDiscoveredContacts());
+    unawaited(flushDiscoveredContacts());
     notifyListeners();
+  }
+
+  /// Adds [nodes] read from an import file to the heard-node list. Nodes
+  /// already on the radio are skipped; ones already heard get any missing
+  /// name, type or position and the later last-heard time. Needs a connected
+  /// radio, because the list is the connected radio's and is reloaded on
+  /// connect. Null when not connected.
+  Future<NodeImportResult?> importHeardNodes(List<ImportedNode> nodes) async {
+    if (!isConnected) return null;
+    await _discoveredCacheLoad;
+    if (!isConnected) return null;
+    final onRadio = {
+      for (final c in _contacts) c.publicKeyHex,
+      if (_selfPublicKey case final self? when self.isNotEmpty)
+        pubKeyToHex(self),
+    };
+    final indexByKey = {
+      for (final (i, c) in _discoveredContacts.indexed) c.publicKeyHex: i,
+    };
+    var added = 0;
+    var updated = 0;
+    var skipped = 0;
+    final now = DateTime.now();
+    for (final node in nodes) {
+      final key = node.publicKeyHex;
+      if (onRadio.contains(key)) {
+        skipped++;
+        continue;
+      }
+      final i = indexByKey[key];
+      if (i != null) {
+        final c = _discoveredContacts[i];
+        final hasPos = c.latitude != null && c.longitude != null;
+        final seen = node.lastSeen;
+        final newer = seen != null && seen.isAfter(c.lastSeen);
+        final unnamed = c.name.trim().isEmpty || c.name == 'Unknown';
+        if (newer ||
+            (!hasPos && node.latitude != null) ||
+            (unnamed && node.name != null)) {
+          _discoveredContacts[i] = c.copyWith(
+            name: unnamed ? node.name : null,
+            latitude: hasPos ? null : node.latitude,
+            longitude: hasPos ? null : node.longitude,
+            lastSeen: newer ? seen.toLocal() : null,
+          );
+          updated++;
+        } else {
+          skipped++;
+        }
+        continue;
+      }
+      if (_discoveredContacts.length >=
+          MeshCoreConnector._maxDiscoveredContacts) {
+        _evictStalestDiscoveredContact();
+        indexByKey
+          ..clear()
+          ..addAll({
+            for (final (j, c) in _discoveredContacts.indexed) c.publicKeyHex: j,
+          });
+      }
+      // An unknown last-heard time sorts the node last (and first to be
+      // forgotten) instead of showing it as just heard.
+      final seen =
+          node.lastSeen?.toLocal() ?? DateTime.fromMillisecondsSinceEpoch(0);
+      _discoveredContacts.add(
+        Contact(
+          publicKey: node.publicKey,
+          name: node.name ?? 'Unknown',
+          type: node.type ?? advTypeChat,
+          flags: 0,
+          pathLength: -1,
+          path: Uint8List(0),
+          latitude: node.latitude,
+          longitude: node.longitude,
+          lastSeen: seen.isAfter(now) ? now : seen,
+          isActive: false,
+        ),
+      );
+      indexByKey[key] = _discoveredContacts.length - 1;
+      added++;
+    }
+    if (added > 0 || updated > 0) {
+      unawaited(_persistDiscoveredContacts());
+      await flushDiscoveredContacts();
+      notifyListeners();
+    }
+    return NodeImportResult(added: added, updated: updated, skipped: skipped);
+  }
+
+  /// Saves the heard-node list now if a save is waiting. Called when the app
+  /// goes to the background and before the list is cleared on disconnect.
+  Future<void> flushDiscoveredContacts() async {
+    _discoveredSaveTimer?.cancel();
+    _discoveredSaveTimer = null;
+    if (!_discoveredDirty) return;
+    _discoveredDirty = false;
+    await _discoveryContactStore.saveContacts(List.of(_discoveredContacts));
   }
 
   void clearMessagesForContact(Contact contact) {
@@ -9127,4 +10073,35 @@ class ReceivedChannelMessage {
 /// replaced while it awaited the platform.
 class _ConnectSuperseded implements Exception {
   const _ConnectSuperseded();
+}
+
+/// What [MeshCoreConnector.importHeardNodes] did.
+class NodeImportResult {
+  const NodeImportResult({
+    required this.added,
+    required this.updated,
+    required this.skipped,
+  });
+
+  final int added;
+  final int updated;
+
+  /// Already on the radio, this radio itself, or nothing new.
+  final int skipped;
+}
+
+/// See [MeshCoreConnector.knownNodeCounts]. Sensors and unknown types count
+/// only toward [total].
+class KnownNodeCounts {
+  const KnownNodeCounts({
+    required this.total,
+    required this.chats,
+    required this.repeaters,
+    required this.rooms,
+  });
+
+  final int total;
+  final int chats;
+  final int repeaters;
+  final int rooms;
 }

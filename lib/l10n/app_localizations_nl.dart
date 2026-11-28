@@ -9,7 +9,7 @@ class AppLocalizationsNl extends AppLocalizations {
   AppLocalizationsNl([String locale = 'nl']) : super(locale);
 
   @override
-  String get appTitle => 'NOTORYX Core';
+  String get appTitle => 'NOTORYX Core Ham';
 
   @override
   String get nav_contacts => 'Contacten';
@@ -437,7 +437,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get common_interval => 'Tijdsinterval';
 
   @override
-  String get scanner_title => 'NOTORYX Core';
+  String get scanner_title => 'NOTORYX Core Ham';
 
   @override
   String get connectionChoiceUsbLabel => 'USB';
@@ -909,7 +909,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String settings_aboutVersion(String version) {
-    return 'NOTORYX Core versie $version';
+    return 'NOTORYX Core Ham versie $version';
   }
 
   @override
@@ -957,10 +957,11 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settings_frequency => 'Frequentie (MHz)';
 
   @override
-  String get settings_frequencyHelper => '300,0 - 2500,0';
+  String get settings_frequencyHelper => '420–450 / 902–928';
 
   @override
-  String get settings_frequencyInvalid => 'Ongeldige frequentie (300-2500 MHz)';
+  String get settings_frequencyInvalid =>
+      'Ongeldige frequentie (420–450 / 902–928 MHz)';
 
   @override
   String get settings_bandwidth => 'Bandbreedte';
@@ -1551,7 +1552,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'Ontvangen via MQTT, niet gehoord door je radio';
 
   @override
-  String get channels_private => 'Privé';
+  String get channels_private => 'Met sleutel';
 
   @override
   String get channels_editChannel => 'Kanaal bewerken';
@@ -1700,18 +1701,18 @@ class AppLocalizationsNl extends AppLocalizations {
   String get channels_sortUnread => 'Ongelezen';
 
   @override
-  String get channels_createPrivateChannel => 'PrivéKanaal Aanmaken';
+  String get channels_createPrivateChannel => 'Kanaal met sleutel maken';
 
   @override
   String get channels_createPrivateChannelDesc =>
-      'Beveiligd met een geheime sleutel.';
+      'Gebruikt een gedeelde sleutel om het kanaal te kiezen. Berichten blijven voor iedereen leesbaar.';
 
   @override
-  String get channels_joinPrivateChannel => 'PrivéKanaal Toetreden';
+  String get channels_joinPrivateChannel => 'Kanaal met sleutel toevoegen';
 
   @override
   String get channels_joinPrivateChannelDesc =>
-      'Voer handmatig een geheime sleutel in.';
+      'Voer de gedeelde sleutel van het kanaal in.';
 
   @override
   String get channels_joinPublicChannel => 'Publiek Kanaal Toetreden';
@@ -1807,6 +1808,9 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get chat_selectSendAction => 'Verzendactie selecteren';
+
+  @override
+  String get chat_jumpToLatest => 'Naar het nieuwste bericht';
 
   @override
   String get chat_sendGif => 'GIF verzenden';
@@ -2031,6 +2035,136 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get routing_noPathYet =>
       'Er is nog geen route gevonden. De berichten blijven binnenkomen totdat een route is ontdekt.';
+
+  @override
+  String get routePick_open => 'Routeweergave en -keuze';
+
+  @override
+  String get routePick_openHint =>
+      'Linkkwaliteit per hop bekijken en een betrouwbaardere route kiezen';
+
+  @override
+  String routePick_title(String name) {
+    return 'Route naar $name';
+  }
+
+  @override
+  String get routePick_current => 'Huidige route';
+
+  @override
+  String get routePick_flooding =>
+      'Geen vaste route: berichten overspoelen het mesh tot er een route geleerd is.';
+
+  @override
+  String get routePick_direct => 'Direct';
+
+  @override
+  String routePick_hopUnknown(String id) {
+    return 'Repeater $id';
+  }
+
+  @override
+  String get routePick_notMeasured => 'Nog niet gemeten';
+
+  @override
+  String get routePick_measure => 'Deze route meten';
+
+  @override
+  String get routePick_measuring => 'Traceren…';
+
+  @override
+  String get routePick_measured => 'Zojuist gemeten.';
+
+  @override
+  String get routePick_noAnswer =>
+      'Geen antwoord op de trace. Een repeater op de route is mogelijk buiten bereik.';
+
+  @override
+  String get routePick_floodDone =>
+      'Route gewist. Het volgende bericht overspoelt het mesh om een nieuwe te vinden.';
+
+  @override
+  String get routePick_suggested => 'Aanbevolen';
+
+  @override
+  String routePick_suggestBody(String route, int score) {
+    return 'Een betrouwbaardere route: $route (score $score).';
+  }
+
+  @override
+  String get routePick_use => 'Gebruiken';
+
+  @override
+  String routePick_useLabel(String route) {
+    return 'Route $route gebruiken';
+  }
+
+  @override
+  String get routePick_options => 'Routes om uit te kiezen';
+
+  @override
+  String get routePick_optionsHint =>
+      'Elke gehoorde route naar dit contact, gescoord 0–100 op linksignaal, afleverhistorie, lengte en actualiteit.';
+
+  @override
+  String get routePick_none =>
+      'Nog geen routes. Stuur een bericht om er een te vinden.';
+
+  @override
+  String get routePick_other => 'Andere keuzes';
+
+  @override
+  String get routePick_build => 'Route samenstellen';
+
+  @override
+  String get routePick_flood => 'Laat het mesh een route vinden';
+
+  @override
+  String get routePick_explainer =>
+      'Meten stuurt een trace langs de route en terug, zodat elke link tussen repeaters in beide richtingen gemeten wordt. De laatste link naar het contact kan niet getraced worden. Metingen blijven 30 dagen en tellen voor elke route met dezelfde link.';
+
+  @override
+  String routePick_score(int score) {
+    return 'Score $score van 100';
+  }
+
+  @override
+  String routePick_hopLabel(
+    int number,
+    String name,
+    String quality,
+    String out,
+    String back,
+  ) {
+    return 'Hop $number: $name. Link $quality, heen $out decibel, terug $back decibel.';
+  }
+
+  @override
+  String get routePick_lastLink =>
+      'Laatste link naar het contact: niet meetbaar met trace';
+
+  @override
+  String routePick_linkLine(String out, String back) {
+    return 'Heen $out dB · terug $back dB';
+  }
+
+  @override
+  String routePick_optionLine(int score, int hops) {
+    return 'Score $score · hops: $hops';
+  }
+
+  @override
+  String routePick_record(int ok, int tries) {
+    return '$ok van $tries afgeleverd';
+  }
+
+  @override
+  String routePick_weakest(String snr) {
+    return 'zwakste link $snr dB';
+  }
+
+  @override
+  String get routePick_inUse => 'In gebruik';
 
   @override
   String get routing_floodBroadcast => 'Uitgestoten via elke zender.';
@@ -2716,6 +2850,27 @@ class AppLocalizationsNl extends AppLocalizations {
       'Inloggen mislukt. Het wachtwoord is onjuist of de repeater is niet bereikbaar.';
 
   @override
+  String get login_failRadioOffline =>
+      'Je radio is niet verbonden, dus de aanmelding is niet verstuurd. Verbind je radio en probeer het opnieuw.';
+
+  @override
+  String get login_failSend =>
+      'Je radio nam het aanmeldverzoek niet aan. Verbind opnieuw en probeer het nog eens.';
+
+  @override
+  String login_failNoAnswerPath(int hops, String option, String section) {
+    return 'Geen antwoord via het opgeslagen pad ($hops hops). Het pad is misschien verouderd: zet “$option” aan onder $section en probeer opnieuw. Op een fout wachtwoord komt ook geen antwoord.';
+  }
+
+  @override
+  String get login_failRejected =>
+      'De repeater antwoordde en weigerde het wachtwoord.';
+
+  @override
+  String get login_failNoAnswerFlood =>
+      'Geen antwoord via flood. De repeater is misschien buiten bereik, uit of bezet, of het wachtwoord klopt niet (daarop antwoorden repeaters niet). Probeer het dichterbij opnieuw.';
+
+  @override
   String get common_reload => 'Opnieuw laden';
 
   @override
@@ -2784,6 +2939,34 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get repeater_clockSyncAfterLoginSubtitle =>
       'Automatisch een \"klok synchroniseren\" bericht versturen na een succesvolle inlog.';
+
+  @override
+  String repeater_cliLateReply(String command, String reply) {
+    return 'Late reactie op ‘$command’: $reply';
+  }
+
+  @override
+  String repeater_clockWrongNotice(String name) {
+    return 'De klok van $name loopt verkeerd. Zijn adverts lijken daardoor oud.';
+  }
+
+  @override
+  String get repeater_clockSyncAction => 'Synchroniseren';
+
+  @override
+  String repeater_clockSyncDone(String name) {
+    return 'De klok van $name komt nu overeen met je telefoon.';
+  }
+
+  @override
+  String repeater_clockAhead(String name) {
+    return 'De klok van $name loopt voor op je telefoon en kan niet worden teruggezet.';
+  }
+
+  @override
+  String repeater_clockSyncFailed(String name) {
+    return 'Kon de klok van $name niet instellen. Probeer Instellingen → Synchroniseer klok nu.';
+  }
 
   @override
   String get repeater_statusTitle => 'Status repeater';
@@ -2914,7 +3097,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get repeater_frequencyMhz => 'Frequentie (MHz)';
 
   @override
-  String get repeater_frequencyHelper => '300-2500 MHz';
+  String get repeater_frequencyHelper => '420–450 / 902–928 MHz';
 
   @override
   String get repeater_txPower => 'TX Power';
@@ -3048,6 +3231,20 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get repeater_settingsSaved => 'Instellingen succesvol opgeslagen';
+
+  @override
+  String get repeater_settingsConfirmed =>
+      'Instellingen opgeslagen en door de repeater bevestigd';
+
+  @override
+  String repeater_settingsUnconfirmed(int count) {
+    return 'Instellingen opgeslagen, maar $count konden niet worden teruggelezen ter controle';
+  }
+
+  @override
+  String repeater_readBackMismatch(String key, String value) {
+    return '$key leest terug als $value';
+  }
 
   @override
   String get repeater_rxGain => 'Verhoogde RX-uitgang';
@@ -4412,6 +4609,72 @@ class AppLocalizationsNl extends AppLocalizations {
   String get listFilter_newGroup => 'Nieuwe groep';
 
   @override
+  String get traceCard_title => 'Tracekaart';
+
+  @override
+  String get traceCard_open => 'Tracekaart delen';
+
+  @override
+  String traceCard_from(String name) {
+    return 'Van $name';
+  }
+
+  @override
+  String traceCard_to(String name) {
+    return 'Naar $name';
+  }
+
+  @override
+  String traceCard_sentAt(String time) {
+    return 'Verzonden $time';
+  }
+
+  @override
+  String traceCard_roundTrip(String seconds) {
+    return 'Heen en terug $seconds s';
+  }
+
+  @override
+  String traceCard_hops(int count) {
+    return 'Hops: $count';
+  }
+
+  @override
+  String get traceCard_backToYou => 'Terug bij jou';
+
+  @override
+  String traceCard_distance(String distance) {
+    return 'Route $distance';
+  }
+
+  @override
+  String traceCard_weakest(String snr) {
+    return 'Zwakste schakel $snr';
+  }
+
+  @override
+  String get traceCard_noMap =>
+      'Geen posities bekend voor deze route, dus geen kaart.';
+
+  @override
+  String get traceCard_guessed => 'geschatte positie';
+
+  @override
+  String get traceCard_mapLabel => 'Kaart van de heen- en terugweg';
+
+  @override
+  String get traceCard_shareImage => 'Afbeelding delen';
+
+  @override
+  String get traceCard_shareText => 'Tekst delen';
+
+  @override
+  String get traceCard_shareFailed => 'Kon de tracekaart niet delen.';
+
+  @override
+  String get traceCard_snrUnknown => 'geen SNR';
+
+  @override
   String get pathTrace_you => 'Jij';
 
   @override
@@ -4549,6 +4812,36 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get losLegendTerrain => 'Terrein';
+
+  @override
+  String get nodeLook_menu => 'Foto of kleur';
+
+  @override
+  String nodeLook_title(String name) {
+    return 'Uiterlijk van $name';
+  }
+
+  @override
+  String get nodeLook_hint =>
+      'Alleen op deze telefoon. Wordt nooit over de mesh verstuurd.';
+
+  @override
+  String get nodeLook_choosePhoto => 'Foto kiezen';
+
+  @override
+  String get nodeLook_removePhoto => 'Foto verwijderen';
+
+  @override
+  String get nodeLook_clear => 'Standaarduiterlijk gebruiken';
+
+  @override
+  String nodeLook_colorN(int index) {
+    return 'Kleur $index';
+  }
+
+  @override
+  String get nodeLook_photoFailed =>
+      'Die foto kon niet worden gebruikt. Probeer een andere.';
 
   @override
   String get losBlockedSpotsTitle => 'Geplande plaatsen';
@@ -4769,11 +5062,11 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get settings_gpxExportShareText =>
-      'Kaartgegevens geëxporteerd uit NOTORYX Core';
+      'Kaartgegevens geëxporteerd uit NOTORYX Core Ham';
 
   @override
   String get settings_gpxExportShareSubject =>
-      'NOTORYX Core GPX kaartgegevens exporteren';
+      'NOTORYX Core Ham GPX kaartgegevens exporteren';
 
   @override
   String get snrIndicator_nearByRepeaters => 'Nabije herhalingseenheden';
@@ -5542,6 +5835,10 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
+  String get sos_notEmergencyService =>
+      'Bereikt alleen uw gekozen contacten en radio\'s binnen bereik. Neemt geen contact op met 911 of hulpdiensten.';
+
+  @override
   String get sos_holdHint =>
       'Houd 2 seconden ingedrukt. Stuurt je positie elke 5 minuten naar je tochtcontacten tot iemand antwoordt.';
 
@@ -5793,7 +6090,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'Dit overzicht deelt alleen informatie; het verstuurt geen radiobericht en start geen tocht.';
 
   @override
-  String get fieldOps_title => 'NOTORYX-Core-veldoperaties';
+  String get fieldOps_title => 'NOTORYX-Core-Ham-veldoperaties';
 
   @override
   String get fieldOps_tabTrip => 'Tocht';
@@ -5987,7 +6284,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get fieldOps_shareBrief => 'Overzicht delen';
 
   @override
-  String get fieldOps_briefSubject => 'NOTORYX-Core-tochtoverzicht';
+  String get fieldOps_briefSubject => 'NOTORYX-Core-Ham-tochtoverzicht';
 
   @override
   String get fieldOps_tripName => 'Tochtnaam';
@@ -6014,7 +6311,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get fieldOps_reminderHelper =>
-      'Een telefoonmelding, ook als NOTORYX Core gesloten is.';
+      'Een telefoonmelding, ook als NOTORYX Core Ham gesloten is.';
 
   @override
   String get fieldOps_reminderOff => 'Uit';
@@ -6055,31 +6352,31 @@ class AppLocalizationsNl extends AppLocalizations {
   String get fieldOps_send => 'Versturen';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'SOS doorgeven';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable => 'SOS doorgeven die geen repeater doorgaf';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware => 'Vereist radiofirmware v1.16 of nieuwer';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'Nog geen SOS doorgegeven';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: '$count SOS-pakketten doorgegeven, laatst om $time',
+      one: '1 SOS-pakket doorgegeven, laatst om $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'Als je radio een SOS direct van de afzender hoort en geen repeater het binnen ongeveer 15 seconden doorgeeft, stuurt NOTORYX het nog één keer, ongewijzigd, zodat het een repeater bereikt die jij hoort maar de afzender niet. Alleen SOS in jouw kanalen worden doorgegeven. Kost wat batterij en zendtijd, dus standaard uit.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Voordat je vertrekt';
@@ -6199,7 +6496,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get fieldOps_deleteLog => 'Logboek verwijderen';
 
   @override
-  String get fieldOps_logSubject => 'NOTORYX-Core-veldlogboek';
+  String get fieldOps_logSubject => 'NOTORYX-Core-Ham-veldlogboek';
 
   @override
   String get fieldOps_logCaveat =>
@@ -6399,7 +6696,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'Lokale notitie op uitgezonden radiocoördinaten; mogelijk verouderd.';
 
   @override
-  String get bastionHome_aboutTooltip => 'Over NOTORYX Core';
+  String get bastionHome_aboutTooltip => 'Over NOTORYX Core Ham';
 
   @override
   String get bastionHome_getStarted => 'Aan de slag';
@@ -6524,14 +6821,14 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get bastionTools_aboutHint =>
-      'NOTORYX-Core-versie, onafhankelijkheidsverklaring en opensourcelicenties';
+      'NOTORYX-Core-Ham-versie, onafhankelijkheidsverklaring en opensourcelicenties';
 
   @override
   String get bastionAbout_title => 'Over + Dankwoord';
 
   @override
   String get bastionAbout_intro =>
-      'Een onafhankelijke community-app voor MeshCore-netwerken. NOTORYX Core is geen officiële MeshCore-app en het opnemen van communitybronnen impliceert geen samenwerking of goedkeuring.';
+      'Een onafhankelijke community-app voor MeshCore-netwerken. NOTORYX Core Ham is geen officiële MeshCore-app en het opnemen van communitybronnen impliceert geen samenwerking of goedkeuring.';
 
   @override
   String get bastionAbout_version => 'Versie';
@@ -6541,7 +6838,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get bastionAbout_openSourceBody =>
-      'NOTORYX Core is gebouwd op en wijzigt opensourcecode van MeshCore Open onder de MIT-licentie. Het werk aan de dekkingsworkflow vermeldt waar van toepassing ook de MIT-gelicentieerde MeshMapper Flutter App.';
+      'NOTORYX Core Ham is gebouwd op en wijzigt opensourcecode van MeshCore Open onder de MIT-licentie. Het werk aan de dekkingsworkflow vermeldt waar van toepassing ook de MIT-gelicentieerde MeshMapper Flutter App.';
 
   @override
   String get bastionAbout_community => 'Community voorop';
@@ -6552,13 +6849,13 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get bastionAbout_legalese =>
-      'NOTORYX Core • Onafhankelijke MeshCore-companion';
+      'NOTORYX Core Ham • Onafhankelijke MeshCore-companion';
 
   @override
   String get bastionAbout_licenses => 'Opensourcelicenties';
 
   @override
-  String get bastionSetup_title => 'Aan de slag met NOTORYX Core';
+  String get bastionSetup_title => 'Aan de slag met NOTORYX Core Ham';
 
   @override
   String get bastionSetup_intro =>
@@ -6581,7 +6878,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get bastionSetup_step1Bluetooth =>
-      'Als het zoeken via Bluetooth leeg blijft, controleer dan of Bluetooth aan staat en of NOTORYX Core de machtiging Apparaten in de buurt heeft in de Android-appinstellingen. Volg eventuele extra machtigingsvragen van de scanner.';
+      'Als het zoeken via Bluetooth leeg blijft, controleer dan of Bluetooth aan staat en of NOTORYX Core Ham de machtiging Apparaten in de buurt heeft in de Android-appinstellingen. Volg eventuele extra machtigingsvragen van de scanner.';
 
   @override
   String get bastionSetup_connectionDiagnostics => 'Verbindingsdiagnose';
@@ -6648,6 +6945,28 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get bastionDiag_export => 'Diagnose exporteren';
+
+  @override
+  String get diagTimeline_title => 'Verbindingstijdlijn';
+
+  @override
+  String get diagTimeline_empty =>
+      'Geen verbindingswijzigingen sinds de app is gestart.';
+
+  @override
+  String get diagTimeline_causeUser => 'op jouw verzoek';
+
+  @override
+  String get diagTimeline_causeLinkLost => 'verbinding weggevallen';
+
+  @override
+  String get diagTimeline_causeReconnect => 'automatische nieuwe poging';
+
+  @override
+  String get diagTimeline_causeAutoConnect => 'automatisch verbonden';
+
+  @override
+  String get diagTimeline_causeApp => 'door de app gesloten';
 
   @override
   String get bastionDiag_channels => 'Kanalen';
@@ -6746,7 +7065,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get coverage_connectedBody =>
-      'NOTORYX Core legt tijdens deze sessie nieuw gehoorde nodes vast, inclusief routegegevens, node-/locatiemetadata en de dichtstbijzijnde beschikbare RSSI/SNR-momentopname van de radio.';
+      'NOTORYX Core Ham legt tijdens deze sessie nieuw gehoorde nodes vast, inclusief routegegevens, node-/locatiemetadata en de dichtstbijzijnde beschikbare RSSI/SNR-momentopname van de radio.';
 
   @override
   String get coverage_disconnectedBody =>
@@ -6816,10 +7135,10 @@ class AppLocalizationsNl extends AppLocalizations {
   String get coverage_pathDirect => 'direct';
 
   @override
-  String get coverage_shareSubject => 'NOTORYX-Core-dekkingssessie';
+  String get coverage_shareSubject => 'NOTORYX-Core-Ham-dekkingssessie';
 
   @override
-  String get coverage_shareText => 'NOTORYX-Core-export van dekkingsopname';
+  String get coverage_shareText => 'NOTORYX-Core-Ham-export van dekkingsopname';
 
   @override
   String get coverage_historyTitle => 'Opgeslagen dekkingssessies';
@@ -6910,7 +7229,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get fieldStats_snapshot => 'Live mesh-momentopname';
 
   @override
-  String get fieldStats_headline => 'Wat NOTORYX Core nu weet.';
+  String get fieldStats_headline => 'Wat NOTORYX Core Ham nu weet.';
 
   @override
   String get fieldStats_body =>
@@ -6951,7 +7270,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get fieldStats_pathIntelBody =>
-      'Het route-inzicht van NOTORYX Core gebruikt opgeslagen padpogingen, aantallen hops, geslaagd/mislukt, reistijd en routeweging om geleerde routes te tonen.';
+      'Het route-inzicht van NOTORYX Core Ham gebruikt opgeslagen padpogingen, aantallen hops, geslaagd/mislukt, reistijd en routeweging om geleerde routes te tonen.';
 
   @override
   String get fieldStats_coverageSessions => 'Dekkingssessies';
@@ -6965,7 +7284,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get mapHub_intro =>
-      'Live kaarten, offline gebieden, regionale profielen en NOTORYX-Core-velddekkingssessies.';
+      'Live kaarten, offline gebieden, regionale profielen en NOTORYX-Core-Ham-velddekkingssessies.';
 
   @override
   String get mapHub_captureHint => 'Een velddekkingssessie starten en stoppen';
@@ -7001,6 +7320,68 @@ class AppLocalizationsNl extends AppLocalizations {
       'Regionale meshdefinities beheren en ophalen';
 
   @override
+  String get replay_title => 'Een dag afspelen';
+
+  @override
+  String get replay_entryHint => 'Bekijk waar het team op een dag was';
+
+  @override
+  String get replay_badge => 'Geschiedenis';
+
+  @override
+  String get replay_day => 'Dag';
+
+  @override
+  String get replay_team => 'Team';
+
+  @override
+  String get replay_everyone => 'Iedereen';
+
+  @override
+  String get replay_emptyTeam =>
+      'Geen teamposities op deze dag. Teamleden verschijnen als ze gevolgde posities in een kanaal delen. Kies Iedereen voor node-adverts.';
+
+  @override
+  String get replay_emptyEveryone =>
+      'Geen posities vastgelegd op deze dag. Deze telefoon legt vanaf nu de door nodes geadverteerde posities vast zolang de app open is.';
+
+  @override
+  String replay_mapSummary(String time, int count) {
+    return 'Kaart om $time: $count getoond';
+  }
+
+  @override
+  String get replay_play => 'Afspelen';
+
+  @override
+  String get replay_pause => 'Pauzeren';
+
+  @override
+  String get replay_speed => 'Snelheid';
+
+  @override
+  String replay_speedValue(int minutes) {
+    return '$minutes min per seconde';
+  }
+
+  @override
+  String replay_showNode(String name) {
+    return '$name tonen of verbergen';
+  }
+
+  @override
+  String get replay_notYet => 'Op dit tijdstip nog niet gezien';
+
+  @override
+  String replay_lastSeen(String time, String lat, String lon) {
+    return 'Laatst gezien om $time op $lat, $lon';
+  }
+
+  @override
+  String get replay_explainer =>
+      'Teamposities komen uit gevolgde posities die teamleden in kanalen delen. Iedereen voegt de door nodes geadverteerde posities toe, die deze telefoon vastlegt terwijl de app open is en 30 dagen bewaart. Er wordt niets verzonden.';
+
+  @override
   String get mapHub_badgeRegions => 'REGIO\'S';
 
   @override
@@ -7011,7 +7392,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get routes_body =>
-      'NOTORYX Core rangschikt opgeslagen routes met de padgeschiedenis die al is geleerd uit echte berichtpogingen en verkenningen.';
+      'NOTORYX Core Ham rangschikt opgeslagen routes met de padgeschiedenis die al is geleerd uit echte berichtpogingen en verkenningen.';
 
   @override
   String get routes_routes => 'Routes';
@@ -7042,7 +7423,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get routes_noneBody =>
-      'Gebruik het mesh normaal of start een verkenning. NOTORYX Core toont hier geleerde routes zodra er padgeschiedenis beschikbaar is.';
+      'Gebruik het mesh normaal of start een verkenning. NOTORYX Core Ham toont hier geleerde routes zodra er padgeschiedenis beschikbaar is.';
 
   @override
   String get routes_direct => 'DIRECT';
@@ -7132,15 +7513,78 @@ class AppLocalizationsNl extends AppLocalizations {
       'Nog geen repeaters gevonden. Verbind een radio en verken eerst het mesh.';
 
   @override
+  String get rptTest_title => 'Test repeaters in de buurt';
+
+  @override
+  String get rptTest_subtitle => 'Eén tik: welke repeaters je direct horen';
+
+  @override
+  String get rptTest_start => 'Nu testen';
+
+  @override
+  String get rptTest_listening => 'Luisteren naar antwoorden…';
+
+  @override
+  String rptTest_wait(int seconds) {
+    return 'Volgende test over $seconds s';
+  }
+
+  @override
+  String rptTest_found(int count) {
+    return 'Repeaters die antwoordden: $count';
+  }
+
+  @override
+  String get rptTest_none =>
+      'Geen repeater binnen direct bereik antwoordde. Probeer het vanaf een hogere plek of over een minuut opnieuw. Repeaters met oudere firmware antwoorden niet op deze test.';
+
+  @override
+  String get rptTest_strong => 'Sterk';
+
+  @override
+  String get rptTest_usable => 'Bruikbaar';
+
+  @override
+  String get rptTest_weak => 'Zwak';
+
+  @override
+  String rptTest_unknown(String prefix) {
+    return 'Repeater $prefix';
+  }
+
+  @override
+  String rptTest_line(String there, String here, String rssi) {
+    return 'Hoorde jou op $there dB · jij hoorde hem op $here dB, $rssi dBm';
+  }
+
+  @override
+  String rptTest_rowLabel(
+    String name,
+    String quality,
+    String there,
+    String here,
+    String rssi,
+  ) {
+    return '$name, $quality. Hoorde jou op $there decibel. Jij hoorde hem op $here decibel, $rssi dBm.';
+  }
+
+  @override
+  String get rptTest_notConnected => 'Verbind je radio om de test te doen.';
+
+  @override
+  String get rptTest_explainer =>
+      'Stuurt één ontdekkingsverzoek zonder hops, dus alleen repeaters die je radio direct horen antwoorden. Het eerste getal is hoe goed de repeater jou hoorde, het tweede hoe goed jij hem hoorde. Tests liggen 30 seconden uit elkaar omdat repeaters beperken hoe vaak ze antwoorden.';
+
+  @override
   String get notification_fieldAlertTitle => 'NOTORYX-veldwaarschuwing';
 
   @override
   String get notification_checkInReminderTitle =>
-      'NOTORYX-Core-check-inherinnering';
+      'NOTORYX-Core-Ham-check-inherinnering';
 
   @override
   String notification_checkInReminderBody(int minutes, String trip) {
-    return 'Al $minutes minuten geen check-in op $trip. Open NOTORYX Core om in te checken.';
+    return 'Al $minutes minuten geen check-in op $trip. Open NOTORYX Core Ham om in te checken.';
   }
 
   @override
@@ -7177,7 +7621,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get settings_readAloudHelper =>
-      'Zolang NOTORYX Core open is. Gedempte kanalen blijven stil. Elk bericht kan ook via het menu worden voorgelezen.';
+      'Zolang NOTORYX Core Ham open is. Gedempte kanalen blijven stil. Elk bericht kan ook via het menu worden voorgelezen.';
 
   @override
   String get settings_readAloudOff => 'Uit';
@@ -7221,6 +7665,11 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get shortcuts_checkIn => 'Inchecken';
+
+  @override
+  String qsTile_unread(String status, int count) {
+    return '$status · $count ongelezen';
+  }
 
   @override
   String get shortcuts_trip => 'Tocht';
@@ -7397,7 +7846,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get setupWizard_firmware =>
-      'Je radio heeft MeshCore-companionfirmware nodig die de gekozen verbinding ondersteunt. Ondersteuning verschilt per board en firmwarebuild; een USB-poort alleen betekent nog geen USB-serieel-ondersteuning. Raadpleeg de instructies voor jouw board en geïnstalleerde build. Repeater- of room-serverfirmware is geen companion. Een mislukte verbinding betekent niet vanzelf dat je opnieuw moet flashen.';
+      'Je radio heeft NOTORYX Ham-companionfirmware nodig die de gekozen verbinding ondersteunt. Ondersteuning verschilt per board en firmwarebuild; een USB-poort alleen betekent nog geen USB-serieel-ondersteuning. Raadpleeg de instructies voor jouw board en geïnstalleerde build. Repeater- of room-serverfirmware is geen companion. Een mislukte verbinding betekent niet vanzelf dat je opnieuw moet flashen.';
 
   @override
   String get setupWizard_settings =>
@@ -7929,6 +8378,13 @@ class AppLocalizationsNl extends AppLocalizations {
   String get scanner_tcpHint => 'Een radio met wifi-firmware op je netwerk.';
 
   @override
+  String get scanner_tryDemo => 'Probeer een demo';
+
+  @override
+  String get scanner_tryDemoHint =>
+      'Een nagebootste radio en mesh. Er wordt niets verzonden.';
+
+  @override
   String get scanner_otherWays => 'Andere manieren om te verbinden';
 
   @override
@@ -7950,7 +8406,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get scanner_heroHint =>
-      'Zet je radio aan en houd hem binnen een paar meter. Hij heeft MeshCore-companionfirmware nodig.';
+      'Zet je radio aan en houd hem binnen een paar meter. Hij heeft NOTORYX Ham-companionfirmware nodig.';
 
   @override
   String get scanner_tipsTitle => 'Zie je je radio niet?';
@@ -7960,7 +8416,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get scanner_tipFirmware =>
-      'Hij heeft MeshCore-companionfirmware nodig. Repeaters en roomservers verschijnen hier niet.';
+      'Hij heeft NOTORYX Ham-companionfirmware nodig. Repeaters en roomservers verschijnen hier niet.';
 
   @override
   String get scanner_tipOtherDevice =>
@@ -8274,7 +8730,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get trackLog_howItWorks =>
-      'Gebruikt de positie die je radio ongeveer eens per minuut meldt, zolang NOTORYX Core open is. Er komt een punt bij na 25 m verplaatsing, of elke 15 minuten als je stilstaat.';
+      'Gebruikt de positie die je radio ongeveer eens per minuut meldt, zolang NOTORYX Core Ham open is. Er komt een punt bij na 25 m verplaatsing, of elke 15 minuten als je stilstaat.';
 
   @override
   String get trackLog_snap => 'Posities afronden op ongeveer 100 m';
@@ -8397,6 +8853,73 @@ class AppLocalizationsNl extends AppLocalizations {
   String routes_repeaterWithId(String id) {
     return 'Repeater $id';
   }
+
+  @override
+  String get signedCov_section => 'Ondertekende rapporten';
+
+  @override
+  String get signedCov_share => 'Ondertekend rapport delen';
+
+  @override
+  String get signedCov_shareHint =>
+      'Elke zeshoek wordt ondertekend met de dekkingssleutel van deze telefoon, zodat gewijzigde of verzonnen exemplaren opvallen. Niets verlaat de telefoon tenzij je het deelt.';
+
+  @override
+  String get signedCov_check => 'Rapport controleren';
+
+  @override
+  String get signedCov_checkHint =>
+      'Plak een ondertekend rapport om te zien welke waarnemingen echt zijn';
+
+  @override
+  String get signedCov_paste => 'Ondertekend rapport (JSON)';
+
+  @override
+  String get signedCov_verify => 'Controleren';
+
+  @override
+  String signedCov_yourKey(String fingerprint) {
+    return 'Jouw dekkingssleutel: $fingerprint';
+  }
+
+  @override
+  String signedCov_result(int accepted, int rejected) {
+    return '$accepted waarnemingen bevestigd, $rejected afgewezen';
+  }
+
+  @override
+  String signedCov_signer(String fingerprint) {
+    return 'Ondertekend met sleutel $fingerprint';
+  }
+
+  @override
+  String get signedCov_unreadable => 'Dit is geen ondertekend dekkingsrapport.';
+
+  @override
+  String signedCov_rBadSignature(int count) {
+    return '$count met ontbrekende of foute handtekening';
+  }
+
+  @override
+  String signedCov_rMalformed(int count) {
+    return '$count beschadigd';
+  }
+
+  @override
+  String signedCov_rImpossible(int count) {
+    return '$count met onmogelijke signaalwaarden';
+  }
+
+  @override
+  String signedCov_rFuture(int count) {
+    return '$count gedateerd in de toekomst';
+  }
+
+  @override
+  String get signedCov_empty => 'Nog geen dekkingsmetingen om te delen.';
+
+  @override
+  String get signedCov_shareFailed => 'Kon het rapport niet delen.';
 
   @override
   String get coverageHex_title => 'Dekkingszeshoeken';
@@ -8575,53 +9098,11 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get botWx_title => 'Weerwaarschuwingen in een kanaal plaatsen';
-
-  @override
-  String get botWx_body =>
-      'Controleert elke 10 minuten bij de Amerikaanse National Weather Service op ernstige en extreme waarschuwingen op de gps-positie van de radio (afgerond op ongeveer 1 km) en plaatst elke nieuwe één keer. Vereist internet op de telefoon.';
-
-  @override
-  String get botWx_channel => 'Plaatsen in kanaal';
-
-  @override
-  String get botWx_moderate => 'Matige waarschuwingen meenemen';
-
-  @override
-  String get botWx_moderateHint => 'Adviezen én waarschuwingen. Drukker.';
-
-  @override
-  String botWx_lastChecked(String time) {
-    return 'Laatst gecontroleerd $time.';
-  }
-
-  @override
-  String get botWx_noPosition => 'De radio heeft nog geen gps-positie gemeld.';
-
-  @override
-  String get botWx_noChannel => 'Kies een kanaal voor de waarschuwingen.';
-
-  @override
-  String get botWx_channelGone => 'Het gekozen kanaal bestaat niet meer.';
-
-  @override
-  String botWx_httpError(String code) {
-    return 'De weerdienst antwoordde $code.';
-  }
-
-  @override
-  String get botWx_unreachable => 'Weerdienst niet bereikbaar.';
-
-  @override
   String get botCmd_sun =>
       'Zonsopkomst en -ondergang op de gps-positie van de radio.';
 
   @override
   String get botCmd_moon => 'Maanfase en hoeveel verlicht is.';
-
-  @override
-  String get botCmd_weather =>
-      'Huidig weer bij de radio (Open-Meteo). Stuurt de positie, afgerond op ongeveer 1 km.';
 
   @override
   String get botCmd_dice => 'Gooit dobbelstenen: !dice, !dice 20 of !dice 2d6.';
@@ -9011,7 +9492,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get tools_botHint =>
-      'Automatische antwoorden, !opdrachten en weerwaarschuwingen in kanalen';
+      'Automatische antwoorden en !opdrachten in kanalen';
 
   @override
   String get botChannels_title => 'Kanalen';
@@ -9096,6 +9577,65 @@ class AppLocalizationsNl extends AppLocalizations {
       'Verzonden naar een regio die de app niet kent';
 
   @override
+  String get timeline_title => 'Tijdlijn';
+
+  @override
+  String get timeline_toolSubtitle =>
+      'Berichten, nieuwe knooppunten, signaalwijzigingen en plaatsen in één overzicht';
+
+  @override
+  String get timeline_refresh => 'Opnieuw laden';
+
+  @override
+  String get timeline_search => 'Zoek in de tijdlijn';
+
+  @override
+  String get timeline_kindMessages => 'Berichten';
+
+  @override
+  String get timeline_kindNodes => 'Nieuwe knooppunten';
+
+  @override
+  String get timeline_kindSignal => 'Signaal';
+
+  @override
+  String get timeline_kindPlaces => 'Plaatsen';
+
+  @override
+  String timeline_messageFrom(String sender, String where) {
+    return '$sender in $where';
+  }
+
+  @override
+  String timeline_nodeJoined(String name) {
+    return 'Voor het eerst gehoord: $name';
+  }
+
+  @override
+  String timeline_signalUp(String name, String from, String to) {
+    return '$name: signaal omhoog van $from naar $to dB';
+  }
+
+  @override
+  String timeline_signalDown(String name, String from, String to) {
+    return '$name: signaal omlaag van $from naar $to dB';
+  }
+
+  @override
+  String timeline_placeSaved(String name) {
+    return 'Plaats opgeslagen: $name';
+  }
+
+  @override
+  String timeline_placeShared(String sender, String where) {
+    return '$sender deelde een plaats in $where';
+  }
+
+  @override
+  String get timeline_empty =>
+      'Nog niets. Berichten, nieuw gehoorde knooppunten, signaalwijzigingen en plaatsen verschijnen hier.';
+
+  @override
   String get wardrive_title => 'Wardrive';
 
   @override
@@ -9169,4 +9709,3600 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get autoConnect_hint =>
       'Bij het openen van de app opnieuw verbinden met je laatste radio, zonder tikken. Als hij nog niet in bereik is, probeert hij het een paar keer.';
+
+  @override
+  String get ham_licensedOperator => 'Gelicentieerde zendamateur';
+
+  @override
+  String get ham_operatorIntro =>
+      'NOTORYX Core Ham-radio’s zenden onder een zendamateurlicentie (FCC Part 97). Alles wat verzonden wordt is voor iedereen leesbaar, en elk frame draagt de roepnaam aan het begin van de radionaam.';
+
+  @override
+  String get ham_yourStation => 'Je station';
+
+  @override
+  String get ham_callSign => 'Roepnaam';
+
+  @override
+  String get ham_notUsCallsign => 'Geen Amerikaanse roepnaam';
+
+  @override
+  String get ham_licenceClass => 'Licentieklasse';
+
+  @override
+  String get ham_licenceClassHelper =>
+      'Elke klasse heeft volledige rechten op 33 cm en 70 cm';
+
+  @override
+  String get ham_antennaSystem => 'Antennesysteem';
+
+  @override
+  String get ham_antennaSystemHint =>
+      'Voor de vermogensschatting hieronder. Laat 0 staan voor wat je niet hebt.';
+
+  @override
+  String get ham_externalAmpGain => 'Versterking externe versterker';
+
+  @override
+  String get ham_feedlineLoss => 'Kabelverlies';
+
+  @override
+  String get ham_antennaGain => 'Antenneversterking';
+
+  @override
+  String get ham_coordination => 'Coördinatie';
+
+  @override
+  String get ham_coordinationNotice =>
+      'Gebruik NOTORYX Core Ham alleen na grondige coördinatie. Radio’s en repeaters zenden automatisch uit op gedeelde banden. Overleg daarom, voordat een radio de lucht in gaat, met je frequentiecoördinator, volg het lokale bandplan en spreek met alle zendamateurs in je omgeving één kanaal af.';
+
+  @override
+  String get ham_readCoordinationGuide => 'Lees de coördinatiegids';
+
+  @override
+  String get ham_acknowledgment =>
+      'Ik heb deze licentie, ik heb de coördinatiegids gelezen en ik coördineer voordat ik uitzend.';
+
+  @override
+  String get ham_operatorSaved => 'Opgeslagen';
+
+  @override
+  String get ham_connectedRadio => 'Verbonden radio';
+
+  @override
+  String get ham_nodeName => 'Knooppuntnaam';
+
+  @override
+  String get ham_nodeNameOk => 'Begint met je roepnaam';
+
+  @override
+  String get ham_nodeNameBad =>
+      'Moet met je roepnaam beginnen, anders zendt de radio niet';
+
+  @override
+  String ham_setNameTo(String callsign) {
+    return 'Instellen op $callsign';
+  }
+
+  @override
+  String get ham_frequency => 'Frequentie';
+
+  @override
+  String get ham_inHamBand => 'In een amateurband';
+
+  @override
+  String get ham_outsideHamBands => 'Buiten 420–450 / 902–928 MHz';
+
+  @override
+  String get ham_txPowerSetting => 'Ingesteld zendvermogen';
+
+  @override
+  String get ham_chipSetting => 'De instelling van de radiochip';
+
+  @override
+  String get ham_firmware => 'Firmware';
+
+  @override
+  String get ham_estimatedOutput => 'Geschat uitgangsvermogen';
+
+  @override
+  String get ham_estimatedErp => 'Geschatte ERP';
+
+  @override
+  String get ham_unknown => 'onbekend';
+
+  @override
+  String get ham_unknownBoard => 'Onbekend bord: gerekend zonder versterker';
+
+  @override
+  String get ham_ampNone => 'geen versterker';
+
+  @override
+  String ham_ampGain(String db) {
+    return 'ongeveer +$db dB door de versterker';
+  }
+
+  @override
+  String get ham_ampVariable => 'hangt af van de versterkerstand';
+
+  @override
+  String ham_boardNote(String board, String note) {
+    return '$board: $note';
+  }
+
+  @override
+  String ham_measureFirst(String board) {
+    return '$board. Meet het voordat je op een schatting vertrouwt.';
+  }
+
+  @override
+  String ham_outputNote(String board) {
+    return '$board. Een schatting: meet voor de zekerheid en gebruik het laagste vermogen dat werkt.';
+  }
+
+  @override
+  String get ham_overSpreadSpectrum =>
+      'Boven 10 W PEP, de grens voor gespreid spectrum zoals LoRa (§97.311). Zet het lager.';
+
+  @override
+  String get ham_erpNote =>
+      'Na kabelverlies en antenneversterking, ten opzichte van een dipool. Controleer bij hoger vermogen de RF-blootstelling (§97.13).';
+
+  @override
+  String get ham_location => 'Locatie';
+
+  @override
+  String get ham_noLocationLimits => 'geen bandbeperkingen gevonden';
+
+  @override
+  String get ham_locationOkNote =>
+      'Op basis van de positie van de radio. Controleer §97.303 voor de zekerheid.';
+
+  @override
+  String get ham_check => 'controleren';
+
+  @override
+  String get ham_positionUnknown =>
+      'Positie onbekend: controleer §97.303 op beperkingen waar je uitzendt.';
+
+  @override
+  String get ham_exclusion33cm =>
+      'Dit gebied lijkt binnen een uitsluiting van §97.303(g) te liggen: amateurstations mogen hier niet op 33 cm uitzenden.';
+
+  @override
+  String get ham_lineA =>
+      'Ten noorden van Line A (bij de Canadese grens) is 420–430 MHz niet beschikbaar. Controleer §97.303.';
+
+  @override
+  String get ham_statusOk => 'OK';
+
+  @override
+  String get ham_needsAttention => 'Vraagt aandacht';
+
+  @override
+  String get ham_setupBanner =>
+      'Rond de instelling als zendamateur af voordat je uitzendt';
+
+  @override
+  String get ham_setUp => 'Instellen';
+
+  @override
+  String get ham_operatorCardIncomplete =>
+      'Stel je roepnaam in en lees de coördinatiegids';
+
+  @override
+  String get ham_nodeNameCallsignHelper =>
+      'Begin met je roepnaam, zoals \"W1AW\" of \"W1AW Base\"';
+
+  @override
+  String get ham_repeaterNameNeedsCall =>
+      'De naam moet beginnen met de roepnaam van de repeater, zoals \"N0RPT Hilltop\".';
+
+  @override
+  String get ham_repeaterPasswordsSerial =>
+      'Stel wachtwoorden in via de seriële USB-console van de repeater. Via de radio verzonden kan iedereen ze lezen.';
+
+  @override
+  String get networks_title => 'Netwerken';
+
+  @override
+  String get networks_hint =>
+      'Zoek netwerken in de buurt en houd een logboek bij';
+
+  @override
+  String get networks_yourNetwork => 'Jouw netwerk';
+
+  @override
+  String get networks_scanTitle => 'Netwerken zoeken';
+
+  @override
+  String get networks_scanExplainer =>
+      'Je radio hoort alleen netwerken met precies zijn eigen instellingen. Een scan zet hem daarom om de beurt op elk netwerk, luistert en zet hem terug. Tijdens het scannen ben je van je eigen mesh af.';
+
+  @override
+  String get networks_listenFor => 'Luisteren per netwerk';
+
+  @override
+  String networks_choose(int count) {
+    return 'Te scannen netwerken: $count';
+  }
+
+  @override
+  String get networks_suggested => 'Voorgesteld';
+
+  @override
+  String get networks_start => 'Scan starten';
+
+  @override
+  String get networks_cancel => 'Scan stoppen';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return 'Luisteren op $name ($step van $steps)';
+  }
+
+  @override
+  String get networks_blockNoRadio => 'Verbind een radio om te scannen.';
+
+  @override
+  String get networks_blockSettings =>
+      'Wachten op de instellingen van je radio.';
+
+  @override
+  String get networks_blockSos =>
+      'Niet tijdens een SOS: een scan haalt je van je mesh.';
+
+  @override
+  String get networks_blockTrip =>
+      'Niet tijdens een tocht: een scan haalt je van je mesh.';
+
+  @override
+  String get networks_nearby => 'Netwerken in de buurt';
+
+  @override
+  String get networks_nothingYet =>
+      'Nog geen netwerken gehoord. Start een scan.';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return 'Nodes $nodes · pakketten $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return 'Laatst gehoord $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return 'Keer gehoord: $count';
+  }
+
+  @override
+  String get networks_saved => 'Opgeslagen netwerken';
+
+  @override
+  String get networks_noSaved => 'Nog geen opgeslagen netwerken.';
+
+  @override
+  String get networks_add => 'Netwerk toevoegen';
+
+  @override
+  String get networks_join => 'Deelnemen';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return 'Je radio op $name zetten? Je verlaat je huidige netwerk. Het zendvermogen blijft gelijk.';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return 'Je radio staat nu op $name.';
+  }
+
+  @override
+  String get networks_log => 'Netwerklogboek';
+
+  @override
+  String get networks_logEmpty => 'Nog niets gelogd.';
+
+  @override
+  String get networks_showMap => 'Kaart';
+
+  @override
+  String get networks_exportCsv => 'CSV exporteren';
+
+  @override
+  String get networks_exportGpx => 'GPX exporteren';
+
+  @override
+  String get networks_clearLog => 'Logboek wissen';
+
+  @override
+  String get networks_clearLogConfirm => 'Alle gelogde netwerken verwijderen?';
+
+  @override
+  String get networks_name => 'Naam';
+
+  @override
+  String get networks_invalid =>
+      'Controleer de instellingen: ze vallen buiten wat MeshCore-radio\'s accepteren.';
+
+  @override
+  String get networks_nodesHeard => 'Gehoorde nodes';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      'Niet verzonden: verbind je radio en probeer het opnieuw. Het bericht blijft bewaard.';
+
+  @override
+  String get quick_title => 'Snelle berichten';
+
+  @override
+  String get quick_ok => 'OK';
+
+  @override
+  String get quick_onMyWay => 'Ik kom eraan';
+
+  @override
+  String get quick_atCamp => 'In het kamp';
+
+  @override
+  String get quick_runningLate => 'Ik ben laat';
+
+  @override
+  String get quick_needHelp => 'Hulp nodig';
+
+  @override
+  String get quick_copyThat => 'Begrepen';
+
+  @override
+  String get quick_empty =>
+      'Geen snelle berichten. Tik op Bewerken om er een toe te voegen.';
+
+  @override
+  String get quick_add => 'Nieuw snel bericht';
+
+  @override
+  String get quick_reset => 'Standaard herstellen';
+
+  @override
+  String get chat_stopRetrying => 'Stoppen met opnieuw proberen';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name kan je directe berichten pas lezen en beantwoorden nadat diegene jou als contact heeft toegevoegd. Zo niet, stuur je advert of deel je contact.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'Naar mijn positie';
+
+  @override
+  String get map_positionUnavailable =>
+      'Je positie is niet beschikbaar. Zet locatie aan of stel de positie van je radio in.';
+
+  @override
+  String get contact_forgetAdvert => 'Laatste advert vergeten';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Als de adverts van deze node niet meer bijwerken nadat de klok is gereset, laat Laatste advert vergeten de volgende door.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Klaar. Het volgende advert van deze node wordt geaccepteerd.';
+
+  @override
+  String get networks_modeQuick => 'Snel';
+
+  @override
+  String get networks_modeThorough => 'Grondig';
+
+  @override
+  String get networks_modeQuickHint =>
+      'Stuurt op elk netwerk één korte zero-hop-ping en luistert een paar seconden. Vindt netwerken met een repeater binnen bereik.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Luistert alleen, langer per netwerk. Verstuurt niets en vindt ook netwerken zonder repeater binnen bereik als iemand zendt.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'ongeveer $time';
+  }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return '$count geselecteerd';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => 'Alles selecteren';
+
+  @override
+  String get discoveredContacts_addSelected => 'Selectie toevoegen';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return 'Alle getoonde toevoegen ($count)';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return '$count contacten toevoegen?';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return 'Je radio heeft ruimte voor nog $room contacten.';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return 'Je radio heeft ruimte voor nog $room contacten, dus alleen de eerste $room van $count worden toegevoegd.';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return '$done van $total toevoegen…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return 'Contacten toegevoegd: $count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return 'Contacten toegevoegd: $added. Niet toegevoegd: $failed.';
+  }
+
+  @override
+  String get discoveredContacts_radioFull =>
+      'De contactenlijst van je radio is vol. Verwijder eerst wat contacten.';
+
+  @override
+  String get fieldIntel_radioNow => 'Radio nu';
+
+  @override
+  String get fieldIntel_noRadio => 'Verbind je radio voor live waarden.';
+
+  @override
+  String get fieldIntel_noise => 'ruis dBm';
+
+  @override
+  String get fieldIntel_lastSnr => 'laatste SNR';
+
+  @override
+  String get fieldIntel_lastRssi => 'laatste RSSI';
+
+  @override
+  String get fieldIntel_battery => 'batterij V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return 'Zendtijd sinds de radio startte: verzonden $sent, ontvangen $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => 'Wie is er in de buurt';
+
+  @override
+  String get fieldIntel_m15 => '15 min';
+
+  @override
+  String get fieldIntel_h1 => '1 uur';
+
+  @override
+  String get fieldIntel_h24 => '24 uur';
+
+  @override
+  String get fieldIntel_older => 'Ouder';
+
+  @override
+  String get fieldIntel_lastHour => 'Laatste uur';
+
+  @override
+  String get fieldIntel_chartHint =>
+      'Wanneer elke node het laatst is gehoord, per uur over de afgelopen dag. Tik op een balk om te zien wie.';
+
+  @override
+  String get fieldIntel_mix => 'Soorten nodes';
+
+  @override
+  String get fieldIntel_reach => 'Bereik';
+
+  @override
+  String get fieldIntel_hops1 => '1 hop';
+
+  @override
+  String get fieldIntel_hops2 => '2 hops';
+
+  @override
+  String get fieldIntel_hops3 => '3+ hops';
+
+  @override
+  String get fieldIntel_noRoute => 'Nog geen route';
+
+  @override
+  String get fieldIntel_distance => 'Dichtstbij en verst weg';
+
+  @override
+  String get fieldIntel_noneLocated =>
+      'Geen van je contacten heeft een positie.';
+
+  @override
+  String get fieldIntel_noPosition =>
+      'Je radio heeft nog geen positie, dus afstanden zijn niet te berekenen.';
+
+  @override
+  String get fieldIntel_bestRepeaters => 'Beste repeaters die je direct hoort';
+
+  @override
+  String get fieldIntel_noneDirect =>
+      'In de afgelopen 30 minuten geen repeater direct gehoord.';
+
+  @override
+  String get fieldIntel_attention => 'Vraagt aandacht';
+
+  @override
+  String get fieldIntel_allGood => 'Niets vraagt aandacht.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'Batterij laag: $volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'Favoriet niet gehoord sinds $ago';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'Meer hulpmiddelen';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'Nodes: $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'Geen nodes.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return 'Laatst gehoord $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => 'Op kaart tonen';
+
+  @override
+  String get fieldIntel_openChat => 'Chat openen';
+
+  @override
+  String get repeaterTools_login => 'Inloggen';
+
+  @override
+  String get repeaterTools_heardDirect => 'Direct gehoord';
+
+  @override
+  String get repeaterTools_filterAll => 'Alle';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Batterij laag';
+
+  @override
+  String get repeaterTools_hint =>
+      'Tik op een repeater voor details en log daar in voor status, buren, telemetrie en de opdrachtregel.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Geen repeaters hier.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Hulpmiddelen';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Zoek de regioboom van je gebied en kopieer de opdrachten';
+
+  @override
+  String get routes_failingOnly => 'Alleen mislukte routes';
+
+  @override
+  String get routes_contactDetails => 'Contactgegevens';
+
+  @override
+  String get links_contactTitle => 'Contact toevoegen?';
+
+  @override
+  String get links_importAdvert => 'Dit contact aan je radio toevoegen?';
+
+  @override
+  String get links_connectFirst =>
+      'Verbind eerst je radio en open de link daarna opnieuw.';
+
+  @override
+  String get links_added => 'Contact toegevoegd';
+
+  @override
+  String get links_notContact => 'Deze link is geen MeshCore-contact.';
+
+  @override
+  String get radioBuzzer_title => 'Zoemer van de radio';
+
+  @override
+  String get radioBuzzer_hint =>
+      'De radio piept bij nieuwe berichten. Alleen zichtbaar bij radio\'s met een zoemer.';
+
+  @override
+  String get radioBuzzer_failed =>
+      'De radio nam de wijziging niet aan. Probeer het opnieuw.';
+
+  @override
+  String get appSettings_floodAttempts => 'Flood-pogingen';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Extra pogingen als flood nadat de directe mislukken, voor het geval de route is veranderd. Elke poging kost meer zendtijd. 0 zet ze uit.';
+
+  @override
+  String get pathGraph_you => 'Jij';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return '$count berichten doorgegeven';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Deze korte ID past bij meer dan één repeater, dus hij is niet aan één toe te wijzen.';
+
+  @override
+  String get pathGraph_comesFrom => 'Komt van';
+
+  @override
+  String get pathGraph_goesTo => 'Gaat naar';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Repeatergegevens';
+
+  @override
+  String get pathGraph_days7 => '7 dagen';
+
+  @override
+  String get pathGraph_empty =>
+      'Nog geen kanaalberichtpaden in deze periode. Paden worden verzameld uit ontvangen kanaalberichten zolang het traceren aan staat.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '$paths paden gehoord · $repeaters repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Elke hop wordt getoond met zijn hash-voorvoegsel, of met de naam als je de repeater kent.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count korte (1-byte) hops via langere paden aan een specifieke repeater gekoppeld.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched korte (1-byte) hops via langere paden aan een specifieke repeater gekoppeld · $ambiguous nog onduidelijk (gemarkeerd met ?).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Links: verder weg gelegen repeaters. Rechts: jij. De dikte van de band is hoeveel berichten die hop namen. Tik op een vakje om die repeater te zien.';
+
+  @override
+  String get pathGraph_busiest => 'Drukste repeaters';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Padgrafiek. Drukste repeater $name, $count berichten doorgegeven.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Gekopieerd: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'Geen kanalen op deze radio.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Tik op een waarde om die te kopiëren. Trek omlaag om te vernieuwen.';
+
+  @override
+  String get diag_storage => 'Opslag';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used van $total KB';
+  }
+
+  @override
+  String get favReturn_setting => 'Favorieten weer binnen bereik';
+
+  @override
+  String get favReturn_settingHint =>
+      'Melding wanneer een favoriet na een stille periode weer te horen is';
+
+  @override
+  String get favReturn_off => 'Uit';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Na $count uur',
+      one: 'Na 1 uur',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Weer binnen bereik';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours uur',
+      one: '1 uur',
+    );
+    return '$name weer gehoord na $_temp0 stilte';
+  }
+
+  @override
+  String get ham_heardFrom => 'Gehoord van';
+
+  @override
+  String get ham_lastHeard => 'Laatste frame van';
+
+  @override
+  String get ham_nothingHeardYet => 'nog niets';
+
+  @override
+  String get ham_readyToTransmit => 'Klaar om uit te zenden';
+
+  @override
+  String get ham_notReadyToTransmit =>
+      'Controleer de gemarkeerde punten hieronder voordat je uitzendt';
+
+  @override
+  String get ham_bannerNameMismatch =>
+      'Geef de radio je roepnaam voordat je uitzendt';
+
+  @override
+  String get ham_bannerOutOfBand => 'De radio staat buiten de amateurbanden';
+
+  @override
+  String get a11y_showPassword => 'Wachtwoord tonen';
+
+  @override
+  String get a11y_hidePassword => 'Wachtwoord verbergen';
+
+  @override
+  String get a11y_sendLocation => 'Mijn locatie sturen';
+
+  @override
+  String get a11y_toggleFlash => 'Zaklamp';
+
+  @override
+  String get a11y_switchCamera => 'Camera wisselen';
+
+  @override
+  String get los_worst => 'SLECHTSTE';
+
+  @override
+  String get los_selectedObstruction => 'Geselecteerde obstructie';
+
+  @override
+  String get bastionHome_stationOk => 'Knooppuntnaam en band kloppen';
+
+  @override
+  String get bastionHome_stationConnectToCheck =>
+      'Verbind een radio om de naam en band te controleren';
+
+  @override
+  String get theme_selected => 'Geselecteerd';
+
+  @override
+  String get theme_desc_blaze => 'Donker leisteen met signaaloranje';
+
+  @override
+  String get theme_desc_blackout => 'Matzwart en staal. Standaard.';
+
+  @override
+  String get theme_desc_tactical =>
+      'Olijf, kanongrijs en aardetinten voor in het veld';
+
+  @override
+  String get theme_desc_okabe_ito =>
+      'Geschikt bij kleurenzienstoornissen, op blauwgrijs';
+
+  @override
+  String get theme_desc_night_ops => 'Gedempt rood voor werken in het donker';
+
+  @override
+  String get rxLog_title => 'RX-logboek';
+
+  @override
+  String get rxLog_hint => 'Elk pakket dat je radio hoort, live';
+
+  @override
+  String get rxLog_empty =>
+      'Nog geen pakketten. Pakketten die je radio hoort verschijnen hier zodra ze binnenkomen.';
+
+  @override
+  String get rxLog_note =>
+      'Alleen in het geheugen, de laatste 2.000 pakketten. Er wordt niets opgeslagen of verstuurd.';
+
+  @override
+  String get rxLog_pause => 'Pauzeren';
+
+  @override
+  String get rxLog_resume => 'Hervatten';
+
+  @override
+  String get rxLog_export => 'CSV exporteren';
+
+  @override
+  String get rxLog_clearConfirm => 'RX-logboek wissen?';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return '$shown getoond · $total gehoord';
+  }
+
+  @override
+  String get rxLog_paused => 'Gepauzeerd: nieuwe pakketten worden niet gelogd';
+
+  @override
+  String get rxLog_kindAll => 'Alle';
+
+  @override
+  String get rxLog_kindAdvert => 'Adverts';
+
+  @override
+  String get rxLog_kindChannel => 'Kanaal';
+
+  @override
+  String get rxLog_kindDirect => 'Direct';
+
+  @override
+  String get rxLog_kindAck => 'ACK\'s';
+
+  @override
+  String get rxLog_kindPath => 'Paden';
+
+  @override
+  String get rxLog_kindTrace => 'Traces';
+
+  @override
+  String get rxLog_kindControl => 'Besturing';
+
+  @override
+  String get rxLog_kindOther => 'Overig';
+
+  @override
+  String get rxLog_routeFlood => 'Flood';
+
+  @override
+  String get rxLog_routeDirect => 'Directe route';
+
+  @override
+  String get rxLog_heardDirectly => 'Direct gehoord';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count hops',
+      one: '1 hop',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count bytes',
+      one: '1 byte',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => 'Je radio';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => 'Signaal';
+
+  @override
+  String get rxLog_route => 'Route';
+
+  @override
+  String get rxLog_path => 'Pad';
+
+  @override
+  String get rxLog_payloadType => 'Payloadtype';
+
+  @override
+  String get rxLog_hash => 'Pakkethash';
+
+  @override
+  String get rxLog_raw => 'Ruw pakket';
+
+  @override
+  String get rxLog_copyHex => 'Hex kopiëren';
+
+  @override
+  String get deliv_title => 'Bezorgdetails';
+
+  @override
+  String get deliv_note => 'Afgeleid uit wat bij dit bericht is opgeslagen.';
+
+  @override
+  String get deliv_queued => 'In wachtrij';
+
+  @override
+  String get deliv_sent => 'Verzonden door je radio';
+
+  @override
+  String get deliv_notSent => 'Niet aangenomen door je radio';
+
+  @override
+  String get deliv_attempts => 'Pogingen';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made van $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return 'Plan: $direct direct, daarna $flood via flood';
+  }
+
+  @override
+  String get deliv_lastRoute => 'Laatste route';
+
+  @override
+  String get deliv_routeFlood => 'Flood via alle repeaters';
+
+  @override
+  String get deliv_routeNeighbor => 'Direct, geen repeaters';
+
+  @override
+  String deliv_routeVia(String path) {
+    return 'Direct via $path';
+  }
+
+  @override
+  String get deliv_confirmed => 'Ontvangst bevestigd';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return 'Retourtijd $seconds s';
+  }
+
+  @override
+  String get deliv_waiting => 'Wacht op bevestiging';
+
+  @override
+  String get deliv_noConfirm => 'Geen bevestiging';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name laatst gehoord';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours uur geleden',
+      one: '1 uur geleden',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return 'Bezorgd. $name heeft het bevestigd.';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return 'Via flood bezorgd nadat de directe pogingen mislukten. De opgeslagen route naar $name is mogelijk verouderd.';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return 'Nog bezig: poging $attempt van $total.';
+  }
+
+  @override
+  String get deliv_vNotSent =>
+      'Je radio heeft dit bericht nooit aangenomen. Controleer de verbinding en probeer opnieuw.';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours uur',
+      one: '1 uur',
+    );
+    return 'Geen bevestiging. $name is al $_temp0 niet gehoord en is mogelijk buiten bereik of uitgeschakeld.';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      'Geen bevestiging via de opgeslagen route en flood-pogingen staan uit. Zet ze aan via Instellingen → App-instellingen → Berichten, of probeer opnieuw.';
+
+  @override
+  String get deliv_vNoAck =>
+      'Geen bevestiging via welke route dan ook. Mogelijk buiten bereik, of hun bevestiging kwam niet bij je terug.';
+
+  @override
+  String get batteryOpt_title => 'Batterijoptimalisatie';
+
+  @override
+  String get batteryOpt_off =>
+      'Uit voor NOTORYX Core Ham, zodat meldingen op de achtergrond blijven werken.';
+
+  @override
+  String get batteryOpt_on =>
+      'Aan. Android kan de app op de achtergrond stoppen, waardoor SOS-, check-in- en berichtmeldingen te laat komen of wegblijven.';
+
+  @override
+  String get batteryOpt_fix => 'Uitzetten';
+
+  @override
+  String block_sender(String name) {
+    return '$name blokkeren';
+  }
+
+  @override
+  String get block_confirmBody =>
+      'Kanaalberichten van deze persoon worden op dit apparaat verborgen en geven nooit een melding. Diegene ziet jouw berichten nog wel. Je kunt de blokkering opheffen in Instellingen.';
+
+  @override
+  String get block_action => 'Blokkeren';
+
+  @override
+  String block_done(String name) {
+    return '$name geblokkeerd';
+  }
+
+  @override
+  String get mention_suggestions => 'Naamsuggesties';
+
+  @override
+  String get block_listTitle => 'Geblokkeerde afzenders';
+
+  @override
+  String get block_listHint =>
+      'Berichten van deze namen worden in kanalen verborgen en geven nooit een melding.';
+
+  @override
+  String get block_listEmpty => 'Niemand is geblokkeerd.';
+
+  @override
+  String get block_unblock => 'Deblokkeren';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count geblokkeerd',
+      one: '1 geblokkeerd',
+      zero: 'Niemand geblokkeerd',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return 'Contactlijst van de radio $percent% vol';
+  }
+
+  @override
+  String get contactTable_full => 'Contactlijst van de radio is vol';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used van $max contacten';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'Als hij vol is, vervangt de radio het contact dat het langst niet is gehoord. Favorieten blijven.';
+
+  @override
+  String get contactTable_stopHint =>
+      'Als hij vol is, voegt de radio geen nieuw gehoorde contacten meer toe.';
+
+  @override
+  String get contactTable_freeUp => 'Ruimte vrijmaken';
+
+  @override
+  String get contactTable_sheetBody =>
+      'Langst niet gehoord eerst. Favorieten staan er niet bij.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return 'Laatst gehoord $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count contacten verwijderen',
+      one: '1 contact verwijderen',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'Ze worden van de radio verwijderd en hun berichten op dit apparaat worden gewist. Dit kan niet ongedaan worden.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count contacten verwijderd',
+      one: '1 contact verwijderd',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Alle contacten zijn favorieten, dus er valt niets voor te stellen.';
+
+  @override
+  String get adminWait_waiting => 'Wachten op antwoord';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Nog geen antwoord. Opnieuw proberen ($attempt van $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Direct, $hops hops',
+      one: 'Direct, 1 hop',
+      zero: 'Direct',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'tot $seconds s';
+  }
+
+  @override
+  String get coords_setting => 'Coördinaatnotatie';
+
+  @override
+  String get coords_decimal => 'Decimale graden';
+
+  @override
+  String get coords_dms => 'Graden, minuten, seconden';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => 'Positie kopiëren';
+
+  @override
+  String coords_copied(String format) {
+    return 'Gekopieerd als $format';
+  }
+
+  @override
+  String pathHash_badge(int width) {
+    return 'Route gebruikt pad-hashes van $width byte';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'Je radio gebruikt $width byte';
+  }
+
+  @override
+  String ham_idMismatchTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count stations-ID\'s passen niet bij de namen',
+      one: '1 stations-ID past niet bij de naam',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_idMismatchBody =>
+      'Deze direct ontvangen adverts hadden een andere stations-ID dan de roepnaam waarmee hun naam begint. Mogelijk is een radio verkeerd ingesteld; overleg met de operator voordat u erop vertrouwt.';
+
+  @override
+  String ham_idMismatchSentAs(String station) {
+    return 'verzonden met stations-ID $station';
+  }
+
+  @override
+  String get ham_idMismatchNoCall => 'Deze naam begint niet met een roepnaam';
+
+  @override
+  String get ham_composerPlainText =>
+      'Platte tekst: iedereen die meeluistert kan dit lezen';
+
+  @override
+  String get ham_bannerStockFirmware =>
+      'Deze radio draait standaard MeshCore. Zend er niet mee op de amateurbanden';
+
+  @override
+  String get ham_firmwareOk =>
+      'NOTORYX Ham-firmware: stations-ID, platte tekst, alleen amateurbanden';
+
+  @override
+  String get ham_firmwareStock =>
+      'Standaard MeshCore versleutelt en zendt geen stations-ID. Flash de NOTORYX Ham-firmware voordat u zendt';
+
+  @override
+  String get ham_stationLog => 'Stationslog';
+
+  @override
+  String get ham_stationLogExport => 'Log exporteren';
+
+  @override
+  String get ham_exportAdif => 'ADIF exporteren (.adi)';
+
+  @override
+  String get ham_exportCsv => 'CSV exporteren';
+
+  @override
+  String get ham_stationLogClear => 'Log wissen';
+
+  @override
+  String get ham_stationLogClearConfirm =>
+      'Alle regels in het stationslog verwijderen? Dit kan niet ongedaan worden.';
+
+  @override
+  String get ham_stationLogEmpty => 'Nog geen stations gelogd';
+
+  @override
+  String get ham_stationLogHint =>
+      'Directe berichten met stations waarvan de naam met een roepnaam begint, worden hier gelogd, alleen op deze telefoon.';
+
+  @override
+  String ham_stationLogCounts(int sent, int received) {
+    return '$sent verzonden, $received ontvangen';
+  }
+
+  @override
+  String ham_rxStationId(String call) {
+    return 'ID $call';
+  }
+
+  @override
+  String get ham_stationIdLabel => 'Stations-ID';
+
+  @override
+  String get ham_stationIdHint =>
+      'Het station dat dit frame zond: de afzender, of de repeater die het doorgaf';
+
+  @override
+  String ham_stockTrafficTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other:
+          '$count standaard MeshCore-frames hier gehoord in de laatste 10 minuten',
+      one: '1 standaard MeshCore-frame hier gehoord in de laatste 10 minuten',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get security_title => 'Beveiliging';
+
+  @override
+  String get security_toolSubtitle =>
+      'App-vergrendeling en versleutelde berichtgeschiedenis';
+
+  @override
+  String get appLock_title => 'App-vergrendeling';
+
+  @override
+  String get appLock_subtitle =>
+      'Vraagt bij het openen om vingerafdruk, gezicht of schermvergrendeling. Meldingen blijven werken en SOS blijft op het vergrendelscherm.';
+
+  @override
+  String get appLock_reason => 'NOTORYX Core Ham ontgrendelen';
+
+  @override
+  String get appLock_unlock => 'Ontgrendelen';
+
+  @override
+  String get appLock_locked => 'NOTORYX Core Ham is vergrendeld';
+
+  @override
+  String get appLock_unavailable =>
+      'Dit apparaat heeft geen schermvergrendeling, of die kon niet worden bevestigd.';
+
+  @override
+  String get dbEncrypt_title => 'Berichtgeschiedenis versleutelen';
+
+  @override
+  String get dbEncrypt_subtitle =>
+      'Versleutelt de berichtendatabase op dit apparaat met een sleutel in de beveiligde opslag van de telefoon. Gaat de sleutel verloren, dan is de geschiedenis niet te herstellen, dus bewaar een back-up.';
+
+  @override
+  String get dbEncrypt_on => 'Status: versleuteld';
+
+  @override
+  String get dbEncrypt_off => 'Status: niet versleuteld';
+
+  @override
+  String get dbEncrypt_failed =>
+      'Status: niet gelukt. Je geschiedenis is ongewijzigd.';
+
+  @override
+  String get dbEncrypt_restart => 'Gaat in bij de volgende start van de app.';
+
+  @override
+  String get appLock_sosNoTarget =>
+      'Ontgrendel eerst en kies wie je SOS ontvangt.';
+
+  @override
+  String get ham_stockTrafficBody =>
+      'Een ander netwerk, zoals een MeshCore-mesh onder Part 15, gebruikt deze frequentie. De frames hebben geen stations-ID en de ham-firmware kan ze niet lezen. Overleg met uw frequentiecoördinator voordat u hier zendt.';
+
+  @override
+  String get forward_action => 'Doorsturen';
+
+  @override
+  String get forward_title => 'Bericht doorsturen';
+
+  @override
+  String get forward_to => 'Verzenden naar';
+
+  @override
+  String get forward_send => 'Verzenden';
+
+  @override
+  String get forward_hint =>
+      'Gaat uit onder uw roepletters en noemt de schrijver. U bent verantwoordelijk voor wat u doorstuurt.';
+
+  @override
+  String get forward_needCallsign =>
+      'Stel eerst uw roepletters in onder Gelicentieerde operator.';
+
+  @override
+  String forward_tooLong(int count) {
+    return '$count bytes te lang. Maak het bericht korter.';
+  }
+
+  @override
+  String get forward_sent => 'Doorgestuurd naar de radio';
+
+  @override
+  String get ham_setupBeforeTitle => 'Voordat u zendt';
+
+  @override
+  String get team_title => 'Teamconfiguratie';
+
+  @override
+  String get team_toolSubtitle =>
+      'Radio-instellingen en kanalen delen via QR of bestand';
+
+  @override
+  String get team_shareHint =>
+      'Deelt frequentie, bandbreedte, spreidingsfactor, codeersnelheid en hashtagkanalen van deze radio. Geen sleutels en geen zendvermogen.';
+
+  @override
+  String get team_shareFile => 'Delen als bestand';
+
+  @override
+  String get team_scan => 'Team-QR-code scannen';
+
+  @override
+  String get team_openFile => 'Teambestand openen';
+
+  @override
+  String get team_importTitle => 'Teamconfiguratie toepassen?';
+
+  @override
+  String get team_apply => 'Toepassen op radio';
+
+  @override
+  String get team_invalid =>
+      'Dit is geen geldige teamconfiguratie of de frequentie ligt buiten de amateurbanden.';
+
+  @override
+  String get team_applied => 'Teamconfiguratie toegepast';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'Kanalen: $names';
+  }
+
+  @override
+  String get ham_setupBeforeBody =>
+      'Lees de coördinatiegids en vul daarna uw roepnaam en licentie in bij ‘Gelicentieerde zendamateur’. Zend pas als uw frequentiecoördinator en de andere stations in uw mesh het eens zijn over een kanaal.';
+
+  @override
+  String ham_setupBeforeDone(String call) {
+    return 'Gelicentieerde zendamateur ingesteld als $call';
+  }
+
+  @override
+  String get fieldOps_kindReport => 'Rapport';
+
+  @override
+  String get fieldReport_title => 'Veldrapporten';
+
+  @override
+  String get fieldReport_open => 'Een SALUTE- of 9-Line-rapport schrijven';
+
+  @override
+  String get fieldReport_hint =>
+      'Wordt als platte tekst onder uw roepletters verzonden naar uw tochtcontacten en het SOS-kanaal. Er gaat niets uit tot u op Verzenden drukt.';
+
+  @override
+  String get fieldReport_usePosition => 'Positie van de radio gebruiken';
+
+  @override
+  String fieldReport_preview(int count) {
+    return 'Te verzenden berichten: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign =>
+      'Stel eerst uw roepletters in onder Gelicentieerde operator.';
+
+  @override
+  String get fieldReport_tooLong =>
+      'Een regel is te lang voor één bericht. Maak hem korter.';
+
+  @override
+  String get fieldReport_sent => 'Rapport naar de radio verzonden';
+
+  @override
+  String get coords_maidenhead => 'Maidenhead-locator';
+
+  @override
+  String get reactions_radioTitle => 'Reacties via de radio sturen';
+
+  @override
+  String get reactions_radioHint =>
+      'Elke reactie is een pakket in de lucht. Automatisch houdt ze op dit apparaat op de EU 868 MHz-band, waar zendtijd beperkt is.';
+
+  @override
+  String get reactions_radioAuto => 'Automatisch';
+
+  @override
+  String get reactions_radioOn => 'Aan';
+
+  @override
+  String get reactions_radioOff => 'Uit (dit apparaat)';
+
+  @override
+  String get notification_replyAction => 'Beantwoorden';
+
+  @override
+  String get notification_replyHint => 'Schrijf een antwoord';
+
+  @override
+  String get notification_markRead => 'Markeren als gelezen';
+
+  @override
+  String get notification_you => 'Jij';
+
+  @override
+  String get mesh_title => 'Meshgezondheid';
+
+  @override
+  String get mesh_overallGood => 'Het mesh ziet er gezond uit';
+
+  @override
+  String get mesh_overallFair => 'Het mesh werkt, met wat problemen';
+
+  @override
+  String get mesh_overallPoor => 'Het mesh heeft het moeilijk';
+
+  @override
+  String get mesh_overallUnknown => 'Nog te weinig gegevens';
+
+  @override
+  String get mesh_gradeGood => 'Goed';
+
+  @override
+  String get mesh_gradeFair => 'Matig';
+
+  @override
+  String get mesh_gradePoor => 'Slecht';
+
+  @override
+  String get mesh_gradeUnknown => 'Geen gegevens';
+
+  @override
+  String get mesh_noise => 'Ruis';
+
+  @override
+  String mesh_noiseValue(String dbm) {
+    return 'Ruisvloer $dbm dBm';
+  }
+
+  @override
+  String get mesh_signal => 'Laatste signaal';
+
+  @override
+  String mesh_signalValue(String db) {
+    return 'SNR $db dB';
+  }
+
+  @override
+  String get mesh_busy => 'Kanaalgebruik';
+
+  @override
+  String mesh_busyValue(int percent) {
+    return '$percent% van de laatste 15 minuten in de lucht';
+  }
+
+  @override
+  String get mesh_neighbours => 'Direct gehoord';
+
+  @override
+  String mesh_neighboursValue(int count) {
+    return '$count nodes in het laatste uur';
+  }
+
+  @override
+  String get mesh_delivery => 'Directe berichten';
+
+  @override
+  String mesh_deliveryValue(int delivered, int total) {
+    return '$delivered van $total afgeleverd in het laatste etmaal';
+  }
+
+  @override
+  String get mesh_tipNoise =>
+      'Iets in de buurt maakt ruis op deze frequentie. Houd de antenne weg van elektronica en laders.';
+
+  @override
+  String get mesh_tipSignal =>
+      'Het laatste pakket was zwak. Zet de antenne hoger of ga hoger staan.';
+
+  @override
+  String get mesh_tipBusy =>
+      'Het kanaal is druk. Houd berichten kort en vermijd floods.';
+
+  @override
+  String get mesh_tipNeighbours =>
+      'Weinig nodes worden direct gehoord. Zet de antenne hoger of ga dichter bij een repeater.';
+
+  @override
+  String get mesh_tipDelivery =>
+      'Veel berichten worden niet bevestigd. Open een mislukt bericht om te zien waar het stopte.';
+
+  @override
+  String routeHealth_staleTitle(String name) {
+    return 'De route naar $name is mogelijk verouderd';
+  }
+
+  @override
+  String routeHealth_weakTitle(String name) {
+    return 'De route naar $name is onbetrouwbaar';
+  }
+
+  @override
+  String routeHealth_lastWorkedHours(int hours) {
+    return 'werkte $hours u geleden voor het laatst';
+  }
+
+  @override
+  String routeHealth_lastWorkedDays(int days) {
+    return 'werkte $days dagen geleden voor het laatst';
+  }
+
+  @override
+  String routeHealth_notHeard(int days) {
+    return 'al $days dagen niet gehoord';
+  }
+
+  @override
+  String routeHealth_failures(int failures, int attempts) {
+    return '$failures van $attempts pogingen mislukt';
+  }
+
+  @override
+  String routeHealth_longPath(int hops) {
+    return '$hops hops';
+  }
+
+  @override
+  String get routeHealth_useFlood => 'Nieuwe route zoeken';
+
+  @override
+  String get routeHealth_keep => 'Route houden';
+
+  @override
+  String get netChange_title => 'Netwerkwijzigingen';
+
+  @override
+  String get netChange_toolSubtitle =>
+      'Repeaters die in de buurt verschenen of stil werden';
+
+  @override
+  String netChange_newDirect(String name) {
+    return 'Nieuwe repeater direct gehoord: $name';
+  }
+
+  @override
+  String netChange_newHops(String name, int hops) {
+    return 'Nieuwe repeater op $hops hop: $name';
+  }
+
+  @override
+  String netChange_wentQuiet(String name, int hours) {
+    return '$name is stil: al $hours u niet gehoord';
+  }
+
+  @override
+  String get netChange_empty =>
+      'Nog geen wijzigingen. Favoriete repeaters die stil worden en nieuwe repeaters in de buurt verschijnen hier.';
+
+  @override
+  String get netChange_quietSetting => 'Favoriete repeater wordt stil';
+
+  @override
+  String get netChange_quietHint =>
+      'Melden als een favoriete repeater zo lang niet gehoord is';
+
+  @override
+  String get netChange_newSetting => 'Nieuwe repeater in de buurt';
+
+  @override
+  String get netChange_newHint =>
+      'Melden als een onbekende repeater binnen één hop gehoord wordt';
+
+  @override
+  String get netChange_clear => 'Wissen';
+
+  @override
+  String get netChange_notifTitle => 'Netwerkwijziging';
+
+  @override
+  String get journal_title => 'Knooppuntlogboek';
+
+  @override
+  String get journal_toolSubtitle =>
+      'Elk ooit gehoord knooppunt, met gedragslabels, tags en notities';
+
+  @override
+  String get journal_empty =>
+      'Nog geen knooppunten. Elk knooppunt dat je radio hoort, komt hier vanzelf bij.';
+
+  @override
+  String get journal_search => 'Zoek namen, ID\'s, tags en notities';
+
+  @override
+  String get journal_filterAll => 'Alle';
+
+  @override
+  String get journal_bSteadyRelay => 'Altijd-aan relais';
+
+  @override
+  String get journal_bRegular => 'Vaste bezoeker';
+
+  @override
+  String get journal_bRoamer => 'Zwerver';
+
+  @override
+  String get journal_bRarelyHeard => 'Zelden gehoord';
+
+  @override
+  String get journal_bNewcomer => 'Nieuwkomer';
+
+  @override
+  String get journal_bGoneQuiet => 'Stil geworden';
+
+  @override
+  String journal_confidence(int percent) {
+    return '$percent% zeker';
+  }
+
+  @override
+  String journal_eDaysHeard(int heard, int days) {
+    return 'Gehoord op $heard van $days dagen';
+  }
+
+  @override
+  String journal_eFirstHeard(int hours) {
+    return 'Voor het eerst $hours u geleden gehoord';
+  }
+
+  @override
+  String journal_eSilent(int days) {
+    return '$days dagen niet gehoord';
+  }
+
+  @override
+  String journal_ePlaces(int places, int km) {
+    return 'Gezien op $places plekken tot $km km uit elkaar';
+  }
+
+  @override
+  String journal_eSightings(int count) {
+    return 'In totaal $count nieuwe adverts';
+  }
+
+  @override
+  String get journal_noLabel => 'Nog te weinig gezien voor een label.';
+
+  @override
+  String journal_firstSeen(String time) {
+    return 'Eerst gehoord: $time';
+  }
+
+  @override
+  String journal_lastSeen(String time) {
+    return 'Laatst gehoord: $time';
+  }
+
+  @override
+  String journal_hops(int min, int max) {
+    return 'Geziene hops: $min tot $max';
+  }
+
+  @override
+  String get journal_tags => 'Tags';
+
+  @override
+  String get journal_addTag => 'Tag toevoegen';
+
+  @override
+  String get journal_tagHint => 'bijv. startpunt, club, van mij';
+
+  @override
+  String journal_removeTag(String tag) {
+    return 'Tag $tag verwijderen';
+  }
+
+  @override
+  String get journal_note => 'Notitie';
+
+  @override
+  String get journal_saveNote => 'Notitie opslaan';
+
+  @override
+  String get journal_forget => 'Dit knooppunt vergeten';
+
+  @override
+  String journal_forgetConfirm(String name) {
+    return '$name met tags en notitie uit het logboek verwijderen? Wordt het weer gehoord, dan begint het opnieuw.';
+  }
+
+  @override
+  String get journal_forgotten => 'Knooppunt uit het logboek verwijderd.';
+
+  @override
+  String journal_markLabel(String name) {
+    return 'Gegenereerd teken voor $name';
+  }
+
+  @override
+  String get trouble_title => 'Probleemoplossing';
+
+  @override
+  String get trouble_toolSubtitle => 'Stap-voor-stap hulp als iets niet werkt';
+
+  @override
+  String get trouble_pick => 'Wat is er mis?';
+
+  @override
+  String get trouble_noDelivery => 'Berichten komen niet aan';
+
+  @override
+  String get trouble_noConnect => 'Ik kan geen verbinding maken met mijn radio';
+
+  @override
+  String get trouble_hearNobody => 'Ik hoor niemand';
+
+  @override
+  String get trouble_startHere => 'Begin hier';
+
+  @override
+  String get trouble_resultOk => 'OK';
+
+  @override
+  String get trouble_resultProblem => 'Probleem';
+
+  @override
+  String get trouble_resultUnchecked => 'Niet te controleren';
+
+  @override
+  String get trouble_connectedNow =>
+      'Je bent nu verbonden. Als de verbinding steeds wegvalt, helpen de stappen hieronder nog steeds.';
+
+  @override
+  String get trouble_allOk =>
+      'Alle controles zijn goed. Werkt het nog steeds niet, kijk dan naar de stappen hieronder.';
+
+  @override
+  String get trouble_connected => 'Je radio is verbonden';
+
+  @override
+  String get trouble_connectedAdvice =>
+      'Verbind eerst je radio: Instellingen → Radio verbinden.';
+
+  @override
+  String get trouble_routes =>
+      'Er zijn routes bekend naar wie je berichten stuurt';
+
+  @override
+  String get trouble_routesAdvice =>
+      'Berichten naar iemand zonder bekende route floodden het hele mesh en komen vaak niet aan. Wacht tot diegene adverteert, of vraag erom, en stuur het opnieuw.';
+
+  @override
+  String get trouble_heardRecently =>
+      'Wie je berichten stuurt is het afgelopen etmaal gehoord';
+
+  @override
+  String get trouble_heardRecentlyAdvice =>
+      'Wie al een tijd niet gehoord is, is misschien buiten bereik of uit. Berichten kunnen pas bevestigd worden als diegene terug is.';
+
+  @override
+  String get trouble_neighbours => 'Je radio hoort andere nodes';
+
+  @override
+  String get trouble_neighboursAdvice =>
+      'Als niets direct gehoord wordt, bereikt je radio het mesh hier niet. Zet de antenne hoger, ga hoger staan of ga dichter bij een repeater.';
+
+  @override
+  String get trouble_bluetooth =>
+      'Bluetooth staat aan en de app mag het gebruiken';
+
+  @override
+  String get trouble_bluetoothAdvice =>
+      'Controleer of Bluetooth aan staat en of NOTORYX Core Ham toestemming heeft voor Bluetooth (en op Android Apparaten in de buurt) in de telefooninstellingen.';
+
+  @override
+  String get trouble_otherApp =>
+      'Geen andere telefoon of app is met de radio verbonden';
+
+  @override
+  String get trouble_otherAppAdvice =>
+      'Een radio praat met één app tegelijk. Sluit andere MeshCore-apps of zet Bluetooth uit op andere gekoppelde telefoons.';
+
+  @override
+  String get trouble_inRange => 'De radio staat aan en is dichtbij';
+
+  @override
+  String get trouble_inRangeAdvice =>
+      'Controleer of de radio geladen is, aan staat en binnen een paar meter is. De radio herstarten verhelpt vaak een vastgelopen verbinding.';
+
+  @override
+  String get trouble_otherTransport => 'Probeer een andere verbinding';
+
+  @override
+  String get trouble_otherTransportAdvice =>
+      'Als Bluetooth steeds faalt, verbind dan met een USB-kabel of via wifi (TCP) als je radio dat kan.';
+
+  @override
+  String get trouble_noise => 'De radio verdrinkt niet in ruis';
+
+  @override
+  String get trouble_noiseAdvice =>
+      'Een hoge ruisvloer verbergt zwakke signalen. Houd de antenne weg van elektronica, laders en zonneregelaars.';
+
+  @override
+  String get trouble_region => 'Je radio gebruikt de instellingen van je regio';
+
+  @override
+  String get trouble_regionAdvice =>
+      'Met een andere frequentie, bandbreedte of spreidingsfactor dan het lokale mesh hoor je niemand. Vergelijk Instellingen → Radio met wat je regio gebruikt.';
+
+  @override
+  String get trouble_antenna => 'De antenne zit erop';
+
+  @override
+  String get trouble_antennaAdvice =>
+      'Zorg dat de antenne stevig vastgeschroefd is. Zend nooit zonder antenne; dat kan de radio beschadigen.';
+
+  @override
+  String get readiness_sos => 'SOS-ontvangers';
+
+  @override
+  String get readiness_sosOk => 'SOS heeft ontvangers.';
+
+  @override
+  String get readiness_sosBlocked =>
+      'SOS heeft niemand om te bereiken. Voeg tochtcontacten uit je contacten toe of stel een SOS-kanaal in.';
+
+  @override
+  String get readiness_routes => 'Routes naar tochtcontacten';
+
+  @override
+  String get readiness_routesOk =>
+      'Er is een route bekend naar elk tochtcontact.';
+
+  @override
+  String readiness_routesMissing(String names) {
+    return 'Geen bekende route naar $names. Berichten worden geflood tot er een route geleerd is. Stuur ze een bericht voor vertrek.';
+  }
+
+  @override
+  String get readiness_notifications => 'Meldingen';
+
+  @override
+  String get readiness_notificationsOk => 'Toegestaan.';
+
+  @override
+  String get readiness_notificationsOff =>
+      'Meldingen staan uit, dus je hoort geen antwoorden, check-ins of waarschuwingen.';
+
+  @override
+  String get readiness_batteryOpt => 'Batterijoptimalisatie';
+
+  @override
+  String get readiness_batteryOptOk => 'NOTORYX Core Ham is uitgezonderd.';
+
+  @override
+  String get readiness_batteryOptOn =>
+      'Android kan de app op de achtergrond stoppen. Zet het uit via Instellingen → App-instellingen → Meldingen.';
+
+  @override
+  String get readiness_blockedTitle => 'Tocht kan nog niet starten';
+
+  @override
+  String readiness_warnTitle(int count) {
+    return '$count punten om na te kijken';
+  }
+
+  @override
+  String get readiness_startAnyway => 'Toch starten';
+
+  @override
+  String get readiness_review => 'Bekijken';
+
+  @override
+  String get readiness_summaryReady => 'Klaar om te gaan';
+
+  @override
+  String readiness_summaryWarn(int count) {
+    return '$count na te kijken';
+  }
+
+  @override
+  String get readiness_summaryBlocked => 'SOS bereikt niemand';
+
+  @override
+  String get waypoints_title => 'Waypoints';
+
+  @override
+  String get waypoints_toolSubtitle =>
+      'Opgeslagen plaatsen en routes; GPX importeren of exporteren';
+
+  @override
+  String get waypoints_importFile => 'GPX-bestand importeren';
+
+  @override
+  String get waypoints_importPaste => 'GPX plakken';
+
+  @override
+  String get waypoints_export => 'GPX exporteren';
+
+  @override
+  String get waypoints_empty =>
+      'Nog geen waypoints. Importeer een GPX-bestand of bewaar een plek die iemand in een chat deelde.';
+
+  @override
+  String waypoints_waypoints(int count) {
+    return 'Waypoints ($count)';
+  }
+
+  @override
+  String waypoints_routes(int count) {
+    return 'Routes ($count)';
+  }
+
+  @override
+  String waypoints_routeSummary(int points, String km) {
+    return '$points punten · $km km';
+  }
+
+  @override
+  String get waypoints_delete => 'Verwijderen';
+
+  @override
+  String get waypoints_copy => 'Coördinaten kopiëren';
+
+  @override
+  String get waypoints_sendToChannel => 'Naar een kanaal sturen';
+
+  @override
+  String get waypoints_pickChannel => 'Naar welk kanaal sturen?';
+
+  @override
+  String waypoints_sent(String channel) {
+    return 'Verstuurd naar $channel';
+  }
+
+  @override
+  String get waypoints_importFailed =>
+      'Dit is geen GPX-bestand dat de app kan lezen.';
+
+  @override
+  String get waypoints_pasteHint => 'Plak hier de GPX-tekst';
+
+  @override
+  String get waypoints_import => 'Importeren';
+
+  @override
+  String waypoints_imported(int waypoints, int routes) {
+    return '$waypoints waypoints en $routes routes toegevoegd';
+  }
+
+  @override
+  String get waypoints_save => 'Bewaren als waypoint';
+
+  @override
+  String get waypoints_unnamed => 'Gedeelde plek';
+
+  @override
+  String get waypoints_saved => 'Bewaard in Waypoints';
+
+  @override
+  String get waypoints_alreadySaved => 'Staat al in Waypoints';
+
+  @override
+  String get map_showWaypoints => 'Opgeslagen waypoints en routes tonen';
+
+  @override
+  String get dbEncrypt_covers =>
+      'Omvat ook contacten, kanaalsleutels, waypoints, opgeslagen routes, concepten en wachtende berichten.';
+
+  @override
+  String get bk_intro =>
+      'Slaat een versleutelde kopie op van app-instellingen, contacten, kanaalsleutels, waypoints en concepten, en desgewenst je berichtgeschiedenis. Offline kaarten, foto\'s en radiofirmware zitten er niet in.';
+
+  @override
+  String bk_confirmBody(Object count) {
+    return 'Hiermee worden $count opgeslagen instellingen op dit apparaat, waaronder contacten, kanaalsleutels en waypoints, vervangen door die uit de back-up. Dit kan niet ongedaan worden gemaakt.';
+  }
+
+  @override
+  String get bk_history => 'Berichtgeschiedenis meenemen';
+
+  @override
+  String get bk_historyHint =>
+      'Directe en kanaalberichten van elke radio. Het bestand wordt groter.';
+
+  @override
+  String get bk_tooLarge =>
+      'De back-up is te groot. Zet berichtgeschiedenis uit en probeer het opnieuw.';
+
+  @override
+  String bk_confirmHistory(int count) {
+    return 'Er worden ook tot $count berichten aan je geschiedenis toegevoegd. Berichten die al op dit apparaat staan, blijven bewaard.';
+  }
+
+  @override
+  String bk_restoredHistory(int count) {
+    return '$count berichten aan je geschiedenis toegevoegd.';
+  }
+
+  @override
+  String get bk_confirmTitle => 'Deze back-up terugzetten?';
+
+  @override
+  String bk_restored(int count) {
+    return '$count instellingen teruggezet. Sluit de app volledig en open hem opnieuw.';
+  }
+
+  @override
+  String get automation_title => 'Automation';
+
+  @override
+  String get automation_toolHint =>
+      'Rules that alert you or send a message when something happens';
+
+  @override
+  String get automation_newRule => 'New rule';
+
+  @override
+  String get automation_editRule => 'Edit rule';
+
+  @override
+  String get automation_hamNotice =>
+      'Rules run while the app is open. Automated messages are plain text and start with [auto]. They are held unless your station is ready to transmit (ham firmware, call sign in the radio\'s name, in band), limited to 3 every 10 minutes, and written to the station log. You remain the control operator for every automated transmission.';
+
+  @override
+  String get automation_empty => 'No rules yet';
+
+  @override
+  String get automation_emptyHint =>
+      'Add a rule to get an alert when your battery runs low, a station goes quiet or a message arrives.';
+
+  @override
+  String get automation_allowWebhooks => 'Allow webhooks';
+
+  @override
+  String get automation_allowWebhooksHint =>
+      'Needs internet. Off by default; webhook actions do nothing while this is off.';
+
+  @override
+  String get automation_workingChannel => 'Working channel';
+
+  @override
+  String get automation_stationLogHint =>
+      'Every automated transmission is listed there';
+
+  @override
+  String get automation_activity => 'Recent activity';
+
+  @override
+  String get automation_none => 'None';
+
+  @override
+  String get automation_unnamed => 'Unnamed rule';
+
+  @override
+  String get automation_transmits => 'Transmits on air';
+
+  @override
+  String get automation_incomplete => 'Unfinished';
+
+  @override
+  String automation_ruleSwitch(String name) {
+    return 'Rule $name on';
+  }
+
+  @override
+  String get automation_ruleName => 'Rule name';
+
+  @override
+  String get automation_when => 'When';
+
+  @override
+  String get automation_then => 'Then';
+
+  @override
+  String get automation_matchAll => 'All are true (AND)';
+
+  @override
+  String get automation_matchAny => 'Any is true (OR)';
+
+  @override
+  String automation_matchAllShort(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'All of $count conditions',
+      one: '1 condition',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String automation_matchAnyShort(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Any of $count conditions',
+      one: '1 condition',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String automation_actionCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count actions',
+      one: '1 action',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get automation_addCondition => 'Add condition';
+
+  @override
+  String get automation_addAction => 'Add action';
+
+  @override
+  String automation_remove(String item) {
+    return 'Remove $item';
+  }
+
+  @override
+  String get automation_savedOff =>
+      'Saved switched off. Fill in every field to turn it on.';
+
+  @override
+  String get automation_deleteConfirm => 'Delete this rule?';
+
+  @override
+  String get automation_transmitNotice =>
+      'This rule transmits. It only sends when your station is ready, at most 3 automated messages every 10 minutes and once every 15 minutes per rule, and each one is logged in the station log.';
+
+  @override
+  String get automation_condBattery => 'Battery low';
+
+  @override
+  String get automation_condTime => 'Time of day';
+
+  @override
+  String get automation_condEnter => 'Enter an area';
+
+  @override
+  String get automation_condLeave => 'Leave an area';
+
+  @override
+  String get automation_condMessage => 'Message received';
+
+  @override
+  String get automation_condOnline => 'Node online';
+
+  @override
+  String get automation_condOffline => 'Node offline';
+
+  @override
+  String automation_batteryBelow(int percent) {
+    return 'Radio battery below $percent%';
+  }
+
+  @override
+  String get automation_timeHint =>
+      'Every day at this time, on this device\'s clock';
+
+  @override
+  String get automation_latitude => 'Latitude';
+
+  @override
+  String get automation_longitude => 'Longitude';
+
+  @override
+  String get automation_radiusMeters => 'Radius (meters)';
+
+  @override
+  String get automation_useRadioPosition => 'Use the radio\'s position';
+
+  @override
+  String get automation_areaHint => 'Uses the position the radio reports.';
+
+  @override
+  String get automation_sourceAny => 'Any';
+
+  @override
+  String get automation_sourceDirect => 'Direct';
+
+  @override
+  String get automation_sourceChannel => 'Channel';
+
+  @override
+  String get automation_onChannel => 'On channel';
+
+  @override
+  String get automation_anyChannel => 'Any channel';
+
+  @override
+  String get automation_from => 'From';
+
+  @override
+  String get automation_anyone => 'Anyone';
+
+  @override
+  String get automation_contains => 'Contains text (optional)';
+
+  @override
+  String get automation_node => 'Node';
+
+  @override
+  String get automation_heardWithinMinutes => 'Heard within (minutes)';
+
+  @override
+  String get automation_actionSend => 'Send a message';
+
+  @override
+  String get automation_actionAlert => 'Alert me';
+
+  @override
+  String get automation_actionChangeChannel => 'Change working channel';
+
+  @override
+  String get automation_actionSound => 'Play a sound';
+
+  @override
+  String get automation_actionWebhook => 'Call a webhook';
+
+  @override
+  String get automation_sendTo => 'Send to';
+
+  @override
+  String get automation_targetChannel => 'Channel';
+
+  @override
+  String get automation_targetContact => 'Contact';
+
+  @override
+  String get automation_message => 'Message';
+
+  @override
+  String get automation_messageTooLong =>
+      'Too long: 140 bytes at most, [auto] included';
+
+  @override
+  String get automation_sendHint =>
+      'Sent on air as plain text with [auto] in front, and logged in the station log.';
+
+  @override
+  String get automation_alertText => 'Alert text';
+
+  @override
+  String get automation_changeChannelHint =>
+      'Rules that send to the working channel use this channel from now on.';
+
+  @override
+  String get automation_soundHint => 'Plays this device\'s alert sound.';
+
+  @override
+  String get automation_webhookUrl => 'Webhook address (https://)';
+
+  @override
+  String get automation_webhookHttps => 'Use an https:// address';
+
+  @override
+  String get automation_webhookNeedsInternet =>
+      'Needs internet. Sends the rule\'s name and the time.';
+
+  @override
+  String get automation_webhookOffNotice =>
+      'Needs internet. Webhooks are off: allow them on the Automation page.';
+
+  @override
+  String get automation_outDone => 'Done';
+
+  @override
+  String get automation_outNotConnected => 'Held: no radio connected';
+
+  @override
+  String get automation_outNotReady => 'Held: station not ready to transmit';
+
+  @override
+  String get automation_outRateLimited =>
+      'Held: automated message limit reached';
+
+  @override
+  String get automation_outNoTarget =>
+      'Held: contact or channel not on the radio';
+
+  @override
+  String get automation_outWebhooksOff => 'Skipped: webhooks are off';
+
+  @override
+  String get automation_outFailed => 'Failed';
+
+  @override
+  String get ham_automatedTx => 'Automated transmissions';
+
+  @override
+  String get ham_automatedTxHint =>
+      'Messages your automation rules sent on air.';
+
+  @override
+  String get ham_exportAutomatedCsv => 'Export automated transmissions (CSV)';
+
+  @override
+  String get checklist_title => 'Checklists';
+
+  @override
+  String get checklist_toolSubtitle =>
+      'Herbruikbare checklists voor vertrek en plaatsing, ook offline';
+
+  @override
+  String get checklist_empty =>
+      'Geen checklists. Voeg er een toe met de knop hieronder.';
+
+  @override
+  String get checklist_add => 'Nieuwe checklist';
+
+  @override
+  String get checklist_edit => 'Checklist bewerken';
+
+  @override
+  String get checklist_name => 'Naam';
+
+  @override
+  String get checklist_items => 'Punten, één per regel';
+
+  @override
+  String checklist_itemCount(int count) {
+    return 'Punten: $count';
+  }
+
+  @override
+  String get checklist_history => 'Afgeronde rondes';
+
+  @override
+  String get checklist_noRuns => 'Nog geen afgeronde rondes.';
+
+  @override
+  String get checklist_inProgress => 'Bezig';
+
+  @override
+  String checklist_progress(int done, int total) {
+    return '$done van $total klaar';
+  }
+
+  @override
+  String checklist_startedAt(String time) {
+    return 'Gestart $time';
+  }
+
+  @override
+  String checklist_finishedAt(String time) {
+    return 'Afgerond $time';
+  }
+
+  @override
+  String get checklist_note => 'Notitie';
+
+  @override
+  String get checklist_finish => 'Afronden en opslaan';
+
+  @override
+  String get checklist_unfinished => 'Niet alles is afgevinkt. Toch opslaan?';
+
+  @override
+  String get checklist_saveAnyway => 'Toch opslaan';
+
+  @override
+  String get checklist_export => 'Exporteren of verwijderen';
+
+  @override
+  String get checklist_exportText => 'Delen als tekst';
+
+  @override
+  String get checklist_exportJson => 'Delen als JSON';
+
+  @override
+  String get checklist_exportFailed => 'Kon het verslag niet delen.';
+
+  @override
+  String get checklist_deleteRun => 'Verslag verwijderen';
+
+  @override
+  String get checklist_deleteRunConfirm =>
+      'Dit verslag verwijderen? Dit kan niet ongedaan worden.';
+
+  @override
+  String checklist_deleteConfirm(String name) {
+    return '$name verwijderen? Afgeronde verslagen blijven bewaard.';
+  }
+
+  @override
+  String get checklist_preTrip => 'Voor vertrek';
+
+  @override
+  String get checklist_preTrip1 =>
+      'Radio opgeladen en reservebatterij ingepakt';
+
+  @override
+  String get checklist_preTrip2 =>
+      'Radio gekoppeld aan de telefoon en testbericht verstuurd';
+
+  @override
+  String get checklist_preTrip3 => 'Offline kaarten van het gebied opgeslagen';
+
+  @override
+  String get checklist_preTrip4 =>
+      'Route en terugkeertijd achtergelaten bij iemand';
+
+  @override
+  String get checklist_preTrip5 =>
+      'Groepskanaal en teamcontacten gecontroleerd';
+
+  @override
+  String get checklist_preTrip6 => 'SOS en inchecken één keer geprobeerd';
+
+  @override
+  String get checklist_deploy => 'Knooppunt plaatsen';
+
+  @override
+  String get checklist_deploy1 => 'Locatie en toestemming bevestigd';
+
+  @override
+  String get checklist_deploy2 => 'Antenne gemonteerd en connectoren afgedicht';
+
+  @override
+  String get checklist_deploy3 => 'Voeding en zonnepaneel gecontroleerd';
+
+  @override
+  String get checklist_deploy4 => 'Radio-instellingen en regio bevestigd';
+
+  @override
+  String get checklist_deploy5 => 'Testbericht via het knooppunt gehoord';
+
+  @override
+  String get checklist_deploy6 => 'Locatie, foto\'s en notities vastgelegd';
+
+  @override
+  String automation_placeholders(String list) {
+    return 'Je kunt $list gebruiken';
+  }
+
+  @override
+  String get losLegendFresnel => 'Fresnelzone';
+
+  @override
+  String losFresnelClear(int percent) {
+    return 'Fresnelzone op het smalste punt $percent% vrij. 60% of meer is goed.';
+  }
+
+  @override
+  String losFresnelPartial(int percent) {
+    return 'Fresnelzone op het smalste punt maar $percent% vrij. Streef naar 60% of meer: zet een antenne hoger of verplaats een punt.';
+  }
+
+  @override
+  String get losFresnelBlocked =>
+      'Het terrein snijdt in de fresnelzone en de bundel. Zet een antenne hoger of verplaats een punt.';
+
+  @override
+  String get bg_title => 'Achtergrond';
+
+  @override
+  String get bg_kindTheme => 'Themagloed';
+
+  @override
+  String get bg_kindSolid => 'Kleur';
+
+  @override
+  String get bg_kindLinear => 'Verloop';
+
+  @override
+  String get bg_kindMesh => 'Kleurmengsel';
+
+  @override
+  String get bg_kindPhoto => 'Foto';
+
+  @override
+  String get bg_color1 => 'Eerste kleur';
+
+  @override
+  String get bg_color2 => 'Tweede kleur';
+
+  @override
+  String bg_colorN(int index) {
+    return 'Kleur $index';
+  }
+
+  @override
+  String get bg_dim => 'Dimmen';
+
+  @override
+  String get bg_blur => 'Vervaging';
+
+  @override
+  String get bg_choosePhoto => 'Foto kiezen';
+
+  @override
+  String get bg_reset => 'Terug naar de achtergrond van het thema';
+
+  @override
+  String get bg_hint =>
+      'Kaarten liggen er als matglas bovenop. Zet Dimmen hoger als tekst moeilijk leesbaar is.';
+
+  @override
+  String get bg_previewTitle => 'Voorbeeld';
+
+  @override
+  String get bg_previewBody => 'Zo ziet tekst op een glazen kaart eruit.';
+
+  @override
+  String get bg_photoNotBackedUp =>
+      'De foto blijft op deze telefoon en zit niet in back-ups.';
+
+  @override
+  String get bg_photoFailed =>
+      'Die foto kon niet worden gebruikt. Probeer een andere.';
+
+  @override
+  String get compass_openHint => 'Wijs me de weg';
+
+  @override
+  String get compass_onTarget => 'Recht vooruit';
+
+  @override
+  String compass_turnRight(int degrees) {
+    return '$degrees° naar rechts draaien';
+  }
+
+  @override
+  String compass_turnLeft(int degrees) {
+    return '$degrees° naar links draaien';
+  }
+
+  @override
+  String compass_bearing(int degrees, String point) {
+    return 'Peiling $degrees° $point';
+  }
+
+  @override
+  String get compass_noSensor =>
+      'Dit apparaat heeft geen kompas, dus de pijl staat met het noorden boven.';
+
+  @override
+  String get compass_calibrate =>
+      'Het kompas is onzeker. Beweeg de telefoon een paar keer in een achtvorm om het te kalibreren.';
+
+  @override
+  String get compass_magneticNote =>
+      'Richting op magnetisch noorden totdat je positie bekend is.';
+
+  @override
+  String get compass_noPosition =>
+      'Je eigen positie is nog niet bekend. Sta telefoonlocatie toe of stel de positie van de radio in.';
+
+  @override
+  String get compass_noNodePosition =>
+      'Deze node heeft geen positie gedeeld, dus er is niets om naar te wijzen.';
+
+  @override
+  String get compass_usePhoneLocation => 'Telefoonlocatie gebruiken';
+
+  @override
+  String get compass_sourcePhone =>
+      'Je positie komt van de gps van de telefoon.';
+
+  @override
+  String get compass_sourceRadio => 'Je positie komt van de radio.';
+
+  @override
+  String get traffic_mode => 'Verkeer';
+
+  @override
+  String get traffic_modeHint => 'Toon pakketten die door de mesh gaan';
+
+  @override
+  String get traffic_locate => 'Lokaliseren';
+
+  @override
+  String get traffic_advert => 'Advert';
+
+  @override
+  String get traffic_filter => 'Filter';
+
+  @override
+  String get traffic_search => 'Zoeken';
+
+  @override
+  String get traffic_fitAll => 'Alles tonen';
+
+  @override
+  String get traffic_options => 'Opties';
+
+  @override
+  String get traffic_kindAdvert => 'Advert';
+
+  @override
+  String get traffic_kindDirect => 'Direct bericht';
+
+  @override
+  String get traffic_kindChannel => 'Kanaalbericht';
+
+  @override
+  String get traffic_kindAck => 'Bevestiging';
+
+  @override
+  String get traffic_kindTrace => 'Trace';
+
+  @override
+  String get traffic_kindPath => 'Pad';
+
+  @override
+  String get traffic_filterTitle => 'Pakkettypes om te tonen';
+
+  @override
+  String get traffic_listening => 'Wachten op pakketten…';
+
+  @override
+  String traffic_heardFrom(String name, String snr) {
+    return 'Gehoord van $name · $snr dB';
+  }
+
+  @override
+  String traffic_flood(int hops) {
+    return 'Flood $hops';
+  }
+
+  @override
+  String get traffic_direct => 'Direct';
+
+  @override
+  String traffic_snr(String snr) {
+    return 'SNR $snr';
+  }
+
+  @override
+  String traffic_rssi(int rssi) {
+    return '$rssi dBm';
+  }
+
+  @override
+  String traffic_notOnMapCount(int count) {
+    return '$count niet op de kaart';
+  }
+
+  @override
+  String traffic_age(int seconds) {
+    return '$seconds s';
+  }
+
+  @override
+  String traffic_notOnMapList(String names) {
+    return 'Niet op de kaart: $names';
+  }
+
+  @override
+  String get traffic_unknown => 'Onbekend';
+
+  @override
+  String get traffic_cardHint => 'Toont de route op de kaart';
+
+  @override
+  String get stale_setting => 'Nodes als verouderd markeren na';
+
+  @override
+  String get stale_settingHint =>
+      'Contacten en repeaters die zo lang niet gehoord zijn, worden in de lijst als verouderd gemarkeerd en op de kaart vervaagd.';
+
+  @override
+  String get stale_off => 'Uit';
+
+  @override
+  String stale_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count u',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_days(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count dagen',
+      one: '1 dag',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stale_badge(String age) {
+    return 'verouderd · $age';
+  }
+
+  @override
+  String get rangeRings_toggle => 'Afstandsringen';
+
+  @override
+  String get rangeRings_hint =>
+      'Afstandsringen rond je positie, passend bij het beeld';
+
+  @override
+  String get rangeRings_noPosition =>
+      'Je positie is nog niet bekend, dus afstandsringen kunnen niet getekend worden.';
+
+  @override
+  String channelConflict_banner(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count kanalen op de radio wijken af van de app',
+      one: '1 kanaal op de radio wijkt af van de app',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get channelConflict_review => 'Bekijken';
+
+  @override
+  String get channelConflict_title => 'Kanaalverschillen';
+
+  @override
+  String get channelConflict_hint =>
+      'De radio heeft in deze plaatsen een andere naam of sleutel dan de app heeft opgeslagen. Iemand heeft ze misschien met een andere app gewijzigd, of de kopie van de app is oud. Kies per plaats welke versie blijft.';
+
+  @override
+  String get channelConflict_allResolved => 'Alle plaatsen komen nu overeen.';
+
+  @override
+  String channelConflict_slot(int index) {
+    return 'Plaats $index';
+  }
+
+  @override
+  String get channelConflict_onRadio => 'Op de radio';
+
+  @override
+  String get channelConflict_inApp => 'Opgeslagen in de app';
+
+  @override
+  String get channelConflict_empty => 'Leeg';
+
+  @override
+  String channelConflict_key(String fingerprint) {
+    return 'sleutel $fingerprint';
+  }
+
+  @override
+  String get channelConflict_nameDiffers => 'Naam wijkt af';
+
+  @override
+  String get channelConflict_keyDiffers => 'Sleutel wijkt af';
+
+  @override
+  String get channelConflict_keepRadio => 'Die van de radio houden';
+
+  @override
+  String get channelConflict_useApp => 'Die van de app schrijven';
+
+  @override
+  String channelConflict_keptRadio(int index) {
+    return 'Versie van de radio behouden in plaats $index';
+  }
+
+  @override
+  String channelConflict_usedApp(int index) {
+    return 'Versie van de app geschreven naar plaats $index';
+  }
+
+  @override
+  String get history_window24h => '24 h';
+
+  @override
+  String get history_window7d => '7 dagen';
+
+  @override
+  String get history_window30d => '30 dagen';
+
+  @override
+  String get statusHistory_title => 'Statusgeschiedenis';
+
+  @override
+  String get reportCard_title => 'Rapport';
+
+  @override
+  String get reportCard_hint =>
+      'Alleen gemaakt uit statuscontroles die jij deed, bewaard op deze telefoon. Er wordt niets extra verstuurd.';
+
+  @override
+  String get reportCard_empty =>
+      'Nog geen statuscontroles bewaard. Elke statuscontrole vult dit rapport aan.';
+
+  @override
+  String get reportCard_checks => 'Controles';
+
+  @override
+  String get reportCard_restarts => 'Herstarts gezien';
+
+  @override
+  String get reportCard_longestUptime => 'Langste uptime';
+
+  @override
+  String get reportCard_battery => 'Batterij';
+
+  @override
+  String get reportCard_noise => 'Ruisvloer';
+
+  @override
+  String get reportCard_errors => 'Nieuwe fouten';
+
+  @override
+  String get reportCard_neighbours => 'Buren';
+
+  @override
+  String get reportCard_exportCsv => 'CSV exporteren';
+
+  @override
+  String reportCard_checksValue(int count, int days) {
+    return '$count in $days dagen';
+  }
+
+  @override
+  String reportCard_batteryValue(String now, String low) {
+    return '$now nu · laagste $low';
+  }
+
+  @override
+  String reportCard_batteryTrend(String change) {
+    return '$change per week';
+  }
+
+  @override
+  String reportCard_noiseValue(String avg, String worst) {
+    return 'gemiddeld $avg dBm · slechtst $worst dBm';
+  }
+
+  @override
+  String reportCard_neighboursValue(int total, int fresh, int gone) {
+    return '$total gehoord · $fresh nieuw deze week · $gone deze week niet gehoord';
+  }
+
+  @override
+  String get statusHistory_battery => 'Accu';
+
+  @override
+  String get statusHistory_rssi => 'RSSI';
+
+  @override
+  String get statusHistory_snr => 'SNR';
+
+  @override
+  String get statusHistory_noiseFloor => 'Ruisvloer';
+
+  @override
+  String get statusHistory_errors => 'Fouten';
+
+  @override
+  String get statusHistory_uptime => 'Uptime';
+
+  @override
+  String get statusHistory_empty =>
+      'Elke statuscontrole wordt hier bewaard, zodat je ziet hoe deze repeater verandert.';
+
+  @override
+  String statusHistory_noneInWindow(String metric) {
+    return 'Geen $metric-metingen in deze periode.';
+  }
+
+  @override
+  String statusHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metric-grafiek, $count metingen, van $low tot $high';
+  }
+
+  @override
+  String statusHistory_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count bewaarde controles',
+      one: '1 bewaarde controle',
+      zero: 'Geen bewaarde controles',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statusHistory_clear => 'Geschiedenis wissen';
+
+  @override
+  String get statusHistory_clearTitle =>
+      'Geschiedenis van deze repeater wissen?';
+
+  @override
+  String get statusHistory_clearBody =>
+      'Bewaarde statuscontroles en SNR-metingen van buren voor deze repeater worden van deze telefoon verwijderd.';
+
+  @override
+  String snrHistory_trendLabel(String name, int count) {
+    return 'SNR-verloop voor $name, $count metingen. Tik voor de grafiek.';
+  }
+
+  @override
+  String snrHistory_title(String name) {
+    return 'SNR van $name';
+  }
+
+  @override
+  String get snrHistory_hint =>
+      'Hoe goed deze repeater de buur hoorde bij elke vraag, bewaard op deze telefoon.';
+
+  @override
+  String snrHistory_summary(int count, String low, String avg, String high) {
+    return '$count metingen · laag $low · gemiddeld $avg · hoog $high';
+  }
+
+  @override
+  String get follow_menu => '15 min volgen';
+
+  @override
+  String get follow_menuHint =>
+      'Vraagt elke paar minuten de positie en tekent het spoor';
+
+  @override
+  String follow_title(String name) {
+    return '$name volgen';
+  }
+
+  @override
+  String get follow_askNow => 'Nu positie vragen';
+
+  @override
+  String follow_fromYou(String distance, String direction, int degrees) {
+    return '$distance $direction ($degrees°) van jou';
+  }
+
+  @override
+  String get follow_waiting => 'Wachten op een positie…';
+
+  @override
+  String get follow_noOwnPosition =>
+      'Je eigen positie is onbekend, dus afstand en richting ontbreken.';
+
+  @override
+  String follow_timeLeftLabel(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Nog ongeveer $minutes minuten',
+      one: 'Nog ongeveer 1 minuut',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String follow_lastFix(String ago) {
+    return 'laatste positie $ago';
+  }
+
+  @override
+  String follow_secondsAgo(int n) {
+    return '$n s geleden';
+  }
+
+  @override
+  String follow_minutesAgo(int n) {
+    return '$n min geleden';
+  }
+
+  @override
+  String follow_answers(int answered, int asked) {
+    return '$answered/$asked verzoeken beantwoord';
+  }
+
+  @override
+  String follow_points(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count punten',
+      one: '1 punt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get follow_hint =>
+      'Stopt na 15 minuten vanzelf. Het contact moet locatie toestaan in de telemetrie, anders beweegt het alleen bij een advert.';
+
+  @override
+  String get follow_stop => 'Stoppen';
+
+  @override
+  String get follow_stopped =>
+      'Niet aan het volgen. Start opnieuw om nog 15 minuten de positie te vragen.';
+
+  @override
+  String get follow_start => '15 min volgen';
+
+  @override
+  String get follow_you => 'Jij';
+
+  @override
+  String get sensorHistory_title => 'Sensorgeschiedenis';
+
+  @override
+  String get sensorHistory_menuHint =>
+      'Grafieken van het laatste uur tot een dag, en meldingen';
+
+  @override
+  String get sensorHistory_readNow => 'Nu lezen';
+
+  @override
+  String get sensorHistory_window1h => '1 h';
+
+  @override
+  String get sensorHistory_window6h => '6 h';
+
+  @override
+  String get sensorHistory_window24h => '24 h';
+
+  @override
+  String get sensorHistory_empty =>
+      'Nog geen metingen. Tik op Nu lezen of zet live-updates of automatisch vernieuwen aan in Telemetrie; elke meting blijft hier een dag.';
+
+  @override
+  String sensorHistory_updated(String time) {
+    return 'Bijgewerkt $time';
+  }
+
+  @override
+  String get sensorHistory_noneInWindow => 'Geen metingen in deze periode.';
+
+  @override
+  String sensorHistory_chartLabel(
+    String metric,
+    int count,
+    String low,
+    String high,
+  ) {
+    return '$metric-grafiek, $count metingen, van $low tot $high';
+  }
+
+  @override
+  String get sensorHistory_noAlert => 'Geen melding';
+
+  @override
+  String sensorHistory_alertWhenAbove(String value) {
+    return 'Melding boven $value';
+  }
+
+  @override
+  String sensorHistory_alertWhenBelow(String value) {
+    return 'Melding onder $value';
+  }
+
+  @override
+  String get sensorHistory_setAlert => 'Melding…';
+
+  @override
+  String get sensorHistory_alertDialogTitle => 'Melding voor deze waarde';
+
+  @override
+  String get sensorHistory_alertDialogHint =>
+      'Je krijgt een melding als een nieuwe meting een grens passeert. Laat een veld leeg om het niet te gebruiken.';
+
+  @override
+  String get sensorHistory_above => 'Boven';
+
+  @override
+  String get sensorHistory_below => 'Onder';
+
+  @override
+  String get sensorHistory_belowMustBeLower =>
+      'Moet lager zijn dan de bovengrens';
+
+  @override
+  String get sensorHistory_removeAlert => 'Verwijderen';
+
+  @override
+  String get sensorHistory_alertTitle => 'Sensormelding';
+
+  @override
+  String sensorHistory_alertAbove(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what is $value, boven $limit';
+  }
+
+  @override
+  String sensorHistory_alertBelow(
+    String name,
+    String what,
+    String value,
+    String limit,
+  ) {
+    return '$name: $what is $value, onder $limit';
+  }
+
+  @override
+  String get sensorHistory_unknownNode => 'Een sensor';
+
+  @override
+  String get coverageHex_notoryxTitle => 'NOTORYX-dekkingskaart';
+
+  @override
+  String get coverageHex_notoryxShare => 'Delen met de NOTORYX-dekkingskaart';
+
+  @override
+  String get coverageHex_notoryxShareHint =>
+      'Een openbare kaart van echte MeshCore-dekking. Er wordt niets verstuurd tot je akkoord gaat.';
+
+  @override
+  String get coverageHex_notoryxConsent =>
+      'Je telefoon stuurt wat de radio in elke zeshoek (ongeveer 0,9 km) hoorde: signaalsterkte, aantal pakketten, de direct gehoorde repeaters en een tijdvak van 15 minuten. Je GPS-spoor of exacte positie wordt nooit verstuurd. Ook de eigen openbare adverts van repeaters (naam en positie) worden verstuurd, zodat de kaart ze kan benoemen. Uploads worden ondertekend met een dekkingssleutel los van je radio, zodat je ze later kunt wissen.';
+
+  @override
+  String get coverageHex_notoryxAnonymousNote =>
+      'Anonieme uploads kunnen later niet worden gewist.';
+
+  @override
+  String get coverageHex_mapperName => 'Mappernaam (optioneel)';
+
+  @override
+  String get coverageHex_mapperNameHint =>
+      'Alleen zichtbaar voor NOTORYX-leden. Laat leeg om naamloos te blijven.';
+
+  @override
+  String get coverageHex_shareAction => 'Delen';
+
+  @override
+  String get coverageHex_notNow => 'Niet nu';
+
+  @override
+  String get coverageHex_stopSharing => 'Stoppen met delen';
+
+  @override
+  String get coverageHex_eraseUploads => 'Mijn uploads wissen';
+
+  @override
+  String get coverageHex_eraseConfirm =>
+      'Alles verwijderen wat deze telefoon naar de NOTORYX-dekkingskaart heeft geüpload? Dit kan niet ongedaan worden gemaakt.';
+
+  @override
+  String coverageHex_erased(String count) {
+    return '$count metingen van de kaart gewist.';
+  }
+
+  @override
+  String get coverageHex_eraseFailed =>
+      'Wissen mislukt. Controleer je verbinding en probeer het opnieuw.';
+
+  @override
+  String get coverageHex_openMap => 'Dekkingskaart openen';
+
+  @override
+  String get coverageHex_trimDrives => 'Begin en einde van elke rit verbergen';
+
+  @override
+  String get coverageHex_trimDrivesHint =>
+      'De eerste en laatste 2 zeshoeken van elke sessie blijven op deze telefoon, zodat kaarten niet tonen waar je woont of parkeert.';
+
+  @override
+  String get appSettings_resetRoutingToDefault =>
+      'Routeringsalgoritme resetten naar standaard';
+
+  @override
+  String get appSettings_resetRoutingToDefaultSubtitle =>
+      'Routeringsalgoritme-instellingen herstellen naar fabrieksstandaardwaarden';
+
+  @override
+  String get appSettings_routingResetToDefault =>
+      'Routeringsalgoritme-instellingen gereset naar standaard';
+
+  @override
+  String get discoveredContacts_importNodes => 'Nodes importeren';
+
+  @override
+  String get discoveredContacts_importHint =>
+      'Leest contactlinks, openbare sleutels of een JSON- of CSV-lijst met nodes. Ze worden aan deze lijst toegevoegd, niet aan je radio.';
+
+  @override
+  String get discoveredContacts_importFromFile => 'Uit een bestand';
+
+  @override
+  String get discoveredContacts_importFromClipboard => 'Van het klembord';
+
+  @override
+  String get discoveredContacts_importFailed => 'Kon niet worden gelezen';
+
+  @override
+  String get discoveredContacts_importNone => 'Geen nodes gevonden';
+
+  @override
+  String get discoveredContacts_importNotConnected => 'Verbind eerst je radio';
+
+  @override
+  String discoveredContacts_importResult(int added, int updated, int skipped) {
+    return '$added nieuw, $updated bijgewerkt, $skipped overgeslagen';
+  }
+
+  @override
+  String home_knownNodes(int chats, int repeaters, int rooms) {
+    return 'Chats $chats · Repeaters $repeaters · Ruimtes $rooms';
+  }
+
+  @override
+  String home_radioHolds(int count, int max) {
+    return 'Radio bewaart $count van $max contacten';
+  }
+
+  @override
+  String messageFilter_markedSpamCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count berichten gemarkeerd als spam',
+      one: '1 bericht gemarkeerd als spam',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageFilter_markedNotSpamCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count berichten gemarkeerd als geen spam',
+      one: '1 bericht gemarkeerd als geen spam',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get messageFilter_title => 'Berichtenfilter';
+
+  @override
+  String get messageFilter_settingsSubtitle =>
+      'Spam en herhaalde berichten verbergen';
+
+  @override
+  String get messageFilter_enabled => 'Berichten filteren';
+
+  @override
+  String get messageFilter_enabledSubtitle => 'Geldt voor kanaalberichten';
+
+  @override
+  String get messageFilter_displayTitle => 'Gefilterde berichten';
+
+  @override
+  String get messageFilter_displayPlaceholder =>
+      'Een kleine plaatsaanduiding tonen';
+
+  @override
+  String get messageFilter_displayHide => 'Helemaal verbergen';
+
+  @override
+  String get messageFilter_displayHideHelp =>
+      'Verborgen berichten blijven in de lijst Gefilterde berichten staan.';
+
+  @override
+  String get messageFilter_rulesSection => 'Jouw regels';
+
+  @override
+  String get messageFilter_rulesEmpty =>
+      'Nog geen regels. Voeg een woord, zin of afzendernaam toe om passende berichten te verbergen.';
+
+  @override
+  String get messageFilter_addRule => 'Regel toevoegen';
+
+  @override
+  String get messageFilter_editRule => 'Regel bewerken';
+
+  @override
+  String get messageFilter_rulePattern => 'Woord, zin of naam';
+
+  @override
+  String get messageFilter_rulePatternHint => 'bijv. meshos';
+
+  @override
+  String get messageFilter_ruleWhere => 'Zoeken in';
+
+  @override
+  String get messageFilter_ruleFieldText => 'Berichttekst';
+
+  @override
+  String get messageFilter_ruleFieldSender => 'Afzendernaam';
+
+  @override
+  String get messageFilter_ruleFieldBoth => 'Beide';
+
+  @override
+  String get messageFilter_ruleMatch => 'Overeenkomst';
+
+  @override
+  String get messageFilter_ruleMatchContains => 'Bevat';
+
+  @override
+  String get messageFilter_ruleMatchWholeWord => 'Heel woord';
+
+  @override
+  String get messageFilter_ruleMatchExact => 'Exact';
+
+  @override
+  String get messageFilter_ruleDeleted => 'Regel verwijderd';
+
+  @override
+  String get messageFilter_ruleSaved => 'Regel opgeslagen';
+
+  @override
+  String get messageFilter_automaticSection => 'Automatisch';
+
+  @override
+  String get messageFilter_duplicates => 'Herhaalde berichten';
+
+  @override
+  String get messageFilter_duplicatesSubtitle =>
+      'Hetzelfde bericht opnieuw verstuurd, of door meerdere afzenders';
+
+  @override
+  String get messageFilter_repeatSends =>
+      'Verzendingen die als herhaling tellen';
+
+  @override
+  String messageFilter_repeatSendsSubtitle(int count) {
+    return 'Verberg een bericht wanneer dezelfde afzender het $count keer verstuurt binnen 10 minuten';
+  }
+
+  @override
+  String get messageFilter_repeatedCharacters => 'Herhaalde tekens';
+
+  @override
+  String get messageFilter_repeatedCharactersSubtitle =>
+      'Lange reeksen van hetzelfde teken, zoals „aaaaaaaaaaaaaaaaaaaa”';
+
+  @override
+  String get messageFilter_learning => 'Leren van Spam-tikken';
+
+  @override
+  String messageFilter_learningSubtitle(int spam, int notSpam) {
+    return '$spam spam- en $notSpam geen-spamvoorbeelden';
+  }
+
+  @override
+  String get messageFilter_resetLearning => 'Geleerde gegevens wissen';
+
+  @override
+  String get messageFilter_resetLearningConfirm =>
+      'Alles vergeten wat is geleerd van je tikken op Spam en Geen spam? Je regels blijven behouden.';
+
+  @override
+  String messageFilter_filteredMessages(int count) {
+    return 'Gefilterde berichten ($count)';
+  }
+
+  @override
+  String get messageFilter_filteredMessagesEmpty => 'Er is niets gefilterd.';
+
+  @override
+  String get messageFilter_ghostSingle =>
+      'Verborgen bericht · Tik om te bekijken';
+
+  @override
+  String messageFilter_ghostMany(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count verborgen berichten · Tik om te bekijken',
+      one: '$count verborgen bericht · Tik om te bekijken',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get messageFilter_ghostSingleExpanded =>
+      'Verborgen bericht wordt getoond · Tik om te verbergen';
+
+  @override
+  String messageFilter_ghostManyExpanded(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count verborgen berichten worden getoond · Tik om te verbergen',
+      one: '1 verborgen bericht wordt getoond · Tik om te verbergen',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageFilter_reasonTextRule(String pattern) {
+    return 'Gefilterd: komt overeen met „$pattern”';
+  }
+
+  @override
+  String messageFilter_reasonSenderRule(String pattern) {
+    return 'Gefilterd: afzender „$pattern”';
+  }
+
+  @override
+  String get messageFilter_reasonRepeatedCharacters =>
+      'Gefilterd: herhaalde tekens';
+
+  @override
+  String get messageFilter_reasonDuplicate => 'Gefilterd: herhaald bericht';
+
+  @override
+  String get messageFilter_reasonCrossSenderDuplicate =>
+      'Gefilterd: hetzelfde bericht van meerdere afzenders';
+
+  @override
+  String get messageFilter_reasonLearned =>
+      'Gefilterd: lijkt op berichten die je als spam hebt gemarkeerd';
+
+  @override
+  String get messageFilter_reasonManual =>
+      'Gefilterd: je hebt dit als spam gemarkeerd';
+
+  @override
+  String get messageFilter_notSpam => 'Geen spam';
+
+  @override
+  String get messageFilter_hideAgain => 'Verbergen';
+
+  @override
+  String get messageFilter_markSpam => 'Markeren als spam';
+
+  @override
+  String get messageFilter_markedSpam => 'Gemarkeerd als spam';
+
+  @override
+  String get messageFilter_markedNotSpam => 'Gemarkeerd als geen spam';
+
+  @override
+  String get messageFilter_filterSender => 'Deze afzender filteren';
+
+  @override
+  String messageFilter_filterSenderConfirm(String name) {
+    return 'Alle berichten van „$name” verbergen?';
+  }
+
+  @override
+  String get messageFilter_filterLikeThis => 'Berichten zoals dit filteren…';
+
+  @override
+  String get messageFilter_channelToggle => 'Berichten in dit kanaal filteren';
+
+  @override
+  String get messageFilter_ghostIconTooltip =>
+      'Verborgen door je berichtenfilter';
+
+  @override
+  String get ping_noReplyNote =>
+      'Geen antwoord bewijst niet dat de repeater uit is. De test of het antwoord kan verloren gaan door ruis of een botsing; probeer opnieuw of test vanaf een andere plek.';
+
+  @override
+  String traffic_lastHop(String name, String snr) {
+    return 'Laatste hop $name · $snr dB';
+  }
+
+  @override
+  String get contacts_fullWarning =>
+      'De contactenlijst van deze radio is vol, dus er kunnen geen nieuwe nodes bij. Verwijder enkele contacten om ruimte te maken.';
 }

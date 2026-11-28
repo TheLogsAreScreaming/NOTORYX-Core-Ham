@@ -56,6 +56,7 @@ class _FakeMeshCoreConnector extends MeshCoreConnector {
   Future<void> connectUsb({
     required String portName,
     int baudRate = 115200,
+    bool automaticReconnect = false,
   }) async {
     if (connectUsbImpl != null) {
       return connectUsbImpl!(portName: portName);

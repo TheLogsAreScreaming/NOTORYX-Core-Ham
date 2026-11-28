@@ -92,10 +92,14 @@ class _MySensorsPanelState extends State<MySensorsPanel> {
                                   vertical: 6,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Colors.white.withValues(alpha: 0.06),
+                                  color: MeshPalette.ink.withValues(
+                                    alpha: 0.06,
+                                  ),
                                   borderRadius: BorderRadius.circular(14),
                                   border: Border.all(
-                                    color: Colors.white.withValues(alpha: 0.10),
+                                    color: MeshPalette.ink.withValues(
+                                      alpha: 0.10,
+                                    ),
                                   ),
                                 ),
                                 child: Row(

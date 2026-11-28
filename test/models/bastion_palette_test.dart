@@ -8,28 +8,25 @@ double contrast(Color a, Color b) {
 }
 
 void main() {
-  test(
-    'calm dark and light themes retain readable primary text and buttons',
-    () {
-      for (final theme in [MeshTheme.dark(), MeshTheme.light()]) {
-        final scheme = theme.colorScheme;
-        expect(
-          contrast(scheme.onSurface, scheme.surface),
-          greaterThanOrEqualTo(4.5),
-        );
-        expect(
-          contrast(scheme.onSurfaceVariant, scheme.surfaceContainerHigh),
-          greaterThanOrEqualTo(4.5),
-        );
-        expect(
-          contrast(scheme.onPrimary, scheme.primary),
-          greaterThanOrEqualTo(4.5),
-        );
-        expect(
-          contrast(scheme.onSecondary, scheme.secondary),
-          greaterThanOrEqualTo(4.5),
-        );
-      }
-    },
-  );
+  test('every theme retains readable primary text and buttons', () {
+    for (final t in BastionTheme.values) {
+      final scheme = MeshTheme.forPalette(t.palette).colorScheme;
+      expect(
+        contrast(scheme.onSurface, scheme.surface),
+        greaterThanOrEqualTo(4.5),
+      );
+      expect(
+        contrast(scheme.onSurfaceVariant, scheme.surfaceContainerHigh),
+        greaterThanOrEqualTo(4.5),
+      );
+      expect(
+        contrast(scheme.onPrimary, scheme.primary),
+        greaterThanOrEqualTo(4.5),
+      );
+      expect(
+        contrast(scheme.onSecondary, scheme.secondary),
+        greaterThanOrEqualTo(4.5),
+      );
+    }
+  });
 }

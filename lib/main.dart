@@ -1,4 +1,10 @@
+import 'services/app_lock_service.dart';
+import 'widgets/app_lock_gate.dart';
 import 'services/node_telemetry_store.dart';
+import 'services/sensor_history_store.dart';
+import 'helpers/sensor_labels.dart';
+import 'services/repeater_status_history.dart';
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -6,7 +12,9 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+
 import 'l10n/app_localizations.dart';
+
 import 'package:provider/provider.dart';
 
 import 'screens/chrome_required_screen.dart';
@@ -14,6 +22,7 @@ import 'utils/platform_info.dart';
 
 import 'connector/meshcore_connector.dart';
 import 'connector/meshcore_protocol.dart';
+import 'models/app_settings.dart';
 import 'models/image_codec_support.dart';
 import 'models/mqtt_mesh_packet.dart';
 import 'models/mqtt_observer_status.dart';
@@ -23,6 +32,7 @@ import 'services/regional_preset_service.dart';
 import 'services/read_aloud_service.dart';
 import 'services/app_shortcuts.dart';
 import 'services/auto_connect_service.dart';
+import 'services/link_router.dart';
 import 'services/notification_router.dart';
 import 'services/home_widget_sync.dart';
 import 'services/sensor_subscription_service.dart';
@@ -30,6 +40,9 @@ import 'services/mqtt_broker_service.dart';
 import 'services/mqtt_client_transport.dart';
 import 'services/network_monitor.dart';
 import 'services/secure_mqtt_credentials_store.dart';
+import 'services/operator_profile_service.dart';
+import 'services/automation_service.dart';
+import 'services/station_log_service.dart';
 import 'services/sos_relay_service.dart';
 import 'services/image_chunk_transport.dart';
 import 'services/image_codec_service.dart';
@@ -39,9 +52,16 @@ import 'services/received_image_store.dart';
 import 'services/storage_service.dart';
 import 'services/message_retry_service.dart';
 import 'services/bot_service.dart';
+import 'services/favorite_return_service.dart';
 import 'services/field_ops_service.dart';
 import 'services/path_history_service.dart';
 import 'services/app_settings_service.dart';
+import 'services/message_filter/message_filter_service.dart';
+import 'services/waypoint_store.dart';
+import 'services/node_journal_service.dart';
+import 'services/network_change_service.dart';
+import 'screens/network_changes_screen.dart' show networkChangeText;
+import 'services/position_history_service.dart';
 import 'services/notification_service.dart';
 import 'services/ble_debug_log_service.dart';
 import 'services/app_debug_log_service.dart';
@@ -52,18 +72,24 @@ import 'services/translation_service.dart';
 import 'services/ui_view_state_service.dart';
 import 'services/timeout_prediction_service.dart';
 import 'storage/prefs_manager.dart';
+import 'storage/secure_prefs.dart';
 import 'theme/mesh_theme.dart';
 import 'utils/app_logger.dart';
 import 'widgets/image_send_codec_binding.dart';
+import 'widgets/operator_setup_banner.dart';
 import 'services/direct_repeater_service.dart';
 import 'services/mqtt_uploaders_service.dart';
+import 'services/checklist_store.dart';
 import 'services/coverage_hex_service.dart';
 import 'services/channel_discovery_service.dart';
 import 'services/corescope.dart';
 import 'services/my_sensors_service.dart';
+import 'services/network_scan_service.dart';
+import 'services/rx_log_service.dart';
 import 'services/wardrive_service.dart';
+import 'services/timeline_service.dart';
 import 'services/track_log_service.dart';
-import 'services/weather_service.dart';
+import 'services/follow_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -71,6 +97,7 @@ void main() async {
     debugPrint = (String? message, {int? wrapWidth}) {};
   }
   await PrefsManager.initialize();
+  await SecurePrefs.initialize();
   final storage = StorageService();
   final connector = MeshCoreConnector();
   final pathHistoryService = PathHistoryService(storage);
@@ -128,6 +155,8 @@ void main() async {
   await receivedImageStore.load();
   await uiViewStateService.initialize();
   await timeoutPredictionService.initialize();
+  final messageFilterService = MessageFilterService();
+  await messageFilterService.load();
   connector.initialize(
     retryService: retryService,
     pathHistoryService: pathHistoryService,
@@ -139,6 +168,7 @@ void main() async {
     timeoutPredictionService: timeoutPredictionService,
     imageCodecService: imageCodecService,
     imageTransport: imageTransport,
+    messageFilterService: messageFilterService,
     onImageSenderPrefix: (prefix) => imageReassembler.selfPrefix = prefix,
   );
   await connector.loadContactCache();
@@ -163,6 +193,7 @@ void main() async {
       imageCodecService: imageCodecService,
       receivedImageStore: receivedImageStore,
       imageReassembler: imageReassembler,
+      messageFilterService: messageFilterService,
     ),
   );
 }
@@ -245,6 +276,7 @@ class MeshCoreApp extends StatefulWidget {
   final ImageCodecService imageCodecService;
   final ReceivedImageStore receivedImageStore;
   final ImageStreamReassembler imageReassembler;
+  final MessageFilterService messageFilterService;
   const MeshCoreApp({
     super.key,
     required this.connector,
@@ -262,6 +294,7 @@ class MeshCoreApp extends StatefulWidget {
     required this.imageCodecService,
     required this.receivedImageStore,
     required this.imageReassembler,
+    required this.messageFilterService,
   });
   @override
   State<MeshCoreApp> createState() => _MeshCoreAppState();
@@ -273,17 +306,32 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   Timer? _imageSweepTimer;
   Timer? _channelPruneTimer;
   late final BotService _botService;
-  late final WeatherService _weather;
+  late final PositionHistoryService _positionHistory;
   late final FieldOpsService _fieldOps;
   late final RegionalPresetService _regionalPresets;
   late final DirectRepeaterService _directRepeaters;
+  late final WaypointStore _waypoints;
+  late final TimelineService _timeline;
+  late final ChecklistStore _checklists;
   late final TrackLogService _trackLog;
+  late final FollowService _follow;
   late final ChannelDiscoveryService _channelDiscovery;
   late final AnalyzerService _analyzer;
   late final NodeTelemetryStore _telemetry;
+  late final SensorHistoryStore _sensorHistory;
+  late final RepeaterStatusHistory _statusHistory;
   late final MySensorsService _mySensors;
   late final WardriveService _wardrive;
+  late final NetworkScanService _networkScan;
+  late final RxLogService _rxLog;
+  late final FavoriteReturnService _favoriteReturn;
+  late final NetworkChangeService _networkChanges;
+  late final NodeJournalService _nodeJournal;
   late final SosRelayService _sosRelay;
+  final _operatorProfile = OperatorProfileService()..load();
+  final _appLock = AppLockService(PrefsManager.instance);
+  late final StationLogService _stationLog;
+  late final AutomationService _automation;
   late final CoverageHexService _coverageHex;
   late final ReadAloudService _readAloud;
   final _navigatorKey = GlobalKey<NavigatorState>();
@@ -291,7 +339,10 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   HomeWidgetSync? _homeWidget;
   late final AutoConnectService _autoConnect;
   late final NotificationRouter _notificationRouter;
+  late final LinkRouter _linkRouter;
   StreamSubscription<String>? _notificationTaps;
+  StreamSubscription<NotificationReply>? _notificationReplies;
+  StreamSubscription<String>? _notificationMarkReads;
   String? _shortcutLanguage;
   late final SensorSubscriptionService _sensorSubscriptions;
   late final MqttBrokerService _mqtt;
@@ -301,26 +352,82 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    _weather = WeatherService(widget.connector);
-    unawaited(_weather.load());
-    _botService = BotService(widget.connector, weather: _weather);
+    _botService = BotService(widget.connector);
     unawaited(_botService.load());
+    _positionHistory = PositionHistoryService(widget.connector);
     _fieldOps = FieldOpsService(widget.connector);
     unawaited(_fieldOps.load());
+    _stationLog = StationLogService(widget.connector)..start();
+    _automation = AutomationService(
+      widget.connector,
+      operator: _operatorProfile,
+      stationLog: _stationLog,
+    )..start();
     _regionalPresets = RegionalPresetService(widget.connector);
     unawaited(_regionalPresets.start());
     _directRepeaters = DirectRepeaterService(widget.connector);
+    _waypoints = WaypointStore(PrefsManager.instance);
+    _timeline = TimelineService(
+      widget.connector,
+      prefs: PrefsManager.instance,
+      waypoints: _waypoints,
+    );
+    _checklists = ChecklistStore(PrefsManager.instance);
     _trackLog = TrackLogService(widget.connector);
+    _follow = FollowService(widget.connector);
     _channelDiscovery = ChannelDiscoveryService(widget.connector);
     unawaited(_channelDiscovery.load());
     _analyzer = AnalyzerService()..load();
     _telemetry = NodeTelemetryStore(PrefsManager.instance);
+    _statusHistory = RepeaterStatusHistory(PrefsManager.instance);
+    _sensorHistory = SensorHistoryStore(
+      PrefsManager.instance,
+      onAlert: _showSensorAlert,
+    );
+    _telemetry.onRecorded = _sensorHistory.recordReadings;
     widget.connector.telemetryStore = _telemetry;
     _syncTelemetryScope();
     widget.connector.addListener(_syncTelemetryScope);
     _mySensors = MySensorsService(widget.connector);
     _wardrive = WardriveService(widget.connector)..load();
+    _networkScan = NetworkScanService(
+      widget.connector,
+      sosActive: () => _fieldOps.sos.active,
+      tripActive: () => _fieldOps.trip.active,
+    )..load();
     _sosRelay = SosRelayService.forConnector(widget.connector)..load();
+    _rxLog = RxLogService(widget.connector.rxPackets);
+    _favoriteReturn = FavoriteReturnService(
+      widget.connector,
+      quietHours: () => widget.appSettingsService.settings.favoriteReturnHours,
+      notify: (back) async {
+        if (!widget.appSettingsService.settings.notificationsEnabled) return;
+        await NotificationService().showFavoriteReturn(
+          contactId: back.key,
+          name: back.name,
+          quietHours: back.quiet.inHours,
+        );
+      },
+    );
+    _networkChanges = NetworkChangeService(
+      widget.connector,
+      prefs: PrefsManager.instance,
+      quietHours: () => widget.appSettingsService.settings.repeaterQuietHours,
+      newNearby: () => widget.appSettingsService.settings.newRepeaterAlerts,
+      notify: (change) async {
+        if (!widget.appSettingsService.settings.notificationsEnabled) return;
+        final notifications = NotificationService();
+        final l10n = notifications.l10n;
+        await notifications.showNetworkChange(
+          repeaterKey: change.key,
+          body: networkChangeText(l10n, change),
+        );
+      },
+    );
+    _nodeJournal = NodeJournalService(
+      widget.connector,
+      prefs: PrefsManager.instance,
+    );
     _coverageHex = CoverageHexService(widget.connector);
     unawaited(_coverageHex.load());
     unawaited(_trackLog.load());
@@ -352,12 +459,25 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       widget.appSettingsService,
     )..start();
     // Clicking a notification opens what it's about.
-    _notificationRouter = NotificationRouter(_navigatorKey, widget.connector);
+    _notificationRouter = NotificationRouter(
+      _navigatorKey,
+      widget.connector,
+      isLocked: () => _appLock.locked,
+    );
+    _syncQuickReply();
+    _appLock.addListener(_syncQuickReply);
+    _linkRouter = LinkRouter(_navigatorKey, widget.connector)..start();
     _notificationTaps = NotificationService().taps.listen(
       _notificationRouter.open,
     );
     final launchPayload = NotificationService().takeLaunchPayload();
     if (launchPayload != null) _notificationRouter.open(launchPayload);
+    _notificationReplies = NotificationService().replies.listen(_sendReply);
+    _notificationMarkReads = NotificationService().markReads.listen(
+      _markNotificationRead,
+    );
+    final launchReply = NotificationService().takeLaunchReply();
+    if (launchReply != null) _sendReply(launchReply);
     _sensorSubscriptions = SensorSubscriptionService(widget.connector);
     _mqtt = MqttBrokerService(
       prefs: PrefsManager.instance,
@@ -378,7 +498,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     unawaited(
       PackageInfo.fromPlatform()
           .then((info) {
-            final version = 'notoryx-core/${info.version}';
+            final version = 'notoryx-core-ham/${info.version}';
             _uploaders.clientVersion = version;
             return _mqtt.clientVersion = version;
           })
@@ -410,25 +530,43 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
 
   @override
   void dispose() {
+    _rxLog.dispose();
+    _favoriteReturn.dispose();
+    _networkChanges.dispose();
+    _nodeJournal.dispose();
     _botService.dispose();
-    _weather.dispose();
+    _positionHistory.dispose();
     widget.appSettingsService.removeListener(_applyBatterySaver);
     _fieldOps.dispose();
+    _automation.dispose();
+    _stationLog.dispose();
     _regionalPresets.dispose();
     _directRepeaters.dispose();
+    _timeline.dispose();
+    _waypoints.dispose();
     _trackLog.dispose();
+    _follow.dispose();
     _channelDiscovery.dispose();
     _analyzer.dispose();
     _mySensors.dispose();
     widget.connector.removeListener(_syncTelemetryScope);
     widget.connector.telemetryStore = null;
+    _telemetry.onRecorded = null;
     _telemetry.dispose();
+    _sensorHistory.dispose();
+    _statusHistory.dispose();
     _wardrive.dispose();
+    _linkRouter.dispose();
+    _networkScan.dispose();
     _sosRelay.dispose();
     _coverageHex.dispose();
+    _checklists.dispose();
     _readAloud.dispose();
     _sensorSubscriptions.dispose();
     unawaited(_notificationTaps?.cancel());
+    unawaited(_notificationReplies?.cancel());
+    unawaited(_notificationMarkReads?.cancel());
+    _appLock.removeListener(_syncQuickReply);
     _autoConnect.dispose();
     unawaited(_mqttPackets?.cancel());
     unawaited(_radioRxPackets?.cancel());
@@ -444,6 +582,58 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
 
   void _syncTelemetryScope() {
     _telemetry.setScope(widget.connector.selfPublicKeyHex);
+    _statusHistory.setScope(widget.connector.selfPublicKeyHex);
+    _sensorHistory.setScope(widget.connector.selfPublicKeyHex);
+  }
+
+  Future<void> _showSensorAlert(SensorAlert alert) async {
+    if (!widget.appSettingsService.settings.notificationsEnabled) return;
+    final notifications = NotificationService();
+    final l10n = notifications.l10n;
+    final name =
+        widget.connector.allContactsUnfiltered
+            .where((c) => c.publicKeyHex.toLowerCase() == alert.nodeKey)
+            .firstOrNull
+            ?.name ??
+        l10n.sensorHistory_unknownNode;
+    final what = sensorTypeLabel(l10n, alert.type);
+    final value = formatSensorValue(alert.type, alert.value);
+    final limit = formatSensorValue(alert.type, alert.limit);
+    await notifications.showSensorAlert(
+      id: '${alert.nodeKey}|${alert.metricId}',
+      body: alert.above
+          ? l10n.sensorHistory_alertAbove(name, what, value, limit)
+          : l10n.sensorHistory_alertBelow(name, what, value, limit),
+    );
+  }
+
+  void _syncQuickReply() {
+    NotificationService().quickReplyEnabled = !_appLock.enabled;
+  }
+
+  /// Mark as read from a notification (shade, watch or Android Auto).
+  void _markNotificationRead(String payload) {
+    final connector = widget.connector;
+    final split = payload.indexOf(':');
+    if (split < 0) return;
+    final id = payload.substring(split + 1);
+    switch (payload.substring(0, split)) {
+      case 'message':
+        connector.markContactRead(id);
+      case 'channel':
+        final index = int.tryParse(id);
+        if (index != null) connector.markChannelRead(index);
+    }
+  }
+
+  void _sendReply(NotificationReply reply) {
+    unawaited(
+      _notificationRouter.reply(reply.payload, reply.text).catchError((
+        Object e,
+      ) {
+        debugPrint('Quick reply failed: $e');
+      }),
+    );
   }
 
   void _syncMqttObserverIdentity() {
@@ -498,6 +688,9 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     if (state == AppLifecycleState.paused ||
         state == AppLifecycleState.hidden) {
       unawaited(_telemetry.flush());
+      unawaited(_sensorHistory.flush());
+      unawaited(_statusHistory.flush());
+      unawaited(widget.connector.flushDiscoveredContacts());
       unawaited(widget.imageCodecService.handleMemoryPressure());
       unawaited(widget.receivedImageStore.handleMemoryPressure());
     }
@@ -517,21 +710,41 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: _botService),
-        ChangeNotifierProvider<WeatherService?>.value(value: _weather),
+        ChangeNotifierProvider.value(value: _positionHistory),
         ChangeNotifierProvider.value(value: _fieldOps),
+        ChangeNotifierProvider<WaypointStore>.value(value: _waypoints),
+        ChangeNotifierProvider<TimelineService?>.value(value: _timeline),
+        ChangeNotifierProvider.value(value: _checklists),
+        ChangeNotifierProvider<NetworkChangeService?>.value(
+          value: _networkChanges,
+        ),
         ChangeNotifierProvider<DirectRepeaterService?>.value(
           value: _directRepeaters,
         ),
         ChangeNotifierProvider.value(value: _trackLog),
+        ChangeNotifierProvider<FollowService?>.value(value: _follow),
         ChangeNotifierProvider<ChannelDiscoveryService?>.value(
           value: _channelDiscovery,
         ),
         ChangeNotifierProvider<AnalyzerService?>.value(value: _analyzer),
         ChangeNotifierProvider<MySensorsService?>.value(value: _mySensors),
         ChangeNotifierProvider<NodeTelemetryStore?>.value(value: _telemetry),
+        ChangeNotifierProvider<SensorHistoryStore?>.value(
+          value: _sensorHistory,
+        ),
+        ChangeNotifierProvider<RepeaterStatusHistory?>.value(
+          value: _statusHistory,
+        ),
         ChangeNotifierProvider.value(value: _wardrive),
+        ChangeNotifierProvider.value(value: _networkScan),
+        ChangeNotifierProvider.value(value: _rxLog),
         ChangeNotifierProvider.value(value: _sosRelay),
+        ChangeNotifierProvider.value(value: _operatorProfile),
+        ChangeNotifierProvider<AppLockService>.value(value: _appLock),
+        ChangeNotifierProvider.value(value: _stationLog),
+        ChangeNotifierProvider.value(value: _automation),
         ChangeNotifierProvider.value(value: _coverageHex),
+        ChangeNotifierProvider<NodeJournalService?>.value(value: _nodeJournal),
         ChangeNotifierProvider<RegionalPresetService?>.value(
           value: _regionalPresets,
         ),
@@ -543,6 +756,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         ChangeNotifierProvider.value(value: widget.retryService),
         ChangeNotifierProvider.value(value: widget.pathHistoryService),
         ChangeNotifierProvider.value(value: widget.appSettingsService),
+        ChangeNotifierProvider.value(value: widget.messageFilterService),
         ChangeNotifierProvider.value(value: widget.bleDebugLogService),
         ChangeNotifierProvider.value(value: widget.appDebugLogService),
         ChangeNotifierProvider.value(value: widget.chatTextScaleService),
@@ -556,10 +770,10 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       ],
       child: Consumer<AppSettingsService>(
         builder: (context, settingsService, child) {
-          final palette = _applyTheme(settingsService.settings.appTheme);
+          final palette = _applyTheme(settingsService.settings);
           return MaterialApp(
             navigatorKey: _navigatorKey,
-            title: 'NOTORYX Core',
+            title: 'NOTORYX Core Ham',
             debugShowCheckedModeBanner: false,
             localizationsDelegates: const [
               AppLocalizations.delegate,
@@ -582,7 +796,12 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
               _relabelShortcuts(locale);
               return AnnotatedRegion<SystemUiOverlayStyle>(
                 value: _systemUiOverlayStyle(context),
-                child: child ?? const SizedBox.shrink(),
+                child: AppLockGate(
+                  child: OperatorSetupBanner(
+                    navigatorKey: _navigatorKey,
+                    child: child ?? const SizedBox.shrink(),
+                  ),
+                ),
               );
             },
             home: (PlatformInfo.isWeb && !PlatformInfo.isChrome)
@@ -623,8 +842,8 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   /// Points [MeshPalette] at the chosen theme. Screens read the palette
   /// directly, so after a switch every widget is rebuilt once, in place, so
   /// nothing (open screens, scroll position) is lost.
-  BastionPalette _applyTheme(String id) {
-    final palette = BastionTheme.fromId(id).palette;
+  BastionPalette _applyTheme(AppSettings settings) {
+    final palette = BastionTheme.fromId(settings.appTheme).palette;
     if (!identical(MeshPalette.current, palette)) {
       MeshPalette.current = palette;
       WidgetsBinding.instance.addPostFrameCallback((_) {

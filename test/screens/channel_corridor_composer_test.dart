@@ -154,6 +154,15 @@ void main() {
     expect(connector.plainSends, ['everywhere']);
   });
 
+  testWidgets('the message box says it is plain text on air', (tester) async {
+    await tester.pumpWidget(_app(_FakeConnector(supported: false)));
+    await tester.pumpAndSettle();
+    expect(
+      find.text('Plain text: anyone listening can read this'),
+      findsOneWidget,
+    );
+  });
+
   testWidgets('hides the option on stock firmware', (tester) async {
     await tester.pumpWidget(_app(_FakeConnector(supported: false)));
     await _settle(tester);

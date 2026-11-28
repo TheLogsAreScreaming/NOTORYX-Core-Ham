@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:meshcore_open/helpers/cayenne_lpp.dart';
@@ -153,6 +155,46 @@ void main() {
     expect(bounded.readingsFor('3' * 64).length, 32);
   });
 
+  test('a bad cache entry is skipped and the good ones survive', () async {
+    final good = {
+      'channel': 1,
+      'type': CayenneLpp.lppTemperature,
+      'value': 19,
+      'at': now.millisecondsSinceEpoch,
+      'source': 'telemetry',
+    };
+    await prefs.setString('node_telemetry_v1_${'c' * 64}', '''{
+      "$node": [
+        {"channel": 2, "type": ${CayenneLpp.lppVoltage}, "value": 3.9,
+         "at": 9223372036854775807, "source": "status"},
+        "not a reading",
+        ${_json(good)}
+      ],
+      "${'d' * 64}": [${_json({...good, 'value': 25})}]
+    }''');
+    store.setScope('c' * 64);
+    expect(store.metricFor(node, TelemetryMetric.temperature)!.value, 19);
+    expect(store.metricFor(node, TelemetryMetric.battery), isNull);
+    expect(store.metricFor('d' * 64, TelemetryMetric.temperature)!.value, 25);
+  });
+
+  test('readings from one report always badge the lowest channel', () {
+    store.record(node, [
+      reading(CayenneLpp.lppTemperature, 30, channel: 3),
+      reading(CayenneLpp.lppTemperature, 10, channel: 1),
+      reading(CayenneLpp.lppTemperature, 20, channel: 2),
+    ], source: TelemetrySource.telemetry);
+    expect(store.metricFor(node, TelemetryMetric.temperature)!.channel, 1);
+
+    now = now.add(const Duration(minutes: 5));
+    store.record(node, [
+      reading(CayenneLpp.lppTemperature, 22, channel: 2),
+    ], source: TelemetrySource.telemetry);
+    final newest = store.metricFor(node, TelemetryMetric.temperature)!;
+    expect(newest.channel, 2);
+    expect(newest.value, 22);
+  });
+
   test('corrupt persistence does not prevent new readings', () async {
     await prefs.setString('node_telemetry_v1_${'d' * 64}', '{broken');
     store.setScope('d' * 64);
@@ -163,3 +205,5 @@ void main() {
     expect(store.nodeCount, 1);
   });
 }
+
+String _json(Object value) => jsonEncode(value);

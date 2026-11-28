@@ -1,10 +1,14 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import '../utils/platform_info.dart';
+
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:provider/provider.dart';
 
+import '../connector/demo_companion.dart';
 import '../connector/meshcore_connector.dart';
 import '../models/saved_radio.dart';
 import '../l10n/l10n.dart';
@@ -112,6 +116,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
       appBar: AppBar(
         leading: canPop
             ? IconButton(
+                tooltip: MaterialLocalizations.of(context).backButtonTooltip,
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () {
                   appLogger.info('Back button pressed', tag: 'ScannerScreen');
@@ -237,9 +242,8 @@ class _ScannerScreenState extends State<ScannerScreen> {
                 DeviceTile.friendlyName(saved.name),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: MeshPalette.ink,
-                  fontSize: 15,
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -275,7 +279,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
       await connector.reconnectSavedRadio();
     } catch (e) {
       appLogger.warn('Reconnect failed: $e', tag: 'ScannerScreen');
-      messenger.showSnackBar(SnackBar(content: Text(failed)));
+      messenger.showSnackBar(meshSnackBar(content: Text(failed)));
     } finally {
       if (mounted) setState(() => _connectingDeviceId = null);
     }
@@ -338,6 +342,14 @@ class _ScannerScreenState extends State<ScannerScreen> {
             context,
           ).push(MaterialPageRoute(builder: (_) => const TcpScreen())),
         ),
+      if (!PlatformInfo.isWeb)
+        TransportTile(
+          key: const Key('scanner-try-demo'),
+          icon: Icons.play_circle_outline_rounded,
+          title: l10n.scanner_tryDemo,
+          subtitle: l10n.scanner_tryDemoHint,
+          onTap: () => _openDemo(context),
+        ),
     ];
     if (tiles.isEmpty) return const [];
     return [
@@ -345,6 +357,26 @@ class _ScannerScreenState extends State<ScannerScreen> {
       ConsoleKicker(l10n.scanner_otherWays),
       ResponsiveTilePair(children: tiles),
     ];
+  }
+
+  Future<void> _openDemo(BuildContext context) async {
+    if (_connector.state != MeshCoreConnectionState.disconnected) return;
+    final navigator = Navigator.of(context);
+    try {
+      await _connector.connectTcp(host: demoRadioHost, port: 1);
+    } catch (error) {
+      appLogger.warn('Demo radio failed: $error', tag: 'ScannerScreen');
+      return;
+    }
+    if (!mounted || _changedNavigation) return;
+    _changedNavigation = true;
+    unawaited(
+      navigator.pushReplacement(
+        MaterialPageRoute(
+          builder: (_) => const ChannelsScreen(hideBackButton: true),
+        ),
+      ),
+    );
   }
 
   Future<void> _connectToDevice(
@@ -567,9 +599,8 @@ class _ScanHero extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
             color: MeshPalette.ink,
-            fontSize: 22,
             fontWeight: FontWeight.w800,
             height: 1.15,
           ),
@@ -577,15 +608,14 @@ class _ScanHero extends StatelessWidget {
         const SizedBox(height: 6),
         Text(
           subtitle,
-          style: TextStyle(
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: MeshPalette.ink2,
-            fontSize: 13.5,
             height: 1.4,
           ),
         ),
         if (action != null) ...[
           const SizedBox(height: 14),
-          SizedBox(height: 46, child: action),
+          SizedBox(height: MeshShape.minTouch, child: action),
         ],
       ],
     );
@@ -636,9 +666,8 @@ class _ScanTips extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: TextStyle(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: MeshPalette.ink2,
-                fontSize: 13,
                 height: 1.35,
               ),
             ),
@@ -653,9 +682,8 @@ class _ScanTips extends StatelessWidget {
         children: [
           Text(
             l10n.scanner_tipsTitle,
-            style: TextStyle(
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
               color: MeshPalette.ink,
-              fontSize: 14.5,
               fontWeight: FontWeight.w700,
             ),
           ),

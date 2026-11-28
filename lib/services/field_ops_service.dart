@@ -190,7 +190,27 @@ class FieldOpsService extends ChangeNotifier {
     }
   }
 
-  Future<void> _sendSosText(String text, String label) async {
+  /// Sends a filled-in report, one message at a time, to the same stations
+  /// an SOS would reach. Only ever called when the operator presses Send.
+  Future<void> sendFieldReport(String name, List<String> parts) async {
+    final reason = sosUnavailable;
+    if (reason != null) throw StateError(reason);
+    for (final (i, part) in parts.indexed) {
+      await _sendSosText(
+        part,
+        '$name ${i + 1}/${parts.length}',
+        kind: 'report',
+        sign: false,
+      );
+    }
+  }
+
+  Future<void> _sendSosText(
+    String text,
+    String label, {
+    String kind = 'sos',
+    bool sign = true,
+  }) async {
     for (final contact in members.where((c) => c.type == advTypeChat)) {
       final before = connector
           .getMessages(contact)
@@ -203,7 +223,7 @@ class FieldOpsService extends ChangeNotifier {
             .where((m) => m.isOutgoing && !before.contains(m.messageId))
             .toList();
         await record(
-          'sos',
+          kind,
           '${contact.name}: $label',
           contactKey: contact.publicKeyHex,
           messageId: added.isEmpty ? null : added.last.messageId,
@@ -211,7 +231,7 @@ class FieldOpsService extends ChangeNotifier {
         );
       } catch (e) {
         await record(
-          'sos',
+          kind,
           '${contact.name}: $label could not be sent: $e',
           contactKey: contact.publicKeyHex,
           status: 'failed',
@@ -222,10 +242,10 @@ class FieldOpsService extends ChangeNotifier {
     if (channel == null) return;
     try {
       // Signed, so listeners can tell the SOS is really from this radio.
-      await connector.sendChannelMessage(channel, text, sign: true);
-      await record('sos', '${channel.name}: $label sent to channel');
+      await connector.sendChannelMessage(channel, text, sign: sign);
+      await record(kind, '${channel.name}: $label sent to channel');
     } catch (e) {
-      await record('sos', '${channel.name}: $label could not be sent: $e');
+      await record(kind, '${channel.name}: $label could not be sent: $e');
     }
   }
 

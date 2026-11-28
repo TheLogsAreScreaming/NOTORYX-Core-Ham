@@ -14,6 +14,7 @@ import '../screens/telemetry_screen.dart';
 import '../services/app_settings_service.dart';
 import '../services/my_sensors_service.dart';
 import '../services/node_telemetry_store.dart';
+import '../theme/mesh_theme.dart';
 
 String telemetryMetricLabel(BuildContext context, TelemetryMetric metric) =>
     switch (metric) {
@@ -59,14 +60,16 @@ Color telemetryReadingColor(NodeReading reading, Color fallback) {
   final value = reading.value;
   if (value is! num) return fallback;
   // Voltage is not universally a single-cell Li-ion battery. Keep it neutral.
+  // Theme status colors, which every theme keeps readable: freezing and
+  // warm are cautions, hot is a problem. The number is always shown too.
   if (reading.type == CayenneLpp.lppTemperature) {
     return value < 0
-        ? Colors.lightBlue
+        ? MeshPalette.warn
         : value < 30
-        ? Colors.green
+        ? MeshPalette.signal
         : value < 40
-        ? Colors.orange
-        : Colors.red;
+        ? MeshPalette.warn
+        : MeshPalette.alert;
   }
   return fallback;
 }
@@ -253,80 +256,102 @@ class NodeTelemetrySection extends StatelessWidget {
       final connected = context.select<MeshCoreConnector, bool>(
         (c) => c.isConnected,
       );
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
+      final title = Text(
+        context.l10n.contact_telemetry,
+        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+          color: Theme.of(context).colorScheme.onSurface,
+        ),
+      );
+      final actions = Wrap(
+        alignment: WrapAlignment.end,
+        crossAxisAlignment: WrapCrossAlignment.center,
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  context.l10n.contact_telemetry,
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurface,
+          IconButton(
+            tooltip: context.l10n.mapTelemetry_policy,
+            onPressed: () => showDialog<void>(
+              context: context,
+              builder: (context) => AlertDialog(
+                content: Text(context.l10n.mapTelemetry_policy),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text(context.l10n.common_close),
                   ),
-                ),
-              ),
-              IconButton(
-                tooltip: context.l10n.mapTelemetry_policy,
-                onPressed: () => showDialog<void>(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    content: Text(context.l10n.mapTelemetry_policy),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(context),
-                        child: Text(context.l10n.common_close),
-                      ),
-                    ],
-                  ),
-                ),
-                icon: const Icon(Icons.info_outline, size: 18),
-              ),
-              TextButton.icon(
-                onPressed: !connected
-                    ? null
-                    : () => Navigator.push(
-                        context,
-                        MaterialPageRoute<void>(
-                          builder: (_) => TelemetryScreen(contact: contact),
-                        ),
-                      ),
-                icon: const Icon(Icons.refresh, size: 18),
-                label: Text(context.l10n.repeater_refresh),
-              ),
-            ],
-          ),
-          if (readings.isEmpty)
-            Text(
-              context.l10n.telemetry_noData,
-              style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
-            )
-          else
-            ConstrainedBox(
-              constraints: const BoxConstraints(maxHeight: 112),
-              child: ListView(
-                shrinkWrap: true,
-                padding: EdgeInsets.zero,
-                children: [
-                  for (final reading in readings)
-                    if (formatSensorReading(reading.lpp, imperial: imperial)
-                        case final text?)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 6),
-                        child: Text(
-                          '${context.l10n.sensor_readingValue(_readingLabel(context, reading.type), reading.channel.toString(), text)}\n${_age(context, reading, store.now)} • ${_source(context, reading.source)}',
-                          style: TextStyle(
-                            color: reading.staleAt(store.now)
-                                ? Theme.of(context).colorScheme.onSurfaceVariant
-                                : Theme.of(context).colorScheme.onSurface,
-                          ),
-                        ),
-                      ),
                 ],
               ),
             ),
+            icon: const Icon(Icons.info_outline, size: 18),
+          ),
+          TextButton.icon(
+            key: const ValueKey('node-telemetry-refresh'),
+            onPressed: !connected
+                ? null
+                : () => Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (_) => TelemetryScreen(contact: contact),
+                    ),
+                  ),
+            icon: const Icon(Icons.refresh, size: 18),
+            label: Text(context.l10n.repeater_refresh),
+          ),
         ],
+      );
+      // Larger text needs more room: the list grows with it, and the title
+      // moves above the buttons when they can't share a line.
+      final scale = MediaQuery.textScalerOf(context).scale(14) / 14;
+      return LayoutBuilder(
+        builder: (context, constraints) => Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (constraints.maxWidth < 300 * scale) ...[
+              title,
+              Align(alignment: AlignmentDirectional.centerEnd, child: actions),
+            ] else
+              Row(
+                children: [
+                  Expanded(child: title),
+                  actions,
+                ],
+              ),
+            if (readings.isEmpty)
+              Text(
+                context.l10n.telemetry_noData,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
+              )
+            else
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxHeight: (112 * scale).clamp(112, 280).toDouble(),
+                ),
+                child: ListView(
+                  shrinkWrap: true,
+                  padding: EdgeInsets.zero,
+                  children: [
+                    for (final reading in readings)
+                      if (formatSensorReading(reading.lpp, imperial: imperial)
+                          case final text?)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 6),
+                          child: Text(
+                            '${context.l10n.sensor_readingValue(_readingLabel(context, reading.type), reading.channel.toString(), text)}\n${_age(context, reading, store.now)} • ${_source(context, reading.source)}',
+                            style: TextStyle(
+                              color: reading.staleAt(store.now)
+                                  ? Theme.of(
+                                      context,
+                                    ).colorScheme.onSurfaceVariant
+                                  : Theme.of(context).colorScheme.onSurface,
+                            ),
+                          ),
+                        ),
+                  ],
+                ),
+              ),
+          ],
+        ),
       );
     },
   );

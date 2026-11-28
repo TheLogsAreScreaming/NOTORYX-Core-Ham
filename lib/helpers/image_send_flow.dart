@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import '../l10n/l10n.dart';
 import '../widgets/image_send_codec_binding.dart';
 import '../widgets/image_send_preview_sheet.dart';
+import '../helpers/snack_bar_builder.dart';
 
 /// Shared "attach an image" flow, used by both the direct-message and channel
 /// chat screens so the two surfaces cannot drift apart.
@@ -35,7 +36,7 @@ Future<ImageSendPreviewResult?> pickAndPreviewImage({
     debugPrint('image pick failed: $e');
     if (context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(context.l10n.chat_imagePickFailed)),
+        meshSnackBar(content: Text(context.l10n.chat_imagePickFailed)),
       );
     }
     return null;
@@ -61,7 +62,7 @@ Future<ImageSendPreviewResult?> pickAndPreviewImage({
     debugPrint('image read failed: $e');
     if (context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(context.l10n.chat_imagePickFailed)),
+        meshSnackBar(content: Text(context.l10n.chat_imagePickFailed)),
       );
     }
     return null;

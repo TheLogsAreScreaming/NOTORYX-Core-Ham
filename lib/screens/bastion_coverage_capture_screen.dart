@@ -1,14 +1,18 @@
 import 'dart:async';
+
 import 'bastion_coverage_history_screen.dart';
 
 import '../theme/mesh_theme.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
+
 import '../l10n/l10n.dart';
 
 import '../connector/meshcore_connector.dart';
 import '../services/coverage_capture_service.dart';
+import '../helpers/snack_bar_builder.dart';
 
 class BastionCoverageCaptureScreen extends StatefulWidget {
   const BastionCoverageCaptureScreen({super.key});
@@ -72,11 +76,9 @@ class _BastionCoverageCaptureScreenState
       }
     } catch (error) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(error.toString().replaceFirst('Bad state: ', '')),
-        ),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(meshSnackBar(content: Text(friendlyError(error))));
     } finally {
       if (mounted) setState(() => _busy = false);
     }
@@ -123,9 +125,9 @@ class _BastionCoverageCaptureScreenState
       canPop: !_capture.recording && !_busy,
       onPopInvokedWithResult: (didPop, result) {
         if (!didPop) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(l10n.coverage_leaveBlocked)));
+          ScaffoldMessenger.of(context).showSnackBar(
+            meshSnackBar(content: Text(l10n.coverage_leaveBlocked)),
+          );
         }
       },
       child: Scaffold(
@@ -178,11 +180,11 @@ class _BastionCoverageCaptureScreenState
                           _capture.recording
                               ? l10n.coverage_captureActive
                               : l10n.coverage_fieldSession,
-                          style: TextStyle(
-                            color: MeshPalette.ink,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w900,
-                          ),
+                          style: Theme.of(context).textTheme.titleLarge
+                              ?.copyWith(
+                                color: MeshPalette.ink,
+                                fontWeight: FontWeight.w900,
+                              ),
                         ),
                       ),
                     ],
@@ -246,12 +248,10 @@ class _BastionCoverageCaptureScreenState
             const SizedBox(height: 16),
             FilledButton.icon(
               style: FilledButton.styleFrom(
-                backgroundColor: _capture.recording
-                    ? const Color(0xFF303A42)
-                    : cyan,
+                backgroundColor: _capture.recording ? MeshPalette.bg3 : cyan,
                 foregroundColor: _capture.recording
-                    ? Colors.white
-                    : Colors.black,
+                    ? MeshPalette.ink
+                    : MeshPalette.onAccent,
                 padding: const EdgeInsets.symmetric(vertical: 16),
               ),
               onPressed: !_busy && (connector.isConnected || _capture.recording)
@@ -339,18 +339,16 @@ class _Stat extends StatelessWidget {
       children: [
         Text(
           label,
-          style: TextStyle(
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
             color: MeshPalette.ink3,
-            fontSize: 9,
             fontWeight: FontWeight.w800,
           ),
         ),
         const SizedBox(height: 5),
         Text(
           value,
-          style: TextStyle(
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(
             color: MeshPalette.accent,
-            fontSize: 15,
             fontWeight: FontWeight.w900,
           ),
         ),
@@ -382,15 +380,14 @@ class _Status extends StatelessWidget {
         Icon(
           icon,
           size: 17,
-          color: active ? MeshPalette.accent : const Color(0xFF697680),
+          color: active ? MeshPalette.accent : MeshPalette.ink4,
         ),
         const SizedBox(width: 7),
         Expanded(
           child: Text(
             label,
-            style: TextStyle(
-              color: active ? Colors.white : const Color(0xFF89949D),
-              fontSize: 10,
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+              color: active ? MeshPalette.ink : MeshPalette.ink4,
               fontWeight: FontWeight.w800,
             ),
           ),
@@ -445,10 +442,9 @@ class _ObservationTile extends StatelessWidget {
                 const SizedBox(height: 3),
                 Text(
                   '${observation.nodeType}  •  $signal  •  $snr',
-                  style: const TextStyle(
-                    color: Color(0xFFB0BBC4),
-                    fontSize: 11.5,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
                 ),
                 const SizedBox(height: 2),
                 Text(
@@ -460,10 +456,9 @@ class _ObservationTile extends StatelessWidget {
                         : l10n.bastion_hopsCount(observation.pathLength),
                     location,
                   ),
-                  style: const TextStyle(
-                    color: Color(0xFF7F8B94),
-                    fontSize: 10.5,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelSmall?.copyWith(color: MeshPalette.ink4),
                 ),
               ],
             ),
@@ -507,9 +502,8 @@ class _Info extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 body,
-                style: TextStyle(
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: MeshPalette.ink3,
-                  fontSize: 12.5,
                   height: 1.4,
                 ),
               ),

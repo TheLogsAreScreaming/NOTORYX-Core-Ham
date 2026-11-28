@@ -14,6 +14,7 @@ import '../widgets/auto_connect_switch.dart';
 import '../widgets/ember_backdrop.dart';
 import '../widgets/regional_preset_banner.dart';
 import '../widgets/theme_picker.dart';
+import 'backdrop_settings_screen.dart';
 import '../widgets/us_bandwidth_notice.dart';
 import '../services/corescope.dart';
 import '../services/app_settings_service.dart';
@@ -30,8 +31,12 @@ import '../widgets/radio_stats_entry.dart';
 import '../widgets/sync_progress_overlay.dart';
 import '../widgets/radio_overview_card.dart';
 import 'companion_cli_screen.dart';
+import '../widgets/radio_buzzer_switch.dart';
 import 'wifi_settings_screen.dart';
 import 'region_management_screen.dart';
+import '../utils/amateur_radio.dart';
+import '../widgets/licensed_operator_card.dart';
+import '../widgets/ui/mesh_states.dart';
 
 /// Convert device coding-rate value (1-4 on some firmware, 5-8 on others)
 /// to the UI enum range (always 5-8).
@@ -101,6 +106,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 padding: const EdgeInsets.fromLTRB(0, 8, 0, 24),
                 children: [
                   RadioOverviewCard(connector: connector),
+                  const LicensedOperatorCard(),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 12),
                     child: RegionalPresetBanner(),
@@ -118,19 +124,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   const AnalyzerCard(),
                   const LinkPreviewsCard(),
                   const SignPostsCard(),
-                  const MeshCard(
-                    padding: EdgeInsets.fromLTRB(16, 12, 16, 16),
+                  const SizedBox(height: MeshSpace.md),
+                  const ReactionsOverRadioCard(),
+                  MeshCard(
+                    padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(bottom: 10),
+                          padding: const EdgeInsets.only(bottom: 10),
                           child: Text(
-                            'Theme',
-                            style: TextStyle(fontWeight: FontWeight.w700),
+                            l10n.appSettings_theme,
+                            style: const TextStyle(fontWeight: FontWeight.w700),
                           ),
                         ),
-                        ThemePicker(),
+                        const ThemePicker(),
+                        const SizedBox(height: 6),
+                        const BackdropSettingsTile(),
                       ],
                     ),
                   ),
@@ -285,8 +295,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   // status, so this row only opens the details.
                   child: Text(
                     l10n.settings_deviceInfo,
-                    style: TextStyle(
-                      fontSize: 16,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       fontWeight: FontWeight.w500,
                       color: scheme.onSurface,
                     ),
@@ -459,8 +468,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
       valueColor = null;
     } else if (percent <= 15) {
       icon = Icons.battery_alert;
-      iconColor = Theme.of(context).colorScheme.tertiary;
-      valueColor = Theme.of(context).colorScheme.tertiary;
+      iconColor = MeshPalette.warn;
+      valueColor = MeshPalette.warn;
     } else {
       icon = Icons.battery_full;
       iconColor = null;
@@ -539,6 +548,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         // The companion CLI (firmware v14+) also carries settings with no
         // dedicated protocol command, such as WiFi.
         if (connector.supportsCompanionCli) ...[
+          const RadioBuzzerSwitch(),
           _tappableTile(
             context,
             icon: Icons.wifi,
@@ -831,6 +841,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
           controller: controller,
           decoration: InputDecoration(
             hintText: l10n.settings_nodeNameHint,
+            // The ham firmware won't transmit until the name starts with a
+            // call sign; it sends that call sign as the station ID.
+            helperText: l10n.ham_nodeNameCallsignHelper,
             border: const OutlineInputBorder(),
           ),
           maxLength: 31,
@@ -845,7 +858,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             builder: (context, _) {
               final name = controller.text.trim();
               return TextButton(
-                onPressed: name.isEmpty
+                onPressed: callsignOf(name) == null
                     ? null
                     : () async {
                         Navigator.pop(context);
@@ -1216,34 +1229,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  void _confirmDeleteAllPaths(
+  Future<void> _confirmDeleteAllPaths(
     BuildContext context,
     MeshCoreConnector connector,
-  ) {
+  ) async {
     final l10n = context.l10n;
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.settings_deleteAllPaths),
-        content: Text(l10n.settings_deleteAllPathsSubtitle),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              connector.deleteAllPaths();
-            },
-            child: Text(
-              l10n.common_deleteAll,
-              style: TextStyle(color: Theme.of(context).colorScheme.error),
-            ),
-          ),
-        ],
-      ),
+    final confirmed = await confirmDestructive(
+      context,
+      title: l10n.settings_deleteAllPaths,
+      message: l10n.settings_deleteAllPathsSubtitle,
+      confirmLabel: l10n.common_deleteAll,
     );
+    if (!confirmed) return;
+    if (!context.mounted) return;
+    connector.deleteAllPaths();
   }
 
   void _confirmReboot(BuildContext context, MeshCoreConnector connector) {
@@ -1265,7 +1264,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             },
             child: Text(
               l10n.common_reboot,
-              style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
+              style: TextStyle(color: MeshPalette.warn),
             ),
           ),
         ],
@@ -1761,14 +1760,12 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
 
   double _offGridFrequencyForBaseFrequency(double baseFrequencyMHz) {
     if (baseFrequencyMHz < 500) return 433.0;
-    if (baseFrequencyMHz < 900) return 869.0;
     return 918.0;
   }
 
   double _normalFrequencyForBand(double frequencyMHz) {
-    if (frequencyMHz < 500) return 433.650;
-    if (frequencyMHz < 900) return 869.432;
-    return 915.8;
+    if (frequencyMHz < 500) return 433.500;
+    return 906.875;
   }
 
   _RadioSettingsSnapshot _fallbackNonRepeatSnapshot(
@@ -1905,7 +1902,7 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
   void _validateFields() {
     final l10n = context.l10n;
     final freqMHz = double.tryParse(_frequencyController.text);
-    _frequencyError = (freqMHz == null || freqMHz < 300 || freqMHz > 2500)
+    _frequencyError = (freqMHz == null || !isAmateurFrequencyMHz(freqMHz))
         ? l10n.settings_frequencyInvalid
         : null;
 
@@ -1949,7 +1946,7 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
     final freqMHz = double.tryParse(_frequencyController.text);
     final txPower = int.tryParse(_txPowerController.text);
 
-    if (freqMHz == null || freqMHz < 300 || freqMHz > 2500) {
+    if (freqMHz == null || !isAmateurFrequencyMHz(freqMHz)) {
       showDismissibleSnackBar(
         context,
         content: Text(l10n.settings_frequencyInvalid),
@@ -2334,7 +2331,6 @@ class AnalyzerCard extends StatelessWidget {
             decoration: InputDecoration(
               labelText: t.analyzer_url,
               helperText: t.analyzer_urlHint,
-              helperMaxLines: 3,
               errorText: AnalyzerService.isValidUrl(controller.text)
                   ? null
                   : t.coverageHex_urlInvalid,
@@ -2443,6 +2439,46 @@ class SignPostsCard extends StatelessWidget {
   }
 }
 
+/// Whether reactions go out over the radio or stay on this device.
+class ReactionsOverRadioCard extends StatelessWidget {
+  const ReactionsOverRadioCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final settings = context.watch<AppSettingsService>();
+    final l10n = context.l10n;
+    final value = settings.settings.reactionsOverRadio;
+    return MeshCard(
+      padding: EdgeInsets.zero,
+      child: ListTile(
+        key: const ValueKey('reactions-over-radio'),
+        leading: const Icon(Icons.add_reaction_outlined),
+        title: Text(l10n.reactions_radioTitle),
+        subtitle: Text(l10n.reactions_radioHint),
+        isThreeLine: true,
+        trailing: DropdownButton<String>(
+          value: value,
+          underline: const SizedBox.shrink(),
+          onChanged: (v) {
+            if (v != null) settings.setReactionsOverRadio(v);
+          },
+          items: [
+            DropdownMenuItem(
+              value: 'auto',
+              child: Text(l10n.reactions_radioAuto),
+            ),
+            DropdownMenuItem(value: 'on', child: Text(l10n.reactions_radioOn)),
+            DropdownMenuItem(
+              value: 'off',
+              child: Text(l10n.reactions_radioOff),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 /// How often the app refreshes the radio's battery, GPS and stats.
 class RefreshRateCard extends StatelessWidget {
   const RefreshRateCard({super.key});
@@ -2460,7 +2496,9 @@ class RefreshRateCard extends StatelessWidget {
         children: [
           Text(
             l10n.settings_refreshRate,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w500),
           ),
           const SizedBox(height: 8),
           SegmentedButton<String>(
@@ -2524,7 +2562,6 @@ class ReadAloudCard extends StatelessWidget {
         decoration: InputDecoration(
           labelText: l10n.settings_readAloud,
           helperText: l10n.settings_readAloudHelper,
-          helperMaxLines: 3,
           icon: const Icon(Icons.record_voice_over_outlined),
         ),
         items: [

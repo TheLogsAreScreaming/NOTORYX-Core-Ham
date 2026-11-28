@@ -6,6 +6,7 @@ import '../widgets/ember_backdrop.dart';
 import '../widgets/notoryx_logo.dart';
 import '../widgets/tactical_glass_panel.dart';
 import '../widgets/glass_action_row.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,7 @@ import '../services/field_ops_service.dart';
 import '../models/field_ops.dart';
 import '../helpers/direct_heard_name.dart';
 import '../services/corescope.dart';
+import '../models/direct_repeaters.dart';
 import '../services/direct_repeater_service.dart';
 import '../widgets/instrument.dart';
 import '../widgets/regional_preset_banner.dart';
@@ -29,10 +31,14 @@ import 'bastion_repeater_tools_screen.dart';
 import 'discovery_screen.dart';
 import 'connection_setup_screen.dart';
 import 'bastion_setup_screen.dart';
+import 'licensed_operator_screen.dart';
+import '../services/operator_profile_service.dart';
+import '../utils/station_readiness.dart';
 import '../widgets/sos_panel.dart';
 import '../widgets/quick_trip_setup.dart';
 import '../widgets/quick_switch_bar.dart';
 import '../utils/main_tab_navigation.dart';
+import '../helpers/snack_bar_builder.dart';
 
 class BastionHomeScreen extends StatelessWidget {
   const BastionHomeScreen({super.key});
@@ -46,11 +52,19 @@ class BastionHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.watch<MeshCoreConnector>();
+    final known = c.knownNodeCounts;
     final stats = c.latestRadioStats;
     final ops = context.watch<FieldOpsService>();
-    final heard = context.watch<DirectRepeaterService?>()?.best() ?? const [];
+    final heardAll =
+        context.watch<DirectRepeaterService?>()?.best() ?? const [];
+    // The demo radio shows only its pretend mesh, never real readings.
+    final demo = c.isDemoRadio;
+    final heard = demo ? const <DirectHeard>[] : heardAll;
     final l10n = context.l10n;
     final online = c.isConnected;
+    final profile = context.watch<OperatorProfileService>().profile;
+    // Nothing set up yet: lead with the guided setup instead of burying it.
+    final firstRun = !online && c.contacts.isEmpty && !profile.isComplete;
     final checkInReason = checkInUnavailableReason(
       ready: ops.ready,
       storageError: ops.error != null,
@@ -109,9 +123,8 @@ class BastionHomeScreen extends StatelessWidget {
                             : l10n.scanner_notConnected,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           color: MeshPalette.ink,
-                          fontSize: 18,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -138,6 +151,18 @@ class BastionHomeScreen extends StatelessWidget {
                 ),
               ),
               const RegionalPresetBanner(),
+              // 1. An active SOS outranks everything else on the screen.
+              if (ops.sos.active)
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    MeshSpace.lg,
+                    0,
+                    MeshSpace.lg,
+                    MeshSpace.md,
+                  ),
+                  child: SosPanel(),
+                ),
+              // 2. The station: radio link, signal and whether it may transmit.
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: MeshSpace.lg),
                 child: TacticalGlassPanel(
@@ -158,10 +183,32 @@ class BastionHomeScreen extends StatelessWidget {
                       stats == null || !online ? '—' : '${stats.lastRssiDbm}',
                       'RSSI',
                     ),
-                    Readout('${c.contacts.length}', l10n.bastion_nodes),
+                    Readout(
+                      '${known.total}',
+                      l10n.bastion_nodes,
+                      color: MeshPalette.secondary,
+                    ),
                   ]),
                 ),
               ),
+              const SizedBox(height: MeshSpace.sm),
+              // What the app remembers, which can be far more than the
+              // radio's own contact table holds.
+              if (known.total > 0)
+                GlassActionRow(
+                  key: const ValueKey('home-known-nodes'),
+                  icon: Icons.hub_outlined,
+                  title: l10n.home_knownNodes(
+                    known.chats,
+                    known.repeaters,
+                    known.rooms,
+                  ),
+                  subtitle: l10n.home_radioHolds(
+                    c.contacts.length,
+                    c.maxContacts,
+                  ),
+                  onTap: () => open(const DiscoveryScreen()),
+                ),
               if (!online)
                 GlassActionRow(
                   icon: Icons.bluetooth_searching_rounded,
@@ -170,7 +217,80 @@ class BastionHomeScreen extends StatelessWidget {
                   titleColor: MeshPalette.accent,
                   onTap: () => openConnectionSetup(context),
                 ),
-              if (online) const MySensorsPanel(),
+              const _StationRow(),
+              if (firstRun)
+                GlassActionRow(
+                  icon: Icons.explore_outlined,
+                  title: l10n.bastionHome_getStarted,
+                  onTap: () => open(const BastionSetupScreen()),
+                ),
+              // 3. The two things people open Home to do.
+              if (!ops.sos.active) ...[
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(
+                    MeshSpace.lg,
+                    MeshSpace.sm,
+                    MeshSpace.lg,
+                    0,
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: InstrumentButton(
+                          key: const ValueKey('home-check-in'),
+                          label: l10n.shortcuts_checkIn,
+                          icon: Icons.check_circle_outline,
+                          // Only a missing radio or loading blocks this;
+                          // missing contacts or a stopped trip are sorted
+                          // out on tap.
+                          onPressed: hardBlockReason(ops) == null
+                              ? () {
+                                  HapticFeedback.selectionClick();
+                                  unawaited(_checkIn(context, ops));
+                                }
+                              : null,
+                        ),
+                      ),
+                      const SizedBox(width: MeshSpace.sm),
+                      const Expanded(child: SosPanel(compact: true)),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(
+                    MeshSpace.lg,
+                    MeshSpace.sm,
+                    MeshSpace.lg,
+                    0,
+                  ),
+                  child: Text(
+                    joinHomeHints(checkInHint, sosHint(context, ops)),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
+                  ),
+                ),
+              ],
+              // 4. The trip those check-ins belong to.
+              InstrumentLabel(l10n.fieldOps_tabTrip),
+              GlassActionRow(
+                title: ops.trip.active
+                    ? ops.trip.name
+                    : l10n.bastionHome_planYourTrip,
+                subtitle: [
+                  l10n.bastionHome_tripSummary(
+                    ops.trip.active
+                        ? l10n.bastionHome_tripActive
+                        : l10n.bastionHome_tripStopped,
+                    '${ops.members.length}',
+                    '${c.getTotalUnreadCount()}',
+                  ),
+                  if (ops.overdueNames.isNotEmpty)
+                    l10n.fieldOps_quietTooLong(ops.overdueNames.join(', ')),
+                ].join(' • '),
+                onTap: () => open(const BastionFieldOpsScreen()),
+              ),
+              // 5. What the radio hears and senses.
               InstrumentLabel(l10n.routes_nearbyTitle),
               if (heard.isEmpty)
                 GlassActionRow(
@@ -190,106 +310,52 @@ class BastionHomeScreen extends StatelessWidget {
                     trailing: SignalReadout(h.snrAverage),
                     onTap: () => open(const BastionPathHubScreen()),
                   ),
-              InstrumentLabel(l10n.fieldOps_tabTrip),
-              GlassActionRow(
-                title: ops.trip.active
-                    ? ops.trip.name
-                    : l10n.bastionHome_planYourTrip,
-                subtitle: [
-                  l10n.bastionHome_tripSummary(
-                    ops.trip.active
-                        ? l10n.bastionHome_tripActive
-                        : l10n.bastionHome_tripStopped,
-                    '${ops.members.length}',
-                    '${c.getTotalUnreadCount()}',
-                  ),
-                  if (ops.overdueNames.isNotEmpty)
-                    l10n.fieldOps_quietTooLong(ops.overdueNames.join(', ')),
-                ].join(' • '),
-                onTap: () => open(const BastionFieldOpsScreen()),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(
-                  MeshSpace.lg,
-                  MeshSpace.md,
-                  MeshSpace.lg,
-                  0,
-                ),
-                child: ops.sos.active
-                    ? const SosPanel()
-                    : Row(
-                        children: [
-                          Expanded(
-                            child: InstrumentButton(
-                              key: const ValueKey('home-check-in'),
-                              label: l10n.shortcuts_checkIn,
-                              icon: Icons.check_circle_outline,
-                              // Only a missing radio or loading blocks this;
-                              // missing contacts or a stopped trip are sorted
-                              // out on tap.
-                              onPressed: hardBlockReason(ops) == null
-                                  ? () {
-                                      HapticFeedback.selectionClick();
-                                      unawaited(_checkIn(context, ops));
-                                    }
-                                  : null,
-                            ),
-                          ),
-                          const SizedBox(width: MeshSpace.sm),
-                          const Expanded(child: SosPanel(compact: true)),
-                        ],
-                      ),
-              ),
-              if (!ops.sos.active)
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(
-                    MeshSpace.lg,
-                    MeshSpace.sm,
-                    MeshSpace.lg,
-                    0,
-                  ),
-                  child: Text(
-                    '$checkInHint ${sosHint(context, ops)}',
-                    style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
-                  ),
-                ),
+              if (online && !demo) const MySensorsPanel(),
+              // 6. Everything else.
               InstrumentLabel(l10n.bastionHome_fieldTools),
               if (online)
                 GlassActionRow(
                   icon: Icons.monitor_heart_outlined,
+                  iconColor: MeshPalette.hue(0),
                   title: l10n.bastionHome_liveDiagnostics,
                   onTap: () => open(const BastionDiagnosticsScreen()),
                 ),
               GlassActionRow(
                 icon: Icons.radar_rounded,
+                iconColor: MeshPalette.hue(1),
                 title: l10n.bastionHome_meshDiscovery,
                 onTap: () => open(const DiscoveryScreen()),
               ),
               GlassActionRow(
                 icon: Icons.map_outlined,
+                iconColor: MeshPalette.hue(2),
                 title: l10n.bastion_mapCoverage,
                 onTap: () => open(const BastionMapHubScreen()),
               ),
               GlassActionRow(
                 icon: Icons.route_rounded,
+                iconColor: MeshPalette.hue(3),
                 title: l10n.bastion_routeIntelligence,
                 onTap: () => open(const BastionPathHubScreen()),
               ),
               GlassActionRow(
                 icon: Icons.cell_tower_rounded,
+                iconColor: MeshPalette.hue(4),
                 title: l10n.bastion_repeaterTools,
                 onTap: () => open(const BastionRepeaterToolsScreen()),
               ),
               GlassActionRow(
                 icon: Icons.analytics_outlined,
+                iconColor: MeshPalette.hue(5),
                 title: l10n.bastion_fieldStats,
                 onTap: () => open(const BastionFieldStatsScreen()),
               ),
-              GlassActionRow(
-                icon: Icons.explore_outlined,
-                title: l10n.bastionHome_getStarted,
-                onTap: () => open(const BastionSetupScreen()),
-              ),
+              if (!firstRun)
+                GlassActionRow(
+                  icon: Icons.explore_outlined,
+                  title: l10n.bastionHome_getStarted,
+                  onTap: () => open(const BastionSetupScreen()),
+                ),
             ],
           ),
         ),
@@ -309,7 +375,7 @@ class BastionHomeScreen extends StatelessWidget {
       try {
         await ops.startTrip();
       } catch (e) {
-        messenger.showSnackBar(SnackBar(content: Text('$e')));
+        messenger.showSnackBar(meshSnackBar(content: Text(friendlyError(e))));
         return;
       }
     }
@@ -320,3 +386,70 @@ class BastionHomeScreen extends StatelessWidget {
     );
   }
 }
+
+/// The licensed operator's station at a glance: the call sign and the first
+/// thing (if any) stopping the radio from transmitting. Opens the Licensed
+/// operator page, where each item can be fixed.
+class _StationRow extends StatelessWidget {
+  const _StationRow();
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final status = MeshStatusColors.of(context);
+    final c = context.watch<MeshCoreConnector>();
+    final profile = context.watch<OperatorProfileService>().profile;
+    final readiness = stationReadiness(
+      profile,
+      nodeName: c.selfName,
+      freqKhz: c.currentFreqHz,
+      // Only a connected radio's firmware counts.
+      firmwareVersion: c.isConnected ? c.firmwareVersionString : null,
+    );
+    final online = c.isConnected;
+    final title = profile.hasValidCallsign
+        ? profile.callsign
+        : l10n.ham_licensedOperator;
+    final String subtitle;
+    final bool ok;
+    if (readiness == StationReadiness.stockFirmware) {
+      subtitle = l10n.ham_bannerStockFirmware;
+      ok = false;
+    } else if (readiness == StationReadiness.setupIncomplete) {
+      subtitle = l10n.ham_operatorCardIncomplete;
+      ok = false;
+    } else if (!online) {
+      subtitle = l10n.bastionHome_stationConnectToCheck;
+      ok = true;
+    } else {
+      subtitle = switch (readiness) {
+        StationReadiness.nameMismatch => l10n.ham_bannerNameMismatch,
+        StationReadiness.outOfBand => l10n.ham_bannerOutOfBand,
+        _ => l10n.bastionHome_stationOk,
+      };
+      ok = readiness == StationReadiness.ready;
+    }
+    return GlassActionRow(
+      key: const ValueKey('home-station'),
+      icon: Icons.badge_outlined,
+      title: title,
+      subtitle: subtitle,
+      // Shape and words carry the state too, not colour alone.
+      trailing: Icon(
+        ok ? Icons.check_circle_rounded : Icons.warning_amber_rounded,
+        size: 20,
+        color: ok ? status.success : status.warning,
+        semanticLabel: ok ? l10n.ham_statusOk : l10n.ham_needsAttention,
+      ),
+      onTap: () => Navigator.of(context).push(
+        MaterialPageRoute<void>(builder: (_) => const LicensedOperatorScreen()),
+      ),
+    );
+  }
+}
+
+/// The line under Check in and SOS: both hints, or one when they're the
+/// same (with no radio both say "Connect your radio first.").
+@visibleForTesting
+String joinHomeHints(String checkIn, String sos) =>
+    checkIn == sos ? checkIn : '$checkIn $sos';

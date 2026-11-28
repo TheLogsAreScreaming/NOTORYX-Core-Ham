@@ -67,16 +67,16 @@ jobs:
       - name: Analyze
         run: flutter analyze --fatal-infos --fatal-warnings
       - name: Test
-        run: flutter test --timeout 2m
+        run: bash tools/ci_retry.sh flutter test --timeout 2m
       - name: Build Bastion RC1 APK
-        run: flutter build apk --release --target-platform android-arm64 --target lib/main.dart
+        run: bash tools/ci_retry.sh flutter build apk --dart-define=GIPHY_API_KEY=${{ secrets.GIPHY_API_KEY }} --release --target-platform android-arm64 --target lib/main.dart
       - name: Verify packaged Bastion icon resources
         run: |
           APK=build/app/outputs/flutter-apk/app-release.apk
           AAPT=$(find "$ANDROID_HOME/build-tools" -maxdepth 2 -name aapt | sort -V | tail -n 1)
           test -x "$AAPT"
           "$AAPT" dump badging "$APK" > /tmp/bastion-badging.txt
-          grep -F "package: name='com.bastionmesh.bastion'" /tmp/bastion-badging.txt
+          grep -F "package: name='com.bastionmesh.ham'" /tmp/bastion-badging.txt
           grep -F "launchable-activity: name='com.meshcore.meshcore_open.MainActivity'" /tmp/bastion-badging.txt
           "$AAPT" dump resources "$APK" > /tmp/bastion-resources.txt
           grep -F 'mipmap/ic_launcher' /tmp/bastion-resources.txt

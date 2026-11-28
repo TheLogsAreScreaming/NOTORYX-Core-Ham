@@ -1,9 +1,11 @@
 import 'dart:async';
+
 import '../utils/platform_info.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
+
 import '../l10n/l10n.dart';
 import '../models/contact.dart';
 import '../l10n/contact_localization.dart';
@@ -293,6 +295,9 @@ class _RoomLoginDialogState extends State<RoomLoginDialog> {
                       hintText: l10n.login_enterPassword,
                       prefixIcon: const Icon(Icons.lock),
                       suffixIcon: IconButton(
+                        tooltip: _obscurePassword
+                            ? context.l10n.a11y_showPassword
+                            : context.l10n.a11y_hidePassword,
                         icon: Icon(
                           _obscurePassword
                               ? Icons.visibility

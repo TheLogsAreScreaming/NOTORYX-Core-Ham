@@ -15,6 +15,8 @@ import '../theme/mesh_theme.dart';
 import '../utils/platform_info.dart';
 import '../widgets/connect_ui.dart';
 import '../widgets/mesh_ui.dart';
+import '../widgets/ember_backdrop.dart';
+import '../widgets/ui/mesh_states.dart';
 
 /// Start and stop a breadcrumb trail from the radio's GPS, look at saved
 /// tracks, and export them as GPX.
@@ -65,22 +67,11 @@ class _TrackLogScreenState extends State<TrackLogScreen> {
 
   Future<void> _confirmDelete(TrackLogService log, Track track) async {
     final l10n = context.l10n;
-    final ok = await showDialog<bool>(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(l10n.trackLog_deleteTitle),
-        content: Text(l10n.trackLog_deleteBody),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, false),
-            child: Text(l10n.common_cancel),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(dialogContext, true),
-            child: Text(l10n.common_delete),
-          ),
-        ],
-      ),
+    final ok = await confirmDestructive(
+      context,
+      title: l10n.trackLog_deleteTitle,
+      message: l10n.trackLog_deleteBody,
+      confirmLabel: l10n.common_delete,
     );
     if (ok == true) {
       if (_selectedId == track.id) setState(() => _selectedId = null);
@@ -101,214 +92,221 @@ class _TrackLogScreenState extends State<TrackLogScreen> {
     shown ??= log.tracks.isEmpty ? null : log.tracks.first;
     final statusColor = current != null ? MeshPalette.alert : MeshPalette.ink3;
 
-    return Scaffold(
-      appBar: AppBar(title: Text(l10n.trackLog_title)),
-      body: Align(
-        alignment: Alignment.topCenter,
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 720),
-          child: ListView(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
-            children: [
-              ConsolePanel(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        PulseDot(
-                          color: statusColor,
-                          size: 10,
-                          animate: current != null,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          current != null
-                              ? l10n.trackLog_recording
-                              : l10n.trackLog_notRecording,
-                          key: const ValueKey('track-status'),
-                          style: TextStyle(
-                            color: MeshPalette.ink,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                      ],
-                    ),
-                    if (current != null) ...[
-                      const SizedBox(height: 8),
-                      Text(
-                        _stats(context, current, now),
-                        style: TextStyle(color: MeshPalette.ink2),
-                      ),
-                    ],
-                    if (!log.hasPosition) ...[
-                      const SizedBox(height: 10),
+    return EmberBackdrop(
+      scene: EmberScene.more,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          scrolledUnderElevation: 0,
+          title: Text(l10n.trackLog_title),
+        ),
+        body: Align(
+          alignment: Alignment.topCenter,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 720),
+            child: ListView(
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
+              children: [
+                ConsolePanel(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Icon(
-                            Icons.gps_off,
-                            size: 18,
-                            color: MeshPalette.warn,
+                          PulseDot(
+                            color: statusColor,
+                            size: 10,
+                            animate: current != null,
                           ),
                           const SizedBox(width: 8),
-                          Expanded(
-                            child: Text(
-                              l10n.trackLog_noGps,
-                              style: TextStyle(color: MeshPalette.warn),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                    const SizedBox(height: 14),
-                    SizedBox(
-                      height: 46,
-                      child: current != null
-                          ? FilledButton.icon(
-                              key: const ValueKey('track-stop'),
-                              style: FilledButton.styleFrom(
-                                backgroundColor: MeshPalette.alert,
-                              ),
-                              onPressed: () => unawaited(log.stop()),
-                              icon: const Icon(Icons.stop_rounded),
-                              label: Text(l10n.trackLog_stop),
-                            )
-                          : FilledButton.icon(
-                              key: const ValueKey('track-start'),
-                              onPressed: () => unawaited(log.start()),
-                              icon: const Icon(Icons.fiber_manual_record),
-                              label: Text(l10n.trackLog_start),
-                            ),
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      l10n.trackLog_howItWorks,
-                      style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 14),
-              ConsolePanel(
-                padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
                           Text(
-                            l10n.trackLog_snap,
-                            style: TextStyle(
-                              color: MeshPalette.ink,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          Text(
-                            l10n.trackLog_snapBody,
-                            style: TextStyle(
-                              color: MeshPalette.ink3,
-                              fontSize: 12.5,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Switch(
-                      value: log.snapToGrid,
-                      onChanged: (v) => unawaited(log.setSnapToGrid(v)),
-                    ),
-                  ],
-                ),
-              ),
-              if (shown != null && shown.points.length > 1) ...[
-                const SizedBox(height: 22),
-                ConsoleKicker(_when(context, shown.started)),
-                ConsolePanel(
-                  padding: const EdgeInsets.all(12),
-                  child: AspectRatio(
-                    aspectRatio: 16 / 10,
-                    child: Semantics(
-                      label: _stats(context, shown, now),
-                      child: CustomPaint(
-                        painter: _TrackPainter(
-                          points: shown.points,
-                          line: MeshPalette.accent,
-                          start: MeshPalette.signal,
-                          grid: MeshPalette.line,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-              const SizedBox(height: 22),
-              ConsoleKicker(l10n.trackLog_saved),
-              if (log.tracks.isEmpty)
-                Text(
-                  l10n.trackLog_none,
-                  style: TextStyle(color: MeshPalette.ink3),
-                ),
-              for (final t in log.tracks)
-                Padding(
-                  key: ValueKey(t.id),
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: MeshCard(
-                    margin: EdgeInsets.zero,
-                    borderColor: t.id == shown?.id
-                        ? MeshPalette.accentLine
-                        : null,
-                    onTap: () => setState(() => _selectedId = t.id),
-                    child: Row(
-                      children: [
-                        Icon(
-                          t.id == current?.id
-                              ? Icons.fiber_manual_record
-                              : Icons.route,
-                          color: t.id == current?.id
-                              ? MeshPalette.alert
-                              : MeshPalette.accent,
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                _when(context, t.started),
-                                style: TextStyle(
+                            current != null
+                                ? l10n.trackLog_recording
+                                : l10n.trackLog_notRecording,
+                            key: const ValueKey('track-status'),
+                            style: Theme.of(context).textTheme.titleLarge
+                                ?.copyWith(
                                   color: MeshPalette.ink,
-                                  fontWeight: FontWeight.w700,
+                                  fontWeight: FontWeight.w800,
                                 ),
-                              ),
-                              Text(
-                                _stats(context, t, now),
-                                style: TextStyle(
-                                  color: MeshPalette.ink3,
-                                  fontSize: 12.5,
-                                ),
-                              ),
-                            ],
                           ),
-                        ),
-                        if (!PlatformInfo.isWeb && t.points.isNotEmpty)
-                          IconButton(
-                            tooltip: l10n.trackLog_export,
-                            onPressed: () => unawaited(_export(t)),
-                            icon: const Icon(Icons.ios_share),
-                          ),
-                        IconButton(
-                          tooltip: l10n.common_delete,
-                          onPressed: () => unawaited(_confirmDelete(log, t)),
-                          icon: const Icon(Icons.delete_outline),
+                        ],
+                      ),
+                      if (current != null) ...[
+                        const SizedBox(height: 8),
+                        Text(
+                          _stats(context, current, now),
+                          style: TextStyle(color: MeshPalette.ink2),
                         ),
                       ],
-                    ),
+                      if (!log.hasPosition) ...[
+                        const SizedBox(height: 10),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.gps_off,
+                              size: 18,
+                              color: MeshPalette.warn,
+                            ),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                l10n.trackLog_noGps,
+                                style: TextStyle(color: MeshPalette.warn),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                      const SizedBox(height: 14),
+                      SizedBox(
+                        height: MeshShape.minTouch,
+                        child: current != null
+                            ? FilledButton.icon(
+                                key: const ValueKey('track-stop'),
+                                style: FilledButton.styleFrom(
+                                  backgroundColor: MeshPalette.alert,
+                                ),
+                                onPressed: () => unawaited(log.stop()),
+                                icon: const Icon(Icons.stop_rounded),
+                                label: Text(l10n.trackLog_stop),
+                              )
+                            : FilledButton.icon(
+                                key: const ValueKey('track-start'),
+                                onPressed: () => unawaited(log.start()),
+                                icon: const Icon(Icons.fiber_manual_record),
+                                label: Text(l10n.trackLog_start),
+                              ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        l10n.trackLog_howItWorks,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: MeshPalette.ink3,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-            ],
+                const SizedBox(height: 14),
+                ConsolePanel(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              l10n.trackLog_snap,
+                              style: TextStyle(
+                                color: MeshPalette.ink,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            Text(
+                              l10n.trackLog_snapBody,
+                              style: Theme.of(context).textTheme.bodySmall
+                                  ?.copyWith(color: MeshPalette.ink3),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Switch(
+                        value: log.snapToGrid,
+                        onChanged: (v) => unawaited(log.setSnapToGrid(v)),
+                      ),
+                    ],
+                  ),
+                ),
+                if (shown != null && shown.points.length > 1) ...[
+                  const SizedBox(height: 22),
+                  ConsoleKicker(_when(context, shown.started)),
+                  ConsolePanel(
+                    padding: const EdgeInsets.all(12),
+                    child: AspectRatio(
+                      aspectRatio: 16 / 10,
+                      child: Semantics(
+                        label: _stats(context, shown, now),
+                        child: CustomPaint(
+                          painter: _TrackPainter(
+                            points: shown.points,
+                            line: MeshPalette.accent,
+                            start: MeshPalette.signal,
+                            grid: MeshPalette.line,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+                const SizedBox(height: 22),
+                ConsoleKicker(l10n.trackLog_saved),
+                if (log.tracks.isEmpty)
+                  Text(
+                    l10n.trackLog_none,
+                    style: TextStyle(color: MeshPalette.ink3),
+                  ),
+                for (final t in log.tracks)
+                  Padding(
+                    key: ValueKey(t.id),
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: MeshCard(
+                      margin: EdgeInsets.zero,
+                      borderColor: t.id == shown?.id
+                          ? MeshPalette.accentLine
+                          : null,
+                      onTap: () => setState(() => _selectedId = t.id),
+                      child: Row(
+                        children: [
+                          Icon(
+                            t.id == current?.id
+                                ? Icons.fiber_manual_record
+                                : Icons.route,
+                            color: t.id == current?.id
+                                ? MeshPalette.alert
+                                : MeshPalette.accent,
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  _when(context, t.started),
+                                  style: TextStyle(
+                                    color: MeshPalette.ink,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                Text(
+                                  _stats(context, t, now),
+                                  style: Theme.of(context).textTheme.bodySmall
+                                      ?.copyWith(color: MeshPalette.ink3),
+                                ),
+                              ],
+                            ),
+                          ),
+                          if (!PlatformInfo.isWeb && t.points.isNotEmpty)
+                            IconButton(
+                              tooltip: l10n.trackLog_export,
+                              onPressed: () => unawaited(_export(t)),
+                              icon: const Icon(Icons.ios_share),
+                            ),
+                          IconButton(
+                            tooltip: l10n.common_delete,
+                            onPressed: () => unawaited(_confirmDelete(log, t)),
+                            icon: const Icon(Icons.delete_outline),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),

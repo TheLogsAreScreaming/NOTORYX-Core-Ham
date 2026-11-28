@@ -28,7 +28,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.bastionmesh.bastion"
+        applicationId = "com.bastionmesh.ham"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode

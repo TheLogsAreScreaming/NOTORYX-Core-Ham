@@ -1,4 +1,4 @@
-NOTORYX Core turns your phone and a MeshCore LoRa radio into a field communicator that works without cell service, Wi-Fi or the internet. Messages hop radio to radio across the mesh.
+NOTORYX Core Ham turns your phone and a MeshCore LoRa radio into a field communicator that works without cell service, Wi-Fi or the internet. Messages hop radio to radio across the mesh.
 
 Messaging
 • Direct and channel messages over the mesh, with delivery status
@@ -27,6 +27,6 @@ Your radios
 • Command line on your own radio and, with permission, a trusted contact's
 • Battery saver
 
-NOTORYX Core needs a radio running MeshCore firmware. Overdue alerts, check-ins and SOS depend on radio range and the mesh; they are not a replacement for an emergency service or satellite messenger.
+NOTORYX Core Ham needs a radio running MeshCore firmware. Overdue alerts, check-ins and SOS depend on radio range and the mesh; they are not a replacement for an emergency service or satellite messenger.
 
-NOTORYX Core is open source and builds on the MeshCore Open project.
+NOTORYX Core Ham is open source and builds on the MeshCore Open project.

@@ -24,7 +24,7 @@ class NotoryxWidgetProvider : HomeWidgetProvider() {
     ) {
         for (id in appWidgetIds) {
             val views = RemoteViews(context.packageName, R.layout.notoryx_widget).apply {
-                setTextViewText(R.id.widget_radio, widgetData.getString("radio", null) ?: "NOTORYX Core")
+                setTextViewText(R.id.widget_radio, widgetData.getString("radio", null) ?: "NOTORYX Core Ham")
                 setTextViewText(R.id.widget_status, widgetData.getString("status", null) ?: "")
                 setTextViewText(R.id.widget_battery_label, widgetData.getString("lbl_battery", null) ?: "Battery")
                 setTextViewText(R.id.widget_battery, widgetData.getString("battery", null) ?: "—")

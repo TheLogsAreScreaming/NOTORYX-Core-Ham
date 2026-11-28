@@ -16,7 +16,7 @@
     <uses-feature android:name="android.hardware.usb.host" android:required="false"/>
 
     <application
-        android:label="NOTORYX"
+        android:label="NOTORYX Ham"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <service
@@ -34,9 +34,18 @@
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
             <meta-data android:name="io.flutter.embedding.android.NormalTheme" android:resource="@style/NormalTheme" />
+            <!-- meshcore:// links go to app_links, not Flutter's own router. -->
+            <meta-data android:name="flutter_deeplinking_enabled" android:value="false" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <!-- Contact links shared from MeshCore apps: meshcore://contact/add?… -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="meshcore"/>
             </intent-filter>
         </activity>
         <meta-data android:name="flutterEmbedding" android:value="2" />
@@ -51,6 +60,28 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/notoryx_widget_info" />
         </receiver>
+        <!-- Quick Settings tile: radio status and unread count; a tap opens
+             the app. -->
+        <service
+            android:name="com.meshcore.meshcore_open.NotoryxTileService"
+            android:exported="true"
+            android:icon="@drawable/ic_qs_tile"
+            android:label="NOTORYX Core Ham"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <!-- Runs Reply and Mark-as-read from a notification without opening
+             the app (notification shade, watches, Android Auto). -->
+        <receiver
+            android:exported="false"
+            android:name="com.dexterous.flutterlocalnotifications.ActionBroadcastReceiver" />
+        <!-- Android Auto: message notifications can be read aloud and
+             answered by voice. -->
+        <meta-data
+            android:name="com.google.android.gms.car.application"
+            android:resource="@xml/automotive_app_desc" />
         <!-- Delivers scheduled notifications (trip check-in reminders). -->
         <receiver
             android:exported="false"

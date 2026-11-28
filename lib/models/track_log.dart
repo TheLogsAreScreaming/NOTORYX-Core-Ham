@@ -123,7 +123,7 @@ LatLng snapToGridCenter(double lat, double lon, double meters) {
 String trackToGpx(Track track, {required String name}) {
   final gpx = Gpx()
     ..version = '1.1'
-    ..creator = 'NOTORYX Core'
+    ..creator = 'NOTORYX Core Ham'
     ..metadata = Metadata(name: name, time: track.started.toUtc())
     ..trks = [
       Trk(

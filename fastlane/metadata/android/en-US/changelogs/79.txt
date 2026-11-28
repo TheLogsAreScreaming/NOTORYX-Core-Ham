@@ -1,0 +1,3 @@
+• Bubble Gum is now rose and hot pink, with no white background
+• New Okabe-Ito theme: color-blind safe, on black
+• Map and node colors now use the color-blind safe Okabe-Ito palette in every theme

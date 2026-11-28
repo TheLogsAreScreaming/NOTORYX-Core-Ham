@@ -293,7 +293,9 @@ class _WardriveScreenState extends State<WardriveScreen> {
                 padding: const EdgeInsets.only(bottom: MeshSpace.sm),
                 child: Text(
                   status,
-                  style: TextStyle(color: MeshPalette.ink3, fontSize: 13),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(color: MeshPalette.ink3),
                 ),
               ),
             Expanded(
@@ -327,7 +329,7 @@ class _WardriveScreenState extends State<WardriveScreen> {
                           TileLayer(
                             urlTemplate:
                                 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                            userAgentPackageName: 'com.bastionmesh.bastion',
+                            userAgentPackageName: 'com.bastionmesh.ham',
                           ),
                           MarkerLayer(
                             markers: [
@@ -336,9 +338,15 @@ class _WardriveScreenState extends State<WardriveScreen> {
                                   point: LatLng(p.latitude, p.longitude),
                                   width: 22,
                                   height: 22,
-                                  child: GestureDetector(
-                                    onTap: () => _showPing(p),
-                                    child: _PingDot(ping: p),
+                                  child: Semantics(
+                                    button: true,
+                                    label: TimeOfDay.fromDateTime(
+                                      p.at.toLocal(),
+                                    ).format(context),
+                                    child: GestureDetector(
+                                      onTap: () => _showPing(p),
+                                      child: _PingDot(ping: p),
+                                    ),
                                   ),
                                 ),
                               if (here != null)
@@ -377,7 +385,9 @@ class _WardriveScreenState extends State<WardriveScreen> {
               ),
               child: Text(
                 l10n.wardrive_explainer,
-                style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
               ),
             ),
           ],

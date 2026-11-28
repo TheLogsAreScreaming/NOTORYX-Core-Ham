@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io' show Platform, File;
+import 'dart:isolate';
 import 'dart:ui';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/timezone.dart' as tz;
 
 import '../helpers/message_url_image_helper.dart';
@@ -12,13 +15,95 @@ import '../helpers/reaction_helper.dart';
 import '../l10n/app_localizations.dart';
 import '../utils/platform_info.dart';
 
+/// Text typed into a notification's reply box, and what it answers.
+class NotificationReply {
+  const NotificationReply(this.payload, this.text);
+
+  /// The notification's payload: `message:<contact key>` or `channel:<index>`.
+  final String payload;
+  final String text;
+}
+
+/// Port the running app listens on for notification actions taken without
+/// opening it (Android Auto, watches, the notification shade).
+const notificationActionPortName = 'notoryx_notification_actions';
+
+/// Where a reply typed while the app wasn't running waits for the next start.
+const _heldReplyKey = 'notification_held_reply';
+
+/// Runs in a background isolate when a Reply or Mark-as-read action is used
+/// without opening the app. The radio link lives in the app's main isolate,
+/// so the action is passed there; with no app running, a reply is kept for
+/// the next start instead of being lost.
+@pragma('vm:entry-point')
+Future<void> notificationActionBackgroundHandler(
+  NotificationResponse response,
+) async {
+  final action = {
+    'actionId': response.actionId,
+    'payload': response.payload,
+    'input': response.input,
+  };
+  final port = IsolateNameServer.lookupPortByName(notificationActionPortName);
+  if (port != null) {
+    port.send(action);
+    return;
+  }
+  if (NotificationService.replyFrom(response) == null) return;
+  try {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_heldReplyKey, jsonEncode(action));
+  } catch (_) {}
+}
+
 class NotificationService {
   static final NotificationService _instance = NotificationService._internal();
   factory NotificationService() => _instance;
   NotificationService._internal();
 
   final StreamController<String> _taps = StreamController<String>.broadcast();
+  final StreamController<NotificationReply> _replies =
+      StreamController<NotificationReply>.broadcast();
   String? _launchPayload;
+  NotificationReply? _launchReply;
+
+  static const _replyActionId = 'reply';
+  static const _markReadActionId = 'mark_read';
+  static const _replyCategoryId = 'message_reply';
+
+  final StreamController<String> _markReads =
+      StreamController<String>.broadcast();
+  ReceivePort? _actionPort;
+
+  /// Payloads of conversations marked read from a notification.
+  Stream<String> get markReads => _markReads.stream;
+
+  /// Whether new message notifications offer a reply box. Turned off while
+  /// app lock is on, so nobody can answer from the phone's lock screen.
+  bool quickReplyEnabled = true;
+
+  /// Replies typed into a notification while the app runs.
+  Stream<NotificationReply> get replies => _replies.stream;
+
+  /// The reply that launched the app, once.
+  NotificationReply? takeLaunchReply() {
+    final reply = _launchReply;
+    _launchReply = null;
+    return reply;
+  }
+
+  /// The reply [response] carries, or null when it was a plain tap.
+  @visibleForTesting
+  static NotificationReply? replyFrom(NotificationResponse response) {
+    final payload = response.payload;
+    final text = response.input?.trim() ?? '';
+    if (response.actionId != _replyActionId ||
+        payload == null ||
+        text.isEmpty) {
+      return null;
+    }
+    return NotificationReply(payload, text);
+  }
 
   /// The payload of each notification the user clicks while the app runs:
   /// `message:<contact key>`, `channel:<index>`, `advert:<key>` or `batch`.
@@ -77,18 +162,32 @@ class NotificationService {
     const androidSettings = AndroidInitializationSettings(
       '@mipmap/ic_launcher',
     );
-    const iosSettings = DarwinInitializationSettings(
-      requestAlertPermission: true,
-      requestBadgePermission: true,
-      requestSoundPermission: true,
+    final replyCategory = DarwinNotificationCategory(
+      _replyCategoryId,
+      actions: [
+        DarwinNotificationAction.text(
+          _replyActionId,
+          _l10n.notification_replyAction,
+          buttonTitle: _l10n.notification_replyAction,
+          placeholder: _l10n.notification_replyHint,
+          options: const {DarwinNotificationActionOption.foreground},
+        ),
+      ],
     );
-    const macSettings = DarwinInitializationSettings(
+    final iosSettings = DarwinInitializationSettings(
       requestAlertPermission: true,
       requestBadgePermission: true,
       requestSoundPermission: true,
+      notificationCategories: [replyCategory],
+    );
+    final macSettings = DarwinInitializationSettings(
+      requestAlertPermission: true,
+      requestBadgePermission: true,
+      requestSoundPermission: true,
+      notificationCategories: [replyCategory],
     );
     const windowsSettings = WindowsInitializationSettings(
-      appName: 'NOTORYX Core',
+      appName: 'NOTORYX Core Ham',
       appUserModelId: 'org.meshcore.open.app',
       guid: 'e7ea8f85-72f5-4f36-91f6-038f740ccf86',
     );
@@ -96,7 +195,7 @@ class NotificationService {
       defaultActionName: 'Open notification',
     );
 
-    const initSettings = InitializationSettings(
+    final initSettings = InitializationSettings(
       android: androidSettings,
       iOS: iosSettings,
       macOS: macSettings,
@@ -117,14 +216,56 @@ class NotificationService {
       await _notifications.initialize(
         settings: initSettings,
         onDidReceiveNotificationResponse: _onNotificationTapped,
+        onDidReceiveBackgroundNotificationResponse:
+            notificationActionBackgroundHandler,
       );
       _isInitialized = true;
+      _listenForBackgroundActions();
       final launch = await _notifications.getNotificationAppLaunchDetails();
       if (launch?.didNotificationLaunchApp ?? false) {
-        _launchPayload = launch!.notificationResponse?.payload;
+        final response = launch!.notificationResponse;
+        if (response != null) _launchReply = replyFrom(response);
+        if (_launchReply == null) _launchPayload = response?.payload;
       }
+      _launchReply ??= await _takeHeldReply();
     } catch (e) {
       debugPrint('Error initializing notifications: $e');
+    }
+  }
+
+  void _listenForBackgroundActions() {
+    if (kIsWeb || _actionPort != null) return;
+    final port = ReceivePort();
+    IsolateNameServer.removePortNameMapping(notificationActionPortName);
+    IsolateNameServer.registerPortWithName(
+      port.sendPort,
+      notificationActionPortName,
+    );
+    port.listen((message) {
+      if (message is! Map) return;
+      _onNotificationTapped(_actionResponse(message));
+    });
+    _actionPort = port;
+  }
+
+  static NotificationResponse _actionResponse(Map<dynamic, dynamic> action) =>
+      NotificationResponse(
+        notificationResponseType:
+            NotificationResponseType.selectedNotificationAction,
+        actionId: action['actionId'] as String?,
+        payload: action['payload'] as String?,
+        input: action['input'] as String?,
+      );
+
+  Future<NotificationReply?> _takeHeldReply() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final raw = prefs.getString(_heldReplyKey);
+      if (raw == null) return null;
+      await prefs.remove(_heldReplyKey);
+      return replyFrom(_actionResponse(jsonDecode(raw) as Map));
+    } catch (_) {
+      return null;
     }
   }
 
@@ -172,6 +313,133 @@ class NotificationService {
 
     // iOS/macOS request permission during initialize(); desktop has no gate.
     return _canNotify = true;
+  }
+
+  /// A repeater appeared nearby or a favourite one went quiet.
+  Future<bool> showNetworkChange({
+    required String repeaterKey,
+    required String body,
+  }) async {
+    if (_suppressNotifications || !await _ensureCanNotify()) return false;
+    try {
+      await _notifications.show(
+        id: 'network_change:$repeaterKey'.hashCode,
+        title: _l10n.netChange_notifTitle,
+        body: body,
+        notificationDetails: const NotificationDetails(
+          android: AndroidNotificationDetails(
+            'bastion_network_changes',
+            'Network changes',
+            channelDescription:
+                'A new repeater nearby, or a favourite repeater went quiet',
+            importance: Importance.defaultImportance,
+            priority: Priority.defaultPriority,
+            icon: '@mipmap/ic_launcher',
+          ),
+          iOS: DarwinNotificationDetails(),
+          macOS: DarwinNotificationDetails(),
+        ),
+      );
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// Whether the app may post notifications on this device.
+  Future<bool> canNotify() => _ensureCanNotify();
+
+  /// "Back in range" for a favorite heard again after [quietHours] hours.
+  /// One notification per contact, replaced by the next.
+  Future<bool> showFavoriteReturn({
+    required String contactId,
+    required String name,
+    required int quietHours,
+  }) async {
+    if (_suppressNotifications || !await _ensureCanNotify()) return false;
+    try {
+      await _notifications.show(
+        id: 'favorite_return:$contactId'.hashCode,
+        title: _l10n.favReturn_title,
+        body: _l10n.favReturn_body(name, quietHours),
+        notificationDetails: const NotificationDetails(
+          android: AndroidNotificationDetails(
+            'bastion_favorites',
+            'Favorites back in range',
+            channelDescription: 'A favorite is heard again after a quiet spell',
+            importance: Importance.defaultImportance,
+            priority: Priority.defaultPriority,
+            icon: '@mipmap/ic_launcher',
+          ),
+          iOS: DarwinNotificationDetails(),
+          macOS: DarwinNotificationDetails(),
+        ),
+      );
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// An automation rule's alert; one per rule, the newest replacing the
+  /// last.
+  Future<bool> showAutomation({
+    required String title,
+    required String body,
+  }) async {
+    if (_suppressNotifications || !await _ensureCanNotify()) return false;
+    try {
+      await _notifications.show(
+        id: 74000 + (title.hashCode & 0xFFF),
+        title: title,
+        body: body,
+        notificationDetails: const NotificationDetails(
+          android: AndroidNotificationDetails(
+            'automation',
+            'Automation',
+            channelDescription: 'Alerts from your automation rules',
+            importance: Importance.high,
+            priority: Priority.high,
+            icon: '@mipmap/ic_launcher',
+          ),
+          iOS: DarwinNotificationDetails(),
+          macOS: DarwinNotificationDetails(),
+        ),
+      );
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// A sensor value crossed the alert line the user set for it.
+  Future<bool> showSensorAlert({
+    required String id,
+    required String body,
+  }) async {
+    if (_suppressNotifications || !await _ensureCanNotify()) return false;
+    try {
+      await _notifications.show(
+        id: 'sensor_alert:$id'.hashCode,
+        title: _l10n.sensorHistory_alertTitle,
+        body: body,
+        notificationDetails: const NotificationDetails(
+          android: AndroidNotificationDetails(
+            'notoryx_sensor_alerts',
+            'Sensor alerts',
+            channelDescription: 'A sensor value went past a limit you set',
+            importance: Importance.high,
+            priority: Priority.high,
+            icon: '@mipmap/ic_launcher',
+          ),
+          iOS: DarwinNotificationDetails(),
+          macOS: DarwinNotificationDetails(),
+        ),
+      );
+      return true;
+    } catch (_) {
+      return false;
+    }
   }
 
   Future<bool> showFieldAlert(String message) async {
@@ -309,6 +577,50 @@ class NotificationService {
     }
   }
 
+  /// Reply and Mark-as-read, shaped the way Android Auto and watches need:
+  /// semantic actions that run without opening the app. The action is
+  /// handed to the running app through [notificationActionPortName].
+  List<AndroidNotificationAction>? get _replyActions => quickReplyEnabled
+      ? [
+          AndroidNotificationAction(
+            _replyActionId,
+            _l10n.notification_replyAction,
+            semanticAction: SemanticAction.reply,
+            inputs: [
+              AndroidNotificationActionInput(
+                label: _l10n.notification_replyHint,
+              ),
+            ],
+          ),
+          AndroidNotificationAction(
+            _markReadActionId,
+            _l10n.notification_markRead,
+            semanticAction: SemanticAction.markAsRead,
+          ),
+        ]
+      : null;
+
+  /// A conversation-style notification, which Android Auto requires to read
+  /// a message aloud and offer a reply.
+  MessagingStyleInformation _conversationStyle({
+    required String from,
+    required String message,
+    String? conversationTitle,
+  }) => MessagingStyleInformation(
+    Person(name: _l10n.notification_you),
+    conversationTitle: conversationTitle,
+    groupConversation: conversationTitle != null,
+    messages: [
+      Message(
+        formatNotificationText(message),
+        DateTime.now(),
+        Person(name: from),
+      ),
+    ],
+  );
+
+  String? get _replyCategory => quickReplyEnabled ? _replyCategoryId : null;
+
   Future<void> _showMessageNotificationImpl({
     required String contactName,
     required String message,
@@ -329,6 +641,7 @@ class NotificationService {
       channelDescription: 'New message notifications',
       importance: Importance.high,
       priority: Priority.high,
+      actions: _replyActions,
       icon: '@mipmap/ic_launcher',
       number: badgeCount,
       styleInformation: imagePath != null
@@ -336,10 +649,11 @@ class NotificationService {
               FilePathAndroidBitmap(imagePath),
               summaryText: formatNotificationText(message),
             )
-          : null,
+          : _conversationStyle(from: contactName, message: message),
     );
 
     final iosDetails = DarwinNotificationDetails(
+      categoryIdentifier: _replyCategory,
       presentAlert: true,
       presentBadge: true,
       presentSound: true,
@@ -352,6 +666,7 @@ class NotificationService {
     );
 
     final macDetails = DarwinNotificationDetails(
+      categoryIdentifier: _replyCategory,
       presentAlert: true,
       presentBadge: true,
       presentSound: true,
@@ -451,6 +766,7 @@ class NotificationService {
       channelDescription: 'New channel message notifications',
       importance: Importance.high,
       priority: Priority.high,
+      actions: _replyActions,
       icon: '@mipmap/ic_launcher',
       number: badgeCount,
       styleInformation: imagePath != null
@@ -458,10 +774,15 @@ class NotificationService {
               FilePathAndroidBitmap(imagePath),
               summaryText: formatNotificationText(message),
             )
-          : null,
+          : _conversationStyle(
+              from: channelName,
+              message: message,
+              conversationTitle: channelName,
+            ),
     );
 
     final iosDetails = DarwinNotificationDetails(
+      categoryIdentifier: _replyCategory,
       presentAlert: true,
       presentBadge: true,
       presentSound: true,
@@ -474,6 +795,7 @@ class NotificationService {
     );
 
     final macDetails = DarwinNotificationDetails(
+      categoryIdentifier: _replyCategory,
       presentAlert: true,
       presentBadge: true,
       presentSound: true,
@@ -526,7 +848,21 @@ class NotificationService {
     }
   }
 
+  @visibleForTesting
+  void handleResponseForTest(NotificationResponse response) =>
+      _onNotificationTapped(response);
+
   void _onNotificationTapped(NotificationResponse response) {
+    if (response.actionId == _markReadActionId) {
+      final marked = response.payload;
+      if (marked != null && !_markReads.isClosed) _markReads.add(marked);
+      return;
+    }
+    final reply = replyFrom(response);
+    if (reply != null) {
+      if (!_replies.isClosed) _replies.add(reply);
+      return;
+    }
     final payload = response.payload;
     if (payload != null && !_taps.isClosed) _taps.add(payload);
   }

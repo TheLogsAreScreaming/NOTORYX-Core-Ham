@@ -17,13 +17,24 @@ class LineOfSightSample {
   final double refractedHeightMeters;
   final double clearanceMeters;
 
+  /// Radius of the first Fresnel zone around the beam at this sample, in
+  /// metres. Zero at both ends; widest halfway between them.
+  final double fresnelRadiusMeters;
+
   const LineOfSightSample({
     required this.distanceMeters,
     required this.terrainMeters,
     required this.lineHeightMeters,
     required this.refractedHeightMeters,
     required this.clearanceMeters,
+    this.fresnelRadiusMeters = 0,
   });
+
+  /// Lowest edge of the first Fresnel zone at this sample.
+  double get fresnelBottomMeters => lineHeightMeters - fresnelRadiusMeters;
+
+  /// Highest edge of the first Fresnel zone at this sample.
+  double get fresnelTopMeters => lineHeightMeters + fresnelRadiusMeters;
 }
 
 class LineOfSightObstruction {
@@ -82,6 +93,29 @@ class LineOfSightResult {
        firstObstructionDistanceMeters = null,
        samples = const [],
        obstructions = const [];
+
+  /// How much of the first Fresnel zone is clear at its tightest point, as a
+  /// fraction of the zone's radius: 1.0 or more means the whole zone is clear,
+  /// 0.6 is the usual minimum for a solid link, and below 0 means terrain
+  /// reaches the beam itself. Null when there are no samples away from the
+  /// two ends.
+  double? get worstFresnelClearance {
+    double? worst;
+    for (final sample in samples) {
+      if (sample.fresnelRadiusMeters < LineOfSightService.minFresnelRadius) {
+        continue;
+      }
+      final ratio = sample.clearanceMeters / sample.fresnelRadiusMeters;
+      if (worst == null || ratio < worst) worst = ratio;
+    }
+    return worst;
+  }
+
+  /// Whether at least 60% of the first Fresnel zone is clear everywhere.
+  bool get isFresnelClear {
+    final worst = worstFresnelClearance;
+    return worst != null && worst >= LineOfSightService.fresnelClearTarget;
+  }
 }
 
 class LineOfSightPathSegment {
@@ -126,6 +160,33 @@ class LineOfSightService {
   static const double _baselineKFactor = 4.0 / 3.0;
 
   static double get baselineFrequencyMHz => _baselineFrequencyMHz;
+
+  /// Share of the first Fresnel zone that should stay clear for a solid link.
+  static const double fresnelClearTarget = 0.6;
+
+  /// Frequency the Fresnel zone uses when the radio hasn't reported one:
+  /// the 'US 33cm' default channel the NOTORYX Ham firmware starts on.
+  static const double fresnelFallbackFrequencyMHz = 906.875;
+
+  /// Samples with a smaller Fresnel radius than this (the two ends) are left
+  /// out of the Fresnel clearance check.
+  static const double minFresnelRadius = 0.5;
+
+  static const double _speedOfLight = 299792458.0;
+
+  /// Radius in metres of the first Fresnel zone at [d1] metres from one end
+  /// and [d2] metres from the other, for a signal at [frequencyMHz].
+  static double fresnelRadius({
+    required double d1,
+    required double d2,
+    required double frequencyMHz,
+  }) {
+    final total = d1 + d2;
+    if (d1 <= 0 || d2 <= 0 || total <= 0 || frequencyMHz <= 0) return 0;
+    final wavelength = _speedOfLight / (frequencyMHz * 1e6);
+    return sqrt(wavelength * d1 * d2 / total);
+  }
+
   static double get baselineKFactor => _baselineKFactor;
 
   final http.Client _httpClient;
@@ -271,6 +332,9 @@ class LineOfSightService {
     final effectiveEarthRadius = _earthRadiusMeters * kFactor;
     final startLineHeight = elevations.first + startAntennaHeightMeters;
     final endLineHeight = elevations.last + endAntennaHeightMeters;
+    final fresnelFrequencyMHz = (frequencyMHz != null && frequencyMHz > 0)
+        ? frequencyMHz
+        : fresnelFallbackFrequencyMHz;
 
     var maxObstructionMeters = 0.0;
     double? firstObstructionDistanceMeters;
@@ -328,6 +392,11 @@ class LineOfSightService {
           lineHeightMeters: lineHeight,
           refractedHeightMeters: refractedHeight,
           clearanceMeters: clearance,
+          fresnelRadiusMeters: fresnelRadius(
+            d1: distanceFromStart,
+            d2: totalDistanceMeters - distanceFromStart,
+            frequencyMHz: fresnelFrequencyMHz,
+          ),
         ),
       );
     }
@@ -361,6 +430,7 @@ class LineOfSightService {
     required double radiusMeters,
     double receiverHeightMeters = 1.5,
     double? frequencyMHz,
+    CoverageRadio? radio,
     int bearings = 36,
     int samples = 30,
   }) async {
@@ -408,6 +478,17 @@ class LineOfSightService {
             receiverHeightMeters: receiverHeightMeters,
             kFactor: kFactor,
           ),
+          signalDbm: radio == null
+              ? const []
+              : signalAlongRay(
+                  radio: radio,
+                  originGroundMeters: ground,
+                  antennaHeightMeters: antennaHeightMeters,
+                  distances: distances,
+                  terrain: heights.sublist(start, start + samples),
+                  receiverHeightMeters: receiverHeightMeters,
+                  kFactor: kFactor,
+                ),
         ),
       );
     }
@@ -416,6 +497,7 @@ class LineOfSightService {
       antennaHeightMeters: antennaHeightMeters,
       radiusMeters: radiusMeters,
       rays: out,
+      radio: radio,
     );
   }
 

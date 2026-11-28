@@ -23,7 +23,7 @@ class UnreadBadge extends StatelessWidget {
         style: MeshTheme.mono(
           fontSize: 11,
           fontWeight: FontWeight.w700,
-          color: Colors.white,
+          color: MeshPalette.onColor(MeshPalette.alert),
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../l10n/app_localizations.dart';
 import '../l10n/l10n.dart';
 import '../theme/mesh_theme.dart';
@@ -231,6 +232,7 @@ class EmojiPicker extends StatelessWidget {
                   ),
                 ),
                 IconButton(
+                  tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
                   icon: const Icon(Icons.close),
                   onPressed: () => Navigator.pop(context),
                 ),

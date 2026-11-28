@@ -73,9 +73,41 @@ List<DirectHeard> rankDirect(
   int limit = 5,
 }) {
   final recent = [
-    for (final h in heard)
+    for (final h in mergeSameNode(heard))
       if (now.difference(h.lastHeard) <= window) h,
   ];
   recent.sort((a, b) => b.score(now).compareTo(a.score(now)));
   return recent.take(limit).toList();
+}
+
+/// Folds entries that are the same node seen at different ID lengths into
+/// one: a repeater is heard as a 1-3 byte path ID when it relays, and by its
+/// full public key when it adverts directly. An ID that is the start of a
+/// longer one is merged into the longest, which keeps the more recent
+/// reading. The entries passed in are not changed.
+List<DirectHeard> mergeSameNode(Iterable<DirectHeard> heard) {
+  final byLength = heard.toList()
+    ..sort((a, b) => b.id.length.compareTo(a.id.length));
+  final merged = <DirectHeard>[];
+  for (final h in byLength) {
+    final target = merged
+        .where((m) => m.id.length > h.id.length && m.id.startsWith(h.id))
+        .firstOrNull;
+    if (target == null) {
+      merged.add(
+        DirectHeard(id: h.id, snr: h.lastSnr, lastHeard: h.lastHeard)
+          ..snrAverage = h.snrAverage
+          ..count = h.count,
+      );
+      continue;
+    }
+    if (h.lastHeard.isAfter(target.lastHeard)) {
+      target
+        ..lastHeard = h.lastHeard
+        ..lastSnr = h.lastSnr
+        ..snrAverage = h.snrAverage;
+    }
+    target.count += h.count;
+  }
+  return merged;
 }

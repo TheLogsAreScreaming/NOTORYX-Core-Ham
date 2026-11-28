@@ -7,27 +7,34 @@ import '../connector/meshcore_connector.dart';
 import '../l10n/app_localizations.dart';
 import 'app_shortcuts.dart';
 
-/// What the home-screen widget shows, already in the app's language.
+/// What the home-screen widget and the Quick Settings tile show, already in
+/// the app's language.
 Map<String, String> homeWidgetValues({
   required AppLocalizations t,
   required bool connected,
   required String? radioName,
   required int? batteryPercent,
   required int unread,
-}) => {
-  'radio': (radioName == null || radioName.isEmpty)
-      ? 'NOTORYX Core'
-      : radioName,
-  'status': connected
+}) {
+  final status = connected
       ? t.connections_statusConnected
-      : t.connections_statusNotConnected,
-  'battery': connected && batteryPercent != null ? '$batteryPercent%' : '—',
-  'unread': '$unread',
-  'lbl_battery': t.radioOverview_battery,
-  'lbl_unread': t.contacts_unread,
-  'lbl_checkin': t.shortcuts_checkIn,
-  'lbl_sos': t.fieldOps_kindSos,
-};
+      : t.connections_statusNotConnected;
+  return {
+    'radio': (radioName == null || radioName.isEmpty)
+        ? 'NOTORYX Core Ham'
+        : radioName,
+    'status': status,
+    // Quick Settings tile: lit while connected; counts only, never text.
+    'connected': connected ? '1' : '0',
+    'tile_subtitle': unread > 0 ? t.qsTile_unread(status, unread) : status,
+    'battery': connected && batteryPercent != null ? '$batteryPercent%' : '—',
+    'unread': '$unread',
+    'lbl_battery': t.radioOverview_battery,
+    'lbl_unread': t.contacts_unread,
+    'lbl_checkin': t.shortcuts_checkIn,
+    'lbl_sos': t.fieldOps_kindSos,
+  };
+}
 
 /// What a widget tap asks for.
 enum HomeWidgetAction { open, checkIn, sos }

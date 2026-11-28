@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
+import '../theme/mesh_theme.dart';
 
 class SyncProgressAppBarBottom extends StatelessWidget
     implements PreferredSizeWidget {
@@ -43,17 +44,17 @@ class _SyncProgressState {
     if (connector.isLoadingContacts) {
       return _SyncProgressState(
         value: connector.contactSyncProgress,
-        color: Colors.red,
+        color: MeshPalette.accent,
       );
     }
     if (connector.isSyncingChannels) {
       return _SyncProgressState(
         value: connector.channelSyncProgress / 100,
-        color: Colors.blue,
+        color: MeshPalette.magenta,
       );
     }
     if (connector.isShowingQueuedMessageSyncProgress) {
-      return const _SyncProgressState(value: null, color: Colors.green);
+      return _SyncProgressState(value: null, color: MeshPalette.signal);
     }
     return null;
   }

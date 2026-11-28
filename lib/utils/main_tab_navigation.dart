@@ -20,6 +20,10 @@ enum MainTab {
   more,
 }
 
+/// Whether [tab] only opens with a radio connected. Chats and Nodes close
+/// themselves while offline, so the bar explains why instead of opening them.
+bool tabNeedsRadio(MainTab tab) => tab == MainTab.chats || tab == MainTab.nodes;
+
 /// The screen shown for [tab] when it is opened from the bottom bar.
 Widget mainTabScreen(MainTab tab) {
   switch (tab) {

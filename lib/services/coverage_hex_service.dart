@@ -11,8 +11,10 @@ import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 
 import '../connector/meshcore_connector.dart';
+import '../connector/meshcore_protocol.dart';
 import '../helpers/path_helper.dart';
 import '../models/coverage_hex.dart';
+import '../models/signed_coverage.dart';
 import '../models/direct_repeaters.dart';
 import '../models/radio_rx_packet.dart';
 import '../storage/prefs_manager.dart';
@@ -159,14 +161,31 @@ class CoverageHexService extends ChangeNotifier {
   static const _targetsKey = 'notoryx_coverage_targets_v1';
   static const _wifiOnlyKey = 'notoryx_coverage_wifi_only_v1';
   static const _signingKey = 'notoryx_coverage_signing_seed_v1';
+  static const _mapperNameKey = 'notoryx_coverage_mapper_name_v1';
+  static const _trimDrivesKey = 'notoryx_coverage_trim_drives_v1';
   static const uploadEvery = Duration(minutes: 2);
+
+  /// How many hexagons at each end of a mapping session stay on the phone.
+  static const trimCells = 2;
 
   CoverageGrid _grid = CoverageGrid();
   final Map<String, Set<String>> _sent = {};
   List<CoverageTarget> _targets = [];
   final Map<String, CoverageUploadStatus> _targetStatus = {};
   bool _wifiOnly = true;
+  bool _trimDrives = true;
+  String _mapperName = '';
   bool _mapping = false;
+
+  /// Samples that never leave the phone: the ends of mapping sessions.
+  final Set<String> _private = {};
+
+  /// The current mapping session: its first [trimCells] distinct cells,
+  /// every cell visited with the most recent last, and when it started.
+  /// Saved so a session cut short by the app closing is still trimmed.
+  final List<String> _sessionFirst = [];
+  final List<String> _sessionCells = [];
+  DateTime? _sessionStart;
   CoverageProblem? _problem;
   PositionFix? _fix;
   StreamSubscription<PositionFix>? _fixSub;
@@ -178,6 +197,8 @@ class CoverageHexService extends ChangeNotifier {
 
   bool get mapping => _mapping;
   bool get wifiOnly => _wifiOnly;
+  bool get trimDrives => _trimDrives;
+  String get mapperName => _mapperName;
   CoverageProblem? get problem => _problem;
   PositionFix? get fix => _fix;
   List<CoverageTarget> get targets => List.unmodifiable(_targets);
@@ -194,13 +215,47 @@ class CoverageHexService extends ChangeNotifier {
   int pendingFor(CoverageTarget target) {
     final sent = _sent[target.id] ?? const {};
     return _grid.samples.values
-        .where((s) => !sent.contains(s.key) && s.repeaters.isNotEmpty)
+        .where(
+          (s) =>
+              !sent.contains(s.key) &&
+              s.repeaters.isNotEmpty &&
+              !_private.contains(s.key),
+        )
         .length;
+  }
+
+  /// Cells at the open end of the current session: held back until the
+  /// phone has moved on, because the session may end there.
+  Set<String> get _heldCells => _mapping && _trimDrives
+      ? _sessionCells.skip(_sessionCells.length - trimCells).toSet()
+      : const {};
+
+  /// Marks every sample of this session in the first and last [trimCells]
+  /// cells as private, then forgets the session.
+  void _closeSession() {
+    final start = _sessionStart;
+    if (start != null && _trimDrives && _sessionCells.isNotEmpty) {
+      final ends = {
+        ..._sessionFirst,
+        ..._sessionCells.skip(_sessionCells.length - trimCells),
+      };
+      final from = bucketStart(start);
+      for (final s in _grid.samples.values) {
+        if (ends.contains(s.cell) && !s.bucket.isBefore(from)) {
+          _private.add(s.key);
+        }
+      }
+    }
+    _sessionFirst.clear();
+    _sessionCells.clear();
+    _sessionStart = null;
   }
 
   Future<void> load() async {
     final prefs = PrefsManager.instance;
     _wifiOnly = prefs.getBool(_wifiOnlyKey) ?? true;
+    _trimDrives = prefs.getBool(_trimDrivesKey) ?? true;
+    _mapperName = prefs.getString(_mapperNameKey) ?? '';
     try {
       final saved = prefs.getString(_targetsKey);
       if (saved != null) {
@@ -216,6 +271,17 @@ class CoverageHexService extends ChangeNotifier {
         (json['sent'] as Map<String, dynamic>? ?? {}).forEach(
           (k, v) => _sent[k] = {...(v as List).cast<String>()},
         );
+        _private.addAll((json['private'] as List? ?? const []).cast<String>());
+        // A session the app was closed in the middle of: trim it now.
+        final session = json['session'] as Map<String, dynamic>?;
+        final started = DateTime.tryParse('${session?['start']}');
+        if (session != null && started != null) {
+          _sessionStart = started;
+          _sessionFirst.addAll((session['first'] as List).cast<String>());
+          _sessionCells.addAll((session['cells'] as List).cast<String>());
+          _closeSession();
+          await _save();
+        }
       }
     } catch (_) {
       _problem = CoverageProblem.loadFailed;
@@ -230,6 +296,9 @@ class CoverageHexService extends ChangeNotifier {
     _mapping = on;
     _problem = null;
     if (on) {
+      _sessionFirst.clear();
+      _sessionCells.clear();
+      _sessionStart = _now();
       _fixSub = _fixes().listen(
         (fix) {
           _fix = fix;
@@ -249,6 +318,7 @@ class CoverageHexService extends ChangeNotifier {
       _fixSub = null;
       _rxSub = null;
       _fix = null;
+      _closeSession();
       await _save();
     }
     _notify();
@@ -260,8 +330,26 @@ class CoverageHexService extends ChangeNotifier {
     if (fix.accuracyMeters > maxFixAccuracyMeters) return;
     if (packet.receivedAt.difference(fix.time).abs() > maxFixAge) return;
     final heard = heardDirectlyFrom(packet.raw);
+    final cell = _indexer.cellOf(fix.lat, fix.lon);
+    if (_trimDrives && _sessionStart != null) {
+      if (_sessionCells.isEmpty || _sessionCells.last != cell) {
+        _sessionCells
+          ..remove(cell)
+          ..add(cell);
+      }
+      if (_sessionFirst.length < trimCells && !_sessionFirst.contains(cell)) {
+        _sessionFirst.add(cell);
+      }
+      // The first cells of a session never leave the phone, even when the
+      // drive passes them again later.
+      if (_sessionFirst.contains(cell)) {
+        _private.add(
+          '$cell@${bucketStart(packet.receivedAt).toIso8601String()}',
+        );
+      }
+    }
     _grid.record(
-      cell: _indexer.cellOf(fix.lat, fix.lon),
+      cell: cell,
       time: packet.receivedAt,
       snr: packet.snr,
       rssi: packet.rssi,
@@ -277,10 +365,26 @@ class CoverageHexService extends ChangeNotifier {
   @visibleForTesting
   set fixForTesting(PositionFix fix) => _fix = fix;
 
+  @visibleForTesting
+  Future<void> saveForTesting() => _save();
+
   Future<void> setWifiOnly(bool value) async {
     _wifiOnly = value;
     _notify();
     await PrefsManager.instance.setBool(_wifiOnlyKey, value);
+  }
+
+  Future<void> setTrimDrives(bool value) async {
+    _trimDrives = value;
+    _notify();
+    await PrefsManager.instance.setBool(_trimDrivesKey, value);
+  }
+
+  /// The name shown to NOTORYX coverage map members; empty for none.
+  Future<void> setMapperName(String value) async {
+    _mapperName = value.trim();
+    _notify();
+    await PrefsManager.instance.setString(_mapperNameKey, _mapperName);
   }
 
   Future<void> saveTarget(CoverageTarget target) async {
@@ -332,6 +436,7 @@ class CoverageHexService extends ChangeNotifier {
     }
     final now = _now();
     _grid.prune(now);
+    final held = _heldCells;
     for (final target in targets) {
       final sent = _sent.putIfAbsent(target.id, () => {});
       final due = _grid.samples.values
@@ -339,6 +444,8 @@ class CoverageHexService extends ChangeNotifier {
             (s) =>
                 s.repeaters.isNotEmpty &&
                 !sent.contains(s.key) &&
+                !_private.contains(s.key) &&
+                !held.contains(s.cell) &&
                 s.dueFor(target.privacy, now),
           )
           .toList();
@@ -353,12 +460,30 @@ class CoverageHexService extends ChangeNotifier {
     for (final keys in _sent.values) {
       keys.retainWhere(live.contains);
     }
+    _private.retainWhere(live.contains);
     await _save();
     _notify();
   }
 
   Future<bool> _post(CoverageTarget target, List<HexSample> batch) async {
+    final signed = target.privacy != CoveragePrivacy.anonymous;
     final body = jsonEncode(switch (target.format) {
+      // Signed hexagon uploads add a key and a signature per cell; the
+      // rest of the format is unchanged, so older maps still read them.
+      CoverageFormat.hexagons when signed => {
+        ...await signCoverageReport(
+          batch,
+          target.privacy,
+          await _coverageKeys(),
+          created: _now(),
+        ),
+        'format': 'notoryx-coverage-hex/1',
+        // The NOTORYX map also gets the optional mapper name and the
+        // repeaters' own public adverts, so it can name hop hashes.
+        if (target.isNotoryxMap && _mapperName.isNotEmpty)
+          'mapper': _mapperName,
+        if (target.isNotoryxMap) 'repeaters': repeaterDirectory(),
+      },
       CoverageFormat.hexagons => hexagonPayload(batch, target.privacy),
       CoverageFormat.meshMapper => meshMapperPayload(
         batch,
@@ -389,24 +514,99 @@ class CoverageHexService extends ChangeNotifier {
 
   SimpleKeyPair? _keyPair;
 
-  /// Headers proving uploads come from the same (pseudonymous) mapper,
-  /// signed with a key used only for coverage, never the radio identity.
-  Future<Map<String, String>> _sign(String body) async {
-    final algo = Ed25519();
-    var keys = _keyPair;
-    if (keys == null) {
-      final prefs = PrefsManager.instance;
-      final saved = prefs.getString(_signingKey);
-      final List<int> seed;
-      if (saved != null) {
-        seed = base64Decode(saved);
-      } else {
-        seed = randomBytes(32);
-        await prefs.setString(_signingKey, base64Encode(seed));
-      }
-      keys = _keyPair = await algo.newKeyPairFromSeed(seed);
+  /// The phone's coverage key, made on first use. It is used only for
+  /// coverage, never the radio identity, so reports can't be tied to the
+  /// radio.
+  Future<SimpleKeyPair> _coverageKeys() async {
+    final existing = _keyPair;
+    if (existing != null) return existing;
+    final prefs = PrefsManager.instance;
+    final saved = prefs.getString(_signingKey);
+    final List<int> seed;
+    if (saved != null) {
+      seed = base64Decode(saved);
+    } else {
+      seed = randomBytes(32);
+      await prefs.setString(_signingKey, base64Encode(seed));
     }
-    final sig = await algo.sign(utf8.encode(body), keyPair: keys);
+    return _keyPair = await Ed25519().newKeyPairFromSeed(seed);
+  }
+
+  /// The coverage public key in base64, for others to check reports with.
+  Future<String> signerKey() async =>
+      base64Encode((await (await _coverageKeys()).extractPublicKey()).bytes);
+
+  /// Every sample as a signed report, kept on the phone until the user
+  /// shares it. Times are the 15-minute buckets, as live uploads use.
+  Future<String> signedReport() async {
+    final samples = _grid.samples.values.where((s) => s.count > 0).toList()
+      ..sort((a, b) => a.bucket.compareTo(b.bucket));
+    return jsonEncode(
+      await signCoverageReport(
+        samples,
+        CoveragePrivacy.live,
+        await _coverageKeys(),
+        created: _now(),
+      ),
+    );
+  }
+
+  /// Repeaters the radio knows with an advertised position, newest first.
+  /// These are the repeaters' own public adverts, not the phone's position.
+  List<Map<String, dynamic>> repeaterDirectory() {
+    final repeaters =
+        connector.contacts
+            .where((c) => c.type == advTypeRepeater && c.hasLocation)
+            .toList()
+          ..sort((a, b) => b.lastSeen.compareTo(a.lastSeen));
+    return [
+      for (final c in repeaters.take(500))
+        {
+          'key': c.publicKeyHex.toLowerCase(),
+          'name': c.name,
+          'lat': c.latitude,
+          'lon': c.longitude,
+          'advert': c.lastSeen.toUtc().toIso8601String(),
+        },
+    ];
+  }
+
+  /// Asks the NOTORYX coverage map to delete everything this phone's
+  /// coverage key uploaded. Returns how many readings went, or null when
+  /// the request failed. Anonymous uploads carry no key and can't be erased.
+  Future<int?> eraseNotoryxUploads() async {
+    final keys = await _coverageKeys();
+    final pub = await keys.extractPublicKey();
+    final body = jsonEncode({
+      'format': 'notoryx-coverage-erase/1',
+      'key': base64Encode(pub.bytes),
+      'time': _now().toUtc().toIso8601String(),
+    });
+    final sig = await Ed25519().sign(utf8.encode(body), keyPair: keys);
+    try {
+      final res = await _client
+          .post(
+            Uri.parse(notoryxCoverageEraseUrl),
+            headers: {
+              'Content-Type': 'application/json',
+              'X-Notoryx-Signature': base64Encode(sig.bytes),
+            },
+            body: body,
+          )
+          .timeout(const Duration(seconds: 15));
+      if (res.statusCode < 200 || res.statusCode >= 300) return null;
+      final erased = (jsonDecode(res.body) as Map<String, dynamic>)['erased'];
+      return erased is int ? erased : 0;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  /// Headers proving uploads come from the same (pseudonymous) mapper,
+  /// signed with the coverage key.
+  Future<Map<String, String>> _sign(String body) async {
+    final keys = await _coverageKeys();
+    final sig = await Ed25519().sign(utf8.encode(body), keyPair: keys);
     final pub = await keys.extractPublicKey();
     return {
       'X-Notoryx-Key': base64Encode(pub.bytes),
@@ -429,6 +629,13 @@ class CoverageHexService extends ChangeNotifier {
         jsonEncode({
           'samples': _grid.toJson(),
           'sent': _sent.map((k, v) => MapEntry(k, v.toList())),
+          'private': _private.toList(),
+          if (_sessionStart != null)
+            'session': {
+              'start': _sessionStart!.toIso8601String(),
+              'first': _sessionFirst,
+              'cells': _sessionCells,
+            },
         }),
       );
     } catch (_) {
