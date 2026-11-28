@@ -111,6 +111,7 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen>
   List<Polyline> _polylines = [];
   LatLng? _initialCenter = LatLng(0, 0);
   double _initialZoom = 2.0;
+  double _currentZoom = 2.0;
   LatLngBounds? _bounds;
   ValueKey<String> _mapKey = const ValueKey('initial');
   double _pathDistanceMeters = 0.0;
@@ -1193,6 +1194,9 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen>
     required Contact? target,
   }) {
     final markers = <Marker>[];
+
+    // Collect all resolved hop positions (preserving round-trip dedup logic).
+    final resolved = <(LatLng, bool, String, String)>[];
     String hopLast = '';
     String hopLastLast = '';
     for (final hop in pathData) {
@@ -1201,13 +1205,15 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen>
       final inferred = _inferredHopPositions[hopKey];
       final hasGps = contact != null && contact.hasLocation;
       if (hopKey == hopLastLast && widget.flipPathAround) {
-        continue; //skip duplicate hops in round-trip paths
+        continue; // skip duplicate hops in round-trip paths
       }
       if (!hasGps && inferred == null) {
         hopLastLast = hopLast;
         hopLast = hopKey;
-        continue; //skip hops with no GPS and no inferred position
+        continue; // skip hops with no GPS and no inferred position
       }
+      hopLastLast = hopLast;
+      hopLast = hopKey;
       final point = hasGps
           ? LatLng(contact.latitude!, contact.longitude!)
           : inferred!;
@@ -1216,59 +1222,137 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen>
       final fullLabel = label.length > 2
           ? (contact?.name != null ? '$label: ${contact!.name}' : label)
           : (contact?.name ?? label);
+      resolved.add((point, hasGps, shortLabel, fullLabel));
+    }
 
-      markers.add(
-        Marker(
-          point: point,
-          width: 48,
-          height: 48,
-          child: Center(
-            child: Container(
-              width: 35,
-              height: 35,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: hasGps
-                    ? MeshPalette.signal.withValues(alpha: 0.18)
-                    : MeshPalette.warn.withValues(alpha: 0.18),
-                border: Border.all(
+    // Group into ~48px screen cells; cells with 2+ hops become cluster markers.
+    final cellDeg = 360.0 / (256.0 * pow(2.0, _currentZoom)) * 48.0;
+    final cells = <String, List<(LatLng, bool, String, String)>>{};
+    for (final e in resolved) {
+      final cellKey =
+          '${(e.$1.latitude / cellDeg).floor()}:${(e.$1.longitude / cellDeg).floor()}';
+      (cells[cellKey] ??= []).add(e);
+    }
+
+    for (final cell in cells.values) {
+      if (cell.length == 1) {
+        final (point, hasGps, shortLabel, fullLabel) = cell.first;
+        markers.add(
+          Marker(
+            point: point,
+            width: 48,
+            height: 48,
+            child: Center(
+              child: Container(
+                width: 35,
+                height: 35,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
                   color: hasGps
-                      ? MeshPalette.signal.withValues(alpha: 0.7)
-                      : MeshPalette.warn.withValues(alpha: 0.7),
-                  width: 1.5,
-                ),
-                boxShadow: [
-                  BoxShadow(
+                      ? MeshPalette.signal.withValues(alpha: 0.18)
+                      : MeshPalette.warn.withValues(alpha: 0.18),
+                  border: Border.all(
                     color: hasGps
-                        ? MeshPalette.signal.withValues(alpha: 0.3)
-                        : MeshPalette.warn.withValues(alpha: 0.3),
-                    blurRadius: 5,
+                        ? MeshPalette.signal.withValues(alpha: 0.7)
+                        : MeshPalette.warn.withValues(alpha: 0.7),
+                    width: 1.5,
                   ),
-                ],
-              ),
-              alignment: Alignment.center,
-              child: Text(
-                shortLabel,
-                style: MeshTheme.mono(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w700,
-                  color: hasGps ? MeshPalette.signal : MeshPalette.warn,
+                  boxShadow: [
+                    BoxShadow(
+                      color: hasGps
+                          ? MeshPalette.signal.withValues(alpha: 0.3)
+                          : MeshPalette.warn.withValues(alpha: 0.3),
+                      blurRadius: 5,
+                    ),
+                  ],
+                ),
+                alignment: Alignment.center,
+                child: Text(
+                  shortLabel,
+                  style: MeshTheme.mono(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    color: hasGps ? MeshPalette.signal : MeshPalette.warn,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      );
-      if (showLabels) {
-        markers.add(_buildNodeLabelMarker(point: point, label: fullLabel));
+        );
+        if (showLabels) {
+          markers.add(_buildNodeLabelMarker(point: point, label: fullLabel));
+        }
+      } else {
+        // Multiple hops map to the same screen cell — show a cluster marker.
+        double lat = 0, lon = 0;
+        for (final e in cell) {
+          lat += e.$1.latitude;
+          lon += e.$1.longitude;
+        }
+        final center = LatLng(lat / cell.length, lon / cell.length);
+        final allGps = cell.every((e) => e.$2);
+        final shorts = cell.map((e) => e.$3).toList();
+        markers.add(_buildHopClusterMarker(shorts, center, allGps));
+        if (showLabels) {
+          final names = cell.map((e) => e.$4).join(', ');
+          markers.add(_buildNodeLabelMarker(point: center, label: names));
+        }
       }
-      hopLastLast = hopLast;
-      hopLast = hopKey;
     }
 
     _addEndpointMarkers(markers, showLabels: showLabels, target: target);
-
     return markers;
+  }
+
+  Marker _buildHopClusterMarker(
+    List<String> shortLabels,
+    LatLng center,
+    bool allGps,
+  ) {
+    final color = allGps ? MeshPalette.signal : MeshPalette.warn;
+    final count = shortLabels.length;
+    return Marker(
+      point: center,
+      width: 52,
+      height: 52,
+      child: Center(
+        child: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: color.withValues(alpha: 0.22),
+            border: Border.all(color: color.withValues(alpha: 0.85), width: 2),
+            boxShadow: [
+              BoxShadow(color: color.withValues(alpha: 0.35), blurRadius: 6),
+            ],
+          ),
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                shortLabels.take(2).join(' '),
+                style: MeshTheme.mono(
+                  fontSize: 9,
+                  fontWeight: FontWeight.w700,
+                  color: color,
+                ),
+              ),
+              Text(
+                '×$count',
+                style: MeshTheme.mono(
+                  fontSize: 9,
+                  fontWeight: FontWeight.w700,
+                  color: color,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   /// Self and target endpoint markers, shared by single and combined views.
@@ -1403,6 +1487,9 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen>
       }
     }
 
+    // Build resolved entries, then cluster by screen cell.
+    final entries =
+        <(Uint8List, Contact?, LatLng, bool, String, List<DisplayPath>)>[];
     for (final entry in hopPaths.entries) {
       final hopKey = entry.key;
       final hop = hopsByKey[hopKey];
@@ -1415,81 +1502,116 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen>
           : _inferredPositionForHop(hop, connector);
       if (point == null) continue;
       final label = PathHelper.formatHopHex(hop);
-      final baseColor = hasGps ? MeshPalette.signal : MeshPalette.warn;
-      final shared = paths.length > 1;
+      entries.add((hop, contact, point, hasGps, label, paths));
+    }
 
-      markers.add(
-        Marker(
-          point: point,
-          width: 48,
-          height: 48,
-          child: GestureDetector(
-            onTap: () => _showSharedNodeSheet(hop, contact, paths),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Container(
-                  width: 35,
-                  height: 35,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: baseColor.withValues(alpha: 0.18),
-                    border: Border.all(
-                      color: baseColor.withValues(alpha: 0.7),
-                      width: shared ? 2.5 : 1.5,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: baseColor.withValues(alpha: 0.3),
-                        blurRadius: 5,
+    final cellDeg = 360.0 / (256.0 * pow(2.0, _currentZoom)) * 48.0;
+    final cells =
+        <
+          String,
+          List<(Uint8List, Contact?, LatLng, bool, String, List<DisplayPath>)>
+        >{};
+    for (final e in entries) {
+      final cellKey =
+          '${(e.$3.latitude / cellDeg).floor()}:${(e.$3.longitude / cellDeg).floor()}';
+      (cells[cellKey] ??= []).add(e);
+    }
+
+    for (final cell in cells.values) {
+      if (cell.length == 1) {
+        final (hop, contact, point, hasGps, label, paths) = cell.first;
+        final baseColor = hasGps ? MeshPalette.signal : MeshPalette.warn;
+        final shared = paths.length > 1;
+        markers.add(
+          Marker(
+            point: point,
+            width: 48,
+            height: 48,
+            child: GestureDetector(
+              onTap: () => _showSharedNodeSheet(hop, contact, paths),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Container(
+                    width: 35,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: baseColor.withValues(alpha: 0.18),
+                      border: Border.all(
+                        color: baseColor.withValues(alpha: 0.7),
+                        width: shared ? 2.5 : 1.5,
                       ),
-                    ],
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    hasGps ? label : '~$label',
-                    style: MeshTheme.mono(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w700,
-                      color: baseColor,
+                      boxShadow: [
+                        BoxShadow(
+                          color: baseColor.withValues(alpha: 0.3),
+                          blurRadius: 5,
+                        ),
+                      ],
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      hasGps ? label : '~$label',
+                      style: MeshTheme.mono(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w700,
+                        color: baseColor,
+                      ),
                     ),
                   ),
-                ),
-                if (shared)
-                  Positioned(
-                    top: 0,
-                    right: 0,
-                    child: Container(
-                      width: 17,
-                      height: 17,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: MeshPalette.bg1,
-                        border: Border.all(color: MeshPalette.line3),
-                      ),
-                      alignment: Alignment.center,
-                      child: Text(
-                        '${paths.length}',
-                        style: MeshTheme.mono(
-                          fontSize: 9,
-                          fontWeight: FontWeight.w700,
-                          color: MeshPalette.ink,
+                  if (shared)
+                    Positioned(
+                      top: 0,
+                      right: 0,
+                      child: Container(
+                        width: 17,
+                        height: 17,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: MeshPalette.bg1,
+                          border: Border.all(color: MeshPalette.line3),
+                        ),
+                        alignment: Alignment.center,
+                        child: Text(
+                          '${paths.length}',
+                          style: MeshTheme.mono(
+                            fontSize: 9,
+                            fontWeight: FontWeight.w700,
+                            color: MeshPalette.ink,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-      );
-      if (showLabels) {
-        markers.add(
-          _buildNodeLabelMarker(
-            point: point,
-            label: contact?.name ?? '~$label',
-          ),
         );
+        if (showLabels) {
+          markers.add(
+            _buildNodeLabelMarker(
+              point: point,
+              label: contact?.name ?? '~$label',
+            ),
+          );
+        }
+      } else {
+        // Multiple distinct hops at the same screen cell — cluster them.
+        double lat = 0, lon = 0;
+        for (final e in cell) {
+          lat += e.$3.latitude;
+          lon += e.$3.longitude;
+        }
+        final center = LatLng(lat / cell.length, lon / cell.length);
+        final allGps = cell.every((e) => e.$4);
+        final shorts = cell
+            .map((e) => e.$5.length > 2 ? e.$5.substring(0, 2) : e.$5)
+            .toList();
+        markers.add(_buildHopClusterMarker(shorts, center, allGps));
+        if (showLabels) {
+          final names = cell.map((e) => e.$2?.name ?? '~${e.$5}').join(', ');
+          markers.add(_buildNodeLabelMarker(point: center, label: names));
+        }
       }
     }
 
@@ -1650,9 +1772,12 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen>
             });
           }
           final shouldShow = camera.zoom >= _labelZoomThreshold;
-          if (shouldShow != _showNodeLabels) {
+          final zoomBucket = (camera.zoom * 2).round() / 2;
+          final currentBucket = (_currentZoom * 2).round() / 2;
+          if (shouldShow != _showNodeLabels || zoomBucket != currentBucket) {
             setState(() {
               _showNodeLabels = shouldShow;
+              _currentZoom = camera.zoom;
             });
           }
         },
