@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -243,6 +244,17 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get companionCli_empty =>
       'Essayez l\'une des commandes ci-dessus ou saisissez la vôtre.';
+
+  @override
+  String get companionCli_destructiveTitle => 'Dangerous command';
+
+  @override
+  String companionCli_destructiveBody(String command) {
+    return '\"$command\" can permanently change your radio\'s identity or wipe all settings. This cannot be undone. Run it anyway?';
+  }
+
+  @override
+  String get companionCli_destructiveRun => 'Run command';
 
   @override
   String get wifi_title => 'Wi‑Fi';

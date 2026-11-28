@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -240,6 +241,17 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get companionCli_empty =>
       'Poskusite enega od zgornjih ukazov ali vnesite svojega.';
+
+  @override
+  String get companionCli_destructiveTitle => 'Dangerous command';
+
+  @override
+  String companionCli_destructiveBody(String command) {
+    return '\"$command\" can permanently change your radio\'s identity or wipe all settings. This cannot be undone. Run it anyway?';
+  }
+
+  @override
+  String get companionCli_destructiveRun => 'Run command';
 
   @override
   String get wifi_title => 'Wi‑Fi';
@@ -11075,8 +11087,7 @@ class AppLocalizationsSl extends AppLocalizations {
           'V zadnjih 10 minutah je bilo tu slišanih $count okvirjev običajnega MeshCore',
       few:
           'V zadnjih 10 minutah so bili tu slišani $count okvirji običajnega MeshCore',
-      two:
-          'V zadnjih 10 minutah sta bila tu slišana 2 okvira običajnega MeshCore',
+      two: 'V zadnjih 10 minutah sta bila tu slišana 2 okvira običajnega MeshCore',
       one: 'V zadnjih 10 minutah je bil tu slišan 1 okvir običajnega MeshCore',
     );
     return '$_temp0';

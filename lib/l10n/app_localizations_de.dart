@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -244,6 +245,17 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get companionCli_empty =>
       'Probiere einen der Befehle oben oder gib einen eigenen ein.';
+
+  @override
+  String get companionCli_destructiveTitle => 'Dangerous command';
+
+  @override
+  String companionCli_destructiveBody(String command) {
+    return '\"$command\" can permanently change your radio\'s identity or wipe all settings. This cannot be undone. Run it anyway?';
+  }
+
+  @override
+  String get companionCli_destructiveRun => 'Run command';
 
   @override
   String get wifi_title => 'WLAN';
@@ -5563,8 +5575,7 @@ class AppLocalizationsDe extends AppLocalizations {
       locale: localeName,
       other:
           '$count Sprünge haben keinen Standort - der angezeigte Pfad ist unvollständig',
-      one:
-          '1 Sprung hat keinen Standort - der angezeigte Pfad ist unvollständig',
+      one: '1 Sprung hat keinen Standort - der angezeigte Pfad ist unvollständig',
     );
     return '$_temp0';
   }
