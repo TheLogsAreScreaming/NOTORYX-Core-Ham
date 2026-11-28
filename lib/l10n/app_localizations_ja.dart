@@ -1726,6 +1726,11 @@ class AppLocalizationsJa extends AppLocalizations {
   String get chat_retryingMessage => 'メッセージを再試行中';
 
   @override
+  String chat_arrivedVia(String path) {
+    return 'via $path';
+  }
+
+  @override
   String chat_retryCount(int current, int max) {
     return '$current/$max 回目';
   }

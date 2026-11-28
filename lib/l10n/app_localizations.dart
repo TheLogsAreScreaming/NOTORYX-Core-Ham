@@ -3298,6 +3298,12 @@ abstract class AppLocalizations {
   /// **'Retrying message'**
   String get chat_retryingMessage;
 
+  /// No description provided for @chat_arrivedVia.
+  ///
+  /// In en, this message translates to:
+  /// **'via {path}'**
+  String chat_arrivedVia(String path);
+
   /// No description provided for @chat_retryCount.
   ///
   /// In en, this message translates to:
