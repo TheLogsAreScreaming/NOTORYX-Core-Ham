@@ -37,10 +37,7 @@ class WhoRepeatsMeScreen extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(l10n.whoRepeatsMe_title),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: Text(l10n.whoRepeatsMe_title), centerTitle: true),
       body: EmberBackdrop(
         child: entries.isEmpty
             ? Center(
@@ -77,24 +74,23 @@ class WhoRepeatsMeScreen extends StatelessWidget {
     final width = connector.pathHashByteWidth;
 
     // Map from pubkeyPrefix-hex → mutable entry data.
-    final map = <String, ({
-      String nameOrHex,
-      double? snr,
-      bool incoming,
-      bool outgoing,
-    })>{};
+    final map =
+        <
+          String,
+          ({String nameOrHex, double? snr, bool incoming, bool outgoing})
+        >{};
 
     // 1. Direct repeaters (relayed incoming packets through to our radio).
     for (final dr in connector.directRepeaters) {
       final prefixHex = dr.pubkeyPrefixHex;
       final contact = dr.contactKeyHex != null
           ? connector.contacts
-              .where(
-                (c) =>
-                    c.publicKeyHex.toLowerCase() ==
-                    dr.contactKeyHex!.toLowerCase(),
-              )
-              .firstOrNull
+                .where(
+                  (c) =>
+                      c.publicKeyHex.toLowerCase() ==
+                      dr.contactKeyHex!.toLowerCase(),
+                )
+                .firstOrNull
           : null;
       map[prefixHex] = (
         nameOrHex: contact?.name ?? prefixHex,
@@ -108,7 +104,10 @@ class WhoRepeatsMeScreen extends StatelessWidget {
     //    (that repeater relays our outgoing packets to reach them).
     for (final contact in connector.contacts) {
       if (contact.type == advTypeChat && contact.pathLength > 0) {
-        final hops = PathHelper.splitPathBytes(contact.pathBytesForDisplay, width);
+        final hops = PathHelper.splitPathBytes(
+          contact.pathBytesForDisplay,
+          width,
+        );
         if (hops.isEmpty) continue;
         final firstHopHex = PathHelper.formatHopHex(hops.first);
 
@@ -117,9 +116,7 @@ class WhoRepeatsMeScreen extends StatelessWidget {
             .where(
               (c) =>
                   c.publicKey.length >= width &&
-                  PathHelper.formatHopHex(
-                        c.publicKey.sublist(0, width),
-                      ) ==
+                  PathHelper.formatHopHex(c.publicKey.sublist(0, width)) ==
                       firstHopHex,
             )
             .firstOrNull;
@@ -184,8 +181,9 @@ class _RepTile extends StatelessWidget {
                 children: [
                   Text(
                     entry.nameOrHex,
-                    style: theme.textTheme.titleSmall
-                        ?.copyWith(fontWeight: FontWeight.w600),
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Wrap(
