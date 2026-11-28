@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -1354,6 +1353,11 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String contacts_removeConfirm(String contactName) {
     return '$contactName를 연락처 목록에서 제거하시겠습니까?';
+  }
+
+  @override
+  String contacts_removeConfirmFavorite(String contactName) {
+    return '$contactName is starred. Remove from contacts anyway?';
   }
 
   @override
@@ -12784,6 +12788,42 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get contacts_fullWarning =>
       '이 무전기의 연락처 목록이 가득 차서 새 노드를 추가할 수 없습니다. 연락처를 일부 삭제해 공간을 확보하세요.';
+
+  @override
+  String get contacts_freeUpSpace => 'Free up space';
+
+  @override
+  String get contacts_bulkRemoveTitle => 'Remove Contacts';
+
+  @override
+  String get contacts_bulkRemoveHint =>
+      'Select non-starred contacts to remove. Starred contacts are protected.';
+
+  @override
+  String get contacts_bulkRemoveNoneAvailable =>
+      'All contacts are starred. Remove a star first to free up space.';
+
+  @override
+  String contacts_bulkRemoveConfirm(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count contacts',
+      one: '1 contact',
+    );
+    return 'Remove $_temp0?';
+  }
+
+  @override
+  String contacts_bulkRemoved(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count contacts',
+      one: '1 contact',
+    );
+    return 'Removed $_temp0';
+  }
 
   @override
   String get whoRepeatsMe_title => 'Who Relays Me';

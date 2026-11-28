@@ -519,7 +519,10 @@ class _ContactsScreenState extends State<ContactsScreen>
             children: [
               if (connector.contactSyncStalled)
                 _ContactSyncStalledBanner(connector: connector),
-              if (connector.contactsFull) const _ContactsFullBanner(),
+              if (connector.contactsFull)
+                _ContactsFullBanner(
+                  onManage: () => _showBulkRemoveDialog(context, connector),
+                ),
               Expanded(child: _buildContactsBody(context, connector)),
             ],
           ),
@@ -1634,15 +1637,115 @@ class _ContactsScreenState extends State<ContactsScreen>
     return Uint8List.fromList(contact.publicKey.sublist(0, width));
   }
 
+  Future<void> _showBulkRemoveDialog(
+    BuildContext context,
+    MeshCoreConnector connector,
+  ) async {
+    final removable = connector.contacts.where((c) => !c.isFavorite).toList()
+      ..sort((a, b) => a.lastHeard.compareTo(b.lastHeard));
+
+    if (removable.isEmpty) {
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.contacts_bulkRemoveNoneAvailable),
+      );
+      return;
+    }
+
+    final selectedKeys = <String>{};
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => StatefulBuilder(
+        builder: (ctx, setDialogState) => AlertDialog(
+          title: Text(context.l10n.contacts_bulkRemoveTitle),
+          content: SizedBox(
+            width: double.maxFinite,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Text(
+                    context.l10n.contacts_bulkRemoveHint,
+                    style: TextStyle(
+                      color: Theme.of(ctx).colorScheme.onSurfaceVariant,
+                      fontSize: 13,
+                    ),
+                  ),
+                ),
+                Flexible(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: removable.length,
+                    itemBuilder: (_, i) {
+                      final c = removable[i];
+                      return CheckboxListTile(
+                        dense: true,
+                        value: selectedKeys.contains(c.publicKeyHex),
+                        title: Text(c.name),
+                        onChanged: (v) {
+                          setDialogState(() {
+                            if (v == true) {
+                              selectedKeys.add(c.publicKeyHex);
+                            } else {
+                              selectedKeys.remove(c.publicKeyHex);
+                            }
+                          });
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext, false),
+              child: Text(context.l10n.common_cancel),
+            ),
+            TextButton(
+              onPressed: selectedKeys.isEmpty
+                  ? null
+                  : () => Navigator.pop(dialogContext, true),
+              child: Text(
+                context.l10n.contacts_bulkRemoveConfirm(selectedKeys.length),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+
+    if (confirmed != true || !context.mounted) return;
+    final toRemove = removable
+        .where((c) => selectedKeys.contains(c.publicKeyHex))
+        .toList();
+    for (final c in toRemove) {
+      connector.removeContact(c);
+    }
+    if (context.mounted) {
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.contacts_bulkRemoved(toRemove.length)),
+      );
+    }
+  }
+
   Future<void> _confirmDelete(
     BuildContext context,
     MeshCoreConnector connector,
     Contact contact,
   ) async {
+    final message = contact.isFavorite
+        ? context.l10n.contacts_removeConfirmFavorite(contact.name)
+        : context.l10n.contacts_removeConfirm(contact.name);
     final confirmed = await confirmDestructive(
       context,
       title: context.l10n.contacts_deleteContact,
-      message: context.l10n.contacts_removeConfirm(contact.name),
+      message: message,
       confirmLabel: context.l10n.common_delete,
     );
     if (!confirmed) return;
@@ -1926,9 +2029,11 @@ class _ContactTileEntrance extends StatelessWidget {
   }
 }
 
-/// Shown when the radio didn't answer a contact sync.
+/// Shown when the radio's contact list is at capacity.
 class _ContactsFullBanner extends StatelessWidget {
-  const _ContactsFullBanner();
+  final VoidCallback onManage;
+
+  const _ContactsFullBanner({required this.onManage});
 
   @override
   Widget build(BuildContext context) {
@@ -1937,7 +2042,7 @@ class _ContactsFullBanner extends StatelessWidget {
       key: const ValueKey('contacts-full'),
       color: scheme.errorContainer,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
+        padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 8, 8),
         child: Row(
           children: [
             Icon(Icons.group_off_outlined, color: scheme.onErrorContainer),
@@ -1945,6 +2050,13 @@ class _ContactsFullBanner extends StatelessWidget {
             Expanded(
               child: Text(
                 context.l10n.contacts_fullWarning,
+                style: TextStyle(color: scheme.onErrorContainer),
+              ),
+            ),
+            TextButton(
+              onPressed: onManage,
+              child: Text(
+                context.l10n.contacts_freeUpSpace,
                 style: TextStyle(color: scheme.onErrorContainer),
               ),
             ),
