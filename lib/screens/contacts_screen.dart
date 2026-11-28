@@ -520,8 +520,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                 _ContactSyncStalledBanner(connector: connector),
               if (connector.contactsFull)
                 _ContactsFullBanner(
-                  onManage: () =>
-                      _showBulkRemoveDialog(context, connector),
+                  onManage: () => _showBulkRemoveDialog(context, connector),
                 ),
               Expanded(child: _buildContactsBody(context, connector)),
             ],
@@ -1637,9 +1636,7 @@ class _ContactsScreenState extends State<ContactsScreen>
     BuildContext context,
     MeshCoreConnector connector,
   ) async {
-    final removable = connector.contacts
-        .where((c) => !c.isFavorite)
-        .toList()
+    final removable = connector.contacts.where((c) => !c.isFavorite).toList()
       ..sort((a, b) => a.lastHeard.compareTo(b.lastHeard));
 
     if (removable.isEmpty) {
@@ -1718,8 +1715,9 @@ class _ContactsScreenState extends State<ContactsScreen>
     );
 
     if (confirmed != true || !context.mounted) return;
-    final toRemove =
-        removable.where((c) => selectedKeys.contains(c.publicKeyHex)).toList();
+    final toRemove = removable
+        .where((c) => selectedKeys.contains(c.publicKeyHex))
+        .toList();
     for (final c in toRemove) {
       connector.removeContact(c);
     }
