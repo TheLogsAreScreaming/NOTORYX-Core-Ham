@@ -21974,6 +21974,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This radio\'s contact list is full, so it can\'t add new nodes. Remove some contacts to make room.'**
   String get contacts_fullWarning;
+
+  /// No description provided for @whoRepeatsMe_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Who Relays Me'**
+  String get whoRepeatsMe_title;
+
+  /// No description provided for @whoRepeatsMe_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No relay data yet. After some messages or contacts are synced, this screen shows which repeaters are part of your paths.'**
+  String get whoRepeatsMe_empty;
+
+  /// No description provided for @whoRepeatsMe_inbound.
+  ///
+  /// In en, this message translates to:
+  /// **'Relays incoming'**
+  String get whoRepeatsMe_inbound;
+
+  /// No description provided for @whoRepeatsMe_outbound.
+  ///
+  /// In en, this message translates to:
+  /// **'Relays outgoing'**
+  String get whoRepeatsMe_outbound;
+
+  /// No description provided for @whoRepeatsMe_toolHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Which repeaters are part of your mesh paths'**
+  String get whoRepeatsMe_toolHint;
 }
 
 class _AppLocalizationsDelegate

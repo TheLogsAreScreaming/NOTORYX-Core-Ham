@@ -13417,4 +13417,21 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get contacts_fullWarning =>
       'La liste de contacts de cette radio est pleine : elle ne peut plus ajouter de nouveaux nœuds. Supprimez des contacts pour faire de la place.';
+
+  @override
+  String get whoRepeatsMe_title => 'Who Relays Me';
+
+  @override
+  String get whoRepeatsMe_empty =>
+      'No relay data yet. After some messages or contacts are synced, this screen shows which repeaters are part of your paths.';
+
+  @override
+  String get whoRepeatsMe_inbound => 'Relays incoming';
+
+  @override
+  String get whoRepeatsMe_outbound => 'Relays outgoing';
+
+  @override
+  String get whoRepeatsMe_toolHint =>
+      'Which repeaters are part of your mesh paths';
 }
