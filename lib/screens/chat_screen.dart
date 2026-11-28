@@ -2055,8 +2055,9 @@ class _MessageBubble extends StatelessWidget {
                                   message.pathBytes,
                                   w,
                                 );
-                                if (hops.isEmpty)
+                                if (hops.isEmpty) {
                                   return const SizedBox.shrink();
+                                }
                                 final names = hops
                                     .map((hop) {
                                       final hex = PathHelper.formatHopHex(hop);
