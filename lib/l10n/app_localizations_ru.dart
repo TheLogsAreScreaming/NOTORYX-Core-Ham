@@ -242,6 +242,17 @@ class AppLocalizationsRu extends AppLocalizations {
       'Попробуйте одну из команд выше или введите свою.';
 
   @override
+  String get companionCli_destructiveTitle => 'Dangerous command';
+
+  @override
+  String companionCli_destructiveBody(String command) {
+    return '\"$command\" can permanently change your radio\'s identity or wipe all settings. This cannot be undone. Run it anyway?';
+  }
+
+  @override
+  String get companionCli_destructiveRun => 'Run command';
+
+  @override
   String get wifi_title => 'Wi‑Fi';
 
   @override
@@ -1396,6 +1407,15 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
+  String get contacts_reachTwoWay => 'Two-way';
+
+  @override
+  String get contacts_reachTheyHeardUs => 'They\'ve heard you';
+
+  @override
+  String get contacts_reachNoAnswer => 'No answer yet';
+
+  @override
   String get contacts_noUnreadContacts => 'Нет непрочитанных контактов';
 
   @override
@@ -1816,6 +1836,11 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get chat_retryingMessage => 'Повтор отправки сообщения';
+
+  @override
+  String chat_arrivedVia(String path) {
+    return 'via $path';
+  }
 
   @override
   String chat_retryCount(int current, int max) {
@@ -13437,4 +13462,21 @@ class AppLocalizationsRu extends AppLocalizations {
     );
     return 'Removed $_temp0';
   }
+
+  @override
+  String get whoRepeatsMe_title => 'Who Relays Me';
+
+  @override
+  String get whoRepeatsMe_empty =>
+      'No relay data yet. After some messages or contacts are synced, this screen shows which repeaters are part of your paths.';
+
+  @override
+  String get whoRepeatsMe_inbound => 'Relays incoming';
+
+  @override
+  String get whoRepeatsMe_outbound => 'Relays outgoing';
+
+  @override
+  String get whoRepeatsMe_toolHint =>
+      'Which repeaters are part of your mesh paths';
 }

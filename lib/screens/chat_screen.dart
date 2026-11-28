@@ -2046,6 +2046,49 @@ class _MessageBubble extends StatelessWidget {
                             ),
                           ],
                           const SizedBox(height: 3),
+                          if (!isOutgoing && message.pathBytes.isNotEmpty) ...[
+                            Builder(
+                              builder: (ctx) {
+                                final con = ctx.read<MeshCoreConnector>();
+                                final w = con.pathHashByteWidth;
+                                final hops = PathHelper.splitPathBytes(
+                                  message.pathBytes,
+                                  w,
+                                );
+                                if (hops.isEmpty) {
+                                  return const SizedBox.shrink();
+                                }
+                                final names = hops
+                                    .map((hop) {
+                                      final hex = PathHelper.formatHopHex(hop);
+                                      return con.contacts
+                                              .where(
+                                                (c) =>
+                                                    c.publicKey.length >= w &&
+                                                    PathHelper.formatHopHex(
+                                                          c.publicKey.sublist(
+                                                            0,
+                                                            w,
+                                                          ),
+                                                        ) ==
+                                                        hex,
+                                              )
+                                              .firstOrNull
+                                              ?.name ??
+                                          hex;
+                                    })
+                                    .join(' → ');
+                                return Text(
+                                  context.l10n.chat_arrivedVia(names),
+                                  style: MeshTheme.mono(
+                                    fontSize: 9.5 * textScale,
+                                    color: metaColor,
+                                  ),
+                                );
+                              },
+                            ),
+                            const SizedBox(height: 2),
+                          ],
                           // Meta row: timestamp + status icon + optional tracing
                           Padding(
                             padding: gifId != null
@@ -2078,6 +2121,24 @@ class _MessageBubble extends StatelessWidget {
                                         message.status == MessageStatus.pending,
                                     isFailed:
                                         message.status == MessageStatus.failed,
+                                  ),
+                                ],
+                                if (isOutgoing &&
+                                    message.retryCount > 0 &&
+                                    message.status ==
+                                        MessageStatus.pending) ...[
+                                  const SizedBox(width: 2),
+                                  Icon(
+                                    Icons.refresh,
+                                    size: 10 * textScale,
+                                    color: MeshPalette.warn,
+                                  ),
+                                  Text(
+                                    '${message.retryCount}',
+                                    style: MeshTheme.mono(
+                                      fontSize: 9 * textScale,
+                                      color: MeshPalette.warn,
+                                    ),
                                   ),
                                 ],
                                 if (enableTracing &&

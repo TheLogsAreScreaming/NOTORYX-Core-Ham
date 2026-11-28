@@ -538,6 +538,24 @@ abstract class AppLocalizations {
   /// **'Try one of the commands above, or type your own.'**
   String get companionCli_empty;
 
+  /// No description provided for @companionCli_destructiveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dangerous command'**
+  String get companionCli_destructiveTitle;
+
+  /// No description provided for @companionCli_destructiveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'\"{command}\" can permanently change your radio\'s identity or wipe all settings. This cannot be undone. Run it anyway?'**
+  String companionCli_destructiveBody(String command);
+
+  /// No description provided for @companionCli_destructiveRun.
+  ///
+  /// In en, this message translates to:
+  /// **'Run command'**
+  String get companionCli_destructiveRun;
+
   /// No description provided for @wifi_title.
   ///
   /// In en, this message translates to:
@@ -2572,6 +2590,24 @@ abstract class AppLocalizations {
   /// **'Search {number}{str} Room servers...'**
   String contacts_searchRoomServers(int number, String str);
 
+  /// No description provided for @contacts_reachTwoWay.
+  ///
+  /// In en, this message translates to:
+  /// **'Two-way'**
+  String get contacts_reachTwoWay;
+
+  /// No description provided for @contacts_reachTheyHeardUs.
+  ///
+  /// In en, this message translates to:
+  /// **'They\'ve heard you'**
+  String get contacts_reachTheyHeardUs;
+
+  /// No description provided for @contacts_reachNoAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'No answer yet'**
+  String get contacts_reachNoAnswer;
+
   /// No description provided for @contacts_noUnreadContacts.
   ///
   /// In en, this message translates to:
@@ -3303,6 +3339,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Retrying message'**
   String get chat_retryingMessage;
+
+  /// No description provided for @chat_arrivedVia.
+  ///
+  /// In en, this message translates to:
+  /// **'via {path}'**
+  String chat_arrivedVia(String path);
 
   /// No description provided for @chat_retryCount.
   ///
@@ -21980,6 +22022,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Removed {count, plural, one{1 contact} other{{count} contacts}}'**
   String contacts_bulkRemoved(int count);
+
+  /// No description provided for @whoRepeatsMe_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Who Relays Me'**
+  String get whoRepeatsMe_title;
+
+  /// No description provided for @whoRepeatsMe_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No relay data yet. After some messages or contacts are synced, this screen shows which repeaters are part of your paths.'**
+  String get whoRepeatsMe_empty;
+
+  /// No description provided for @whoRepeatsMe_inbound.
+  ///
+  /// In en, this message translates to:
+  /// **'Relays incoming'**
+  String get whoRepeatsMe_inbound;
+
+  /// No description provided for @whoRepeatsMe_outbound.
+  ///
+  /// In en, this message translates to:
+  /// **'Relays outgoing'**
+  String get whoRepeatsMe_outbound;
+
+  /// No description provided for @whoRepeatsMe_toolHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Which repeaters are part of your mesh paths'**
+  String get whoRepeatsMe_toolHint;
 }
 
 class _AppLocalizationsDelegate

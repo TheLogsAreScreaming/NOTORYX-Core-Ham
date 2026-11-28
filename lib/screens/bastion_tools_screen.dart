@@ -34,6 +34,7 @@ import 'bastion_field_stats_screen.dart';
 import 'bastion_map_hub_screen.dart';
 import 'bastion_path_hub_screen.dart';
 import 'bastion_repeater_tools_screen.dart';
+import 'who_repeats_me_screen.dart';
 import 'coverage_hex_screen.dart';
 import 'prefix_tool_screen.dart';
 import 'repeater_ping_screen.dart';
@@ -255,6 +256,12 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
             title: l10n.bastion_repeaterTools,
             subtitle: l10n.bastionTools_repeaterHint,
             builder: (_) => const BastionRepeaterToolsScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.hearing,
+            title: l10n.whoRepeatsMe_title,
+            subtitle: l10n.whoRepeatsMe_toolHint,
+            builder: (_) => const WhoRepeatsMeScreen(),
           ),
           _ToolAction(
             icon: Icons.auto_stories_outlined,
