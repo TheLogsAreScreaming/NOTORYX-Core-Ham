@@ -1373,6 +1373,15 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
+  String get contacts_reachTwoWay => 'Two-way';
+
+  @override
+  String get contacts_reachTheyHeardUs => 'They\'ve heard you';
+
+  @override
+  String get contacts_reachNoAnswer => 'No answer yet';
+
+  @override
   String get contacts_noUnreadContacts => 'Inga oinlästa kontakter';
 
   @override
