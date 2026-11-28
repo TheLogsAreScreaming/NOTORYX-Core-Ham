@@ -2046,39 +2046,36 @@ class _MessageBubble extends StatelessWidget {
                             ),
                           ],
                           const SizedBox(height: 3),
-                          if (!isOutgoing &&
-                              message.pathBytes.isNotEmpty) ...[
+                          if (!isOutgoing && message.pathBytes.isNotEmpty) ...[
                             Builder(
                               builder: (ctx) {
-                                final con =
-                                    ctx.read<MeshCoreConnector>();
+                                final con = ctx.read<MeshCoreConnector>();
                                 final w = con.pathHashByteWidth;
                                 final hops = PathHelper.splitPathBytes(
                                   message.pathBytes,
                                   w,
                                 );
-                                if (hops.isEmpty) return const SizedBox.shrink();
+                                if (hops.isEmpty)
+                                  return const SizedBox.shrink();
                                 final names = hops
-                                    .map(
-                                      (hop) {
-                                        final hex =
-                                            PathHelper.formatHopHex(hop);
-                                        return con.contacts
-                                                .where(
-                                                  (c) =>
-                                                      c.publicKey.length >=
-                                                          w &&
-                                                      PathHelper.formatHopHex(
-                                                            c.publicKey
-                                                                .sublist(0, w),
-                                                          ) ==
-                                                          hex,
-                                                )
-                                                .firstOrNull
-                                                ?.name ??
-                                            hex;
-                                      },
-                                    )
+                                    .map((hop) {
+                                      final hex = PathHelper.formatHopHex(hop);
+                                      return con.contacts
+                                              .where(
+                                                (c) =>
+                                                    c.publicKey.length >= w &&
+                                                    PathHelper.formatHopHex(
+                                                          c.publicKey.sublist(
+                                                            0,
+                                                            w,
+                                                          ),
+                                                        ) ==
+                                                        hex,
+                                              )
+                                              .firstOrNull
+                                              ?.name ??
+                                          hex;
+                                    })
                                     .join(' → ');
                                 return Text(
                                   context.l10n.chat_arrivedVia(names),
