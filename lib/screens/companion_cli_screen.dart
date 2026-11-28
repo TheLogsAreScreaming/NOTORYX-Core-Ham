@@ -10,6 +10,16 @@ import '../theme/mesh_theme.dart';
 /// Runs a command on the companion CLI and returns its reply.
 typedef CliRunner = Future<String> Function(String command);
 
+/// Commands that require an explicit confirmation before running.
+bool _isDestructiveCommand(String command) {
+  final lower = command.trim().toLowerCase();
+  return lower == 'rekey' ||
+      lower.startsWith('rekey ') ||
+      lower == 'factory' ||
+      lower == 'factory reset' ||
+      lower == 'reset factory';
+}
+
 /// A text command line for the connected companion radio (firmware v14+).
 class CompanionCliScreen extends StatefulWidget {
   /// Overrides the connector's CLI; for tests.
@@ -53,9 +63,39 @@ class _CompanionCliScreenState extends State<CompanionCliScreen> {
     super.dispose();
   }
 
+  Future<bool> _confirmDestructive(String command) async {
+    final l10n = context.l10n;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l10n.companionCli_destructiveTitle),
+        content: Text(l10n.companionCli_destructiveBody(command)),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: Text(l10n.common_cancel),
+          ),
+          FilledButton(
+            style: FilledButton.styleFrom(
+              backgroundColor: Theme.of(ctx).colorScheme.error,
+              foregroundColor: Theme.of(ctx).colorScheme.onError,
+            ),
+            onPressed: () => Navigator.pop(ctx, true),
+            child: Text(l10n.companionCli_destructiveRun),
+          ),
+        ],
+      ),
+    );
+    return confirmed == true;
+  }
+
   Future<void> _run(String command) async {
     final text = command.trim();
     if (text.isEmpty || _running) return;
+    if (_isDestructiveCommand(text)) {
+      final confirmed = await _confirmDestructive(text);
+      if (!confirmed || !mounted) return;
+    }
     final run = widget.run ?? context.read<MeshCoreConnector>().runCliCommand;
     final exchange = _Exchange(text);
     setState(() {

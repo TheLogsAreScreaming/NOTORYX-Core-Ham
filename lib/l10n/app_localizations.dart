@@ -538,6 +538,24 @@ abstract class AppLocalizations {
   /// **'Try one of the commands above, or type your own.'**
   String get companionCli_empty;
 
+  /// No description provided for @companionCli_destructiveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dangerous command'**
+  String get companionCli_destructiveTitle;
+
+  /// No description provided for @companionCli_destructiveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'\"{command}\" can permanently change your radio\'s identity or wipe all settings. This cannot be undone. Run it anyway?'**
+  String companionCli_destructiveBody(String command);
+
+  /// No description provided for @companionCli_destructiveRun.
+  ///
+  /// In en, this message translates to:
+  /// **'Run command'**
+  String get companionCli_destructiveRun;
+
   /// No description provided for @wifi_title.
   ///
   /// In en, this message translates to:

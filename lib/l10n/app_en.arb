@@ -127,6 +127,14 @@
   "companionCli_send": "Run command",
   "companionCli_noReply": "No reply. The radio may be restarting.",
   "companionCli_empty": "Try one of the commands above, or type your own.",
+  "companionCli_destructiveTitle": "Dangerous command",
+  "companionCli_destructiveBody": "\"{command}\" can permanently change your radio's identity or wipe all settings. This cannot be undone. Run it anyway?",
+  "@companionCli_destructiveBody": {
+    "placeholders": {
+      "command": { "type": "String" }
+    }
+  },
+  "companionCli_destructiveRun": "Run command",
   "wifi_title": "WiFi",
   "wifi_tileSubtitle": "Connect your radio to a WiFi network",
   "wifi_unsupported": "This radio's firmware doesn't include WiFi.",
