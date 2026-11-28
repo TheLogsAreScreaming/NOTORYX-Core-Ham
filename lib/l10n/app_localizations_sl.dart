@@ -11087,7 +11087,8 @@ class AppLocalizationsSl extends AppLocalizations {
           'V zadnjih 10 minutah je bilo tu slišanih $count okvirjev običajnega MeshCore',
       few:
           'V zadnjih 10 minutah so bili tu slišani $count okvirji običajnega MeshCore',
-      two: 'V zadnjih 10 minutah sta bila tu slišana 2 okvira običajnega MeshCore',
+      two:
+          'V zadnjih 10 minutah sta bila tu slišana 2 okvira običajnega MeshCore',
       one: 'V zadnjih 10 minutah je bil tu slišan 1 okvir običajnega MeshCore',
     );
     return '$_temp0';
