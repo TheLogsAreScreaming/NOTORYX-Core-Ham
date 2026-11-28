@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
+import '../connector/meshcore_protocol.dart';
 import '../l10n/app_localizations.dart';
 import '../l10n/l10n.dart';
+import '../widgets/qr_code_display.dart';
 import '../models/saved_radio.dart';
 import '../services/mqtt_uploaders_service.dart';
 import '../utils/platform_info.dart';
@@ -201,6 +203,31 @@ class RadioConnectionCard extends StatelessWidget {
                         ? l10n.connections_disconnectRadio
                         : l10n.common_cancel,
                   ),
+                ),
+              if (connected &&
+                  connector.selfPublicKey != null &&
+                  connector.selfName?.isNotEmpty == true)
+                OutlinedButton.icon(
+                  onPressed: () {
+                    final link = Uri(
+                      scheme: 'meshcore',
+                      host: 'contact',
+                      path: '/add',
+                      queryParameters: {
+                        'name': connector.selfName!,
+                        'public_key': connector.selfPublicKeyHex.toLowerCase(),
+                        'type': '$advTypeChat',
+                      },
+                    ).toString();
+                    QrCodeShareDialog.show(
+                      context: context,
+                      data: link,
+                      title: l10n.connections_shareContact,
+                      instructions: l10n.connections_shareContactHint,
+                    );
+                  },
+                  icon: const Icon(Icons.qr_code_2),
+                  label: Text(l10n.connections_shareContact),
                 ),
               if (saved != null && !connected && !busy)
                 TextButton(

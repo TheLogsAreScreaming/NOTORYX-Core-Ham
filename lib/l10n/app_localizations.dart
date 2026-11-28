@@ -13339,6 +13339,18 @@ abstract class AppLocalizations {
   /// **'Not connected'**
   String get connections_statusNotConnected;
 
+  /// No description provided for @connections_shareContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Share my contact'**
+  String get connections_shareContact;
+
+  /// No description provided for @connections_shareContactHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan this QR code to add me as a contact on another device.'**
+  String get connections_shareContactHint;
+
   /// No description provided for @mqtt_cardTitle.
   ///
   /// In en, this message translates to:
