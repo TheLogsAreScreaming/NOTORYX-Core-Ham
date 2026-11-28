@@ -7656,6 +7656,13 @@ class AppLocalizationsKo extends AppLocalizations {
   String get connections_statusNotConnected => '연결되지 않음';
 
   @override
+  String get connections_shareContact => 'Share my contact';
+
+  @override
+  String get connections_shareContactHint =>
+      'Scan this QR code to add me as a contact on another device.';
+
+  @override
   String get mqtt_cardTitle => 'MQTT 연결';
 
   @override

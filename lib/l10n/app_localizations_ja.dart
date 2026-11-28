@@ -7645,6 +7645,13 @@ class AppLocalizationsJa extends AppLocalizations {
   String get connections_statusNotConnected => '未接続';
 
   @override
+  String get connections_shareContact => 'Share my contact';
+
+  @override
+  String get connections_shareContactHint =>
+      'Scan this QR code to add me as a contact on another device.';
+
+  @override
   String get mqtt_cardTitle => 'MQTT接続';
 
   @override

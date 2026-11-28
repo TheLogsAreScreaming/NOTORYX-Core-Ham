@@ -4814,6 +4814,8 @@
   "connections_statusScanning": "Scanning for radios…",
   "connections_statusReconnectingSoon": "Reconnecting soon…",
   "connections_statusNotConnected": "Not connected",
+  "connections_shareContact": "Share my contact",
+  "connections_shareContactHint": "Scan this QR code to add me as a contact on another device.",
   "mqtt_cardTitle": "MQTT connection",
   "mqtt_statusNotConfigured": "Not configured",
   "mqtt_statusDisconnected": "Disconnected",
