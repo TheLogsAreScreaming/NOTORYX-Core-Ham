@@ -8491,5 +8491,25 @@
       }
     }
   },
-  "contacts_fullWarning": "This radio's contact list is full, so it can't add new nodes. Remove some contacts to make room."
+  "contacts_fullWarning": "This radio's contact list is full, so it can't add new nodes. Remove some contacts to make room.",
+  "contacts_freeUpSpace": "Free up space",
+  "contacts_bulkRemoveTitle": "Remove Contacts",
+  "contacts_bulkRemoveHint": "Select non-starred contacts to remove. Starred contacts are protected.",
+  "contacts_bulkRemoveNoneAvailable": "All contacts are starred. Remove a star first to free up space.",
+  "contacts_bulkRemoveConfirm": "Remove {count, plural, one{1 contact} other{{count} contacts}}?",
+  "@contacts_bulkRemoveConfirm": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "contacts_bulkRemoved": "Removed {count, plural, one{1 contact} other{{count} contacts}}",
+  "@contacts_bulkRemoved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

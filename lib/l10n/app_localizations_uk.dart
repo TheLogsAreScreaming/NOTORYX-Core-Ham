@@ -13400,4 +13400,40 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get contacts_fullWarning =>
       'Список контактів цієї рації заповнений, тому вона не може додавати нові вузли. Видаліть кілька контактів, щоб звільнити місце.';
+
+  @override
+  String get contacts_freeUpSpace => 'Free up space';
+
+  @override
+  String get contacts_bulkRemoveTitle => 'Remove Contacts';
+
+  @override
+  String get contacts_bulkRemoveHint =>
+      'Select non-starred contacts to remove. Starred contacts are protected.';
+
+  @override
+  String get contacts_bulkRemoveNoneAvailable =>
+      'All contacts are starred. Remove a star first to free up space.';
+
+  @override
+  String contacts_bulkRemoveConfirm(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count contacts',
+      one: '1 contact',
+    );
+    return 'Remove $_temp0?';
+  }
+
+  @override
+  String contacts_bulkRemoved(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count contacts',
+      one: '1 contact',
+    );
+    return 'Removed $_temp0';
+  }
 }

@@ -21944,6 +21944,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This radio\'s contact list is full, so it can\'t add new nodes. Remove some contacts to make room.'**
   String get contacts_fullWarning;
+
+  /// No description provided for @contacts_freeUpSpace.
+  ///
+  /// In en, this message translates to:
+  /// **'Free up space'**
+  String get contacts_freeUpSpace;
+
+  /// No description provided for @contacts_bulkRemoveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove Contacts'**
+  String get contacts_bulkRemoveTitle;
+
+  /// No description provided for @contacts_bulkRemoveHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Select non-starred contacts to remove. Starred contacts are protected.'**
+  String get contacts_bulkRemoveHint;
+
+  /// No description provided for @contacts_bulkRemoveNoneAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'All contacts are starred. Remove a star first to free up space.'**
+  String get contacts_bulkRemoveNoneAvailable;
+
+  /// No description provided for @contacts_bulkRemoveConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {count, plural, one{1 contact} other{{count} contacts}}?'**
+  String contacts_bulkRemoveConfirm(int count);
+
+  /// No description provided for @contacts_bulkRemoved.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed {count, plural, one{1 contact} other{{count} contacts}}'**
+  String contacts_bulkRemoved(int count);
 }
 
 class _AppLocalizationsDelegate
