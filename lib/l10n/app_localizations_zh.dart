@@ -12505,4 +12505,21 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get contacts_fullWarning => '此电台的联系人列表已满，无法添加新节点。请删除一些联系人以腾出空间。';
+
+  @override
+  String get whoRepeatsMe_title => 'Who Relays Me';
+
+  @override
+  String get whoRepeatsMe_empty =>
+      'No relay data yet. After some messages or contacts are synced, this screen shows which repeaters are part of your paths.';
+
+  @override
+  String get whoRepeatsMe_inbound => 'Relays incoming';
+
+  @override
+  String get whoRepeatsMe_outbound => 'Relays outgoing';
+
+  @override
+  String get whoRepeatsMe_toolHint =>
+      'Which repeaters are part of your mesh paths';
 }

@@ -12758,4 +12758,21 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get contacts_fullWarning =>
       '이 무전기의 연락처 목록이 가득 차서 새 노드를 추가할 수 없습니다. 연락처를 일부 삭제해 공간을 확보하세요.';
+
+  @override
+  String get whoRepeatsMe_title => 'Who Relays Me';
+
+  @override
+  String get whoRepeatsMe_empty =>
+      'No relay data yet. After some messages or contacts are synced, this screen shows which repeaters are part of your paths.';
+
+  @override
+  String get whoRepeatsMe_inbound => 'Relays incoming';
+
+  @override
+  String get whoRepeatsMe_outbound => 'Relays outgoing';
+
+  @override
+  String get whoRepeatsMe_toolHint =>
+      'Which repeaters are part of your mesh paths';
 }

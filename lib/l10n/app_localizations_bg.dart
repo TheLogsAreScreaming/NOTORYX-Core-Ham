@@ -13338,4 +13338,21 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get contacts_fullWarning =>
       'Списъкът с контакти на това радио е пълен и не може да добавя нови възли. Премахнете някои контакти, за да освободите място.';
+
+  @override
+  String get whoRepeatsMe_title => 'Who Relays Me';
+
+  @override
+  String get whoRepeatsMe_empty =>
+      'No relay data yet. After some messages or contacts are synced, this screen shows which repeaters are part of your paths.';
+
+  @override
+  String get whoRepeatsMe_inbound => 'Relays incoming';
+
+  @override
+  String get whoRepeatsMe_outbound => 'Relays outgoing';
+
+  @override
+  String get whoRepeatsMe_toolHint =>
+      'Which repeaters are part of your mesh paths';
 }
