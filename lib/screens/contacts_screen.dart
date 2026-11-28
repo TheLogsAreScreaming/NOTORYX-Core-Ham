@@ -19,6 +19,7 @@ import '../models/node_staleness.dart';
 import '../services/app_settings_service.dart';
 import '../services/ui_view_state_service.dart';
 import '../theme/mesh_theme.dart';
+import '../utils/contact_reachability.dart';
 import '../utils/contact_search.dart';
 import '../storage/contact_group_store.dart';
 import '../utils/dialog_utils.dart';
@@ -982,6 +983,9 @@ class _ContactsScreenState extends State<ContactsScreen>
                       final unreadCount = connector.getUnreadCountForContact(
                         contact,
                       );
+                      final reach = contact.type == advTypeChat
+                          ? contactReachability(connector, contact)
+                          : null;
                       return Padding(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 12,
@@ -1000,6 +1004,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                             ),
                             unreadCount: unreadCount,
                             isFavorite: contact.isFavorite,
+                            reachability: reach,
                             onTap: () => _openChat(context, contact),
                             onLongPress: () => _showContactOptions(
                               context,
@@ -1655,6 +1660,7 @@ class _ContactTile extends StatelessWidget {
   final bool stale;
   final int unreadCount;
   final bool isFavorite;
+  final ContactReachability? reachability;
   final VoidCallback onTap;
   final VoidCallback onLongPress;
 
@@ -1665,6 +1671,7 @@ class _ContactTile extends StatelessWidget {
     this.stale = false,
     required this.unreadCount,
     required this.isFavorite,
+    this.reachability,
     required this.onTap,
     required this.onLongPress,
   });
@@ -1797,6 +1804,10 @@ class _ContactTile extends StatelessWidget {
                                       ),
                                 ),
                               ),
+                              if (reachability != null) ...[
+                                const SizedBox(width: 6),
+                                _ReachabilityLabel(reachability!),
+                              ],
                             ],
                           ),
                         ],
@@ -1879,6 +1890,7 @@ class _ContactTileEntrance extends StatelessWidget {
   final bool stale;
   final int unreadCount;
   final bool isFavorite;
+  final ContactReachability? reachability;
   final VoidCallback onTap;
   final VoidCallback onLongPress;
 
@@ -1890,6 +1902,7 @@ class _ContactTileEntrance extends StatelessWidget {
     this.stale = false,
     required this.unreadCount,
     required this.isFavorite,
+    this.reachability,
     required this.onTap,
     required this.onLongPress,
   });
@@ -1905,6 +1918,7 @@ class _ContactTileEntrance extends StatelessWidget {
         stale: stale,
         unreadCount: unreadCount,
         isFavorite: isFavorite,
+        reachability: reachability,
         onTap: onTap,
         onLongPress: onLongPress,
       ),
@@ -1972,6 +1986,51 @@ class _ContactSyncStalledBanner extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _ReachabilityLabel extends StatelessWidget {
+  final ContactReachability reachability;
+
+  const _ReachabilityLabel(this.reachability);
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final String label;
+    final Color color;
+    final IconData icon;
+
+    switch (reachability) {
+      case ContactReachability.twoWay:
+        label = l10n.contacts_reachTwoWay;
+        color = MeshPalette.signal;
+        icon = Icons.swap_horiz;
+        break;
+      case ContactReachability.theyHeardUs:
+        label = l10n.contacts_reachTheyHeardUs;
+        color = MeshPalette.warn;
+        icon = Icons.arrow_forward;
+        break;
+      case ContactReachability.noAnswer:
+        return const SizedBox.shrink();
+    }
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(icon, size: 11, color: color),
+        const SizedBox(width: 2),
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 11,
+            color: color,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
     );
   }
 }

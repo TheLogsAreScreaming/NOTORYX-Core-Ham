@@ -2590,6 +2590,24 @@ abstract class AppLocalizations {
   /// **'Search {number}{str} Room servers...'**
   String contacts_searchRoomServers(int number, String str);
 
+  /// No description provided for @contacts_reachTwoWay.
+  ///
+  /// In en, this message translates to:
+  /// **'Two-way'**
+  String get contacts_reachTwoWay;
+
+  /// No description provided for @contacts_reachTheyHeardUs.
+  ///
+  /// In en, this message translates to:
+  /// **'They\'ve heard you'**
+  String get contacts_reachTheyHeardUs;
+
+  /// No description provided for @contacts_reachNoAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'No answer yet'**
+  String get contacts_reachNoAnswer;
+
   /// No description provided for @contacts_noUnreadContacts.
   ///
   /// In en, this message translates to:
