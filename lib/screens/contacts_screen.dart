@@ -1634,10 +1634,13 @@ class _ContactsScreenState extends State<ContactsScreen>
     MeshCoreConnector connector,
     Contact contact,
   ) async {
+    final message = contact.isFavorite
+        ? context.l10n.contacts_removeConfirmFavorite(contact.name)
+        : context.l10n.contacts_removeConfirm(contact.name);
     final confirmed = await confirmDestructive(
       context,
       title: context.l10n.contacts_deleteContact,
-      message: context.l10n.contacts_removeConfirm(contact.name),
+      message: message,
       confirmLabel: context.l10n.common_delete,
     );
     if (!confirmed) return;

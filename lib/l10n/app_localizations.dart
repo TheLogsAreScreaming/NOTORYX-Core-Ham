@@ -2596,6 +2596,12 @@ abstract class AppLocalizations {
   /// **'Remove {contactName} from contacts?'**
   String contacts_removeConfirm(String contactName);
 
+  /// No description provided for @contacts_removeConfirmFavorite.
+  ///
+  /// In en, this message translates to:
+  /// **'{contactName} is starred. Remove from contacts anyway?'**
+  String contacts_removeConfirmFavorite(String contactName);
+
   /// No description provided for @contacts_manageRepeater.
   ///
   /// In en, this message translates to:

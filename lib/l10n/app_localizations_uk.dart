@@ -1401,6 +1401,11 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
+  String contacts_removeConfirmFavorite(String contactName) {
+    return '$contactName is starred. Remove from contacts anyway?';
+  }
+
+  @override
   String get contacts_manageRepeater => 'Керувати ретранслятором';
 
   @override

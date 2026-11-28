@@ -642,6 +642,14 @@
       }
     }
   },
+  "contacts_removeConfirmFavorite": "{contactName} is starred. Remove from contacts anyway?",
+  "@contacts_removeConfirmFavorite": {
+    "placeholders": {
+      "contactName": {
+        "type": "String"
+      }
+    }
+  },
   "contacts_manageRepeater": "Manage Repeater",
   "contacts_manageRoom": "Manage Room Server",
   "contacts_roomLogin": "Room Server Login",
