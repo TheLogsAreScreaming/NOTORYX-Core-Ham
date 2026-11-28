@@ -1823,6 +1823,11 @@ class AppLocalizationsNl extends AppLocalizations {
   String get chat_retryingMessage => 'Poging opnieuw.';
 
   @override
+  String chat_arrivedVia(String path) {
+    return 'via $path';
+  }
+
+  @override
   String chat_retryCount(int current, int max) {
     return 'Poging opnieuw $current/$max';
   }

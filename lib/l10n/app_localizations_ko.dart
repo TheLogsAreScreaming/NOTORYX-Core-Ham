@@ -1749,6 +1749,11 @@ class AppLocalizationsKo extends AppLocalizations {
   String get chat_retryingMessage => '재시도 메시지';
 
   @override
+  String chat_arrivedVia(String path) {
+    return 'via $path';
+  }
+
+  @override
   String chat_retryCount(int current, int max) {
     return '$current/$max 시도';
   }

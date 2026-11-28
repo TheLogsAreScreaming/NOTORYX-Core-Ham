@@ -1834,6 +1834,11 @@ class AppLocalizationsRu extends AppLocalizations {
   String get chat_retryingMessage => 'Повтор отправки сообщения';
 
   @override
+  String chat_arrivedVia(String path) {
+    return 'via $path';
+  }
+
+  @override
   String chat_retryCount(int current, int max) {
     return 'Попытка $current/$max';
   }

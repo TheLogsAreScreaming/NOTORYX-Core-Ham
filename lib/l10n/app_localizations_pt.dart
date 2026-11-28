@@ -1829,6 +1829,11 @@ class AppLocalizationsPt extends AppLocalizations {
   String get chat_retryingMessage => 'Tentando novamente';
 
   @override
+  String chat_arrivedVia(String path) {
+    return 'via $path';
+  }
+
+  @override
   String chat_retryCount(int current, int max) {
     return 'Tentar $current/$max';
   }
